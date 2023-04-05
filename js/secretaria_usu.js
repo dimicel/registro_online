@@ -558,33 +558,46 @@ function confirmaCambioNombreDoc() {
 
 
 function panelExpedienteUsuario() {
-    curso_exp.innerHTML = "";
-    curso_exp.append(new Option("Todos", "todos"));
-    cuenta_annos = anno_ini_curso_docs;
-    if (mes == 6) cuenta_annos++;
-    for (i = 2020; i <= cuenta_annos; i++) {
-        var c = i + "-" + (i + 1);
-        curso_exp.append(new Option(c, c));
-    }
-    curso_exp.selectIndex = 0;
-    $("#div_expediente_usuario").dialog({
-        autoOpen: true,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "EXPEDIENTE DEL USUARIO",
-        width: 500,
-        buttons: [{
-            class: "btn btn-success textoboton",
-            text: "Cerrar",
-            click: function() {
-                $("#div_expediente_usuario").dialog("close");
-                $("#div_expediente_usuario").dialog("destroy");
+    $("#div_dialogs").load("html/secretaria.hml #div_expediente_usuario", function(response,status, xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        }
+        else{
+            document.getElementById("div_dialogs").style.fontSize="0.85em !important";
+            document.getElementById("div_dialogs").style.padding="10px";
+            document.getElementById("div_dialogs").style.paddingLeft="20px";
+            curso_exp.innerHTML = "";
+            curso_exp.append(new Option("Todos", "todos"));
+            cuenta_annos = anno_ini_curso_docs;
+            if (mes == 6) cuenta_annos++;
+            for (i = 2020; i <= cuenta_annos; i++) {
+                var c = i + "-" + (i + 1);
+                curso_exp.append(new Option(c, c));
             }
-        }]
+            curso_exp.selectIndex = 0;
+            $("#div_dialogs").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "EXPEDIENTE DEL USUARIO",
+                width: 500,
+                buttons: [{
+                    class: "btn btn-success textoboton",
+                    text: "Cerrar",
+                    click: function() {
+                        $("#div_dialogs").dialog("close");
+                        $("#div_dialogs").dialog("destroy");
+                    }
+                }]
+            });
+        }
     });
+
+   
 }
 
 
