@@ -402,9 +402,8 @@ function verExpediente(id_nie, nom) {
         "transporte_escolar": "TRANSPORTE ESCOLAR",
         "otros": "OTROS"
     }
-    document.getElementById("nie_exp").innerHTML = id_nie;
-    document.getElementById("nombre_exp").innerHTML = nom;
-    panelExpedienteUsuario();
+    
+    panelExpedienteUsuario(id_nie,nom);
     obtieneDocsExpediente();
 }
 
@@ -557,7 +556,7 @@ function confirmaCambioNombreDoc() {
 }
 
 
-function panelExpedienteUsuario() {
+function panelExpedienteUsuario(id_nie,nom) {
     $("#div_dialogs").show().load("html/secretaria.html #div_expediente_usuario", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
@@ -567,6 +566,8 @@ function panelExpedienteUsuario() {
             //document.getElementById("div_dialogs").style.fontSize="0.85em !important";
             //document.getElementById("div_dialogs").style.padding="10px";
             //document.getElementById("div_dialogs").style.paddingLeft="20px";
+            document.getElementById("nie_exp").innerHTML = id_nie;
+            document.getElementById("nombre_exp").innerHTML = nom;
             document.getElementById("curso_exp").innerHTML="";
             document.getElementById("curso_exp").append(new Option("Todos", "todos"));
             //curso_exp.innerHTML = "";
