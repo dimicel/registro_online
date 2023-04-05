@@ -404,7 +404,7 @@ function verExpediente(id_nie, nom) {
     }
     
     panelExpedienteUsuario(id_nie,nom);
-    obtieneDocsExpediente();
+    
 }
 
 function obtieneDocsExpediente() {
@@ -566,7 +566,6 @@ function panelExpedienteUsuario(id_nie,nom) {
             document.getElementById("div_dialogs").style.fontSize="0.85em !important";
             document.getElementById("div_dialogs").style.padding="10px";
             document.getElementById("div_dialogs").style.paddingLeft="20px";
-            alert(id_nie);
             document.getElementById("nie_exp").innerHTML = id_nie;
             document.getElementById("nombre_exp").innerHTML = nom;
             document.getElementById("curso_exp").innerHTML="";
@@ -600,6 +599,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                     }
                 }]
             });
+            obtieneDocsExpediente();
         }
     });
 
