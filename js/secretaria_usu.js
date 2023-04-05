@@ -558,7 +558,7 @@ function confirmaCambioNombreDoc() {
 
 
 function panelExpedienteUsuario() {
-    $("#div_dialogs").load("html/secretaria.hml #div_expediente_usuario", function(response,status, xhr){
+    $("#div_dialogs").load("html/secretaria.html #div_expediente_usuario", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -567,15 +567,19 @@ function panelExpedienteUsuario() {
             document.getElementById("div_dialogs").style.fontSize="0.85em !important";
             document.getElementById("div_dialogs").style.padding="10px";
             document.getElementById("div_dialogs").style.paddingLeft="20px";
-            curso_exp.innerHTML = "";
-            curso_exp.append(new Option("Todos", "todos"));
+            document.getElementById("curso_exp").innerHTML="";
+            document.getElementById("curso_exp").append(new Option("Todos", "todos"));
+            //curso_exp.innerHTML = "";
+            //curso_exp.append(new Option("Todos", "todos"));
             cuenta_annos = anno_ini_curso_docs;
             if (mes == 6) cuenta_annos++;
             for (i = 2020; i <= cuenta_annos; i++) {
                 var c = i + "-" + (i + 1);
-                curso_exp.append(new Option(c, c));
+                document.getElementById("curso_exp").append(new Option(c, c));
+                //curso_exp.append(new Option(c, c));
             }
-            curso_exp.selectIndex = 0;
+            document.getElementById("curso_exp").selectIndex=0;
+            //curso_exp.selectIndex = 0;
             $("#div_dialogs").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
