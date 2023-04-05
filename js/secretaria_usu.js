@@ -557,15 +557,15 @@ function confirmaCambioNombreDoc() {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
-    $("#div_dialogs").show().load("html/secretaria.html #div_expediente_usuario", function(response,status, xhr){
+    $("#div_dialogs").show().load("html/expediente_usuario.html", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
         }
         else{
-            //document.getElementById("div_dialogs").style.fontSize="0.85em !important";
-            //document.getElementById("div_dialogs").style.padding="10px";
-            //document.getElementById("div_dialogs").style.paddingLeft="20px";
+            document.getElementById("div_dialogs").style.fontSize="0.85em !important";
+            document.getElementById("div_dialogs").style.padding="10px";
+            document.getElementById("div_dialogs").style.paddingLeft="20px";
             document.getElementById("nie_exp").innerHTML = id_nie;
             document.getElementById("nombre_exp").innerHTML = nom;
             document.getElementById("curso_exp").innerHTML="";
