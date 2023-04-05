@@ -1,0 +1,16 @@
+php/conexion.php
+docs/
+logs/
+__transferencia_docs_ulaboral_a_nas_local/
+_archivos_antiguos/
+.vs/
+impresos/versiones_antiguas/
+*.sql
+*.code-workspace
+php/excel/
+ele.php
+ele.csv
+@eaDir
+añadir_a_htaccess.txt
+redimensionado_fotos/
+Guía de formato de ficheros CSV.*

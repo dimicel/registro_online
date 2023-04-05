@@ -1,0 +1,123 @@
+<div style="display:block;float:left; margin-top:10px;margin-left:10px">
+    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+</div>
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div style="text-align: center;">
+    <h6 style="color:brown; margin-top:20px">DATOS INICIALES</h6>
+</div>
+<div class="w-100"></div>
+<form id="form_pagina_1" class="form needs-validation" style="margin-left:20px" novalidate>
+    <hr>
+    <div id="div_curso_pag1" data-premat-consolidada="no" class="ui-widget-header ui-corner-all col-4" style="padding:10px;margin:10px;">
+        <label style="float:left">*Curso:</label>
+        <span class="errorTxt" style="font-size: 1em;"></span>
+        <select name="curso" id="curso" class="custom-select" onchange="javascript:seleccionCurso();">
+            <option value="">Seleccione una...</option>
+            <option value="1º ESO">1º ESO</option>
+            <option value="2º ESO">2º ESO</option>
+            <option value="2º ESO PMAR">2º ESO PMAR</option>
+            <option value="3º ESO">3º ESO</option>
+            <option value="3º ESO DIVERSIFICACIÓN">3º ESO DIVERSIFICACIÓN</option>
+            <option value="4º ESO">4º ESO</option>
+        </select>
+        <hr />
+        <div id="div_prog_ling" class="custom-control custom-switch mi-checkbox ">
+            <input name="prog_ling" id="prog_ling" type="checkbox" class="custom-control-input" onchange="progLing(this)" />
+            <label for="prog_ling" class="custom-control-label ">Programa Lingüístico</label>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <div>
+        <div class="ui-widget-header ui-corner-all" style="display:inline-block; margin:10px; margin-top:20px;  padding:10px;">
+            <center>
+                <span>*¿Es alumno/a nuevo/a?</span><br />
+                <div class="custom-control-inline custom-switch  mi-checkbox " style="clear:both">
+                    <input name="alumno_nuevo" id="alumno_nuevo_si" type="radio" value="Si" class="custom-control-input" onchange="alNuevo()"/>
+                    <label class="custom-control-label" for="alumno_nuevo_si">SÍ</label>
+                </div>
+                <div class="custom-control-inline  custom-switch  mi-checkbox ">
+                    <input name="alumno_nuevo" id="alumno_nuevo_no" type="radio" value="No" class="custom-control-input" onchange="alNuevo()"/>
+                    <label class="custom-control-label" for="alumno_nuevo_no">NO</label>
+                </div><br>
+                <div class="errorTxt" style="font-size: 1em;"></div>
+            </center>
+        </div>
+        <div id="div_nuevo_otra_comunidad" class="ui-widget-header ui-corner-all" style="display:none; margin:10px; margin-top:20px;  padding:10px;">
+            <center>
+                <span>*¿Inicíó ESO en otra comunidad autónoma?</span><br />
+                <div class="custom-control-inline custom-switch  mi-checkbox " style="clear:both">
+                    <input name="nuevo_otra_comunidad" id="oc_si" type="radio" value="Si" class="custom-control-input" />
+                    <label class="custom-control-label" for="oc_si">SÍ</label>
+                </div>
+                <div class="custom-control-inline  custom-switch  mi-checkbox ">
+                    <input name="nuevo_otra_comunidad" id="oc_no" type="radio" value="No" class="custom-control-input" />
+                    <label class="custom-control-label" for="oc_no">NO</label>
+                </div><br>
+                <div class="errorTxt" style="font-size: 1em;"></div>
+            </center>
+        </div>
+        <div id="div_consolida_premat" class="ui-widget-header ui-corner-all" style="display:none; margin:10px; margin-top:20px;  padding:10px;">
+            <center>
+                <span>*Al realizar la matrícula en Secretaría Virtual he seleccionado las mismas materias que en la prematrícula</span><br />
+                <div class="custom-control-inline custom-switch  mi-checkbox " style="clear:both">
+                    <input name="consolida_prem" id="consolida_prem_si" type="radio" value="Si" class="custom-control-input" />
+                    <label class="custom-control-label" for="consolida_prem_si">SÍ</label>
+                </div>
+                <div class="custom-control-inline  custom-switch  mi-checkbox ">
+                    <input name="consolida_prem" id="consolida_prem_no" type="radio" value="No" class="custom-control-input" />
+                    <label class="custom-control-label" for="consolida_prem_no">NO</label>
+                </div><br>
+                <div class="errorTxt" style="font-size: 1em;"></div>
+            </center>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <div>
+        <div class="ui-widget-header ui-corner-all" style="display:inline-block; margin:10px; margin-top:20px;  padding:10px;">
+            <center>
+                <span>*¿Repite curso?</span><br />
+                <div class="custom-control-inline  custom-switch  mi-checkbox " style="clear:both">
+                    <input name="repetidor" id="repetidor_si" type="radio" class="custom-control-input" value="Si" />
+                    <label for="repetidor_si" class="custom-control-label">SÍ</label>
+                </div>
+                <div class="custom-control-inline  custom-switch  mi-checkbox ">
+                    <input name="repetidor" id="repetidor_no" type="radio" class="custom-control-input" value="No" />
+                    <label for="repetidor_no" class="custom-control-label">NO</label>
+                </div><br>
+                <div class="errorTxt" style="font-size: 1em;"></div>
+            </center>
+        </div>
+        <div class="ui-widget-header ui-corner-all" style="display:inline-block; margin:10px; margin-top:20px;  padding:10px;">
+            <center>
+                <span>¿Es interno/a?</span><br />
+                <div class="custom-control-inline  custom-switch  mi-checkbox ">
+                    <input name="interno" id="interno_si" type="radio" class="custom-control-input" value="Si" />
+                    <label for="interno_si" class="custom-control-label">SÍ</label>
+                </div>
+                <div class="custom-control-inline  custom-switch  mi-checkbox ">
+                    <input name="interno" id="interno_no" type="radio" class="custom-control-input" value="No" checked/>
+                    <label for="interno_no" class="custom-control-label">NO</label>
+                </div>
+            </center>
+        </div>
+        <div class="ui-widget-header ui-corner-all" style="display:inline-block; margin:10px; margin-top:20px;  padding:10px;">
+            <center>
+                <span>Solicita transporte escolar</span><br />
+                <div class="custom-control-inline  custom-switch  mi-checkbox ">
+                    <input name="transporte" id="transporte_si" type="radio" class="custom-control-input" value="Si" onchange="selecTransporte()" />
+                    <label for="transporte_si" class="custom-control-label">SÍ</label>
+                </div>
+                <div class="custom-control-inline  custom-switch  mi-checkbox ">
+                    <input name="transporte" id="transporte_no" type="radio" class="custom-control-input" value="No" checked onchange="selecTransporte()" />
+                    <label for="transporte_no" class="custom-control-label">NO</label>
+                </div>
+            </center>
+        </div>
+    </div>
+</form>
+<hr>
+<div class=" justify-content-center row m-3">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+');">
+</div>

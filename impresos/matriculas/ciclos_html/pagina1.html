@@ -1,0 +1,63 @@
+<div style="display:block;float:left; margin-top:10px; margin-left:10px">
+    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+</div>
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div style="text-align: center;">
+    <h6 style="color:brown; margin-top:20px">SELECCIÓN DE CICLO FORMATIVO</h6>
+</div>
+<div class="w-100"></div>
+<form id="form_pagina_1" class="form needs-validation" style="margin-left:20px" novalidate>
+    <div class="form-group form-row">
+        <div class="col-2" style="margin-top:10px">
+            <label style="float:left">*Grado:</label>
+            <select name="sel_grado" id="sel_grado" class="form-control" onchange="creaSelCiclos(this.value)">
+                <option value="">Seleccione uno...</option>
+                <option value="MEDIO">MEDIO</option>
+                <option value="SUPERIOR">SUPERIOR</option>
+            </select>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+        </div>
+        <div class="col-6" style="margin-top:10px;">
+            <label style="float:left">*Ciclo:</label>
+            <select name="sel_ciclos" id="sel_ciclos" class="form-control" onchange="CreaSelCurso(this.value);CreaSelTurno(this.value)">
+                <option value="">Seleccione GRADO</option>
+            </select>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+        </div>
+        <div class="col-2" style="margin-top:10px;">
+            <label style="float:left">*Curso:</label>
+            <select name="sel_curso" id="sel_curso" class="form-control" onchange="CreaSelTurno(this.value)">
+                <option value="">Sel. CICLO</option>
+            </select>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+        </div>
+        <div class="col-2" style="margin-top:10px;">
+            <label style="float:left">*Turno:</label>
+            <select name="sel_turno" id="sel_turno" class="form-control">
+                <option value="">Sel. CICLO</option>
+            </select>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group form-row justify-content-center">
+        <label style="float:left">*Soy alumno/a nuevo/a e inicié este Ciclo Formativo en otra comunidad autónoma:</label>
+        <div class="custom-control-inline custom-switch  mi-checkbox " style="clear:both;margin-left:5px">
+            <input name="nuevo_otra_comunidad" id="oc_si" type="radio" value="Si" class="custom-control-input" />
+            <label class="custom-control-label" for="oc_si">SÍ</label>
+        </div>
+        <div class="custom-control-inline  custom-switch  mi-checkbox ">
+            <input name="nuevo_otra_comunidad" id="oc_no" type="radio" value="No" class="custom-control-input" />
+            <label class="custom-control-label" for="oc_no">NO</label>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div id="al_nuevo_err" class="errorTxt" style="font-size: 1em;"></div>
+    </div>
+</form>
+<hr>
+<div class=" justify-content-center row m-3">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+')">
+</div>

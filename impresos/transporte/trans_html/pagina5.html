@@ -1,0 +1,46 @@
+<div style="display:block;float:left; margin-top:10px; margin-left:10px">
+    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+</div>
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div style="text-align: center;">
+    <h6 style="color:brown; margin-top:20px">TRANSPORTE ESCOLAR</h6>
+    <h6 style="color:brown; margin-top:20px;font-weight: bold;">AUTORIZACIONES</h6>
+</div>
+<form id="form_pagina_5" novalidate>
+    <div class="row" style="margin-left:20px;margin-right: 20px;">
+        <div class="col">
+            <p>El solicitantes <b>AUTORIZA</b> a la Dirección Provincial de Educación, Cultura y Deportes en la provincia de Toledo para que pueda proceder a la comprobación y verificación de los siguientes datos:</p>
+            <div class=" custom-switch  mi-checkbox   custom-control-inline">
+                <input type="radio" name="acred_iden" id="acred_iden_si" class="custom-control-input" value="Si" checked/>
+                <label for="acred_iden_si" class="custom-control-label" style="margin-left:40px">Si</label>
+            </div>
+            <div class=" custom-switch  mi-checkbox   custom-control-inline">
+                <input type="radio" name="acred_iden" id="acred_iden_no" class="custom-control-input" value="No" />
+                <label for="acred_iden_no" class="custom-control-label">No</label>
+                <label style="margin-left:20px">Los acreditativos de identidad.</label>
+            </div>
+            <div class="w-100" style="text-align: center;margin-top:15px">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+            </div>
+            <div class=" custom-switch  mi-checkbox   custom-control-inline">
+                <input type="radio" name="acred_domic" id="acred_domic_si" class="custom-control-input" value="Si" checked/>
+                <label for="acred_domic_si" style="margin-left:40px" class="custom-control-label">Si</label>
+            </div>
+            <div class=" custom-switch  mi-checkbox   custom-control-inline">
+                <input type="radio" name="acred_domic" id="acred_domic_no" class="custom-control-input" value="No" />
+                <label for="acred_domic_no" class="custom-control-label">No</label>
+                <label style="margin-left:20px">Los acreditativos de domicilio o residencia.</label>
+            </div>
+            <div class="w-100" style="text-align: center;margin-top:15px">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+            </div>
+        </div>
+    </div>
+</form>
+<hr>
+<div class=" justify-content-center row m-3">
+    <input type="button" value="&#x1f448;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Página anterior" onclick="pasaPagina('-')">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+')">
+</div>

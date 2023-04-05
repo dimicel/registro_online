@@ -1,0 +1,181 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+.centrado {
+    position: absolute;
+    float: left;
+    margin: 0 auto;
+    left: 7px;
+    right: 0;
+    top: 17px;
+}
+
+.borde {
+    border: double;
+    border-color: #060;
+    border-radius: 10px;
+}
+
+.textoboton {
+    font-size: 0.75em !important;
+}
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}
+
+.ancho {
+    width: 700px
+}
+
+input[type=text],
+input[type=password],
+input[type=date],
+input[type=email],
+input[type=tel],
+textarea,
+select {
+    border-radius: 0.5em !important;
+    color: #0070c1 !important;
+    /*color: #008C23 !important;*/
+    font-size: 0.85em !important;
+}
+
+.etiquetas {
+    color: #966 !important;
+    font-size: 0.85em !important;
+}
+
+.enlaceDisabled {
+    color: grey !important;
+    text-decoration: none !important;
+    font-size: 0.85em !important;
+    cursor: default;
+}
+
+.enlaceEnabled {
+    color: #966 !important;
+    text-decoration: underline !important;
+    font-size: 0.85em !important;
+    cursor: pointer;
+}
+
+label {
+    color: #966 !important;
+    font-size: 0.85em !important;
+}
+
+.alertas {
+    display: none;
+    color: #68685C !important;
+    font-size: 1em !important;
+}
+
+.ui-dialog-title {
+    font-size: 0.75em;
+}
+
+html,
+body {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+html {
+    overflow-y: visible !important;
+    overflow: -moz-scrollbars-vertical;
+}
+
+.parrafo {
+    color: #68685C;
+}
+
+div#div_email p {
+    font-size: 0.75em;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+td,
+th {
+    border: #AED0EA 0.5px solid;
+    /*border-radius: 5px;*/
+    cursor: default;
+    font-size: 0.75em;
+    word-break: break-all
+}
+
+th {
+    color: #966;
+}
+
+.noseleccionable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.encab_tablas {
+    background-color: #8A8A7B;
+    color: #FFF;
+    text-align: left;
+    border-radius: 5px;
+    cursor: default;
+}
+
+.filaseleccionada {
+    color: #966 !important;
+    background-color: #FF9 !important;
+}
+
+.filaseleccionada a {
+    color: #966 !important;
+}
+
+.filanoseleccionada {
+    /*color: #0070c1 !important;*/
+    /*background-color: #FFFFFF !important;*/
+    color: white !important;
+    background-color: green !important;
+}
+
+.filanoseleccionada a {
+    color: white !important;
+}
+
+label.error {
+    float: none;
+    color: red !important;
+    padding-left: .5em;
+    vertical-align: middle;
+    font-size: 0.75em !important;
+}
+
+input.error,
+select.error {
+    border-color: red !important;
+}
+
+.errorTxt {
+    color: red;
+    font-size: 0.8em;
+    font-weight: lighter;
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before,
+.custom-radio .custom-control-input:checked~.custom-control-label::after {
+    background-color: green;  
+    border-radius: 50%;
+}
+.mi-checkbox .custom-control-input:checked~.custom-control-label::before {
+	background-color:green;
+}

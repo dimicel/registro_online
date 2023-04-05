@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+.centrado{
+	position:absolute;
+	float:left; 
+	margin: 0 auto; 
+	left:0; 
+	right:0;
+}
+
+.borde{
+	border:double; 
+	border-color:#060; 
+	border-radius:10px;
+}
+
+
+.textoboton{
+	font-size:0.75em !important;
+}
+
+.no-close .ui-dialog-titlebar-close{
+  display: none;
+}
+
+.ancho{
+	width:700px
+}
+
+input[type=text],input[type=password],input[type=date],input[type=email],input[type=tel],textarea,select{
+	border-radius: 0.5em;
+	color: #0070c1 !important;
+	/*color: #008C23 !important;*/
+	font-size: 0.85em !important;
+}
+
+.etiquetas{
+	color:#966 !important;
+	font-size:0.85em !important;
+}
+
+label {
+	color:#966 !important;
+	font-size:0.85em !important;
+}
+
+.alertas{
+	display:none; 
+	color:#68685C !important; 
+	font-size:1em !important;
+}
+
+.ui-dialog-title{
+	font-size:0.75em;
+}
+
+html,body{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.parrafo{
+	color:#68685C;
+}
+
+div#div_email p{
+    font-size: 0.75em;
+}

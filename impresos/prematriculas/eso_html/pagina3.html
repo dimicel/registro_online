@@ -1,0 +1,50 @@
+<div style="display:block;float:left; margin-top:10px">
+    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+</div>
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div style="text-align: center;">
+    <h6 style="color:brown; margin-top:20px">DATOS CONTACTO TUTORES LEGALES</h6>
+</div>
+<div class="w-100"></div>
+<form id="form_pagina_3" class="form needs-validation" style="margin-left:20px" novalidate>
+    <hr>
+    <div class="form-group form-row">
+        <div class="col">
+            <label for="tutor1">Nombre y Apellidos tutor/a legal 1:</label>
+            <input type="text" name="tutor1" id="tutor1" class="form-control" maxlength="40" />
+        </div>
+        <div class="col-4">
+            <label for="email_tutor1">Correo Electrónico:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+            <input type="text" name="email_tutor1" id="email_tutor1" class="form-control" maxlength="40" />
+        </div>
+        <div class="col-2">
+            <label for="tlf_tutor1">Teléfono:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+            <input type="text" name="tlf_tutor1" id="tlf_tutor1" class="form-control" maxlength="12" />
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col">
+            <label for="tutor2">Nombre y Apellidos tutor/a legal 2:</label>
+            <input type="text" name="tutor2" id="tutor2" class="form-control" maxlength="40" />
+        </div>
+        <div class="col-4">
+            <label for="email_tutor2">Correo Electrónico:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+            <input type="text" name="email_tutor2" id="email_tutor2" class="form-control" maxlength="40" />
+        </div>
+        <div class="col-2">
+            <label for="tlf_tutor2">Teléfono:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+            <input type="text" name="tlf_tutor2" id="tlf_tutor2" class="form-control" maxlength="12" />
+        </div>
+    </div>
+</form>
+<hr>
+<div class="justify-content-center row m-3">
+    <input type="button" value="&#x1f448;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Página anterior" onclick="pasaPagina('-')">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+')">
+</div>

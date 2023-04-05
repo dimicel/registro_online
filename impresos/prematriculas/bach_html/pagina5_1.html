@@ -1,0 +1,349 @@
+<!-- 1º ESO -->
+<div style="display:block;float:left; margin-top:10px">
+    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+</div>
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div style="text-align: center;">
+    <h6 style="color:brown; margin-top:20px">MODALIDAD Y SELECCIÓN DE MATERIAS</h6>
+</div>
+<div class="w-100"></div>
+<form id="form_pagina_5_1" class="form" style="margin-left:20px" >
+    <hr>
+    <div class="row border border-success rounded mr-2 justify-content-center" style="height: 40px;border:thin; background-color:#56a717;align-content: center; ">
+        <div class="col-2">
+            <label style="font-size: 1em !important; color:white !important">*MODALIDAD</label>
+            
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-3 custom-control-inline custom-switch  mi-checkbox">
+            <input type="radio" class="custom-control-input" name="b1_modalidad" id="b1_c" value="Ciencias y Tecnología" onclick="b1_seleccionModalidad('c')" />
+            <label for="b1_c" class="custom-control-label">Ciencias y Tecnología</label>
+        </div>
+        <div class="col-3 custom-control-inline custom-switch  mi-checkbox">
+            <input type="radio" class="custom-control-input" name="b1_modalidad" id="b1_h" value="Humanidades y Ciencias Sociales" onclick="b1_seleccionModalidad('h')" />
+            <label for="b1_h" class="custom-control-label">Humanidades y Ciencias Sociales</label>
+        </div>
+        <div class="col-2 custom-control-inline custom-switch  mi-checkbox">
+            <input type="radio" class="custom-control-input" name="b1_modalidad" id="b1_g" value="General" onclick="b1_seleccionModalidad('g')" />
+            <label for="b1_g" class="custom-control-label">General</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="errorTxt col" style=" font-size: 1.2em;margin-top:15px; text-align: center;"></div>
+    </div>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-2 " >
+            <label style="font-size: 1em !important;">*PRIMER IDIOMA</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+        </div>
+        <div class="col-2 custom-control-inline custom-switch  mi-checkbox">
+            <input type="radio" class="custom-control-input" name="b1_primer_idioma" id="b1_ingles" value="Inglés"  onclick="seleccionIdioma()"/>
+            <label for="b1_ingles" class="custom-control-label">Inglés</label>
+        </div>
+        <div class="col-3 custom-control-inline custom-switch  mi-checkbox">
+            <input type="radio" class="custom-control-input" name="b1_primer_idioma" id="b1_frances" value="Francés" onclick="seleccionIdioma()" />
+            <label for="b1_frances" class="custom-control-label">Francés</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="errorTxt col" style=" font-size: 1.2em;margin-top:15px; text-align: center;"></div>
+    </div>
+    <hr>
+    <div class="row justify-content-center" onclick="compruebaSelectores()">
+        <div class="col-2 " >
+            <label style="font-size: 1em !important;">*RELIGIÓN/ATENCIÓN EDUCATIVA</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+        </div>
+        <div class="col-2 custom-control-inline custom-switch  mi-checkbox">
+            <input type="radio" class="custom-control-input" name="b1_religion" id="b1_religion" value="Religión"  />
+            <label for="b1_religion" class="custom-control-label">Religión</label>
+        </div>
+        <div class="col-3 custom-control-inline custom-switch  mi-checkbox">
+            <input type="radio" class="custom-control-input" name="b1_religion" id="b1_atencion" value="Atención Educativa"  />
+            <label for="b1_atencion" class="custom-control-label">Atención Educativa</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="errorTxt col" style=" font-size: 1.2em;margin-top:15px; text-align: center;"></div>
+    </div>
+    <hr>
+    <div class="row" id="div_b1_obligatorias">
+        <div itemprop="sin_modalidad"  class="col justify-content-center">
+            <h2 style="text-align: center;">SELECCIONE ANTES LA MODALIDAD</h2>
+        </div>
+        <div itemprop="con_modalidad" class="col-3" style="display:none">
+            <div class="row border border-success rounded justify-content-center" style="height: 40px;border:thin; background-color:#56a717;color:white;align-content: center; ">
+                <div  class="col">
+                    <label id="b1_oblig_cabecera" style="font-size: 1em !important; color:white !important">OBLIGATORIA</label>                    
+                </div>
+            </div>
+            <div itemprop="mod_c" class="row" style="display:none" >
+                <div class="col custom-control custom-switch mi-checkbox">
+                    <input type="radio" class="custom-control-input" name="oblig1_c" id="oblig1_c" value="Matemáticas I" checked/>
+                    <label for="oblig1_c" class="custom-control-label">Matemáticas I</label>
+                </div>
+            </div>
+            <div itemprop="mod_h" class="row" style="display:none" >
+                <div class="col" id="div_oblig1_h">
+                    <div class="row">
+                        <div class="col custom-control custom-switch mi-checkbox">
+                            <input type="radio" class="custom-control-input" name="oblig1_h" id="oblig1_h_latin" value="Latín I" onchange="javascript:b1_seleccionOblig1_h(this.value);" />
+                            <label for="oblig1_h_latin" class="custom-control-label">Latín I</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col custom-control custom-switch mi-checkbox">
+                            <input type="radio" class="custom-control-input" name="oblig1_h" id="oblig1_h_matematicas" value="Matemáticas Aplicadas a las Ciencias Sociales I" onchange="javascript:b1_seleccionOblig1_h(this.value);" />
+                            <label for="oblig1_h_matematicas" class="custom-control-label">Matemáticas Aplicadas a las Ciencias Sociales I</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="errorTxt" style=" font-size: 1.2em;margin-top:15px; text-align: center;"></div>
+                    </div>
+                </div>
+            </div>
+            <div itemprop="mod_g" class="row" style="display:none">
+                <div class="col custom-control custom-switch mi-checkbox">
+                    <input type="radio" class="custom-control-input" name="oblig1_g"  id="oblig1_g" value="Matemáticas Generales" checked/>
+                    <label for="oblig1_g" class="custom-control-label">Matemáticas Generales</label>
+                </div>
+            </div>
+        </div>
+        <div itemprop="con_modalidad" class="col-3 ml-1 mr-4" style="display:none" >
+            <div class="row border border-success rounded justify-content-center" style="height: 40px;border:thin; background-color:#56a717;color:white;align-content: center; ">
+                <div class="col-10">OBLIGATORIAS (Marque 2)</div>
+            </div>
+            <div itemprop="mod_c" style="display:none">
+                <div class="row">
+                    <div class="col" id="oblig2c">
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2c" id="o2c1" itemprop="oblig2_c" class="custom-control-input" value="Biología, Geología y Ciencias Ambientales" onclick="selOblig2(this,'oblig2_c');" />
+                                <label for="o2c1" class="custom-control-label">Biología, Geología y Ciencias Ambientales</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2c" id="o2c2" itemprop="oblig2_c" class="custom-control-input" value="Dibujo Técnico I" onclick="selOblig2(this,'oblig2_c');" />
+                                <label for="o2c2" class="custom-control-label">Dibujo Técnico I</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2c" id="o2c3" itemprop="oblig2_c" class="custom-control-input" value="Física y Química" onclick="selOblig2(this,'oblig2_c');" />
+                                <label for="o2c3" class="custom-control-label">Física y Química</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2c" id="o2c4" itemprop="oblig2_c" class="custom-control-input" value="Tecnología e Ingeniería I" onclick="selOblig2(this,'oblig2_c');" />
+                                <label for="o2c4" class="custom-control-label">Tecnología e Ingeniería I</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="errorTxt" style=" font-size: 1.2em;margin-top:15px; text-align: center;"></div>
+                </div>
+            </div>
+            <div itemprop="mod_h_sin_selecc" class="row justify-content-center" style="display:none">
+                <div class="col">
+                    <h3 style="text-align: center;">Seleccione primero una obligatoria en el panel de la izquierda</h3>
+                </div>
+            </div>
+            <div itemprop="mod_h_con_selecc" style="display:none">
+                <div class="row">
+                    <div class="col" id="oblig2h">
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2h" id="o2h1" itemprop="oblig2_h" value="Economía" class="custom-control-input" onclick="selOblig2(this,'oblig2_h');" />
+                                <label for="o2h1" class="custom-control-label">Economía</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2h" id="o2h2" itemprop="oblig2_h" value="Griego I" class="custom-control-input" onclick="selOblig2(this,'oblig2_h');" />
+                                <label for="o2h2" class="custom-control-label">Griego I</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2h" id="o2h3" itemprop="oblig2_h" value="Historia del Mundo Contemporáneo" class="custom-control-input" onclick="selOblig2(this,'oblig2_h');" />
+                                <label for="o2h3" class="custom-control-label">Historia del Mundo Contemporáneo</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2h" id="o2h4" itemprop="oblig2_h" value="Literatura Universal" class="custom-control-input" onclick="selOblig2(this,'oblig2_h')" />
+                                <label for="o2h4" class="custom-control-label">Literatura Universal</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2h" id="o2h5" itemprop="oblig2_h" class="custom-control-input" onclick="selOblig2(this,'oblig2_h')" />
+                                <label for="o2h5" id="ob2_selob1" class="custom-control-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="errorTxt" style=" font-size: 1.2em;margin-top:15px; text-align: center;"></div>
+                </div>
+            </div>
+            <div itemprop="mod_g" style="display:none" >
+                <div class="row">
+                    <div class="col" id="oblig2g">
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g"  id="o2g1" itemprop="oblig2_g" value="Economía, Emprendimiento y Actividad Empresarial" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g1" class="custom-control-label">Economía, Emprendimiento y Actividad Empresarial</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">    
+                                <input type="checkbox" name="o2g" id="o2g2" itemprop="oblig2_g" value="Biología, Geología y Ciencias Ambientales" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g2" class="custom-control-label">Biología, Geología y Ciencias Ambientales</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g3" itemprop="oblig2_g" value="Dibujo Técnico I" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g3" class="custom-control-label">Dibujo Técnico I</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g4" itemprop="oblig2_g" value="Física y Química" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g4" class="custom-control-label">Física y Química</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g5" itemprop="oblig2_g" value="Tecnología e Ingeniería I" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g5" class="custom-control-label">Tecnología e Ingeniería I</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g6" itemprop="oblig2_g" value="Matemáticas I" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g6" class="custom-control-label">Matemáticas I</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g7" itemprop="oblig2_g" value="Economía" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g7" class="custom-control-label">Economía</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g8" itemprop="oblig2_g" value="Griego I" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g8" class="custom-control-label">Griego I</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g9" itemprop="oblig2_g" value="Historia del Mundo Contemporáneo" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g9" class="custom-control-label">Historia del Mundo Contemporáneo</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g10" itemprop="oblig2_g" value="Literatura Universal" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g10" class="custom-control-label">Literatura Universal</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g11" itemprop="oblig2_g" value="Latín I" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g11" class="custom-control-label">Latín I</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col custom-control custom-switch mi-checkbox">
+                                <input type="checkbox" name="o2g" id="o2g12" itemprop="oblig2_g" value="Matemáticas Aplicadas a las Ciencias Sociales I" class="custom-control-input" onclick="selOblig2(this,'oblig2_g')" />
+                                <label for="o2g12" class="custom-control-label">Matemáticas Aplicadas a las Ciencias Sociales I</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="errorTxt" style=" font-size: 1.2em;margin-top:15px; text-align: center;"></div>
+                </div>
+            </div>
+            <div class="row alert alert-warning alert-dismissible fade show" role="alert" style="display:none; margin-top:10px" >
+                <span style="font-size: 0.75em !important; color:#228b22"> Sólo se pueden seleccionar 2 materias. Para seleccionar otra, 'apague' a una de las marcadas.</span>
+            </div>
+        </div>
+        <div itemprop="con_modalidad" class="col ml-1 mr-4" style="display:none">
+            <div class="row border border-success rounded justify-content-center" style="height: 40px;border:thin; background-color:#56a717;color:white;align-content: center; ">
+                <div class="col">Ordene las materias por orden de preferencia</div>
+            </div>
+            <div class="row">
+                <div itemprop="list_opt_sin_oblig" class="row justify-content-center">
+                    <div class="col">
+                        <h3 style="text-align: center;">Seleccione primero Modalidad, 1º Idioma, Religión o Atención Educativa y las 3 obligatorias</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row" itemprop="list_opt_con_oblig" id="div_lista_optativas" style="display:none">
+                <div class="col-1" style="text-align: right;">
+                    <p style="font-size:0.83em !important; margin-top:5px">1</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">2</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">3</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">4</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">5</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">6</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">7</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">8</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">9</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">10</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">11</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">12</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">13</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">14</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">15</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">16</p>
+                    <p style="margin-top:-19px;font-size:0.83em !important">17</p>
+                </div>
+                <div class="col" class="custom-control">
+                    <select id="lista_optativas" name="lista_optativas" size="17" style="margin-top:5px;overflow:visible;">
+                        <option value="2ª Lengua Extranjera: Inglés">2ª Lengua Extranjera: Inglés</option>
+                        <option value="2ª Lengua Extranjera: Italiano">2ª Lengua Extranjera: Italiano</option>
+                        <option value="2ª Lengua Extranjera: Alemán">2ª Lengua Extranjera: Alemán</option>
+                        <option value="Anatomía Aplicada">Anatomía Aplicada</option>
+                        <option value="Desarrollo Digital">Desarrollo Digital</option>
+                        <option value="Lenguaje y Práctica Musical">Lenguaje y Práctica Musical</option>
+                        <option value="Psicología">Psicología</option>
+                        <option value="Matemáticas I">Matemáticas I</option>
+                        <option value="Biología, Geología y Ciencias Ambientales">Biología, Geología y Ciencias Ambientales</option>
+                        <option value="Dibujo Técnico I">Dibujo Técnico I</option>
+                        <option value="Física y Química">Física y Química</option>
+                        <option value="Tecnología e Ingeniería I">Tecnología e Ingeniería I</option>
+                        <option value="Latín I">Latín I</option>
+                        <option value="Matemáticas Aplicadas a las Ciencias Sociales I">Matemáticas Aplicadas a las Ciencias Sociales I</option>
+                        <option value="Economía">Economía</option>
+                        <option value="Griego I">Griego I</option>
+                        <option value="Historia del Mundo Contemporáneo">Historia del Mundo Contemporáneo</option>
+                        <option value="Literatura Universal">Literatura Universal</option>
+                        <option value="Matemáticas Generales">Matemáticas Generales</option>
+                        <option value="Economía, Emprendimiento y Actividad Empresarial">Economía, Emprendimiento y Actividad Empresarial</option>
+                    </select>
+                </div>
+                <div class="col-1" style="margin-top:100px;margin-right:30px">
+                    <input type="button" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="subeElemento(document.getElementById('lista_optativas'));" />
+                    <input type="button" class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="bajaElemento(document.getElementById('lista_optativas'));" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<hr>
+<div class="justify-content-center row m-3">
+    <input type="button" value="&#x1f448;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Página anterior" onclick="pasaPagina('-')">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+')">
+</div>

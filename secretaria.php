@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href=<?php echo "css/est.css?q=".time();?> type="text/css">
+    <link rel="stylesheet" href=<?php echo "css/secretaria.css?q=".time();?> type="text/css">
+    <link rel="stylesheet" href=<?php echo "js/croppie/croppie.css?q=".time();?> type="text/css">
+    <link rel="stylesheet" href=<?php echo "jqueryui/jquery-ui.min.css?q=".time();?> >
+    <link rel="stylesheet" href=<?php echo "js/context_menu/jquery.contextMenu.min.css?q=".time();?>>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>GESTIÓN DEL REGISTRO ONLINE - SECRETARIA DEL IES UNIVERSIDAD LABORAL DE TOLEDO</title>
+</head>
+
+<body>
+    <div id="panel" style="display: block;  padding: 5px; width:990px" class="ui-widget-header ui-corner-all centrado">
+        <div style="display:table-cell; padding-left:10px; padding-top: 10px">
+            <img src="recursos/escudo2.jpg" width="115" height="105" alt="Escudo_Uni">
+        </div>
+        <div style="display:table-cell; vertical-align: middle; padding-left: 20px">
+            <h2>IES UNIVERSIDAD LABORAL</h2>
+            <h3>SECRETARÍA - GESTIÓN DEL REGISTRO ONLINE</h3>
+        </div>
+        <!--
+        <div style="display:table-cell; height: 105px; vertical-align: middle; padding-left: 200px">
+            <input type="button" id="colocar_ficheros" value="Colocar Ficheros" onclick="colocarFicheros()">
+        </div>
+        -->
+        <!-- GESTIÓN SECRETARÍA ___________________________________________________________________-->
+        <!--_______________________________________________________________________________________-->
+        <div id="doc_reg_tab" class="ui-widget-header ui-corner-all">
+            <div style="margin-top:10px; margin-left:10px;" id="menu_div">
+                <ul class="nav bg-white">
+                    <li class="nav-item dropdown" id="menu1">
+                        <a class="nav-link dropdown-toggle" id="menu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestión Usuarios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="menu1">
+                            <a class="nav-link" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios</a>
+                            <a class="nav-link" href="#" onclick="javascript: verListaUsuarios();">Usuarios</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="menu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Seleccionar
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="menu2">
+                            <a class="dropdown-item " href="#" onclick="seleccionaRegistros('todo')">Todas</a>
+                            <a class="dropdown-item " href="#" onclick="seleccionaRegistros('ninguno')">Ninguna</a>
+                            <a class="dropdown-item " href="#" onclick="seleccionaRegistros('invertir')">Invertir Selección</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " id="menu3" href="#" data-toggle="dropdown">
+                            Listar Solicitudes
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item " href="#" onclick="registrosAPdf('seleccionadas')">Seleccionadas</a>
+                            <a class="dropdown-item " href="#" onclick="registrosAPdf('no listadas')">No listadas</a>
+                            <a class="dropdown-item " href="#" onclick="registrosAPdf('listadas')">Listadas</a>
+                            <a class="dropdown-item " href="#" onclick="registrosAPdf('todas')">Todas</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" id="menu4">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Prematrícula</a>
+                        <div class="dropdown-menu">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="premat_eso" onchange="cambiaEstadoPrematricula(this,'eso')">
+                                <label for="premat_eso" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">ESO</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="premat_bach" onchange="cambiaEstadoPrematricula(this,'bach')">
+                                <label for="premat_bach" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Bachillerato</label>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a id="CSV_premat" class="dropdown-item disabled" href="#" onclick="descargaCSVpremat()">Descarga CSV</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" id="menu5">
+                        <a class="nav-link dropdown-toggle" id="menu_matricula" href="#" data-toggle="dropdown">Matrícula</a>
+                        <div class="dropdown-menu">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_eso" onchange="cambiaEstadoMatricula(this,'eso')">
+                                <label for="check_mat_eso" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">ESO</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_bach" onchange="cambiaEstadoMatricula(this,'bach')">
+                                <label for="check_mat_bach" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Bachillerato</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_ciclos" onchange="cambiaEstadoMatricula(this,'ciclos')">
+                                <label for="check_mat_ciclos" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Ciclos</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_fpb" onchange="cambiaEstadoMatricula(this,'fpb')">
+                                <label for="check_mat_fpb" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">FPB</label>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a id="menu_listado_mat" class="dropdown-item" href="#" onclick="$('#formulario_subir_mat_delphos').dialog('open');">Subir CSV Delphos para Matrícula</a>
+                            <div class="dropdown-divider"></div>
+                            <!--<a id="menu_listado_mat_pdf" class="dropdown-item disabled" href="#" onclick="listaMatriculas();">Listado de Matrículas</a>-->
+                            <!--<a id="menu_csv_mat" class="dropdown-item disabled" href="#" onclick="descargaCSVmatriculas();">CSV Matrículas</a>-->
+                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVconsolPremat()">CSV Consolidan Prematrícula</a>  
+                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVProgLing()">CSV Programa Lingüístico (Sólo ESO)</a>
+                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVAlNuevos()">CSV Alumnos Nuevos (Sólo ESO y BACH)</a>                         
+                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVnuevosOtraCom()">CSV Nuevos de otra comunidad (TODOS)</a>
+                            <a id="CSV_transporte" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVtransporte()">CSV Transporte Escolar</a>
+                            <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoSeguroEscolarCiclos()">CSV Seguro Escolar Ciclos</a>
+                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="descargaFotos()">Descarga Fotos</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" id="menu6">
+                        <a class="nav-link" href="#" onclick="javascript: cierrasesion();">Salir</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="margin-top:20px">
+                <form>
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-2" style="margin-left: 20px;">Año Acad.: </label>
+                        <div class="col-lg-2" style="margin-left:-85px">
+                            <select id="curso" size="1" onchange="listaRegistros();" class="form-control">
+                                <option value="2020-2021">2020-2021</option>
+                                <option value="2021-2022">2021-2022</option>
+                                <option value="2022-2023">2022-2023</option>
+                                <option value="2023-2024">2023-2024</option>
+                                <option value="2024-2025">2024-2025</option>
+                                <option value="2025-2026">2025-2026</option>
+                                <option value="2026-2027">2026-2027</option>
+                                <option value="2027-2028">2027-2028</option>
+                                <option value="2028-2029">2028-2029</option>
+                                <option value="2029-2030">2029-2030</option>
+                            </select>
+                        </div>
+                        <label class="col-form-label col-lg-2">Tipo de formulario: </label>
+                        <div class="col-lg-3" style="margin-left:-40px">
+                            <select id="tipo_form" size="1" onchange="listaRegistros();" class="form-control">
+                                <option value="" selected>Seleccione uno...</option>
+                                <option value="revision_examen">Revisión de examen</option>
+                                <option value="revision_calificacion">Revisión de calificación</option>
+                                <option value="prematricula">Prematrícula</option>
+                                <option value="matricula">Matrícula ESO y BACH</option>
+                                <option value="matricula_ciclos">Matrícula CICLOS</option>
+                                <option value="matricula_fpb">Matrícula FPB</option>
+                            </select>
+                        </div>
+                        <div id="div_curso_premat" style="display:none">
+                            <label class="col-form-label col-lg-2">Curso: </label>
+                            <div class="col-lg-8">
+                                <select id="curso_pre_mat" size="1" onchange="listaRegistros();" class="form-control">
+                                    <option value="" selected>Seleccione uno...</option>
+                                    <option value="2eso">2º ESO</option>
+                                    <option value="3eso">3º ESO</option>
+                                    <option value="3esopmar">3º ESO PMAR</option>
+                                    <option value="4eso">4º ESO</option>
+                                    <option value="1bach_c" itemprop="2020-2021">1º BACH CIENCIAS</option>
+                                    <option value="1bach_hcs" itemprop="2020-2021">1º BACH HH.CC.SS.</option>
+                                    <option value="1bach_lomloe" itemprop="2021-2022">1º BACHILLERATO</option>
+                                    <option value="2bach_c">2º BACH CIENCIAS</option>
+                                    <option value="2bach_hcs">2º BACH HH.CC.SS.</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="div_curso_mat" style="display:none">
+                            <label class="col-form-label col-lg-2">Curso: </label>
+                            <div class="col-lg-8">
+                                <select id="curso_mat" size="1" onchange="listaRegistros();" class="form-control">
+                                    <option value="" selected>Seleccione uno...</option>
+                                    <option value="1eso">1º ESO</option>
+                                    <option value="2eso">2º ESO</option>
+                                    <option value="2esopmar">2º ESO PMAR</option>
+                                    <option value="3eso">3º ESO</option>
+                                    <option value="3esopmar" itemprop="2020-2021">3º ESO PMAR</option>
+                                    <option value="3esodiv" itemprop="2022-2023">3º ESO DIVERSIFICACIÓN</option>
+                                    <option value="4eso">4º ESO</option>
+                                    <!--<option value="1bach_c" itemprop="2020-2021">1º BACH CIENCIAS</option>
+                                    <option value="1bach_hcs" itemprop="2020-2021">1º BACH HH.CC.SS.</option>-->
+                                    <option value="1bach_c">1º Bach. Ciencias</option>
+                                    <option value="1bach_hcs">1º Bach. HH.CC.SS.</option>
+                                    <!--<option value="1bach" itemprop="2022-2023">1º BACHILLERATO</option>-->
+                                    <option value="2bach_c">2º Bach. Ciencias</option>
+                                    <option value="2bach_hcs">2º Bach. HH.CC.SS.</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group row" id="div_curso_mat_ciclos" style="display:none">
+                        <label class="col-form-label col-lg-2" style="margin-left: -15px;">Ciclo: </label>
+                        <div class="col-lg-5">
+                            <select id="mat_ciclos" size="1" style="margin-left: -60px;" onchange="listaRegistros();" class="form-control">
+                                <option value="" selected>Seleccione uno...</option>
+                                <option value='Cocina y Gastronomía'>GM Cocina y Gastronomía</option>
+                                <option value='Gestión Administrativa'>GM Gestión Administrativa</option>
+                                <option value='Instalaciones de Producción de Calor'>GM Instalaciones de Producción de Calor</option>
+                                <option value='Instalaciones Eléctricas y Automáticas'>GM Instalaciones Eléctricas y Automáticas</option>
+                                <option value='Instalaciones Frigoríficas y de Climatización'>GM Instalaciones Frigoríficas y de Climatización</option>
+                                <option value='Panadería, Repostería y Confitería'>GM Panadería, Repostería y Confitería</option>
+                                <option value='Servicios en Restauración'>GM Servicios en Restauración</option>
+                                <option value='Administración y Finanzas'>GS Administración y Finanzas</option>
+                                <option value='Agencias de Viajes y Gestión de Eventos'>GS Agencias de Viajes y Gestión de Eventos</option>
+                                <option value='Asistencia a la Dirección'>GS Asistencia a la Dirección</option>
+                                <option value='Automatización y Robótica Industrial'>GS Automatización y Robótica Industrial</option>
+                                <option value='Dirección de Cocina'>GS Dirección de Cocina</option>
+                                <option value='Gestión de Alojamientos Turísticos'>GS Gestión de Alojamientos Turísticos</option>
+                                <option value='Guía, Información y Asistencias Turísticas'>GS Guía, Información y Asistencias Turísticas</option>
+                                <option value='Mantenimiento de Instalaciones Térmicas y de Fluidos'>GS Mantenimiento de Instalaciones Térmicas y de Fluidos</option>
+                                <option value='Sistemas Electrotécnicos y Automatizados'>GS Sistemas Electrotécnicos y Automatizados</option>
+                            </select>
+                        </div>
+                        <label class="col-form-label col-lg-1" style="margin-left: 20px;">Curso: </label>
+                        <div class="col-lg-1">
+                            <select id="mat_ciclos_curso" style="margin-left: -10px;" size="1" onchange="listaRegistros();" class="form-control">
+                                <option value="" selected>...</option>
+                                <option value='1º'>1º</option>
+                                <option value='2º'>2º</option>
+                                <option value='3º'>3º</option>
+                                <option value='Modular'>Modular</option>
+                                <option value='learning'>E-learning</option>
+                            </select>
+                        </div>
+                        <label class="col-form-label col-lg-1" style="margin-left: 50px;">Turno: </label>
+                        <div class="col-lg-1">
+                            <select id="mat_ciclos_turno" style="margin-left: -15px;" size="1" onchange="listaRegistros();" class="form-control">
+                                <option value="" selected>...</option>
+                                <option value='Diurno'>Diurno</option>
+                                <option value='Vespertino'>Vespertino</option>
+                                <option value='Nocturno'>Nocturno</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group row" id="div_curso_mat_fpb" style="display:none">
+                        <label class="col-form-label col-lg-2" style="margin-left: 15px;">Ciclo: </label>
+                        <div class="col-lg-5">
+                            <select id="mat_fpb" size="1" style="margin-left: -30px;" onchange="listaRegistros();" class="form-control">
+                                <option value="" selected>Seleccione uno...</option>
+                                <option value="Alojamiento y Lavandería">Alojamiento y Lavandería</option>
+                                <option value="Cocina y Restauración">Cocina y Restauración</option>
+                                <option value="Electricidad y Electrónica">Electricidad y Electrónica</option>
+                                <option value="Servicios Administrativos">Servicios Administrativos</option>
+                            </select>
+                        </div>
+                        <label class="col-form-label col-lg-1" style="margin-left: 20px;">Curso: </label>
+                        <div class="col-lg-1">
+                            <select id="mat_fpb_curso" style="margin-left: -10px;" size="1" onchange="listaRegistros();" class="form-control">
+                                <option value="" selected>...</option>
+                                <option value='1º'>1º</option>
+                                <option value='2º'>2º</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <form>
+                    <div id="div_nuevos_otra_comunidad" class="form-group row" style="margin-top: 10px;display:none">
+                        <div class="custom-control custom-switch col" style="margin-left:20px">
+                            <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_nuevo_otra_com" onchange="listaRegistros();">
+                            <label for="check_nuevo_otra_com" class="custom-control-label" style="margin-top:5px;margin-left:10px;">Nuevo que inicia estudios en otra comunidad</label>
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin-top: 10px;">
+                        <label class="col-form-label col-lg-1" style="margin-left:20px">Buscar: </label>
+                        <div class="col-lg-8" style="margin-left:-35px">
+                            <input type="text" id="busqueda" maxlength="255" class="form-control" onkeyup="listaRegistros()">
+                        </div>
+                        <div class="custom-control custom-switch col-lg-2">
+                            <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_incidencias" onchange="listaRegistros();">
+                            <label for="check_incidencias" class="custom-control-label" style="margin-top:5px;margin-left:10px;">Sólo Incidencias</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div style="clear: both"></div>
+            <div style="margin-left:20px">
+                <table id="encabezado_docs" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-top:1em;">
+                    <tr>
+                        <td style="text-align: center; width: 900px;">Selecciona tipo de formulario en el desplegable de arriba.</td>
+                    </tr>
+                </table>
+                <div id="div_tabla" style="overflow: auto; height: 400px" class="table-hover">
+                    <table id="registros_docs" cellpadding="0" cellspacing="0" class="noseleccionable">
+                    </table>
+                </div>
+                <div id="div_notabla" style="display:none; height: 400px; text-align: center; margin-left: 10px">
+                    No se ha seleccionado tipo de formulario o no hay formularios de este tipo registrados.
+                </div>
+            </div>
+        </div>
+        <!-- FIN GESTIÓN DE SECRETARÍA ____________________________________________________________-->
+        <!--_______________________________________________________________________________________-->
+
+
+        <!-- LISTADO USUARIOS _____________________________________________________________________-->
+        <!--_______________________________________________________________________________________-->
+        <div id="usu_reg_tab" class="ui-widget-header ui-corner-all d-none" >
+            <div class="row" style="margin-top:15px">
+                <div class="col-1">
+                    <label class="col-form-label" style="margin-left:20px; ">Mostrar: </label>
+                </div>
+                <div class="col-4" style="margin-left:-10px">
+                    <select id="sel_solo_entrado" size="1" onchange="listaUsus()" class="form-control">
+                        <option value='Si'>Los que han entrado alguna vez</option>
+                        <option value='No'>Los que NO han entrado nunca</option>
+                        <option value='Todos' selected>Todos</option>
+                    </select>
+                </div>
+                <div class="col-4 offset-3">
+                    <input type="button" value="Subida Masiva Docs" class="textoboton btn btn-success" onclick="subeDocExpediente('varios','');" />
+                    <input type="button" value="Volver" class="textoboton btn btn-success" onclick="cierraListaUsuarios()" />
+                </div>
+            </div>
+            <div class="row" style="margin-top:15px">
+                <label class="col-form-label col-lg-1" style="margin-left:20px">Buscar: </label>
+                <div class="col-lg-8" style="margin-left:-35px">
+                    <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="listaUsus()">
+                </div>
+            </div>
+            <div class="row justify-content-center" style="margin-top:10px">
+                <ul class="pagination pagination-sm" id="navegacion_usus_top"></ul>
+            </div>
+            <div class="row justify-content-center">
+                <table id="encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px">
+                </table><br>
+                <div id="div_tabla_usus" style="overflow: auto; height: 480px;" class="table-hover">
+                    <table id="registros_usus" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:20px">
+                    </table>
+                </div>
+                <div id="div_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px">
+                    No hay usuarios que listar.
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <ul class="pagination pagination-sm" id="navegacion_usus_bottom"></ul>
+            </div>
+        </div>
+
+        <!-- PANEL EXPEDIENTES DE USUARIO ___________________________________________________________-->
+        <div id="div_expediente_usuario" style="display:none; font-size:0.85em !important;padding:10px;padding-left:20px" class="ui-widget-header ui-corner-all alertas">
+            <div class="row justify-content-center" style="color:brown">
+                <span id="nie_exp"></span>
+                <span>-</span>
+                <span id="nombre_exp"></span>
+            </div>
+            <div class="row" style="margin-top:10px">
+                <div class="col-1">
+                    <label for="curso_exp" class="col-form-label">Curso:</label>
+                </div>
+                <div class="col-4">
+                    <select id="curso_exp" class="form-control" onchange="obtieneDocsExpediente()"></select>
+                </div>
+            </div>
+            <div id="div_tabla_expediente" class="row" style="margin-top:10px"></div>
+        </div>
+        <!-- FIN PANEL EXPEDIENTES DE USUARIO _______________________________________________________-->
+
+        <!-- PANEL ENVÍO EMAIL A USUARIO ____________________________________________________________-->
+        <div id="div_email_usuario" style="display:none; font-size:0.85em !important;padding:10px" class="ui-widget-header ui-corner-all alertas">
+            <form id="form_email_usuario">
+                <label>Asunto del correo:</label><br>
+                <div class="errorTxt" style="font-size: 1em;"></div><br>
+                <input type="text" id="usu_asunto_email" name="usu_asunto_email" maxlength="150" size="100"><hr>
+                <label>Contenido del correo:</label><br>
+                <div class="errorTxt" style="font-size: 1em;"></div><br>
+                <textarea rows="10" cols="100" id="usu_cuerpo_email" name="usu_cuerpo_email"></textarea>
+            </form>
+        </div>
+        <!-- FIN PANEL ENVÍO EMAIL USUARIO ___________________________________________________________-->
+        <!-- PANEL SUBE DOCS A EXPEDIENTE ____________________________________________________________-->
+        <div id="div_sube_docs" style="display:none; font-size:0.85em !important;padding:10px" class="ui-widget-header ui-corner-all alertas">
+            <form id="form_sube_doc" novalidate>
+                <input type="hidden" id="id_nie" name="id_nie">
+                <input type="hidden" id="anno_curso" name="anno_curso">
+                <input type="hidden" id="tipo_envio" name="tipo_envio">
+                <div class="row justify-content-center" id="rotulo" style="color:brown;margin-left:10px"></div>
+                <div class="row">
+                    <div class="col-5">
+                        <label for="curso_doc" class="col-form-label">Curso:</label>
+                        <span class="errorTxt" style="font-size: 1em;"></span>
+                        <select class="form-control" id="curso_doc" name="curso_doc">
+                            <option value="2015-2016">2015-2016</option>
+                            <option value="2016-2017">2016-2017</option>
+                            <option value="2017-2018">2017-2018</option>
+                            <option value="2018-2019">2018-2019</option>
+                            <option value="2019-2020">2019-2020</option>
+                            <option value="2020-2021">2020-2021</option>
+                            <option value="2021-2022">2021-2022</option>
+                            <option value="2022-2023">2022-2023</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2025-2026">2025-2026</option>
+                            <option value="2026-2027">2026-2027</option>
+                            <option value="2027-2028">2027-2028</option>
+                            <option value="2028-2029">2028-2029</option>
+                            <option value="2029-2030">2029-2030</option>
+                            <option value="2030-2031">2030-2031</option>
+                        </select>
+                    </div>
+                    <div class="col-7">
+                        <label for="tipo_doc" class="col-form-label">Tipo de documento:</label>
+                        <span class="errorTxt" style="font-size: 1em;"></span>
+                        <select class="form-control" id="tipo_doc" name="tipo_doc" onchange="selTipoDoc(this)">
+                            <option value="">Selecciona uno ...</option>
+                            <option value="Anulación matrícula">Anulación matrícula</option>
+                            <option value="Anulación módulos (modular)">Anulación módulos (modular)</option>
+                            <option value="Certificado Notas">Certificado Notas</option>
+                            <option value="Convalidaciones">Convalidaciones</option>
+                            <option data="simple" value="Documento de Identificación-Anverso">Documento de Identificación-Anverso</option>
+                            <option data="simple" value="Documento de Identificación-Reverso">Documento de Identificación-Reverso</option>
+                            <option value="Evaluación FCT">Evaluación FCT</option>
+                            <option value="Exención FCT">Exención FCT</option>
+                            <option data="simple" value="Fotografía del alumno">Fotografía del alumno</option>
+                            <option value="Homologación Estudios">Homologación Estudios</option>
+                            <option value="Informes Orientación">Informes Orientación</option>
+                            <option value="Pérdida Evaluación Contínua">Pérdida Evaluación Contínua</option>
+                            <option value="Renuncia a convocatoria">Renuncia a convocatoria</option>
+                            <option data="simple" value="Seguro Escolar">Seguro Escolar</option>
+                            <option value="Título ESO para FPB">Título ESO para FPB</option>
+                            <option value="Transporte Escolar">Transporte Escolar</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <!--
+                    <div class="col-4" id="sel_otro" style="display:none">
+                        <label for="otro" class="col-form-label">Especificar tipo:</label>
+                        <span class="errorTxt" style="font-size: 1em;"></span>
+                        <input class="form-control" type="text" id="otro" name="otro" size="15" maxlength="15"/>
+                    </div>
+                    -->
+                </div>
+                <div class="row " style="margin-top:10px;margin-left:20px" id="div_nomArchOriginal">
+                    <div class="custom-control custom-switch mi-checkbox col-12">
+                        <input class="custom-control-input" type="checkbox" id="nomArchOriginal" name="nomArchOriginal" onclick="bloqueaNomArch()">
+                        <label class="custom-control-label" for="nomArchOriginal">Mantener el nombre original del documento</label>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;" id="div_nom_doc">
+                    <div class="col-12">
+                        <label style="color:BLACK !important">El nombre del documento sólo permite letras mayúsculas, minúsculas, dígitos, guión y guión bajo.</label><br>
+                        <label for="nom_doc" class="col-form-label">Nombre del documento:</label>
+                        <!--<br><span class="errorTxt" style="font-size: 1em;"></span>-->
+                        <input name="nom_doc" id="nom_doc" type="text" class="form-control" size="40" maxlength="240" />
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-12">
+                        <label for="documento" class="col-form-label">Documento:</label>
+                        <br><span class="errorTxt" style="font-size: 1em;"></span>
+                        <input name="documento[]" id="documento" type="file" class="btn btn-success form-control" accept="application/pdf"/>
+                    </div>    
+                </div>
+            </form>
+            <hr>
+            <div class="row justify-content-center" style="margin-top:10px">
+                <div class="col-4">
+                    <input type="button" value="Subir" class="textoboton btn btn-success" onclick="subeDoc()">
+                    <input type="button" value="Cancelar" class="textoboton btn btn-success" style="margin-left:10px;" onclick="cierraPanelSubeDoc()">
+                </div>
+            </div>
+        </div>
+        <!-- FIN PANEL VER DOCUMENTOS EXPEDIENTE ____________________________________________________________-->
+        <div style="display:none" id="div_form_verDoc">
+            <form id="form_verDoc" method="POST">
+                <input type="hidden" name="referencia" id="registro">
+                <input type="hidden" name="nombre" id="nombre">
+            </form>
+        </div>
+        <!-- FIN LISTADO DE USUARIOS__________________________________________________________________-->
+        <!--__________________________________________________________________________________________-->
+    </div>
+    <!--______________________________________________________________________________________________-->
+
+    <!-- NUEVO USUARIO _______________________________________________________________________________-->
+    <!--______________________________________________________________________________________________-->
+    <div id="div_nuevo_registro" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
+        <!--<div style="display:table-cell; padding-left:10px; padding-top: 10px">
+            <img src="recursos/escudo2.jpg" width="115" height="105" alt="Escudo_Uni">
+        </div>-->
+        <div>
+            <label style="margin-left:10px; color:red !important; font-size: 0.8em !important;">Si sube un archivo CSV para generación masiva de contraseñas, asegúrese de que la columna del nº de NIE está encabezada con el texto C_NUMESCOLAR</label>
+            <form id="form_alta_usuario" class="form needs-validation" novalidate>
+                <div class="row form-group">
+                    <div class="col-lg-12">
+                        <label class="col-form-label">NIE</label>
+                        <input type="text" id="nr_nie" name="nie" class="form-control" required/>
+                        <div class="invalid-feedback">Introduzca el NIE del nuevo usuario</div>
+                        <div class="valid-feedback"></div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-lg-12">
+                        <label class="col-form-label">Email <small>(Para envío de credenciales, futuras comunicaciones, recuperación de contraseña...)</small></label>
+                        <input type="email" id="nr_email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
+                        <div class="invalid-feedback">Introduzca un email válido.</div>
+                        <div class="valid-feedback"></div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-lg-6">
+                        <label class="col-form-label">Nombre</label>
+                        <input type="text" id="nr_nombre" name="nombre" class="form-control" />
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="col-form-label">Apellidos</label>
+                        <input type="text" id="nr_apellidos" name="apellidos" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-lg-6">
+                        <label class="col-form-label">NIF/NIE</label>
+                        <input type="text" id="nr_nif" name="nif" class="form-control" />
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="col-form-label">Contraseña</label>
+                        <input type="text" id="nr_password" name="password" class="form-control" readonly/>
+                    </div>
+                </div>
+            </form>
+            <div style="clear: both;"></div>
+            <div style="display:inline;float:left; margin-left:15px">
+                <form id="form_Upload_Excel">
+                    <input type="file" id="nr_excel" name="excel" accept=".csv" style="display:none" onchange="subeExcel(this)" />
+                    <input type="button" value="Subir Archivo" class="textoboton btn btn-success" onclick="document.getElementById('nr_excel').click();" />
+                    <input type="button" value="Limpiar Formulario" class="textoboton btn btn-success" onclick="javascript:document.getElementById('form_alta_usuario').reset();generaPass();" />
+                </form>
+            </div>
+            <div style="display:inline;float:right; margin-right:15px">
+                <input type="button" value="Aceptar" class="textoboton btn btn-success" onclick="altaUsuario()" />
+                <input type="button" value="Salir" class="textoboton btn btn-success" onclick="javascript:document.getElementById('form_alta_usuario').reset(); $('#div_nuevo_registro').dialog('close');" />
+            </div>
+        </div>
+    </div>
+    <!-- FIN NUEVO USUARIO ____________________________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+
+    <!-- REASIGNACIÓN DE PASSWORD _____________________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+    <div id="div_nie_registrado" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
+        <div id="div_usuario" data-alta="usuario">
+            <span>El NIE está dupliado, pero el usuario todavía no se ha habilitado como usuario del sistema.</span><br>
+            <span>Si el motivo del alta ha sido olvido de contraseña, o simplemente quiere reasignar la contraseña generada, pulse 'Continuar'</span>
+        </div>
+        <div id="div_registrado" data-alta="registrado">
+            <span>El usuario ya se ha habilitado como usuario del sistema.</span>
+            <span>Si pulsa 'Continuar', al usuario se le asignará otra contraseña.</span><br>
+            <span>IMPORTANTE: Es conveniente verificar que la identidad de quien solicita la renovación de contraseña coincide con el titular del Nº de Identificación Escolar.</span><br>
+        </div>
+        <div style="text-align: center;">
+            <br>
+            <input type="button" value="Continuar" class="btn btn-success textoboton" onclick="reasignarPassword();$('#div_nie_registrado').dialog('close');" />
+            <input type="button" value="Cancelar" class="btn btn-success textoboton" onclick="$('#div_nie_registrado').dialog('close');" />
+        </div>
+    </div>
+    <!-- FIN REASIGNACIÓN DE PASSWORD _________________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+
+    <!-- DOCS DE LA MATRÍCULA _________________________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+    <div id="div_docs_matricula" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
+        <div style="display:inline-block">
+            <label>SEGURO ESCOLAR</label><br>
+            <a id="seguro_link"><img id="doc_mat_seguro" width="400" height="200"></a>
+        </div>
+        <div style="display:inline-block">
+            <label>FOTOGRAFÍA</label><br>
+            <a id="foto_link"><img id="doc_mat_foto" width="150" height="200"></a>
+        </div>
+        <div style="clear:both"></div>
+        <div style="display:inline-block">
+            <label>DNI/NIE ANVERSO</label><br>
+            <a id="dni_a_link"><img id="doc_dni_a" width="300" height="150"></a>
+        </div>
+        <div style="display:inline-block">
+            <label>DNI/NIE REVERSO</label><br>
+            <a id="dni_r_link"><img id="doc_dni_r" width="300" height="150"></a>
+        </div>
+        <div style="clear:both"></div>
+        <div style="text-align: center; margin-top:15px">
+            <input type="button" value="Cerrar" class="btn btn-success textoboton" onclick="$('#div_docs_matricula').dialog('close');" />
+        </div>
+
+    </div>
+    <!-- FIN DOCS DE LA MATRÍCULA _____________________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+
+    <!-- SELECCIÓN TIPO LISTADO MATRÍCULAS ____________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+    <div id="div_listadoMatriculas" style="display: none;  padding: 5px; overflow:hidden" class="ui-widget-header ui-corner-all alertas">
+        <div class="row" style="margin-left:10px" id="div_consolidadas">
+            <div style="display:inline-block">
+                <div class="custom-control custom-switch">
+                    <input type="radio" class="custom-control-input checkbox_prematricula" name="consolidadas" id="cons_si" value="cons_si">
+                    <label for="cons_si" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Prematrículas Consolidadas</label>
+                </div>
+            </div>
+            <div style="display:inline-block">
+                <div class="custom-control custom-switch">
+                    <input type="radio" class="custom-control-input checkbox_prematricula" name="consolidadas" id="cons_no" value="cons_no">
+                    <label for="cons_no" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Prematrículas NO Consolidadas (Matrículas Nuevas)</label>
+                </div>
+            </div>
+            <div style="display:inline-block">
+                <div class="custom-control custom-switch">
+                    <input type="radio" class="custom-control-input checkbox_prematricula" name="consolidadas" id="cons_todas" checked value="cons_todas">
+                    <label for="cons_todas" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Todas</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div style="clear:both"></div>
+        <div class="row" style="margin-left:10px">
+            <div class="custom-control custom-switch  col">
+                <input type="radio" class="custom-control-input checkbox_prematricula" name="listadas" id="listadas_seleccionadas" value="seleccionadas">
+                <label for="listadas_seleccionadas" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Seleccionadas</label>
+            </div>
+            <div class="custom-control custom-switch  col">
+                <input type="radio" class="custom-control-input checkbox_prematricula" name="listadas" id="listadas_si" value="listadas">
+                <label for="listadas_si" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Listadas</label>
+            </div>
+            <div class="custom-control  custom-switch col">
+                <input type="radio" class="custom-control-input checkbox_prematricula" name="listadas" id="listadas_no" value="no listadas">
+                <label for="listadas_no" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">NO Listadas</label>
+            </div>
+            <div class="custom-control  custom-switch col-3">
+                <input type="radio" class="custom-control-input checkbox_prematricula" name="listadas" id="listadas_todas" checked value="todas">
+                <label for="listadas_todas" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Todas</label>
+            </div>
+        </div>
+        <hr>
+        <div style="clear:both"></div>
+        <div style="text-align: center;margin-top:15px">
+            <input type="button" value="Generar Listado" class="btn btn-success textoboton" onclick="registrosAPdf('')" />
+            <input type="button" value="Cerrar" class="btn btn-success textoboton" onclick="$('#div_listadoMatriculas').dialog('close');" />
+        </div>
+    </div>
+    <!-- FIN SELECCIÓN TIPO LISTADO MATRÍCULAS ________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+
+    <!-- PANEL CONFIRMACIÓN ELIMINADO DE USUARIO ______________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+    <div id="div_elimina_usuario" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
+        <input type="hidden" id="nie_eliminar"/>
+        <div class="row justify-content-center" >
+            <span>Se eliminará al usuario</span>
+        </div>
+        <div class="row justify-content-center" >
+            <span id="id_usu_elim" style="color:brown"></span>
+        </div>
+        <hr>
+        <div class="row justify-content-center align-items-center" style="margin-top:10px">
+            <div class="col-4">
+                <label style="color:BLACK !important">Código de seguridad:</label>
+            </div>
+            <div class="col-2">
+                <label id="cod_seg" style="color:RED;font-size:200% !important"></label>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="padding:10px">
+            <label class="col-form-label col-8">Escriba el código de seguridad para confirmar:</label>
+            <input type="text" size="5" id="t_cod_seg" class="form-control col-2" />
+        </div>
+        <hr>
+        <div class="row justify-content-center" style="margin-top:10px">
+            <input type="button" value="Eliminar Usuario" class="btn btn-success textoboton" onclick="javascript:confirmadoEliminarUsuario(document.getElementById('nie_eliminar').value);" />
+            <input type="button" value="Cancelar" class="btn btn-success textoboton" style="margin-left:5px" onclick="document.getElementById('t_cod_seg').value='';$('#div_elimina_usuario').dialog('close');" />
+        </div>
+    </div>
+
+    <!-- FIN CONFIRMACIÓN ELIMINADO DE USUARIO ________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+
+    <!-- PANEL CONFIRMACIÓN BORRADO DOCUMENTO EXPEDIENTE ______________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+    <div id="div_borra_doc" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
+        <input type="hidden" id="del_ruta"/>
+        <div class="row justify-content-center" >
+            <span>Se borrará el documento</span>
+        </div>
+        <div class="row justify-content-center" >
+            <span id="del_documento" style="color:brown"></span>
+        </div>
+        <hr>
+        <div class="row justify-content-center align-items-center" style="margin-top:10px">
+            <div class="col-4">
+                <label style="color:BLACK !important">Código de seguridad:</label>
+            </div>
+            <div class="col-2">
+                <label id="doc_cod_seg" style="color:RED;font-size:200% !important"></label>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="padding:10px">
+            <label class="col-form-label col-8">Escriba el código de seguridad para confirmar:</label>
+            <input type="text" size="5" id="t_doc_cod_seg" class="form-control col-2" />
+        </div>
+        <hr>
+        <div class="row justify-content-center" style="margin-top:10px">
+            <input type="button" value="Borra Documento" class="btn btn-success textoboton" onclick="javascript:confirmadoBorradoDoc();" />
+            <input type="button" value="Cancelar" class="btn btn-success textoboton" style="margin-left:5px" onclick="document.getElementById('t_doc_cod_seg').value='';$('#div_borra_doc').dialog('close');" />
+        </div>
+    </div>
+
+    <!-- FIN PANEL CONFIRMACIÓN BORRADO DOCUMENTO EXPEDIENTE __________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+      <!-- PANEL CAMBIO NOMBRE DOCUMENTO EXPEDIENTE ______________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+    <div id="div_camb_nom_doc" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
+        <input type="hidden" id="camb_ruta"/>
+        <input type="hidden" id="ruta_nuevo_nombre_doc"/>
+        <input type="hidden" id="ext_nuevo_nombre_doc"/>
+        <div class="row justify-content-center" >
+            <span>Cambio de nombre de </span>
+        </div>
+        <div class="row justify-content-center" >
+            <span id="doc_documento" style="color:brown"></span>
+        </div>
+        <hr>
+        <div class="row justify-content-center align-items-center" style="margin-top:10px">
+            <div class="col-12">
+                <label style="color:BLACK !important">El nombre de archivo sólo permite letras mayúsculas, minúsculas, dígitos, guión y guión bajo.</label>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center" style="margin-top:10px">
+            <div class="col-3">
+                <label style="color:BLACK !important">Nuevo nombre:</label>
+            </div>
+            <div class="col-9">
+                <input type="text" class="form-control" id="nuevo_nom" style="color:blue;font-size:1em !important" size="30" maxlength="240"></label>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center" style="margin-top:10px">
+            <div class="col-4">
+                <label style="color:BLACK !important">Código de seguridad:</label>
+            </div>
+            <div class="col-2">
+                <label id="m_doc_cod_seg" style="color:RED;font-size:200% !important"></label>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="padding:10px">
+            <label class="col-form-label col-8">Escriba el código de seguridad para confirmar:</label>
+            <input type="text" size="5" id="tm_doc_cod_seg" class="form-control col-2" />
+        </div>
+        <hr>
+        <div class="row justify-content-center" style="margin-top:10px">
+            <input type="button" value="Cambio Nombre Documento" class="btn btn-success textoboton" onclick="javascript:confirmaCambioNombreDoc();" />
+            <input type="button" value="Cancelar" class="btn btn-success textoboton" style="margin-left:5px" onclick="document.getElementById('tm_doc_cod_seg').value='';$('#div_camb_nom_doc').dialog('close');" />
+        </div>
+    </div>
+
+    <!-- FIN PANEL CAMBIO NOMBRE DOCUMENTO EXPEDIENTE __________________________________________-->
+    <!--_______________________________________________________________________________________________-->  
+    <!-- MODIFICACIÓN DATOS USUARIO ___________________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+    <div id="div_modif_datos_usu" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
+        <div>
+            <form id="form_modif_datos_usu" class="form needs-validation" novalidate>
+                <fieldset id="fset_modif_datos_usu" disabled>
+                    <input type="hidden" id="dat_idnie" name="dat_idnie"/>
+                    <div class="row" style="color:brown">
+                        <div class="col">
+                            <span>DATOS DEL USUARIO</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="mod_email">Email <small>(Para recuperación de contraseñas y notificaciones.)</small></label>
+                            <span class="errorTxt"></span>
+                            <input type="email" id="mod_email" name="mod_email" class="form-control"  maxlength="80"/>
+                        </div>
+                    </div>
+                    <div class="row" style="color:brown">
+                        <div class="col">
+                            <span>DATOS PERSONALES DEL ALUMNO</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="mod_nombre">Nombre</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="mod_nombre" name="mod_nombre" class="form-control" maxlength="25"/> 
+                        </div>
+                        <div class="col-6">
+                            <label for="mod_apellidos">Apellidos</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="mod_apellidos" name="mod_apellidos" class="form-control"  maxlength="40"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <label for="mod_nif">NIF/NIE</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="mod_nif" name="mod_nif" class="form-control"  maxlength="9"/>
+                        </div>
+                        <div class="col-2">
+                            <label for="dat_sexo" class="etiquetas">Sexo:</label>
+                            <span class="errorTxt"></span>
+                            <select id="dat_sexo" name="dat_sexo" class="form-control">
+                                <option value=""></option>
+                                <option value="H">Hombre</option>
+                                <option value="M">Mujer</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label for="dat_fecha_nac" class="etiquetas">Fecha Nacimiento:</label>
+                            <input type="text" class="form-control" id="dat_fecha_nac" name="dat_fecha_nac" maxlength="10" size="10"  placeholder="dd/mm/aaaa">
+                        </div>
+                        <div class="col-3">
+                            <label for="dat_telefono" class="etiquetas">Teléfono del alumno:</label>
+                            <input type="text" class="form-control" id="dat_telefono" name="dat_telefono" maxlength="12" size="12">
+                        </div>
+                        <div class="col">
+                            <label for="dat_email" class="etiquetas">Email del alumno:</label>
+                            <span class="errorTxt"></span>
+                            <input type="email" class="form-control" id="dat_email" name="dat_email" maxlength="80" size="80">
+                        </div>
+                    </div>
+                    <div class="row" style="color:brown">
+                        <div class="col">
+                            <span>DATOS RELATIVOS AL DOMICILIO</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="dat_direccion" class="etiquetas">Dirección:</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="dat_direccion" name="dat_direccion" class="form-control" maxlength="90" size="90"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <label for="dat_cp" class="etiquetas">CP:</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="dat_cp" name="dat_cp" class="form-control" maxlength="5" size="5"/>
+                        </div>
+                        <div class="col">
+                            <label for="dat_localidad" class="etiquetas">Localidad:</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="dat_localidad" name="dat_localidad" class="form-control" maxlength="35" size="35"/>
+                        </div>
+                        <div class="col">
+                            <label for="dat_provincia" class="etiquetas">Provincia:</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="dat_provincia" name="dat_provincia" class="form-control" maxlength="35" size="35"/>
+                        </div>
+                    </div>
+                    <div class="row" style="color:brown">
+                        <div class="col">
+                            <span>REPRESENTANTES LEGALES (SI PROCEDE)</span>
+                        </div>
+                    </div>
+                    <div class="row" style="color:brown">
+                        <div class="col">
+                            <span style="font-size:18px">PADRE/MADRE/TUTOR/A LEGAL 1</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="dat_tutor1" class="etiquetas">Nombre y apellidos:</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="dat_tutor1" name="dat_tutor1" class="form-control" maxlength="40" size="40"/>
+                        </div>
+                        <div class="col-3">
+                            <label for="dat_telef_tut1" class="etiquetas">Teléfono:</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="dat_telef_tut1" name="dat_telef_tut1" class="form-control" maxlength="12" size="12"/>
+                        </div>
+                        <div class="col-4">
+                            <label for="dat_email_tut1" class="etiquetas">Correo electrónico:</label>
+                            <span class="errorTxt"></span>
+                            <input type="email" id="dat_email_tut1" name="dat_email_tut1" class="form-control" maxlength="40" size="40"/>
+                        </div>
+                    </div>
+                    <div class="row" style="color:brown">
+                        <div class="col">
+                            <span style="font-size:18px">PADRE/MADRE/TUTOR/A LEGAL 2</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="dat_tutor2" class="etiquetas">Nombre y apellidos:</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="dat_tutor2" name="dat_tutor2" class="form-control" maxlength="40" size="40"/>
+                        </div>
+                        <div class="col-3">
+                            <label for="dat_telef_tut2" class="etiquetas">Teléfono:</label>
+                            <span class="errorTxt"></span>
+                            <input type="text" id="dat_telef_tut2" name="dat_telef_tut2" class="form-control" maxlength="12" size="12"/>
+                        </div>
+                        <div class="col-4">
+                            <label for="dat_email_tut2" class="etiquetas">Correo electrónico:</label>
+                            <span class="errorTxt"></span>
+                            <input type="email" id="dat_email_tut2" name="dat_email_tut2" class="form-control" maxlength="40" size="40"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <hr>
+                <div class="row" id="boton_ver">
+                    <div class="col-1 offset-8">
+                        <input type="button" value="Modificar" class="textoboton btn btn-success" onclick="$('#boton_ver').hide();$('#boton_modif').show();document.getElementById('fset_modif_datos_usu').disabled = false;" />
+                    </div>
+                    <div class="col-1">
+                        <input type="button" value="Salir" class="textoboton btn btn-success" onclick="javascript:document.getElementById('form_modif_datos_usu').reset(); $('#div_modif_datos_usu').dialog('close');document.getElementById('fset_modif_datos_usu').disabled = true;$('#boton_ver').show();$('#boton_modif').hide();" />
+                    </div>
+                </div>
+                <div class="row" id="boton_modif" style="display:none">
+                    <div class="col-1 offset-8">
+                        <input type="button" value="Aceptar Cambios" class="textoboton btn btn-success" onclick="modUsu()" />
+                    </div>
+                    <div class="col-1 offset-1">
+                        <input type="button" value="Salir" class="textoboton btn btn-success" onclick="javascript:document.getElementById('form_modif_datos_usu').reset(); $('#div_modif_datos_usu').dialog('close');document.getElementById('fset_modif_datos_usu').disabled = true;$('#boton_ver').show();$('#boton_modif').hide();" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- FIN MODIFICACIÓN DATOS USUARIO _______________________________________________________________-->
+    <!--_______________________________________________________________________________________________-->
+
+    <div id="verRegistro_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
+    <div id="verInfoUsu_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
+    <div id="cargando" style="display:none; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('recursos/espera.gif') no-repeat center center; opacity: .7;z-index:9999;text-align:center;">
+        <!--<label id="progreso_php" style="color:brown;vertical-align:middle;"></label>-->
+    </div>
+    <div id="progreso" style="display:none; justify-content:center; align-items:center; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white; opacity: .7;z-index:9999;text-align:center;">
+        <div class="progress" style="width:50%; height:40px;margin-top:25%;margin-left:25%">
+            <div id="bar_prog" class="progress-bar progress-bar-striped progress-bar-animated bg-success"  style="width: 0%;"></div>
+        </div>
+        <br>
+        <div>
+            <span id="num_procesados" style="font-size:0.5em !important"></span>
+        </div>
+    </div>
+
+    <div id="mensaje_div" class="alertas"></div>
+    <div id="formulario_descargar_solicitudes" style="display:none">
+        <form id="descarga_sol" action="php/secret_descargaregistros.php" method="POST" target="_blank">
+            <input type="hidden" id="curso_listado" name="curso_listado" />
+            <input type="hidden" id="formulario" name="formulario" />
+            <input type="hidden" id="tipo_listado" name="tipo_listado" />
+            <input type="hidden" id="registros" name="registros" />
+            <input type="hidden" id="orden_campo" name="orden_campo" />
+            <input type="hidden" id="orden_direccion" name="orden_direccion" />
+            <input type="hidden" id="orden_texto" name="orden_texto" />
+            <input type="hidden" id="mat_consolidadas" name="mat_consolidadas" value="" />
+            <input type="hidden" id="mat_curso" name="mat_curso" value="" />
+            <input type="hidden" id="grado" name="grado" value="" />
+            <input type="hidden" id="ciclo" name="ciclo" value="" />
+            <input type="hidden" id="curso_ciclo" name="curso_ciclo" value="" />
+            <input type="hidden" id="turno" name="turno" value="" />
+
+        </form>
+    </div>
+    <div id="formulario_descargar_csv" style="display:none">
+        <form id="descarga_csv_premat" action="php/secret_csv_prematricula.php" method="POST" target="_self">
+            <input type="hidden" id="premat_csv" name="premat_csv" />
+            <input type="hidden" id="curso_csv" name="curso_csv" />
+        </form>
+    </div>
+    <!--
+    <div id="formulario_descargar_csv_matricula" style="display:none">
+        <form id="descarga_csv_matricula" action="php/secret_csv_matricula.php" method="POST" target="_self">
+            <input type="hidden" id="mat_csv" name="mat_csv" />
+            <input type="hidden" id="curso_csv_mat" name="curso_csv_mat" />
+        </form>
+    </div>
+    -->
+    <div id="formulario_descargar_csv_nuevos_eso_bach" style="display:none">
+        <form id="descarga_csv_nuevos_eso_bach" action="php/secret_csv_nuevos_eso_bach.php" method="POST" target="_self">
+            <input type="hidden" id="curso_csv_nuevos_eso_bach" name="curso_csv_nuevos_eso_bach" />
+        </form>
+    </div>
+    <div id="formulario_descargar_csv_prog_ling" style="display:none">
+        <form id="descarga_csv_prog_ling" action="php/secret_csv_programaling.php" method="POST" target="_self">
+            <input type="hidden" id="curso_csv_prog_ling" name="curso_csv_prog_ling" />
+        </form>
+    </div>
+    <div id="formulario_descargar_csv_nuevos_alumnos_otra_comunidad" style="display:none">
+        <form id="descarga_csv_nuevosotracomunidad" action="php/secret_csv_nuevosotracomunidad.php" method="POST" target="_self">
+            <input type="hidden" id="curso_csv_nuevosotracomunidad" name="curso_csv_nuevosotracomunidad" />
+        </form>
+    </div>
+    <div id="formulario_descargar_csv_consolida_prematricula" style="display:none">
+        <form id="descarga_csv_consolidaprematricula" action="php/secret_csv_consolidaprematricula.php" method="POST" target="_self">
+            <input type="hidden" id="curso_csv_consolidaprematricula" name="curso_csv_consolidaprematricula" />
+        </form>
+    </div>
+    <div id="formulario_descargar_csv_transporte" style="display:none">
+        <form id="descarga_csv_transporte" action="php/secret_csv_transporte.php" method="POST" target="_self">
+            <input type="hidden" id="curso_csv_transporte" name="curso_csv_transporte" />
+        </form>
+    </div>
+    <div id="formulario_descargar_csv_segurociclos" style="display:none">
+        <form id="descarga_csv_segurociclos" action="php/secret_csv_segurociclos.php" method="POST" target="_self">
+            <input type="hidden" id="curso_csv_seguro" name="curso_csv_seguro" />
+        </form>
+    </div>
+    <div id="formulario_descargar_fotos_alumnos" style="display:none">
+        <form id="descarga_fotos_alumnos" action="php/secret_descargafotos.php" method="POST" target="_self">
+            <input type="hidden" id="usuario" name="usuario" />
+        </form>
+    </div>
+    <div id="formulario_subir_mat_delphos" style="display:none">
+        <form id="subir_mat_delphos"  method="POST" >
+            <input type="file" id="mat_delphos" style="display:none" name="mat_delphos" accept=".csv" onchange="subeMatDelphos(this)"/>
+            <div class="row">
+                <div class="col">
+                    <label for="delimitador">Delimitador de campo</label>
+                    <input type="text" class="form-control" id="delimitador" name="delimitador" maxlength="1" size="1" value=",">
+                </div>
+                <div class="col">
+                    <label for="acotacampos">Carácter circundante de campo</label>
+                    <input type="text" class="form-control" id="acotacampos" name="acotacampos" maxlength="1" size="1" value='"'>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top:15px">
+                <input type="button" value="Subir CSV" class="btn btn-success textoboton" onclick="document.getElementById('mat_delphos').click();" />
+                <input type="button" value="Cerrar" class="btn btn-success textoboton" onclick="$('#formulario_subir_mat_delphos').dialog('close');" />
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src=<?php echo "jqueryui/jquery-ui.min.js?q=".time(); ?>></script>
+    <script src=<?php echo "js/jquery_validate/jquery.validate.min.js?q=".time(); ?>></script>
+    <script src=<?php echo "js/jquery_validate/additional-methods.min.js?q=".time(); ?>></script>
+    <script src=<?php echo "js/jquery.bootpag.min.js?q=".time(); ?> type="text/javascript"></script>
+    <script src=<?php echo "js/context_menu/jquery.contextMenu.min.js?q=".time(); ?>></script>
+    <script src=<?php echo "js/context_menu/jquery.ui.position.js?q=".time(); ?>></script>
+    <script src=<?php echo "js/secretaria_usu.js?q=".time(); ?> type="text/javascript"></script>
+    <script src=<?php echo "js/secretaria.js?q=".time(); ?> type="text/javascript"></script>
+    <script src=<?php echo "js/comun.js?q=".time(); ?> type="text/javascript"></script>
+    <script src=<?php echo "js/croppie/croppie.min.js?q=".time(); ?> type="text/javascript"></script>
+</body>
+
+</html>

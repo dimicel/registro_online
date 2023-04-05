@@ -1,0 +1,38 @@
+<div style="display:block;float:left; margin-top:10px;margin-left:10px">
+    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+</div>
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div class="row justify-content-center" >
+    <h6 style="color:brown; margin-top:20px">DATOS INICIALES</h6>
+</div>
+<div class="row justify-content-center">
+    <div id="div_curso_pag1"  class="justify-content-center ui-widget-header ui-corner-all col-4" style="padding:10px;margin:10px;">
+        <form id="form_pagina_1"  style="margin-left:20px"></form>
+            <label style="float:left">*Curso:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+            <select name="curso" id="curso" class="custom-select" onchange="javascript:document.getElementById('_cursa').value=this.value;">
+                <option value="">Seleccione uno...</option>
+                <option value="1º ESO">1º ESO</option>
+                <option value="2º ESO">2º ESO</option>
+                <option value="2º ESO PMAR">2º ESO PMAR</option>
+                <option value="3º ESO">3º ESO</option>
+                <option value="3º ESO DIVERSIFICACIÓN">3º ESO DIVERSIFICACIÓN</option>
+                <option value="4º ESO">4º ESO</option>
+                <option value="1º FPB Alojamiento y Lavandería">1º FPB Alojamiento y Lavandería</option>
+                <option value="2º FPB Alojamiento y Lavandería">2º FPB Alojamiento y Lavandería</option>
+                <option value="1º FPB Cocina y Restauración">1º FPB Cocina y Restauración</option>
+                <option value="2º FPB Cocina y Restauración">2º FPB Cocina y Restauración</option>
+                <option value="1º FPB Electricidad y Electrónica">1º FPB Electricidad y Electrónica</option>
+                <option value="2º FPB Electricidad y Electrónica">2º FPB Electricidad y Electrónica</option>
+                <option value="1º FPB Servicios Administrativos">1º FPB Servicios Administrativos</option>
+                <option value="2º FPB Servicios Administrativos">2º FPB Servicios Administrativos</option>
+            </select>
+        </form>
+    </div>
+</div>
+<hr>
+<div class=" justify-content-center row m-3">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+');">
+</div>

@@ -1,0 +1,56 @@
+<div style="display:block;float:left; margin-top:10px; margin-left:10px">
+    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+</div>
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div style="text-align: center;">
+    <h6 style="color:brown; margin-top:20px">TRANSPORTE ESCOLAR</h6>
+    <h6 style="color:brown; margin-top:20px;font-weight: bold;">TIPO DE SERVICIO SOLICITADO</h6>
+</div>
+<form id="form_pagina_4" class="" novalidate>
+    <div class="row" style="margin-left:20px;margin-right: 20px;">
+        <div class="col">
+            <p>*El servicio complementario de transporte escolar contratado por la administración educativa por estimar cumplir los requisitos establecidos en el apartado: (seleccionar uno)</p>
+            <div class=" custom-switch  mi-checkbox   custom-control w-100">
+                <input type="radio" name="apartado" id="apartado_c" class="custom-control-input" value="Art. 3 pto. 2 aptdo. c)" onclick="selApartadoTransporte()" />
+                <label for="apartado_c" class="custom-control-label" style="font-size: 1em;">c) Residir en <b>pedanía o población rural dispersa</b> perteneciente a la misma localidad donde éste está ubicado, siempre que cumpla el requisito de <b>distancia superior a cinco kilómetros</b>, desde su domicilio al límite del casco urbano, contemplándose la consideración excepcional de casos puntuales debidamente justificados.</label>
+            </div>
+            <br>
+            <div class=" custom-switch  mi-checkbox  custom-control w-100">
+                <input type="radio" name="apartado" id="apartado_d" class="custom-control-input" value="Art. 3 pto. 2 aptdo. d)" onclick="selApartadoTransporte()" />
+                <label for="apartado_d" class="custom-control-label" style="font-size: 1em;">d) Haber sido <b>escolarizados de oficio</b> por la Consejería con competencias en materia de educación no universitaria en centros públicos de la Comunidad localizados en <b>municipios distintos al de su residencia</b>.</label>
+            </div>
+            <br>
+            <div class=" custom-switch  mi-checkbox  custom-control w-100">
+                <input type="radio" name="apartado" id="apartado_e" class="custom-control-input" value="Art. 3 pto. 2 aptdo. e)" onclick="selApartadoTransporte()" />
+                <label for="apartado_e" class="custom-control-label" style="font-size: 1em;">e) Estar <b>interno en residencias no universitarias</b> dependientes de la Consejería con competencias en materia de educación no universitaria, por no contar en su localidad de origen, con centro o plazas vacantes en su nivel de escolarización. En este caso el derecho a este servicio de transporte será exclusivamente los fines de semana.</label>
+            </div>
+        </div>
+        <div class="w-100" style="text-align: center;margin-top:15px">
+            <span class="errorTxt" style="font-size: 1em;"></span>
+        </div>
+    </div>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-2 " >
+            <p>*Modalidad:</p>
+        </div>
+        <div class="col-3 custom-control custom-switch  mi-checkbox" style="margin-left:20px">
+            <input class="custom-control-input" type="radio" name="modalidad" id="modalidad_diario" value="diario" />
+            <label for="modalidad_diario" class="custom-control-label">Transporte diario</label>
+        </div>
+        <div class="col-4  custom-control custom-switch  mi-checkbox ">
+            <input class="custom-control-input" type="radio" name="modalidad" id="modalidad_semana" value="semana" />
+            <label for="modalidad_semana" class="custom-control-label">Transporte de fin de semana</label>
+        </div>
+    </div>
+    <div class="w-100" style="text-align: center;">
+        <span class="errorTxt" style="font-size: 1em;"></span>
+    </div>
+</form>
+<hr>
+<div class=" justify-content-center row m-3">
+    <input type="button" value="&#x1f448;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Página anterior" onclick="pasaPagina('-')">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+')">
+</div>

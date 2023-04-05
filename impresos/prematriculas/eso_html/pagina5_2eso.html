@@ -1,0 +1,209 @@
+<!-- 2º ESO -->
+<div style="display:block;float:left; margin-top:10px">
+    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+</div>
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div style="text-align: center;">
+    <h6 style="color:brown; margin-top:20px">SELECCIÓN DE MATERIAS</h6>
+</div>
+<div class="w-100"></div>
+<form id="form_pagina_5_2eso" class="form needs-validation" style="margin-left:20px" novalidate>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <div class="row justify-content-center" style="height: 40px;border:thin; background-color:#56a717;color:white;align-content: center; ">
+                MATERIAS COMUNES
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col ">
+                    Materia
+                </div>
+                <div class=" col-4 text-center">
+                    Hor. Seman.
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                    <input type="radio" id="fijo1" class="custom-control-input" checked/>
+                    <label for="fijo1" class="custom-control-label">Física y Química</label>
+                </div>
+                <div class=" col-4 text-center">
+                    3
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                    <input type="radio" id="fijo2" class="custom-control-input" checked/>
+                    <label for="fijo2" class="custom-control-label">Geografía e Historia</label>
+                </div>
+                <div class=" col-4 text-center">
+                    3
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                    <input type="radio" id="fijo3" class="custom-control-input" checked/>
+                    <label for="fijo3" class="custom-control-label">Educación Física</label>
+                </div>
+                <div class=" col-4 text-center">
+                    2
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                    <input type="radio" id="fijo4" class="custom-control-input" checked/>
+                    <label for="fijo4" class="custom-control-label">Lengua Castellana y Literatura</label>
+                </div>
+                <div class=" col-4 text-center">
+                    4
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                    <input type="radio" id="fijo5" class="custom-control-input" checked/>
+                    <label for="fijo5" class="custom-control-label">Matemáticas</label>
+                </div>
+                <div class=" col-4 text-center">
+                    4
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                    <input type="radio" id="fijo6" class="custom-control-input" checked/>
+                    <label for="fijo6" class="custom-control-label">Educación Plástica y Visual</label>
+                </div>
+                <div class=" col-4 text-center">
+                    2
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                    <input type="radio" id="fijo7" class="custom-control-input" checked/>
+                    <label for="fijo7" class="custom-control-label">Música</label>
+                </div>
+                <div class=" col-4 text-center">
+                    2
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                    <input type="radio" id="fijo8" class="custom-control-input" checked/>
+                    <label for="fijo8" class="custom-control-label">Tecnología</label>
+                </div>
+                <div class=" col-4 text-center">
+                    2
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col p-0">
+                    <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                        <input type="radio" class="custom-control-input" name="eso2_religion" id="eso2_religion" value="Religión" />
+                        <label for="eso2_religion" class="custom-control-label">Religión</label>
+                    </div>
+                    <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                        <input type="radio" class="custom-control-input" name="eso2_religion" id="eso2_val_eticos" value="Valores Éticos" />
+                        <label for="eso2_val_eticos" class="custom-control-label">Valores Éticos</label>
+                    </div>
+                </div>
+                <div class="col-4 errorTxt" style=" font-size: 1.2em;margin-top:15px"></div>
+                <div class=" col-4 text-center" style="margin-top:15px;">
+                    2
+                </div>
+            </div>
+            <div class="row" style="font-weight: bold; background-color:#56a717; color:white">
+                <span style="margin-left:10px">*1ª Lengua Extranjera</span>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col p-0">
+                    <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                        <input type="radio" class="custom-control-input" name="eso2_primer_idioma" id="eso2_ingles" value="Inglés" onclick="eso2_seleccionIdioma('ingles')" />
+                        <label for="eso2_ingles" class="custom-control-label">Inglés</label>
+                    </div>
+                    <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                        <input type="radio" class="custom-control-input" name="eso2_primer_idioma" id="eso2_frances" value="Francés" onclick="eso2_seleccionIdioma('frances')" />
+                        <label for="eso2_frances" class="custom-control-label">Francés</label>
+                    </div>
+                </div>
+                <div class="col-4 errorTxt" style=" font-size: 1.2em;margin-top:15px"></div>
+                <div class=" col-4 text-center" style="margin-top:15px;">
+                    4
+                </div>
+            </div>
+        </div>
+        <div class="col" style="margin-left: 10px;margin-right:10px">
+            <div class="row justify-content-center" style="height: 40px;border:thin; background-color:#56a717;color:white;align-content: center; ">
+                MATERIAS OPTATIVAS (2h semanales)
+            </div>
+
+            <div id="eso2_optativas_vacio" class="row justify-content-center">
+                <p style="font-size: larger; font-weight: bold;">(Marcar antes 1ª Lengua Extranjera)</p>
+            </div>
+
+            <div id="eso2_optativas" class="row" style="display:none;margin-left: 10px;margin-right:10px">
+                <div class="row">
+                    <p style="font-size: small;">(Ordénelas por orden de preferencia con las flechas)</p>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1 border  border-success rounded" style="padding-top:15px">
+                                Nº
+                            </div>
+                            <div class="col-9 border  border-success rounded" style="padding-top:15px">
+                                Materia
+                            </div>
+                            <!--<div class="col-2 border  border-success rounded">
+                                Hor. Sem.
+                            </div>-->
+                        </div>
+                        <div class="row">
+                            <div class="col-1 border  border-success rounded">
+                                <small>
+                                    <div class="w-100">1</div>
+                                    <div class="w-100">2</div>
+                                    <div class="w-100">3</div>
+                                    <div class="w-100">4</div>
+                                    <div class="w-100">5</div>
+                                </small>
+                            </div>
+                            <div class="col-9 border  border-success rounded pl-1 pr-1 pt-1">
+                                <select name="eso2_lista_optativas" size="5" id="eso2_lista_optativas" style="overflow:visible;" class="custom-control p-0">
+                                        <option value="2ª Lengua Extranjera (Francés)">2ª Lengua Extranjera (Francés)</option>
+                                        <option value="Inic. Emprend. y Empres. (si no cursada en 1º)">Inic.Emprend.y Empres.(si no cursada en 1º)</option>
+                                        <option value="Cultura Clásica">Cultura Clásica</option>
+                                        <option value="Taller de Arte y Expresión">Taller de Arte y Expresión</option>
+                                        <option value="2ª Lengua Extranjera (Alemán)">2ª Lengua Extranjera (Alemán)</option>
+                                    </select>
+                                <input type="hidden" name="eso2_opt1" id="eso2_opt1" />
+                                <input type="hidden" name="eso2_opt2" id="eso2_opt2" />
+                                <input type="hidden" name="eso2_opt3" id="eso2_opt3" />
+                                <input type="hidden" name="eso2_opt4" id="eso2_opt4" />
+                                <input type="hidden" name="eso2_opt5" id="eso2_opt5" />
+                            </div>
+                            <!--<div class="col-2 border  border-success rounded">
+                                <small>
+                                    <div class="w-100">2</div>
+                                    <div class="w-100">2</div>
+                                    <div class="w-100">2</div>
+                                    <div class="w-100">2</div>
+                                    <div class="w-100">2</div>
+                                </small>
+                            </div>-->
+                            <div class="col-1" style="margin-left: 5px;">
+                                <input type="button" id="eso2_sube" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="subeElemento(document.getElementById('eso2_lista_optativas'))" />
+                                <input type="button" id="eso2_baja" class="btn btn-success" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" style="margin-top:5px" onclick="bajaElemento(document.getElementById('eso2_lista_optativas'))" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<hr>
+<div class="justify-content-center row m-3">
+    <input type="button" value="&#x1f448;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Página anterior" onclick="pasaPagina('-')">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+')">
+</div>

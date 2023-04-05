@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+.centrado{
+	position:absolute;
+	float:left; 
+	margin: 0 auto; 
+	left:0; 
+	right:0;
+}
+
+.borde{
+	border:double; 
+	border-color:#060; 
+	border-radius:10px;
+}
+
+
+.textoboton{
+	font-size:0.75em !important;
+}
+
+.no-close {
+  display: none;
+}
+
+
+
+.previsualizar img {
+	display:none;
+	position:absolute;
+	z-index: 9999;
+}
+
+.previsualizar:hover img {
+	display:block;
+}
+
+
+
+
+
+
+

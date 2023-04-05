@@ -1,0 +1,1289 @@
+var actualizar = false;
+campos = new Array();
+encabezamiento = new Array();
+var anno_ini_curso = 0;
+var mes;
+var _orden_campo;
+var _orden_direccion;
+var incidencia_si = 0;
+var curso_actual,curso_premat,curso_mat;
+var sesion_id;
+
+
+$(function() {
+    document.getElementById("cargando").style.display = 'inherit';
+    t1 = false;
+    t2 = false;
+    t3 = false;
+    $.post("php/sesion.php", { tipo_usu: "secretaria" }, function(resp) {
+        if (resp["error"] != "ok") document.write(resp["error"]);
+        else {
+            anno_ini_curso = resp["anno_ini_curso"];
+            anno_ini_curso_docs = resp["anno_ini_curso_docs"];
+            mes = resp["mes"];
+            _curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
+            curso_actual=_curso;
+            if (mes<=6 && mes>=1) curso_premat=_curso;
+            else curso_premat=(anno_ini_curso-1)+"-"+(anno_ini_curso);
+            if(mes!=6)curso_mat=anno_ini_curso+"-"+(anno_ini_curso + 1);
+            else curso_mat=(anno_ini_curso+1)+"-"+(anno_ini_curso + 2);
+            
+            document.getElementById("curso").value = _curso;
+            if (document.getElementById("curso").value != "2020-2021") $("#curso_pre_mat option[value='3esopmar']").hide();
+            else $("#curso_pre_mat option[value='3esopmar']").show();
+            ocultaCursosDesplegable();
+            t1 = true;
+            if (t2 && t3) document.getElementById("cargando").style.display = 'none';
+        }
+    }, "json");
+
+    $.post("php/secret_prematricula.php", { peticion: "read" }, function(resp) {
+        document.getElementById("premat_eso").checked = (resp["eso"] == 0 ? false : true);
+        document.getElementById("premat_bach").checked = (resp["bach"] == 0 ? false : true);
+        t2 = true;
+        if (t1 && t3) document.getElementById("cargando").style.display = 'none';
+    }, "json");
+
+    $.post("php/secret_matricula.php", { peticion: "read" }, function(resp) {
+        document.getElementById("check_mat_eso").checked = (resp["eso"] == 0 ? false : true);
+        document.getElementById("check_mat_bach").checked = (resp["bach"] == 0 ? false : true);
+        document.getElementById("check_mat_ciclos").checked = (resp["ciclos"] == 0 ? false : true);
+        document.getElementById("check_mat_fpb").checked = (resp["fpb"] == 0 ? false : true);
+        t3 = true;
+        if (t1 && t2) document.getElementById("cargando").style.display = 'none';
+    }, "json");
+
+
+    $("#div_nuevo_registro").dialog({
+        autoOpen: false,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "NUEVAS ALTAS",
+        maxHeight: 500,
+        width: 550
+    });
+
+    $("#div_nie_registrado").dialog({
+        autoOpen: false,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "NIE REGISTRADO",
+        maxHeight: 500,
+        width: 550
+    });
+
+    $("#div_docs_matricula").dialog({
+        autoOpen: false,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "DOCUMENTOS DE LA MATRÍCULA",
+        width: 800
+    });
+
+    $("#div_listadoMatriculas").dialog({
+        autoOpen: false,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "MATRÍCULAS: SELECCIÓN TIPO LISTADO",
+        width: 900
+    });
+
+
+    $("#formulario_subir_mat_delphos").dialog({
+        autoOpen: false,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "SUBIDA CSV MATRÍCULA DELPHOS",
+        width: 500
+    });
+
+    habilitaMenu(false, false);
+
+    $('#registros_docs').contextMenu({
+        selector: 'tr',
+        callback: function(key, options) {
+            if ($("#encabezado_docs tr td:first").html() == "NIE") {
+                id = $(this).children("td:first").html();
+            } else {
+                id = $(this).children("td:nth-child(2)").html();
+            }
+            if (key == "edit") {
+                document.getElementById("dat_idnie").value = id;
+                panelModUsu();
+            } else if (key=="delete") {
+                eliminaUsuario(id);
+            }
+            else if(key=="cert"){
+                verCertificado(id);
+            }
+            else if(key=="docs"){
+                verDocsMatricula(id,0);
+            }
+            
+        },
+        items: {
+            "edit": { name: "Ver/Modificar datos de usuario", icon: "edit" },
+            "docs":{name:"Ver Docs. Matrícula", icon:"copy"},
+            "cert":{ name:"Ver certificado", icon:"copy"},
+            "delete": {name: "Eliminar usuario", icon: "delete" }
+        }
+    });
+});
+
+function listaRegistros(orden_campo, orden_direccion) {
+    if (document.getElementById("curso").value != "2020-2021") $("#curso_pre_mat option[value='3esopmar']").hide();
+    else $("#curso_pre_mat option[value='3esopmar']").show();
+    ocultaCursosDesplegable();
+    tipo_formulario = document.getElementById('tipo_form').value;
+    if (tipo_formulario == "prematricula") {
+        habilitaMenu(false, false);
+        document.getElementById("div_curso_premat").style.display = "inherit";
+        document.getElementById("div_curso_mat").style.display = "none";
+        document.getElementById("div_curso_mat_ciclos").style.display = "none";
+        document.getElementById("div_curso_mat_fpb").style.display = "none";
+        if (document.getElementById("curso_pre_mat").value != "") $("#CSV_premat").removeClass("disabled");
+        else $("#CSV_premat").addClass("disabled");
+        //$("#menu_csv_mat").addClass("disabled");
+        //$("#menu_listado_mat_pdf").addClass("disabled");
+        $("#CSV_transporte").addClass("disabled");
+        $("#CSV_seguro").addClass("disabled");
+    } else if (tipo_formulario == "matricula") {
+        habilitaMenu(true, false);
+        document.getElementById("div_curso_mat").style.display = "inherit";
+        document.getElementById("div_curso_premat").style.display = "none";
+        document.getElementById("div_curso_mat_ciclos").style.display = "none";
+        document.getElementById("div_curso_mat_fpb").style.display = "none";
+        $("#CSV_premat").addClass("disabled");
+        if (document.getElementById("curso_mat").value != "") {
+            //$("#menu_csv_mat").removeClass("disabled");
+            //$("#menu_listado_mat_pdf").removeClass("disabled");
+            $("#CSV_transporte").removeClass("disabled");
+            $("#CSV_seguro").addClass("disabled");
+        } else {
+            //$("#menu_csv_mat").addClass("disabled");
+            //$("#menu_listado_mat_pdf").addClass("disabled");
+            $("#CSV_transporte").addClass("disabled");
+            $("#CSV_seguro").addClass("disabled");
+        }
+    } else if (tipo_formulario == "matricula_ciclos") {
+        habilitaMenu(true, false);
+        document.getElementById("div_curso_mat").style.display = "none";
+        document.getElementById("div_curso_premat").style.display = "none";
+        document.getElementById("div_curso_mat_ciclos").style.display = "inherit";
+        document.getElementById("div_curso_mat_fpb").style.display = "none";
+        $("#CSV_premat").addClass("disabled");
+        //$("#menu_csv_mat").addClass("disabled");
+        //$("#menu_listado_mat_pdf").addClass("disabled");
+        if (document.getElementById("mat_ciclos").value != "" &&
+            document.getElementById("mat_ciclos_curso").value != "" &&
+            document.getElementById("mat_ciclos_turno").value != "") {
+            $("#CSV_transporte").addClass("disabled");
+            $("#CSV_seguro").removeClass("disabled");
+        } else {
+            $("#CSV_transporte").addClass("disabled");
+            $("#CSV_seguro").addClass("disabled");
+        }
+    } else if (tipo_formulario == "matricula_fpb") {
+        habilitaMenu(true, false);
+        document.getElementById("div_curso_mat").style.display = "none";
+        document.getElementById("div_curso_premat").style.display = "none";
+        document.getElementById("div_curso_mat_ciclos").style.display = "none";
+        document.getElementById("div_curso_mat_fpb").style.display = "inherit";
+        $("#CSV_premat").addClass("disabled");
+        //$("#menu_csv_mat").addClass("disabled");
+        //$("#menu_listado_mat_pdf").addClass("disabled");
+        if (document.getElementById("mat_fpb").value != "" &&
+            document.getElementById("mat_fpb_curso").value != "") {
+            $("#CSV_transporte").removeClass("disabled");
+            $("#CSV_seguro").addClass("disabled");
+        } else {
+            $("#CSV_transporte").addClass("disabled");
+            $("#CSV_seguro").addClass("disabled");
+        }
+    } else {
+        habilitaMenu(true, true);
+        document.getElementById("div_curso_premat").style.display = "none";
+        document.getElementById("div_curso_mat").style.display = "none";
+        $("#CSV_premat").addClass("disabled");
+        //$("#menu_csv_mat").addClass("disabled");
+        //$("#menu_listado_mat_pdf").addClass("disabled");
+        $("#CSV_transporte").addClass("disabled");
+        $("#CSV_seguro").addClass("disabled");
+    }
+
+    direccion = new Array();
+    direccion["🡅"] = "ASC";
+    direccion["🡇"] = "DESC";
+    curso_num="";
+    $("#div_nuevos_otra_comunidad").hide();
+    if (tipo_formulario == "revision_examen") {
+        tabla = document.getElementById('tipo_form').value;
+        campos = ["id_nif", "nombre", "del_alumno", "registro"];
+        estilo = ["width:70px", "width:260px", "width:260px", "width:270px"];
+        encabezamiento = ["NIE", "Solicitante", "Alumno", "Nº Registro"];
+    } else if (tipo_formulario == "revision_calificacion") {
+        tabla = document.getElementById('tipo_form').value;
+        campos = ["id_nif", "nombre", "registro"];
+        estilo = ["width:70px", "width:330px", "width:270px"];
+        encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
+    } else if (tipo_formulario == "prematricula") {
+        if (document.getElementById("curso_pre_mat").value == "2eso") tabla = "premat_2eso";
+        else if (document.getElementById("curso_pre_mat").value == "3eso") tabla = "premat_3eso";
+        else if (document.getElementById("curso_pre_mat").value == "3esopmar") tabla = "premat_3esopmar";
+        else if (document.getElementById("curso_pre_mat").value == "4eso") tabla = "premat_4eso";
+        else if (document.getElementById("curso_pre_mat").value == "1bach_lomloe") tabla = "premat_1bach_lomloe";
+        else if (document.getElementById("curso_pre_mat").value == "1bach_c") tabla = "premat_1bach_c";
+        else if (document.getElementById("curso_pre_mat").value == "1bach_hcs") tabla = "premat_1bach_hcs";
+        else if (document.getElementById("curso_pre_mat").value == "2bach_c") tabla = "premat_2bach_c";
+        else if (document.getElementById("curso_pre_mat").value == "2bach_hcs") tabla = "premat_2bach_hcs";
+        else return;
+        campos = ["id_nie", "nombre", "registro"];
+        estilo = ["width:70px", "width:260px", "width:260px"];
+        encabezamiento = ["NIE", "Alumno", "Nº Registro"];
+    } else if (tipo_formulario == "matricula") {
+        if (document.getElementById("curso").value=="2021-2022" || document.getElementById("curso").value=="2020-2021"){
+            if (document.getElementById("curso_mat").value == "1eso") tabla = "mat_1eso";
+            else if (document.getElementById("curso_mat").value == "2eso") tabla = "mat_2eso";
+            else if (document.getElementById("curso_mat").value == "3eso") tabla = "mat_3eso";
+            else if (document.getElementById("curso_mat").value == "4eso") tabla = "mat_4eso";
+            else if (document.getElementById("curso_mat").value == "2esopmar") tabla = "mat_2esopmar";
+            else if (document.getElementById("curso_mat").value == "3esopmar") tabla = "mat_3esopmar";
+            else if (document.getElementById("curso_mat").value == "1bach_c") tabla = "mat_1bach_c";
+            else if (document.getElementById("curso_mat").value == "1bach_hcs") tabla = "mat_1bach_hcs";
+            else if (document.getElementById("curso_mat").value == "2bach_c") tabla = "mat_2bach_c";
+            else if (document.getElementById("curso_mat").value == "2bach_hcs") tabla = "mat_2bach_hcs";
+            else return;
+        }
+        else{
+            $("#div_nuevos_otra_comunidad").show();
+            if (document.getElementById("curso_mat").value == "1eso") tabla = "mat_eso";
+            else if (document.getElementById("curso_mat").value == "2eso") tabla = "mat_eso";
+            else if (document.getElementById("curso_mat").value == "3eso") tabla = "mat_eso";
+            else if (document.getElementById("curso_mat").value == "4eso") tabla = "mat_eso";
+            else if (document.getElementById("curso_mat").value == "2esopmar") tabla = "mat_eso";
+            else if (document.getElementById("curso_mat").value == "3esodiv") tabla = "mat_eso";
+            else if (document.getElementById("curso_mat").value == "1bach_c") tabla = "mat_bach";
+            else if (document.getElementById("curso_mat").value == "1bach_hcs") tabla = "mat_bach";
+            else if (document.getElementById("curso_mat").value == "2bach_c") tabla = "mat_bach";
+            else if (document.getElementById("curso_mat").value == "2bach_hcs") tabla = "mat_bach";
+            else return;
+            _c_mat=document.getElementById("curso_mat");
+            curso_num=_c_mat.options[_c_mat.selectedIndex].text;
+        }
+        
+        if (tabla.indexOf("eso") > -1) {
+            campos = ["id_nie", "nombre", "registro", "consolida_premat", "transporte"];
+            estilo = ["width:70px", "width:260px", "width:260px", "width:40px", "width:30px"];
+            encabezamiento = ["NIE", "Alumno", "Nº Registro", "Cons.", "Tr."];
+            if (tabla.indexOf("3eso") > -1 || tabla.indexOf("4eso") > -1) {
+                estilo.push("width:40px");
+                encabezamiento.push("Docs");
+            }
+        } else if (tabla.indexOf("bach") > -1) {
+            campos = ["id_nie", "nombre", "registro", "consolida_premat"];
+            estilo = ["width:70px", "width:260px", "width:260px", "width:40px", "width:40px"];
+            encabezamiento = ["NIE", "Alumno", "Nº Registro", "Cons.", "Docs"];
+        }
+
+    } else if (tipo_formulario == "matricula_ciclos") {
+        $("#div_nuevos_otra_comunidad").show();
+        tabla = "mat_ciclos";
+        campos = ["id_nie", "nombre", "registro"];
+        estilo = ["width:70px", "width:260px", "width:260px", "width:40px", "width:40px"];
+        encabezamiento = ["NIE", "Alumno", "Nº Registro", "Docs", ">28"];
+    } else if (tipo_formulario == "matricula_fpb") {
+        $("#div_nuevos_otra_comunidad").show();
+        tabla = "mat_fpb";
+        campos = ["id_nie", "nombre", "registro"];
+        estilo = ["width:70px", "width:260px", "width:260px", "width:40px"];
+        encabezamiento = ["NIE", "Alumno", "Nº Registro", "Docs"];
+    }
+
+    if (typeof(orden_campo) != "string") {
+        orden_campo = "apellidos";
+        _orden_campo = orden_campo;
+        if (tipo_formulario == "prematricula" ||
+            tipo_formulario == "matricula" ||
+            tipo_formulario == "matricula_ciclos" ||
+            tipo_formulario == "matricula_fpb") orden_campo = "apellidos,nombre";
+    }
+    if (typeof(orden_direccion) != "string") {
+        orden_direccion = "🡅";
+        _orden_direccion = orden_direccion;
+    }
+    if (document.getElementById('tipo_form').value === "") {
+        //alerta("Debes seleccionar antes un tipo de formulario.", "SIN SELECCIÓN");
+        return;
+    }
+
+    //Construcción del encabezamiento de la tabla
+    if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
+    else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
+    encab = "<tr>";
+    if (tipo_formulario != "prematricula") encab += "<td style='width:50px; text-align:center' >Sel.</td>";
+    for (i = 0; i < encabezamiento.length; i++) {
+        encab += "<td style='" + estilo[i] + "'onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+    }
+    encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
+    if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td></tr>";
+    ///////////////////////////////////////////////
+
+    buscar = document.getElementById("busqueda").value;
+    if (document.getElementById("check_incidencias").checked) solo_incidencias = 1;
+    else solo_incidencias = 0;
+    if (tipo_formulario == "matricula_ciclos") {
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            ciclo: document.getElementById("mat_ciclos").value,
+            curso_ciclo: document.getElementById("mat_ciclos_curso").value,
+            turno: document.getElementById("mat_ciclos_turno").value,
+            solo_incidencias: solo_incidencias,
+            nuevo_otra_comunidad:(document.getElementById("check_nuevo_otra_com").checked)?"Si":"No"
+        }
+    } else if (tipo_formulario == "matricula_fpb") {
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            ciclo: document.getElementById("mat_fpb").value,
+            curso_ciclo: document.getElementById("mat_fpb_curso").value,
+            solo_incidencias: solo_incidencias,
+            nuevo_otra_comunidad:(document.getElementById("check_nuevo_otra_com").checked)?"Si":"No"
+        }
+    } 
+    else if(tabla == "mat_eso" || tabla=="mat_bach"){
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            solo_incidencias: solo_incidencias,
+            curso_num:curso_num,
+            nuevo_otra_comunidad:(document.getElementById("check_nuevo_otra_com").checked)?"Si":"No",
+        }
+    }
+    else {
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            solo_incidencias: solo_incidencias,
+            curso_num:curso_num
+        }
+    }
+    $.post("php/secret_listaregsecretaria.php", datos, function(resp) {
+        if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
+        else if (resp.error == "no_tabla" || resp.error == "sin_registros") {
+            document.getElementById("div_notabla").style.display = "inline-block";
+            document.getElementById("div_tabla").style.display = "none";
+            habilitaMenu(false, false);
+        } else {
+            document.getElementById("div_notabla").style.display = "none";
+            document.getElementById("div_tabla").style.display = "inline-block";
+            //encab = "";
+            data = "";
+            data_array = resp["registros"];
+            for (i = 0; i < data_array.length; i++) {
+                data += "<tr onclick='verRegistro(this)'>";
+                //Check de selección. si es prematrícula no aparece
+                if (tipo_formulario != "prematricula") {
+                    data += "<td style='width:50px;  text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' onclick='javascript: event.stopPropagation();'/></td>";
+                }
+
+                //Datos específicos de cada formulario
+                for (j = 0; j < campos.length; j++) {
+                    data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                }
+
+                if (encabezamiento[encabezamiento.length - 1] == "Docs") {
+                    data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                }
+
+                if (encabezamiento[encabezamiento.length - 2] == "Docs") {
+                    if (encabezamiento[encabezamiento.length - 1] == ">28") {
+                        if (data_array[i]["mayor_28"] == "Si") {
+                            data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\">28\")'>Ver</td>";
+                        } else {
+                            data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                        }
+                    }
+                }
+
+                if (encabezamiento[encabezamiento.length - 1] == ">28" && tipo_formulario == "matricula_ciclos") {
+                    data += "<td style='" + estilo[j] + "'>" + data_array[i]["mayor_28"] + "</td>";
+                }
+
+                //Si hay o no incidencias
+                if (data_array[i].incidencias) data += "<td style='width:90px'><center>Si</center></td>";
+                else data += "<td style='width:90px'><center>No</center></td>";
+
+                //Check de listado. Si es prematrícula no aparece
+                if (tipo_formulario != "prematricula") {
+                    if (data_array[i].listado == 1) data += "<td style='width:90px'><center><input type='checkbox' checked onclick='javascript: return false;'/></center></td></tr>";
+                    else data += "<td style='width:90px'><center><input type='checkbox' onclick='javascript: return false;'/></center></td></tr>";
+                }
+            }
+            document.getElementById("encabezado_docs").innerHTML = encab;
+            document.getElementById("registros_docs").innerHTML = data;
+        }
+    }, "json");
+}
+
+
+function ordenListado(obj) {
+    if (obj.innerHTML == "Docs" || obj.innerHTML == "Incidencias" || obj.innerHTML == "Listado") return;
+    if (obj.innerHTML.indexOf("🡅") == -1 && obj.innerHTML.indexOf("🡇") == -1) {
+        enc = obj.innerHTML;
+        sim_dir = "🡅";
+    } else {
+        enc = obj.innerHTML.substring(0, obj.innerHTML.length - 3);
+        sim_dir = obj.innerHTML.substring(obj.innerHTML.length - 2, obj.innerHTML.length);
+        if (sim_dir == "🡅") sim_dir = "🡇";
+        else if (sim_dir == "🡇") sim_dir = "🡅";
+    }
+    campo = campos[encabezamiento.indexOf(obj.innerHTML)];
+    if (campo == "nombre") campo = "apellidos";
+    _orden_campo = campo;
+    _orden_direccion = sim_dir;
+    listaRegistros(campo, sim_dir);
+}
+
+
+function verRegistro(obj) {
+    ancho = 700;
+    form1 = document.getElementById("tipo_form").value;
+    if (form1 == "prematricula") form = "premat_" + document.getElementById("curso_pre_mat").value;
+    else if (form1 == "matricula"){
+        if (document.getElementById("curso").value!="2020-2021" && document.getElementById("curso").value!="2021-2022") {
+            if (document.getElementById("curso_mat").value.indexOf("eso")!=-1) form = "mat_eso";
+            else form = "mat_bach";
+        }
+        else form = "mat_" + document.getElementById("curso_mat").value;
+    } 
+    else if (form1 == "matricula_ciclos") form = "mat_ciclos";
+    else if (form1 == "matricula_fpb") form = "mat_fpb";
+    else form = form1;
+
+    //Buscamos la posición de Nº Registro en encabezado para usarla como índice del registro en la tabla de los datos
+    var _enc = $("#encabezado_docs td");
+    for (i = 0; i < _enc.length; i++) {
+        if (_enc[i].innerHTML == "Nº Registro") {
+            registro = obj.children[i].innerHTML;
+            break;
+        }
+    }
+
+    formulario = form; //esta asignación es necesaria para que funcione en botones, botón Guardar
+    botones = "<div style='text-align:right'>"
+    botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(registro,formulario,document.getElementById(\"incidencias_text\").value)'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\")'/>";
+    botones += "</div>";
+
+    $.post("php/secret_recuperaregistro.php", { formulario: form, registro: registro }, function(resp) {
+        if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
+        else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
+        else if (resp.error == "ok") {
+            if (resp.registro.incidencias.trim() != "") incidencia_si = 1;
+            else incidencia_si = 0;
+            contenido = "";
+            if (form == "revision_examen") {
+                contenido += "<span class='verReg_label'>ID de Usuario: </span><span class='verReg_campo'>" + resp.registro.id_nif + "</span><br>";
+                contenido += "<span class='verReg_label'>Teléfono: </span><span class='verReg_campo'>" + resp.registro.telefono + "</span><br>";
+                contenido += "<span class='verReg_label'>Fecha del registro: </span><span class='verReg_campo'>" + resp.registro.fecha_registro + "</span><br>";
+                contenido += "<span class='verReg_label'>Nº Registro: </span><span class='verReg_campo'>" + registro + "</span><br>";
+                contenido += "<span class='verReg_label'>Solicitante: </span><span class='verReg_campo'>" + resp.registro.nombre + "</span><br>";
+                contenido += "<span class='verReg_label'>Tipo de Documento: </span><span class='verReg_campo'>" + resp.registro.tipo_doc + "     </span>";
+                contenido += "<span class='verReg_label'>Nº Documento: </span><span class='verReg_campo'>" + resp.registro.numero_doc + "</span><br>";
+                if (resp.registro.en_calidad_de != "ALUMNO") {
+                    contenido += "<span class='verReg_label'>Representa al solicitante como: </span><span class='verReg_campo'>" + resp.registro.en_calidad_de + "</span><br>";
+                    contenido += "<span class='verReg_label'>Nombre del alumno: </span><span class='verReg_campo'>" + resp.registro.del_alumno + "</span><br>";
+                }
+                contenido += "<span class='verReg_label'>Revisión de examen de la ASIGNATURA: </span><span class='verReg_campo'>" + resp.registro.asignatura + "</span><br>";
+                contenido += "<span class='verReg_label'>FECHA del examen: </span><span class='verReg_campo'>" + resp.registro.fecha + "</span><br>";
+                contenido += "<span class='verReg_label'>CURSO: </span><span class='verReg_campo'>" + resp.registro.cursa + "</span><br>";
+                contenido += "<span class='verReg_label'>Profesor implicado: </span><span class='verReg_campo'>" + resp.registro.profesor + "</span><br>";
+                contenido += "<span class='verReg_label'>Departamento: </span><span class='verReg_campo'>" + resp.registro.departamento + "</span><br>";
+                contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
+                contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
+                contenido += botones;
+            } else if (form == "revision_calificacion") {
+                contenido += "<span class='verReg_label'>ID de Usuario: </span><span class='verReg_campo'>" + resp.registro.id_nif + "</span><br>";
+                contenido += "<span class='verReg_label'>Teléfono: </span><span class='verReg_campo'>" + resp.registro.telefono + "</span><br>";
+                contenido += "<span class='verReg_label'>Fecha del registro: </span><span class='verReg_campo'>" + resp.registro.fecha_registro + "</span><br>";
+                contenido += "<span class='verReg_label'>Nº Registro: </span><span class='verReg_campo'>" + registro + "</span><br>";
+                contenido += "<span class='verReg_label'>Solicitante: </span><span class='verReg_campo'>" + resp.registro.nombre + "</span><br>";
+                contenido += "<span class='verReg_label'>Tipo de Documento: </span><span class='verReg_campo'>" + resp.registro.tipo_doc + "     </span>";
+                contenido += "<span class='verReg_label'>Nº Documento: </span><span class='verReg_campo'>" + resp.registro.numero_doc + "</span><br>";
+                contenido += "<span class='verReg_label'>Domicilio: </span><span class='verReg_campo'>" + resp.registro.domicilio + "</span><br>";
+                contenido += "<span class='verReg_label'>C.P.: </span><span class='verReg_campo'>" + resp.registro.cp + "</span>";
+                contenido += "<span class='verReg_label'>Población: </span><span class='verReg_campo'>" + resp.registro.poblacion + "</span><br>";
+                contenido += "<span class='verReg_label'>Provincia: </span><span class='verReg_campo'>" + resp.registro.provincia + "</span><br>";
+                contenido += "<span class='verReg_label'>Ciclo de Grado: </span><span class='verReg_campo'>" + resp.registro.ciclo_grado + "</span>";
+                contenido += "<span class='verReg_label'>Nombre: </span><span class='verReg_campo'>" + resp.registro.ciclo_nombre + "</span><br>";
+                contenido += "<span class='verReg_label'>Módulo cursado: </span><span class='verReg_campo'>" + resp.registro.modulo + "</span><br>";
+                contenido += "<span class='verReg_label'>Nota obtenida: </span><span class='verReg_campo'>" + resp.registro.nota + "</span><br>";
+                contenido += "<span class='verReg_label'>Motivos de la reclamación: </span><br>";
+                contenido += "<span class='verReg_campo'>" + resp.registro.motivos + "</span><br>";
+                contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
+                contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
+                contenido += botones;
+            } else if (form1 == "prematricula" || form1 == "matricula") {
+
+                if (form1 == "matricula") {
+                    if (resp.registro.consolida_premat == "Si") {
+                        contenido += "<div style='text-align:center>";
+                        contenido += "<span class='verReg_label'>¡¡¡CONSOLIDA PREMATRÍCULA!!!</span>";
+                        contenido += "</div>";
+                        contenido += "<br>";
+                    }
+                    contenido += "<span class='verReg_label'>Alumno Nuevo: </span><span class='verReg_campo'>" + resp.registro.al_nuevo + "</span>";
+                    if(resp.registro.al_nuevo_otracomunidad!=undefined)contenido += "<span class='verReg_label'>Nuevo de otra comunidad: </span><span class='verReg_campo'>" + resp.registro.al_nuevo_otracomunidad + "</span>";
+                    contenido += "<span class='verReg_label' style='margin-left:10px'>Repite: </span><span class='verReg_campo'>" + resp.registro.repite + "</span>";
+                    contenido += "<span class='verReg_label' style='margin-left:10px'>Interno: </span><span class='verReg_campo'>" + resp.registro.interno + "</span>";
+                    if (form.indexOf("eso") > -1) contenido += "<span class='verReg_label' style='margin-left:10px'>Transporte: </span><span class='verReg_campo'>" + resp.registro.transporte + "</span>";
+                    contenido += "<span class='verReg_label' style='margin-left:10px'>Autor. uso fotos: </span><span class='verReg_campo'>" + resp.registro.autoriza_fotos + "</span><br>";
+                }
+                if (form1 == "matricula") contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie + "</span><br>";
+                contenido += "<span class='verReg_label'>Teléfono alumno: </span><span class='verReg_campo'>" + resp.registro.telef_alumno + "</span><br>";
+                contenido += "<span class='verReg_label'>Email Alumno: </span><span class='verReg_campo'>" + resp.registro.email_alumno + "</span><br>";
+                if (form1 == "matricula") {
+                    contenido += "<span class='verReg_label'>Dirección: </span><span class='verReg_campo'>" + resp.registro.direccion + "</span><br>";
+                    contenido += "<span class='verReg_label'>CP: </span><span class='verReg_campo'>" + resp.registro.cp + "</span><br>";
+                    contenido += "<span class='verReg_label'>Localidad: </span><span class='verReg_campo'>" + resp.registro.localidad + "     </span>";
+                    contenido += "<span class='verReg_label'>Provincia: </span><span class='verReg_campo'>" + resp.registro.provincia + "</span><br>";
+                }
+                contenido += "<span class='verReg_label' style='text-decoration:underline'>DATOS TUTOR/A LEGAL 1</span><br>";
+                contenido += "<span class='verReg_label'>Nombre y Apellidos: </span><span class='verReg_campo'>" + resp.registro.tutor1 + "</span><br>";
+                //if (form1 == "matricula") contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie_tutor1 + "</span>";
+                contenido += "<span class='verReg_label'>Teléfono: </span><span class='verReg_campo'>" + resp.registro.tlf_tutor1 + "</span><br>";
+                contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email_tutor1 + "</span><br>";
+                contenido += "<span class='verReg_label' style='text-decoration:underline'>DATOS TUTOR/A LEGAL 2</span><br>";
+                contenido += "<span class='verReg_label'>Nombre y Apellidos: </span><span class='verReg_campo'>" + resp.registro.tutor2 + "</span>";
+                //if (form1 == "matricula") contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie_tutor2 + "</span><br>";
+                contenido += "<span class='verReg_label'>Teléfono: </span><span class='verReg_campo'>" + resp.registro.tlf_tutor2 + "</span><br>";
+                contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email_tutor2 + "</span><br>";
+                contenido += "<span class='verReg_label' style='text-decoration:underline'>MATERIAS DE LA PREMATRÍCULA</span><br>";
+                if (form == "premat_1eso" || form == "mat_1eso") {
+                    contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
+                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
+                } else if (form == "premat_2eso" || form == "mat_2eso") {
+                    contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
+                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 5: </span><span class='verReg_campo'>" + resp.registro.optativa5 + "</span><br>";
+                } else if (form == "premat_3eso" || form == "mat_3eso") {
+                    contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
+                    if (resp.registro.matematicas != '') contenido += "<span class='verReg_label'>Matemáticas: </span><span class='verReg_campo'>" + resp.registro.matematicas + "</span><br>";
+                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
+                } else if (form == "premat_4eso" || form == "mat_4eso") {
+                    contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
+                    contenido += "<span class='verReg_label'>Modalidad: </span><span class='verReg_campo'>" + resp.registro.modalidad + "</span><br>";
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
+                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>Específica Obligatoria: </span><span class='verReg_campo'>" + resp.registro.espec_oblig + "</span><br>";
+                    contenido += "<span class='verReg_label'>Troncal de Opción 1: </span><span class='verReg_campo'>" + resp.registro.troncales_opcion1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Troncal de Opción 2: </span><span class='verReg_campo'>" + resp.registro.troncales_opcion2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 5: </span><span class='verReg_campo'>" + resp.registro.optativa5 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 6: </span><span class='verReg_campo'>" + resp.registro.optativa6 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 7: </span><span class='verReg_campo'>" + resp.registro.optativa7 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 8: </span><span class='verReg_campo'>" + resp.registro.optativa8 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 9: </span><span class='verReg_campo'>" + resp.registro.optativa9 + "</span><br>";
+                    if (resp.registro.modalidad == "Académicas") contenido += "<span class='verReg_label'>Optativa 8: </span><span class='verReg_campo'>" + resp.registro.optativa8 + "</span><br>";
+                } else if (form == "premat_2esopmar" || form == "mat_2esopmar") {
+                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
+                } else if (form == "premat_3esopmar" || form == "mat_3esopmar") {
+                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
+                } else if (form == "premat_1bach_lomloe") {
+                    contenido += "<span class='verReg_label'>Modalidad: </span><span class='verReg_campo'>" + resp.registro.modalidad + "</span><br>";
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
+                    contenido += "<span class='verReg_label'>Religión/Atención Educativa: </span><span class='verReg_campo'>" + resp.registro.religion + "</span><br>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>OBLIGATORIAS</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.obligatoria1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.obligatoria2 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.obligatoria3 + "</span><br>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>OPTATIVAS</span><br>";
+                    contenido += "<span class='verReg_campo'> 1 - " + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'> 2 - " + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_campo'> 3 - " + resp.registro.optativa3 + "</span><br>";
+                    contenido += "<span class='verReg_campo'> 4 - " + resp.registro.optativa4 + "</span><br>";
+                    contenido += "<span class='verReg_campo'> 5 - " + resp.registro.optativa5 + "</span><br>";
+                    contenido += "<span class='verReg_campo'> 6 - " + resp.registro.optativa6 + "</span><br>";
+                    contenido += "<span class='verReg_campo'> 7 - " + resp.registro.optativa7 + "</span><br>";
+                    contenido += "<span class='verReg_campo'> 8 - " + resp.registro.optativa8 + "</span><br>";
+                    contenido += "<span class='verReg_campo'> 9 - " + resp.registro.optativa9 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>10 - " + resp.registro.optativa10 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>11 - " + resp.registro.optativa11 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>12 - " + resp.registro.optativa12 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>13 - " + resp.registro.optativa13 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>14 - " + resp.registro.optativa14 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>15 - " + resp.registro.optativa15 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>16 - " + resp.registro.optativa16 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>17 - " + resp.registro.optativa17 + "</span><br>";
+
+                } else if (form == "premat_1bach_hcs" || form == "mat_1bach_hcs") {
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales Generales y de Opción</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_gen1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_gen2 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_opcion + "</span><br>";
+                    contenido += "<div style='display:flex'>";
+                    contenido += "<div style='float:left'>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Específicas de Itinerario</span><br>";
+                    contenido += "<span class='verReg_campo'>1 " + resp.registro.espec_itin1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>2 " + resp.registro.espec_itin2 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>3 " + resp.registro.espec_itin3 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>4 " + resp.registro.espec_itin4 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>5 " + resp.registro.espec_itin5 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>6 " + resp.registro.espec_itin6 + "</span><br>";
+                    if (resp.registro.espec_itin8 != "") {
+                        contenido += "<span class='verReg_campo'>7 " + resp.registro.espec_itin7 + "</span><br>";
+                        contenido += "<span class='verReg_campo'>8 " + resp.registro.espec_itin8 + "</span>";
+                    } else contenido += "<span class='verReg_campo'>7 " + resp.registro.espec_itin7 + "</span>";
+                    contenido += "</div>";
+                    contenido += "<div style='float-left;margin-left:15px'>"
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Específicas Comunes</span><br>";
+                    contenido += "<span class='verReg_campo'>1 " + resp.registro.espec_com1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>2 " + resp.registro.espec_com2 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>3 " + resp.registro.espec_com3 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>4 " + resp.registro.espec_com4 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>5 " + resp.registro.espec_com5 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>6 " + resp.registro.espec_com6 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>7 " + resp.registro.espec_com7 + "</span>";
+                    contenido += "</div></div><br>";
+                } else if (form == "premat_1bach_c" || form == "mat_1bach_c") {
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales Generales y de Opción</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_gen1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_gen2 + "</span><br>";
+                    contenido += "<div style='display:flex'>";
+                    contenido += "<div style='float:left'>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Específicas de Itinerario</span><br>";
+                    contenido += "<span class='verReg_campo'>1 " + resp.registro.espec_itin1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>2 " + resp.registro.espec_itin2 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>3 " + resp.registro.espec_itin3 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>4 " + resp.registro.espec_itin4 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>5 " + resp.registro.espec_itin5 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>6 " + resp.registro.espec_itin6 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>7 " + resp.registro.espec_itin7 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>8 " + resp.registro.espec_itin8 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>9 " + resp.registro.espec_itin9 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>10 " + resp.registro.espec_itin10 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>11 " + resp.registro.espec_itin11 + "</span>";
+                    contenido += "</div>";
+                    contenido += "<div style='float:left;margin-left:15px'>"
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Específicas Comunes</span><br>";
+                    contenido += "<span class='verReg_campo'>1 " + resp.registro.espec_com1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>2 " + resp.registro.espec_com2 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>3 " + resp.registro.espec_com3 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>4 " + resp.registro.espec_com4 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>5 " + resp.registro.espec_com5 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>6 " + resp.registro.espec_com6 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>7 " + resp.registro.espec_com7 + "</span><br><br><br><br><br>";
+                    contenido += "</div></div><br>";
+                } else if (form == "premat_2bach_hcs" || form == "mat_2bach_hcs") {
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales Generales</span><br>";
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_gen + "</span><br>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales de Opción</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_opc1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_opc1 + "</span><br>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Específicas de Itinerario y Comunes</span><br>";
+                    contenido += "<div style='display:flex'>";
+                    contenido += "<div style='float:left'>";
+                    contenido += "<span class='verReg_campo'>1 " + resp.registro.espec_itin_com1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>2 " + resp.registro.espec_itin_com2 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>3 " + resp.registro.espec_itin_com3 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>4 " + resp.registro.espec_itin_com4 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>5 " + resp.registro.espec_itin_com5 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>6 " + resp.registro.espec_itin_com6 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>7 " + resp.registro.espec_itin_com7 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>8 " + resp.registro.espec_itin_com8 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>9 " + resp.registro.espec_itin_com9 + "</span>";
+                    contenido += "</div>";
+                    contenido += "<div style='float:left;margin-left:15px'>"
+                    contenido += "<span class='verReg_campo'>10 " + resp.registro.espec_itin_com10 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>11 " + resp.registro.espec_itin_com11 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>12 " + resp.registro.espec_itin_com12 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>13 " + resp.registro.espec_itin_com13 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>14 " + resp.registro.espec_itin_com14 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>15 " + resp.registro.espec_itin_com15 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>16 " + resp.registro.espec_itin_com16 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>17 " + resp.registro.espec_itin_com17 + "</span>";
+                    contenido += "</div></div><br>";
+                } else if (form == "premat_2bach_c" || form == "mat_2bach_c") {
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales Generales</span><br>";
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales de Opción</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_opc1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_opc1 + "</span><br>";
+                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Específicas de Itinerario y Comunes</span><br>";
+                    contenido += "<div style='display:flex'>";
+                    contenido += "<div style='float:left'>";
+                    contenido += "<span class='verReg_campo'>1 " + resp.registro.espec_itin_com1 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>2 " + resp.registro.espec_itin_com2 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>3 " + resp.registro.espec_itin_com3 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>4 " + resp.registro.espec_itin_com4 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>5 " + resp.registro.espec_itin_com5 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>6 " + resp.registro.espec_itin_com6 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>7 " + resp.registro.espec_itin_com7 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>8 " + resp.registro.espec_itin_com8 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>9 " + resp.registro.espec_itin_com9 + "</span>";
+                    contenido += "</div>";
+                    contenido += "<div style='float:left;margin-left:15px'>"
+                    contenido += "<span class='verReg_campo'>10 " + resp.registro.espec_itin_com10 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>11 " + resp.registro.espec_itin_com11 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>12 " + resp.registro.espec_itin_com12 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>13 " + resp.registro.espec_itin_com13 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>14 " + resp.registro.espec_itin_com14 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>15 " + resp.registro.espec_itin_com15 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>16 " + resp.registro.espec_itin_com16 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>17 " + resp.registro.espec_itin_com17 + "</span><br>";
+                    contenido += "<span class='verReg_campo'>18 " + resp.registro.espec_itin_com18 + "</span>";
+                    contenido += "</div></div><br>";
+                }
+                contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
+                contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
+                contenido += botones;
+            } else if (form1 == "matricula_ciclos") {
+                contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie + "</span><br>";
+                if(resp.registro.al_nuevo_otracomunidad.length>0)contenido += "<span class='verReg_label'>Nuevo de otra comunidad: </span><span class='verReg_campo'>" + resp.registro.al_nuevo_otracomunidad + "</span>";
+                contenido += "<span class='verReg_label'>Teléfono alumno: </span><span class='verReg_campo'>" + resp.registro.telefono + "</span><br>";
+                contenido += "<span class='verReg_label'>Email Alumno: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
+                contenido += "<span class='verReg_label'>Dirección: </span><span class='verReg_campo'>" + resp.registro.direccion + "</span><br>";
+                contenido += "<span class='verReg_label'>CP: </span><span class='verReg_campo'>" + resp.registro.cp + "</span><br>";
+                contenido += "<span class='verReg_label'>Localidad: </span><span class='verReg_campo'>" + resp.registro.localidad + "     </span>";
+                contenido += "<span class='verReg_label'>Provincia: </span><span class='verReg_campo'>" + resp.registro.provincia + "</span><br>";
+                contenido += "<span class='verReg_label'>Mayor de edad: </span><span class='verReg_campo'>" + resp.registro.mayor_edad + "</span><br>";
+                contenido += "<span class='verReg_label'>Autoriza uso de imágenes: </span><span class='verReg_campo'>" + resp.registro.autoriza_fotos + "</span><br>";
+                if (resp.registro.mayor_edad == "No") {
+                    contenido += "<span class='verReg_label'>Tutor/a legal que autoriza uso de imágenes: </span><span class='verReg_campo'>" + resp.registro.tutor_autorizaciones + "</span><br>";
+                }
+                contenido += "<span class='verReg_label'>Fecha de nacimiento: </span><span class='verReg_campo'>" + resp.registro.fecha_nac + "</span><br>";
+
+                if (anno_ini_curso - parseInt(resp.registro.fecha_nac.substr(6, 4)) < 28) {
+                    contenido += "<span class='verReg_label'>Menor 28 años (requiere seguro escolar): </span><span class='verReg_campo'>SI</span><br>";
+                }
+                contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
+                contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
+                contenido += botones;
+            } else if (form1 == "matricula_fpb") {
+                contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie + "</span><br>";
+                if(resp.registro.al_nuevo_otracomunidad.length>0) contenido += "<span class='verReg_label'>Nuevo de otra comunidad: </span><span class='verReg_campo'>" + resp.registro.al_nuevo_otracomunidad + "</span>";
+                contenido += "<span class='verReg_label'>Teléfono alumno: </span><span class='verReg_campo'>" + resp.registro.telefono + "</span><br>";
+                contenido += "<span class='verReg_label'>Email Alumno: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
+                contenido += "<span class='verReg_label'>Dirección: </span><span class='verReg_campo'>" + resp.registro.direccion + "</span><br>";
+                contenido += "<span class='verReg_label'>CP: </span><span class='verReg_campo'>" + resp.registro.cp + "</span><br>";
+                contenido += "<span class='verReg_label'>Localidad: </span><span class='verReg_campo'>" + resp.registro.localidad + "     </span>";
+                contenido += "<span class='verReg_label'>Provincia: </span><span class='verReg_campo'>" + resp.registro.provincia + "</span><br>";
+                contenido += "<span class='verReg_label'>Autoriza uso de imágenes: </span><span class='verReg_campo'>" + resp.registro.autoriza_fotos + "</span><br>";
+                contenido += "<span class='verReg_label'>Tutor/a legal que autoriza uso de imágenes: </span><span class='verReg_campo'>" + resp.registro.tutor_autorizaciones + "</span><br>";
+                contenido += "<span class='verReg_label'>Fecha de nacimiento: </span><span class='verReg_campo'>" + resp.registro.fecha_nac + "</span><br>";
+                contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
+                contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
+                contenido += botones;
+            }
+            document.getElementById("verRegistro_div").innerHTML = contenido;
+            $("#verRegistro_div").dialog({
+                autoOpen: false,
+                dialogClass: "no-close",
+                modal: true,
+                draggable: false,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "VISTA DEL REGISTRO",
+                width: ancho,
+                position: { my: "center", at: "center", of: window }
+            });
+            $("#verRegistro_div").dialog("open");
+        }
+    }, "json");
+
+}
+
+
+function actualizaIncidencias(registro, form, incidencias) {
+    $.post("php/secret_actualizaIncidencias.php", { registro: registro, formulario: form, incidencias: incidencias, aviso_incidencia_solventada: incidencia_si }, function(resp) {
+        if (resp == "ok") alerta("Registro actualizado", "OK");
+        else if (resp == "server") alerta("Ha habido un error en el servidor. Inténtalo más tarde.<br>" + resp, "ERROR EN SERVIDOR");
+        else alerta("No se ha podido actualizar el registro.<br>" + resp, "ERROR");
+    });
+}
+
+function panelNuevoUsuario() {
+    generaPass();
+    $('#div_nuevo_registro').dialog('open');
+}
+
+function generaPass() {
+    mayus = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    minus = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    matriz = [];
+    password = "";
+    matriz.length = 8;
+    matriz[0] = mayus[Math.trunc(Math.random() * (mayus.length - 1))];
+    matriz[1] = minus[Math.trunc(Math.random() * (minus.length - 1))];
+    matriz[2] = nums[Math.trunc(Math.random() * (nums.length - 1))];
+    matriz[3] = mayus[Math.trunc(Math.random() * (mayus.length - 1))];
+    matriz[4] = minus[Math.trunc(Math.random() * (minus.length - 1))];
+    matriz[5] = nums[Math.trunc(Math.random() * (nums.length - 1))];
+    matriz[6] = mayus[Math.trunc(Math.random() * (mayus.length - 1))];
+    matriz[7] = minus[Math.trunc(Math.random() * (minus.length - 1))];
+    //matriz=matriz.sort(function(){Math.random()-0.5});
+    //Desordena el array
+    var j, x, i;
+    for (i = matriz.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = matriz[i];
+        matriz[i] = matriz[j];
+        matriz[j] = x;
+    }
+    document.getElementById('nr_password').value = matriz.join('');
+}
+
+
+function altaUsuario() {
+    if (document.getElementById("form_alta_usuario").checkValidity()) {
+        document.getElementById("cargando").style.display = 'inline-block';
+        $.post("php/secret_nuevousuario.php", $("#form_alta_usuario").serialize(), function(resp) {
+            document.getElementById("cargando").style.display = 'none';
+            if (resp == "server" || resp == "fallo_cambio") {
+                alerta("Ha habido un fallo en el servidor y no se ha podido registrar el nuevo usuario. Inténtelo más tarde.", "ERROR DE SERVIDOR");
+            } else if (resp == "ok") {
+                alerta("Nuevo usuario creado con éxito.", "Alta OK");
+            } else if (resp == "usuario") {
+                $('#div_nie_registrado').dialog('open');
+                $("[data-alta='usuario'").css("display", "inherit");
+                $("[data-alta='registrado'").css("display", "none");
+            } else if (resp == "registrado") {
+                $('#div_nie_registrado').dialog('open');
+                $("[data-alta='usuario'").css("display", "none");
+                $("[data-alta='registrado'").css("display", "inherit");
+            } else if (resp == "email") {
+                alerta("Nuevo usuario creado con éxito. Se han enviado sus credenciales por el correo indicado.", "Alta y envío OK");
+            } else if (resp.indexOf("envio") == 0) {
+                alerta("Nuevo usuario creado con éxito, pero no ha sido posible enviar las credenciales por correo electrónico.", "Alta OK - Error en envío");
+            }
+        });
+    } else document.getElementById("form_alta_usuario").classList.add("was-validated");
+}
+
+function reasignarPassword() {
+    $.post("php/secret_cambiopassword.php", $("#form_alta_usuario").serialize(), function(resp) {
+        if (resp == "server" || resp == "fallo_alta") {
+            alerta("Ha habido un fallo en el servidor y no se ha podido cambiar la contraseña. Inténtelo más tarde.", "ERROR DE SERVIDOR");
+        } else if (resp == "ok") {
+            alerta("Contraseña cambiada con éxito.", "Alta OK");
+            $('#div_nie_registrado').dialog('close');
+        } else if (resp == "email") {
+            alerta("Contraseña cambiada con éxito. Se han enviado sus credenciales por el correo indicado.", "Alta y envío OK");
+        } else if (resp == "envio") {
+            alerta("Contraseña cambiada con éxito, pero no ha sido posible enviar las credenciales por correo electrónico.", "Alta OK - Error en envío");
+        }
+    });
+}
+
+function seleccionaRegistros(valor) {
+    tabla = document.getElementById("registros_docs");
+    for (i = 0; i < tabla.children[0].children.length; i++) {
+        if (valor == "todo") {
+            tabla.children[0].children[i].children[0].children[0].checked = true;
+        } else if (valor == "ninguno") {
+            tabla.children[0].children[i].children[0].children[0].checked = false;
+        } else if (valor == "invertir") {
+            tabla.children[0].children[i].children[0].children[0].checked = !tabla.children[0].children[i].children[0].children[0].checked;
+        }
+    }
+
+}
+
+function habilitaMenu(m2, m3) {
+    if (m2) $("#menu2").removeClass("disabled");
+    else if (!m2) $("#menu2").addClass("disabled");
+    if (m3) $("#menu3").removeClass("disabled");
+    else if (!m3) $("#menu3").addClass("disabled");
+}
+
+
+function registrosAPdf(tipo_listado) {
+    //tipo_listado=>seleccionadas, no listadas, listadas, todas, ''
+    if (tipo_listado == '') {
+        if (document.getElementById("listadas_seleccionadas").checked) tipo_listado = "seleccionadas";
+        else if (document.getElementById("listadas_si").checked) tipo_listado = "listadas";
+        else if (document.getElementById("listadas_no").checked) tipo_listado = "no listadas";
+        else if (document.getElementById("listadas_todas").checked) tipo_listado = "todas";
+
+        if (document.getElementById("tipo_form").value == "matricula") {
+            if (document.getElementById("cons_si").checked) document.getElementById("mat_consolidadas").value = "consolidadas";
+            else if (document.getElementById("cons_no").checked) document.getElementById("mat_consolidadas").value = "no consolidadas";
+            else if (document.getElementById("cons_todas").checked) document.getElementById("mat_consolidadas").value = "todas";
+        }
+
+        document.getElementById("mat_curso").value = document.getElementById("curso_mat").value;
+        if (document.getElementById("tipo_form").value == "matricula_ciclos") {
+            document.getElementById("mat_curso").value = "ciclos";
+            document.getElementById("ciclo").value = document.getElementById("mat_ciclos").value;
+            document.getElementById("curso_ciclo").value = document.getElementById("mat_ciclos_curso").value;
+            document.getElementById("turno").value = document.getElementById("mat_ciclos_turno").value;
+            ciclo_seleccionado = document.getElementById("mat_ciclos").options[document.getElementById("mat_ciclos").selectedIndex].text;
+            document.getElementById("grado").value = ciclo_seleccionado.substr(0, 2);
+        } else if (document.getElementById("tipo_form").value == "matricula_fpb") {
+            document.getElementById("mat_curso").value = "fpb";
+            document.getElementById("ciclo").value = document.getElementById("mat_fpb").value;
+            document.getElementById("curso_ciclo").value = document.getElementById("mat_fpb_curso").value;
+        }
+        $('#div_listadoMatriculas').dialog('close');
+    }
+    document.getElementById('formulario').value = document.getElementById('tipo_form').value;
+    document.getElementById("tipo_listado").value = tipo_listado;
+    document.getElementById("curso_listado").value = document.getElementById("curso").value;
+    encab = document.getElementById("encabezado_docs").rows[0];
+
+    for (i = 0; i < encab.cells.length; i++) {
+        if (encab.cells[i].innerHTML.indexOf("🡅") != -1) {
+            document.getElementById("orden_campo").value = campos[encabezamiento.indexOf(encab.cells[i].innerHTML)];
+            document.getElementById("orden_direccion").value = "ASC";
+            document.getElementById("orden_texto").value = encab.cells[i].innerHTML.substring(0, encab.cells[i].innerHTML.length - 3) + " (ASCENDENTE)";
+            break;
+        } else if (encab.cells[i].innerHTML.indexOf("🡇") != -1) {
+            document.getElementById("orden_campo").value = campos[encabezamiento.indexOf(encab.cells[i].innerHTML)];
+            document.getElementById("orden_direccion").value = "DESC";
+            document.getElementById("orden_texto").value = encab.cells[i].innerHTML.substring(0, encab.cells[i].innerHTML.length - 3) + " (DESCENDENTE)";
+            break;
+        }
+    }
+
+    registros = new Array();
+    if (tipo_listado == "seleccionadas") {
+        for (i = 0; i < encabezamiento.length; i++) {
+            if (encabezamiento[i].indexOf("Nº Registro") != -1) {
+                posicion_campo_registro = i;
+                break;
+            }
+        }
+        tab = document.getElementById("registros_docs");
+        for (i = 0; i < tab.rows.length; i++) {
+            if (tab.rows[i].cells[0].children[0].checked) registros.push(tab.rows[i].cells[posicion_campo_registro + 1].innerHTML);
+        }
+    }
+
+    document.getElementById("registros").value = JSON.stringify(registros);
+    document.getElementById("descarga_sol").submit();
+    boton_refrescar = "<center><input style='font-size:1.5em !important' type=\"button\" class=\"btn btn-success textoboton\" value=\"Refrescar Listado\" onclick=\"";
+    boton_refrescar += "listaRegistros(_orden_campo,_orden_direccion);\">";
+    boton_refrescar += "</center>";
+    document.getElementById("registros_docs").innerHTML = boton_refrescar;
+}
+
+
+function cierrasesion() {
+    $.post("php/logout.php", {}, function(resp) {
+        open("index.php?q=" + Date.now().toString(), "_self");
+    });
+}
+
+function cambiaEstadoPrematricula(obj, nivel) {
+    $.post('php/secret_prematricula.php', { matricula: nivel, peticion: 'write', estado: obj.checked });
+}
+
+function cambiaEstadoMatricula(obj, nivel) {
+    $.post('php/secret_matricula.php', { matricula: nivel, peticion: 'write', estado: obj.checked });
+}
+
+
+function subeExcel(obj) {
+    if (obj.files[0].type != "text/csv") {
+        alerta("El fichero seleccionado no es del tipo CSV.", "FORMATO ARCHIVO ERRÓNEO");
+        return;
+    }
+    datos = new FormData();
+    datos.append("csv", obj.files[0]);
+    document.getElementById("cargando").style.display = 'inline-block';
+    $.ajax({
+            url: "php/secret_csv_nuevosusus.php",
+            type: 'POST',
+            data: datos,
+            contentType: false,
+            processData: false,
+            cache: false
+        })
+        .done(function(resp) {
+            document.getElementById("cargando").style.display = 'none';
+            if (typeof parseInt(resp) == "number" && parseInt(resp) >= 0) {
+                window.location.assign("php/excel/" + obj.files[0].name);
+                if (parseInt(resp) == 0) alerta("Usuarios dados de alta correctamente", "Alta OK");
+                else alerta("Han habido errores al dar de alta a " + resp + " usuarios. Revise el fichero CSV descargado.", "Error Altas");
+            } else if (resp == "archivo") alerta("Ha habido un error al subir el archivo.", "Error carga");
+            else if (resp == "almacenar") alerta("Ha habido un error al copiar el archivo.", "Error copia");
+            else if (resp == "abrir") alerta("El fichero se ha subido pero no puede ser abierto.", "Error FOPEN");
+            else if (resp == "noexiste") alerta("El fichero no existe.", "Error archivo");
+            else if (resp == "server") alerta("Error de conexión con la base de datos. No se pueden procesar los registros del fichero.", "Error base de datos");
+            else if (resp = "formato_archivo") alerta("Formato de archivo inválido.", "ERROR FORMATO");
+            obj.value = null;
+        });
+
+}
+
+function descargaCSVpremat() {
+    document.getElementById("premat_csv").value = "premat_" + document.getElementById("curso_pre_mat").value;
+    document.getElementById("curso_csv").value = document.getElementById("curso").value;
+    document.getElementById("descarga_csv_premat").submit();
+}
+
+
+function verDocsMatricula(id, edad) {
+    _curso = document.getElementById("curso").value;
+    if (typeof edad === 'undefined') edad=0;
+    d1 = Promise.resolve($.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/seguro/" + _curso + "/" + id }));
+    d2 = d1.then((resp1) => {
+        if (resp1 != "no_existe") {
+            _dir="docs/" + id + "/seguro/" + _curso + "/" + id + resp1 + "?q=" + Date.now();
+            document.getElementById("doc_mat_seguro").src = _dir;
+            document.getElementById("seguro_link").setAttribute("href", _dir);
+            document.getElementById("seguro_link").setAttribute("target", "_blank");
+        } else {
+            if (edad == "<28") {
+                document.getElementById("doc_mat_seguro").src = "recursos/no_documento.jpg";
+                document.getElementById("seguro_link").setAttribute("href", "#");
+                document.getElementById("seguro_link").setAttribute("target", "_self");
+            } else if (edad == ">28") {
+                document.getElementById("doc_mat_seguro").src = "recursos/no_seguro.jpg";
+                document.getElementById("seguro_link").setAttribute("href", "#");
+                document.getElementById("seguro_link").setAttribute("target", "_self");
+            }
+        }
+        return $.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/dni/" + id + "-A" });
+    });
+    d3 = d2.then((resp2) => {
+        if (resp2 != "no_existe") {
+            _dir="docs/" + id + "/dni/" + id + "-A"+resp2+ "?q=" + Date.now();
+            document.getElementById("doc_dni_a").src = _dir;
+            document.getElementById("dni_a_link").setAttribute("href", _dir);
+            document.getElementById("dni_a_link").setAttribute("target", "_blank");
+        } else {
+            document.getElementById("doc_dni_a").src = "recursos/no_documento.jpg";
+            document.getElementById("dni_a_link").setAttribute("href", "#");
+            document.getElementById("dni_a_link").setAttribute("target", "_self");
+        }
+        return $.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/dni/" + id + "-R" });
+    });
+    d4 = d3.then((resp3) => {
+        if (resp3 != "no_existe") {
+            _dir="docs/" + id + "/dni/" + id + "-R"+resp3 + "?q=" + Date.now();
+            document.getElementById("doc_dni_r").src = _dir ;
+            document.getElementById("dni_r_link").setAttribute("href", _dir);
+            document.getElementById("dni_r_link").setAttribute("target", "_blank");
+        }else {
+            document.getElementById("doc_dni_r").src = "recursos/no_documento.jpg";
+            document.getElementById("dni_r_link").setAttribute("href", "#");
+            document.getElementById("dni_r_link").setAttribute("target", "_self");
+        }
+        return $.post("php/secret_compruebafoto.php", { url: "../docs/fotos/" + id });
+    });
+    d4.then((resp4) => {
+        if (resp4 != "no_existe") {
+            _dir="docs/fotos/" + id + resp4 + "?q=" + Date.now();
+            document.getElementById("doc_mat_foto").src = _dir;
+            document.getElementById("foto_link").setAttribute("href", _dir);
+            document.getElementById("foto_link").setAttribute("target", "_blank");
+        }  else {
+            document.getElementById("doc_mat_foto").src = "recursos/no_foto.jpg";
+            document.getElementById("foto_link").setAttribute("href", "#");
+            document.getElementById("foto_link").setAttribute("target", "_self");
+        }
+        $("#div_docs_matricula").dialog("open");
+    });
+}
+
+function descargaCSVtransporte() {
+    document.getElementById("curso_csv_transporte").value = document.getElementById("curso").value;
+    document.getElementById("descarga_csv_transporte").submit();
+}
+
+function listaMatriculas() {
+    if (document.getElementById("tipo_form").value == "matricula") {
+        document.getElementById("div_consolidadas").style.display = "inherit";
+    } else if (document.getElementById("tipo_form").value == "matricula_ciclos") {
+        document.getElementById("div_consolidadas").style.display = "none";
+    } else if (document.getElementById("tipo_form").value == "matricula_fpb") {
+        document.getElementById("div_consolidadas").style.display = "none";
+    }
+    $('#div_listadoMatriculas').dialog('open');
+}
+
+
+function descargaCSVmatriculas() {
+    document.getElementById("mat_csv").value = "mat_" + document.getElementById("curso_mat").value;
+    document.getElementById("curso_csv_mat").value = document.getElementById("curso").value;
+    document.getElementById("descarga_csv_matricula").submit();
+}
+
+
+function descargaFotos() {
+    document.getElementById("usuario").value = "secretaria";
+    document.getElementById("descarga_fotos_alumnos").submit();
+}
+
+
+function verListaUsuarios() {
+    $("#doc_reg_tab").addClass("d-none");
+    $("#usu_reg_tab").removeClass("d-none");
+}
+
+
+function listadoSeguroEscolarCiclos() {
+    document.getElementById("curso_csv_seguro").value = _curso;
+    document.getElementById("descarga_csv_segurociclos").submit();
+}
+
+
+function ocultaCursosDesplegable() {
+    if (document.getElementById("curso").value == "2020-2021") {
+        $("[itemprop='2020-2021']").show();
+        $("[itemprop='2021-2022']").hide();
+        $("[itemprop='2022-2023']").hide();
+    }
+    else if(document.getElementById("curso").value == "2021-2022"){
+        if (document.getElementById("tipo_form").value=="matricula") $("[itemprop='2020-2021']").show();
+        else $("[itemprop='2020-2021']").hide();
+        $("[itemprop='2021-2022']").show();
+        $("[itemprop='2022-2023']").hide();
+    }
+    else {
+        $("[itemprop='2020-2021']").hide();
+        $("[itemprop='2021-2022']").show();
+        $("[itemprop='2022-2023']").show();
+    }
+}
+
+function subeMatDelphos(obj){
+    if (obj.files[0].type != "text/csv") {
+        alerta("El fichero seleccionado no es del tipo CSV.", "FORMATO ARCHIVO ERRÓNEO");
+        return;
+    }
+    if(document.getElementById('delimitador').value.trim()=="")document.getElementById('delimitador').value=",";
+    if(document.getElementById('acotacampos').value.trim()=="")document.getElementById('acotacampos').value='"';
+    datos = new FormData();
+    datos.append("csv", obj.files[0]);
+    datos.append("delimitador",document.getElementById('delimitador').value);
+    datos.append("acotacampos",document.getElementById('acotacampos').value);
+    datos.append("curso_actual",curso_mat);
+    datos.append("curso_premat",curso_premat);
+    //document.getElementById("cargando").style.display = 'inline-block';
+    //background: white url('recursos/espera.gif') no-repeat center center
+    //document.getElementById("cargando").style.background="white";
+    document.getElementById("progreso").style.display = 'flex';
+    lecturaProg=setInterval(actualizaProgreso,1500);
+    $.ajax({
+        url: "php/secret_csv_matdelphos.php",
+        type: 'POST',
+        data: datos,
+        contentType: false,
+        processData: false,
+        cache: false
+    })
+    .done(function(resp) {
+        clearInterval(lecturaProg);
+        //document.getElementById("progreso_php").innerHTML="";
+        document.getElementById("progreso").style.display = 'none';
+        //document.getElementById("cargando").style.background="white url('recursos/espera.gif') no-repeat center center";
+        if (resp.indexOf("excel/")>-1) window.location.assign("php/"+resp);
+        else if (resp == "archivo") alerta("Ha habido un error al subir el archivo.", "Error carga");
+        else if (resp == "almacenar") alerta("Ha habido un error al copiar el archivo.", "Error copia");
+        else if (resp == "abrir") alerta("El fichero se ha subido pero no puede ser abierto.", "Error FOPEN");
+        else if (resp == "noexiste") alerta("El fichero no existe.", "Error archivo");
+        else if (resp == "server") alerta("Error de conexión con la base de datos. No se pueden procesar los registros del fichero.", "Error base de datos");
+        else if (resp=="informe") alerta("No se puede crear el informe de resultados.", "ERROR CREACIÓN FICHERO");
+        else alerta("Fallo de formato porque faltan las siguientes columnas de datos en el fichero csv:<br>"+resp,"ERROR FORMATO. FALTAN COLUMNAS DE DATOS");
+        obj.value = null;
+    });
+}
+
+function actualizaProgreso(){
+    $.post("php/progreso_bar.php",{},(r)=>{
+        //document.getElementById("progreso_php").innerHTML="Procesando: "+r.procesado+" de "+r.total;
+        perc=Math.floor(r.procesado*100/r.total);
+        document.getElementById("bar_prog").style.width=perc+"%";
+        document.getElementById("bar_prog").innerHTML=r.procesado+"/"+r.total;
+    },"json");
+}
+
+function descargaCSVnuevosOtraCom(){
+    document.getElementById("curso_csv_nuevosotracomunidad").value = document.getElementById("curso").value;
+    document.getElementById("descarga_csv_nuevosotracomunidad").submit();
+}
+
+function descargaCSVAlNuevos(){
+    document.getElementById("curso_csv_nuevos_eso_bach").value = document.getElementById("curso").value;
+    document.getElementById("descarga_csv_nuevos_eso_bach").submit();
+}
+
+function descargaCSVProgLing(){
+    document.getElementById("curso_csv_prog_ling").value = document.getElementById("curso").value;
+    document.getElementById("descarga_csv_prog_ling").submit();
+}
+
+function descargaCSVconsolPremat(){
+    document.getElementById("curso_csv_consolidaprematricula").value = document.getElementById("curso").value;
+    document.getElementById("descarga_csv_consolidaprematricula").submit();
+}
+
+function verCertificado(id){
+    $.post("php/secret_existe_certificado.php",{id_nie:id, curso:document.getElementById("curso").value},(r)=>{
+        if (r=="ok") window.open("docs/"+id+"/certificado_notas/"+document.getElementById("curso").value+"/"+id+".pdf","_blank");
+        else alerta("El alumno no tiene certificado de notas para el curso escolar seleccionado.", "NO EXISTE EL DOCUMENTO");
+    });
+    
+}
