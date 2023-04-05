@@ -558,6 +558,7 @@ function confirmaCambioNombreDoc() {
 
 function panelExpedienteUsuario(id_nie,nom) {
     $("#div_dialogs").show().load("html/expediente_usuario.html", function(response,status, xhr){
+        alert(response+"  "+status)
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
