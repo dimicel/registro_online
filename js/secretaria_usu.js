@@ -557,7 +557,7 @@ function confirmaCambioNombreDoc() {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
-        $("#div_dialogs").show().load("html/expediente_usuario.html", function(response,status, xhr){
+        $("#div_dialogs").load("html/expediente_usuario.html", function(response,status, xhr){
             if ( status == "error" ) {
                 var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
                 alerta(msg,"ERROR DE CARGA");
@@ -598,7 +598,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                         click: function() {
                             $("#div_dialogs").dialog("close");
                             $("#div_dialogs").dialog("destroy");
-                            $("#div_dialogs").hide();
+                            //$("#div_dialogs").hide();
                         }
                     }]
                 });

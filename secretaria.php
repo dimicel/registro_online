@@ -938,7 +938,7 @@
     </div>
 
     <div id="mensaje_div" class="alertas"></div>
-    <div id="div_dialogs" style="display:none" class="ui-widget-header ui-corner-all alertas"></div>
+    <div id="div_dialogs" class="ui-widget-header ui-corner-all alertas"></div>
     <div id="formulario_descargar_solicitudes" style="display:none">
         <form id="descarga_sol" action="php/secret_descargaregistros.php" method="POST" target="_blank">
             <input type="hidden" id="curso_listado" name="curso_listado" />
