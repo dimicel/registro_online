@@ -563,6 +563,7 @@ function panelExpedienteUsuario(id_nie,nom) {
             alerta(msg,"ERROR DE CARGA");
         }
         else{
+            document.getElementById("div_dialogs").innerHTML=response;
             document.getElementById("div_dialogs").style.fontSize="0.85em !important";
             document.getElementById("div_dialogs").style.padding="10px";
             document.getElementById("div_dialogs").style.paddingLeft="20px";
@@ -596,7 +597,6 @@ function panelExpedienteUsuario(id_nie,nom) {
                     }
                 }],
                 open:function(event,ui){
-                    alert(id_nie);
                     document.getElementById("nie_exp").innerHTML = id_nie;
                     document.getElementById("nombre_exp").innerHTML = nom;
                     document.getElementById("curso_exp").innerHTML="";
