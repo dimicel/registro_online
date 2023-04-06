@@ -593,6 +593,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                     click: function() {
                         $("#div_dialogs").dialog("close");
                         $("#div_dialogs").dialog("destroy");
+                        $("#div_dialogs").hide();
                     }
                 }],
                 open:function(event,ui){
