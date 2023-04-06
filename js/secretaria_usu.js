@@ -403,7 +403,7 @@ function verExpediente(id_nie, nom) {
         "otros": "OTROS"
     }
     
-    panelExpedienteUsuario(id_nie,nom,true);
+    panelExpedienteUsuario(id_nie,nom);
     
 }
 
@@ -556,14 +556,33 @@ function confirmaCambioNombreDoc() {
 }
 
 
-function panelExpedienteUsuario(id_nie,nom,carga) {
-    if (carga){
+function panelExpedienteUsuario(id_nie,nom) {
         $("#div_dialogs").show().load("html/expediente_usuario.html", function(response,status, xhr){
             if ( status == "error" ) {
                 var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
                 alerta(msg,"ERROR DE CARGA");
             }
             else{
+                document.getElementById("div_dialogs").style.fontSize="0.85em !important";
+                document.getElementById("div_dialogs").style.padding="10px";
+                document.getElementById("div_dialogs").style.paddingLeft="20px";
+                
+                //curso_exp.innerHTML = "";
+                //curso_exp.append(new Option("Todos", "todos"));
+                $("#nie_exp").html(id_nie);
+                $("#nombre_exp").html(nom);
+                document.getElementById("curso_exp").innerHTML="";
+                document.getElementById("curso_exp").append(new Option("Todos", "todos"));
+                cuenta_annos = anno_ini_curso_docs;
+                if (mes == 6) cuenta_annos++;
+                for (i = 2020; i <= cuenta_annos; i++) {
+                    var c = i + "-" + (i + 1);
+                    document.getElementById("curso_exp").append(new Option(c, c));
+                }
+                document.getElementById("curso_exp").selectIndex=0;
+                //curso_exp.selectIndex = 0;
+                obtieneDocsExpediente();
+                
                 $("#div_dialogs").dialog({
                     autoOpen: true,
                     dialogClass: "alert no-close",
@@ -583,32 +602,9 @@ function panelExpedienteUsuario(id_nie,nom,carga) {
                         }
                     }]
                 });
-                //panelExpedienteUsuario(id_nie,nom,false);
             }
         });
-    }
-    else{
-        document.getElementById("div_dialogs").style.fontSize="0.85em !important";
-        document.getElementById("div_dialogs").style.padding="10px";
-        document.getElementById("div_dialogs").style.paddingLeft="20px";
-        
-        //curso_exp.innerHTML = "";
-        //curso_exp.append(new Option("Todos", "todos"));
-        $("#nie_exp").html(id_nie);
-        $("#nombre_exp").html(nom);
-        document.getElementById("curso_exp").innerHTML="";
-        document.getElementById("curso_exp").append(new Option("Todos", "todos"));
-        cuenta_annos = anno_ini_curso_docs;
-        if (mes == 6) cuenta_annos++;
-        for (i = 2020; i <= cuenta_annos; i++) {
-            var c = i + "-" + (i + 1);
-            document.getElementById("curso_exp").append(new Option(c, c));
-        }
-        document.getElementById("curso_exp").selectIndex=0;
-        //curso_exp.selectIndex = 0;
-        
-        obtieneDocsExpediente();
-    }
+       
     
 }
 
