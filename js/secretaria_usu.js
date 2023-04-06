@@ -596,7 +596,8 @@ function panelExpedienteUsuario(id_nie,nom) {
                     }
                 }],
                 open:function(event,ui){
-                    document.getElementById("nie_exp").innerHTML = "10000";
+                    alert(id_nie);
+                    document.getElementById("nie_exp").innerHTML = id_nie;
                     document.getElementById("nombre_exp").innerHTML = nom;
                     document.getElementById("curso_exp").innerHTML="";
                     document.getElementById("curso_exp").append(new Option("Todos", "todos"));
