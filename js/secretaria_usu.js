@@ -564,11 +564,13 @@ function panelExpedienteUsuario(id_nie,nom,carga) {
                 alerta(msg,"ERROR DE CARGA");
             }
             else{
+                alert(0);
                 panelExpedienteUsuario(id_nie,nom,false);
             }
         });
     }
     else{
+        alert(1);
         document.getElementById("div_dialogs").style.fontSize="0.85em !important";
         document.getElementById("div_dialogs").style.padding="10px";
         document.getElementById("div_dialogs").style.paddingLeft="20px";
