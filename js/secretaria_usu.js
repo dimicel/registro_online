@@ -597,8 +597,10 @@ function panelExpedienteUsuario(id_nie,nom) {
                     }
                 }],
                 open:function(event,ui){
-                    document.getElementById("nie_exp").innerHTML = id_nie;
-                    document.getElementById("nombre_exp").innerHTML = nom;
+                    //document.getElementById("nie_exp").innerHTML = id_nie;
+                    //document.getElementById("nombre_exp").innerHTML = nom;
+                    $("#nie_exp").html(id_nie);
+                    $("#nombre_exp").html(nom);
                     document.getElementById("curso_exp").innerHTML="";
                     document.getElementById("curso_exp").append(new Option("Todos", "todos"));
                     cuenta_annos = anno_ini_curso_docs;
