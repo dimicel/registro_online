@@ -564,7 +564,7 @@ function panelExpedienteUsuario(id_nie,nom) {
             }
             else{
                 document.getElementById("div_dialogs").style.fontSize="0.85em !important";
-                document.getElementById("div_dialogs").style.padding="50px";
+                document.getElementById("div_dialogs").style.padding="10px";
                 document.getElementById("div_dialogs").style.paddingLeft="20px";
                 
                 //curso_exp.innerHTML = "";
