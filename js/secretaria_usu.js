@@ -564,6 +564,25 @@ function panelExpedienteUsuario(id_nie,nom,carga) {
                 alerta(msg,"ERROR DE CARGA");
             }
             else{
+                $("#div_dialogs").dialog({
+                    autoOpen: true,
+                    dialogClass: "alert no-close",
+                    modal: true,
+                    hide: { effect: "fade", duration: 0 },
+                    resizable: false,
+                    show: { effect: "fade", duration: 0 },
+                    title: "EXPEDIENTE DEL USUARIO",
+                    width: 500,
+                    buttons: [{
+                        class: "btn btn-success textoboton",
+                        text: "Cerrar",
+                        click: function() {
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
+                            $("#div_dialogs").hide();
+                        }
+                    }]
+                });
                 alert(0);
                 panelExpedienteUsuario(id_nie,nom,false);
             }
@@ -589,25 +608,7 @@ function panelExpedienteUsuario(id_nie,nom,carga) {
         }
         document.getElementById("curso_exp").selectIndex=0;
         //curso_exp.selectIndex = 0;
-        $("#div_dialogs").dialog({
-            autoOpen: true,
-            dialogClass: "alert no-close",
-            modal: true,
-            hide: { effect: "fade", duration: 0 },
-            resizable: false,
-            show: { effect: "fade", duration: 0 },
-            title: "EXPEDIENTE DEL USUARIO",
-            width: 500,
-            buttons: [{
-                class: "btn btn-success textoboton",
-                text: "Cerrar",
-                click: function() {
-                    $("#div_dialogs").dialog("close");
-                    $("#div_dialogs").dialog("destroy");
-                    $("#div_dialogs").hide();
-                }
-            }]
-        });
+        
         obtieneDocsExpediente();
     }
     
