@@ -599,6 +599,8 @@ function panelExpedienteUsuario(id_nie,nom) {
                 open:function(event,ui){
                     //document.getElementById("nie_exp").innerHTML = id_nie;
                     //document.getElementById("nombre_exp").innerHTML = nom;
+                    alert(id_nie);
+                    alert(nom);
                     $("#nie_exp").html(id_nie);
                     $("#nombre_exp").html(nom);
                     document.getElementById("curso_exp").innerHTML="";
