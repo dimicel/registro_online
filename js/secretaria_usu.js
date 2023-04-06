@@ -569,14 +569,17 @@ function panelExpedienteUsuario(id_nie,nom) {
             
             //curso_exp.innerHTML = "";
             //curso_exp.append(new Option("Todos", "todos"));
-            /*cuenta_annos = anno_ini_curso_docs;
+            $("#nie_exp").html(id_nie);
+            $("#nombre_exp").html(nom);
+            document.getElementById("curso_exp").innerHTML="";
+            document.getElementById("curso_exp").append(new Option("Todos", "todos"));
+            cuenta_annos = anno_ini_curso_docs;
             if (mes == 6) cuenta_annos++;
             for (i = 2020; i <= cuenta_annos; i++) {
                 var c = i + "-" + (i + 1);
                 document.getElementById("curso_exp").append(new Option(c, c));
-                //curso_exp.append(new Option(c, c));
             }
-            document.getElementById("curso_exp").selectIndex=0;*/
+            document.getElementById("curso_exp").selectIndex=0;
             //curso_exp.selectIndex = 0;
             $("#div_dialogs").dialog({
                 autoOpen: true,
@@ -595,30 +598,11 @@ function panelExpedienteUsuario(id_nie,nom) {
                         $("#div_dialogs").dialog("destroy");
                         $("#div_dialogs").hide();
                     }
-                }],
-                open:function(event,ui){
-                    //document.getElementById("nie_exp").innerHTML = id_nie;
-                    //document.getElementById("nombre_exp").innerHTML = nom;
-                    alert(id_nie);
-                    alert(nom);
-                    $("#nie_exp").html(id_nie);
-                    $("#nombre_exp").html(nom);
-                    document.getElementById("curso_exp").innerHTML="";
-                    document.getElementById("curso_exp").append(new Option("Todos", "todos"));
-                    cuenta_annos = anno_ini_curso_docs;
-                    if (mes == 6) cuenta_annos++;
-                    for (i = 2020; i <= cuenta_annos; i++) {
-                        var c = i + "-" + (i + 1);
-                        document.getElementById("curso_exp").append(new Option(c, c));
-                    }
-                    document.getElementById("curso_exp").selectIndex=0;
-                }
+                }]
             });
             obtieneDocsExpediente();
         }
     });
-
-   
 }
 
 
