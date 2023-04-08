@@ -566,7 +566,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                 document.getElementById("div_dialogs").style.fontSize="0.85em !important";
                 document.getElementById("div_dialogs").style.padding="10px";
                 document.getElementById("div_dialogs").style.paddingLeft="20px";
-                alert(document.getElementById("nie_exp").innerHTML);
+                //alert(document.getElementById("nie_exp").innerHTML);
                 //curso_exp.innerHTML = "";
                 //curso_exp.append(new Option("Todos", "todos"));
                 $("#nie_exp").html(id_nie);
@@ -599,7 +599,10 @@ function panelExpedienteUsuario(id_nie,nom) {
                             $("#div_dialogs").dialog("close");
                             $("#div_dialogs").dialog("destroy");
                         }
-                    }]
+                    }],
+                    open:function(event,ui){
+                        alert(document.getElementById("nie_exp").innerHTML);
+                    }
                 });
             }
         });
