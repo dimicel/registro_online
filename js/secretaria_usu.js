@@ -581,13 +581,11 @@ function panelExpedienteUsuario(id_nie,nom) {
                         }
                     }],
                     open:function(event,ui){
-                        alert(document.getElementById("nie_exp").innerHTML);
                         document.getElementById("div_dialogs").style.fontSize="0.85em !important";
                         document.getElementById("div_dialogs").style.padding="10px";
                         document.getElementById("div_dialogs").style.paddingLeft="20px";
                         $("#nie_exp").html(id_nie);
                         $("#nombre_exp").html(nom);
-                        alert(document.getElementById("nie_exp").innerHTML);
                         document.getElementById("curso_exp").innerHTML="";
                         document.getElementById("curso_exp").append(new Option("Todos", "todos"));
                         cuenta_annos = anno_ini_curso_docs;
@@ -597,7 +595,6 @@ function panelExpedienteUsuario(id_nie,nom) {
                             document.getElementById("curso_exp").append(new Option(c, c));
                         }
                         document.getElementById("curso_exp").selectIndex=0;
-                        //curso_exp.selectIndex = 0;
                         obtieneDocsExpediente();
                     }
                 });
