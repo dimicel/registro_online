@@ -579,7 +579,16 @@ function panelExpedienteUsuario(id_nie,nom) {
                             $("#div_dialogs").dialog("close");
                             $("#div_dialogs").dialog("destroy");
                         }
-                    }],
+                    },
+                    {
+                        class: "btn btn-success textoboton",
+                        text: "aaaaaaaaaaaa",
+                        click: function() {
+                            $("#nie_exp").html(id_nie);
+                            $("#nombre_exp").html(nom);
+                        }
+                    }
+                ],
                     open:function(event,ui){
                         document.getElementById("div_dialogs").style.fontSize="0.85em !important";
                         document.getElementById("div_dialogs").style.padding="10px";
