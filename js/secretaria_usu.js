@@ -563,9 +563,6 @@ function panelExpedienteUsuario(id_nie,nom) {
                 alerta(msg,"ERROR DE CARGA");
             }
             else{
-                //document.getElementById("div_dialogs").style.fontSize="0.85em !important";
-                //document.getElementById("div_dialogs").style.padding="10px";
-                //document.getElementById("div_dialogs").style.paddingLeft="20px";
                 $("#nie_exp").html(id_nie);
                 $("#nombre_exp").html(nom);
                 document.getElementById("curso_exp").innerHTML="";
