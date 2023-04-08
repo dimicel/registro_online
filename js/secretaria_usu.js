@@ -610,49 +610,57 @@ function mostrarDocUsu(script_php, ref, dir) {
 
 
 function panelEnvioEmail(dir_email) {
-    exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (!exp_email.test(dir_email)) {
-        alerta("Email incorrecto.", "ERROR");
-        return;
-    }
-    $("#div_email_usuario").dialog({
-        autoOpen: true,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "ENVÍO DE CORREO ELECTRÓNICO",
-        width: 750,
-        buttons: [{
-                class: "btn btn-success textoboton",
-                text: "Enviar",
-                click: function() {
-                    asunto = document.getElementById("usu_asunto_email").value;
-                    mensaje = document.getElementById("usu_cuerpo_email").value;
-                    if ($("#form_email_usuario").valid()) {
-                        document.getElementById("cargando").style.display = "inherit";
-                        $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
-                            document.getElementById("cargando").style.display = "none";
-                            alerta("Correo electrónico enviado.", "EMAIL");
-                            $("#div_email_usuario").dialog("close");
-                        });
-                    }
-                }
-            },
-            {
-                class: "btn btn-success textoboton",
-                text: "Cancelar",
-                click: function() {
-                    $("#div_email_usuario").dialog("close");
-                }
+    $("#div_dialogs").load("html/secretaria.txt #div_email_usuario", function(response,status,xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        }
+        else{
+            exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!exp_email.test(dir_email)) {
+                alerta("Email incorrecto.", "ERROR");
+                return;
             }
-        ],
-        close: function(event, ui) {
-            document.getElementById("form_email_usuario").reset();
-            $("#div_email_usuario").dialog("destroy");
+            $("#div_dialogs").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "ENVÍO DE CORREO ELECTRÓNICO",
+                width: 750,
+                buttons: [{
+                        class: "btn btn-success textoboton",
+                        text: "Enviar",
+                        click: function() {
+                            asunto = document.getElementById("usu_asunto_email").value;
+                            mensaje = document.getElementById("usu_cuerpo_email").value;
+                            if ($("#form_email_usuario").valid()) {
+                                document.getElementById("cargando").style.display = "inherit";
+                                $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
+                                    document.getElementById("cargando").style.display = "none";
+                                    alerta("Correo electrónico enviado.", "EMAIL");
+                                    $("#div_dialogs").dialog("close");
+                                });
+                            }
+                        }
+                    },
+                    {
+                        class: "btn btn-success textoboton",
+                        text: "Cancelar",
+                        click: function() {
+                            $("#div_dialogs").dialog("close");
+                        }
+                    }
+                ],
+                close: function(event, ui) {
+                    $("#div_dialogs").dialog("destroy");
+                }
+            });
         }
     });
+
 }
 
 function eliminaUsuario(id, nom) {
