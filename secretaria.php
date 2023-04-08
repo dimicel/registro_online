@@ -342,25 +342,6 @@
             </div>
         </div>
 
-        <!-- PANEL EXPEDIENTES DE USUARIO ___________________________________________________________
-        <div id="div_expediente_usuario" style="display:none; font-size:0.85em !important;padding:10px;padding-left:20px" class="ui-widget-header ui-corner-all alertas">
-            <div class="row justify-content-center" style="color:brown">
-                <span id="nie_exp"></span>
-                <span>-</span>
-                <span id="nombre_exp"></span>
-            </div>
-            <div class="row" style="margin-top:10px">
-                <div class="col-1">
-                    <label for="curso_exp" class="col-form-label">Curso:</label>
-                </div>
-                <div class="col-4">
-                    <select id="curso_exp" class="form-control" onchange="obtieneDocsExpediente()"></select>
-                </div>
-            </div>
-            <div id="div_tabla_expediente" class="row" style="margin-top:10px"></div>
-        </div>
-        FIN PANEL EXPEDIENTES DE USUARIO _______________________________________________________-->
-
         <!-- PANEL ENVÍO EMAIL A USUARIO ____________________________________________________________-->
         <div id="div_email_usuario" style="display:none; font-size:0.85em !important;padding:10px" class="ui-widget-header ui-corner-all alertas">
             <form id="form_email_usuario">
