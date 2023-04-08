@@ -342,18 +342,6 @@
             </div>
         </div>
 
-        <!-- PANEL ENVÍO EMAIL A USUARIO ____________________________________________________________
-        <div id="div_email_usuario" style="display:none; font-size:0.85em !important;padding:10px" class="ui-widget-header ui-corner-all alertas">
-            <form id="form_email_usuario">
-                <label>Asunto del correo:</label><br>
-                <div class="errorTxt" style="font-size: 1em;"></div><br>
-                <input type="text" id="usu_asunto_email" name="usu_asunto_email" maxlength="150" size="100"><hr>
-                <label>Contenido del correo:</label><br>
-                <div class="errorTxt" style="font-size: 1em;"></div><br>
-                <textarea rows="10" cols="100" id="usu_cuerpo_email" name="usu_cuerpo_email"></textarea>
-            </form>
-        </div>
-         FIN PANEL ENVÍO EMAIL USUARIO ___________________________________________________________-->
         <!-- PANEL SUBE DOCS A EXPEDIENTE ____________________________________________________________-->
         <div id="div_sube_docs" style="display:none; font-size:0.85em !important;padding:10px" class="ui-widget-header ui-corner-all alertas">
             <form id="form_sube_doc" novalidate>
