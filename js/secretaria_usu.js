@@ -563,6 +563,21 @@ function panelExpedienteUsuario(id_nie,nom) {
                 alerta(msg,"ERROR DE CARGA");
             }
             else{
+                document.getElementById("div_dialogs").style.fontSize="0.85em !important";
+                document.getElementById("div_dialogs").style.padding="10px";
+                document.getElementById("div_dialogs").style.paddingLeft="20px";
+                $("#nie_exp").html(id_nie);
+                $("#nombre_exp").html(nom);
+                document.getElementById("curso_exp").innerHTML="";
+                document.getElementById("curso_exp").append(new Option("Todos", "todos"));
+                cuenta_annos = anno_ini_curso_docs;
+                if (mes == 6) cuenta_annos++;
+                for (i = 2020; i <= cuenta_annos; i++) {
+                    var c = i + "-" + (i + 1);
+                    document.getElementById("curso_exp").append(new Option(c, c));
+                }
+                document.getElementById("curso_exp").selectIndex=0;
+                obtieneDocsExpediente();
                 $("#div_dialogs").dialog({
                     autoOpen: true,
                     dialogClass: "alert no-close",
@@ -579,22 +594,13 @@ function panelExpedienteUsuario(id_nie,nom) {
                             $("#div_dialogs").dialog("close");
                             $("#div_dialogs").dialog("destroy");
                         }
-                    },
-                    {
-                        class: "btn btn-success textoboton",
-                        text: "aaaaaaaaaaaa",
-                        click: function() {
-                            $("#nie_exp111").html(id_nie);
-                            $("#nombre_exp111").html(nom);
-                        }
-                    }
-                ],
+                    }],
                     open:function(event,ui){
-                        document.getElementById("div_dialogs").style.fontSize="0.85em !important";
+                        /*document.getElementById("div_dialogs").style.fontSize="0.85em !important";
                         document.getElementById("div_dialogs").style.padding="10px";
                         document.getElementById("div_dialogs").style.paddingLeft="20px";
-                        $("#nie_exp111").html(id_nie);
-                        $("#nombre_exp111").html(nom);
+                        $("#nie_exp").html(id_nie);
+                        $("#nombre_exp").html(nom);
                         document.getElementById("curso_exp").innerHTML="";
                         document.getElementById("curso_exp").append(new Option("Todos", "todos"));
                         cuenta_annos = anno_ini_curso_docs;
@@ -604,7 +610,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                             document.getElementById("curso_exp").append(new Option(c, c));
                         }
                         document.getElementById("curso_exp").selectIndex=0;
-                        obtieneDocsExpediente();
+                        obtieneDocsExpediente();*/
                     }
                 });
             }

@@ -342,7 +342,7 @@
             </div>
         </div>
 
-        <!-- PANEL EXPEDIENTES DE USUARIO ___________________________________________________________-->
+        <!-- PANEL EXPEDIENTES DE USUARIO ___________________________________________________________
         <div id="div_expediente_usuario" style="display:none; font-size:0.85em !important;padding:10px;padding-left:20px" class="ui-widget-header ui-corner-all alertas">
             <div class="row justify-content-center" style="color:brown">
                 <span id="nie_exp"></span>
@@ -359,7 +359,7 @@
             </div>
             <div id="div_tabla_expediente" class="row" style="margin-top:10px"></div>
         </div>
-        <!-- FIN PANEL EXPEDIENTES DE USUARIO _______________________________________________________-->
+        FIN PANEL EXPEDIENTES DE USUARIO _______________________________________________________-->
 
         <!-- PANEL ENVÍO EMAIL A USUARIO ____________________________________________________________-->
         <div id="div_email_usuario" style="display:none; font-size:0.85em !important;padding:10px" class="ui-widget-header ui-corner-all alertas">
