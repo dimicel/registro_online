@@ -584,8 +584,8 @@ function panelExpedienteUsuario(id_nie,nom) {
                         class: "btn btn-success textoboton",
                         text: "aaaaaaaaaaaa",
                         click: function() {
-                            $("#nie_exp").html(id_nie);
-                            $("#nombre_exp").html(nom);
+                            $("#nie_exp111").html(id_nie);
+                            $("#nombre_exp111").html(nom);
                         }
                     }
                 ],
@@ -593,8 +593,8 @@ function panelExpedienteUsuario(id_nie,nom) {
                         document.getElementById("div_dialogs").style.fontSize="0.85em !important";
                         document.getElementById("div_dialogs").style.padding="10px";
                         document.getElementById("div_dialogs").style.paddingLeft="20px";
-                        $("#nie_exp").html(id_nie);
-                        $("#nombre_exp").html(nom);
+                        $("#nie_exp111").html(id_nie);
+                        $("#nombre_exp111").html(nom);
                         document.getElementById("curso_exp").innerHTML="";
                         document.getElementById("curso_exp").append(new Option("Todos", "todos"));
                         cuenta_annos = anno_ini_curso_docs;
