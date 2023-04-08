@@ -577,7 +577,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                     document.getElementById("curso_exp").append(new Option(c, c));
                 }
                 document.getElementById("curso_exp").selectIndex=0;
-                obtieneDocsExpediente();
+                //obtieneDocsExpediente();
                 $("#div_dialogs").dialog({
                     autoOpen: true,
                     dialogClass: "alert no-close",
