@@ -138,46 +138,6 @@ $(function() {
         }
     });
 
-    jQuery.validator.addMethod("espNomDoc", function(value, element) {
-        if (value.toString().trim().indexOf(' ') == -1 && value.toString().trim().indexOf('_') == -1) return true;
-        else return false;
-    });
-
-    validFormSubeDoc = $("#form_sube_doc").validate({
-        rules: {
-            tipo_doc: {
-                required: true
-            },
-            //otro: {
-            //    required: true
-            //},
-            documento: {
-                required: true
-            }/*,
-            nom_doc: {
-                required: true,
-                espNomDoc: true
-            }*/
-        },
-        messages: {
-            tipo_doc: {
-                required: "Debe seleccionar un tipo de documento."
-            },
-            //otro: {
-            //    required: "Escriba un tipo de documento."
-            //},
-            documento: {
-                required: "No hay seleccinado documento."
-            }/*,
-            nom_doc: {
-                required: "Falta nombre del documento.",
-                espNomDoc: "El nombre de archivo no puede contener espacios ni guiones bajos '_'"
-            }*/
-        },
-        errorPlacement: function(error, element) {
-            $(element).prev().html(error);
-        }
-    });
 
     $("#div_elimina_usuario").dialog({
         autoOpen: false,
@@ -749,6 +709,28 @@ function subeDocExpediente(id, nom) {
             alerta(msg,"ERROR DE CARGA");
         }
         else{
+            validFormSubeDoc = $("#form_sube_doc").validate({
+                rules: {
+                    tipo_doc: {
+                        required: true
+                    },
+                    documento: {
+                        required: true
+                    }
+                },
+                messages: {
+                    tipo_doc: {
+                        required: "Debe seleccionar un tipo de documento."
+                    },
+                    
+                    documento: {
+                        required: "No hay seleccinado documento."
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    $(element).prev().html(error);
+                }
+            });
             document.getElementById("id_nie").value = id;
             document.getElementById("curso_doc").value = anno_ini_curso_docs + "-" + (anno_ini_curso_docs + 1);
             if (id == "varios") {
