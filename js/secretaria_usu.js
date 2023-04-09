@@ -70,28 +70,6 @@ $(function() {
     $('#navegacion_usus_bottom a').addClass('page-link');
     listaUsus();
 
-    $("#form_email_usuario").validate({
-        rules: {
-            usu_asunto_email: {
-                required: true
-            },
-            usu_cuerpo_email: {
-                required: true
-            }
-        },
-        messages: {
-            usu_asunto_email: {
-                required: "No puede dejar el asunto vacío."
-            },
-            usu_cuerpo_email: {
-                required: "No puede dejar vacío el cuerpo del mensaje."
-            }
-        },
-        errorPlacement: function(error, element) {
-            $(element).prev().prev().html(error);
-        }
-    });
-
     $("#form_modif_datos_usu").validate({
         rules: {
             mod_nombre: {
@@ -547,6 +525,27 @@ function panelEnvioEmail(dir_email) {
                 alerta("Email incorrecto.", "ERROR");
                 return;
             }
+            validFormEmail=$("#form_email_usuario").validate({
+                rules: {
+                    usu_asunto_email: {
+                        required: true
+                    },
+                    usu_cuerpo_email: {
+                        required: true
+                    }
+                },
+                messages: {
+                    usu_asunto_email: {
+                        required: "No puede dejar el asunto vacío."
+                    },
+                    usu_cuerpo_email: {
+                        required: "No puede dejar vacío el cuerpo del mensaje."
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    $(element).prev().prev().html(error);
+                }
+            });
             $("#div_dialogs").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
@@ -562,7 +561,7 @@ function panelEnvioEmail(dir_email) {
                         click: function() {
                             asunto = document.getElementById("usu_asunto_email").value;
                             mensaje = document.getElementById("usu_cuerpo_email").value;
-                            if ($("#form_email_usuario").valid()) {
+                            if (validFormEmail.form()) {
                                 document.getElementById("cargando").style.display = "inherit";
                                 $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
                                     document.getElementById("cargando").style.display = "none";
