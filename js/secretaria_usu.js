@@ -416,19 +416,6 @@ function obtieneDocsExpediente() {
             document.getElementById("div_tabla_expediente").innerHTML = contenido_div;
         } else {
             contenido_div = "<table>";
-            //Obtenemos los docs desde las tablas.
-            /*
-            for (i = 0; i < tablas.length; i++) {
-                if (resp["docs"][tablas[i]].length > 0) {
-                    contenido_div += "<tr style='font-size:bolder'><td colspan=3 width='475px'>" + tablas_asoc[tablas[i]] + "</td></tr>";
-                    for (j = 0; j < resp["docs"][tablas[i]].length; j++) {
-                        contenido_div += "<tr><td  width='80px'>" + resp["docs"][tablas[i]][j]["curso"] + "</td>";
-                        contenido_div += "<td colspan=2><a href=\"javascript:mostrarDocUsu('" + tablas_php[tablas[i]] + "','" + resp["docs"][tablas[i]][j]["registro"] + "','" + dir_php[tablas[i]] + "')\">";
-                        contenido_div += resp["docs"][tablas[i]][j]["registro"] + "</a></td></tr>";
-                    }
-                }
-            }
-            */
             //Obtenemos los docs desde los propios directorios del expediente
             for (var td in docs_exp) {
                 if (resp["docs"][td].length > 0) {
@@ -597,15 +584,6 @@ function panelExpedienteUsuario(id_nie,nom) {
         });
        
     
-}
-
-
-function mostrarDocUsu(script_php, ref, dir) {
-    document.getElementById("form_verDoc").action = "impresos/" + dir + "/php/" + script_php;
-    document.getElementById("registro").value = ref;
-    document.getElementById("nombre").value = "secretaria";
-    document.getElementById("form_verDoc").target = "_blank";
-    document.getElementById("form_verDoc").submit();
 }
 
 

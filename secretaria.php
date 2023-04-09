@@ -434,13 +434,6 @@
                 </div>
             </div>
         </div>
-        <!-- FIN PANEL VER DOCUMENTOS EXPEDIENTE ____________________________________________________________-->
-        <div style="display:none" id="div_form_verDoc">
-            <form id="form_verDoc" method="POST">
-                <input type="hidden" name="referencia" id="registro">
-                <input type="hidden" name="nombre" id="nombre">
-            </form>
-        </div>
         <!-- FIN LISTADO DE USUARIOS__________________________________________________________________-->
         <!--__________________________________________________________________________________________-->
     </div>
