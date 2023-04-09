@@ -123,7 +123,7 @@ $(function() {
         hide: { effect: "fade", duration: 0 },
         resizable: false,
         show: { effect: "fade", duration: 0 },
-        title: "BORRADO DE DODUMENTO DEL EXPEDIENTE",
+        title: "BORRADO DE DOCUMENTO DEL EXPEDIENTE",
         maxHeight: 500,
         width: 550
     });
