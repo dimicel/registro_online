@@ -228,17 +228,7 @@ $(function() {
         width: 1100
     });
 
-    $("#div_sube_docs").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "SUBIR DOCUMENTOS A EXPEDIENTE",
-        maxHeight: 600,
-        width: 600
-    });
+    
 });
 
 
@@ -753,26 +743,47 @@ function modUsu() {
 
 
 function subeDocExpediente(id, nom) {
-    $("#form_sube_doc").trigger("reset");
-    $("#div_sube_docs").dialog('open');
-    document.getElementById("id_nie").value = id;
-    document.getElementById("curso_doc").value = anno_ini_curso_docs + "-" + (anno_ini_curso_docs + 1);
-    if (id == "varios") {
-        document.getElementById("documento").multiple = true;
-        document.getElementById("form_sube_doc").enctype = "multipart/form-data";
-        document.getElementById("tipo_envio").value = "multiple";
-        document.getElementById("rotulo").innerHTML = "SUBIDA MASIVA DE DOCUMENTOS";
-        $("option[data=simple]").hide();
-        document.getElementById("div_nomArchOriginal").style.display="none";
-    } else {
-        document.getElementById("documento").multiple = false;
-        document.getElementById("form_sube_doc").enctype = "application/x-www-form-urlencoded";
-        document.getElementById("tipo_envio").value = "simple";
-        document.getElementById("rotulo").innerHTML = "Subida al expediente de " + id + " - " + nom;
-        document.getElementById("div_nomArchOriginal").style.display="inherit";
-        document.getElementById("nomArchOriginal").disabled=false;
-        $("option[data=simple]").show();
-    }
+    $("#div_dialogs").load("html/secretaria.txt #div_sube_docs", function(response,status,xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        }
+        else{
+            document.getElementById("id_nie").value = id;
+            document.getElementById("curso_doc").value = anno_ini_curso_docs + "-" + (anno_ini_curso_docs + 1);
+            if (id == "varios") {
+                document.getElementById("documento").multiple = true;
+                document.getElementById("form_sube_doc").enctype = "multipart/form-data";
+                document.getElementById("tipo_envio").value = "multiple";
+                document.getElementById("rotulo").innerHTML = "SUBIDA MASIVA DE DOCUMENTOS";
+                $("option[data=simple]").hide();
+                document.getElementById("div_nomArchOriginal").style.display="none";
+            } else {
+                document.getElementById("documento").multiple = false;
+                document.getElementById("form_sube_doc").enctype = "application/x-www-form-urlencoded";
+                document.getElementById("tipo_envio").value = "simple";
+                document.getElementById("rotulo").innerHTML = "Subida al expediente de " + id + " - " + nom;
+                document.getElementById("div_nomArchOriginal").style.display="inherit";
+                document.getElementById("nomArchOriginal").disabled=false;
+                $("option[data=simple]").show();
+            }
+            $("#div_sube_docs").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "SUBIR DOCUMENTOS A EXPEDIENTE",
+                maxHeight: 600,
+                width: 600
+            });
+        }
+    });
+
+    //$("#form_sube_doc").trigger("reset");
+    //$("#div_sube_docs").dialog('open');
+    
 }
 
 function selTipoDoc(obj) {
