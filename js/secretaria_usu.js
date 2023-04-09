@@ -641,7 +641,7 @@ function confirmadoEliminarUsuario(nie_borrar) {
             } else {
                 alerta("Usuario eliminado con éxito.", "BORRADO OK");
             }
-            $('#div_elimina_usuario').dialog('close');
+            $('#div_dialogs').dialog('close');
             listaUsus();
             listaRegistros(_orden_campo, _orden_direccion);
         });
