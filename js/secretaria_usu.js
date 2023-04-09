@@ -808,6 +808,10 @@ function subeDoc() {
         }
     }
     if (document.getElementById("tipo_envio").value == "simple") {
+        if(document.getElementById("documento").files.length==0){
+            alerta("No hay seleccionado ningún archivo.", "ERROR");
+            return;
+        }
         if (td == "Documento de Identificación-Anverso" || td == "Documento de Identificación-Reverso" || td == "Fotografía del alumno" || td == "Seguro Escolar") {
             if (document.getElementById("documento").files[0].type != "image/jpeg") {
                 alerta("Formato de archivo no válido", "NO VÁLIDO");
