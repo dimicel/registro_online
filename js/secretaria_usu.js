@@ -544,46 +544,44 @@ function confirmaCambioNombreDoc() {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
-        $("#div_dialogs").load("html/secretaria.txt #div_expediente_usuario", function(response,status, xhr){
-            if ( status == "error" ) {
-                var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-                alerta(msg,"ERROR DE CARGA");
+    $("#div_dialogs").load("html/secretaria.txt #div_expediente_usuario", function(response,status, xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        }
+        else{
+            $("#nie_exp").html(id_nie);
+            $("#nombre_exp").html(nom);
+            document.getElementById("curso_exp").innerHTML="";
+            document.getElementById("curso_exp").append(new Option("Todos", "todos"));
+            cuenta_annos = anno_ini_curso_docs;
+            if (mes == 6) cuenta_annos++;
+            for (i = 2020; i <= cuenta_annos; i++) {
+                var c = i + "-" + (i + 1);
+                document.getElementById("curso_exp").append(new Option(c, c));
             }
-            else{
-                $("#nie_exp").html(id_nie);
-                $("#nombre_exp").html(nom);
-                document.getElementById("curso_exp").innerHTML="";
-                document.getElementById("curso_exp").append(new Option("Todos", "todos"));
-                cuenta_annos = anno_ini_curso_docs;
-                if (mes == 6) cuenta_annos++;
-                for (i = 2020; i <= cuenta_annos; i++) {
-                    var c = i + "-" + (i + 1);
-                    document.getElementById("curso_exp").append(new Option(c, c));
-                }
-                document.getElementById("curso_exp").selectIndex=0;
-                obtieneDocsExpediente();
-                $("#div_dialogs").dialog({
-                    autoOpen: true,
-                    dialogClass: "alert no-close",
-                    modal: true,
-                    hide: { effect: "fade", duration: 0 },
-                    resizable: false,
-                    show: { effect: "fade", duration: 0 },
-                    title: "EXPEDIENTE DEL USUARIO",
-                    width: 500,
-                    buttons: [{
-                        class: "btn btn-success textoboton",
-                        text: "Cerrar",
-                        click: function() {
-                            $("#div_dialogs").dialog("close");
-                            $("#div_dialogs").dialog("destroy");
-                        }
-                    }]
-                });
-            }
-        });
-       
-    
+            document.getElementById("curso_exp").selectIndex=0;
+            obtieneDocsExpediente();
+            $("#div_dialogs").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "EXPEDIENTE DEL USUARIO",
+                width: 500,
+                buttons: [{
+                    class: "btn btn-success textoboton",
+                    text: "Cerrar",
+                    click: function() {
+                        $("#div_dialogs").dialog("close");
+                        $("#div_dialogs").dialog("destroy");
+                    }
+                }]
+            });
+        }
+    });  
 }
 
 
