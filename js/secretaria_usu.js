@@ -116,19 +116,6 @@ $(function() {
         }
     });
 
-
-    $("#div_elimina_usuario").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "ELIMINACIÓN DE USUARIO",
-        maxHeight: 500,
-        width: 550
-    });
-
     $("#div_borra_doc").dialog({
         autoOpen: false,
         dialogClass: "alert no-close",
