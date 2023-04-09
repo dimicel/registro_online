@@ -116,19 +116,6 @@ $(function() {
         }
     });
 
-    $("#div_camb_nom_doc").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "CAMBIO DE NOMBRE DE DODUMENTO DEL EXPEDIENTE",
-        maxHeight: 500,
-        width: 550
-    });
-
-
     $("#div_modif_datos_usu").dialog({
         autoOpen: false,
         dialogClass: "alert no-close",
@@ -408,29 +395,49 @@ function confirmadoBorradoDoc() {
 }
 
 function cambiaNomDocExp(obj) {
-    document.getElementById("nuevo_nom").value="";
-    document.getElementById("tm_doc_cod_seg").value="";
-    _rut_comp = obj.parentElement.children[1].children[0].href;
-    _rut = ".." + _rut_comp.substr(_rut_comp.indexOf("/docs/"));
-    _doc_curso = obj.parentElement.children[0].innerHTML;
-    _doc_documento_pos = _rut.indexOf(_doc_curso);
-    _doc_documento = _rut.substr(_doc_documento_pos + 10);
-    document.getElementById("ruta_nuevo_nombre_doc").value = _rut.substr(0, _rut.length - _doc_documento.length);
-    document.getElementById("ext_nuevo_nombre_doc").value = _rut.split('.').pop();
-    document.getElementById("m_doc_cod_seg").value = "";
-    document.getElementById("camb_ruta").value = _rut;
-    document.getElementById("doc_documento").innerHTML = "Curso: " + _doc_curso + " Nombre: " + _doc_documento;
-    cod_seg = Math.floor(Math.random() * 1000).toString();
-    if (cod_seg.length < 4) {
-        aux = "";
-        for (i = cod_seg.length; i < 4; i++) {
-            aux += "0";
+    $("#div_dialogs2").load("html/secretaria.txt #div_camb_nom_doc", function(response,status, xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
         }
-        cod_seg = aux + cod_seg;
-    }
-
-    document.getElementById("m_doc_cod_seg").innerHTML = cod_seg;
-    $('#div_camb_nom_doc').dialog('open');
+        else{
+            document.getElementById("nuevo_nom").value="";
+            document.getElementById("tm_doc_cod_seg").value="";
+            _rut_comp = obj.parentElement.children[1].children[0].href;
+            _rut = ".." + _rut_comp.substr(_rut_comp.indexOf("/docs/"));
+            _doc_curso = obj.parentElement.children[0].innerHTML;
+            _doc_documento_pos = _rut.indexOf(_doc_curso);
+            _doc_documento = _rut.substr(_doc_documento_pos + 10);
+            document.getElementById("ruta_nuevo_nombre_doc").value = _rut.substr(0, _rut.length - _doc_documento.length);
+            document.getElementById("ext_nuevo_nombre_doc").value = _rut.split('.').pop();
+            document.getElementById("m_doc_cod_seg").value = "";
+            document.getElementById("camb_ruta").value = _rut;
+            document.getElementById("doc_documento").innerHTML = "Curso: " + _doc_curso + " Nombre: " + _doc_documento;
+            cod_seg = Math.floor(Math.random() * 1000).toString();
+            if (cod_seg.length < 4) {
+                aux = "";
+                for (i = cod_seg.length; i < 4; i++) {
+                    aux += "0";
+                }
+                cod_seg = aux + cod_seg;
+            }
+            document.getElementById("m_doc_cod_seg").innerHTML = cod_seg;
+            $("#div_dialogs2").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "CAMBIO DE NOMBRE DE DODUMENTO DEL EXPEDIENTE",
+                maxHeight: 500,
+                width: 550,
+                close:function(event,ui){
+                    $("#div_dialogs2").dialog("destroy");
+                }
+            });
+        }
+    });
 }
 
 
@@ -457,7 +464,7 @@ function confirmaCambioNombreDoc() {
             } else if(resp="duplicado"){
                 alerta("No se ha renomnbrado el archivo porque en la misma carpeta ya existe otro fichero con el mismo nombre", "ERROR DE DUPLICADO");
             }
-            $('#div_camb_nom_doc').dialog('close');
+            $('#div_dialogs2').dialog('close');
             obtieneDocsExpediente();
         });
     } else {
