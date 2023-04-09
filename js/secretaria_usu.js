@@ -849,6 +849,10 @@ function subeDoc() {
         else if (td == "Documento de Identificación-Reverso") datos.set("parte", "R");
         tipoContenido = false;
     } else if (document.getElementById("tipo_envio").value == "multiple") {
+        if(document.getElementById("documento").files.length==0){
+            alerta("No hay seleccionado ningún archivo.", "ERROR");
+            return;
+        }
         for (i = 0; i < document.getElementById("documento").files.length; i++) {
             if (document.getElementById("documento").files[i].type != "application/pdf") {
                 alerta("Alguno de los archivos no tiene un formato válido.", "NO VÁLIDO");
