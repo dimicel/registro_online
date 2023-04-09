@@ -589,19 +589,41 @@ function panelEnvioEmail(dir_email) {
 }
 
 function eliminaUsuario(id, nom) {
-    document.getElementById("t_cod_seg").value = "";
-    cod_seg = Math.floor(Math.random() * 1000).toString();
-    document.getElementById("nie_eliminar").value = id;
-    document.getElementById("id_usu_elim").innerHTML = id + " - " + nom;
-    if (cod_seg.length < 4) {
-        aux = "";
-        for (i = cod_seg.length; i < 4; i++) {
-            aux += "0";
+    $("#div_dialogs").load("html/secretaria.txt #div_elimina_usuario", function(response,status,xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
         }
-        cod_seg = aux + cod_seg;
-    }
-    document.getElementById("cod_seg").innerHTML = cod_seg;
-    $('#div_elimina_usuario').dialog('open');
+        else{
+            document.getElementById("t_cod_seg").value = "";
+            cod_seg = Math.floor(Math.random() * 1000).toString();
+            document.getElementById("nie_eliminar").value = id;
+            document.getElementById("id_usu_elim").innerHTML = id + " - " + nom;
+            if (cod_seg.length < 4) {
+                aux = "";
+                for (i = cod_seg.length; i < 4; i++) {
+                    aux += "0";
+                }
+                cod_seg = aux + cod_seg;
+            }
+            document.getElementById("cod_seg").innerHTML = cod_seg;
+            $("#div_dialogs").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "ELIMINACIÓN DE USUARIO",
+                maxHeight: 500,
+                width: 550,
+                close:function(event,ui){
+                    $("#div_dialogs").dialog("destroy");
+                }
+            });
+        }
+    });
+    
 }
 
 

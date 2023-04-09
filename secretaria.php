@@ -512,39 +512,6 @@
     <!-- FIN SELECCIÓN TIPO LISTADO MATRÍCULAS ________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
 
-    <!-- PANEL CONFIRMACIÓN ELIMINADO DE USUARIO ______________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-    <div id="div_elimina_usuario" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
-        <input type="hidden" id="nie_eliminar"/>
-        <div class="row justify-content-center" >
-            <span>Se eliminará al usuario</span>
-        </div>
-        <div class="row justify-content-center" >
-            <span id="id_usu_elim" style="color:brown"></span>
-        </div>
-        <hr>
-        <div class="row justify-content-center align-items-center" style="margin-top:10px">
-            <div class="col-4">
-                <label style="color:BLACK !important">Código de seguridad:</label>
-            </div>
-            <div class="col-2">
-                <label id="cod_seg" style="color:RED;font-size:200% !important"></label>
-            </div>
-        </div>
-        <div class="row justify-content-center" style="padding:10px">
-            <label class="col-form-label col-8">Escriba el código de seguridad para confirmar:</label>
-            <input type="text" size="5" id="t_cod_seg" class="form-control col-2" />
-        </div>
-        <hr>
-        <div class="row justify-content-center" style="margin-top:10px">
-            <input type="button" value="Eliminar Usuario" class="btn btn-success textoboton" onclick="javascript:confirmadoEliminarUsuario(document.getElementById('nie_eliminar').value);" />
-            <input type="button" value="Cancelar" class="btn btn-success textoboton" style="margin-left:5px" onclick="document.getElementById('t_cod_seg').value='';$('#div_elimina_usuario').dialog('close');" />
-        </div>
-    </div>
-
-    <!-- FIN CONFIRMACIÓN ELIMINADO DE USUARIO ________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-
     <!-- PANEL CONFIRMACIÓN BORRADO DOCUMENTO EXPEDIENTE ______________________________________________-->
     <!--_______________________________________________________________________________________________-->
     <div id="div_borra_doc" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
