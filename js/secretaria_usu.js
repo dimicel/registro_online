@@ -749,7 +749,7 @@ function subeDocExpediente(id, nom) {
                 document.getElementById("nomArchOriginal").disabled=false;
                 $("option[data=simple]").show();
             }
-            $("#div_sube_docs").dialog({
+            $("#div_dialogs").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
                 modal: true,
@@ -758,13 +758,13 @@ function subeDocExpediente(id, nom) {
                 show: { effect: "fade", duration: 0 },
                 title: "SUBIR DOCUMENTOS A EXPEDIENTE",
                 maxHeight: 600,
-                width: 600
+                width: 600,
+                close:function(event,ui){
+                    $("#div_dialogs").dialog("destroy");
+                }
             });
         }
     });
-
-    //$("#form_sube_doc").trigger("reset");
-    //$("#div_sube_docs").dialog('open');
     
 }
 
@@ -925,12 +925,6 @@ function subeDoc() {
             document.getElementById("nom_doc").value="";
             document.getElementById("nom_doc").disabled=false;
         });
-}
-
-function cierraPanelSubeDoc() {
-    validFormSubeDoc.resetForm();
-    //document.getElementById("div_nom_doc").style.display = "none";
-    $('#div_sube_docs').dialog('close');
 }
 
 function bloqueaNomArch(){
