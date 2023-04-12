@@ -593,7 +593,6 @@ function panelModUsu(id) {
                     form_modif_datos_usu.mod_apellidos.value = resp.registro.apellidos;
                     form_modif_datos_usu.mod_nif.value = resp.registro.nif;
                     form_modif_datos_usu.mod_email.value = resp.registro.email;
-                    $("#div_dialogs").dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + resp.registro.apellidos + ", " + resp.registro.nombre);
                 }
                 return $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, () => {}, "json");
             });
@@ -698,6 +697,7 @@ function panelModUsu(id) {
                         $("#div_dialogs").dialog("destroy");
                     }
                 });
+                $("#div_dialogs").dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
             });
         }
     });
