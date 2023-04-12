@@ -346,68 +346,6 @@
     </div>
     <!--______________________________________________________________________________________________-->
 
-    <!-- NUEVO USUARIO _______________________________________________________________________________-->
-    <!--______________________________________________________________________________________________-->
-    <div id="div_nuevo_registro" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
-        <!--<div style="display:table-cell; padding-left:10px; padding-top: 10px">
-            <img src="recursos/escudo2.jpg" width="115" height="105" alt="Escudo_Uni">
-        </div>-->
-        <div>
-            <label style="margin-left:10px; color:red !important; font-size: 0.8em !important;">Si sube un archivo CSV para generación masiva de contraseñas, asegúrese de que la columna del nº de NIE está encabezada con el texto C_NUMESCOLAR</label>
-            <form id="form_alta_usuario" class="form needs-validation" novalidate>
-                <div class="row form-group">
-                    <div class="col-lg-12">
-                        <label class="col-form-label">NIE</label>
-                        <input type="text" id="nr_nie" name="nie" class="form-control" required/>
-                        <div class="invalid-feedback">Introduzca el NIE del nuevo usuario</div>
-                        <div class="valid-feedback"></div>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-lg-12">
-                        <label class="col-form-label">Email <small>(Para envío de credenciales, futuras comunicaciones, recuperación de contraseña...)</small></label>
-                        <input type="email" id="nr_email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
-                        <div class="invalid-feedback">Introduzca un email válido.</div>
-                        <div class="valid-feedback"></div>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-lg-6">
-                        <label class="col-form-label">Nombre</label>
-                        <input type="text" id="nr_nombre" name="nombre" class="form-control" />
-                    </div>
-                    <div class="col-lg-6">
-                        <label class="col-form-label">Apellidos</label>
-                        <input type="text" id="nr_apellidos" name="apellidos" class="form-control" />
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-lg-6">
-                        <label class="col-form-label">NIF/NIE</label>
-                        <input type="text" id="nr_nif" name="nif" class="form-control" />
-                    </div>
-                    <div class="col-lg-6">
-                        <label class="col-form-label">Contraseña</label>
-                        <input type="text" id="nr_password" name="password" class="form-control" readonly/>
-                    </div>
-                </div>
-            </form>
-            <div style="clear: both;"></div>
-            <div style="display:inline;float:left; margin-left:15px">
-                <form id="form_Upload_Excel">
-                    <input type="file" id="nr_excel" name="excel" accept=".csv" style="display:none" onchange="subeExcel(this)" />
-                    <input type="button" value="Subir Archivo" class="textoboton btn btn-success" onclick="document.getElementById('nr_excel').click();" />
-                    <input type="button" value="Limpiar Formulario" class="textoboton btn btn-success" onclick="javascript:document.getElementById('form_alta_usuario').reset();generaPass();" />
-                </form>
-            </div>
-            <div style="display:inline;float:right; margin-right:15px">
-                <input type="button" value="Aceptar" class="textoboton btn btn-success" onclick="altaUsuario()" />
-                <input type="button" value="Salir" class="textoboton btn btn-success" onclick="javascript:document.getElementById('form_alta_usuario').reset(); $('#div_nuevo_registro').dialog('close');" />
-            </div>
-        </div>
-    </div>
-    <!-- FIN NUEVO USUARIO ____________________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
 
     <!-- REASIGNACIÓN DE PASSWORD _____________________________________________________________________-->
     <!--_______________________________________________________________________________________________-->

@@ -54,17 +54,7 @@ $(function() {
     }, "json");
 
 
-    $("#div_nuevo_registro").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "NUEVAS ALTAS",
-        maxHeight: 500,
-        width: 550
-    });
+
 
     $("#div_nie_registrado").dialog({
         autoOpen: false,
@@ -862,8 +852,29 @@ function actualizaIncidencias(registro, form, incidencias) {
 }
 
 function panelNuevoUsuario() {
-    generaPass();
-    $('#div_nuevo_registro').dialog('open');
+    $("#div_dialogs").load("html/secretaria.txt #div_nuevo_registro", function(response,status, xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        }
+        else{
+            generaPass();
+            $("#div_dialogs").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "NUEVAS ALTAS",
+                maxHeight: 500,
+                width: 550,
+                close:function(event,ui){
+                    $("#div_dialogs").dialog("destroy");
+                }
+            });
+        }
+    });
 }
 
 function generaPass() {
