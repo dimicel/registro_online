@@ -368,35 +368,6 @@
     <!-- FIN REASIGNACIÓN DE PASSWORD _________________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
 
-    <!-- DOCS DE LA MATRÍCULA _________________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-    <div id="div_docs_matricula" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
-        <div style="display:inline-block">
-            <label>SEGURO ESCOLAR</label><br>
-            <a id="seguro_link"><img id="doc_mat_seguro" width="400" height="200"></a>
-        </div>
-        <div style="display:inline-block">
-            <label>FOTOGRAFÍA</label><br>
-            <a id="foto_link"><img id="doc_mat_foto" width="150" height="200"></a>
-        </div>
-        <div style="clear:both"></div>
-        <div style="display:inline-block">
-            <label>DNI/NIE ANVERSO</label><br>
-            <a id="dni_a_link"><img id="doc_dni_a" width="300" height="150"></a>
-        </div>
-        <div style="display:inline-block">
-            <label>DNI/NIE REVERSO</label><br>
-            <a id="dni_r_link"><img id="doc_dni_r" width="300" height="150"></a>
-        </div>
-        <div style="clear:both"></div>
-        <div style="text-align: center; margin-top:15px">
-            <input type="button" value="Cerrar" class="btn btn-success textoboton" onclick="$('#div_docs_matricula').dialog('close');" />
-        </div>
-
-    </div>
-    <!-- FIN DOCS DE LA MATRÍCULA _____________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-
     <!-- SELECCIÓN TIPO LISTADO MATRÍCULAS ____________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
     <div id="div_listadoMatriculas" style="display: none;  padding: 5px; overflow:hidden" class="ui-widget-header ui-corner-all alertas">
