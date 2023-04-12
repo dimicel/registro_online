@@ -113,8 +113,7 @@ $(function() {
                 id = $(this).children("td:nth-child(2)").html();
             }
             if (key == "edit") {
-                document.getElementById("dat_idnie").value = id;
-                panelModUsu();
+                panelModUsu(id);
             } else if (key=="delete") {
                 eliminaUsuario(id);
             }
