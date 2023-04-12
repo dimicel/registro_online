@@ -694,6 +694,8 @@ function panelModUsu(id) {
                     maxHeight: 800,
                     width: 1100,
                     close: function(event,ui){
+                        $("#dat_fecha_nac").datepicker("destroy");
+                        $("#form_modif_datos_usu").validate().destroy();
                         $("#div_dialogs").dialog("destroy");
                     }
                 });
