@@ -530,24 +530,7 @@
     <div id="mensaje_div" class="alertas"></div>
     <div id="div_dialogs" class="ui-widget-header ui-corner-all alertas"></div>
     <div id="div_dialogs2" class="ui-widget-header ui-corner-all alertas"></div>
-    <div id="formulario_descargar_solicitudes" style="display:none">
-        <form id="descarga_sol" action="php/secret_descargaregistros.php" method="POST" target="_blank">
-            <input type="hidden" id="curso_listado" name="curso_listado" />
-            <input type="hidden" id="formulario" name="formulario" />
-            <input type="hidden" id="tipo_listado" name="tipo_listado" />
-            <input type="hidden" id="registros" name="registros" />
-            <input type="hidden" id="orden_campo" name="orden_campo" />
-            <input type="hidden" id="orden_direccion" name="orden_direccion" />
-            <input type="hidden" id="orden_texto" name="orden_texto" />
-            <input type="hidden" id="mat_consolidadas" name="mat_consolidadas" value="" />
-            <input type="hidden" id="mat_curso" name="mat_curso" value="" />
-            <input type="hidden" id="grado" name="grado" value="" />
-            <input type="hidden" id="ciclo" name="ciclo" value="" />
-            <input type="hidden" id="curso_ciclo" name="curso_ciclo" value="" />
-            <input type="hidden" id="turno" name="turno" value="" />
-
-        </form>
-    </div>
+    
     <div id="formulario_descargar_csv" style="display:none">
         <form id="descarga_csv_premat" action="php/secret_csv_prematricula.php" method="POST" target="_self">
             <input type="hidden" id="premat_csv" name="premat_csv" />

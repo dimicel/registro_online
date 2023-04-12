@@ -958,73 +958,83 @@ function habilitaMenu(m2, m3) {
 
 
 function registrosAPdf(tipo_listado) {
-    //tipo_listado=>seleccionadas, no listadas, listadas, todas, ''
-    if (tipo_listado == '') {
-        if (document.getElementById("listadas_seleccionadas").checked) tipo_listado = "seleccionadas";
-        else if (document.getElementById("listadas_si").checked) tipo_listado = "listadas";
-        else if (document.getElementById("listadas_no").checked) tipo_listado = "no listadas";
-        else if (document.getElementById("listadas_todas").checked) tipo_listado = "todas";
-
-        if (document.getElementById("tipo_form").value == "matricula") {
-            if (document.getElementById("cons_si").checked) document.getElementById("mat_consolidadas").value = "consolidadas";
-            else if (document.getElementById("cons_no").checked) document.getElementById("mat_consolidadas").value = "no consolidadas";
-            else if (document.getElementById("cons_todas").checked) document.getElementById("mat_consolidadas").value = "todas";
+    $("#div_dialogs").load("html/secretaria.txt #formulario_descargar_solicitudes", function(response,status, xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
         }
+        else{
+            //tipo_listado=>seleccionadas, no listadas, listadas, todas, ''
+            if (tipo_listado == '') {
+                if (document.getElementById("listadas_seleccionadas").checked) tipo_listado = "seleccionadas";
+                else if (document.getElementById("listadas_si").checked) tipo_listado = "listadas";
+                else if (document.getElementById("listadas_no").checked) tipo_listado = "no listadas";
+                else if (document.getElementById("listadas_todas").checked) tipo_listado = "todas";
 
-        document.getElementById("mat_curso").value = document.getElementById("curso_mat").value;
-        if (document.getElementById("tipo_form").value == "matricula_ciclos") {
-            document.getElementById("mat_curso").value = "ciclos";
-            document.getElementById("ciclo").value = document.getElementById("mat_ciclos").value;
-            document.getElementById("curso_ciclo").value = document.getElementById("mat_ciclos_curso").value;
-            document.getElementById("turno").value = document.getElementById("mat_ciclos_turno").value;
-            ciclo_seleccionado = document.getElementById("mat_ciclos").options[document.getElementById("mat_ciclos").selectedIndex].text;
-            document.getElementById("grado").value = ciclo_seleccionado.substr(0, 2);
-        } else if (document.getElementById("tipo_form").value == "matricula_fpb") {
-            document.getElementById("mat_curso").value = "fpb";
-            document.getElementById("ciclo").value = document.getElementById("mat_fpb").value;
-            document.getElementById("curso_ciclo").value = document.getElementById("mat_fpb_curso").value;
-        }
-        $('#div_listadoMatriculas').dialog('close');
-    }
-    document.getElementById('formulario').value = document.getElementById('tipo_form').value;
-    document.getElementById("tipo_listado").value = tipo_listado;
-    document.getElementById("curso_listado").value = document.getElementById("curso").value;
-    encab = document.getElementById("encabezado_docs").rows[0];
+                if (document.getElementById("tipo_form").value == "matricula") {
+                    if (document.getElementById("cons_si").checked) document.getElementById("mat_consolidadas").value = "consolidadas";
+                    else if (document.getElementById("cons_no").checked) document.getElementById("mat_consolidadas").value = "no consolidadas";
+                    else if (document.getElementById("cons_todas").checked) document.getElementById("mat_consolidadas").value = "todas";
+                }
 
-    for (i = 0; i < encab.cells.length; i++) {
-        if (encab.cells[i].innerHTML.indexOf("🡅") != -1) {
-            document.getElementById("orden_campo").value = campos[encabezamiento.indexOf(encab.cells[i].innerHTML)];
-            document.getElementById("orden_direccion").value = "ASC";
-            document.getElementById("orden_texto").value = encab.cells[i].innerHTML.substring(0, encab.cells[i].innerHTML.length - 3) + " (ASCENDENTE)";
-            break;
-        } else if (encab.cells[i].innerHTML.indexOf("🡇") != -1) {
-            document.getElementById("orden_campo").value = campos[encabezamiento.indexOf(encab.cells[i].innerHTML)];
-            document.getElementById("orden_direccion").value = "DESC";
-            document.getElementById("orden_texto").value = encab.cells[i].innerHTML.substring(0, encab.cells[i].innerHTML.length - 3) + " (DESCENDENTE)";
-            break;
-        }
-    }
-
-    registros = new Array();
-    if (tipo_listado == "seleccionadas") {
-        for (i = 0; i < encabezamiento.length; i++) {
-            if (encabezamiento[i].indexOf("Nº Registro") != -1) {
-                posicion_campo_registro = i;
-                break;
+                document.getElementById("mat_curso").value = document.getElementById("curso_mat").value;
+                if (document.getElementById("tipo_form").value == "matricula_ciclos") {
+                    document.getElementById("mat_curso").value = "ciclos";
+                    document.getElementById("ciclo").value = document.getElementById("mat_ciclos").value;
+                    document.getElementById("curso_ciclo").value = document.getElementById("mat_ciclos_curso").value;
+                    document.getElementById("turno").value = document.getElementById("mat_ciclos_turno").value;
+                    ciclo_seleccionado = document.getElementById("mat_ciclos").options[document.getElementById("mat_ciclos").selectedIndex].text;
+                    document.getElementById("grado").value = ciclo_seleccionado.substr(0, 2);
+                } else if (document.getElementById("tipo_form").value == "matricula_fpb") {
+                    document.getElementById("mat_curso").value = "fpb";
+                    document.getElementById("ciclo").value = document.getElementById("mat_fpb").value;
+                    document.getElementById("curso_ciclo").value = document.getElementById("mat_fpb_curso").value;
+                }
+                $('#div_listadoMatriculas').dialog('close');
             }
-        }
-        tab = document.getElementById("registros_docs");
-        for (i = 0; i < tab.rows.length; i++) {
-            if (tab.rows[i].cells[0].children[0].checked) registros.push(tab.rows[i].cells[posicion_campo_registro + 1].innerHTML);
-        }
-    }
+            document.getElementById('formulario').value = document.getElementById('tipo_form').value;
+            document.getElementById("tipo_listado").value = tipo_listado;
+            document.getElementById("curso_listado").value = document.getElementById("curso").value;
+            encab = document.getElementById("encabezado_docs").rows[0];
 
-    document.getElementById("registros").value = JSON.stringify(registros);
-    document.getElementById("descarga_sol").submit();
-    boton_refrescar = "<center><input style='font-size:1.5em !important' type=\"button\" class=\"btn btn-success textoboton\" value=\"Refrescar Listado\" onclick=\"";
-    boton_refrescar += "listaRegistros(_orden_campo,_orden_direccion);\">";
-    boton_refrescar += "</center>";
-    document.getElementById("registros_docs").innerHTML = boton_refrescar;
+            for (i = 0; i < encab.cells.length; i++) {
+                if (encab.cells[i].innerHTML.indexOf("🡅") != -1) {
+                    document.getElementById("orden_campo").value = campos[encabezamiento.indexOf(encab.cells[i].innerHTML)];
+                    document.getElementById("orden_direccion").value = "ASC";
+                    document.getElementById("orden_texto").value = encab.cells[i].innerHTML.substring(0, encab.cells[i].innerHTML.length - 3) + " (ASCENDENTE)";
+                    break;
+                } else if (encab.cells[i].innerHTML.indexOf("🡇") != -1) {
+                    document.getElementById("orden_campo").value = campos[encabezamiento.indexOf(encab.cells[i].innerHTML)];
+                    document.getElementById("orden_direccion").value = "DESC";
+                    document.getElementById("orden_texto").value = encab.cells[i].innerHTML.substring(0, encab.cells[i].innerHTML.length - 3) + " (DESCENDENTE)";
+                    break;
+                }
+            }
+
+            registros = new Array();
+            if (tipo_listado == "seleccionadas") {
+                for (i = 0; i < encabezamiento.length; i++) {
+                    if (encabezamiento[i].indexOf("Nº Registro") != -1) {
+                        posicion_campo_registro = i;
+                        break;
+                    }
+                }
+                tab = document.getElementById("registros_docs");
+                for (i = 0; i < tab.rows.length; i++) {
+                    if (tab.rows[i].cells[0].children[0].checked) registros.push(tab.rows[i].cells[posicion_campo_registro + 1].innerHTML);
+                }
+            }
+
+            document.getElementById("registros").value = JSON.stringify(registros);
+            document.getElementById("descarga_sol").submit();
+            boton_refrescar = "<center><input style='font-size:1.5em !important' type=\"button\" class=\"btn btn-success textoboton\" value=\"Refrescar Listado\" onclick=\"";
+            boton_refrescar += "listaRegistros(_orden_campo,_orden_direccion);\">";
+            boton_refrescar += "</center>";
+            document.getElementById("registros_docs").innerHTML = boton_refrescar;
+        }
+    });
+
+
 }
 
 
