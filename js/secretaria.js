@@ -53,9 +53,6 @@ $(function() {
         if (t1 && t2) document.getElementById("cargando").style.display = 'none';
     }, "json");
 
-
-
-
     $("#div_nie_registrado").dialog({
         autoOpen: false,
         dialogClass: "alert no-close",
@@ -78,7 +75,6 @@ $(function() {
         title: "MATRÍCULAS: SELECCIÓN TIPO LISTADO",
         width: 900
     });
-
 
     $("#formulario_subir_mat_delphos").dialog({
         autoOpen: false,
