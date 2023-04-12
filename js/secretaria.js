@@ -1198,7 +1198,7 @@ function listadoSeguroEscolarCiclos() {
     document.getElementById("descarga_csv_segurociclos").submit();
 }
 
-
+//Oculta los cursos que no deben aparecer en función del año por los cambios de la ley
 function ocultaCursosDesplegable() {
     if (document.getElementById("curso").value == "2020-2021") {
         $("[itemprop='2020-2021']").show();
