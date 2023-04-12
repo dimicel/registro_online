@@ -13,8 +13,7 @@ $(function() {
             id = $(this).children("td:first").html();
             nom = $(this).children("td:nth-child(2)").html();
             if (key == "edit") {
-                document.getElementById("dat_idnie").value = id;
-                panelModUsu();
+                panelModUsu(id);
             } else if (key == "delete") {
                 eliminaUsuario(id, nom);
             } else if (key == "upload") {
@@ -575,7 +574,7 @@ function confirmadoEliminarUsuario(nie_borrar) {
     }
 }
 
-function panelModUsu() {
+function panelModUsu(id) {
     $("#div_dialogs").load("html/secretaria.txt #div_modif_datos_usu", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
@@ -583,6 +582,7 @@ function panelModUsu() {
         }
         else{
             document.getElementById("cargando").style.display = 'inherit';
+            document.getElementById("dat_idnie").value = id;
             prom1 = Promise.resolve($.post("php/secret_usu_recdatusu.php", { id: document.getElementById("dat_idnie").value }, () => {}, "json"));
             prom2 = prom1.then((resp) => {
                 if (resp.error == "server") alerta("Se ha producido un error en el servidor. Inténtelo más tarde", "ERROR DE SERVIDOR");
