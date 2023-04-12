@@ -7,23 +7,6 @@ var validFormSubeDoc;
 //var alto_tabla_usus=480;
 
 $(function() {
-    $("#dat_fecha_nac").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        dateFormat: "dd/mm/yy",
-        dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
-        firstDay: 1,
-        monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-        monthNameShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-        showButtonPanel: true,
-        currentText: "Hoy",
-        closeText: "Cerrar",
-        minDate: new Date(2000, 0, 1),
-        maxDate: "-12y",
-        nextText: "Siguiente",
-        prevText: "Previo"
-    });
-
     $('#registros_usus').contextMenu({
         selector: 'tr',
         callback: function(key, options) {
@@ -68,67 +51,7 @@ $(function() {
     $('#navegacion_usus_top a').addClass('page-link');
     $('#navegacion_usus_bottom li').addClass('page-item');
     $('#navegacion_usus_bottom a').addClass('page-link');
-    listaUsus();
-
-    $("#form_modif_datos_usu").validate({
-        rules: {
-            mod_nombre: {
-                required: true
-            },
-            mod_apellidos: {
-                required: true
-            },
-            mod_email: {
-                email: true
-            },
-            dat_email: {
-                email: true
-            },
-            dat_email_tut1: {
-                email: true
-            },
-            dat_email_tut2: {
-                email: true
-            }
-        },
-        messages: {
-            mod_nombre: {
-                required: "No puede dejar el nombre en blanco"
-            },
-            mod_apellidos: {
-                required: "No puede dejar los apellidos en blanco"
-            },
-            mod_email: {
-                email: "Dirección de email no válida"
-            },
-            dat_email: {
-                email: "No es una dirección de correo electrónico."
-            },
-            dat_email_tut1: {
-                email: "No es una dirección de correo electrónico."
-            },
-            dat_email_tut2: {
-                email: "No es una dirección de correo electrónico."
-            }
-        },
-        errorPlacement: function(error, element) {
-            $(element).prev($('.errorTxt')).html(error);
-        }
-    });
-
-    $("#div_modif_datos_usu").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "MODIFICAR DATOS DE USUARIO",
-        maxHeight: 800,
-        width: 1100
-    });
-
-    
+    listaUsus();    
 });
 
 
@@ -655,46 +578,133 @@ function confirmadoEliminarUsuario(nie_borrar) {
 }
 
 function panelModUsu() {
-    document.getElementById("cargando").style.display = 'inherit';
-    prom1 = Promise.resolve($.post("php/secret_usu_recdatusu.php", { id: document.getElementById("dat_idnie").value }, () => {}, "json"));
-    prom2 = prom1.then((resp) => {
-        if (resp.error == "server") alerta("Se ha producido un error en el servidor. Inténtelo más tarde", "ERROR DE SERVIDOR");
-        else if (resp.error == "duplicado") alerta("Existe más de un usuario con el mismo NIE. Póngse en contacto con el programador de la plataforma.", "REGISTRO DUPLICADO");
-        else if (resp.error == "no_existe") alerta("El usuario no se encuentra. Debe haber un problema en la base de datos.", "USUARIO INEXISTENTE");
-        else if (resp.error == "ok") {
-            form_modif_datos_usu.mod_nombre.value = resp.registro.nombre;
-            form_modif_datos_usu.mod_apellidos.value = resp.registro.apellidos;
-            form_modif_datos_usu.mod_nif.value = resp.registro.nif;
-            form_modif_datos_usu.mod_email.value = resp.registro.email;
-            $("#div_modif_datos_usu").dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + resp.registro.apellidos + ", " + resp.registro.nombre);
+    $("#div_dialogs").load("html/secretaria.txt #div_modif_datos_usu", function(response,status,xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
         }
-        return $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, () => {}, "json");
-    });
-    prom3 = prom2.then((resp) => {
-        if (resp.error == "ok") {
-            for (e in resp.datos) {
-                if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
-            }
-            f_nac = resp.datos.fecha_nac;
-            if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
-            form_modif_datos_usu.dat_sexo.value = resp.datos.sexo;
-            form_modif_datos_usu.dat_fecha_nac.value = f_nac;
-            form_modif_datos_usu.dat_telefono.value = resp.datos.telef_alumno;
-            form_modif_datos_usu.dat_email.value = resp.datos.email;
-            form_modif_datos_usu.dat_direccion.value = resp.datos.direccion;
-            form_modif_datos_usu.dat_cp.value = resp.datos.cp;
-            form_modif_datos_usu.dat_localidad.value = resp.datos.localidad;
-            form_modif_datos_usu.dat_provincia.value = resp.datos.provincia;
-            form_modif_datos_usu.dat_tutor1.value = resp.datos.tutor1;
-            form_modif_datos_usu.dat_telef_tut1.value = resp.datos.tlf_tutor1;
-            form_modif_datos_usu.dat_email_tut1.value = resp.datos.email_tutor1;
-            form_modif_datos_usu.dat_tutor2.value = resp.datos.tutor2;
-            form_modif_datos_usu.dat_telef_tut2.value = resp.datos.tlf_tutor2;
-            form_modif_datos_usu.dat_email_tut2.value = resp.datos.email_tutor2;
+        else{
+            document.getElementById("cargando").style.display = 'inherit';
+            prom1 = Promise.resolve($.post("php/secret_usu_recdatusu.php", { id: document.getElementById("dat_idnie").value }, () => {}, "json"));
+            prom2 = prom1.then((resp) => {
+                if (resp.error == "server") alerta("Se ha producido un error en el servidor. Inténtelo más tarde", "ERROR DE SERVIDOR");
+                else if (resp.error == "duplicado") alerta("Existe más de un usuario con el mismo NIE. Póngse en contacto con el programador de la plataforma.", "REGISTRO DUPLICADO");
+                else if (resp.error == "no_existe") alerta("El usuario no se encuentra. Debe haber un problema en la base de datos.", "USUARIO INEXISTENTE");
+                else if (resp.error == "ok") {
+                    form_modif_datos_usu.mod_nombre.value = resp.registro.nombre;
+                    form_modif_datos_usu.mod_apellidos.value = resp.registro.apellidos;
+                    form_modif_datos_usu.mod_nif.value = resp.registro.nif;
+                    form_modif_datos_usu.mod_email.value = resp.registro.email;
+                    $("#div_dialogs").dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + resp.registro.apellidos + ", " + resp.registro.nombre);
+                }
+                return $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, () => {}, "json");
+            });
+            prom3 = prom2.then((resp) => {
+                if (resp.error == "ok") {
+                    for (e in resp.datos) {
+                        if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
+                    }
+                    f_nac = resp.datos.fecha_nac;
+                    if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
+                    form_modif_datos_usu.dat_sexo.value = resp.datos.sexo;
+                    form_modif_datos_usu.dat_fecha_nac.value = f_nac;
+                    form_modif_datos_usu.dat_telefono.value = resp.datos.telef_alumno;
+                    form_modif_datos_usu.dat_email.value = resp.datos.email;
+                    form_modif_datos_usu.dat_direccion.value = resp.datos.direccion;
+                    form_modif_datos_usu.dat_cp.value = resp.datos.cp;
+                    form_modif_datos_usu.dat_localidad.value = resp.datos.localidad;
+                    form_modif_datos_usu.dat_provincia.value = resp.datos.provincia;
+                    form_modif_datos_usu.dat_tutor1.value = resp.datos.tutor1;
+                    form_modif_datos_usu.dat_telef_tut1.value = resp.datos.tlf_tutor1;
+                    form_modif_datos_usu.dat_email_tut1.value = resp.datos.email_tutor1;
+                    form_modif_datos_usu.dat_tutor2.value = resp.datos.tutor2;
+                    form_modif_datos_usu.dat_telef_tut2.value = resp.datos.tlf_tutor2;
+                    form_modif_datos_usu.dat_email_tut2.value = resp.datos.email_tutor2;
+                }
+                document.getElementById("cargando").style.display = 'none';
+
+                $("#dat_fecha_nac").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: "dd/mm/yy",
+                    dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                    firstDay: 1,
+                    monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    monthNameShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                    showButtonPanel: true,
+                    currentText: "Hoy",
+                    closeText: "Cerrar",
+                    minDate: new Date(2000, 0, 1),
+                    maxDate: "-12y",
+                    nextText: "Siguiente",
+                    prevText: "Previo"
+                });
+
+                $("#form_modif_datos_usu").validate({
+                    rules: {
+                        mod_nombre: {
+                            required: true
+                        },
+                        mod_apellidos: {
+                            required: true
+                        },
+                        mod_email: {
+                            email: true
+                        },
+                        dat_email: {
+                            email: true
+                        },
+                        dat_email_tut1: {
+                            email: true
+                        },
+                        dat_email_tut2: {
+                            email: true
+                        }
+                    },
+                    messages: {
+                        mod_nombre: {
+                            required: "No puede dejar el nombre en blanco"
+                        },
+                        mod_apellidos: {
+                            required: "No puede dejar los apellidos en blanco"
+                        },
+                        mod_email: {
+                            email: "Dirección de email no válida"
+                        },
+                        dat_email: {
+                            email: "No es una dirección de correo electrónico."
+                        },
+                        dat_email_tut1: {
+                            email: "No es una dirección de correo electrónico."
+                        },
+                        dat_email_tut2: {
+                            email: "No es una dirección de correo electrónico."
+                        }
+                    },
+                    errorPlacement: function(error, element) {
+                        $(element).prev($('.errorTxt')).html(error);
+                    }
+                });
+
+                $("#div_dialogs").dialog({
+                    autoOpen: true,
+                    dialogClass: "alert no-close",
+                    modal: true,
+                    hide: { effect: "fade", duration: 0 },
+                    resizable: false,
+                    show: { effect: "fade", duration: 0 },
+                    title: "MODIFICAR DATOS DE USUARIO",
+                    maxHeight: 800,
+                    width: 1100,
+                    close: function(event,ui){
+                        $("#div_dialogs").dialog("destroy");
+                    }
+                });
+            });
         }
-        $("#div_modif_datos_usu").dialog('open');
-        document.getElementById("cargando").style.display = 'none';
     });
+
+    
 }
 
 
@@ -714,11 +724,10 @@ function modUsu() {
             else if (r2 == "server" && r1 == "server") alerta("No se han podido modificar los datos del usuario.", "ERROR BASE DE DATOS");
             else if (r1 == "fallo") alerta("La modificación del usuario no ha sido posible en todas las tablas.", "FALLO MODIFICACIÓN TABLA USUARIOS");
             else alerta(r2, "FALLO EN TABLA USUARIOS_DAT")
-            $("#div_modif_datos_usu").dialog('close');
-            $("#form_modif_datos_usu").trigger("reset");
-            document.getElementById('fset_modif_datos_usu').disabled = true;
-            $('#boton_ver').show();
-            $('#boton_modif').hide();
+            $("#div_dialogs").dialog('close');
+            //document.getElementById('fset_modif_datos_usu').disabled = true;
+            //$('#boton_ver').show();
+            //$('#boton_modif').hide();
             listaUsus();
             listaRegistros(_orden_campo, _orden_direccion);
         });
