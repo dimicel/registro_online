@@ -54,8 +54,6 @@ $(function() {
     listaUsus();    
 });
 
-
-
 function listaUsus() {
     direccion = new Array();
     direccion["🡅"] = "ASC";
@@ -725,9 +723,6 @@ function modUsu() {
             else if (r1 == "fallo") alerta("La modificación del usuario no ha sido posible en todas las tablas.", "FALLO MODIFICACIÓN TABLA USUARIOS");
             else alerta(r2, "FALLO EN TABLA USUARIOS_DAT")
             $("#div_dialogs").dialog('close');
-            //document.getElementById('fset_modif_datos_usu').disabled = true;
-            //$('#boton_ver').show();
-            //$('#boton_modif').hide();
             listaUsus();
             listaRegistros(_orden_campo, _orden_direccion);
         });
