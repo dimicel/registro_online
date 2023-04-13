@@ -1329,7 +1329,7 @@ function subirMatDelphos(){
                 resizable: false,
                 show: { effect: "fade", duration: 0 },
                 title: "SUBIDA CSV MATRÍCULA DELPHOS",
-                width: 500,
+                width: 600,
                 close:function(event,ui){
                     $("#div_dialogs").dialog("destroy");
                 }
