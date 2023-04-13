@@ -65,17 +65,6 @@ $(function() {
         width: 550
     });
 
-    $("#div_listadoMatriculas").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "MATRÍCULAS: SELECCIÓN TIPO LISTADO",
-        width: 900
-    });
-
     $("#formulario_subir_mat_delphos").dialog({
         autoOpen: false,
         dialogClass: "alert no-close",
@@ -953,7 +942,7 @@ function habilitaMenu(m2, m3) {
 
 
 function registrosAPdf(tipo_listado) {
-    $("#div_dialogs").load("html/secretaria.txt #formulario_descargar_solicitudes", function(response,status, xhr){
+    $("#div_dialogs2").load("html/secretaria.txt #formulario_descargar_solicitudes", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -1179,14 +1168,35 @@ function descargaCSVtransporte() {
 }
 
 function listaMatriculas() {
-    if (document.getElementById("tipo_form").value == "matricula") {
-        document.getElementById("div_consolidadas").style.display = "inherit";
-    } else if (document.getElementById("tipo_form").value == "matricula_ciclos") {
-        document.getElementById("div_consolidadas").style.display = "none";
-    } else if (document.getElementById("tipo_form").value == "matricula_fpb") {
-        document.getElementById("div_consolidadas").style.display = "none";
-    }
-    $('#div_listadoMatriculas').dialog('open');
+    $("#div_dialogs").load("html/secretaria.txt #div_listadoMatriculas", function(response,status, xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        }
+        else{
+            if (document.getElementById("tipo_form").value == "matricula") {
+                document.getElementById("div_consolidadas").style.display = "inherit";
+            } else if (document.getElementById("tipo_form").value == "matricula_ciclos") {
+                document.getElementById("div_consolidadas").style.display = "none";
+            } else if (document.getElementById("tipo_form").value == "matricula_fpb") {
+                document.getElementById("div_consolidadas").style.display = "none";
+            }
+            $("#div_dialogs").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "MATRÍCULAS: SELECCIÓN TIPO LISTADO",
+                width: 900,
+                close:function(event,ui){
+                    $("#div_dialogs").dialog("destroy");
+                }
+            });
+        }
+    });
+
 }
 
 
