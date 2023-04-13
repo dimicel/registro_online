@@ -102,7 +102,7 @@
                                 <label for="check_mat_fpb" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">FPB</label>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a id="menu_listado_mat" class="dropdown-item" href="#" onclick="$('#formulario_subir_mat_delphos').dialog('open');">Subir CSV Delphos para Matrícula</a>
+                            <a id="menu_listado_mat" class="dropdown-item" href="#" onclick="javascript:subirMatDelphos();">Subir CSV Delphos para Matrícula</a>
                             <div class="dropdown-divider"></div>
                             <!--<a id="menu_listado_mat_pdf" class="dropdown-item disabled" href="#" onclick="listaMatriculas();">Listado de Matrículas</a>-->
                             <!--<a id="menu_csv_mat" class="dropdown-item disabled" href="#" onclick="descargaCSVmatriculas();">CSV Matrículas</a>-->
