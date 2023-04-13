@@ -437,25 +437,7 @@
             <input type="hidden" id="usuario" name="usuario" />
         </form>
     </div>
-    <div id="formulario_subir_mat_delphos" style="display:none">
-        <form id="subir_mat_delphos"  method="POST" >
-            <input type="file" id="mat_delphos" style="display:none" name="mat_delphos" accept=".csv" onchange="subeMatDelphos(this)"/>
-            <div class="row">
-                <div class="col">
-                    <label for="delimitador">Delimitador de campo</label>
-                    <input type="text" class="form-control" id="delimitador" name="delimitador" maxlength="1" size="1" value=",">
-                </div>
-                <div class="col">
-                    <label for="acotacampos">Carácter circundante de campo</label>
-                    <input type="text" class="form-control" id="acotacampos" name="acotacampos" maxlength="1" size="1" value='"'>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top:15px">
-                <input type="button" value="Subir CSV" class="btn btn-success textoboton" onclick="document.getElementById('mat_delphos').click();" />
-                <input type="button" value="Cerrar" class="btn btn-success textoboton" onclick="$('#formulario_subir_mat_delphos').dialog('close');" />
-            </div>
-        </form>
-    </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

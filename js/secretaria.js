@@ -65,17 +65,6 @@ $(function() {
         width: 550
     });
 
-    $("#formulario_subir_mat_delphos").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "SUBIDA CSV MATRÍCULA DELPHOS",
-        width: 500
-    });
-
     habilitaMenu(false, false);
 
     $('#registros_docs').contextMenu({
@@ -1322,4 +1311,29 @@ function verCertificado(id){
         else alerta("El alumno no tiene certificado de notas para el curso escolar seleccionado.", "NO EXISTE EL DOCUMENTO");
     });
     
+}
+
+
+function subirMatDelphos(){
+    $("#div_dialogs").load("html/secretaria.txt #formulario_subir_mat_delphos", function(response,status, xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        }
+        else{
+            $("#div_dialogs").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "SUBIDA CSV MATRÍCULA DELPHOS",
+                width: 500,
+                close:function(event,ui){
+                    $("#div_dialogs").dialog("destroy");
+                }
+            });
+        }
+    });
 }
