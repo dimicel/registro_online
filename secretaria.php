@@ -348,7 +348,7 @@
 
 
     <!-- REASIGNACIÓN DE PASSWORD _____________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
+    <!--__No se carga desde fichero externo por la complejidad de implementarlo en javascript. Aparece en demasidos sitios con demasiados condicionantes__-->
     <div id="div_nie_registrado" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
         <div id="div_usuario" data-alta="usuario">
             <span>El NIE está dupliado, pero el usuario todavía no se ha habilitado como usuario del sistema.</span><br>
