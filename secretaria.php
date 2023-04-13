@@ -368,58 +368,6 @@
     <!-- FIN REASIGNACIÓN DE PASSWORD _________________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
 
-    <!-- SELECCIÓN TIPO LISTADO MATRÍCULAS ____________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-    <div id="div_listadoMatriculas" style="display: none;  padding: 5px; overflow:hidden" class="ui-widget-header ui-corner-all alertas">
-        <div class="row" style="margin-left:10px" id="div_consolidadas">
-            <div style="display:inline-block">
-                <div class="custom-control custom-switch">
-                    <input type="radio" class="custom-control-input checkbox_prematricula" name="consolidadas" id="cons_si" value="cons_si">
-                    <label for="cons_si" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Prematrículas Consolidadas</label>
-                </div>
-            </div>
-            <div style="display:inline-block">
-                <div class="custom-control custom-switch">
-                    <input type="radio" class="custom-control-input checkbox_prematricula" name="consolidadas" id="cons_no" value="cons_no">
-                    <label for="cons_no" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Prematrículas NO Consolidadas (Matrículas Nuevas)</label>
-                </div>
-            </div>
-            <div style="display:inline-block">
-                <div class="custom-control custom-switch">
-                    <input type="radio" class="custom-control-input checkbox_prematricula" name="consolidadas" id="cons_todas" checked value="cons_todas">
-                    <label for="cons_todas" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Todas</label>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div style="clear:both"></div>
-        <div class="row" style="margin-left:10px">
-            <div class="custom-control custom-switch  col">
-                <input type="radio" class="custom-control-input checkbox_prematricula" name="listadas" id="listadas_seleccionadas" value="seleccionadas">
-                <label for="listadas_seleccionadas" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Seleccionadas</label>
-            </div>
-            <div class="custom-control custom-switch  col">
-                <input type="radio" class="custom-control-input checkbox_prematricula" name="listadas" id="listadas_si" value="listadas">
-                <label for="listadas_si" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Listadas</label>
-            </div>
-            <div class="custom-control  custom-switch col">
-                <input type="radio" class="custom-control-input checkbox_prematricula" name="listadas" id="listadas_no" value="no listadas">
-                <label for="listadas_no" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">NO Listadas</label>
-            </div>
-            <div class="custom-control  custom-switch col-3">
-                <input type="radio" class="custom-control-input checkbox_prematricula" name="listadas" id="listadas_todas" checked value="todas">
-                <label for="listadas_todas" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Todas</label>
-            </div>
-        </div>
-        <hr>
-        <div style="clear:both"></div>
-        <div style="text-align: center;margin-top:15px">
-            <input type="button" value="Generar Listado" class="btn btn-success textoboton" onclick="registrosAPdf('')" />
-            <input type="button" value="Cerrar" class="btn btn-success textoboton" onclick="$('#div_listadoMatriculas').dialog('close');" />
-        </div>
-    </div>
-    <!-- FIN SELECCIÓN TIPO LISTADO MATRÍCULAS ________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
 
 
     <div id="verRegistro_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
