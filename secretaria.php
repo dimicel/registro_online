@@ -140,53 +140,18 @@
                         </div>
                         <label class="col-form-label col-lg-2">Tipo de formulario: </label>
                         <div class="col-lg-3" style="margin-left:-40px">
-                            <select id="tipo_form" size="1" onchange="listaRegistros();" class="form-control">
-                                <!--<option value="" selected>Seleccione uno...</option>
-                                <option value="revision_examen">Revisión de examen</option>
-                                <option value="revision_calificacion">Revisión de calificación</option>
-                                <option value="prematricula">Prematrícula</option>
-                                <option value="matricula">Matrícula ESO y BACH</option>
-                                <option value="matricula_ciclos">Matrícula CICLOS</option>
-                                <option value="matricula_fpb">Matrícula FPB</option>-->
-                            </select>
+                            <select id="tipo_form" size="1" onchange="listaRegistros();" class="form-control"></select>
                         </div>
                         <div id="div_curso_premat" style="display:none">
                             <label class="col-form-label col-lg-2">Curso: </label>
                             <div class="col-lg-8">
-                                <select id="curso_pre_mat" size="1" onchange="listaRegistros();" class="form-control">
-                                    <option value="" selected>Seleccione uno...</option>
-                                    <option value="2eso">2º ESO</option>
-                                    <option value="3eso">3º ESO</option>
-                                    <option value="3esopmar">3º ESO PMAR</option>
-                                    <option value="4eso">4º ESO</option>
-                                    <option value="1bach_c" itemprop="2020-2021">1º BACH CIENCIAS</option>
-                                    <option value="1bach_hcs" itemprop="2020-2021">1º BACH HH.CC.SS.</option>
-                                    <option value="1bach_lomloe" itemprop="2021-2022">1º BACHILLERATO</option>
-                                    <option value="2bach_c">2º BACH CIENCIAS</option>
-                                    <option value="2bach_hcs">2º BACH HH.CC.SS.</option>
-                                </select>
+                                <select id="curso_pre_mat" size="1" onchange="listaRegistros();" class="form-control"></select>
                             </div>
                         </div>
                         <div id="div_curso_mat" style="display:none">
                             <label class="col-form-label col-lg-2">Curso: </label>
                             <div class="col-lg-8">
-                                <select id="curso_mat" size="1" onchange="listaRegistros();" class="form-control">
-                                    <option value="" selected>Seleccione uno...</option>
-                                    <option value="1eso">1º ESO</option>
-                                    <option value="2eso">2º ESO</option>
-                                    <option value="2esopmar">2º ESO PMAR</option>
-                                    <option value="3eso">3º ESO</option>
-                                    <option value="3esopmar" itemprop="2020-2021">3º ESO PMAR</option>
-                                    <option value="3esodiv" itemprop="2022-2023">3º ESO DIVERSIFICACIÓN</option>
-                                    <option value="4eso">4º ESO</option>
-                                    <!--<option value="1bach_c" itemprop="2020-2021">1º BACH CIENCIAS</option>
-                                    <option value="1bach_hcs" itemprop="2020-2021">1º BACH HH.CC.SS.</option>-->
-                                    <option value="1bach_c">1º Bach. Ciencias</option>
-                                    <option value="1bach_hcs">1º Bach. HH.CC.SS.</option>
-                                    <!--<option value="1bach" itemprop="2022-2023">1º BACHILLERATO</option>-->
-                                    <option value="2bach_c">2º Bach. Ciencias</option>
-                                    <option value="2bach_hcs">2º Bach. HH.CC.SS.</option>
-                                </select>
+                                <select id="curso_mat" size="1" onchange="listaRegistros();" class="form-control"></select>
                             </div>
                         </div>
                     </div>

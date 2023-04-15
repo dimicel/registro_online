@@ -11,7 +11,9 @@ var sesion_id;
 
 
 $(function() {
-    generaSelectTipo_Form();
+    generaSelectTipo_form();
+    generaSelectCurso_pre_mat();
+    generaSelectCurso_mat();
   
     document.getElementById("cargando").style.display = 'inherit';
     t1 = false;
@@ -100,7 +102,7 @@ $(function() {
 });
 
 
-function generaSelectTipo_Form(){
+function generaSelectTipo_form(){
     // Obtener el elemento select
     const miSelect = document.getElementById("tipo_form");
 
@@ -128,6 +130,79 @@ function generaSelectTipo_Form(){
         elemento.textContent = opcion.text;
         miSelect.appendChild(elemento);
     }
+}
+
+
+function generaSelectCurso_pre_mat(){
+    // Obtener el elemento select
+    const miSelect = document.getElementById("curso_pre_mat");
+
+    // Crear la opción "Seleccione uno..." con el valor vacío y seleccionada por defecto
+    const opcion0 = document.createElement("option");
+    opcion0.value = "";
+    opcion0.selected = true;
+    opcion0.textContent = "Seleccione uno...";
+    miSelect.appendChild(opcion0);
+
+    // Crear las opciones restantes
+    const opciones = [
+    { value: "2eso", text: "2º ESO" },
+    { value: "3eso", text: "3º ESO" },
+    { value: "3esopmar", text: "3º ESO PMAR" },
+    { value: "4eso", text: "4º ESO" },
+    { value: "1bach_c", text: "1º BACH CIENCIAS", itemprop: "2020-2021" },
+    { value: "1bach_hcs", text: "1º BACH HH.CC.SS.", itemprop: "2020-2021" },
+    { value: "1bach_lomloe", text: "1º BACHILLERATO", itemprop: "2021-2022" },
+    { value: "2bach_c", text: "2º BACH CIENCIAS" },
+    { value: "2bach_hcs", text: "2º BACH HH.CC.SS." }
+    ];
+
+    // Recorrer el array de opciones y crear las opciones
+    for (const opcion of opciones) {
+    const elemento = document.createElement("option");
+    elemento.value = opcion.value;
+    elemento.textContent = opcion.text;
+    
+    // Agregar el atributo "itemprop" si existe en el objeto
+    if (opcion.itemprop) {
+        elemento.setAttribute("itemprop", opcion.itemprop);
+    }
+    
+    miSelect.appendChild(elemento);
+    }
+}
+
+function generaSelectCurso_mat(){
+    var options = [
+        {value: "", text: "Seleccione uno..."},
+        {value: "1eso", text: "1º ESO"},
+        {value: "2eso", text: "2º ESO"},
+        {value: "2esopmar", text: "2º ESO PMAR"},
+        {value: "3eso", text: "3º ESO"},
+        {value: "3esopmar", text: "3º ESO PMAR", itemprop: "2020-2021"},
+        {value: "3esodiv", text: "3º ESO DIVERSIFICACIÓN", itemprop: "2022-2023"},
+        {value: "4eso", text: "4º ESO"},
+        {value: "1bach_c", text: "1º Bach. Ciencias"},
+        {value: "1bach_hcs", text: "1º Bach. HH.CC.SS."},
+        {value: "2bach_c", text: "2º Bach. Ciencias"},
+        {value: "2bach_hcs", text: "2º Bach. HH.CC.SS."},
+    ];
+      
+    var select = document.createElement("select");
+    
+    for (var i = 0; i < options.length; i++) {
+        var option = document.createElement("option");
+        option.value = options[i].value;
+        option.text = options[i].text;
+        if (options[i].hasOwnProperty("itemprop")) {
+            option.setAttribute("itemprop", options[i].itemprop);
+        }
+        if (i === 0) {
+            option.selected = true;
+        }
+        select.appendChild(option);
+    }
+      
 }
 
 
