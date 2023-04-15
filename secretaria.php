@@ -188,13 +188,7 @@
                     <div class="form-group row" id="div_curso_mat_fpb" style="display:none">
                         <label class="col-form-label col-lg-2" style="margin-left: 15px;">Ciclo: </label>
                         <div class="col-lg-5">
-                            <select id="mat_fpb" size="1" style="margin-left: -30px;" onchange="listaRegistros();" class="form-control">
-                                <option value="" selected>Seleccione uno...</option>
-                                <option value="Alojamiento y Lavandería">Alojamiento y Lavandería</option>
-                                <option value="Cocina y Restauración">Cocina y Restauración</option>
-                                <option value="Electricidad y Electrónica">Electricidad y Electrónica</option>
-                                <option value="Servicios Administrativos">Servicios Administrativos</option>
-                            </select>
+                            <select id="mat_fpb" size="1" style="margin-left: -30px;" onchange="listaRegistros();" class="form-control"></select>
                         </div>
                         <label class="col-form-label col-lg-1" style="margin-left: 20px;">Curso: </label>
                         <div class="col-lg-1">

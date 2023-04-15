@@ -15,6 +15,7 @@ $(function() {
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
     generaSelectMat_ciclos();
+    generaSelectMat_fpb();
   
     document.getElementById("cargando").style.display = 'inherit';
     t1 = false;
@@ -237,6 +238,28 @@ function generaSelectMat_ciclos(){
         }
         select.add(option);
       } 
+}
+
+function generaSelectMat_fpb(){
+    const options = [
+        { value: "", label: "Seleccione uno..." },
+        { value: "Alojamiento y Lavandería", label: "Alojamiento y Lavandería" },
+        { value: "Cocina y Restauración", label: "Cocina y Restauración" },
+        { value: "Electricidad y Electrónica", label: "Electricidad y Electrónica" },
+        { value: "Servicios Administrativos", label: "Servicios Administrativos" },
+      ];
+      
+      const select = document.getElementById("mat_fpb");
+      
+      for (let i = 0; i < options.length; i++) {
+        const option = document.createElement("option");
+        option.value = options[i].value;
+        option.text = options[i].label;
+        if (i === 0) { // selecciona el primer elemento
+          option.selected = true;
+        }
+        select.add(option);
+      }  
 }
 
 
