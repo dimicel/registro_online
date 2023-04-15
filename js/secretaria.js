@@ -11,6 +11,8 @@ var sesion_id;
 
 
 $(function() {
+    generaSelectTipo_Form();
+  
     document.getElementById("cargando").style.display = 'inherit';
     t1 = false;
     t2 = false;
@@ -96,6 +98,38 @@ $(function() {
         }
     });
 });
+
+
+function generaSelectTipo_Form(){
+    // Obtener el elemento select
+    const miSelect = document.getElementById("tipo_form");
+
+    // Crear la opción "Seleccione uno..." con el valor vacío y seleccionada por defecto
+    const opcion0 = document.createElement("option");
+    opcion0.value = "";
+    opcion0.selected = true;
+    opcion0.textContent = "Seleccione uno...";
+    miSelect.appendChild(opcion0);
+
+    // Crear las opciones restantes
+    const opciones = [
+        { value: "revision_examen", text: "Revisión de examen" },
+        { value: "revision_calificacion", text: "Revisión de calificación" },
+        { value: "prematricula", text: "Prematrícula" },
+        { value: "matricula", text: "Matrícula ESO y BACH" },
+        { value: "matricula_ciclos", text: "Matrícula CICLOS" },
+        { value: "matricula_fpb", text: "Matrícula FPB" }
+    ];
+
+    // Recorrer el array de opciones y crear las opciones
+    for (const opcion of opciones) {
+        const elemento = document.createElement("option");
+        elemento.value = opcion.value;
+        elemento.textContent = opcion.text;
+        miSelect.appendChild(elemento);
+    }
+}
+
 
 function listaRegistros(orden_campo, orden_direccion) {
     if (document.getElementById("curso").value != "2020-2021") $("#curso_pre_mat option[value='3esopmar']").hide();

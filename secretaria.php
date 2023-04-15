@@ -141,13 +141,13 @@
                         <label class="col-form-label col-lg-2">Tipo de formulario: </label>
                         <div class="col-lg-3" style="margin-left:-40px">
                             <select id="tipo_form" size="1" onchange="listaRegistros();" class="form-control">
-                                <option value="" selected>Seleccione uno...</option>
+                                <!--<option value="" selected>Seleccione uno...</option>
                                 <option value="revision_examen">Revisión de examen</option>
                                 <option value="revision_calificacion">Revisión de calificación</option>
                                 <option value="prematricula">Prematrícula</option>
                                 <option value="matricula">Matrícula ESO y BACH</option>
                                 <option value="matricula_ciclos">Matrícula CICLOS</option>
-                                <option value="matricula_fpb">Matrícula FPB</option>
+                                <option value="matricula_fpb">Matrícula FPB</option>-->
                             </select>
                         </div>
                         <div id="div_curso_premat" style="display:none">
