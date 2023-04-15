@@ -14,6 +14,7 @@ $(function() {
     generaSelectTipo_form();
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
+    generaSelectMat_ciclos();
   
     document.getElementById("cargando").style.display = 'inherit';
     t1 = false;
@@ -188,7 +189,7 @@ function generaSelectCurso_mat(){
         {value: "2bach_hcs", text: "2º Bach. HH.CC.SS."},
     ];
       
-    var select = document.createElement("select");
+    var select = document.getElementById("curso_mat");
     
     for (var i = 0; i < options.length; i++) {
         var option = document.createElement("option");
@@ -201,8 +202,41 @@ function generaSelectCurso_mat(){
             option.selected = true;
         }
         select.appendChild(option);
-    }
+    } 
+}
+
+function generaSelectMat_ciclos(){
+    const opciones = {
+        "": "Seleccione uno...",
+        "Cocina y Gastronomía": "GM Cocina y Gastronomía",
+        "Gestión Administrativa": "GM Gestión Administrativa",
+        "Instalaciones de Producción de Calor": "GM Instalaciones de Producción de Calor",
+        "Instalaciones Eléctricas y Automáticas": "GM Instalaciones Eléctricas y Automáticas",
+        "Instalaciones Frigoríficas y de Climatización": "GM Instalaciones Frigoríficas y de Climatización",
+        "Panadería, Repostería y Confitería": "GM Panadería, Repostería y Confitería",
+        "Servicios en Restauración": "GM Servicios en Restauración",
+        "Administración y Finanzas": "GS Administración y Finanzas",
+        "Agencias de Viajes y Gestión de Eventos": "GS Agencias de Viajes y Gestión de Eventos",
+        "Asistencia a la Dirección": "GS Asistencia a la Dirección",
+        "Automatización y Robótica Industrial": "GS Automatización y Robótica Industrial",
+        "Dirección de Cocina": "GS Dirección de Cocina",
+        "Gestión de Alojamientos Turísticos": "GS Gestión de Alojamientos Turísticos",
+        "Guía, Información y Asistencias Turísticas": "GS Guía, Información y Asistencias Turísticas",
+        "Mantenimiento de Instalaciones Térmicas y de Fluidos": "GS Mantenimiento de Instalaciones Térmicas y de Fluidos",
+        "Sistemas Electrotécnicos y Automatizados": "GS Sistemas Electrotécnicos y Automatizados",
+      };
       
+      const select = document.getElementById("mat_ciclos");
+      
+      for (const [value, label] of Object.entries(opciones)) {
+        const option = document.createElement("option");
+        option.value = value;
+        option.text = label;
+        if (value === "") {
+          option.selected = true;
+        }
+        select.add(option);
+      } 
 }
 
 

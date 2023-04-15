@@ -160,25 +160,7 @@
                     <div class="form-group row" id="div_curso_mat_ciclos" style="display:none">
                         <label class="col-form-label col-lg-2" style="margin-left: -15px;">Ciclo: </label>
                         <div class="col-lg-5">
-                            <select id="mat_ciclos" size="1" style="margin-left: -60px;" onchange="listaRegistros();" class="form-control">
-                                <option value="" selected>Seleccione uno...</option>
-                                <option value='Cocina y Gastronomía'>GM Cocina y Gastronomía</option>
-                                <option value='Gestión Administrativa'>GM Gestión Administrativa</option>
-                                <option value='Instalaciones de Producción de Calor'>GM Instalaciones de Producción de Calor</option>
-                                <option value='Instalaciones Eléctricas y Automáticas'>GM Instalaciones Eléctricas y Automáticas</option>
-                                <option value='Instalaciones Frigoríficas y de Climatización'>GM Instalaciones Frigoríficas y de Climatización</option>
-                                <option value='Panadería, Repostería y Confitería'>GM Panadería, Repostería y Confitería</option>
-                                <option value='Servicios en Restauración'>GM Servicios en Restauración</option>
-                                <option value='Administración y Finanzas'>GS Administración y Finanzas</option>
-                                <option value='Agencias de Viajes y Gestión de Eventos'>GS Agencias de Viajes y Gestión de Eventos</option>
-                                <option value='Asistencia a la Dirección'>GS Asistencia a la Dirección</option>
-                                <option value='Automatización y Robótica Industrial'>GS Automatización y Robótica Industrial</option>
-                                <option value='Dirección de Cocina'>GS Dirección de Cocina</option>
-                                <option value='Gestión de Alojamientos Turísticos'>GS Gestión de Alojamientos Turísticos</option>
-                                <option value='Guía, Información y Asistencias Turísticas'>GS Guía, Información y Asistencias Turísticas</option>
-                                <option value='Mantenimiento de Instalaciones Térmicas y de Fluidos'>GS Mantenimiento de Instalaciones Térmicas y de Fluidos</option>
-                                <option value='Sistemas Electrotécnicos y Automatizados'>GS Sistemas Electrotécnicos y Automatizados</option>
-                            </select>
+                            <select id="mat_ciclos" size="1" style="margin-left: -60px;" onchange="listaRegistros();" class="form-control"></select>
                         </div>
                         <label class="col-form-label col-lg-1" style="margin-left: 20px;">Curso: </label>
                         <div class="col-lg-1">
