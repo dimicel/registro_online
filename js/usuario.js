@@ -488,69 +488,7 @@ function extraeFechaDeRegistro(registro) {
     return fecha;
 }
 
-/*
-function descargaDocumento(referencia) {
-    proceso = referencia.substr(10, 6);
-    if (proceso == "revexa") {
-        document.getElementById("descarga_doc").action = "impresos/revision_examen/php/descargapdf.php";
-    } else if (proceso == "revcal") {
-        document.getElementById("descarga_doc").action = "impresos/revision_calificacion/php/descargapdf.php";
-    } else if (proceso == "pm1eso") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat1eso.php";
-    } else if (proceso == "pm2eso") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat2eso.php";
-    } else if (proceso == "pm3eso") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat3eso.php";
-    } else if (proceso == "pm4eso") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat4eso.php";
-    } else if (proceso == "pm2esp") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat2esopmar.php";
-    } else if (proceso == "pm3esp") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat3esopmar.php";
-    } else if (proceso == "pm1bac") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat1bach_c.php";
-    } else if (proceso == "pm1bah") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat1bach_hcs.php";
-    } else if (proceso == "pm2bac") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat2bach_c.php";
-    } else if (proceso == "pm2bah") {
-        document.getElementById("descarga_doc").action = "impresos/prematriculas/php/descargapdf_premat2bach_hcs.php";
-    } else if (proceso == "ma1eso") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat1eso.php";
-    } else if (proceso == "ma2eso") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat2eso.php";
-    } else if (proceso == "ma3eso") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat3eso.php";
-    } else if (proceso == "ma4eso") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat4eso.php";
-    } else if (proceso == "ma2esp") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat2esopmar.php";
-    } else if (proceso == "ma3esp") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat3esopmar.php";
-    } else if (proceso == "ma1bac") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat1bach_c.php";
-    } else if (proceso == "ma1bah") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat1bach_hcs.php";
-    } else if (proceso == "ma2bac") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat2bach_c.php";
-    } else if (proceso == "ma2bah") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_mat2bach_hcs.php";
-    } else if (proceso == "transp") {
-        document.getElementById("descarga_doc").action = "impresos/transporte/php/descargapdf.php";
-    } else if (proceso == "macicl") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_matciclos.php";
-    } else if (proceso == "matfpb") {
-        document.getElementById("descarga_doc").action = "impresos/matriculas/php/descargapdf_matfpb.php";
-    }
 
-    document.getElementById("descarga_referencia").value = referencia;
-    document.getElementById("descarga_nombre").value = nombre + " " + apellidos;
-    document.getElementById("descarga_doc").target = "_blank";
-    document.getElementById("descarga_doc").submit();
-
-    document.getElementById("descarga_doc").action = "";
-}
-*/
 
 function USUsubeFoto(obj) {
     if (obj.files[0].type != "image/jpeg") {
@@ -720,59 +658,51 @@ function ocultaDivsSubeDocs(panel) {
 
 
 function lanzaAvisoMatricula(nivel_educ) {
-    /*$.post("php/usu_matricula_delphos.php",{id_nie:id_nie,curso:anno_curso_usu},(resp)=>{
-        if (resp.error=="no_procesada"){
-            alerta("Debe realizar primero la matrícula en la Secretaría Virtual de la plataforma Educamos. <br>En el plazo de 24/48 recibirá un aviso por correo electrónico indicándole las instrucciones que debe seguir para completar el proceso. <br>Si ya ha realizado ese trámite y no ha recibido instrucciones, por favor, póngase en contacto con la Secretaría del centro.", "MATRÍCULA SECRETARÍA VIRTUAL NO PROCESADA",false,500);
-            return;
-        } 
-        else if(resp.error="ok"){*/
-            if(nivel_educ=="eso"){
-                tipo_matricula="eso";
-                mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
-                mensaje += "<ul>";
-                mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
-                mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. Los alumnos de 1º, 2º y 2º PMAR de ESO podrán subir las imágenes del documento si disponen de él, no siendo obligatorio en estos casos. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
-                mensaje += "    <li>Si la matrícula es para 3º de ESO, 3º de ESO DIVERSIFICACIÓN o 4º de ESO, prepare también en formato JPEG una fotografía del resguardo del pago del seguro escolar.</li>";
-                mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
-                mensaje += "</ul>";
-                mensaje += "</p>";
-            }
-            else if(nivel_educ=="bach"){
-                tipo_matricula="bach";
-                mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
-                mensaje += "<ul>";
-                mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
-                mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
-                mensaje += "    <li>Una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
-                mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
-                mensaje += "</ul>";
-                mensaje += "</p>";            
-            }
-            else if(nivel_educ=="ciclos"){
-                tipo_matricula="ciclos";
-                anno_seguro = anno_ini_curso - 27;
-                mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
-                mensaje += "<ul>";
-                mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
-                mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
-                mensaje += "    <li>EXCEPTO nacidos antes del 31/12/" + anno_seguro + ", una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
-                mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
-                mensaje += "</ul>";
-                mensaje += "</p>";            
-            }
-            else if(nivel_educ=="fpb"){
-                tipo_matricula="fpb";
-                mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
-                mensaje += "<ul>";
-                mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
-                mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
-                mensaje += "    <li>Una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
-                mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
-                mensaje += "</ul>";
-                mensaje += "</p>";            
-            }
-            document.getElementById("div_aviso_inicio_mat").innerHTML = mensaje;
-            $('#div_aviso_inicio_mat').dialog('open');
-        /*}
-    },"json");*/
+    if(nivel_educ=="eso"){
+        tipo_matricula="eso";
+        mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
+        mensaje += "<ul>";
+        mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
+        mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. Los alumnos de 1º, 2º y 2º PMAR de ESO podrán subir las imágenes del documento si disponen de él, no siendo obligatorio en estos casos. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
+        mensaje += "    <li>Si la matrícula es para 3º de ESO, 3º de ESO DIVERSIFICACIÓN o 4º de ESO, prepare también en formato JPEG una fotografía del resguardo del pago del seguro escolar.</li>";
+        mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
+        mensaje += "</ul>";
+        mensaje += "</p>";
+    }
+    else if(nivel_educ=="bach"){
+        tipo_matricula="bach";
+        mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
+        mensaje += "<ul>";
+        mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
+        mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
+        mensaje += "    <li>Una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
+        mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
+        mensaje += "</ul>";
+        mensaje += "</p>";            
+    }
+    else if(nivel_educ=="ciclos"){
+        tipo_matricula="ciclos";
+        anno_seguro = anno_ini_curso - 27;
+        mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
+        mensaje += "<ul>";
+        mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
+        mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
+        mensaje += "    <li>EXCEPTO nacidos antes del 31/12/" + anno_seguro + ", una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
+        mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
+        mensaje += "</ul>";
+        mensaje += "</p>";            
+    }
+    else if(nivel_educ=="fpb"){
+        tipo_matricula="fpb";
+        mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
+        mensaje += "<ul>";
+        mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
+        mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
+        mensaje += "    <li>Una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
+        mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
+        mensaje += "</ul>";
+        mensaje += "</p>";            
+    }
+    document.getElementById("div_aviso_inicio_mat").innerHTML = mensaje;
+    $('#div_aviso_inicio_mat').dialog('open');
 }
