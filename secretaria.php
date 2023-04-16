@@ -125,18 +125,7 @@
                     <div class="form-group row">
                         <label class="col-form-label col-lg-2" style="margin-left: 20px;">Año Acad.: </label>
                         <div class="col-lg-2" style="margin-left:-85px">
-                            <select id="curso" size="1" onchange="listaRegistros();" class="form-control">
-                                <!--<option value="2020-2021">2020-2021</option>
-                                <option value="2021-2022">2021-2022</option>
-                                <option value="2022-2023">2022-2023</option>
-                                <option value="2023-2024">2023-2024</option>
-                                <option value="2024-2025">2024-2025</option>
-                                <option value="2025-2026">2025-2026</option>
-                                <option value="2026-2027">2026-2027</option>
-                                <option value="2027-2028">2027-2028</option>
-                                <option value="2028-2029">2028-2029</option>
-                                <option value="2029-2030">2029-2030</option>-->
-                            </select>
+                            <select id="curso" size="1" onchange="listaRegistros();" class="form-control"></select>
                         </div>
                         <label class="col-form-label col-lg-2">Tipo de formulario: </label>
                         <div class="col-lg-3" style="margin-left:-40px">

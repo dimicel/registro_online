@@ -104,6 +104,7 @@ $(function() {
 });
 
 function generaSelectCurso(){
+    mes=7;
     if (mes<6) a_final=anno_ini_curso;
     else a_final=anno_ini_curso+1;
 
@@ -115,6 +116,7 @@ function generaSelectCurso(){
         alert(elemento.value);
         miSelect.appendChild(elemento);
     }
+
 }
 
 function generaSelectTipo_form(){
