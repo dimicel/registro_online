@@ -114,7 +114,6 @@ function generaSelectCurso(){
         elemento.textContent = elemento.value;
         miSelect.appendChild(elemento);
     }
-
 }
 
 function generaSelectTipo_form(){
