@@ -104,7 +104,6 @@ $(function() {
 });
 
 function generaSelectCurso(){
-    mes=7;
     if (mes<6) a_final=anno_ini_curso;
     else a_final=anno_ini_curso+1;
 
@@ -113,7 +112,6 @@ function generaSelectCurso(){
         const elemento = document.createElement("option");
         elemento.value = i+"-"+(parseInt(i)+1);
         elemento.textContent = elemento.value;
-        alert(elemento.value);
         miSelect.appendChild(elemento);
     }
 
