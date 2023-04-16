@@ -11,7 +11,6 @@ var sesion_id;
 
 
 $(function() {
-    generaSelectCurso();
     generaSelectTipo_form();
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
@@ -34,7 +33,7 @@ $(function() {
             else curso_premat=(anno_ini_curso-1)+"-"+(anno_ini_curso);
             if(mes!=6)curso_mat=anno_ini_curso+"-"+(anno_ini_curso + 1);
             else curso_mat=(anno_ini_curso+1)+"-"+(anno_ini_curso + 2);
-            
+            generaSelectCurso();
             document.getElementById("curso").value = _curso;
             if (document.getElementById("curso").value != "2020-2021") $("#curso_pre_mat option[value='3esopmar']").hide();
             else $("#curso_pre_mat option[value='3esopmar']").show();
