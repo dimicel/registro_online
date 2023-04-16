@@ -104,8 +104,8 @@ $(function() {
 });
 
 function generaSelectCurso(){
-    if (mes<6) a_final=anno_ini_curso-1;
-    else a_final=anno_ini_curso;
+    if (mes<6) a_final=anno_ini_curso;
+    else a_final=anno_ini_curso+1;
 
     const miSelect = document.getElementById("curso");
     for (var i=2020;i<=a_final;i++){
