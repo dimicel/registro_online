@@ -110,7 +110,7 @@ function generaSelectCurso(){
     const miSelect = document.getElementById("curso");
     for (var i=2020;i<=a_final;i++){
         const elemento = document.createElement("option");
-        elemento.value = i+"-"+i+1;
+        elemento.value = i+"-"+parseInt(i)+1;
         elemento.textContent = elemento.value;
         alert(elemento.value);
         miSelect.appendChild(elemento);
