@@ -11,7 +11,7 @@ var sesion_id;
 
 
 $(function() {
-    generaSelectCurso();
+    //generaSelectCurso();
     generaSelectTipo_form();
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
