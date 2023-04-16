@@ -11,12 +11,13 @@ var sesion_id;
 
 
 $(function() {
+    generaSelectCurso();
     generaSelectTipo_form();
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
     generaSelectMat_ciclos();
     generaSelectMat_fpb();
-  
+    
     document.getElementById("cargando").style.display = 'inherit';
     t1 = false;
     t2 = false;
@@ -103,6 +104,16 @@ $(function() {
     });
 });
 
+function generaSelectCurso(){
+    a_final=(mes<6)?anno_ini_curso-1:anno_ini_curso;
+    const miSelect = document.getElementById("curso");
+    for (var i=2020;i<=a_final;i++){
+        const elemento = document.createElement("option");
+        elemento.value = i+"-"+i+1;
+        elemento.textContent = elemento.value;
+        miSelect.appendChild(elemento);
+    }
+}
 
 function generaSelectTipo_form(){
     // Obtener el elemento select
