@@ -261,7 +261,7 @@ function registraMatricula() {
         f.optativa16.value=document.getElementById("lista_optativas").options[15].value;
         f.optativa17.value=document.getElementById("lista_optativas").options[16].value;
     }  
-    else if (_curso == "2º Bach. Ciencias") {
+    else if (_curso == "2º Bach. Ciencias y Tecnología") {
         b2c_generaDatosSerialize();
         var f5 = document.getElementById("form_pagina_5_2c");
         f.action = "php/premat2bach_c.php";
