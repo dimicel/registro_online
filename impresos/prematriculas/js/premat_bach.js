@@ -142,7 +142,7 @@ function pasaPagina(p) {
     if (pagina > 1) {
         if (_curso == "1º Bachillerato") coletilla = "_1";
         else if (_curso == "2º Bach. HH.CC.SS.") coletilla = "_2hcs";
-        else if (_curso == "2º Bach. Ciencias") coletilla = "_2c";
+        else if (_curso == "2º Bach. Ciencias y Tecnología") coletilla = "_2c";
     }
 
     if (pagina != 5) {
