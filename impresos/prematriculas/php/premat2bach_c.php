@@ -269,7 +269,7 @@ HTML1;
 
 $YInicio=40;
 
-$pdf->RoundedRect(82,$YInicio,45,15,2,'1111','','','');
+$pdf->RoundedRect(76,$YInicio,51,15,2,'1111','','','');
 $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $html1, 0, 1, false, true, 'C', true);
 
 //Padding dentro de la celda del texto
@@ -437,6 +437,7 @@ MAT;
 $h_modalidad=<<<MAT
 4
 4
+4
 MAT;
 
 $optativas_col1=<<<MAT
@@ -451,7 +452,7 @@ $optativas_col1=<<<MAT
 MAT;
 
 $optativas_col2=<<<MAT
-9  $espitin9
+9   $espitin9
 10  $espitin10
 11  $espitin11
 12  $espitin12
@@ -467,9 +468,9 @@ $pdf->Cell(50,4,"1ª Lengua Extranjera: ".$primer_idioma,0,0,'L',0,'',0,true,'T'
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->Cell(88,4,"MATERIAS COMUNES                                      Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(88,4,"MATERIAS COMUNES                                    Horas Semanales",1,0,'L',1,'',0,true,'T','T');
 $pdf->SetX(105);
-$pdf->Cell(88,4,"MATERIAS DE MODALIDAD                                 Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(88,4,"MATERIAS DE MODALIDAD                             Horas Semanales",1,0,'L',1,'',0,true,'T','T');
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);	
 $pdf->MultiCell(88,4,$comunes,0,'L',0,1,'','',true,0,false,false,0);
@@ -481,9 +482,9 @@ $pdf->SetXY(180,$YInicio);
 $pdf->MultiCell(88,4,$h_modalidad,0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=13;
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->Cell(88,4,"Pref.  ESPEC. ITIN. Y COMUN. (4h)",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(88,4,"OPTATIVAS (4h)",1,0,'L',1,'',0,true,'T','T');
 $pdf->SetX(105);
-$pdf->Cell(88,4,"Pref.  ESPEC. ITIN. Y COMUN. (4h)",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(88,4,"OPTATIVAS (4h)",1,0,'L',1,'',0,true,'T','T');
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);		
 $pdf->MultiCell(88,0,$optativas_col1,0,'L',0,1,'','',true,0,false,false,0);
