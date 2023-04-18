@@ -64,6 +64,7 @@ function b2c_cambiaOptativas(m){
         //Si ya estaban con valores, busco el seleccionado y lo cambio por el que se ha quedado deseleccionado, sin modificar el orden de los option
         else{
             //Al cambiar una de las materias, una de las del array mat_modalidad no está, y debe de ser la desmarcada.
+            alert(mat_modalidad.length)
             for(i=0;i<desp.length;i++){
                 mat_modalidad.splice(mat_modalidad.indexOf(desp[i].value),1);
             }
