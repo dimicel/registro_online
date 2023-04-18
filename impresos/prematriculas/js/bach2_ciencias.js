@@ -64,16 +64,14 @@ function b2c_cambiaOptativas(m){
         //Si ya estaban con valores, busco el seleccionado y lo cambio por el que se ha quedado deseleccionado, sin modificar el orden de los option
         else{
             //Al cambiar una de las materias, una de las del array mat_modalidad no está, y debe de ser la desmarcada.
-            alert(mat_modalidad[0]+"  "+mat_modalidad[1]+"  "+mat_modalidad[2]+"  "+mat_modalidad[3]+"  ")
             for(i=0;i<desp.length;i++){
                 indice=mat_modalidad.indexOf(desp[i].value);
                 if (indice>-1) mat_modalidad.splice(indice,1);
             }
             //Asigno la que he marcado a la desmarcada
-            alert(mat_modalidad.length+"    "+mat_modalidad[0])
-            desm=desp.querySelectorAll("option[value='"+mat_modalidad[0]+"']");
-            desm.value=m.value;
-            desm.innerHTML=m.value;
+            desm=desp.querySelectorAll("option[value='"+m.value+"']");
+            desm.value=mat_modalidad[0];
+            desm.innerHTML=mat_modalidad[0];
         }
     }
     
