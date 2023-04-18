@@ -16,7 +16,7 @@ $cursos=array(
     "pm1bac"=>"premat_1bach_lomloe",
     "pm1bah"=>"premat_1bach_lomloe",
     "pm1bag"=>"premat_1bach_lomloe",
-    "pm2bac"=>"premat_2bach_c",
+    "pm2bac"=>"premat_bach",
     "pm2bah"=>"premat_2bach_hcs"
 );
 
@@ -24,15 +24,16 @@ $cursos2=array(
     "pm1bac"=>"1º Bach. Ciencias",
     "pm1bah"=>"1º Bach. HH.CC.SS.",
     "pm1bag"=>"1º Bach. General",
-    "pm2bac"=>"2º Bach. Ciencias",
+    "pm2bac"=>"2º Bach. Ciencias y Tecnología",
     "pm2bah"=>"2º Bach. HH.CC.SS."
 );
 
 $campos="sexo,apellidos,nombre,telef_alumno,email,registro,tutor1,";
 $campos.="email_tutor1,tlf_tutor1,tutor2,email_tutor2,tlf_tutor2";
-$consulta="(select $campos from premat_1bach_lomloe where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_2bach_c where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_2bach_hcs where id_nie='$id_nie' and curso='$curso')";
+$consulta="(select $campos from premat_1bach_lomloe where id_nie='$id_nie' and curso='$curso') union all ";
+$consulta.="(select $campos from premat_2bach_c where id_nie='$id_nie' and curso='$curso') union all ";
+$consulta.="(select $campos from premat_2bach_hcs where id_nie='$id_nie' and curso='$curso') union all ";
+$consulta.="(select $campos from premat_bach where id_nie='$id_nie' and curso='$curso')";
 
 $res=$mysqli->query($consulta);
 
