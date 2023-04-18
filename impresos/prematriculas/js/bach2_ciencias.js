@@ -66,7 +66,8 @@ function b2c_cambiaOptativas(m){
             //Al cambiar una de las materias, una de las del array mat_modalidad no está, y debe de ser la desmarcada.
             alert(mat_modalidad[0]+"  "+mat_modalidad[1]+"  "+mat_modalidad[2]+"  "+mat_modalidad[3]+"  ")
             for(i=0;i<desp.length;i++){
-                mat_modalidad.splice(mat_modalidad.indexOf(desp[i].value),1);
+                indice=mat_modalidad.indexOf(desp[i].value);
+                if (indice>-1) mat_modalidad.splice(indice,1);
             }
             //Asigno la que he marcado a la desmarcada
             alert(mat_modalidad.length+"    "+mat_modalidad[0])
