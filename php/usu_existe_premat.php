@@ -21,7 +21,7 @@ $cursos=array(
     "pm3esp"=>"premat_3esopmar",
     "pm1bac"=>"premat_1bach_c",
     "pm1bah"=>"premat_1bach_hcs",
-    "pm2bac"=>"premat_2bach_c",
+    "pm2bac"=>"premat_bach",
     "pm2bah"=>"premat_2bach_hcs",
 );
 
@@ -34,7 +34,7 @@ $cursos2=array(
     "pm3esp"=>"3º ESO PMAR",
     "pm1bac"=>"1º Bach. Ciencias",
     "pm1bah"=>"1º Bach. HH.CC.SS.",
-    "pm2bac"=>"2º Bach. Ciencias",
+    "pm2bac"=>"2º Bach. Ciencias y Tecnología",
     "pm2bah"=>"2º Bach. HH.CC.SS.",
 );
 
@@ -50,7 +50,8 @@ $consulta.="(select $campos from premat_1bach_c where id_nie='$id_nie' and curso
 $consulta.="(select $campos from premat_1bach_lomloe where id_nie='$id_nie' and curso='$curso') union all";
 $consulta.="(select $campos from premat_1bach_hcs where id_nie='$id_nie' and curso='$curso') union all";
 $consulta.="(select $campos from premat_2bach_c where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_2bach_hcs where id_nie='$id_nie' and curso='$curso')";
+$consulta.="(select $campos from premat_2bach_hcs where id_nie='$id_nie' and curso='$curso')union all";
+$consulta.="(select $campos from premat_bach where id_nie='$id_nie' and curso='$curso')";
 
 $res=$mysqli->query($consulta);
 
