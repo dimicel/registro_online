@@ -70,7 +70,6 @@ function b2c_cambiaOptativas(m){
             }
             //Asigno la que he marcado a la desmarcada
             desm=desp.querySelectorAll("option[value='"+m.value+"']");
-            alert(mat_modalidad[0]+"    "+m.value+"    "+desm[0].value+"   "+desm.length);
             desm[0].value=mat_modalidad[0];
             desm[0].innerHTML=mat_modalidad[0];
         }
