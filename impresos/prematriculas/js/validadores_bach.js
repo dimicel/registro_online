@@ -219,7 +219,11 @@ function creaValidatorPagina5_1() {
     });
 }
 
-
+jQuery.validator.addMethod("dosDeModalidad", function(value, element) {
+    _selecc=document.querySelectorAll("input[name='b2c_mod']:checked").length;
+    if (_selecc<2) return false;
+    else return true;
+});
 
 function creaValidatorPagina5_2c() {
     $("#form_pagina_5_2c").validate({
@@ -230,7 +234,7 @@ function creaValidatorPagina5_2c() {
             b2c_mat: {
                 required: true
             },
-            b2c_mod: {
+            dosDeModalidad: {
                 required: true
             }
         },
@@ -241,14 +245,14 @@ function creaValidatorPagina5_2c() {
             b2c_mat: {
                 required: "Seleccione uno"
             },
-            b2c_mod: {
+            dosDeModalidad: {
                 required: "Seleccione dos"
             }
         },
         errorPlacement: function(error, element) {
             if ($(element).attr("name") == "b2c_primer_idioma") $(element).parent().parent().parent().next().children($('.errorTxt')).html(error);
             else if ($(element).attr("name") == "b2c_mat") $(element).parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name") == "b2c_mod") $(element).parent().parent().next().next().children($('.errorTxt')).html(error);
+            else if ($(element).attr("name") == "b2c_mod") $(element).parent().parent().parent().parent().parent().next().children($('.errorTxt')).html(error);
         }
     });
 }
