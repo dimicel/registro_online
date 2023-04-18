@@ -31,7 +31,7 @@ function b2c_mod_click(obj){
 function b2c_muestraEspecItin() {
     var idioma = document.getElementById("b2c_ingles").checked || document.getElementById("b2c_frances").checked;
     var matem = document.getElementById("b2c_mat").checked || document.getElementById("b2c_mat_acs").checked;
-    
+    alert(document.querySelectorAll('input[name="b2c_mod"]:checked').length)
     if (idioma && matem  && document.querySelectorAll('input[name="b2c_mod"]:checked').length==2) {
         $("#div_b2c_esp_itin_vacio").addClass("d-none");
         $("#div_b2c_esp_itin1").removeClass("d-none");
@@ -70,6 +70,7 @@ function b2c_cambiaOptativas(m){
             }
             //Asigno la que he marcado a la desmarcada
             desm=desp.querySelectorAll("option[value='"+m.value+"']");
+            alert(mat_modalidad[0]+"    "+m.value+"    "+desm.value);
             desm.value=mat_modalidad[0];
             desm.innerHTML=mat_modalidad[0];
         }
