@@ -41,6 +41,7 @@ $fecha_nac=date('Y-m-d',strtotime($fecha_nac));
 $sexo=$_POST['sexo'];
 $email_alumno=$_POST['email_alumno'];
 $telef_alumno=$_POST['telef_alumno'];
+$grupo="2º BACHILLERATO DE CIENCIAS Y TECNOLOGÍA";
 $curso_actual=$_POST['sel_curso_act'];
 $grupo_curso_actual=$_POST['sel_grupo_curso_act'];
 $tutor1=$_POST['tutor1'];
@@ -54,9 +55,9 @@ $fecha_registro=date('Y-m-d');
 
 //Parte especifica de BACH	
 $primer_idioma=$_POST['primer_idioma'];
-$itin=$_POST['tronc_opc1'];
-$opcion=$_POST['tronc_opc2'];
-$iti=$_POST['itinerario'];
+$modalidad1=$_POST['modalidad1'];
+$modalidad2=$_POST['modalidad2'];
+$modalidad3=$_POST['modalidad3'];
 $espitin1=$_POST['b2c_eitin11'];
 $espitin2=$_POST['b2c_eitin12'];
 $espitin3=$_POST['b2c_eitin13'];
@@ -66,16 +67,13 @@ $espitin6=$_POST['b2c_eitin16'];
 $espitin7=$_POST['b2c_eitin17'];
 $espitin8=$_POST['b2c_eitin18'];
 $espitin9=$_POST['b2c_eitin19'];
+$espitin10=$_POST['b2c_eitin20'];
+$espitin11=$_POST['b2c_eitin21'];
+$espitin12=$_POST['b2c_eitin22'];
+$espitin13=$_POST['b2c_eitin23'];
+$espitin14=$_POST['b2c_eitin24'];
+$espitin15=$_POST['b2c_eitin25'];
 
-$espcom1=$_POST['b2c_eitin20'];
-$espcom2=$_POST['b2c_eitin21'];
-$espcom3=$_POST['b2c_eitin22'];
-$espcom4=$_POST['b2c_eitin23'];
-$espcom5=$_POST['b2c_eitin24'];
-$espcom6=$_POST['b2c_eitin25'];
-$espcom7=$_POST['b2c_eitin26'];
-$espcom8=$_POST['b2c_eitin27'];
-$espcom9=$_POST['b2c_eitin28'];
 
 
 
@@ -102,10 +100,16 @@ $mysqli->query("delete from premat_3esopmar where id_nie='$id_nie' and curso='$a
 $mysqli->query("delete from premat_1bach_lomloe where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_2bach_hcs where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_2bach_c where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
 
-$mysqli->query("insert into premat_2bach_c (id_nie,
+
+//MATERIA 1->Primer Idioma. MATERIAS 2,3 Y 4->Modalidad1, 2 y 3
+//MATERIAS 5 a 19 - Optativas
+$mysqli->query("insert into premat_bach (id_nie,
                                         registro,
                                         fecha_registro,
+                                        grupo,
                                         curso,
                                         curso_premat,
                                         apellidos,
@@ -122,31 +126,28 @@ $mysqli->query("insert into premat_2bach_c (id_nie,
                                         tlf_tutor2,
                                         curso_actual,
                                         grupo_curso_actual,
-                                        itinerario,
-                                        primer_idioma,
-                                        tronc_opc1,
-                                        tronc_opc2,
-                                        espec_itin_com1,
-                                        espec_itin_com2,
-                                        espec_itin_com3,
-                                        espec_itin_com4,
-                                        espec_itin_com5,
-                                        espec_itin_com6,
-                                        espec_itin_com7,
-                                        espec_itin_com8,
-                                        espec_itin_com9,
-                                        espec_itin_com10,
-                                        espec_itin_com11,
-                                        espec_itin_com12,
-                                        espec_itin_com13,
-                                        espec_itin_com14,
-                                        espec_itin_com15,
-                                        espec_itin_com16,
-                                        espec_itin_com17,
-                                        espec_itin_com18) 
+                                        materia1,
+                                        materia2,
+                                        materia3,
+                                        materia4,
+                                        materia5,
+                                        materia6,
+                                        materia7,
+                                        materia8,
+                                        materia9,
+                                        materia10,
+                                        materia11,
+                                        materia12,
+                                        materia13,
+                                        materia14,
+                                        materia15,
+                                        materia16,
+                                        materia17,
+                                        materia18) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
+                                        '$grupo',
                                         '$anno_curso',
                                         '$anno_curso_premat',
                                         '$apellidos',
@@ -163,10 +164,10 @@ $mysqli->query("insert into premat_2bach_c (id_nie,
                                         '$tlf_tutor2',
                                         '$curso_actual',
                                         '$grupo_curso_actual',
-                                        '$iti',
                                         '$primer_idioma',
-                                        '$itin',
-                                        '$opcion',
+                                        '$modalidad1',
+                                        '$modalidad2',
+                                        '$modalidad3',
                                         '$espitin1',
                                         '$espitin2',
                                         '$espitin3',
@@ -176,15 +177,12 @@ $mysqli->query("insert into premat_2bach_c (id_nie,
                                         '$espitin7',
                                         '$espitin8',
                                         '$espitin9',
-                                        '$espcom1',
-                                        '$espcom2',
-                                        '$espcom3',
-                                        '$espcom4',
-                                        '$espcom5',
-                                        '$espcom6',
-                                        '$espcom7',
-                                        '$espcom8',
-                                        '$espcom9')");
+                                        '$eespitin10',
+                                        '$espitin11',
+                                        '$espitin12',
+                                        '$espitin13',
+                                        '$espitin14',
+                                        '$espitin15')");
 if ($mysqli->errno>0){
     exit("registro_erroneo ".$mysqli->errno);
 }
