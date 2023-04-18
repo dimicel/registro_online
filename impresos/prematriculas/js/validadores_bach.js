@@ -220,7 +220,7 @@ function creaValidatorPagina5_1() {
 }
 
 jQuery.validator.addMethod("dosDeModalidad", function(value, element) {
-    _selecc=document.querySelectorAll("input[name='b2c_mod']:checked").length;
+    _selecc=document.querySelectorAll('input[name="b2c_mod"]:checked').length;
     alert(_selecc);
     if (_selecc<2) return false;
     else return true;
@@ -235,8 +235,8 @@ function creaValidatorPagina5_2c() {
             b2c_mat: {
                 required: true
             },
-            dosDeModalidad: {
-                required: true
+            b2c_mod: {
+                dosDeModalidad: true
             }
         },
         messages: {
@@ -246,8 +246,8 @@ function creaValidatorPagina5_2c() {
             b2c_mat: {
                 required: "Seleccione uno"
             },
-            dosDeModalidad: {
-                required: "Seleccione dos"
+            b2c_mod: {
+                dosDeModalidad: "Seleccione dos"
             }
         },
         errorPlacement: function(error, element) {
