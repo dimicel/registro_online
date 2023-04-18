@@ -30,8 +30,9 @@ function b2c_mod_click(obj){
 
 function b2c_muestraEspecItin() {
     var idioma = document.getElementById("b2c_ingles").checked || document.getElementById("b2c_frances").checked;
+    var matem = document.getElementById("b2c_mat").checked || document.getElementById("b2c_mat_acs").checked;
     
-    if (idioma && document.querySelectorAll('input[name="b2c_mod"]:checked').length==2  && document.querySelectorAll('input[name="b2c_mat"]:checked').length==1) {
+    if (idioma && matem  && document.querySelectorAll('input[name="b2c_mat"]:checked').length==1) {
         $("#div_b2c_esp_itin_vacio").addClass("d-none");
         $("#div_b2c_esp_itin1").removeClass("d-none");
         $("#rot_epec_itin").css("margin-top","30px");
