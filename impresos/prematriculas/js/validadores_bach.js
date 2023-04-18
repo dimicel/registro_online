@@ -227,13 +227,10 @@ function creaValidatorPagina5_2c() {
             b2c_primer_idioma: {
                 required: true
             },
-            b2c_itin: {
+            b2c_mat: {
                 required: true
             },
-            b2c_op1: {
-                required: true
-            },
-            b2c_op2: {
+            b2c_mod: {
                 required: true
             }
         },
@@ -241,21 +238,17 @@ function creaValidatorPagina5_2c() {
             b2c_primer_idioma: {
                 required: "Seleccione uno"
             },
-            b2c_itin: {
+            b2c_mat: {
                 required: "Seleccione uno"
             },
-            b2c_op1: {
-                required: "Seleccione uno"
-            },
-            b2c_op2: {
-                required: "Seleccione uno"
+            b2c_mod: {
+                required: "Seleccione dos"
             }
         },
         errorPlacement: function(error, element) {
             if ($(element).attr("name") == "b2c_primer_idioma") $(element).parent().parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name") == "b2c_itin") $(element).parent().parent().parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name") == "b2c_op1") $(element).parent().parent().next().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name") == "b2c_op2") $(element).parent().parent().next().children($('.errorTxt')).html(error);
+            else if ($(element).attr("name") == "b2c_mat") $(element).parent().parent().next().children($('.errorTxt')).html(error);
+            else if ($(element).attr("name") == "b2c_mod") $(element).parent().parent().next().next().children($('.errorTxt')).html(error);
         }
     });
 }
