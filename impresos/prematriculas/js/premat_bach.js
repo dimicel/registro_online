@@ -403,7 +403,7 @@ function cursoActual() {
         $("#sel_curso_act").attr("disabled", false);
         document.getElementById("sel_curso_act").value = "";
     } 
-    else if(document.getElementById("curso").value=="2º Bach. Ciencias"){
+    else if(document.getElementById("curso").value=="2º Bach. Ciencias y Tecnología"){
         $("[itemprop='eso']").hide();
         $("[itemprop='bach']").show();
         $("[itemprop~='4']").hide();
