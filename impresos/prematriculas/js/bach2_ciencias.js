@@ -22,9 +22,9 @@ function b2c_seleccionIdioma(_idioma) {
 }
 
 
-function b2c_mod_click(){
+function b2c_mod_click(obj){
     limitCheckboxes('input[name=\'b2c_mod\']', 2);
-    b2c_cambiaOptativas();
+    b2c_cambiaOptativas(obj);
     b2c_muestraEspecItin();
 }
 
@@ -43,7 +43,35 @@ function b2c_muestraEspecItin() {
 }
 
 
-function b2c_cambiaOptativas(){
+function b2c_cambiaOptativas(m){
+    var mat_modalidad=["Biología","Dibujo Técnico II","Física","Química","Biología y Ciencias Ambientales","Tecnología e Ingeniería II"]
+    var desp=document.getElementById("b2c_esp_itin1");
+    if(document.querySelectorAll('input[name="b2c_mod"]:checked').length==2){
+        //elimino del array los que están seleccionados
+        _k=document.querySelectorAll('input[name="b2c_mod"]:checked');
+        for (i=0; i<_k.length;i++){
+            mat_modalidad.splice(mat_modalidad.indexOf(_k[i].value),1);
+        }
+        //Si los options están vacío (inicialmente son 4) se le dan valores de las materis de modalidad no marcadas
+        _kk=desp.querySelectorAll("option[value='']");
+        if(_kk.length==4){
+            for (i=0;i<_kk.length;i++){
+                _kk[i].value=mat_modalidad[i];
+                _kk[i].innerHTML=mat_modalidad[i];
+            }
+        }
+        //Si ya estaban con valores, busco el seleccionado y lo cambio por el que se ha quedado deseleccionado, sin modificar el orden de los option
+        else{
+            //Al cambiar una de las materias, una de las del array mat_modalidad no está, y debe de ser la desmarcada.
+            for(i=0;i<desp.length;i++){
+                mat_modalidad.splice(mat_modalidad.indexOf(_desp[i].value),1);
+            }
+            //Asigno la que he marcado a la desmarcada
+            desm=desp.querySelectorAll("option[value='"+mat_modalidad[0]+"']");
+            desm.value=m.value;
+            desm.innerHTML=m.value;
+        }
+    }
     
 }
 
