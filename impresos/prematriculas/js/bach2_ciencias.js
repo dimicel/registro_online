@@ -9,8 +9,14 @@ function b2c_seleccionIdioma(_idioma) {
     b2c_muestraEspecItin();
 
     for (i = 0; i < lista.length; i++) {
-        if (_idioma == "ingles" && lista.options[i].innerHTML == "2ª Lengua Extranjera II (Inglés)") lista.options[i].innerHTML = "2ª Lengua Extranjera II (Francés)";
-        else if (_idioma == "frances" && lista.options[i].innerHTML == "2ª Lengua Extranjera II (Francés)") lista.options[i].innerHTML = "2ª Lengua Extranjera II (Inglés)";
+        if (_idioma == "ingles" && lista.options[i].innerHTML == "2ª Lengua Extranjera II (Inglés)") {
+            lista.options[i].innerHTML = "2ª Lengua Extranjera II (Francés)";
+            lista.options[i].value = "2ª Lengua Extranjera II (Francés)";
+        }
+        else if (_idioma == "frances" && lista.options[i].innerHTML == "2ª Lengua Extranjera II (Francés)") {
+            lista.options[i].innerHTML = "2ª Lengua Extranjera II (Inglés)";
+            lista.options[i].value = "2ª Lengua Extranjera II (Inglés)";
+        }
     }
     lista.selectedIndex = -1;
 }
