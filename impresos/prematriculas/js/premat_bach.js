@@ -267,8 +267,8 @@ function registraMatricula() {
         f.action = "php/premat2bach_c.php";
         f.primer_idioma.value = retornaValRadioButton(f5.b2c_primer_idioma);
         f.modalidad1.value = retornaValRadioButton(document.getElementsByName("b2c_mat"));
-        f.modalidad2.value=document.querySelectorAll('input[name="b2c_mod"]:checked')[0];
-        f.modalidad3.value=document.querySelectorAll('input[name="b2c_mod"]:checked')[1];
+        f.modalidad2.value=document.querySelectorAll('input[name="b2c_mod"]:checked')[0].value;
+        f.modalidad3.value=document.querySelectorAll('input[name="b2c_mod"]:checked')[1].value;
         f.appendChild(f5.b2c_eitin11);
         f.appendChild(f5.b2c_eitin12);
         f.appendChild(f5.b2c_eitin13);
