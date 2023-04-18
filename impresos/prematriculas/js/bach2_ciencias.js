@@ -68,6 +68,7 @@ function b2c_cambiaOptativas(m){
                 mat_modalidad.splice(mat_modalidad.indexOf(desp[i].value),1);
             }
             //Asigno la que he marcado a la desmarcada
+            alert(mat_modalidad.length+"    "+mat_modalidad[0])
             desm=desp.querySelectorAll("option[value='"+mat_modalidad[0]+"']");
             desm.value=m.value;
             desm.innerHTML=m.value;
