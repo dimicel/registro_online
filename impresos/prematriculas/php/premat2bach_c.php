@@ -41,7 +41,6 @@ $fecha_nac=date('Y-m-d',strtotime($fecha_nac));
 $sexo=$_POST['sexo'];
 $email_alumno=$_POST['email_alumno'];
 $telef_alumno=$_POST['telef_alumno'];
-$grupo="2º BACHILLERATO DE CIENCIAS Y TECNOLOGÍA";
 $curso_actual=$_POST['sel_curso_act'];
 $grupo_curso_actual=$_POST['sel_grupo_curso_act'];
 $tutor1=$_POST['tutor1'];
@@ -147,7 +146,7 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
-                                        '$grupo',
+                                        '$curso',
                                         '$anno_curso',
                                         '$anno_curso_premat',
                                         '$apellidos',
