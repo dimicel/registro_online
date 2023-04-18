@@ -15,86 +15,11 @@ function b2c_seleccionIdioma(_idioma) {
     lista.selectedIndex = -1;
 }
 
-function b2c_seleccItin(op) {
-    var lista = document.getElementById("b2c_esp_itin1");
-
-    b2c_muestraEspecItin();
-
-    if (op == "itinerario 3") {
-        $("#div_b2c_op_vacio").addClass("d-none");
-        $("#div_b2c_op1").removeClass("d-none");
-        $("#div_b2c_op2").addClass("d-none");
-    } else if (op == "itinerario 4") {
-        $("#div_b2c_op_vacio").addClass("d-none");
-        $("#div_b2c_op1").addClass("d-none");
-        $("#div_b2c_op2").removeClass("d-none");
-    }
-
-    if (op == "itinerario 3") {
-        op = "Biología";
-        b2c_seleccTronOpItin1(retornaValRadioButton(document.getElementsByName("b2c_op1")));
-    } else if (op == "itinerario 4") {
-        op = "Física";
-        b2c_seleccTronOpItin2(retornaValRadioButton(document.getElementsByName("b2c_op2")));
-    }
-
-    for (i = 0; i < lista.length; i++) {
-        if (lista.options[i].value == "1") lista.options[i].innerHTML = op;
-    }
-
-    lista.selectedIndex = -1;
-}
-
-
-
-function b2c_seleccTronOpItin1(op) {
-    var lista = document.getElementById("b2c_esp_itin1");
-
-    b2c_muestraEspecItin();
-
-    if (op == "Dibujo Técnico II") {
-        for (i = 0; i < lista.length; i++) {
-            if (lista.options[i].value == "2") lista.options[i].innerHTML = "Geología";
-            if (lista.options[i].value == "3") lista.options[i].innerHTML = "Química";
-        }
-    } else if (op == "Química") {
-        for (i = 0; i < lista.length; i++) {
-            if (lista.options[i].value == "2") lista.options[i].innerHTML = "Geología";
-            if (lista.options[i].value == "3") lista.options[i].innerHTML = "Dibujo Técnico II";
-        }
-    }
-}
-
-function b2c_seleccTronOpItin2(op) {
-    var lista = document.getElementById("b2c_esp_itin1");
-
-    b2c_muestraEspecItin();
-
-    if (op == "Geología") {
-        for (i = 0; i < lista.length; i++) {
-            if (lista.options[i].value == "2") lista.options[i].innerHTML = "Dibujo Técnico II";
-            if (lista.options[i].value == "3") lista.options[i].innerHTML = "Química";
-        }
-    } else if (op == "Química") {
-        for (i = 0; i < lista.length; i++) {
-            if (lista.options[i].value == "2") lista.options[i].innerHTML = "Dibujo Técnico II";
-            if (lista.options[i].value == "3") lista.options[i].innerHTML = "Geología";
-        }
-    }
-}
-
-
-
 
 function b2c_muestraEspecItin() {
-    var itin = retornaValRadioButton(document.getElementsByName("b2c_itin"));
     var idioma = document.getElementById("b2c_ingles").checked || document.getElementById("b2c_frances").checked;
 
-    if (itin == "itinerario 3") var itinto = document.getElementById("b2c_op11").checked || document.getElementById("b2c_op12").checked;
-    else if (itin == "itinerario 4") var itinto = document.getElementById("b2c_op21").checked || document.getElementById("b2c_op22").checked;
-    else var itinto = false;
-
-    if (idioma && itinto) {
+    if (idioma && document.querySelectorAll('input[name="b2c_mod"]:checked').length==2) {
         $("#div_b2c_esp_itin_vacio").addClass("d-none");
         $("#div_b2c_esp_itin1").removeClass("d-none");
         $("#rot_epec_itin").css("margin-top","30px");
