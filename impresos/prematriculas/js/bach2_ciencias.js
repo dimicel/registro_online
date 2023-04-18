@@ -22,6 +22,12 @@ function b2c_seleccionIdioma(_idioma) {
 }
 
 
+function b2c_mod_click(){
+    limitCheckboxes('input[name=\'b2c_mod\']', 2);
+    b2c_cambiaOptativas();
+    b2c_muestraEspecItin();
+}
+
 function b2c_muestraEspecItin() {
     var idioma = document.getElementById("b2c_ingles").checked || document.getElementById("b2c_frances").checked;
     
@@ -36,6 +42,10 @@ function b2c_muestraEspecItin() {
     }
 }
 
+
+function b2c_cambiaOptativas(){
+    
+}
 
 
 function b2c_generaDatosSerialize() {
