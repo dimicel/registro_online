@@ -184,7 +184,7 @@ if ($consulta->num_rows>0){
 }
 $consulta->free();
 
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_2bach_c where id_nie='$id_nie' order by curso,fecha_registro, registro");
+$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_bach where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
     $data["error"]="ok";
     while ($reg=$consulta->fetch_assoc()){
