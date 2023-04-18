@@ -32,7 +32,7 @@ function b2c_muestraEspecItin() {
     var idioma = document.getElementById("b2c_ingles").checked || document.getElementById("b2c_frances").checked;
     var matem = document.getElementById("b2c_mat").checked || document.getElementById("b2c_mat_acs").checked;
     
-    if (idioma && matem  && document.querySelectorAll('input[name="b2c_mat"]:checked').length==1) {
+    if (idioma && matem  && document.querySelectorAll('input[name="b2c_mod"]:checked').length==2) {
         $("#div_b2c_esp_itin_vacio").addClass("d-none");
         $("#div_b2c_esp_itin1").removeClass("d-none");
         $("#rot_epec_itin").css("margin-top","30px");
@@ -65,7 +65,7 @@ function b2c_cambiaOptativas(m){
         else{
             //Al cambiar una de las materias, una de las del array mat_modalidad no está, y debe de ser la desmarcada.
             for(i=0;i<desp.length;i++){
-                mat_modalidad.splice(mat_modalidad.indexOf(_desp[i].value),1);
+                mat_modalidad.splice(mat_modalidad.indexOf(desp[i].value),1);
             }
             //Asigno la que he marcado a la desmarcada
             desm=desp.querySelectorAll("option[value='"+mat_modalidad[0]+"']");
