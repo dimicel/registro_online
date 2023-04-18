@@ -269,7 +269,7 @@ HTML1;
 
 $YInicio=40;
 
-$pdf->RoundedRect(73,$YInicio,62,15,2,'1111','','','');
+$pdf->RoundedRect(73,$YInicio,63,15,2,'1111','','','');
 $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $html1, 0, 1, false, true, 'C', true);
 
 //Padding dentro de la celda del texto
