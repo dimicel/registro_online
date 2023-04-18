@@ -221,6 +221,7 @@ function creaValidatorPagina5_1() {
 
 jQuery.validator.addMethod("dosDeModalidad", function(value, element) {
     _selecc=document.querySelectorAll("input[name='b2c_mod']:checked").length;
+    alert(_selecc);
     if (_selecc<2) return false;
     else return true;
 });
