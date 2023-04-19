@@ -83,7 +83,7 @@ $optativa17=$_POST['optativa17'];
 $registro=generaRegistro();
 $repite_registro=true;
 while ($repite_registro){
-    $res=$mysqli->query("select * from premat_1bach_hcs where registro='$registro'");
+    $res=$mysqli->query("select * from premat_bach where registro='$registro'");
     if ($mysqli->errno>0) exit("servidor");
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
@@ -103,12 +103,14 @@ $mysqli->query("delete from premat_3esopmar where id_nie='$id_nie' and curso='$a
 $mysqli->query("delete from premat_1bach_lomloe where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_2bach_hcs where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_2bach_c where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
 
-$mysqli->query("insert into premat_1bach_lomloe (id_nie,
+$mysqli->query("insert into premat_bach (id_nie,
                                         registro,
                                         fecha_registro,
                                         curso,
                                         curso_premat,
+                                        grupo,
                                         apellidos,
                                         nombre,
                                         email,
@@ -124,33 +126,34 @@ $mysqli->query("insert into premat_1bach_lomloe (id_nie,
                                         curso_actual,
                                         grupo_curso_actual,
                                         modalidad,
-                                        primer_idioma,
-                                        religion,
-                                        obligatoria1,
-                                        obligatoria2,
-                                        obligatoria3,
-                                        optativa1,
-                                        optativa2,
-                                        optativa3,
-                                        optativa4,
-                                        optativa5,
-                                        optativa6,
-                                        optativa7,
-                                        optativa8,
-                                        optativa9,
-                                        optativa10,
-                                        optativa11,
-                                        optativa12,
-                                        optativa13,
-                                        optativa14,
-                                        optativa15,
-                                        optativa16,
-                                        optativa17) 
+                                        materia1,
+                                        materia2,
+                                        materia3,
+                                        materia4,
+                                        materia5,
+                                        materia6,
+                                        materia7,
+                                        materia8,
+                                        materia9,
+                                        materia10,
+                                        materia11,
+                                        materia12,
+                                        materia13,
+                                        materia14,
+                                        materia15,
+                                        materia16,
+                                        materia17,
+                                        materia18,
+                                        materia19,
+                                        materia20,
+                                        materia21,
+                                        materia22) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
                                         '$anno_curso',
                                         '$anno_curso_premat',
+                                        '$curso',
                                         '$apellidos',
                                         '$nombre',
                                         '$email_alumno',

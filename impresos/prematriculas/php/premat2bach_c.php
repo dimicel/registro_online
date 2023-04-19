@@ -79,7 +79,7 @@ $espitin15=$_POST['b2c_eitin25'];
 $registro=generaRegistro();
 $repite_registro=true;
 while ($repite_registro){
-    $res=$mysqli->query("select * from premat_2bach_hcs where registro='$registro'");
+    $res=$mysqli->query("select * from premat_bach where registro='$registro'");
     if ($mysqli->errno>0) exit("servidor");
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
