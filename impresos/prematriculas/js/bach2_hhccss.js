@@ -99,5 +99,4 @@ function b2h_generaDatosSerialize() {
     document.getElementById("b2h_eitin24").value = document.getElementById("b2h_esp_itin1").options[13].innerHTML;
     document.getElementById("b2h_eitin25").value = document.getElementById("b2h_esp_itin1").options[14].innerHTML;
     document.getElementById("b2h_eitin26").value = document.getElementById("b2h_esp_itin1").options[15].innerHTML;
-    document.getElementById("b2h_eitin27").value = document.getElementById("b2h_esp_itin1").options[16].innerHTML;
 }
