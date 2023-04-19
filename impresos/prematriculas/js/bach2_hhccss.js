@@ -60,7 +60,7 @@ function b2h_cambiaOptativas(m){
         }
         //Si los options están vacío (inicialmente son 4) se le dan valores de las materis de modalidad no marcadas
         _kk=desp.querySelectorAll("option[value='']");
-        if(_kk.length==4){
+        if(_kk.length==3){
             for (i=0;i<_kk.length;i++){
                 _kk[i].value=mat_modalidad[i];
                 _kk[i].innerHTML=mat_modalidad[i];
