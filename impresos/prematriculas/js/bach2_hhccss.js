@@ -50,7 +50,7 @@ function b2h_muestraEspecItin() {
 
 
 function b2h_cambiaOptativas(m){
-    var mat_modalidad=["Griego II","Empresa y Diseño de Modelos de Negocio","Geografía","Historia del Arte",document.getElementById("b2h_mod5").value];
+    var mat_modalidad=["Griego II","Empresa y Diseño de Modelos de Negocio","Geografía","Historia del Arte"];
     var desp=document.getElementById("b2h_esp_itin1");
     if(document.querySelectorAll('input[name="b2h_mod"]:checked').length==2){
         //elimino del array los que están seleccionados
