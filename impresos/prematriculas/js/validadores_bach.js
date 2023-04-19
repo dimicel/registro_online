@@ -282,9 +282,9 @@ function creaValidatorPagina5_2hcs() {
             }
         },
         errorPlacement: function(error, element) {
-            if ($(element).attr("name") == "b2c_primer_idioma") $(element).parent().parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name") == "b2c_mat") $(element).parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name") == "b2c_mod") $(element).parent().parent().parent().parent().parent().next().children($('.errorTxt')).html(error);
+            if ($(element).attr("name") == "b2h_primer_idioma") $(element).parent().parent().parent().next().children($('.errorTxt')).html(error);
+            else if ($(element).attr("name") == "b2h_mat") $(element).parent().parent().next().children($('.errorTxt')).html(error);
+            else if ($(element).attr("name") == "b2h_mod") $(element).parent().parent().parent().parent().parent().next().children($('.errorTxt')).html(error);
         }
     });
 }
