@@ -90,15 +90,7 @@ while ($repite_registro){
     $res->free();
 }
 
-$mysqli->query("delete from premat_1eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_3eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_4eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2esopmar where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_3esopmar where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_1bach_lomloe where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2bach_hcs where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2bach_c where id_nie='$id_nie' and curso='$anno_curso'");
+
 $mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
 
