@@ -50,35 +50,33 @@ function b2h_muestraEspecItin() {
 
 
 function b2h_cambiaOptativas(m){
-    if(m.value!="Latín II" && m.value!="Matemáticas aplicadas a las Ciencias Sociales II"){
-        var mat_modalidad=["Griego II","Empresa y Diseño de Modelos de Negocio","Geografía","Historia del Arte"];
-        var desp=document.getElementById("b2h_esp_itin1");
-        if(document.querySelectorAll('input[name="b2h_mod"]:checked').length==2){
-            //elimino del array los que están seleccionados
-            _k=document.querySelectorAll('input[name="b2h_mod"]:checked');
-            for (i=0; i<_k.length;i++){
-                mat_modalidad.splice(mat_modalidad.indexOf(_k[i].value),1);
+    var mat_modalidad=["Griego II","Empresa y Diseño de Modelos de Negocio","Geografía","Historia del Arte",document.getElementById("b2h_mod5").value];
+    var desp=document.getElementById("b2h_esp_itin1");
+    if(document.querySelectorAll('input[name="b2h_mod"]:checked').length==2){
+        //elimino del array los que están seleccionados
+        _k=document.querySelectorAll('input[name="b2h_mod"]:checked');
+        for (i=0; i<_k.length;i++){
+            mat_modalidad.splice(mat_modalidad.indexOf(_k[i].value),1);
+        }
+        //Si los options están vacío (inicialmente son 4) se le dan valores de las materis de modalidad no marcadas
+        _kk=desp.querySelectorAll("option[value='']");
+        if(_kk.length==4){
+            for (i=0;i<_kk.length;i++){
+                _kk[i].value=mat_modalidad[i];
+                _kk[i].innerHTML=mat_modalidad[i];
             }
-            //Si los options están vacío (inicialmente son 4) se le dan valores de las materis de modalidad no marcadas
-            _kk=desp.querySelectorAll("option[value='']");
-            if(_kk.length==4){
-                for (i=0;i<_kk.length;i++){
-                    _kk[i].value=mat_modalidad[i];
-                    _kk[i].innerHTML=mat_modalidad[i];
-                }
+        }
+        //Si ya estaban con valores, busco el seleccionado y lo cambio por el que se ha quedado deseleccionado, sin modificar el orden de los option
+        else{
+            //Al cambiar una de las materias, una de las del array mat_modalidad no está, y debe de ser la desmarcada.
+            for(i=0;i<desp.length;i++){
+                indice=mat_modalidad.indexOf(desp[i].value);
+                if (indice>-1) mat_modalidad.splice(indice,1);
             }
-            //Si ya estaban con valores, busco el seleccionado y lo cambio por el que se ha quedado deseleccionado, sin modificar el orden de los option
-            else{
-                //Al cambiar una de las materias, una de las del array mat_modalidad no está, y debe de ser la desmarcada.
-                for(i=0;i<desp.length;i++){
-                    indice=mat_modalidad.indexOf(desp[i].value);
-                    if (indice>-1) mat_modalidad.splice(indice,1);
-                }
-                //Asigno la que he marcado a la desmarcada
-                desm=desp.querySelectorAll("option[value='"+m.value+"']");
-                desm[0].value=mat_modalidad[0];
-                desm[0].innerHTML=mat_modalidad[0];
-            }
+            //Asigno la que he marcado a la desmarcada
+            desm=desp.querySelectorAll("option[value='"+m.value+"']");
+            desm[0].value=mat_modalidad[0];
+            desm[0].innerHTML=mat_modalidad[0];
         }
     }
 }
