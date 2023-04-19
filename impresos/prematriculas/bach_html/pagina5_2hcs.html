@@ -52,12 +52,12 @@
                         </div>
                         <div class="col">
                             <div class="row custom-control-inline custom-switch  mi-checkbox">
-                                <input class="custom-control-input" type="radio" name="b2c_primer_idioma" id="b2c_ingles" value="Inglés" onclick="b2c_seleccionIdioma('ingles')" />
-                                <label for="b2c_ingles" class="custom-control-label">Inglés</label>
+                                <input class="custom-control-input" type="radio" name="b2h_primer_idioma" id="b2h_ingles" value="Inglés" onclick="b2h_seleccionIdioma('ingles')" />
+                                <label for="b2h_ingles" class="custom-control-label">Inglés</label>
                             </div>
                             <div class="row custom-control-inline custom-switch  mi-checkbox" style="margin-top:-10px">
-                                <input class="custom-control-input" type="radio" name="b2c_primer_idioma" id="b2c_frances" value="Francés" onclick="b2c_seleccionIdioma('frances')" />
-                                <label for="b2c_frances" class="custom-control-label">Francés</label>
+                                <input class="custom-control-input" type="radio" name="b2h_primer_idioma" id="b2h_frances" value="Francés" onclick="b2h_seleccionIdioma('frances')" />
+                                <label for="b2h_frances" class="custom-control-label">Francés</label>
                             </div>
                         </div>
                     </div>
@@ -97,12 +97,12 @@
                     </div>
                     <div class="row">
                         <div class="col-3 offset-1 custom-control-inline custom-switch  mi-checkbox">
-                            <input class="custom-control-input" type="radio" name="b2c_mat" id="b2c_mat" value="Latín II" onclick="b2c_mat_click();"/>
-                            <label for="b2c_mat" class="custom-control-label">Latín II</label>
+                            <input class="custom-control-input" type="radio" name="b2h_mat" id="b2h_mat" value="Latín II" onclick="b2h_mat_click('Matemáticas aplicadas a las Ciencias Sociales II');"/>
+                            <label for="b2h_mat" class="custom-control-label">Latín II</label>
                         </div>
                         <div class="col custom-control-inline custom-switch  mi-checkbox">
-                            <input class="custom-control-input" type="radio" name="b2c_mat" id="b2c_mat_acs" value="Matemáticas aplicadas a las Ciencias Sociales II" onclick="b2c_mat_click()();"/>
-                            <label for="b2c_mat_acs" class="custom-control-label">Matemáticas aplicadas a las Ciencias Sociales II</label>
+                            <input class="custom-control-input" type="radio" name="b2h_mat" id="b2h_mat_acs" value="Matemáticas aplicadas a las Ciencias Sociales II" onclick="b2h_mat_click('Latín II');"/>
+                            <label for="b2h_mat_acs" class="custom-control-label">Matemáticas aplicadas a las Ciencias Sociales II</label>
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -123,28 +123,28 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="col-2  custom-control-inline custom-switch  mi-checkbox">
-                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod1" value="Griego II" onclick="b2c_mod_click(this)"/>
-                                        <label for="b2c_mod1" class="custom-control-label">Griego II</label>
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod1" value="Griego II" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod1" class="custom-control-label">Griego II</label>
                                     </div>
                                     <div class="col-3 custom-control-inline custom-switch  mi-checkbox">
-                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod2" value="Geografía" onclick="b2c_mod_click(this)"/>
-                                        <label for="b2c_mod2" class="custom-control-label">Geografía</label>
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod2" value="Geografía" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod2" class="custom-control-label">Geografía</label>
                                     </div>
                                     <div class="col-2 custom-control-inline custom-switch  mi-checkbox">
-                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod3" value="Historia del Arte" onclick="b2c_mod_click(this)"/>
-                                        <label for="b2c_mod3" class="custom-control-label">Historia del Arte</label>
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod3" value="Historia del Arte" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod3" class="custom-control-label">Historia del Arte</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="col-5  custom-control-inline custom-switch  mi-checkbox">
-                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod4" value="Empresa y Diseño de Modelos de Negocio" onclick="b2c_mod_click(this)"/>
-                                        <label for="b2c_mod4" class="custom-control-label">Empresa y Diseño de Modelos de Negocio</label>
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod4" value="Empresa y Diseño de Modelos de Negocio" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod4" class="custom-control-label">Empresa y Diseño de Modelos de Negocio</label>
                                     </div>
                                     <div class="col-4 custom-control-inline custom-switch  mi-checkbox">
-                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod5" value="Matemáticas aplicadas a las Ciencias Sociales II" onclick="b2c_mod_click(this)"/>
-                                        <label for="b2c_mod5" class="custom-control-label">Matemáticas aplicadas a las Ciencias Sociales II</label>
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod5" value="Matemáticas aplicadas a las Ciencias Sociales II" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod5" class="custom-control-label">Matemáticas aplicadas a las Ciencias Sociales II</label>
                                     </div>
                                 </div>
                             </div>
@@ -176,12 +176,12 @@
             </div>
         </div>
         <div class="col border border-success rounded">
-            <div id="div_b2c_esp_itin_vacio" class="row justify-content-center mt-4">
+            <div id="div_b2h_esp_itin_vacio" class="row justify-content-center mt-4">
                 <div class="col-10 text-center">
                     <p style="font-size: larger; font-weight: bold;">(Marcar antes 1ª Lengua Extranjera, y Materias de Modalidad.)</p>
                 </div>
             </div>
-            <div class="row d-none justify-content-center" id="div_b2c_esp_itin1">
+            <div class="row d-none justify-content-center" id="div_b2h_esp_itin1">
                 <div class="col offset-2">
                     <div class="row">
                         <div class="col-1 text-center">
@@ -210,7 +210,7 @@
                             <p style="margin-top:-19px;font-size:0.86em !important">15</p>
                         </div>
                         <div class="col-7 custom-control border border-success rounded ">
-                            <select name="b2c_esp_itin1" size="15" id="b2c_esp_itin1" style="margin-top:5px;overflow:visible;">
+                            <select name="b2h_esp_itin1" size="15" id="b2h_esp_itin1" style="margin-top:5px;overflow:visible;">
                                 <option value="2ª Lengua Extranjera II (Francés)">2ª Lengua Extranjera II (Francés)</option>
                                 <option value="2ª Lengua Extranjera II (Italiano)">2ª Lengua Extranjera II (Italiano)</option>
                                 <option value="2ª Lengua Extranjera (Alemán)">2ª Lengua Extranjera (Alemán)</option>
@@ -227,25 +227,27 @@
                                 <option value=""></option>
                                 <option value=""></option>
                             </select>
-                            <input type="hidden" name="b2c_eitin11" id="b2c_eitin11" />
-                            <input type="hidden" name="b2c_eitin12" id="b2c_eitin12" />
-                            <input type="hidden" name="b2c_eitin13" id="b2c_eitin13" />
-                            <input type="hidden" name="b2c_eitin14" id="b2c_eitin14" />
-                            <input type="hidden" name="b2c_eitin15" id="b2c_eitin15" />
-                            <input type="hidden" name="b2c_eitin16" id="b2c_eitin16" />
-                            <input type="hidden" name="b2c_eitin17" id="b2c_eitin17" />
-                            <input type="hidden" name="b2c_eitin18" id="b2c_eitin18" />
-                            <input type="hidden" name="b2c_eitin19" id="b2c_eitin19" />
-                            <input type="hidden" name="b2c_eitin20" id="b2c_eitin20" />
-                            <input type="hidden" name="b2c_eitin21" id="b2c_eitin21" />
-                            <input type="hidden" name="b2c_eitin22" id="b2c_eitin22" />
-                            <input type="hidden" name="b2c_eitin23" id="b2c_eitin23" />
-                            <input type="hidden" name="b2c_eitin24" id="b2c_eitin24" />
-                            <input type="hidden" name="b2c_eitin25" id="b2c_eitin25" />
+                            <input type="hidden" name="b2h_eitin11" id="b2h_eitin11" />
+                            <input type="hidden" name="b2h_eitin12" id="b2h_eitin12" />
+                            <input type="hidden" name="b2h_eitin13" id="b2h_eitin13" />
+                            <input type="hidden" name="b2h_eitin14" id="b2h_eitin14" />
+                            <input type="hidden" name="b2h_eitin15" id="b2h_eitin15" />
+                            <input type="hidden" name="b2h_eitin16" id="b2h_eitin16" />
+                            <input type="hidden" name="b2h_eitin17" id="b2h_eitin17" />
+                            <input type="hidden" name="b2h_eitin18" id="b2h_eitin18" />
+                            <input type="hidden" name="b2h_eitin19" id="b2h_eitin19" />
+                            <input type="hidden" name="b2h_eitin20" id="b2h_eitin20" />
+                            <input type="hidden" name="b2h_eitin21" id="b2h_eitin21" />
+                            <input type="hidden" name="b2h_eitin22" id="b2h_eitin22" />
+                            <input type="hidden" name="b2h_eitin23" id="b2h_eitin23" />
+                            <input type="hidden" name="b2h_eitin24" id="b2h_eitin24" />
+                            <input type="hidden" name="b2h_eitin25" id="b2h_eitin25" />
+                            <input type="hidden" name="b2h_eitin26" id="b2h_eitin26" />
+                            <input type="hidden" name="b2h_eitin27" id="b2h_eitin27" />
                         </div>
                         <div class="col-1" style="margin-top:100px">
-                            <input type="button" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="subeElemento(document.getElementById('b2c_esp_itin1'))" />
-                            <input type="button" class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="bajaElemento(document.getElementById('b2c_esp_itin1'))" />
+                            <input type="button" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="subeElemento(document.getElementById('b2h_esp_itin1'))" />
+                            <input type="button" class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="bajaElemento(document.getElementById('b2h_esp_itin1'))" />
                         </div>
                     </div>
                 </div>
