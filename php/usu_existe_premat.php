@@ -44,11 +44,6 @@ $consulta="(select $campos from premat_2eso where id_nie='$id_nie' and curso='$c
 $consulta.="(select $campos from premat_3eso where id_nie='$id_nie' and curso='$curso') union all";
 $consulta.="(select $campos from premat_4eso where id_nie='$id_nie' and curso='$curso') union all";
 $consulta.="(select $campos from premat_3esopmar where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_1bach_c where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_1bach_lomloe where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_1bach_hcs where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_2bach_c where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_2bach_hcs where id_nie='$id_nie' and curso='$curso')union all";
 $consulta.="(select $campos from premat_bach where id_nie='$id_nie' and curso='$curso')";
 
 $res=$mysqli->query($consulta);
