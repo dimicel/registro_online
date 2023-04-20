@@ -290,15 +290,9 @@ function registraMatricula() {
         var f5 = document.getElementById("form_pagina_5_2hcs");
         f.action = "php/premat2bach_hcs.php";
         f.primer_idioma.value = retornaValRadioButton(f5.b2h_primer_idioma);
-        f.itinerario.value = retornaValRadioButton(f5.b2h_itin);
-        if (f.itinerario.value == "itinerario 1") {
-            f.tronc_gen.value = "Latín II";
-            f.tronc_opc2.value = retornaValRadioButton(document.getElementsByName("b2h_op1"));
-        } else {
-            f.tronc_gen.value = "Matemáticas aplicacadas a CC.SS.";
-            f.tronc_opc2.value = retornaValRadioButton(document.getElementsByName("b2h_op2"));
-        }
-        f.tronc_opc1.value = retornaValRadioButton(document.getElementsByName("b2h_to1"));
+        f.modalidad1.value = retornaValRadioButton(document.getElementsByName("b2h_mat"));
+        f.modalidad2.value=document.querySelectorAll('input[name="b2h_mod"]:checked')[0].value;
+        f.modalidad3.value=document.querySelectorAll('input[name="b2h_mod"]:checked')[1].value;
         f.appendChild(f5.b2h_eitin11);
         f.appendChild(f5.b2h_eitin12);
         f.appendChild(f5.b2h_eitin13);
@@ -315,7 +309,6 @@ function registraMatricula() {
         f.appendChild(f5.b2h_eitin24);
         f.appendChild(f5.b2h_eitin25);
         f.appendChild(f5.b2h_eitin26);
-        f.appendChild(f5.b2h_eitin27);
     }
 
     f.appendChild(f1.curso);

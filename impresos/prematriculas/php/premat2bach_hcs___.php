@@ -25,9 +25,8 @@ function generaRegistro(){
     $array[6]=substr($nums,mt_rand(0,strlen("mayus")-1),1);
     $array[7]=substr($minus,mt_rand(0,strlen("signos")-1),1);
     shuffle($array);
-    return "iesulabto_pm2bac_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];;    
+    return "iesulabto_pm2bah_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];;    
 }
-
 
 $curso=$_POST['curso'];
 $anno_curso=$_POST['anno_curso'];
@@ -54,9 +53,11 @@ $fecha_registro=date('Y-m-d');
 
 //Parte especifica de BACH	
 $primer_idioma=$_POST['primer_idioma'];
-$modalidad1=$_POST['modalidad1'];
-$modalidad2=$_POST['modalidad2'];
-$modalidad3=$_POST['modalidad3'];
+$itin=$_POST['tronc_gen'];
+$opcion2=$_POST['tronc_opc2'];
+$opcion1=$_POST['tronc_opc1'];
+$iti=$_POST['itinerario'];
+
 $espitin1=$_POST['b2h_eitin11'];
 $espitin2=$_POST['b2h_eitin12'];
 $espitin3=$_POST['b2h_eitin13'];
@@ -66,21 +67,21 @@ $espitin6=$_POST['b2h_eitin16'];
 $espitin7=$_POST['b2h_eitin17'];
 $espitin8=$_POST['b2h_eitin18'];
 $espitin9=$_POST['b2h_eitin19'];
-$espitin10=$_POST['b2h_eitin20'];
-$espitin11=$_POST['b2h_eitin21'];
-$espitin12=$_POST['b2h_eitin22'];
-$espitin13=$_POST['b2h_eitin23'];
-$espitin14=$_POST['b2h_eitin24'];
-$espitin15=$_POST['b2h_eitin25'];
-$espitin16=$_POST['b2h_eitin26'];
-
+$espcom1=$_POST['b2h_eitin20'];
+$espcom2=$_POST['b2h_eitin21'];
+$espcom3=$_POST['b2h_eitin22'];
+$espcom4=$_POST['b2h_eitin23'];
+$espcom5=$_POST['b2h_eitin24'];
+$espcom6=$_POST['b2h_eitin25'];
+$espcom7=$_POST['b2h_eitin26'];
+$espcom8=$_POST['b2h_eitin27'];
 
 
 
 $registro=generaRegistro();
 $repite_registro=true;
 while ($repite_registro){
-    $res=$mysqli->query("select * from premat_bach where registro='$registro'");
+    $res=$mysqli->query("select * from premat_2bach_hcs where registro='$registro'");
     if ($mysqli->errno>0) exit("servidor");
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
@@ -91,17 +92,19 @@ while ($repite_registro){
     $res->free();
 }
 
+$mysqli->query("delete from premat_1eso where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_2eso where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_3eso where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_4eso where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_2esopmar where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_3esopmar where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_1bach_lomloe where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_2bach_hcs where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_2bach_c where id_nie='$id_nie' and curso='$anno_curso'");
 
-$mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
-
-
-//MATERIA 1->Primer Idioma. MATERIAS 2,3 Y 4->Modalidad1, 2 y 3
-//MATERIAS 5 a 19 - Optativas
-$mysqli->query("insert into premat_bach (id_nie,
+$mysqli->query("insert into premat_2bach_hcs (id_nie,
                                         registro,
                                         fecha_registro,
-                                        grupo,
                                         curso,
                                         curso_premat,
                                         apellidos,
@@ -118,29 +121,31 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         tlf_tutor2,
                                         curso_actual,
                                         grupo_curso_actual,
-                                        materia1,
-                                        materia2,
-                                        materia3,
-                                        materia4,
-                                        materia5,
-                                        materia6,
-                                        materia7,
-                                        materia8,
-                                        materia9,
-                                        materia10,
-                                        materia11,
-                                        materia12,
-                                        materia13,
-                                        materia14,
-                                        materia15,
-                                        materia16,
-                                        materia17,
-                                        materia18,
-                                        materia19) 
+                                        itinerario,
+                                        primer_idioma,
+                                        tronc_gen,
+                                        tronc_opc1,
+                                        tronc_opc2,
+                                        espec_itin_com1,
+                                        espec_itin_com2,
+                                        espec_itin_com3,
+                                        espec_itin_com4,
+                                        espec_itin_com5,
+                                        espec_itin_com6,
+                                        espec_itin_com7,
+                                        espec_itin_com8,
+                                        espec_itin_com9,
+                                        espec_itin_com10,
+                                        espec_itin_com11,
+                                        espec_itin_com12,
+                                        espec_itin_com13,
+                                        espec_itin_com14,
+                                        espec_itin_com15,
+                                        espec_itin_com16,
+                                        espec_itin_com17) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
-                                        '$curso',
                                         '$anno_curso',
                                         '$anno_curso_premat',
                                         '$apellidos',
@@ -157,10 +162,11 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         '$tlf_tutor2',
                                         '$curso_actual',
                                         '$grupo_curso_actual',
+                                        '$iti',
                                         '$primer_idioma',
-                                        '$modalidad1',
-                                        '$modalidad2',
-                                        '$modalidad3',
+                                        '$itin',
+                                        '$opcion1',
+                                        '$opcion2',
                                         '$espitin1',
                                         '$espitin2',
                                         '$espitin3',
@@ -170,12 +176,14 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         '$espitin7',
                                         '$espitin8',
                                         '$espitin9',
-                                        '$espitin10',
-                                        '$espitin11',
-                                        '$espitin12',
-                                        '$espitin13',
-                                        '$espitin14',
-                                        '$espitin15')");
+                                        '$espcom1',
+                                        '$espcom2',
+                                        '$espcom3',
+                                        '$espcom4',
+                                        '$espcom5',
+                                        '$espcom6',
+                                        '$espcom7',
+                                        '$espcom8')");
 if ($mysqli->errno>0){
     exit("registro_erroneo ".$mysqli->errno);
 }
@@ -262,7 +270,7 @@ HTML1;
 
 $YInicio=40;
 
-$pdf->RoundedRect(73,$YInicio,63,15,2,'1111','','','');
+$pdf->RoundedRect(82,$YInicio,45,15,2,'1111','','','');
 $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $html1, 0, 1, false, true, 'C', true);
 
 //Padding dentro de la celda del texto
@@ -402,6 +410,7 @@ $pdf->Cell(10,0,$grupo_curso_actual,0,0,'L',0,'',1,false,'T','T');
 
 
 
+
 //SELECCIÓN DE MATERIAS
 $YInicio+=7;
 
@@ -410,79 +419,80 @@ $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"SELECCIÓN DE MATERIAS",0,0,'L',0,'',1,false,'','');
 
 $pdf->RoundedRect($XInicio-2,$YInicio,185,61,2,'1111','','','');
-$comunes=<<<MAT
-- Historia de España
-- Lengua Castellana y Literatura II
-- Historia de la Filosofía
-- 1ª Lengua extranjera II ($primer_idioma)
+	$itinerario=ucfirst($iti).": ".ucfirst($itin);
+	$generales=<<<MAT
+    - Historia de España
+    - Lengua Castellana y Literatura II
+    - 1ª Lengua extranjera II ($primer_idioma)
+    - $itinerario
 MAT;
-$h_comunes=<<<MAT
-3
-4
-3
-4
+	$h_generales=<<<MAT
+    3
+    4
+    3
+    4
 MAT;
-$_modalidad=<<<MAT
-- $modalidad1
-- $modalidad2
-- $modalidad3
+	$_opcion=<<<MAT
+    - $opcion1
+    - $opcion2
 MAT;
-$h_modalidad=<<<MAT
-4
-4
-4
-MAT;
-
-$optativas_col1=<<<MAT
-1  $espitin1
-2  $espitin2
-3  $espitin3
-4  $espitin4
-5  $espitin5
-6  $espitin6
-7  $espitin7
-8  $espitin8
+	$h_opcion=<<<MAT
+    4
+    4
 MAT;
 
-$optativas_col2=<<<MAT
- 9  $espitin9
-10  $espitin10
-11  $espitin11
-12  $espitin12
-13  $espitin13
-14  $espitin14
-15  $espitin15
+	$especificas_itinerario=<<<MAT
+  1  $espitin1
+  2  $espitin2
+  3  $espitin3
+  4  $espitin4
+  5  $espitin5
+  6  $espitin6
+  7  $espitin7
+  8  $espitin8
+  9  $espitin9
 MAT;
 
-$YInicio+=6;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', '', 8, '', true);
-$pdf->Cell(50,4,"1ª Lengua Extranjera: ".$primer_idioma,0,0,'L',0,'',0,true,'T','T');
+	$especificas_comunes=<<<MAT
+  10  $espcom1
+  11  $espcom2
+  12  $espcom3
+  13  $espcom4
+  14  $espcom5
+  15  $espcom6
+  16  $espcom7
+  17  $espcom8
+MAT;
 
-$YInicio+=5;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->Cell(88,4,"MATERIAS COMUNES                                    Horas Semanales",1,0,'L',1,'',0,true,'T','T');
-$pdf->SetX(105);
-$pdf->Cell(88,4,"MATERIAS DE MODALIDAD                            Horas Semanales",1,0,'L',1,'',0,true,'T','T');
-$YInicio+=5;
-$pdf->SetXY($XInicio,$YInicio);	
-$pdf->MultiCell(88,4,$comunes,0,'L',0,1,'','',true,0,false,false,0);
-$pdf->SetXY(85,$YInicio);
-$pdf->MultiCell(15,0,$h_comunes,0,'L',0,1,'','',true,0,false,false,0);
-$pdf->SetXY(105,$YInicio);	
-$pdf->MultiCell(88,0,$_modalidad,0,'L',0,1,'','',true,0,false,false,0);
-$pdf->SetXY(180,$YInicio);
-$pdf->MultiCell(88,4,$h_modalidad,0,'L',0,1,'','',true,0,false,false,0);
-$YInicio+=13;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->Cell(88,4,"OPTATIVAS (4h)",1,0,'L',1,'',0,true,'T','T');
-$pdf->SetX(105);
-$pdf->Cell(88,4,"OPTATIVAS (4h)",1,0,'L',1,'',0,true,'T','T');
-$YInicio+=5;
-$pdf->SetXY($XInicio,$YInicio);		
-$pdf->MultiCell(88,0,$optativas_col1,0,'L',0,1,'','',true,0,false,false,0);
-$pdf->SetXY(105,$YInicio);
-$pdf->MultiCell(88,0,$optativas_col2,0,'L',0,1,'','',true,0,false,false,0);
+	$YInicio+=6;
+	$pdf->SetXY($XInicio,$YInicio);
+	$pdf->SetFont('dejavusans', '', 8, '', true);
+	$pdf->Cell(50,4,"1ª Lengua Extranjera: ".$primer_idioma,0,0,'L',0,'',0,true,'T','T');
+	
+	$YInicio+=5;
+	$pdf->SetXY($XInicio,$YInicio);
+	$pdf->Cell(88,4,"Troncales GENERALES                                   Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+	$pdf->SetX(105);
+	$pdf->Cell(88,4,"Troncales de OPCIÓN                                   Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+	$YInicio+=5;
+	$pdf->SetXY($XInicio,$YInicio);	
+	$pdf->MultiCell(88,4,$generales,0,'L',0,1,'','',true,0,false,false,0);
+	$pdf->SetXY(85,$YInicio);
+	$pdf->MultiCell(15,0,$h_generales,0,'L',0,1,'','',true,0,false,false,0);
+	$pdf->SetXY(105,$YInicio);	
+	$pdf->MultiCell(88,0,$_opcion,0,'L',0,1,'','',true,0,false,false,0);
+	$pdf->SetXY(180,$YInicio);
+	$pdf->MultiCell(88,4,$h_opcion,0,'L',0,1,'','',true,0,false,false,0);
+	$YInicio+=13;
+	$pdf->SetXY($XInicio,$YInicio);
+	$pdf->Cell(88,4,"Pref.  ESPEC. ITIN. Y COMUN. (4h)",1,0,'L',1,'',0,true,'T','T');
+	$pdf->SetX(105);
+	$pdf->Cell(88,4,"Pref.  ESPEC. ITIN. Y COMUN. (4h)",1,0,'L',1,'',0,true,'T','T');
+	$YInicio+=5;
+	$pdf->SetXY($XInicio,$YInicio);		
+	$pdf->MultiCell(88,0,$especificas_itinerario,0,'L',0,1,'','',true,0,false,false,0);
+	$pdf->SetXY(105,$YInicio);
+	$pdf->MultiCell(88,0,$especificas_comunes,0,'L',0,1,'','',true,0,false,false,0);
 
 $YInicio+=40;
 $pdf->SetXY($XInicio,$YInicio);
