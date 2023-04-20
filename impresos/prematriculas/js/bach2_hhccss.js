@@ -29,6 +29,10 @@ function b2h_mat_click(val){
 }
 
 function b2h_mod_click(obj){
+    if(document.querySelectorAll("input[name=b2h_mod]:checked").length>=2){
+        $(".alert-warning").show();
+        setTimeout(()=>{$(".alert-warning").fadeOut(1500);},1000);
+    }
     limitCheckboxes('input[name=\'b2h_mod\']', 2);
     b2h_cambiaOptativas(obj);
     b2h_muestraEspecItin();
