@@ -23,6 +23,10 @@ function b2c_seleccionIdioma(_idioma) {
 
 
 function b2c_mod_click(obj){
+    if(document.querySelectorAll("input[name=b2c_mod]:checked").length>2){
+        $(".alert-warning").show();
+        setTimeout(()=>{$(".alert-warning").fadeOut(1500);},1000);
+    }
     limitCheckboxes('input[name=\'b2c_mod\']', 2);
     b2c_cambiaOptativas(obj);
     b2c_muestraEspecItin();
