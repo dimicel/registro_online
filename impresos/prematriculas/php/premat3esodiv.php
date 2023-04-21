@@ -97,7 +97,6 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         materia2,
                                         materia3,
                                         materia4,
-                                        materia5,
                                         sexo,
                                         curso_actual,
                                         grupo_curso_actual) 
@@ -122,7 +121,6 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         '$opt1',
                                         '$opt2',
                                         '$opt3',
-                                        '$opt4',
                                         '$sexo',
                                         '$curso_actual',
                                         '$grupo_curso_actual')");
@@ -381,13 +379,11 @@ MAT;
     2
     2
     2
-    2
 MAT;
 	$mat_optativas=<<<MAT
    1   $opt1
    2   $opt2
    3   $opt3
-   4   $opt4
 MAT;
 
 $pdf->setFillColor(200);

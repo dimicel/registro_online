@@ -387,7 +387,6 @@ function registraMatricula() {
         f.appendChild(f5.eso3_div_opt1);
         f.appendChild(f5.eso3_div_opt2);
         f.appendChild(f5.eso3_div_opt3);
-        f.appendChild(f5.eso3_div_opt4);
     }
 
     f.appendChild(f1.curso);
