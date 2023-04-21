@@ -13,27 +13,27 @@ if ($mysqli->errno>0){
 $id_nie=$_POST["id_nie"];
 $curso=$_POST["curso"];
 $cursos=array(
-    "pm1eso"=>"premat_1eso",
-    "pm2eso"=>"premat_2eso",
-    "pm3eso"=>"premat_3eso",
-    "pm4eso"=>"premat_4eso",
-    "pm2esp"=>"premat_2esopmar",
-    "pm3esp"=>"premat_3esopmar",
-    "pm1bac"=>"premat_1bach_c",
-    "pm1bah"=>"premat_1bach_hcs",
+    "pm2eso"=>"premat_eso",
+    "pm3eso"=>"premat_eso",
+    "pm4eso"=>"premat_eso",
+    "pm3esd"=>"premat_eso",
+    "pm4esd"=>"premat_eso",
+    "pm1bac"=>"premat_bach",
+    "pm1bah"=>"premat_bach",
+    "pm1bag"=>"premat_bach",
     "pm2bac"=>"premat_bach",
-    "pm2bah"=>"premat_2bach_hcs",
+    "pm2bah"=>"premat_bach",
 );
 
 $cursos2=array(
-    "pm1eso"=>"1º ESO",
     "pm2eso"=>"2º ESO",
     "pm3eso"=>"3º ESO",
     "pm4eso"=>"4º ESO",
-    "pm2esp"=>"2º ESO PMAR",
-    "pm3esp"=>"3º ESO PMAR",
+    "pm3esd"=>"3º ESO DIV",
+    "pm4esd"=>"4º ESO DIV",
     "pm1bac"=>"1º Bach. Ciencias",
     "pm1bah"=>"1º Bach. HH.CC.SS.",
+    "pm1bag"=>"1º Bach. General",
     "pm2bac"=>"2º Bach. Ciencias y Tecnología",
     "pm2bah"=>"2º Bach. HH.CC.SS.",
 );
