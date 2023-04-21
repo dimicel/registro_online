@@ -333,7 +333,6 @@ function registraMatricula() {
         f.appendChild(f5.eso2_opt2);
         f.appendChild(f5.eso2_opt3);
         f.appendChild(f5.eso2_opt4);
-        f.appendChild(f5.eso2_opt5);
     } else if (_curso == "3º ESO") {
         eso3_generaDatosSerialize();
         var f5 = document.getElementById("form_pagina_5_3eso");
