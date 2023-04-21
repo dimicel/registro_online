@@ -84,7 +84,7 @@ while ($repite_registro){
 $mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
 
-$mysqli->query("insert into premat_3eso (id_nie,
+$mysqli->query("insert into premat_eso (id_nie,
                                         registro,
                                         fecha_registro,
                                         grupo,
