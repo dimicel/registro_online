@@ -450,18 +450,26 @@ function cursoActual() {
         document.getElementById("sel_curso_act").style.display = "inherit";
         document.getElementById("t_curso_actual").style.display = "none";
         document.getElementById("sel_grupo_curso_act").disabled = false;
-    }
+    } else if (document.getElementById("curso").value == "4º ESO DIV") {
+        document.getElementById("sel_curso_act").style.display = "none";
+        document.getElementById("t_curso_actual").style.display = "inherit";
+        document.getElementById("t_curso_actual").value = "3º ESO DIV";
+        document.getElementById("sel_grupo_curso_act").disabled = true;
+        document.getElementById("sel_grupo_curso_act").value = "A";
+        document.getElementById("grupo_curso_actual").value = "A";
+        document.getElementById("curso_actual").value = "3º ESO DIV";
+    } 
 }
 
 function seleccionCursoActual(c) {
     if (c == "3º ESO") {
         document.getElementById("sel_grupo_curso_act").disabled = false;
         document.getElementById("curso_actual").value = "3º ESO";
-    } else if (c == "3º ESO PMAR") {
+    } else if (c == "3º ESO DIV") {
         document.getElementById("sel_grupo_curso_act").disabled = true;
         document.getElementById("sel_grupo_curso_act").value = "A";
         document.getElementById("grupo_curso_actual").value = "A";
-        document.getElementById("curso_actual").value = "3º ESO PMAR";
+        document.getElementById("curso_actual").value = "3º ESO DIV";
     }
 }
 
