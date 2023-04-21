@@ -189,7 +189,7 @@ function creaValidatorPagina5_3esodiv() {
             }
         },
         errorPlacement: function(error, element) {
-            $(element).parent().parent().next($('.errorTxt')).html(error);
+            $(element).parent().parent().parent().next($('.errorTxt')).html(error);
         }
     });
 }
