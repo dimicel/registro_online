@@ -13,11 +13,11 @@ if ($mysqli->errno>0){
 $id_nie=$_POST["id_nie"];
 $curso=$_POST["curso"];
 $cursos=array(
-    "pm1bac"=>"premat_1bach_lomloe",
-    "pm1bah"=>"premat_1bach_lomloe",
-    "pm1bag"=>"premat_1bach_lomloe",
+    "pm1bac"=>"premat_bach",
+    "pm1bah"=>"premat_bach",
+    "pm1bag"=>"premat_bach",
     "pm2bac"=>"premat_bach",
-    "pm2bah"=>"premat_2bach_hcs"
+    "pm2bah"=>"premat_bach"
 );
 
 $cursos2=array(
