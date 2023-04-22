@@ -237,12 +237,14 @@ function creaValidatorPagina5_4eso() {
             }
         },
         errorPlacement: function(error, element) {
-            if ($(element).attr('name') == "eso4_primer_idioma" || $(element).attr('name') == "eso4_matematicas" || $(element).attr('name') == "eso4_religion")
+            if ($(element).attr('name') == "eso4_primer_idioma" || $(element).attr('name') == "eso4_matematicas")
                 $(element).parent().parent().prev().children().next().next().html(error);
             else if ($(element).attr('name') == "eso4_tron_op_aplic")
                 $(element).parent().next().next().children($('.errorTxt')).html(error);
             else if ($(element).attr('name') == "eso4_tron_op_acad")
                 $(element).parent().next().next().next().children().html(error);
+            else if($(element).attr('name') == "eso4_religion")
+                $(element).parent().parent().next().children().html(error);
             else $(element).parent().parent().next($('.errorTxt')).html(error);
         }
     });
