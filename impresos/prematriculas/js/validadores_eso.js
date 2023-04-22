@@ -211,6 +211,9 @@ function creaValidatorPagina5_4eso() {
             },
             eso4_tron_op_acad: {
                 required: true
+            },
+            eso4_matematicas:{
+                required:true
             }
         },
         messages: {
@@ -228,10 +231,13 @@ function creaValidatorPagina5_4eso() {
             },
             eso4_tron_op_acad: {
                 required: "Seleccione uno"
+            },
+            eso4_matematicas:{
+                required: "Seleccione uno"
             }
         },
         errorPlacement: function(error, element) {
-            if ($(element).attr('name') == "eso4_primer_idioma")
+            if ($(element).attr('name') == "eso4_primer_idioma" || $(element).attr('name') == "eso4_matematicas")
                 $(element).parent().parent().prev().children().next().next().html(error);
             else if ($(element).attr('name') == "eso4_tron_op_aplic")
                 $(element).parent().next().next().children($('.errorTxt')).html(error);
