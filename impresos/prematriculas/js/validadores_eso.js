@@ -214,6 +214,9 @@ function creaValidatorPagina5_4eso() {
             },
             eso4_matematicas:{
                 required:true
+            },
+            eso4_bloque1:{
+                required:true
             }
         },
         messages: {
@@ -234,6 +237,9 @@ function creaValidatorPagina5_4eso() {
             },
             eso4_matematicas:{
                 required: "Seleccione uno"
+            },
+            eso4_bloque1:{
+                required: "Seleccione uno"
             }
         },
         errorPlacement: function(error, element) {
@@ -245,6 +251,8 @@ function creaValidatorPagina5_4eso() {
                 $(element).parent().next().next().next().children().html(error);
             else if($(element).attr('name') == "eso4_religion")
                 $(element).parent().parent().next().children().html(error);
+            else if($(element).attr('name') == "eso4_bloque1")
+                $(element).parent().parent().parent().next().children().html(error);
             else $(element).parent().parent().next($('.errorTxt')).html(error);
         }
     });
