@@ -237,7 +237,7 @@ function creaValidatorPagina5_4eso() {
             }
         },
         errorPlacement: function(error, element) {
-            if ($(element).attr('name') == "eso4_primer_idioma" || $(element).attr('name') == "eso4_matematicas")
+            if ($(element).attr('name') == "eso4_primer_idioma" || $(element).attr('name') == "eso4_matematicas" || $(element).attr('name') == "eso4_religion")
                 $(element).parent().parent().prev().children().next().next().html(error);
             else if ($(element).attr('name') == "eso4_tron_op_aplic")
                 $(element).parent().next().next().children($('.errorTxt')).html(error);
