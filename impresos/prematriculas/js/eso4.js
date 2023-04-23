@@ -2,14 +2,31 @@
 
 
 function opcionSubeElemento(obj){
-    alert(obj.options[obj.selectedIndex].value);
-    alert(document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value);
-    
-    if (obj.options[obj.selectedIndex].value!=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value) subeElemento(obj);
+  // Obtener valor seleccionado en el elemento select
+  const valorSelect = obj.options[obj.selectedIndex].value;
+
+  // Obtener valor seleccionado en el grupo de radio
+  const radios = document.querySelectorAll("input[name=eso4_bloque1]:checked");
+  const valorRadio = radios.length > 0 ? radios[0].value : "";
+
+  // Verificar si los valores son diferentes y llamar a bajaElemento si es necesario
+  if (valorSelect !== valorRadio) {
+    subeElemento(obj);
+  }
 }
 
 function opcionBajaElemento(obj){
-    if (obj.options[obj.selectedIndex].value!=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value) bajaElemento(obj);
+      // Obtener valor seleccionado en el elemento select
+  const valorSelect = obj.options[obj.selectedIndex].value;
+
+  // Obtener valor seleccionado en el grupo de radio
+  const radios = document.querySelectorAll("input[name=eso4_bloque1]:checked");
+  const valorRadio = radios.length > 0 ? radios[0].value : "";
+
+  // Verificar si los valores son diferentes y llamar a bajaElemento si es necesario
+  if (valorSelect !== valorRadio) {
+    bajaElemento(obj);
+  }
 }
 
 
