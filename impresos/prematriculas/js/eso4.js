@@ -2,7 +2,7 @@
 
 
 function opcionSubeElemento(obj){
-  // Obtener valor seleccionado en el elemento select
+  /*// Obtener valor seleccionado en el elemento select
   const valorSelect = obj.options[obj.selectedIndex].value;
 
   // Obtener valor seleccionado en el grupo de radio
@@ -12,11 +12,13 @@ function opcionSubeElemento(obj){
   // Verificar si los valores son diferentes y llamar a bajaElemento si es necesario
   if (valorSelect !== valorRadio) {
     subeElemento(obj);
-  }
+  }*/
+  subeElemento(obj);
+  mueveElementoAlFinal();
 }
 
 function opcionBajaElemento(obj){
-      // Obtener valor seleccionado en el elemento select
+  /*    // Obtener valor seleccionado en el elemento select
   const valorSelect = obj.options[obj.selectedIndex].value;
 
   // Obtener valor seleccionado en el grupo de radio
@@ -26,7 +28,9 @@ function opcionBajaElemento(obj){
   // Verificar si los valores son diferentes y llamar a bajaElemento si es necesario
   if (valorSelect !== valorRadio) {
     bajaElemento(obj);
-  }
+  }*/
+  bajaElemento(obj);
+  mueveElementoAlFinal();
 }
 
 
