@@ -2,6 +2,8 @@
 
 
 function opcionSubeElemento(obj){
+    alert(obj.options[obj.selectedIndex].value);
+    alert(document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value);
     
     if (obj.options[obj.selectedIndex].value!=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value) subeElemento(obj);
 }
