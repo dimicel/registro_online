@@ -2,11 +2,11 @@
 
 
 function opcionSubeElemento(obj){
-    if (obj.selectedIndex.value!=document.querySelectorAll("input[name=eso4_bloque1]:checked").value) subeElemento(obj);
+    if (obj.selectedIndex.value!=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value) subeElemento(obj);
 }
 
 function opcionBajaElemento(obj){
-    if (obj.selectedIndex.value!=document.querySelectorAll("input[name=eso4_bloque1]:checked").value) bajaElemento(obj);
+    if (obj.selectedIndex.value!=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value) bajaElemento(obj);
 }
 
 
