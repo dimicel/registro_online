@@ -2,12 +2,12 @@
 
 
 function opcionSubeElemento(obj){
-    alert(obj.selectedIndex.value);
-    if (obj.selectedIndex.value!=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value) subeElemento(obj);
+    
+    if (obj.options[obj.selectedIndex].value!=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value) subeElemento(obj);
 }
 
 function opcionBajaElemento(obj){
-    if (obj.selectedIndex.value!=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value) bajaElemento(obj);
+    if (obj.options[obj.selectedIndex].value!=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value) bajaElemento(obj);
 }
 
 
