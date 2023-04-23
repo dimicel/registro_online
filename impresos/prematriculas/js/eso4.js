@@ -54,15 +54,19 @@ function mueveElementoAlFinal(){
 
 
 function eso4_generaDatosSerialize() {
-    document.getElementById("eso4_opt1").value = document.getElementById("eso4_lista_optativas_acad").options[0].innerHTML;
-    document.getElementById("eso4_opt2").value = document.getElementById("eso4_lista_optativas_acad").options[1].innerHTML;
-    document.getElementById("eso4_opt3").value = document.getElementById("eso4_lista_optativas_acad").options[2].innerHTML;
-    document.getElementById("eso4_opt4").value = document.getElementById("eso4_lista_optativas_acad").options[3].innerHTML;
-    document.getElementById("eso4_opt5").value = document.getElementById("eso4_lista_optativas_acad").options[4].innerHTML;
-    document.getElementById("eso4_opt6").value = document.getElementById("eso4_lista_optativas_acad").options[5].innerHTML;
-    document.getElementById("eso4_opt7").value = document.getElementById("eso4_lista_optativas_acad").options[6].innerHTML;
-    document.getElementById("eso4_opt8").value = document.getElementById("eso4_lista_optativas_acad").options[7].innerHTML;
-    document.getElementById("eso4_opt9").value = document.getElementById("eso4_lista_optativas_acad").options[8].innerHTML;
-
-    document.getElementById("eso4_esp_ob_mod").value = document.getElementById("eso4_espc_oblig_modalidad").innerHTML;
+    document.getElementById("eso4_opt1").value = document.getElementById("eso4_opc_bloq2").options[0].innerHTML;
+    document.getElementById("eso4_opt2").value = document.getElementById("eso4_opc_bloq2").options[1].innerHTML;
+    document.getElementById("eso4_opt3").value = document.getElementById("eso4_opc_bloq2").options[2].innerHTML;
+    document.getElementById("eso4_opt4").value = document.getElementById("eso4_opc_bloq2").options[3].innerHTML;
+    document.getElementById("eso4_opt5").value = document.getElementById("eso4_opc_bloq3").options[0].innerHTML;
+    document.getElementById("eso4_opt6").value = document.getElementById("eso4_opc_bloq3").options[1].innerHTML;
+    document.getElementById("eso4_opt7").value = document.getElementById("eso4_opc_bloq3").options[2].innerHTML;
+    document.getElementById("eso4_opt8").value = document.getElementById("eso4_opc_bloq3").options[3].innerHTML;
+    document.getElementById("eso4_opt9").value = document.getElementById("eso4_opc_bloq3").options[4].innerHTML;
+    document.getElementById("eso4_opt10").value = document.getElementById("eso4_opc_bloq3").options[5].innerHTML;
+    document.getElementById("eso4_opt11").value = document.getElementById("eso4_optativas").options[0].innerHTML;
+    document.getElementById("eso4_opt12").value = document.getElementById("eso4_optativas").options[1].innerHTML;
+    document.getElementById("eso4_opt13").value = document.getElementById("eso4_optativas").options[2].innerHTML;
+    document.getElementById("eso4_opt14").value = document.getElementById("eso4_optativas").options[3].innerHTML;
+    document.getElementById("eso4_opt15").value = document.getElementById("eso4_optativas").options[4].innerHTML;
 }

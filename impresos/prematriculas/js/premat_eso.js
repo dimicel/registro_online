@@ -347,26 +347,11 @@ function registraMatricula() {
         eso4_generaDatosSerialize();
         var f5 = document.getElementById("form_pagina_5_4eso");
         f.action = "php/premat4eso.php";
-        f.modalidad.value = retornaValRadioButton(f5.eso4_modalidad);
+        f.matematicas.value = retornaValRadioButton(f5.eso4_matematicas);
         f.eso_religion.value = retornaValRadioButton(f5.eso4_religion);
         f.eso_primer_idioma.value = retornaValRadioButton(f5.eso4_primer_idioma);
-        f.espec_oblig.value = f5.eso4_esp_ob_mod.value;
-        if (f.modalidad.value == "Académicas") {
-            tronc_opcion = retornaValRadioButton(f5.eso4_tron_op_acad);
-            if (tronc_opcion == "Bio_Geo_Fis_Quim") {
-                f.troncales_opcion1.value = "Biología y Geología";
-                f.troncales_opcion2.value = "Física y Química";
-            } else if (tronc_opcion == "Economia_Latin") {
-                f.troncales_opcion1.value = "Economía";
-                f.troncales_opcion2.value = "Latín";
-            } else if (tronc_opcion == "Bio_Geo_Eco") {
-                f.troncales_opcion1.value = "Biología y Geología";
-                f.troncales_opcion2.value = "Economía";
-            }
-        } else if (f.modalidad.value == "Aplicadas") {
-            f.troncales_opcion1.value = "Tecnología";
-            f.troncales_opcion2.value = retornaValRadioButton(f5.eso4_tron_op_aplic);
-        }
+        f.opcion_bloque1.value = retornaValRadioButton(f5.eso4_bloque1);
+        
         f.appendChild(f5.eso4_opt1);
         f.appendChild(f5.eso4_opt2);
         f.appendChild(f5.eso4_opt3);
@@ -376,6 +361,12 @@ function registraMatricula() {
         f.appendChild(f5.eso4_opt7);
         f.appendChild(f5.eso4_opt8);
         f.appendChild(f5.eso4_opt9);
+        f.appendChild(f5.eso4_opt10);
+        f.appendChild(f5.eso4_opt11);
+        f.appendChild(f5.eso4_opt12);
+        f.appendChild(f5.eso4_opt13);
+        f.appendChild(f5.eso4_opt14);
+        f.appendChild(f5.eso4_opt15);
 
     }
     else if (_curso == "3º ESO DIV") {
