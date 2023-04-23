@@ -1,9 +1,17 @@
 // JavaScript Document
 
 
+function opcionSubeElemento(obj){
+    if (obj.selectedIndex.value!=document.querySelectorAll("input[name=eso4_bloque1]:checked").value) subeElemento(obj);
+}
+
+function opcionBajaElemento(obj){
+    if (obj.selectedIndex.value!=document.querySelectorAll("input[name=eso4_bloque1]:checked").value) bajaElemento(obj);
+}
+
+
 function eso4_seleccionIdioma(_idioma) {
     var lista_aplic = document.getElementById("eso4_opc_bloq3");
-
 
     for (i = 0; i < lista_aplic.length; i++) {
         if (_idioma == "ingles" && lista_aplic.options[i].innerHTML == "2ª Lengua Extranjera (Inglés)") lista_aplic.options[i].innerHTML = "2ª Lengua Extranjera (Francés)";
