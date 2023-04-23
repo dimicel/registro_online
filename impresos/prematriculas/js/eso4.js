@@ -10,10 +10,8 @@ function eso4_bajaElemento() {
 
 
 function eso4_seleccionIdioma(_idioma) {
-    var lista_aplic = document.getElementById("eso4_lista_optativas_aplic");
-    var lista_acad = document.getElementById("eso4_lista_optativas_acad");
+    var lista_aplic = document.getElementById("eso4_opc_bloq3");
 
-    optativas();
 
     for (i = 0; i < lista_aplic.length; i++) {
         if (_idioma == "ingles" && lista_aplic.options[i].innerHTML == "2ª Lengua Extranjera (Inglés)") lista_aplic.options[i].innerHTML = "2ª Lengua Extranjera (Francés)";
@@ -21,24 +19,8 @@ function eso4_seleccionIdioma(_idioma) {
     }
     lista_aplic.selectedIndex = -1;
 
-    for (i = 0; i < lista_acad.length; i++) {
-        if (_idioma == "ingles" && lista_acad.options[i].innerHTML == "2ª Lengua Extranjera (Inglés)") lista_acad.options[i].innerHTML = "2ª Lengua Extranjera (Francés)";
-        else if (_idioma == "frances" && lista_acad.options[i].innerHTML == "2ª Lengua Extranjera (Francés)") lista_acad.options[i].innerHTML = "2ª Lengua Extranjera (Inglés)";
-    }
-    lista_acad.selectedIndex = -1;
 }
 
-
-function optativas() {
-    var idioma = retornaValRadioButton(document.getElementsByName("eso4_primer_idioma"));
-    if ( idioma == "Inglés" || idioma == "Francés") {
-        document.getElementById("div_eso4_esp_op_lib_conf_vacio").style.display = "none";
-        document.getElementById("div_eso4_esp_op_lib_conf").style.display = "inherit";
-        document.getElementById("exo4_esp_op_num").innerHTML = "<p>1</p><p style='margin-top:-23px'>2</p><p style='margin-top:-23px'>3</p><p style='margin-top:-23px'>4</p><p style='margin-top:-23px'>5</p><p style='margin-top:-23px'>6</p><p style='margin-top:-23px'>7</p><p style='margin-top:-23px'>8</p><p style='margin-top:-23px'>9</p>"
-        document.getElementById("eso4_lista_optativas_acad").style.display = "inherit";
-        document.getElementById("eso4_lista_optativas_aplic").style.display = "none";
-    }
-}
 
 
 function eso4_generaDatosSerialize() {
