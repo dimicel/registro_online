@@ -1,13 +1,5 @@
 // JavaScript Document
 
-function eso4_subeElemento() {
-    subeElemento(document.getElementById("eso4_lista_optativas_acad"));
-}
-
-function eso4_bajaElemento() {
-    bajaElemento(document.getElementById("eso4_lista_optativas_acad"));
-}
-
 
 function eso4_seleccionIdioma(_idioma) {
     var lista_aplic = document.getElementById("eso4_opc_bloq3");
