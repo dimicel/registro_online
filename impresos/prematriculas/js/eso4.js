@@ -15,13 +15,12 @@ function eso4_seleccionIdioma(_idioma) {
 
 function mueveElementoAlFinal(){
     sel=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value;
-    alert(sel);
-    const select = document.getElementById("eso4_opc_bloq2");
+    if(sel=="Formación y Orientación Laboral") select = document.getElementById("eso4_opc_bloq3");
+    else select = document.getElementById("eso4_opc_bloq2");
+    
     const optionToMove = select.querySelector('option[value="'+sel+'"]'); // la opción que queremos mover, con el valor "B"
-    select.appendChild(optionToMove);
-    const select2 = document.getElementById("eso4_opc_bloq3");
-    const optionToMove2 = select2.querySelector('option[value="'+sel+'"]'); // la opción que queremos mover, con el valor "B"
-    select2.appendChild(optionToMove2);
+    if (optionToMove) select.appendChild(optionToMove);
+    
 }
 
 
