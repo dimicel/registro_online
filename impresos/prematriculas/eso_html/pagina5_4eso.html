@@ -192,38 +192,42 @@
                     <span>(Prioriza las materias con las flechas)</span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-1 text-center">
-                    <span>Nº</span>
-                </div>
-                <div class="col ml-4">
-                    <span>Materias</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-1" id="eso4_opc_bloq2_num">
-                    <small>
-                        <div class="w-100">1</div>
-                        <div class="w-100">2</div>
-                        <div class="w-100">3</div>
-                        <div class="w-100">4</div>
-                    </small>
-                </div>
-                <div class="col-6 custom-control">
-                    <select size="4" id="eso4_opc_bloq2" class="custom-control" style="overflow:visible;">
-                        <option value="Biología y Geología">Biología y Geología</option>
-                        <option value="Economía y Emprendimiento">Economía y Emprendimiento</option>
-                        <option value="Tecnología">Tecnología</option>
-                        <option value="Expresión Artística">Expresión Artística</option>
-                    </select>
-                    <input type="hidden" name="eso4_opt1" id="eso4_opt1" />
-                    <input type="hidden" name="eso4_opt2" id="eso4_opt2" />
-                    <input type="hidden" name="eso4_opt3" id="eso4_opt3" />
-                    <input type="hidden" name="eso4_opt4" id="eso4_opt4" />
-                </div>
-                <div class="col-1 ">
-                    <input type="button"  class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="opcionSubeElemento(document.getElementById('eso4_opc_bloq2'))" />
-                    <input type="button"  class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="opcionBajaElemento(document.getElementById('eso4_opc_bloq2'))" />
+            <div class="row border-success rounded">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-1 text-center">
+                            <span>Nº</span>
+                        </div>
+                        <div class="col ml-4">
+                            <span>Materias</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1" id="eso4_opc_bloq2_num">
+                            <small>
+                                <div class="w-100">1</div>
+                                <div class="w-100">2</div>
+                                <div class="w-100">3</div>
+                                <div class="w-100">4</div>
+                            </small>
+                        </div>
+                        <div class="col-6 custom-control">
+                            <select size="4" id="eso4_opc_bloq2" class="custom-control" style="overflow:visible;">
+                                <option value="Biología y Geología">Biología y Geología</option>
+                                <option value="Economía y Emprendimiento">Economía y Emprendimiento</option>
+                                <option value="Tecnología">Tecnología</option>
+                                <option value="Expresión Artística">Expresión Artística</option>
+                            </select>
+                            <input type="hidden" name="eso4_opt1" id="eso4_opt1" />
+                            <input type="hidden" name="eso4_opt2" id="eso4_opt2" />
+                            <input type="hidden" name="eso4_opt3" id="eso4_opt3" />
+                            <input type="hidden" name="eso4_opt4" id="eso4_opt4" />
+                        </div>
+                        <div class="col-1 ">
+                            <input type="button"  class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="opcionSubeElemento(document.getElementById('eso4_opc_bloq2'))" />
+                            <input type="button"  class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="opcionBajaElemento(document.getElementById('eso4_opc_bloq2'))" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <!----------------------------------------------------------------->
