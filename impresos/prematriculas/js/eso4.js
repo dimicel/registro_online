@@ -15,6 +15,7 @@ function eso4_seleccionIdioma(_idioma) {
 
 function mueveElementoAlFinal(){
     sel=document.querySelectorAll("input[name=eso4_bloque1]:checked")[0].value;
+    alert(sel);
     const select = document.getElementById("eso4_opc_bloq2");
     const optionToMove = select.querySelector('option[value="'+sel+'"]'); // la opción que queremos mover, con el valor "B"
     select.appendChild(optionToMove);
