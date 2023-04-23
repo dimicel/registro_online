@@ -60,24 +60,29 @@ $sexo=$_POST['sexo'];
 //Parte especifica de ESO	
 $religion=$_POST['eso_religion'];
 $primer_idioma=$_POST['eso_primer_idioma'];
-$modalidad=$_POST['modalidad'];
-$espec_oblig=$_POST['espec_oblig'];
-$troncales_opcion1=$_POST['troncales_opcion1'];
-$troncales_opcion2=$_POST['troncales_opcion2'];
-$opt1=$_POST['eso4_opt1'];
-$opt2=$_POST['eso4_opt2'];
-$opt3=$_POST['eso4_opt3'];
-$opt4=$_POST['eso4_opt4'];
-$opt5=$_POST['eso4_opt5'];
-$opt6=$_POST['eso4_opt6'];
-$opt7=$_POST['eso4_opt7'];
-$opt8=$_POST['eso4_opt8'];
-$opt9=$_POST['eso4_opt9'];
+$matematicas=$_POST['matematicas'];
+$opcion_bloque1=$_POST['opcion_bloque1'];
+
+$bloque21=$_POST['eso4_opt1'];
+$bloque22=$_POST['eso4_opt2'];
+$bloque23=$_POST['eso4_opt3'];
+$bloque24=$_POST['eso4_opt4'];
+$bloque31=$_POST['eso4_opt5'];
+$bloque32=$_POST['eso4_opt6'];
+$bloque33=$_POST['eso4_opt7'];
+$bloque34=$_POST['eso4_opt8'];
+$bloque35=$_POST['eso4_opt9'];
+$bloque36=$_POST['eso4_opt10'];
+$optativa1=$_POST['eso4_opt11'];
+$optativa2=$_POST['eso4_opt12'];
+$optativa3=$_POST['eso4_opt13'];
+$optativa4=$_POST['eso4_opt14'];
+$optativa5=$_POST['eso4_opt15'];
 
 $registro=generaRegistro();
 $repite_registro=true;
 while ($repite_registro){
-    $res=$mysqli->query("select * from premat_4eso where registro='$registro'");
+    $res=$mysqli->query("select * from premat_eso where registro='$registro'");
     if ($mysqli->errno>0) exit("servidor");
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
@@ -88,20 +93,14 @@ while ($repite_registro){
     $res->free();
 }
 
-$mysqli->query("delete from premat_1eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_3eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_4eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2esopmar where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_3esopmar where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_1bach_hcs where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_1bach_c where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2bach_hcs where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2bach_c where id_nie='$id_nie' and curso='$anno_curso'");
 
-$mysqli->query("insert into premat_4eso (id_nie,
+$mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
+
+$mysqli->query("insert into premat_eso (id_nie,
                                         registro,
                                         fecha_registro,
+                                        grupo,
                                         curso,
                                         curso_premat,
                                         prog_ling,
@@ -116,27 +115,32 @@ $mysqli->query("insert into premat_4eso (id_nie,
                                         tutor2,
                                         email_tutor2,
                                         tlf_tutor2,
-                                        modalidad,
-                                        rel_valores_et,
-                                        1_lengua_extr,
-                                        espec_oblig,
-                                        troncales_opcion1,
-                                        troncales_opcion2,
-                                        espec_opcion1,
-                                        espec_opcion2,
-                                        espec_opcion3,
-                                        espec_opcion4,
-                                        espec_opcion5,
-                                        espec_opcion6,
-                                        espec_opcion7,
-                                        espec_opcion8,
-                                        espec_opcion9,
+                                        materia1,
+                                        materia2,
+                                        materia3,
+                                        materia4,
+                                        materia5,
+                                        materia6,
+                                        materia7,
+                                        materia8,
+                                        materia9,
+                                        materia10,
+                                        materia11,
+                                        materia12,
+                                        materia13,
+                                        materia14,
+                                        materia15,
+                                        materia16,
+                                        materia17,
+                                        materia18,
+                                        materia19,
                                         sexo,
                                         curso_actual,
                                         grupo_curso_actual) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
+                                        '$curso',
                                         '$anno_curso',
                                         '$anno_curso_premat',
                                         '$prog_ling',
@@ -151,21 +155,25 @@ $mysqli->query("insert into premat_4eso (id_nie,
                                         '$tutor2',
                                         '$email_tutor2',
                                         '$tlf_tutor2',
-                                        '$modalidad',
+                                        '$matematicas',
                                         '$religion',
                                         '$primer_idioma',
-                                        '$espec_oblig',
-                                        '$troncales_opcion1',
-                                        '$troncales_opcion2',
-                                        '$opt1',
-                                        '$opt2',
-                                        '$opt3',
-                                        '$opt4',
-                                        '$opt5',
-                                        '$opt6',
-                                        '$opt7',
-                                        '$opt8',
-                                        '$opt9',
+                                        '$opcion_bloque1',
+                                        '$bloque21',
+                                        '$bloque22',
+                                        '$bloque23',
+                                        '$bloque24',
+                                        '$bloque31',
+                                        '$bloque32',
+                                        '$bloque33',
+                                        '$bloque34',
+                                        '$bloque35',
+                                        '$bloque36',
+                                        '$optativa1',
+                                        '$optativa2',
+                                        '$optativa3',
+                                        '$optativa4',
+                                        '$optativa5',
                                         '$sexo',
                                         '$curso_actual',
                                         '$grupo_curso_actual')");
@@ -406,75 +414,48 @@ $p_idioma="1ª Lengua Extranjera (".$primer_idioma.")";
 $tronc_gen=<<<MAT
     - Geografía e Historia
     - Lengua Castellana y Literatura
-    - Matemáticas
+    - $matematicas
     - 1ª Lengua Extranjera ($primer_idioma)
+    - Educación Física
+    - $religion
+    - Tutoría
 MAT;
 $h_tronc_gen=<<<MAT
     3
     4
     4
     4
-MAT;
-$espec_oblig=<<<MAT
-    - Educación Física
-    - $espec_oblig
-    - $religion
-MAT;
-$h_espec_oblig=<<<MAT
-    2
     2
     1
+    1
 MAT;
-$tron_opc="- ".$troncales_opcion1."<br>- ".$troncales_opcion2;
-//$h_tronc_opc="6";	
-$esp_op_lib_conf="";
-$h_esp_op_lib_conf="";
-if ($modalidad=="Aplicadas"){
-$esp_op_lib_conf=<<<EOT
-  1  $opt1
-  2  $opt2
-  3  $opt3
-  4  $opt4
-  5  $opt5
-  6  $opt6
-  7  $opt7
-  8  $opt8
-EOT;
-$h_esp_op_lib_conf=<<<EOT
-    2
-    2
-    2
-    2
-    2
-    2
-    2
-    2
-EOT;
-}
-elseif($modalidad=="Académicas"){
-$esp_op_lib_conf=<<<EOT
-  1  $opt1
-  2  $opt2
-  3  $opt3
-  4  $opt4
-  5  $opt5
-  6  $opt6
-  7  $opt7
-  8  $opt8
-  9  $opt9
-EOT;
-$h_esp_op_lib_conf=<<<EOT
-    2
-    2
-    2
-    2
-    2
-    2
-    2
-    2
-    2
-EOT;
-}
+$bloque1=<<<MAT
+    - $opcion_bloque1  
+MAT;
+
+$bloque2=<<<MAT
+    1 $bloque21
+    2 $bloque22
+    3 $bloque23
+    4 $bloque24
+MAT;
+
+$bloque3=<<<MAT
+    1 $bloque31
+    2 $bloque32
+    3 $bloque33
+    4 $bloque34
+    5 $bloque35
+    6 $bloque36
+MAT;
+
+$optativas=<<<MAT
+    1 $optativa1
+    2 $optativa2
+    3 $optativa3
+    4 $optativa4
+    5 $optativa5
+MAT;
 
 $pdf->RoundedRect($XInicio-2,$YInicio,185,56,2,'1111','','','');
 $pdf->SetFont('dejavusans', '', 8, '', true);
