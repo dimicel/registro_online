@@ -444,22 +444,22 @@ $bloque2=<<<MAT
     4 $bloque24
 MAT;
 
-$bloque3=<<<MAT
-    1 $bloque31<br>
-    2 $bloque32<br>
-    3 $bloque33<br>
-    4 $bloque34<br>
-    5 $bloque35<br>
-    6 $bloque36<br>
-MAT;
+$bloque3=<<<MAT2
+    1 $bloque31
+    2 $bloque32
+    3 $bloque33
+    4 $bloque34
+    5 $bloque35
+    6 $bloque36
+MAT2;
 
-$optativas=<<<MAT
+$optativas=<<<MAT3
     1 $optativa1
     2 $optativa2
     3 $optativa3
     4 $optativa4
     5 $optativa5
-MAT;
+MAT3;
 
 $pdf->RoundedRect($XInicio-2,$YInicio,185,65,2,'1111','','','');
 $pdf->SetFont('dejavusans', '', 8, '', true);
@@ -498,7 +498,7 @@ $pdf->SetXY(105,$YInicio);
 $fil_3=$pdf->MultiCell(75,0,$bloque3,0,'L',0,1,'','',true,0,true,false,0);
 $pdf->SetXY(180,$YInicio+2);
 $pdf->MultiCell(15,0,"    6",0,'L',0,1,'','',true,0,false,false,0);
-$YInicio+=$fil_1*3;
+$YInicio+=$fil_1*3-2;
 
 $pdf->SetXY(105,$YInicio);      
 $pdf->Cell(85,4," OPTATIVAS (2h semanales)",1,0,'L',1,'',0,true,'T','T');
