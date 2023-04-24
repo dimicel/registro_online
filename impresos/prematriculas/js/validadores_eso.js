@@ -197,19 +197,10 @@ function creaValidatorPagina5_3esodiv() {
 function creaValidatorPagina5_4eso() {
     $("#form_pagina_5_4eso").validate({
         rules: {
-            eso4_modalidad: {
-                required: true
-            },
             eso4_religion: {
                 required: true
             },
             eso4_primer_idioma: {
-                required: true
-            },
-            eso4_tron_op_aplic: {
-                required: true
-            },
-            eso4_tron_op_acad: {
                 required: true
             },
             eso4_matematicas:{
@@ -220,19 +211,10 @@ function creaValidatorPagina5_4eso() {
             }
         },
         messages: {
-            eso4_modalidad: {
-                required: "Seleccione uno"
-            },
             eso4_religion: {
                 required: "Seleccione uno"
             },
             eso4_primer_idioma: {
-                required: "Seleccione uno"
-            },
-            eso4_tron_op_aplic: {
-                required: "Seleccione uno"
-            },
-            eso4_tron_op_acad: {
                 required: "Seleccione uno"
             },
             eso4_matematicas:{
@@ -245,14 +227,39 @@ function creaValidatorPagina5_4eso() {
         errorPlacement: function(error, element) {
             if ($(element).attr('name') == "eso4_primer_idioma" || $(element).attr('name') == "eso4_matematicas")
                 $(element).parent().parent().prev().children().next().next().html(error);
-            else if ($(element).attr('name') == "eso4_tron_op_aplic")
-                $(element).parent().next().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr('name') == "eso4_tron_op_acad")
-                $(element).parent().next().next().next().children().html(error);
             else if($(element).attr('name') == "eso4_religion")
                 $(element).parent().parent().next().children().html(error);
             else if($(element).attr('name') == "eso4_bloque1")
                 $(element).parent().parent().parent().prev().children().children().next().html(error);
+            else $(element).parent().parent().next($('.errorTxt')).html(error);
+        }
+    });
+}
+
+
+function creaValidatorPagina5_4esodiv() {
+    $("#form_pagina_5_4esodiv").validate({
+        rules: {
+            eso4_religion: {
+                required: true
+            },
+            eso4_primer_idioma: {
+                required: true
+            }
+        },
+        messages: {
+            eso4_religion: {
+                required: "Seleccione uno"
+            },
+            eso4_primer_idioma: {
+                required: "Seleccione uno"
+            }
+        },
+        errorPlacement: function(error, element) {
+            if ($(element).attr('name') == "eso4_primer_idioma" )
+                $(element).parent().parent().prev().children().next().next().html(error);
+            else if($(element).attr('name') == "eso4_religion")
+                $(element).parent().parent().next().children().html(error);
             else $(element).parent().parent().next($('.errorTxt')).html(error);
         }
     });

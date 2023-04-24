@@ -252,8 +252,8 @@ function pasaPagina(p) {
         else if (_curso == "2º ESO") coletilla = "_2eso";
         else if (_curso == "3º ESO") coletilla = "_3eso";
         else if (_curso == "4º ESO") coletilla = "_4eso";
-        //else if (_curso == "2º ESO PMAR") coletilla = "_2esopmar";
         else if (_curso == "3º ESO DIV") coletilla = "_3esodiv";
+        else if (_curso == "4º ESO DIV") coletilla = "_4esodiv";
     }
 
     if (pagina != 5) {
