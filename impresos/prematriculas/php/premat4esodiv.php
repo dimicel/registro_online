@@ -294,7 +294,7 @@ $pdf->Cell(0,0,$sexo,0,0,'L',0,'',1,false,'','');
 
 //DATOS CONTACTO TUTORES LEGALES
 $YInicio+=7;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,40,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,45,2,'1111','','','');
 $YInicio+=1;
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
