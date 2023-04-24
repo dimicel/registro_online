@@ -469,7 +469,7 @@ $pdf->SetXY($XInicio,$YInicio);
 $pdf->Cell(90,4,"  OBLIGATORIAS                                            Horas Semanales",1,0,'L',1,'',0,true,'T','T');
 $pdf->SetX(105);          
 $pdf->Cell(85,4,"  MATERIAS DE OPCIÓN - BLOQUE 3 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
-/*
+
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
 $fil_1=$pdf->MultiCell(75,0,$tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
@@ -492,7 +492,7 @@ $pdf->Cell(90,4,"  MATERIAS DE OPCIÓN - BLOQUE 2 (3h semanales)",1,0,'L',1,'',0
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
 $fil_2=$pdf->MultiCell(75,0,$bloque2,0,'L',0,1,'','',true,0,false,false,0);
-
+/*
 $YInicio=$YInicio_seccion+5;
 $pdf->SetXY(105,$YInicio);
 $fil_3=$pdf->MultiCell(75,0,$bloque3,0,'L',0,1,'','',true,0,true,false,0);
