@@ -119,7 +119,7 @@ function generaImpreso() {
 
 function progLing(obj) {
     if (pagina == 1) {
-        if (_curso == "4º ESO DIV" || _curso == "3º ESO DIV") {
+        if ( _curso == "3º ESO DIV") {
             obj.checked = false;
         }
         return false;
