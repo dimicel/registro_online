@@ -377,6 +377,26 @@ function registraMatricula() {
         f.appendChild(f5.eso3_div_opt1);
         f.appendChild(f5.eso3_div_opt2);
         f.appendChild(f5.eso3_div_opt3);
+    } 
+    else if (_curso == "4º ESO DIV") {
+        eso4_generaDatosSerialize();
+        var f5 = document.getElementById("form_pagina_5_4esodiv");
+        f.action = "php/premat4esodiv.php";
+        f.eso_religion.value = retornaValRadioButton(f5.eso4div_religion);
+        f.eso_primer_idioma.value = retornaValRadioButton(f5.eso4div_primer_idioma);
+        
+        f.appendChild(f5.eso4_opt1);
+        f.appendChild(f5.eso4_opt2);
+        f.appendChild(f5.eso4_opt3);
+        f.appendChild(f5.eso4_opt4);
+        f.appendChild(f5.eso4_opt5);
+        f.appendChild(f5.eso4_opt6);
+        f.appendChild(f5.eso4_opt7);
+        f.appendChild(f5.eso4_opt8);
+        f.appendChild(f5.eso4_opt9);
+        f.appendChild(f5.eso4_opt10);
+        f.appendChild(f5.eso4_opt11);
+
     }
 
     f.appendChild(f1.curso);
