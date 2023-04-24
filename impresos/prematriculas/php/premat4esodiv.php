@@ -294,7 +294,7 @@ $pdf->Cell(0,0,$sexo,0,0,'L',0,'',1,false,'','');
 
 //DATOS CONTACTO TUTORES LEGALES
 $YInicio+=7;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,45,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,51,2,'1111','','','');
 $YInicio+=1;
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
@@ -422,7 +422,7 @@ $optativas=<<<MAT3
     5 $optativa5
 MAT3;
 
-$pdf->RoundedRect($XInicio-2,$YInicio,185,60,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,55,2,'1111','','','');
 $pdf->SetFont('dejavusans', '', 8, '', true);
 $YInicio+=5;
 $YInicio_seccion=$YInicio;
