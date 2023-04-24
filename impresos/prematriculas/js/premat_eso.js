@@ -379,7 +379,7 @@ function registraMatricula() {
         f.appendChild(f5.eso3_div_opt3);
     } 
     else if (_curso == "4º ESO DIV") {
-        eso4_generaDatosSerialize();
+        eso4div_generaDatosSerialize();
         var f5 = document.getElementById("form_pagina_5_4esodiv");
         f.action = "php/premat4esodiv.php";
         f.eso_religion.value = retornaValRadioButton(f5.eso4div_religion);
