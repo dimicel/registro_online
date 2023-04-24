@@ -235,7 +235,7 @@ $pdf->AddPage();
 $html1 = <<<HTML1
 <h3>$curso</h3><br>
 <h4>Curso $anno_curso_premat</h4><br>
-<p>Programa lingüístico: <b>NO</b></p>
+<p>Programa lingüístico: <b>No</b></p>
 HTML1;
 
 $YInicio=40;
@@ -388,16 +388,16 @@ $pdf->Cell(0,0,"SELECCIÓN DE MATERIAS",0,0,'L',0,'',1,false,'','');
 
 $p_idioma="1ª Lengua Extranjera (".$primer_idioma.")";
 $tronc_gen=<<<MAT
-    - Geografía e Historia
-    - Lengua Castellana y Literatura
+    - Ámbito Lingüístico y Social
+    - Ámbito Científico-Tecnológico
     - 1ª Lengua Extranjera ($primer_idioma)
     - Educación Física
     - $religion
     - Tutoría
 MAT;
 $h_tronc_gen=<<<MAT
-    3
-    4
+    8
+    9
     4
     2
     1
