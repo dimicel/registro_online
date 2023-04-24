@@ -92,6 +92,7 @@
     <script src=<?php echo "js/eso3.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/eso3_div.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/eso4.js?q=".time();?> type="text/javascript"></script>
+    <script src=<?php echo "js/eso4_div.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/validadores_eso.js?q=".time();?> type="text/javascript"></script>
 
 </body>
