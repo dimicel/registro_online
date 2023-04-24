@@ -491,11 +491,11 @@ $pdf->Cell(90,4,"  MATERIAS DE OPCIÓN - BLOQUE 2 (3h semanales)",1,0,'L',1,'',0
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
-$fil_2=$pdf->MultiCell(75,0,$bloque2,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->MultiCell(75,0,$bloque2,0,'L',0,1,'','',true,0,false,false,0);
 
 $YInicio=$YInicio_seccion+5;
 $pdf->SetXY(105,$YInicio);
-$fil_3=$pdf->MultiCell(75,0,$bloque3,0,'L',0,1,'','',true,0,true,false,0);
+$pdf->MultiCell(75,0,$bloque3,0,'L',0,1,'','',true,0,true,false,0);
 $YInicio+=$fil_1*3-2;
 
 $pdf->SetXY(105,$YInicio);      
