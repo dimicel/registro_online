@@ -433,6 +433,10 @@ $bloque1=<<<MAT
     - $opcion_bloque1  
 MAT;
 
+$h_bloque1=<<<MAT
+    3  
+MAT;
+
 $bloque2=<<<MAT
     1 $bloque21
     2 $bloque22
@@ -459,16 +463,12 @@ MAT;
 
 $pdf->RoundedRect($XInicio-2,$YInicio,185,56,2,'1111','','','');
 $pdf->SetFont('dejavusans', '', 8, '', true);
-$YInicio+=6;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->MultiCell(180,0,"MODALIDAD: <b>".$modalidad."</b>",0,'C',0,1,'','',true,0,true,false,0);
-
 $YInicio+=5;
 $YInicio_seccion=$YInicio;
 $pdf->SetXY($XInicio,$YInicio);      
-$pdf->Cell(90,4,"  TRONCALES GENERALES                             Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(90,4,"  OBLIGATORIAS                            Horas Semanales",1,0,'L',1,'',0,true,'T','T');
 $pdf->SetX(105);          
-$pdf->Cell(87,4,"  TRONCALES DE OPCIÓN                          Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(87,4,"  MATERIAS DE OPCIÓN - BLOQUE 3 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
@@ -478,29 +478,26 @@ $pdf->MultiCell(15,0,$h_tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=$fil_1*3+2;
 
 $pdf->SetXY($XInicio,$YInicio);      
-$pdf->Cell(60,4,"  ESPECÍFICAS OBLIGATORIAS",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(60,4,"  MATERIAS DE OPCIÓN - BLOQUE 2 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
-$fil_2=$pdf->MultiCell(75,0,$espec_oblig,0,'L',0,1,'','',true,0,false,false,0);
-$pdf->SetXY(87,$YInicio);
-$pdf->MultiCell(15,0,$h_espec_oblig,0,'L',0,1,'','',true,0,false,false,0);
+$fil_2=$pdf->MultiCell(75,0,$bloque2,0,'L',0,1,'','',true,0,false,false,0);
 
 $YInicio=$YInicio_seccion+5;
 $pdf->SetXY(105,$YInicio);
-$fil_3=$pdf->MultiCell(75,0,$tron_opc,0,'L',0,1,'','',true,0,true,false,0);
+$fil_3=$pdf->MultiCell(75,0,$bloque3,0,'L',0,1,'','',true,0,true,false,0);
 $pdf->SetXY(180,$YInicio+2);
 $pdf->MultiCell(15,0,"    6",0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=$fil_1*3-4;
 
 $pdf->SetXY(105,$YInicio);      
-$pdf->Cell(60,4," Pref.  ESPEC. DE OPCIÓN Y LIBRE CONF.",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(60,4," OPTATIVAS (2h semanales)",1,0,'L',1,'',0,true,'T','T');
 
 $YInicio+=5;
 $pdf->SetXY(105,$YInicio);
-$fil_4=$pdf->MultiCell(75,0,$esp_op_lib_conf,0,'L',0,1,'','',true,0,false,false,0);
+$fil_4=$pdf->MultiCell(75,0,$optativas,0,'L',0,1,'','',true,0,false,false,0);
 $pdf->SetXY(180,$YInicio);
-$pdf->MultiCell(15,0,$h_esp_op_lib_conf,0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=22;
 
 $YInicio+=40;
