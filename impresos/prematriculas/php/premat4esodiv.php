@@ -60,24 +60,19 @@ $sexo=$_POST['sexo'];
 //Parte especifica de ESO	
 $religion=$_POST['eso_religion'];
 $primer_idioma=$_POST['eso_primer_idioma'];
-$matematicas=$_POST['matematicas'];
-$opcion_bloque1=$_POST['opcion_bloque1'];
 
-$bloque21=$_POST['eso4_opt1'];
-$bloque22=$_POST['eso4_opt2'];
-$bloque23=$_POST['eso4_opt3'];
-$bloque24=$_POST['eso4_opt4'];
-$bloque31=$_POST['eso4_opt5'];
-$bloque32=$_POST['eso4_opt6'];
-$bloque33=$_POST['eso4_opt7'];
-$bloque34=$_POST['eso4_opt8'];
-$bloque35=$_POST['eso4_opt9'];
-$bloque36=$_POST['eso4_opt10'];
-$optativa1=$_POST['eso4_opt11'];
-$optativa2=$_POST['eso4_opt12'];
-$optativa3=$_POST['eso4_opt13'];
-$optativa4=$_POST['eso4_opt14'];
-$optativa5=$_POST['eso4_opt15'];
+
+$bloque1=$_POST['eso4_opt1'];
+$bloque2=$_POST['eso4_opt2'];
+$bloque3=$_POST['eso4_opt3'];
+$bloque4=$_POST['eso4_opt4'];
+$bloque5=$_POST['eso4_opt5'];
+$bloque6=$_POST['eso4_opt6'];
+$optativa1=$_POST['eso4_opt7'];
+$optativa2=$_POST['eso4_opt8'];
+$optativa3=$_POST['eso4_opt9'];
+$optativa4=$_POST['eso4_opt10'];
+$optativa5=$_POST['eso4_opt11'];
 
 $registro=generaRegistro();
 $repite_registro=true;
@@ -128,12 +123,6 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         materia11,
                                         materia12,
                                         materia13,
-                                        materia14,
-                                        materia15,
-                                        materia16,
-                                        materia17,
-                                        materia18,
-                                        materia19,
                                         sexo,
                                         curso_actual,
                                         grupo_curso_actual) 
@@ -157,18 +146,12 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         '$tlf_tutor2',
                                         '$primer_idioma',
                                         '$religion',
-                                        '$matematicas',
-                                        '$opcion_bloque1',
-                                        '$bloque21',
-                                        '$bloque22',
-                                        '$bloque23',
-                                        '$bloque24',
-                                        '$bloque31',
-                                        '$bloque32',
-                                        '$bloque33',
-                                        '$bloque34',
-                                        '$bloque35',
-                                        '$bloque36',
+                                        '$bloque1',
+                                        '$bloque2',
+                                        '$bloque3',
+                                        '$bloque4',
+                                        '$bloque5',
+                                        '$bloque6',
                                         '$optativa1',
                                         '$optativa2',
                                         '$optativa3',
@@ -414,7 +397,6 @@ $p_idioma="1ª Lengua Extranjera (".$primer_idioma.")";
 $tronc_gen=<<<MAT
     - Geografía e Historia
     - Lengua Castellana y Literatura
-    - $matematicas
     - 1ª Lengua Extranjera ($primer_idioma)
     - Educación Física
     - $religion
@@ -424,34 +406,20 @@ $h_tronc_gen=<<<MAT
     3
     4
     4
-    4
     2
     1
     1
 MAT;
-$bloque1=<<<MAT
-    - $opcion_bloque1  
-MAT;
 
-$h_bloque1=<<<MAT
-    3  
-MAT;
 
-$bloque2=<<<MAT
-    1 $bloque21
-    2 $bloque22
-    3 $bloque23
-    4 $bloque24
+$bloque=<<<MAT
+    1 $bloque1
+    2 $bloque2
+    3 $bloque3
+    4 $bloque4
+    5 $bloque5
+    6 $bloque6
 MAT;
-
-$bloque3=<<<MAT2
-    1 $bloque31<br>
-    2 $bloque32<br>
-    3 $bloque33<br>
-    4 $bloque34<br>
-    5 $bloque35<br>
-    6 $bloque36
-MAT2;
 
 $optativas=<<<MAT3
     1 $optativa1
@@ -468,7 +436,7 @@ $YInicio_seccion=$YInicio;
 $pdf->SetXY($XInicio,$YInicio);      
 $pdf->Cell(90,4,"  OBLIGATORIAS                                            Horas Semanales",1,0,'L',1,'',0,true,'T','T');
 $pdf->SetX(105);          
-$pdf->Cell(85,4,"  MATERIAS DE OPCIÓN - BLOQUE 3 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(85,4,"  MATERIAS OPTATIVAS (3h semanales)",1,0,'L',1,'',0,true,'T','T');
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
@@ -478,34 +446,15 @@ $pdf->MultiCell(15,0,$h_tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=$fil_1*3+2;
 
 $pdf->SetXY($XInicio,$YInicio);      
-$pdf->Cell(90,4,"  MATERIAS DE OPCIÓN - BLOQUE 1               Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(90,4,"  MATERIAS DE OPCIÓN (3h semanales)",1,0,'L',1,'',0,true,'T','T');
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->MultiCell(75,0,$bloque1,0,'L',0,1,'','',true,0,false,false,0);
-$pdf->SetXY(87,$YInicio);
-$pdf->MultiCell(15,0,$h_bloque1,0,'L',0,1,'','',true,0,false,false,0);
-$YInicio+=7;
-
-$pdf->SetXY($XInicio,$YInicio);      
-$pdf->Cell(90,4,"  MATERIAS DE OPCIÓN - BLOQUE 2 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
-
-$YInicio+=5;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->MultiCell(75,0,$bloque2,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->MultiCell(75,0,$bloque,0,'L',0,1,'','',true,0,false,false,0);
 
 $YInicio=$YInicio_seccion+5;
 $pdf->SetXY(105,$YInicio);
-$pdf->MultiCell(75,0,$bloque3,0,'L',0,1,'','',true,0,true,false,0);
+$pdf->MultiCell(75,0,$optativas,0,'L',0,1,'','',true,0,true,false,0);
 $YInicio+=$fil_1*3-2;
-
-$pdf->SetXY(105,$YInicio);      
-$pdf->Cell(85,4," OPTATIVAS (2h semanales)",1,0,'L',1,'',0,true,'T','T');
-
-$YInicio+=5;
-$pdf->SetXY(105,$YInicio);
-$fil_4=$pdf->MultiCell(75,0,$optativas,0,'L',0,1,'','',true,0,false,false,0);
-$pdf->SetXY(180,$YInicio);
-$YInicio+=22;
 
 $YInicio+=40;
 $pdf->SetXY($XInicio,$YInicio);
