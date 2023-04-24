@@ -32,11 +32,6 @@ function generaRegistro(){
 $curso=$_POST['curso'];
 $anno_curso=$_POST['anno_curso'];
 $anno_curso_premat=$_POST['anno_curso_premat'];
-if (!isset($_POST['prog_ling'])) $prog_ling="No";
-else{
-	if (is_null($_POST['prog_ling'])) $prog_ling="No";
-	else $prog_ling="Sí";
-}
 $id_nie=$_POST['id_nie'];
 $email=$_POST['email'];
 $apellidos=$_POST['apellidos'];
@@ -98,7 +93,6 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         grupo,
                                         curso,
                                         curso_premat,
-                                        prog_ling,
                                         apellidos,
                                         nombre,
                                         email,
@@ -132,7 +126,6 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         '$curso',
                                         '$anno_curso',
                                         '$anno_curso_premat',
-                                        '$prog_ling',
                                         '$apellidos',
                                         '$nombre',
                                         '$email_alumno',
@@ -242,12 +235,12 @@ $pdf->AddPage();
 $html1 = <<<HTML1
 <h3>$curso</h3><br>
 <h4>Curso $anno_curso_premat</h4><br>
-<p>Programa lingüístico: <b>$prog_ling</b></p>
+<p>Programa lingüístico: <b>NO</b></p>
 HTML1;
 
 $YInicio=40;
 
-$pdf->RoundedRect(82,$YInicio,41,21,2,'1111','','','');
+$pdf->RoundedRect(82,$YInicio,45,21,2,'1111','','','');
 $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $html1, 0, 1, false, true, 'C', true);
 
 //Padding dentro de la celda del texto
@@ -429,7 +422,7 @@ $optativas=<<<MAT3
     5 $optativa5
 MAT3;
 
-$pdf->RoundedRect($XInicio-2,$YInicio,185,65,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,60,2,'1111','','','');
 $pdf->SetFont('dejavusans', '', 8, '', true);
 $YInicio+=5;
 $YInicio_seccion=$YInicio;
