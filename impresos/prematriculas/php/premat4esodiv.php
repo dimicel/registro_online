@@ -25,7 +25,7 @@ function generaRegistro(){
     $array[6]=substr($nums,mt_rand(0,strlen("mayus")-1),1);
     $array[7]=substr($minus,mt_rand(0,strlen("signos")-1),1);
     shuffle($array);
-    return "iesulabto_pm4eso_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];;    
+    return "iesulabto_pm4esd_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];;    
 }
 
 
@@ -247,7 +247,7 @@ HTML1;
 
 $YInicio=40;
 
-$pdf->RoundedRect(82,$YInicio,45,21,2,'1111','','','');
+$pdf->RoundedRect(82,$YInicio,41,21,2,'1111','','','');
 $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $html1, 0, 1, false, true, 'C', true);
 
 //Padding dentro de la celda del texto
@@ -422,10 +422,10 @@ $bloque=<<<MAT
 MAT;
 
 $optativas=<<<MAT3
-    1 $optativa1
-    2 $optativa2
-    3 $optativa3
-    4 $optativa4
+    1 $optativa1<br>
+    2 $optativa2<br>
+    3 $optativa3<br>
+    4 $optativa4<br>
     5 $optativa5
 MAT3;
 
