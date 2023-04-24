@@ -462,14 +462,14 @@ $optativas=<<<MAT3
 MAT3;
 
 $pdf->RoundedRect($XInicio-2,$YInicio,185,65,2,'1111','','','');
-/*$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->SetFont('dejavusans', '', 8, '', true);
 $YInicio+=5;
 $YInicio_seccion=$YInicio;
 $pdf->SetXY($XInicio,$YInicio);      
 $pdf->Cell(90,4,"  OBLIGATORIAS                                            Horas Semanales",1,0,'L',1,'',0,true,'T','T');
 $pdf->SetX(105);          
 $pdf->Cell(85,4,"  MATERIAS DE OPCIÓN - BLOQUE 3 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
-
+/*
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
 $fil_1=$pdf->MultiCell(75,0,$tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
