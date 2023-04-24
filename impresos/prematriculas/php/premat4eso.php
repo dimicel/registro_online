@@ -508,7 +508,7 @@ $pdf->SetXY(105,$YInicio);
 $fil_4=$pdf->MultiCell(75,0,$optativas,0,'L',0,1,'','',true,0,false,false,0);
 $pdf->SetXY(180,$YInicio);
 $YInicio+=22;
-
+*/
 $YInicio+=40;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
@@ -518,7 +518,7 @@ $YInicio+=20;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 16, '', true);
 $pdf->Cell(0,0,"RECUERDE QUE ESTE NO ES UN FORMULARIO DE MATRICULA",0,0,'C',0,'',1,false,'T','T');
-*/
+
 //SI YA HAY ALGUNA MATRÍCULA BORRA EL ARCHIVO
 $dir = __DIR__."/../../../docs/".$id_nie."/prematriculas"."/".$anno_curso.'/';     
 $handle = opendir($dir);
