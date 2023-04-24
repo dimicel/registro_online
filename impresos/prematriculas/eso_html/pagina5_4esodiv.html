@@ -60,12 +60,12 @@
                     </div>
                     <div class="row">
                         <div class=" col-5 offset-1 custom-control custom-switch mi-checkbox">
-                            <input type="radio" class="custom-control-input" name="eso4_primer_idioma" id="eso4_ingles" value="Inglés" onclick="eso4_seleccionIdioma('ingles')" />
-                            <label for="eso4_ingles" class="custom-control-label">Inglés</label>
+                            <input type="radio" class="custom-control-input" name="eso4div_primer_idioma" id="eso4div_ingles" value="Inglés" onclick="eso4div_seleccionIdioma('ingles')" />
+                            <label for="eso4div_ingles" class="custom-control-label">Inglés</label>
                         </div>
                         <div class="col custom-control custom-switch mi-checkbox">
-                            <input type="radio" class="custom-control-input" name="eso4_primer_idioma" id="eso4_frances" value="Francés" onclick="eso4_seleccionIdioma('frances')" />
-                            <label for="eso4_frances" class="custom-control-label">Francés</label>
+                            <input type="radio" class="custom-control-input" name="eso4div_primer_idioma" id="eso4div_frances" value="Francés" onclick="eso4div_seleccionIdioma('frances')" />
+                            <label for="eso4div_frances" class="custom-control-label">Francés</label>
                         </div>
                     </div>
                 </div>
@@ -76,18 +76,19 @@
             <div class="row border  border-success rounded">
                 <div class="col" style="margin-left:10px">
                     <div class="row">
-                        <div class=" col-5  custom-control custom-switch mi-checkbox">
-                            <input type="radio" class="custom-control-input" name="eso4_religion" id="eso4_religion" value="Religión" />
-                            <label for="eso4_religion" class="custom-control-label">Religión</label>
+                        <div class=" col-2  custom-control custom-switch mi-checkbox">
+                            <input type="radio" class="custom-control-input" name="eso4div_religion" id="eso4div_religion" value="Religión" />
+                            <label for="eso4div_religion" class="custom-control-label">Religión</label>
                         </div>
-                        <div class="col custom-control custom-switch mi-checkbox">
-                            <input type="radio" class="custom-control-input" name="eso4_religion" id="eso4_val_eticos" value="Atención Educativa" />
-                            <label for="eso4_val_eticos" class="custom-control-label">Atención Educativa</label>
+                        <div class="col-4 custom-control custom-switch mi-checkbox">
+                            <input type="radio" class="custom-control-input" name="eso4div_religion" id="eso4div_val_eticos" value="Atención Educativa" />
+                            <label for="eso4div_val_eticos" class="custom-control-label">Atención Educativa</label>
+                        </div>
+                        <div class="col offset-2 justify-content-center">
+                            <span class="errorTxt mt-2 ml-4" style="font-size: 1.2em;margin-top:15px"></span>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
-                        <span class="errorTxt mt-2 ml-4" style="font-size: 1.2em;margin-top:15px"></span>
-                    </div>
+                    
                 </div>
                 <div class=" col-4 text-center">
                     1
@@ -127,7 +128,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-1" id="eso4_opc_bloq3_num">
+                <div class="col-1" id="eso4div_opc_bloq3_num">
                     <small>
                         <div class="w-100">1</div>
                         <div class="w-100">2</div>
@@ -138,7 +139,7 @@
                     </small>
                 </div>
                 <div class="col-6 custom-control">
-                    <select size="6" id="eso4_opc" class="custom-control" style="overflow:visible;">
+                    <select size="6" id="eso4div_opc" class="custom-control" style="overflow:visible;">
                         <option value="Digitalización">Digitalización</option>
                         <option value="2ª Lengua Extranjera (Francés)">2ª Lengua Extranjera (Francés)</option>
                         <option value="2ª Lengua Extranjera (Alemán)">2ª Lengua Extranjera (Alemán)</option>
@@ -146,16 +147,16 @@
                         <option value="Música">Música</option>
                         <option value="Formación y Orientación Laboral">Formación y Orientación Laboral</option>
                     </select>
-                    <input type="hidden" name="eso4_opt5" id="eso4_opt5" />
-                    <input type="hidden" name="eso4_opt6" id="eso4_opt6" />
-                    <input type="hidden" name="eso4_opt7" id="eso4_opt7" />
-                    <input type="hidden" name="eso4_opt8" id="eso4_opt8" />
-                    <input type="hidden" name="eso4_opt9" id="eso4_opt9" />
-                    <input type="hidden" name="eso4_opt10" id="eso4_opt10" />
+                    <input type="hidden" name="eso4div_opt5" id="eso4div_opt5" />
+                    <input type="hidden" name="eso4div_opt6" id="eso4div_opt6" />
+                    <input type="hidden" name="eso4div_opt7" id="eso4div_opt7" />
+                    <input type="hidden" name="eso4div_opt8" id="eso4div_opt8" />
+                    <input type="hidden" name="eso4div_opt9" id="eso4div_opt9" />
+                    <input type="hidden" name="eso4div_opt10" id="eso4div_opt10" />
                 </div>
                 <div class="col-1 ">
-                    <input type="button"  class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="opcionSubeElemento(document.getElementById('eso4_opc'))" />
-                    <input type="button"  class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="opcionBajaElemento(document.getElementById('eso4_opc'))" />
+                    <input type="button"  class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="opcionSubeElemento(document.getElementById('eso4div_opc'))" />
+                    <input type="button"  class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="opcionBajaElemento(document.getElementById('eso4div_opc'))" />
                 </div>
             </div>
         </div>
@@ -188,7 +189,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-1" id="eso4_optativas_num">
+                <div class="col-1" id="eso4div_optativas_num">
                     <small>
                         <div class="w-100">1</div>
                         <div class="w-100">2</div>
@@ -198,22 +199,22 @@
                     </small>
                 </div>
                 <div class="col-6 custom-control">
-                    <select size="5" id="eso4_optativas" class="custom-control" style="overflow:visible;">
+                    <select size="5" id="eso4div_optativas" class="custom-control" style="overflow:visible;">
                         <option value="Filosofía">Filosofía</option>
                         <option value="Cultura Clásica">Cultura Clásica</option>
                         <option value="Cultura Científica">Cultura Científica</option>
                         <option value="Proyectos de Robótica">Proyectos de Robótica</option>
                         <option value="Artes Escénicas, Danza y Folclore">Artes Escénicas, Danza y Folclore</option>
                     </select>
-                    <input type="hidden" name="eso4_opt11" id="eso4_opt11" />
-                    <input type="hidden" name="eso4_opt12" id="eso4_opt12" />
-                    <input type="hidden" name="eso4_opt13" id="eso4_opt13" />
-                    <input type="hidden" name="eso4_opt14" id="eso4_opt14" />
-                    <input type="hidden" name="eso4_opt15" id="eso4_opt15" />
+                    <input type="hidden" name="eso4div_opt11" id="eso4div_opt11" />
+                    <input type="hidden" name="eso4div_opt12" id="eso4div_opt12" />
+                    <input type="hidden" name="eso4div_opt13" id="eso4div_opt13" />
+                    <input type="hidden" name="eso4div_opt14" id="eso4div_opt14" />
+                    <input type="hidden" name="eso4div_opt15" id="eso4div_opt15" />
                 </div>
                 <div class="col-1 ">
-                    <input type="button" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="subeElemento(document.getElementById('eso4_optativas'))" />
-                    <input type="button" class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="bajaElemento(document.getElementById('eso4_optativas'))" />
+                    <input type="button" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="subeElemento(document.getElementById('eso4div_optativas'))" />
+                    <input type="button" class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="bajaElemento(document.getElementById('eso4div_optativas'))" />
                 </div>
             </div>
         </div>
