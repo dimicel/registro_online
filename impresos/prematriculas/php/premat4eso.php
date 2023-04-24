@@ -462,7 +462,7 @@ $optativas=<<<MAT3
 MAT3;
 
 $pdf->RoundedRect($XInicio-2,$YInicio,185,65,2,'1111','','','');
-$pdf->SetFont('dejavusans', '', 8, '', true);
+/*$pdf->SetFont('dejavusans', '', 8, '', true);
 $YInicio+=5;
 $YInicio_seccion=$YInicio;
 $pdf->SetXY($XInicio,$YInicio);      
@@ -472,9 +472,9 @@ $pdf->Cell(85,4,"  MATERIAS DE OPCIÓN - BLOQUE 3 (3h semanales)",1,0,'L',1,'',0
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
-//$fil_1=$pdf->MultiCell(75,0,$tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
+$fil_1=$pdf->MultiCell(75,0,$tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
 $pdf->SetXY(87,$YInicio);
-//$pdf->MultiCell(15,0,$h_tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->MultiCell(15,0,$h_tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=$fil_1*3+2;
 
 $pdf->SetXY($XInicio,$YInicio);      
@@ -491,11 +491,11 @@ $pdf->Cell(90,4,"  MATERIAS DE OPCIÓN - BLOQUE 2 (3h semanales)",1,0,'L',1,'',0
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
-//$fil_2=$pdf->MultiCell(75,0,$bloque2,0,'L',0,1,'','',true,0,false,false,0);
+$fil_2=$pdf->MultiCell(75,0,$bloque2,0,'L',0,1,'','',true,0,false,false,0);
 
 $YInicio=$YInicio_seccion+5;
 $pdf->SetXY(105,$YInicio);
-//$fil_3=$pdf->MultiCell(75,0,$bloque3,0,'L',0,1,'','',true,0,true,false,0);
+$fil_3=$pdf->MultiCell(75,0,$bloque3,0,'L',0,1,'','',true,0,true,false,0);
 $pdf->SetXY(180,$YInicio+2);
 $pdf->MultiCell(15,0,"    6",0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=$fil_1*3-2;
@@ -518,7 +518,7 @@ $YInicio+=20;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 16, '', true);
 $pdf->Cell(0,0,"RECUERDE QUE ESTE NO ES UN FORMULARIO DE MATRICULA",0,0,'C',0,'',1,false,'T','T');
-
+*/
 //SI YA HAY ALGUNA MATRÍCULA BORRA EL ARCHIVO
 $dir = __DIR__."/../../../docs/".$id_nie."/prematriculas"."/".$anno_curso.'/';     
 $handle = opendir($dir);
