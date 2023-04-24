@@ -445,11 +445,11 @@ $bloque2=<<<MAT
 MAT;
 
 $bloque3=<<<MAT2
-    1 $bloque31
-    2 $bloque32
-    3 $bloque33
-    4 $bloque34
-    5 $bloque35
+    1 $bloque31<br>
+    2 $bloque32<br>
+    3 $bloque33<br>
+    4 $bloque34<br>
+    5 $bloque35<br>
     6 $bloque36
 MAT2;
 
