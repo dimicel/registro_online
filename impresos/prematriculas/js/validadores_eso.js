@@ -259,7 +259,7 @@ function creaValidatorPagina5_4esodiv() {
             if ($(element).attr('name') == "eso4div_primer_idioma" )
                 $(element).parent().parent().prev().children().next().next().html(error);
             else if($(element).attr('name') == "eso4div_religion")
-                $(element).parent().next().children().html(error);
+                $(element).parent().next().next().children().html(error);
             else $(element).parent().parent().next($('.errorTxt')).html(error);
         }
     });
