@@ -498,7 +498,7 @@ $pdf->SetXY(105,$YInicio);
 $fil_3=$pdf->MultiCell(75,0,$bloque3,0,'L',0,1,'','',true,0,true,false,0);
 $pdf->SetXY(180,$YInicio+2);
 $pdf->MultiCell(15,0,"    6",0,'L',0,1,'','',true,0,false,false,0);
-$YInicio+=$fil_1*3-4;
+$YInicio+=$fil_1*3;
 
 $pdf->SetXY(105,$YInicio);      
 $pdf->Cell(60,4," OPTATIVAS (2h semanales)",1,0,'L',1,'',0,true,'T','T');
