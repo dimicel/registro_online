@@ -466,7 +466,7 @@ $pdf->SetFont('dejavusans', '', 8, '', true);
 $YInicio+=5;
 $YInicio_seccion=$YInicio;
 $pdf->SetXY($XInicio,$YInicio);      
-$pdf->Cell(90,4,"  OBLIGATORIAS                            Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(90,4,"  OBLIGATORIAS                                   Horas Semanales",1,0,'L',1,'',0,true,'T','T');
 $pdf->SetX(105);          
 $pdf->Cell(87,4,"  MATERIAS DE OPCIÓN - BLOQUE 3 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
 
@@ -478,7 +478,16 @@ $pdf->MultiCell(15,0,$h_tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=$fil_1*3+2;
 
 $pdf->SetXY($XInicio,$YInicio);      
-$pdf->Cell(60,4,"  MATERIAS DE OPCIÓN - BLOQUE 2 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(90,4,"  MATERIAS DE OPCIÓN - BLOQUE 1                  Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+$YInicio+=5;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->MultiCell(75,0,$tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->SetXY(87,$YInicio);
+$pdf->MultiCell(15,0,$h_tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
+$YInicio+=$fil_1*3+7;
+
+$pdf->SetXY($XInicio,$YInicio);      
+$pdf->Cell(90,4,"  MATERIAS DE OPCIÓN - BLOQUE 2 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
