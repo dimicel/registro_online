@@ -240,18 +240,18 @@ function creaValidatorPagina5_4eso() {
 function creaValidatorPagina5_4esodiv() {
     $("#form_pagina_5_4esodiv").validate({
         rules: {
-            eso4_religion: {
+            eso4div_religion: {
                 required: true
             },
-            eso4_primer_idioma: {
+            eso4div_primer_idioma: {
                 required: true
             }
         },
         messages: {
-            eso4_religion: {
+            eso4div_religion: {
                 required: "Seleccione uno"
             },
-            eso4_primer_idioma: {
+            eso4div_primer_idioma: {
                 required: "Seleccione uno"
             }
         },
