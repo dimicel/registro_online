@@ -162,12 +162,11 @@ function generaSelectCurso_pre_mat(){
     const opciones = [
     { value: "2eso", text: "2º ESO" },
     { value: "3eso", text: "3º ESO" },
-    { value: "3esopmar", text: "3º ESO PMAR" },
+    { value: "3esodiv", text: "3º ESO DIV" },
     { value: "4eso", text: "4º ESO" },
-    { value: "1bach_c", text: "1º BACH CIENCIAS", itemprop: "2020-2021" },
-    { value: "1bach_hcs", text: "1º BACH HH.CC.SS.", itemprop: "2020-2021" },
-    { value: "1bach_lomloe", text: "1º BACHILLERATO", itemprop: "2021-2022" },
-    { value: "2bach_c", text: "2º BACH CIENCIAS" },
+    { value: "4esodiv", text: "4º ESO DIV" },
+    { value: "1bach", text: "1º BACHILLERATO"},//Con itemporp, por si fuera necesario { value: "1bach", text: "1º BACHILLERATO", itemprop: "2021-2022" }
+    { value: "2bach_c", text: "2º BACH CIENCIAS Y TEC." },
     { value: "2bach_hcs", text: "2º BACH HH.CC.SS." }
     ];
 
@@ -276,8 +275,6 @@ function generaSelectMat_fpb(){
 
 
 function listaRegistros(orden_campo, orden_direccion) {
-    if (document.getElementById("curso").value != "2020-2021") $("#curso_pre_mat option[value='3esopmar']").hide();
-    else $("#curso_pre_mat option[value='3esopmar']").show();
     ocultaCursosDesplegable();
     tipo_formulario = document.getElementById('tipo_form').value;
     if (tipo_formulario == "prematricula") {
@@ -372,15 +369,14 @@ function listaRegistros(orden_campo, orden_direccion) {
         estilo = ["width:70px", "width:330px", "width:270px"];
         encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
     } else if (tipo_formulario == "prematricula") {
-        if (document.getElementById("curso_pre_mat").value == "2eso") tabla = "premat_2eso";
-        else if (document.getElementById("curso_pre_mat").value == "3eso") tabla = "premat_3eso";
-        else if (document.getElementById("curso_pre_mat").value == "3esopmar") tabla = "premat_3esopmar";
-        else if (document.getElementById("curso_pre_mat").value == "4eso") tabla = "premat_4eso";
-        else if (document.getElementById("curso_pre_mat").value == "1bach_lomloe") tabla = "premat_1bach_lomloe";
-        else if (document.getElementById("curso_pre_mat").value == "1bach_c") tabla = "premat_1bach_c";
-        else if (document.getElementById("curso_pre_mat").value == "1bach_hcs") tabla = "premat_1bach_hcs";
-        else if (document.getElementById("curso_pre_mat").value == "2bach_c") tabla = "premat_2bach_c";
-        else if (document.getElementById("curso_pre_mat").value == "2bach_hcs") tabla = "premat_2bach_hcs";
+        if (document.getElementById("curso_pre_mat").value == "2eso") tabla = "premat_eso";
+        else if (document.getElementById("curso_pre_mat").value == "3eso") tabla = "premat_eso";
+        else if (document.getElementById("curso_pre_mat").value == "3esodiv") tabla = "premat_eso";
+        else if (document.getElementById("curso_pre_mat").value == "4eso") tabla = "premat_eso";
+        else if (document.getElementById("curso_pre_mat").value == "4esodiv") tabla = "premat_eso";
+        else if (document.getElementById("curso_pre_mat").value == "1bach") tabla = "premat_bach";
+        else if (document.getElementById("curso_pre_mat").value == "2bach_c") tabla = "premat_bach";
+        else if (document.getElementById("curso_pre_mat").value == "2bach_hcs") tabla = "premat_bach";
         else return;
         campos = ["id_nie", "nombre", "registro"];
         estilo = ["width:70px", "width:260px", "width:260px"];

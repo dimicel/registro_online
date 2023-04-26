@@ -31,7 +31,7 @@ elseif($tabla=="mat_fpb"){
     $curso_ciclo=$_POST["curso_ciclo"];
 }
 
-if ($tabla=="premat_2eso" || $tabla=="premat_3eso" || $tabla=="premat_4eso"  || $tabla=="premat_3esopmar" || $tabla=="premat_1bach_lomloe" || $tabla=="premat_1bach_c" || $tabla=="premat_1bach_hcs" || $tabla=="premat_2bach_c" || $tabla=="premat_2bach_hcs"){
+if ($tabla=="premat_eso"){
     $proceso="prematricula";
     $campos="id_nie,nombre,apellidos,registro,incidencias";
 }
