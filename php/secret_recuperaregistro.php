@@ -13,6 +13,11 @@ if ($mysqli->errno>0) {
 $tabla=$_POST["formulario"];
 $registro=$_POST["registro"];
 
+if(strpos($tabla,"premat_")){
+    if (strpos($tabla,"eso")) $tabla="premat_eso";
+    else $tabla="premat_bach";
+}
+
 $consulta="select * from $tabla where registro='$registro'";
 
 $res=$mysqli->query($consulta);
