@@ -76,8 +76,6 @@ $optativa12=$_POST['optativa12'];
 $optativa13=$_POST['optativa13'];
 $optativa14=$_POST['optativa14'];
 $optativa15=$_POST['optativa15'];
-$optativa16=$_POST['optativa16'];
-$optativa17=$_POST['optativa17'];
 
 
 $registro=generaRegistro();
@@ -138,9 +136,7 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         materia17,
                                         materia18,
                                         materia19,
-                                        materia20,
-                                        materia21,
-                                        materia22) 
+                                        materia20) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
@@ -181,9 +177,7 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         '$optativa12',
                                         '$optativa13',
                                         '$optativa14',
-                                        '$optativa15',
-                                        '$optativa16',
-                                        '$optativa17')");
+                                        '$optativa15')");
 if ($mysqli->errno>0){
     exit("registro_erroneo ".$mysqli->errno);
 }
@@ -455,19 +449,18 @@ $optativas1=<<<OPT
 6 $optativa6
 7 $optativa7
 8 $optativa8
-9 $optativa9
 OPT;
 
 $optativas2=<<<OPT
+ 9 $optativa9
 10 $optativa10
 11 $optativa11
 12 $optativa12
 13 $optativa13
 14 $optativa14
 15 $optativa15
-16 $optativa16
-17 $optativa17
 OPT;
+
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);	
 $pdf->MultiCell(80,0,$optativas1,0,'L',0,1,'','',true,0,false,false,0);
