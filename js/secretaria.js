@@ -379,8 +379,8 @@ function listaRegistros(orden_campo, orden_direccion) {
         else if (document.getElementById("curso_pre_mat").value == "1bach_c") {tabla = "premat_bach"; grupo="1º Bachillerato"; modalidad="Ciencias y Tecnología";}
         else if (document.getElementById("curso_pre_mat").value == "1bach_h") {tabla = "premat_bach"; grupo="1º Bachillerato"; modalidad="Humanidades y Ciencias Sociales";}
         else if (document.getElementById("curso_pre_mat").value == "1bach_g") {tabla = "premat_bach"; grupo="1º Bachillerato"; modalidad="General";}
-        else if (document.getElementById("curso_pre_mat").value == "2bach_c") {tabla = "premat_bach"; grupo="2º Bach. Ciencias y Tecnología";}
-        else if (document.getElementById("curso_pre_mat").value == "2bach_hcs") {tabla = "premat_bach"; grupo="2º Bach. HH.CC.SS.";}
+        else if (document.getElementById("curso_pre_mat").value == "2bach_c") {tabla = "premat_bach"; grupo="2º Bach. Ciencias y Tecnología";modalidad="";}
+        else if (document.getElementById("curso_pre_mat").value == "2bach_hcs") {tabla = "premat_bach"; grupo="2º Bach. HH.CC.SS.";modalidad="";}
         else return;
         campos = ["id_nie", "nombre", "registro"];
         estilo = ["width:70px", "width:260px", "width:260px"];
