@@ -49,7 +49,7 @@ function b2c_muestraEspecItin() {
 
 
 function b2c_cambiaOptativas(m){
-    var mat_modalidad=["Biología","Dibujo Técnico II","Física","Química","Biología y Ciencias Ambientales","Tecnología e Ingeniería II"]
+    var mat_modalidad=["Biología","Dibujo Técnico II","Física","Química","Geología y Ciencias Ambientales","Tecnología e Ingeniería II"]
     var desp=document.getElementById("b2c_esp_itin1");
     if(document.querySelectorAll('input[name="b2c_mod"]:checked').length==2){
         //elimino del array los que están seleccionados
