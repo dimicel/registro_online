@@ -87,8 +87,9 @@ while ($reg=$res->fetch_assoc()){
             if ($tabla=="mat_eso" || $tabla=="mat_bach"){
                 $data["registro"]["al_nuevo_otracomunidad"]= $reg["al_nuevo_otracomunidad"];
             }
+            if(strrpos($tabla,"eso")>=0) $data["registro"]["transporte"]= $reg["transporte"];
         }
-        if(strrpos($tabla,"eso")>=0) $data["registro"]["transporte"]= $reg["transporte"];
+        
         $data["registro"]["id_nie"]= $reg["id_nie"];
         $data["registro"]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         $data["registro"]["fecha_registro"]=$reg["fecha_registro"];
