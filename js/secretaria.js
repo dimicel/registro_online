@@ -165,7 +165,9 @@ function generaSelectCurso_pre_mat(){
     { value: "3esodiv", text: "3º ESO DIV" },
     { value: "4eso", text: "4º ESO" },
     { value: "4esodiv", text: "4º ESO DIV" },
-    { value: "1bach", text: "1º BACHILLERATO"},//Con itemporp, por si fuera necesario { value: "1bach", text: "1º BACHILLERATO", itemprop: "2021-2022" }
+    { value: "1bach_c", text: "1º BACHILLERATO CIENCIAS Y TEC."},//Con itemporp, por si fuera necesario { value: "1bach", text: "1º BACHILLERATO", itemprop: "2021-2022" }
+    { value: "1bach_h", text: "1º BACHILLERATO HH.CC.SS."},
+    { value: "1bach_g", text: "1º BACHILLERATO GENERAL"},
     { value: "2bach_c", text: "2º BACH CIENCIAS Y TEC." },
     { value: "2bach_hcs", text: "2º BACH HH.CC.SS." }
     ];
@@ -369,14 +371,16 @@ function listaRegistros(orden_campo, orden_direccion) {
         estilo = ["width:70px", "width:330px", "width:270px"];
         encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
     } else if (tipo_formulario == "prematricula") {
-        if (document.getElementById("curso_pre_mat").value == "2eso") tabla = "premat_eso";
-        else if (document.getElementById("curso_pre_mat").value == "3eso") tabla = "premat_eso";
-        else if (document.getElementById("curso_pre_mat").value == "3esodiv") tabla = "premat_eso";
-        else if (document.getElementById("curso_pre_mat").value == "4eso") tabla = "premat_eso";
-        else if (document.getElementById("curso_pre_mat").value == "4esodiv") tabla = "premat_eso";
-        else if (document.getElementById("curso_pre_mat").value == "1bach") tabla = "premat_bach";
-        else if (document.getElementById("curso_pre_mat").value == "2bach_c") tabla = "premat_bach";
-        else if (document.getElementById("curso_pre_mat").value == "2bach_hcs") tabla = "premat_bach";
+        if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
+        else if (document.getElementById("curso_pre_mat").value == "3eso") {tabla = "premat_eso"; grupo="3º ESO";}
+        else if (document.getElementById("curso_pre_mat").value == "3esodiv") {tabla = "premat_eso"; grupo="3º ESO DIV";}
+        else if (document.getElementById("curso_pre_mat").value == "4eso") {tabla = "premat_eso"; grupo="4º ESO";}
+        else if (document.getElementById("curso_pre_mat").value == "4esodiv") {tabla = "premat_eso"; grupo="4º ESO DIV";}
+        else if (document.getElementById("curso_pre_mat").value == "1bach_c") {tabla = "premat_bach"; grupo="1º Bachillerato"; modalidad="Ciencias y Tecnología";}
+        else if (document.getElementById("curso_pre_mat").value == "1bach_h") {tabla = "premat_bach"; grupo="1º Bachillerato"; modalidad="Humanidades y Ciencias Sociales";}
+        else if (document.getElementById("curso_pre_mat").value == "1bach_g") {tabla = "premat_bach"; grupo="1º Bachillerato"; modalidad="General";}
+        else if (document.getElementById("curso_pre_mat").value == "2bach_c") {tabla = "premat_bach"; grupo="2º Bach. Ciencias y Tecnología";}
+        else if (document.getElementById("curso_pre_mat").value == "2bach_hcs") {tabla = "premat_bach"; grupo="2º Bach. HH.CC.SS.";}
         else return;
         campos = ["id_nie", "nombre", "registro"];
         estilo = ["width:70px", "width:260px", "width:260px"];
@@ -508,6 +512,31 @@ function listaRegistros(orden_campo, orden_direccion) {
             solo_incidencias: solo_incidencias,
             curso_num:curso_num,
             nuevo_otra_comunidad:(document.getElementById("check_nuevo_otra_com").checked)?"Si":"No",
+        }
+    }
+    else if(tabla=="premat_eso"){
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            grupo: grupo,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            solo_incidencias: solo_incidencias,
+            curso_num:curso_num
+        }
+    }
+    else if(tabla=="premat_bach"){
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            grupo: grupo,
+            modalidad:modalidad,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            solo_incidencias: solo_incidencias,
+            curso_num:curso_num
         }
     }
     else {
