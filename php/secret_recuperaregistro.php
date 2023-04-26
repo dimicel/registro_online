@@ -145,46 +145,21 @@ while ($reg=$res->fetch_assoc()){
             $data["registro"]["optativa8"]=$reg["espec_opcion8"];
             $data["registro"]["optativa9"]=$reg["espec_opcion9"];
         }
-        elseif($tabla=="premat_2esopmar" || $tabla=="mat_2esopmar"){
+        elseif($tabla=="premat_3esodiv" || $tabla=="mat_2esopmar"){
             $data["registro"]["rel_valores_et"]=$reg["rel_valores_et"];
             $data["registro"]["optativa1"]=$reg["optativa1"];
             $data["registro"]["optativa2"]=$reg["optativa2"];
             $data["registro"]["optativa3"]=$reg["optativa3"];
             $data["registro"]["optativa4"]=$reg["optativa4"];
         }
-        elseif($tabla=="premat_3esopmar" || $tabla=="mat_3esopmar"){
+        elseif($tabla=="premat_4esodiv" || $tabla=="mat_3esopmar"){
             $data["registro"]["rel_valores_et"]=$reg["rel_valores_et"];
             $data["registro"]["optativa1"]=$reg["optativa1"];
             $data["registro"]["optativa2"]=$reg["optativa2"];
             $data["registro"]["optativa3"]=$reg["optativa3"];
             $data["registro"]["optativa4"]=$reg["optativa4"];
         }
-        elseif($tabla=="premat_1bach_lomloe"){
-            $data["registro"]["primer_idioma"]=$reg["primer_idioma"];
-            $data["registro"]["religion"]=$reg["religion"];
-            $data["registro"]["modalidad"]=$reg["modalidad"];
-            $data["registro"]["obligatoria1"]=$reg["obligatoria1"];
-            $data["registro"]["obligatoria2"]=$reg["obligatoria2"];
-            $data["registro"]["obligatoria3"]=$reg["obligatoria3"];
-            $data["registro"]["optativa1"]=$reg["optativa1"];
-            $data["registro"]["optativa2"]=$reg["optativa2"];
-            $data["registro"]["optativa3"]=$reg["optativa3"];
-            $data["registro"]["optativa4"]=$reg["optativa4"];
-            $data["registro"]["optativa5"]=$reg["optativa5"];
-            $data["registro"]["optativa6"]=$reg["optativa6"];
-            $data["registro"]["optativa7"]=$reg["optativa7"];
-            $data["registro"]["optativa8"]=$reg["optativa8"];
-            $data["registro"]["optativa9"]=$reg["optativa9"];
-            $data["registro"]["optativa10"]=$reg["optativa10"];
-            $data["registro"]["optativa11"]=$reg["optativa11"];
-            $data["registro"]["optativa12"]=$reg["optativa12"];
-            $data["registro"]["optativa13"]=$reg["optativa13"];
-            $data["registro"]["optativa14"]=$reg["optativa14"];
-            $data["registro"]["optativa15"]=$reg["optativa15"];
-            $data["registro"]["optativa16"]=$reg["optativa16"];
-            $data["registro"]["optativa17"]=$reg["optativa17"];
-        }
-        elseif($tabla=="premat_1bach_hcs" || $tabla=="mat_1bach_hcs"){
+        elseif($tabla=="premat_1bach_h" || $tabla=="mat_1bach_hcs"){
             $data["registro"]["primer_idioma"]=$reg["primer_idioma"];
             $data["registro"]["itinerario"]=$reg["itinerario"];
             $data["registro"]["tronc_gen1"]=$reg["tronc_gen1"];
@@ -233,7 +208,7 @@ while ($reg=$res->fetch_assoc()){
             $data["registro"]["espec_com6"]=$reg["espec_com6"];
             $data["registro"]["espec_com7"]=$reg["espec_com7"];
         }
-        elseif($tabla=="premat_2bach_hcs" || $tabla=="mat_2bach_hcs"){
+        elseif($tabla=="premat_2bach_h" || $tabla=="mat_2bach_hcs"){
             $data["registro"]["primer_idioma"]=$reg["primer_idioma"];
             $data["registro"]["itinerario"]=$reg["itinerario"];
             $data["registro"]["tronc_opc1"]=$reg["tronc_opc1"];
