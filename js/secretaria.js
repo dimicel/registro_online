@@ -631,7 +631,10 @@ function ordenListado(obj) {
 function verRegistro(obj) {
     ancho = 700;
     form1 = document.getElementById("tipo_form").value;
-    if (form1 == "prematricula") form = "premat_" + document.getElementById("curso_pre_mat").value;
+    if (form1 == "prematricula") {
+        if (document.getElementById("curso_pre_mat").value.indexOf("eso")>-1) form="premat_eso";
+        else form="premat_bach";
+    }
     else if (form1 == "matricula"){
         if (document.getElementById("curso").value!="2020-2021" && document.getElementById("curso").value!="2021-2022") {
             if (document.getElementById("curso_mat").value.indexOf("eso")!=-1) form = "mat_eso";
