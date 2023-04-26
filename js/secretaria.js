@@ -165,7 +165,7 @@ function generaSelectCurso_pre_mat(){
     { value: "3esodiv", text: "3º ESO DIV" },
     { value: "4eso", text: "4º ESO" },
     { value: "4esodiv", text: "4º ESO DIV" },
-    { value: "1bach_c", text: "1º BACHILLERATO CIENCIAS Y TEC."},//Con itemporp, por si fuera necesario { value: "1bach", text: "1º BACHILLERATO", itemprop: "2021-2022" }
+    { value: "1bach_c", text: "1º BACHILLERATO CIE. Y TEC."},//Con itemporp, por si fuera necesario { value: "1bach", text: "1º BACHILLERATO", itemprop: "2021-2022" }
     { value: "1bach_h", text: "1º BACHILLERATO HH.CC.SS."},
     { value: "1bach_g", text: "1º BACHILLERATO GENERAL"},
     { value: "2bach_c", text: "2º BACH CIENCIAS Y TEC." },
