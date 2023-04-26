@@ -98,9 +98,7 @@ function compruebaSelectores(){
         'Economía',
         'Griego I',
         'Historia del Mundo Contemporáneo',
-        'Literatura Universal',
-        'Matemáticas Generales',
-        'Economía, Emprendimiento y Actividad Empresarial'
+        'Literatura Universal'
     );
 
     l=new Array();

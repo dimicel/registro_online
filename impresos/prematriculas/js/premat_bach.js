@@ -236,13 +236,13 @@ function registraMatricula() {
             var lista=$("#oblig2h :checked");
             f.obligatoria2.value=$("[for="+$(lista[0]).attr('id')+"]").html();
             f.obligatoria3.value=$("[for="+$(lista[1]).attr('id')+"]").html();
-        } 
+        } /*
         else if (_modalidad=='General'){
             f.obligatoria1.value='Matemáticas Generales';
             var lista=$("#oblig2g :checked");
             f.obligatoria2.value=$("[for="+$(lista[0]).attr('id')+"]").html();
             f.obligatoria3.value=$("[for="+$(lista[1]).attr('id')+"]").html();
-        }
+        }*/
         f.optativa1.value=document.getElementById("lista_optativas").options[0].value;
         f.optativa2.value=document.getElementById("lista_optativas").options[1].value;
         f.optativa3.value=document.getElementById("lista_optativas").options[2].value;
