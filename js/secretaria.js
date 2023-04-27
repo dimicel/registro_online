@@ -169,7 +169,7 @@ function generaSelectCurso_pre_mat(){
     { value: "1bach_h", text: "1º BACH HH.CC.SS."},
     //{ value: "1bach_g", text: "1º BACH GENERAL"},
     { value: "2bach_c", text: "2º BACH CIENCIAS Y TEC." },
-    { value: "2bach_hcs", text: "2º BACH HH.CC.SS." }
+    { value: "2bach_h", text: "2º BACH HH.CC.SS." }
     ];
 
     // Recorrer el array de opciones y crear las opciones
