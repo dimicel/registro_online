@@ -210,7 +210,7 @@ while ($reg=$res->fetch_assoc()){
             $data["registro"]["optativa13"]=$reg["materia17"];
             $data["registro"]["optativa14"]=$reg["materia18"];
             $data["registro"]["optativa16"]=$reg["materia19"];
-            $data["registro"]["optativa16"]=$reg["materia20"];
+            $data["registro"]["optativa17"]=$reg["materia20"];
         }
         elseif($tabla=="premat_2bach_c"){
             $data["registro"]["primer_idioma"]=$reg["materia1"];
@@ -231,7 +231,7 @@ while ($reg=$res->fetch_assoc()){
             $data["registro"]["optativa12"]=$reg["materia16"];
             $data["registro"]["optativa13"]=$reg["materia17"];
             $data["registro"]["optativa14"]=$reg["materia18"];
-            $data["registro"]["optativa16"]=$reg["materia19"];
+            $data["registro"]["optativa15"]=$reg["materia19"];
         }
     }
     else if($tabla=="mat_ciclos"){
