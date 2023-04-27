@@ -11,15 +11,16 @@ if ($mysqli->errno>0) {
 }
 
 $tabla=$_POST["formulario"];
+$tabla_db=$tabla;
 $registro=$_POST["registro"];
 
-if(strpos($tabla,"premat_")>=0){
-    if (strpos($tabla,"eso")) $tabla="premat_eso";
-    else $tabla="premat_bach";
+if(strpos($tabla_db,"premat_")>=0){
+    if (strpos($tabla_db,"eso")) $tabla_db="premat_eso";
+    else $tabla_db="premat_bach";
 }
 
 
-$consulta="select * from $tabla where registro='$registro'";
+$consulta="select * from $tabla_db where registro='$registro'";
 
 $res=$mysqli->query($consulta);
 
