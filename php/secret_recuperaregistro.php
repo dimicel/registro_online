@@ -17,7 +17,7 @@ if(strpos($tabla,"premat_")){
     if (strpos($tabla,"eso")) $tabla="premat_eso";
     else $tabla="premat_bach";
 }
-$data["error"]=$tabla;
+$data["error"]="_  ".strpos($tabla,"premat_");
 exit(json_encode($data));
 
 $consulta="select * from $tabla where registro='$registro'";
