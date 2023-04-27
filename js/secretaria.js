@@ -764,6 +764,7 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
                     contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
                     contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>Matemáticas: </span><span class='verReg_campo'>" + resp.registro.matematicas + "</span><br>";
                     contenido += "<span class='verReg_label'>Opc. Bloque 1: </span><span class='verReg_campo'>" + resp.registro.opc_bloque1 + "</span><br>";
                     contenido += "<span class='verReg_label'>Opc. Bloque 2: </span><span class='verReg_campo'>" + resp.registro.opc_bloque21 + "</span><br>";
                     contenido += "<span class='verReg_label'>Opc. Bloque 2: </span><span class='verReg_campo'>" + resp.registro.opc_bloque22 + "</span><br>";
@@ -779,6 +780,7 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 5: </span><span class='verReg_campo'>" + resp.registro.optativa5 + "</span><br>";
                 } else if (form == "premat_3esodiv") {
                     contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
