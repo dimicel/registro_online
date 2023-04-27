@@ -136,7 +136,8 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         materia16,
                                         materia17,
                                         materia18,
-                                        materia19) 
+                                        materia19,
+                                        materia20) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
@@ -175,7 +176,8 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         '$espitin12',
                                         '$espitin13',
                                         '$espitin14',
-                                        '$espitin15')");
+                                        '$espitin15',
+                                        '$espitin16')");
 if ($mysqli->errno>0){
     exit("registro_erroneo ".$mysqli->errno);
 }
