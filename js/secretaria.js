@@ -821,7 +821,7 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_campo'>6 " + resp.registro.optativa8 + "</span><br>";
                     contenido += "</div>";
                     contenido += "<div style='float-left;margin-left:15px'>"
-                    contenido += "<span class='verReg_label' style='text-decoration:underline'>Específicas Comunes</span><br>";
+                    contenido += "<br>";
                     contenido += "<span class='verReg_campo'>1 " + resp.registro.optativa9 + "</span><br>";
                     contenido += "<span class='verReg_campo'>2 " + resp.registro.optativa10 + "</span><br>";
                     contenido += "<span class='verReg_campo'>3 " + resp.registro.optativa11 + "</span><br>";
