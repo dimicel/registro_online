@@ -124,7 +124,6 @@ while ($reg=$res->fetch_assoc()){
         }
         elseif($tabla=="premat_4eso"){
             $data["registro"]["prog_ling"]=$reg["prog_ling"];
-            $data["registro"]["modalidad"]=$reg["modalidad"];
             $data["registro"]["1_lengua_extr"]=$reg["materia1"];
             $data["registro"]["rel_valores_et"]=$reg["materia2"];
             $data["registro"]["opc_bloque1"]=$reg["materia3"];
@@ -152,17 +151,17 @@ while ($reg=$res->fetch_assoc()){
         elseif($tabla=="premat_4esodiv"){
             $data["registro"]["1_lengua_extr"]=$reg["materia1"];
             $data["registro"]["rel_valores_et"]=$reg["materia2"];
-            $data["registro"]["opcion1"]=$reg["optativa1"];
-            $data["registro"]["opcion2"]=$reg["optativa2"];
-            $data["registro"]["opcion3"]=$reg["optativa3"];
-            $data["registro"]["opcion4"]=$reg["optativa4"];
-            $data["registro"]["opcion5"]=$reg["optativa5"];
-            $data["registro"]["opcion6"]=$reg["optativa6"];
-            $data["registro"]["optativa1"]=$reg["materia7"];
-            $data["registro"]["optativa2"]=$reg["materia8"];
-            $data["registro"]["optativa3"]=$reg["materia9"];
-            $data["registro"]["optativa4"]=$reg["materia10"];
-            $data["registro"]["optativa5"]=$reg["materia11"];
+            $data["registro"]["opcion1"]=$reg["materia3"];
+            $data["registro"]["opcion2"]=$reg["materia4"];
+            $data["registro"]["opcion3"]=$reg["materia5"];
+            $data["registro"]["opcion4"]=$reg["materia6"];
+            $data["registro"]["opcion5"]=$reg["materia7"];
+            $data["registro"]["opcion6"]=$reg["materia8"];
+            $data["registro"]["optativa1"]=$reg["materia9"];
+            $data["registro"]["optativa2"]=$reg["materia10"];
+            $data["registro"]["optativa3"]=$reg["materia11"];
+            $data["registro"]["optativa4"]=$reg["materia12"];
+            $data["registro"]["optativa5"]=$reg["materia13"];
         }
         elseif($tabla=="premat_1bach_h" || $tabla=="premat_1bach_c"){
             $data["registro"]["modalidad"]=$reg["modalidad"];

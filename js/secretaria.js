@@ -744,8 +744,8 @@ function verRegistro(obj) {
                 //if (form1 == "matricula") contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie_tutor2 + "</span><br>";
                 contenido += "<span class='verReg_label'>Teléfono: </span><span class='verReg_campo'>" + resp.registro.tlf_tutor2 + "</span><br>";
                 contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email_tutor2 + "</span><br>";
-                contenido += "<span class='verReg_label' style='text-decoration:underline'>MATERIAS DE LA PREMATRÍCULA</span><br>";
-                if (form == "premat_1eso" || form == "mat_1eso") {
+                if (form.indexOf("premat_">-1)) contenido += "<span class='verReg_label' style='text-decoration:underline'>MATERIAS DE LA PREMATRÍCULA</span><br>";
+                if (form == "premat_2eso") {
                     contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
                     contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
                     contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
@@ -753,82 +753,53 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
-                } else if (form == "premat_2eso" || form == "mat_2eso") {
+                } else if (form == "premat_3eso") {
                     contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
                     contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
                     contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
+                } else if (form == "premat_4eso") {
+                    contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
+                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 1: </span><span class='verReg_campo'>" + resp.registro.opc_bloque1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 2: </span><span class='verReg_campo'>" + resp.registro.opc_bloque21 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 2: </span><span class='verReg_campo'>" + resp.registro.opc_bloque22 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 2: </span><span class='verReg_campo'>" + resp.registro.opc_bloque23 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 2: </span><span class='verReg_campo'>" + resp.registro.opc_bloque24 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 3: </span><span class='verReg_campo'>" + resp.registro.opc_bloque31 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 3: </span><span class='verReg_campo'>" + resp.registro.opc_bloque32 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 3: </span><span class='verReg_campo'>" + resp.registro.opc_bloque33 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 3: </span><span class='verReg_campo'>" + resp.registro.opc_bloque34 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 3: </span><span class='verReg_campo'>" + resp.registro.opc_bloque35 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opc. Bloque 3: </span><span class='verReg_campo'>" + resp.registro.opc_bloque36 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
+                } else if (form == "premat_3esodiv") {
+                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
+                } else if (form == "premat_4esodiv") {
+                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
+                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opción 1: </span><span class='verReg_campo'>" + resp.registro.opcion1 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opción 2: </span><span class='verReg_campo'>" + resp.registro.opcion2 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opción 3: </span><span class='verReg_campo'>" + resp.registro.opcion3 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opción 4: </span><span class='verReg_campo'>" + resp.registro.opcion4 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opción 5: </span><span class='verReg_campo'>" + resp.registro.opcion5 + "</span><br>";
+                    contenido += "<span class='verReg_label'>Opción 6: </span><span class='verReg_campo'>" + resp.registro.opcion6 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 5: </span><span class='verReg_campo'>" + resp.registro.optativa5 + "</span><br>";
-                } else if (form == "premat_3eso" || form == "mat_3eso") {
-                    contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
-                    if (resp.registro.matematicas != '') contenido += "<span class='verReg_label'>Matemáticas: </span><span class='verReg_campo'>" + resp.registro.matematicas + "</span><br>";
-                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
-                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
-                } else if (form == "premat_4eso" || form == "mat_4eso") {
-                    contenido += "<span class='verReg_label'>Programa Ligüístico: </span><span class='verReg_campo'>" + resp.registro.prog_ling + "</span><br>";
-                    contenido += "<span class='verReg_label'>Modalidad: </span><span class='verReg_campo'>" + resp.registro.modalidad + "</span><br>";
-                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
-                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
-                    contenido += "<span class='verReg_label'>Específica Obligatoria: </span><span class='verReg_campo'>" + resp.registro.espec_oblig + "</span><br>";
-                    contenido += "<span class='verReg_label'>Troncal de Opción 1: </span><span class='verReg_campo'>" + resp.registro.troncales_opcion1 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Troncal de Opción 2: </span><span class='verReg_campo'>" + resp.registro.troncales_opcion2 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 5: </span><span class='verReg_campo'>" + resp.registro.optativa5 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 6: </span><span class='verReg_campo'>" + resp.registro.optativa6 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 7: </span><span class='verReg_campo'>" + resp.registro.optativa7 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 8: </span><span class='verReg_campo'>" + resp.registro.optativa8 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 9: </span><span class='verReg_campo'>" + resp.registro.optativa9 + "</span><br>";
-                    if (resp.registro.modalidad == "Académicas") contenido += "<span class='verReg_label'>Optativa 8: </span><span class='verReg_campo'>" + resp.registro.optativa8 + "</span><br>";
-                } else if (form == "premat_2esopmar" || form == "mat_2esopmar") {
-                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
-                } else if (form == "premat_3esopmar" || form == "mat_3esopmar") {
-                    contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 1: </span><span class='verReg_campo'>" + resp.registro.optativa1 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
-                    contenido += "<span class='verReg_label'>Optativa 4: </span><span class='verReg_campo'>" + resp.registro.optativa4 + "</span><br>";
-                } else if (form == "premat_1bach_lomloe") {
-                    contenido += "<span class='verReg_label'>Modalidad: </span><span class='verReg_campo'>" + resp.registro.modalidad + "</span><br>";
-                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
-                    contenido += "<span class='verReg_label'>Religión/Atención Educativa: </span><span class='verReg_campo'>" + resp.registro.religion + "</span><br>";
-                    contenido += "<span class='verReg_label' style='text-decoration:underline'>OBLIGATORIAS</span><br>";
-                    contenido += "<span class='verReg_campo'>- " + resp.registro.obligatoria1 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>- " + resp.registro.obligatoria2 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>- " + resp.registro.obligatoria3 + "</span><br>";
-                    contenido += "<span class='verReg_label' style='text-decoration:underline'>OPTATIVAS</span><br>";
-                    contenido += "<span class='verReg_campo'> 1 - " + resp.registro.optativa1 + "</span><br>";
-                    contenido += "<span class='verReg_campo'> 2 - " + resp.registro.optativa2 + "</span><br>";
-                    contenido += "<span class='verReg_campo'> 3 - " + resp.registro.optativa3 + "</span><br>";
-                    contenido += "<span class='verReg_campo'> 4 - " + resp.registro.optativa4 + "</span><br>";
-                    contenido += "<span class='verReg_campo'> 5 - " + resp.registro.optativa5 + "</span><br>";
-                    contenido += "<span class='verReg_campo'> 6 - " + resp.registro.optativa6 + "</span><br>";
-                    contenido += "<span class='verReg_campo'> 7 - " + resp.registro.optativa7 + "</span><br>";
-                    contenido += "<span class='verReg_campo'> 8 - " + resp.registro.optativa8 + "</span><br>";
-                    contenido += "<span class='verReg_campo'> 9 - " + resp.registro.optativa9 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>10 - " + resp.registro.optativa10 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>11 - " + resp.registro.optativa11 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>12 - " + resp.registro.optativa12 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>13 - " + resp.registro.optativa13 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>14 - " + resp.registro.optativa14 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>15 - " + resp.registro.optativa15 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>16 - " + resp.registro.optativa16 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>17 - " + resp.registro.optativa17 + "</span><br>";
-
-                } else if (form == "premat_1bach_hcs" || form == "mat_1bach_hcs") {
+                } else if (form == "premat_1bach_h") {
                     contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
                     contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales Generales y de Opción</span><br>";
                     contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_gen1 + "</span><br>";
@@ -858,7 +829,7 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_campo'>6 " + resp.registro.espec_com6 + "</span><br>";
                     contenido += "<span class='verReg_campo'>7 " + resp.registro.espec_com7 + "</span>";
                     contenido += "</div></div><br>";
-                } else if (form == "premat_1bach_c" || form == "mat_1bach_c") {
+                } else if (form == "premat_1bach_c") {
                     contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
                     contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales Generales y de Opción</span><br>";
                     contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_gen1 + "</span><br>";
@@ -888,7 +859,7 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_campo'>6 " + resp.registro.espec_com6 + "</span><br>";
                     contenido += "<span class='verReg_campo'>7 " + resp.registro.espec_com7 + "</span><br><br><br><br><br>";
                     contenido += "</div></div><br>";
-                } else if (form == "premat_2bach_hcs" || form == "mat_2bach_hcs") {
+                } else if (form == "premat_2bach_h") {
                     contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales Generales</span><br>";
                     contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
                     contenido += "<span class='verReg_campo'>- " + resp.registro.tronc_gen + "</span><br>";
@@ -918,7 +889,7 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_campo'>16 " + resp.registro.espec_itin_com16 + "</span><br>";
                     contenido += "<span class='verReg_campo'>17 " + resp.registro.espec_itin_com17 + "</span>";
                     contenido += "</div></div><br>";
-                } else if (form == "premat_2bach_c" || form == "mat_2bach_c") {
+                } else if (form == "premat_2bach_c") {
                     contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales Generales</span><br>";
                     contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
                     contenido += "<span class='verReg_label' style='text-decoration:underline'>Troncales de Opción</span><br>";
