@@ -54,8 +54,6 @@ $sexo=$_POST['sexo'];
 
 //Parte especifica de ESO	
 $religion=$_POST['eso_religion'];
-$primer_idioma=$_POST['eso_primer_idioma'];
-
 
 $bloque1=$_POST['eso4_opt1'];
 $bloque2=$_POST['eso4_opt2'];
@@ -388,7 +386,7 @@ $p_idioma="1ª Lengua Extranjera (".$primer_idioma.")";
 $tronc_gen=<<<MAT
     - Ámbito Lingüístico y Social
     - Ámbito Científico-Tecnológico
-    - 1ª Lengua Extranjera ($primer_idioma)
+    - 1ª Lengua Extranjera (Inglés)
     - Educación Física
     - $religion
     - Tutoría
