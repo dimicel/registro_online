@@ -438,20 +438,25 @@ function registraMatricula() {
 function cursoActual() {
     if (document.getElementById("curso").value == "2º ESO") {
         document.getElementById("sel_curso_act").disabled = true;
+        document.getElementById("sel_curso_act").querySelector('option[value="1º ESO"]').style.display="inherit";
         document.getElementById("sel_curso_act").value = "1º ESO";
         document.getElementById("sel_grupo_curso_act").disabled = false;
         document.getElementById("curso_actual").value = "1º ESO";
     } else if (document.getElementById("curso").value == "3º ESO" || document.getElementById("curso").value == "3º ESO DIV") {
         document.getElementById("sel_curso_act").disabled = false;
-        document.getElementById("sel_curso_act").querySelectorAll('option[itemprop="3eso"]').style.display="inherit";
-        document.getElementById("sel_curso_act").querySelectorAll('option:not[itemprop="3eso"]').style.display="none";
-        document.getElementById("sel_curso_act").options[0].style.display="inherit";
+        document.getElementById("sel_curso_act").querySelector('option[value="1º ESO"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="2º ESO"]').style.display="inherit";
+        document.getElementById("sel_curso_act").querySelector('option[value="2º ESO PMAR"]').style.display="inherit";
+        document.getElementById("sel_curso_act").querySelector('option[value="3º ESO"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="3º ESO DIV"]').style.display="none";
         document.getElementById("sel_grupo_curso_act").disabled = false;
     }  else if (document.getElementById("curso").value == "4º ESO" || document.getElementById("curso").value == "4º ESO DIV") {
         document.getElementById("sel_curso_act").disabled = false;
-        document.getElementById("sel_curso_act").querySelectorAll('option[itemprop="4eso"]').style.display="inherit";
-        document.getElementById("sel_curso_act").querySelectorAll('option:not[itemprop="4eso"]').style.display="none";
-        document.getElementById("sel_curso_act").options[0].style.display="inherit";
+        document.getElementById("sel_curso_act").querySelector('option[value="1º ESO"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="2º ESO"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="2º ESO PMAR"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="3º ESO"]').style.display="inherit";
+        document.getElementById("sel_curso_act").querySelector('option[value="3º ESO DIV"]').style.display="inherit";
         document.getElementById("sel_grupo_curso_act").disabled = false;
     } 
 }
