@@ -32,7 +32,7 @@ function creaValidatorPagina2() {
         maxDate: "-12y",
         nextText: "Siguiente",
         prevText: "Previo",
-        onClose:function(){$("#form_pagina_2").validate()}
+        onclose:function(){$("#form_pagina_2").validate()}
     });
 
     $("#form_pagina_2").validate({
