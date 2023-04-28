@@ -787,7 +787,6 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_label'>Optativa 2: </span><span class='verReg_campo'>" + resp.registro.optativa2 + "</span><br>";
                     contenido += "<span class='verReg_label'>Optativa 3: </span><span class='verReg_campo'>" + resp.registro.optativa3 + "</span><br>";
                 } else if (form == "premat_4esodiv") {
-                    contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp["registro"]["1_lengua_extr"] + "</span><br>";
                     contenido += "<span class='verReg_label'>Religión/Valores Éticos: </span><span class='verReg_campo'>" + resp.registro.rel_valores_et + "</span><br>";
                     contenido += "<span class='verReg_label'>Opción 1: </span><span class='verReg_campo'>" + resp.registro.opcion1 + "</span><br>";
                     contenido += "<span class='verReg_label'>Opción 2: </span><span class='verReg_campo'>" + resp.registro.opcion2 + "</span><br>";

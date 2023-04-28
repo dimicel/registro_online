@@ -2,19 +2,6 @@
 
 
 
-function eso4div_seleccionIdioma(_idioma) {
-    var lista_aplic = document.getElementById("eso4div_opc");
-
-    for (i = 0; i < lista_aplic.length; i++) {
-        if (_idioma == "ingles" && lista_aplic.options[i].innerHTML == "2ª Lengua Extranjera (Inglés)") lista_aplic.options[i].innerHTML = "2ª Lengua Extranjera (Francés)";
-        else if (_idioma == "frances" && lista_aplic.options[i].innerHTML == "2ª Lengua Extranjera (Francés)") lista_aplic.options[i].innerHTML = "2ª Lengua Extranjera (Inglés)";
-    }
-    lista_aplic.selectedIndex = -1;
-
-}
-
-
-
 function eso4div_generaDatosSerialize() {
     document.getElementById("eso4_opt1").value = document.getElementById("eso4div_opc").options[0].innerHTML;
     document.getElementById("eso4_opt2").value = document.getElementById("eso4div_opc").options[1].innerHTML;

@@ -383,7 +383,6 @@ function registraMatricula() {
         var f5 = document.getElementById("form_pagina_5_4esodiv");
         f.action = "php/premat4esodiv.php";
         f.eso_religion.value = retornaValRadioButton(f5.eso4div_religion);
-        f.eso_primer_idioma.value = retornaValRadioButton(f5.eso4div_primer_idioma);
         
         f.appendChild(f5.eso4_opt1);
         f.appendChild(f5.eso4_opt2);

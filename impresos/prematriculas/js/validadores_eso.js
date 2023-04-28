@@ -243,23 +243,15 @@ function creaValidatorPagina5_4esodiv() {
         rules: {
             eso4div_religion: {
                 required: true
-            },
-            eso4div_primer_idioma: {
-                required: true
             }
         },
         messages: {
             eso4div_religion: {
                 required: "Seleccione uno"
-            },
-            eso4div_primer_idioma: {
-                required: "Seleccione uno"
             }
         },
         errorPlacement: function(error, element) {
-            if ($(element).attr('name') == "eso4div_primer_idioma" )
-                $(element).parent().parent().prev().children().next().next().html(error);
-            else if($(element).attr('name') == "eso4div_religion")
+            if($(element).attr('name') == "eso4div_religion")
                 $(element).parent().next().next().children().html(error);
             else $(element).parent().parent().next($('.errorTxt')).html(error);
         }
