@@ -88,9 +88,9 @@ $(document).ready(function() {
     });
     document.getElementById("matricula_bach").reset();
 
-    jQuery.validator.addMethod("miFecha", function(value, element) {
+    /*jQuery.validator.addMethod("miFecha", function(value, element) {
         return (/^\d{2}\/\d{2}\/\d{4}$/).test(value);
-    });
+    });*/
 });
 
 
