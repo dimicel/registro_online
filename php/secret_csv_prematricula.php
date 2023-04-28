@@ -12,12 +12,27 @@ $tabla=$_POST["premat_csv"];
 $tabla_db=$tabla;
 $curso=$_POST["curso_csv"];
 
+$grupos=Array(
+    "premat_2eso" => "2º ESO",
+    "premat_3eso" => "3º ESO",
+    "premat_4eso" => "4º ESO",
+    "premat_3esodiv" => "3º ESO DIV",
+    "premat_4esodiv" => "4º ESO DIV",
+    "premat_1bach_c" => "1º Bachillerato",
+    "premat_1bach_h" => "1º Bachillerato",
+    "premat_2bach_c" => "2º Bachillerato",
+    "premat_2bach_h" => "2º Bachillerato"
+);
+
+
 if(strpos($tabla_db,"premat_")>=0){
     if (strpos($tabla_db,"eso")) $tabla_db="premat_eso";
     else $tabla_db="premat_bach";
 }
 
-$consulta="select * from $tabla_db where curso='$curso' order by apellidos,nombre";
+if ($tabla=="premta_1bach_h") $consulta="select * from $tabla_db where curso='$curso' and modalidad='Humanidades y Ciencias Sociales' order by apellidos,nombre";
+elseif ($tabla=="premta_1bach_c") $consulta="select * from $tabla_db where curso='$curso' and modalidad='Ciencias y Tecnología' order by apellidos,nombre";
+else$consulta="select * from $tabla_db where curso='$curso' and grupo='$grupos[$tabla]' order by apellidos,nombre";
 
 $res=$mysqli->query($consulta);
 
@@ -28,13 +43,13 @@ if ($res->num_rows==0){
 $Name = $tabla.'.csv';
 $FileName = "./$Name";
 
-if($tabla=="premat_2eso") $Datos='NIE;ALUMNO;SEXO;CURSO_ACTUAL;GRUPO;PROGRAMA_LING;REL/VAL_ETICOS;PRIMER_IDIOMA;OPT1;OPT2;OPT3;OPT4'.PHP_EOL;
-elseif($tabla=="premat_3eso") $Datos='NIE;ALUMNO;SEXO;CURSO_ACTUAL;GRUPO;PROGRAMA_LING;REL/VAL_ETICOS;PRIMER_IDIOMA;OPT1;OPT2;OPT3;OPT4'.PHP_EOL;
-elseif($tabla=="premat_4eso") $Datos='NIE;ALUMNO;SEXO;CURSO_ACTUAL;GRUPO;PROGRAMA_LING;PRIMER_IDIOMA;REL/VAL_ETICOS;MATEMATICAS;OPC_BLOQUE1;OPC_BLOQUE2_1;OPC_BLOQUE2_2;OPC_BLOQUE2_3;OPC_BLOQUE2_4;OPC_BLOQUE3_1;OPC_BLOQUE3_2;OPC_BLOQUE3_3;OPC_BLOQUE3_4;OPC_BLOQUE3_5;OPC_BLOQUE3_6;OPTATIVA1;OPTATIVA2;OPTATIVA3;OPTATIVA4;OPTATIVA5'.PHP_EOL;
+if($tabla=="premat_2eso") $Datos='NIE;ALUMNO;SEXO;CURSO_ACTUAL;GRUPO;PROGRAMA_LING;REL/AT_EDUC;PRIMER_IDIOMA;OPT1;OPT2;OPT3;OPT4'.PHP_EOL;
+elseif($tabla=="premat_3eso") $Datos='NIE;ALUMNO;SEXO;CURSO_ACTUAL;GRUPO;PROGRAMA_LING;REL/AT_EDUC;PRIMER_IDIOMA;OPT1;OPT2;OPT3;OPT4'.PHP_EOL;
+elseif($tabla=="premat_4eso") $Datos='NIE;ALUMNO;SEXO;CURSO_ACTUAL;GRUPO;PROGRAMA_LING;PRIMER_IDIOMA;REL/AT_EDUC;MATEMATICAS;OPC_BLOQUE1;OPC_BLOQUE2_1;OPC_BLOQUE2_2;OPC_BLOQUE2_3;OPC_BLOQUE2_4;OPC_BLOQUE3_1;OPC_BLOQUE3_2;OPC_BLOQUE3_3;OPC_BLOQUE3_4;OPC_BLOQUE3_5;OPC_BLOQUE3_6;OPTATIVA1;OPTATIVA2;OPTATIVA3;OPTATIVA4;OPTATIVA5'.PHP_EOL;
 elseif($tabla=="premat_3esodiv") $Datos='NIE;ALUMNO;SEXO;CURSO_ACTUAL;GRUPO;REL/AT.EDUC;OPTATIVA1;OPTATIVA2;OPTATIVA3'.PHP_EOL;
 elseif($tabla=="premat_4esodiv") $Datos='NIE;ALUMNO;SEXO;CURSO_ACTUAL;GRUPO;PRIMER_IDIOMA;REL/AT.EDUC;OPCION1;OPCION2;OPCION3;OPCION4;OPCION5;OPCION6;OPTATIVA1;OPTATIVA2;OPTATIVA3;OPTATIVA4;OPTATIVA5'.PHP_EOL;
 elseif($tabla=="premat_1bach_h" || $tabla=="premat_1bach_c"){
-    $Datos='NIE;ALUMNO;SEXO;MODALIDAD;PRIMER_IDIOMA;REL/AT.EDUC;OBLIGATORIA1;OBLIGATORIA2;OBLIGATORIA3;';
+    $Datos='NIE;ALUMNO;SEXO;MODALIDAD;PRIMER_IDIOMA;REL/AT_EDUC;OBLIGATORIA1;OBLIGATORIA2;OBLIGATORIA3;';
     $Datos.='OPTATIVA1;OPTATIVA2;OPTATIVA3;OPTATIVA4;OPTATIVA5;OPTATIVA6;OPTATIVA7;OPTATIVA8;';
     $Datos.='OPTATIVA9;OPTATIVA10;OPTATIVA11;OPTATIVA12;OPTATIVA13;OPTATIVA14;OPTATIVA15'.PHP_EOL;
 } 
