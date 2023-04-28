@@ -846,9 +846,9 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_campo'>6 " + resp.registro.optativa6 + "</span><br>";
                     contenido += "<span class='verReg_campo'>7 " + resp.registro.optativa7 + "</span><br>";
                     contenido += "<span class='verReg_campo'>8 " + resp.registro.optativa8 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>9 " + resp.registro.optativa9 + "</span>";
                     contenido += "</div>";
                     contenido += "<div style='float:left;margin-left:15px'>"
+                    contenido += "<span class='verReg_campo'> 9 " + resp.registro.optativa9 + "</span><br>";
                     contenido += "<span class='verReg_campo'>10 " + resp.registro.optativa10 + "</span><br>";
                     contenido += "<span class='verReg_campo'>11 " + resp.registro.optativa11 + "</span><br>";
                     contenido += "<span class='verReg_campo'>12 " + resp.registro.optativa12 + "</span><br>";
@@ -856,7 +856,6 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_campo'>14 " + resp.registro.optativa14 + "</span><br>";
                     contenido += "<span class='verReg_campo'>15 " + resp.registro.optativa15 + "</span><br>";
                     contenido += "<span class='verReg_campo'>16 " + resp.registro.optativa16 + "</span><br>";
-                    contenido += "<span class='verReg_campo'>17 " + resp.registro.optativa17 + "</span>";
                     contenido += "</div></div><br>";
                 } else if (form == "premat_2bach_c") {
                     contenido += "<span class='verReg_label'>1ª Lengua Extranjera: </span><span class='verReg_campo'>" + resp.registro.primer_idioma + "</span><br>";
