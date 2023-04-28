@@ -20,8 +20,8 @@ $grupos=Array(
     "premat_4esodiv" => "4º ESO DIV",
     "premat_1bach_c" => "1º Bachillerato",
     "premat_1bach_h" => "1º Bachillerato",
-    "premat_2bach_c" => "2º Bachillerato",
-    "premat_2bach_h" => "2º Bachillerato"
+    "premat_2bach_c" => "2º Bach. Ciencias y Tecnología",
+    "premat_2bach_h" => "2º Bach. HH.CC.SS."
 );
 
 
@@ -30,8 +30,8 @@ if(strpos($tabla_db,"premat_")>=0){
     else $tabla_db="premat_bach";
 }
 
-if ($tabla=="premta_1bach_h") $consulta="select * from $tabla_db where curso='$curso' and modalidad='Humanidades y Ciencias Sociales' order by apellidos,nombre";
-elseif ($tabla=="premta_1bach_c") $consulta="select * from $tabla_db where curso='$curso' and modalidad='Ciencias y Tecnología' order by apellidos,nombre";
+if ($tabla=="premat_1bach_h") $consulta="select * from $tabla_db where curso='$curso' and modalidad='Humanidades y Ciencias Sociales' order by apellidos,nombre";
+elseif ($tabla=="premat_1bach_c") $consulta="select * from $tabla_db where curso='$curso' and modalidad='Ciencias y Tecnología' order by apellidos,nombre";
 else$consulta="select * from $tabla_db where curso='$curso' and grupo='$grupos[$tabla]' order by apellidos,nombre";
 
 $res=$mysqli->query($consulta);
