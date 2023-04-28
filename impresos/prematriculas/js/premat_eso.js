@@ -483,6 +483,7 @@ function seleccionCursoActual(c) {
         document.getElementById("sel_grupo_curso_act").value = "A";
         document.getElementById("grupo_curso_actual").value = "A";
     }
+    else document.getElementById("sel_grupo_curso_act").disabled = false;
 
 }
 
