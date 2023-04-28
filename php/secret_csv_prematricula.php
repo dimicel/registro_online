@@ -77,7 +77,7 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
         $Datos.=utf8_decode($r["materia3"].";");
         $Datos.=utf8_decode($r["materia4"].";");
         $Datos.=utf8_decode($r["materia5"].";");
-        $Datos.=utf8_decode($r["optativa6"]).PHP_EOL;
+        $Datos.=utf8_decode($r["materia6"]).PHP_EOL;
     }
     elseif($tabla=="premat_3eso"){
         $Datos.=utf8_decode($r["id_nie"].";");
@@ -91,7 +91,7 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
         $Datos.=utf8_decode($r["materia3"].";");
         $Datos.=utf8_decode($r["materia4"].";");
         $Datos.=utf8_decode($r["materia5"].";");
-        $Datos.=utf8_decode($r["optativa6"]).PHP_EOL;
+        $Datos.=utf8_decode($r["materia6"]).PHP_EOL;
     }
     elseif($tabla=="premat_4eso"){
         $Datos.=utf8_decode($r["id_nie"].";");
