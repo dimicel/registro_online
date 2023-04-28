@@ -458,7 +458,12 @@ function cursoActual() {
 
 function seleccionCursoActual(c) {
     document.getElementById("curso_actual").value = c;
-    if (c == "3º ESO") {
+    if (c == "2º ESO PMAR") {
+        document.getElementById("sel_grupo_curso_act").disabled = true;
+        document.getElementById("sel_grupo_curso_act").value = "A";
+        document.getElementById("grupo_curso_actual").value = "A";
+    }
+    else if (c == "3º ESO") {
         document.getElementById("sel_grupo_curso_act").disabled = false;
     } else if (c == "3º ESO DIV") {
         document.getElementById("sel_grupo_curso_act").disabled = true;
