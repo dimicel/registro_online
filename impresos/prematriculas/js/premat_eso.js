@@ -441,45 +441,38 @@ function cursoActual() {
         document.getElementById("sel_curso_act").value = "1º ESO";
         document.getElementById("sel_grupo_curso_act").disabled = false;
         document.getElementById("curso_actual").value = "1º ESO";
-    } else if (document.getElementById("curso").value == "3º ESO") {
-        document.getElementById("sel_curso_act").style.display = "none";
-        document.getElementById("t_curso_actual").style.display = "inherit";
-        document.getElementById("t_curso_actual").value = "2º ESO";
+    } else if (document.getElementById("curso").value == "3º ESO" || document.getElementById("curso").value == "3º ESO DIV") {
+        document.getElementById("sel_curso_act").disabled = false;
+        document.getElementById("sel_curso_act").querySelectorAll('option[itemprop="3eso"]').style.display="inherit";
+        document.getElementById("sel_curso_act").querySelectorAll('option:not[itemprop="3eso"]').style.display="none";
+        document.getElementById("sel_curso_act").options[0].style.display="inherit";
         document.getElementById("sel_grupo_curso_act").disabled = false;
-        document.getElementById("curso_actual").value = "2 ESO";
-    } else if (document.getElementById("curso").value == "3º ESO DIV") {
-        document.getElementById("sel_curso_act").style.display = "none";
-        document.getElementById("t_curso_actual").style.display = "inherit";
-        document.getElementById("t_curso_actual").value = "2º ESO PMAR";
-        document.getElementById("sel_grupo_curso_act").disabled = true;
-        document.getElementById("sel_grupo_curso_act").value = "A";
-        document.getElementById("grupo_curso_actual").value = "A";
-        document.getElementById("curso_actual").value = "2º ESO PMAR";
-    } else if (document.getElementById("curso").value == "4º ESO") {
-        document.getElementById("sel_curso_act").style.display = "inherit";
-        document.getElementById("t_curso_actual").style.display = "none";
+    }  else if (document.getElementById("curso").value == "4º ESO" || document.getElementById("curso").value == "4º ESO DIV") {
+        document.getElementById("sel_curso_act").disabled = false;
+        document.getElementById("sel_curso_act").querySelectorAll('option[itemprop="4eso"]').style.display="inherit";
+        document.getElementById("sel_curso_act").querySelectorAll('option:not[itemprop="4eso"]').style.display="none";
+        document.getElementById("sel_curso_act").options[0].style.display="inherit";
         document.getElementById("sel_grupo_curso_act").disabled = false;
-    } else if (document.getElementById("curso").value == "4º ESO DIV") {
-        document.getElementById("sel_curso_act").style.display = "none";
-        document.getElementById("t_curso_actual").style.display = "inherit";
-        document.getElementById("t_curso_actual").value = "3º ESO DIV";
-        document.getElementById("sel_grupo_curso_act").disabled = true;
-        document.getElementById("sel_grupo_curso_act").value = "A";
-        document.getElementById("grupo_curso_actual").value = "A";
-        document.getElementById("curso_actual").value = "3º ESO DIV";
     } 
 }
 
 function seleccionCursoActual(c) {
+    document.getElementById("curso_actual").value = c;
     if (c == "3º ESO") {
         document.getElementById("sel_grupo_curso_act").disabled = false;
-        document.getElementById("curso_actual").value = "3º ESO";
     } else if (c == "3º ESO DIV") {
         document.getElementById("sel_grupo_curso_act").disabled = true;
         document.getElementById("sel_grupo_curso_act").value = "A";
         document.getElementById("grupo_curso_actual").value = "A";
-        document.getElementById("curso_actual").value = "3º ESO DIV";
     }
+    else if (c == "4º ESO") {
+        document.getElementById("sel_grupo_curso_act").disabled = false;
+    } else if (c == "4º ESO DIV") {
+        document.getElementById("sel_grupo_curso_act").disabled = true;
+        document.getElementById("sel_grupo_curso_act").value = "A";
+        document.getElementById("grupo_curso_actual").value = "A";
+    }
+
 }
 
 function confirmarnuevaPrem(mensaje, titulo, botonAceptar) {
