@@ -437,9 +437,8 @@ function registraMatricula() {
 
 function cursoActual() {
     if (document.getElementById("curso").value == "2º ESO") {
-        document.getElementById("sel_curso_act").style.display = "none";
-        document.getElementById("t_curso_actual").style.display = "inherit";
-        document.getElementById("t_curso_actual").value = "1º ESO";
+        document.getElementById("sel_curso_act").style.disabled = true;
+        document.getElementById("sel_curso_act").value = "1º ESO";
         document.getElementById("sel_grupo_curso_act").disabled = false;
         document.getElementById("curso_actual").value = "1º ESO";
     } else if (document.getElementById("curso").value == "3º ESO") {

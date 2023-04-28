@@ -16,10 +16,12 @@
             <span class="errorTxt" style="font-size: 1em;"></span>
             <select name="sel_curso_act" id="sel_curso_act" class="form-control" style="display:none" onchange="javascript:seleccionCursoActual(this.value);">
                 <option value="">Seleccione uno...</option>
-                <option value="3º ESO">3º ESO</option>
-                <option value="3º ESO DIV">3º ESO DIVERSIFICACIÓN</option>
+                <option itemprop="2eso" value="1º ESO">1º ESO</option>
+                <option itemprop="3eso" value="2º ESO">2º ESO</option>
+                <option itemprop="3eso" value="2º ESO">2º ESO PMAR</option>
+                <option itemprop="4eso" value="3º ESO">3º ESO</option>
+                <option itemprop="4eso" value="3º ESO DIV">3º ESO DIVERSIFICACIÓN</option>
             </select>
-            <input type="text" id="t_curso_actual" name="t_curso_actual" class="form-control" size="12" readonly/>
         </div>
         <div id="div_grupo_curso_actual" class="col-4" style="padding:10px;margin:10px;">
             <label style="float:left">*Grupo del Curso:</label>
