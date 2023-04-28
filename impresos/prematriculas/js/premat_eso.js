@@ -436,6 +436,7 @@ function registraMatricula() {
 }
 
 function cursoActual() {
+    document.getElementById("sel_curso_act").value="";
     if (document.getElementById("curso").value == "2º ESO") {
         document.getElementById("sel_curso_act").disabled = true;
         document.getElementById("sel_curso_act").querySelector('option[value="1º ESO"]').style.display="inherit";
