@@ -33,7 +33,8 @@ function creaValidatorPagina2() {
         minDate: new Date(2000, 0, 1),
         maxDate: "-12y",
         nextText: "Siguiente",
-        prevText: "Previo"
+        prevText: "Previo",
+        onclose:function(){$("#form_pagina_2").validate();}
     });
 
     $("#form_pagina_2").validate({
