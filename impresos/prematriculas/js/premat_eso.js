@@ -366,10 +366,10 @@ function pasaPagina(p) {
         }
     };
     
-    /*if (pagina == 1) {
+    if (pagina == 1) {
         $('#pagina_2').css('display', 'none');
         $('#pagina_1').fadeIn(500);
-    } else {*/
+    } else {
         if ($(arrayPaginas[pagina].validExec).valid()) {
             if (document.getElementById("pagina_"+pagina).innerHTML.length == 0) {
                 $("#pagina_" + pagina).load(arrayPaginas[pagina].pag, function() {
@@ -380,7 +380,7 @@ function pasaPagina(p) {
                 pasaPagina_actualizaHTML(pagina);
             }
         } else pagina--;
-    //}
+    }
     $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
 }
 
