@@ -365,7 +365,7 @@ function pasaPagina(p) {
             validExec:"#form_pagina_5"+arrayCursos[_curso]
         }
     };
-    
+    alert(arrayPaginas[pagina].pag+"      "+arrayPaginas[pagina].valid+"       "+arrayPaginas[pagina].validExec);return;
     if (pagina == 1) {
         $('#pagina_2').css('display', 'none');
         $('#pagina_1').fadeIn(500);
