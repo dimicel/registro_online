@@ -133,7 +133,7 @@ function confirmar() {
     $("#mensaje_div").dialog('open');
 }
 
-
+/* FUNCIÓN ANTIGUA
 function pasaPagina(p) {
     if (p == '-') pagina--;
     else if (p == '+') pagina++;
@@ -209,7 +209,107 @@ function pasaPagina(p) {
     }
     $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
 }
+*/
 
+//FUNCION MODIFICADA
+function pasaPagina(p) {
+    if (p == '-') pagina--;
+    else if (p == '+') pagina++;
+
+    arrayCursos={
+        "1º Bachillerato":"_1",
+        "2º Bach. HH.CC.SS.":"_2hcs",
+        "2º Bach. Ciencias y Tecnología":"_2c"
+    };
+
+    arrayPaginas= {
+        1:{
+            pag:"bach_html/pagina1.html?q="+Date.now().toString(),
+            valid:"creaValidatorPagina1()",
+            validExec:""
+        },
+        2:{
+            pag:"bach_html/pagina2.html?q="+Date.now().toString(),
+            valid:"creaValidatorPagina2()",
+            validExec:"#form_pagina_1"
+        },
+        3:{
+            pag:"bach_html/pagina3.html?q="+Date.now().toString(),
+            valid:"creaValidatorPagina3()",
+            validExec:"#form_pagina_2"
+        },
+        4:{
+            pag:"bach_html/pagina4.html?q="+Date.now().toString(),
+            valid:"creaValidatorPagina4()",
+            validExec:"#form_pagina_3"
+        },
+        5:{
+            pag:"bach_html/pagina5"+arrayCursos[_curso]+".html?q="+Date.now().toString(),
+            valid:"creaValidatorPagina5"+arrayCursos[_curso]+"()",
+            validExec:"#form_pagina_4"
+        },
+        6:{
+            pag:"bach_html/pagina_final.html?q="+Date.now().toString(),
+            valid:"creaValidatorPagina6()",
+            validExec:"#form_pagina_5"+arrayCursos[_curso]
+        }
+    };
+
+
+    if (arrayPaginas[pagina].validExec=="") {
+        $('#pagina_2').css('display', 'none');
+        $('#pagina_1').fadeIn(500);
+        $("#pagina_1").removeClass("col-9");
+        $("#pagina_1").addClass("col-4");
+        $("#div_curso_pag1").removeClass("col-4");
+        $("[itemprop='matricula']").hide();
+    } else {
+        if ($(arrayPaginas[pagina].validExec).valid()) {
+            if (document.getElementById("pagina_" + pagina).innerHTML.length == 0) {
+                $("#pagina_" + pagina).load(arrayPaginas[pagina].pag, function() {
+                    if (pagina!=6) eval(arrayPaginas[pagina].valid);
+                    pasaPagina_actualizaHTML(pagina);
+                });
+            } else {
+                pasaPagina_actualizaHTML(pagina)
+            }
+        } else pagina--;
+    }
+    $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
+}
+
+
+function pasaPagina_actualizaHTML(_pagina){
+    for (i = 1; i <= 6; i++) $("#pagina_" + i).css('display', 'none');
+    $("#pagina_" + _pagina).css('display', 'inherit').fadeIn(500);
+
+    if(_pagina==2){
+        form_pagina_2.apellidos.value = apellidos;
+        form_pagina_2.nombre.value = nombre;
+        if (primera_vez_pag_2){
+            form_pagina_2.sexo.value=sexo;
+            form_pagina_2.fecha_nac.value=fecha_nac;
+            form_pagina_2.telef_alumno.value=telef_alumno;
+            form_pagina_2.email_alumno.value=email_alumno;
+            primera_vez_pag_2=false;
+        }
+        
+    }
+    else if (_pagina==3){
+        if (primera_vez_pag_3){
+            form_pagina_3.tutor1.value=tutor1;
+            form_pagina_3.email_tutor1.value=email_tutor1;
+            form_pagina_3.tlf_tutor1.value=tlf_tutor1;
+            form_pagina_3.tutor2.value=tutor2;
+            form_pagina_3.email_tutor2.value=email_tutor2;
+            form_pagina_3.tlf_tutor2.value=tlf_tutor2;
+            primera_vez_pag_3=false;
+        }
+    }
+    else if (_pagina == 4) {
+        cursoActual();
+    }
+}
 
 function registraMatricula() {
     var f = document.getElementById("matricula_bach");
