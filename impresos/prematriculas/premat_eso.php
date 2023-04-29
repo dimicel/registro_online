@@ -27,14 +27,11 @@
             <input type="hidden" name="grupo_curso_actual" id="grupo_curso_actual" />
             <input type="hidden" name="eso_religion" id="eso_religion" />
             <input type="hidden" name="eso_primer_idioma" id="eso_primer_idioma" />
-            <!-- 3º ESO-->
+            <!-- 3º y 4º ESO-->
             <input type="hidden" name="matematicas" id="matematicas" />
             <!----------->
             <!-- 4º ESO-->
-            <input type="hidden" name="modalidad" id="modalidad" />
-            <input type="hidden" name="espec_oblig" id="espec_oblig" />
-            <input type="hidden" name="troncales_opcion1" id="troncales_opcion1" />
-            <input type="hidden" name="troncales_opcion2" id="troncales_opcion2" />
+            <input type="hidden" name="opcion_bloque1" id="opcion_bloque1" />
             <!----------->
         </form>
     </div>
@@ -95,6 +92,7 @@
     <script src=<?php echo "js/eso3.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/eso3_div.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/eso4.js?q=".time();?> type="text/javascript"></script>
+    <script src=<?php echo "js/eso4_div.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/validadores_eso.js?q=".time();?> type="text/javascript"></script>
 
 </body>

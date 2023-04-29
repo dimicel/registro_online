@@ -42,7 +42,7 @@ $(document).ready(function() {
         $.post("../../php/usu_recdatospers.php",{id_nie:id_nie},(resp)=>{
             if (resp.error=="ok"){
                 for (e in resp.datos){
-                    if(typeof(resp.datos[e])=="undefined") resp.datos[e]="";
+                    if(typeof(resp.datos[e])=="undefined" || resp.datos[e]==null) resp.datos[e]="";
                 }
                 f_nac=resp.datos.fecha_nac;
                 f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
@@ -93,9 +93,9 @@ $(document).ready(function() {
 
     document.getElementById("matricula_eso").reset();
 
-    jQuery.validator.addMethod("miFecha", function(value, element) {
+    /*jQuery.validator.addMethod("miFecha", function(value, element) {
         return (/^\d{2}\/\d{2}\/\d{4}$/).test(value);
-    });
+    });*/
 });
 
 
@@ -119,7 +119,7 @@ function generaImpreso() {
 
 function progLing(obj) {
     if (pagina == 1) {
-        if (_curso == "2º ESO PMAR" || _curso == "3º ESO DIV") {
+        if ( _curso == "3º ESO DIV" || _curso == "4º ESO DIV") {
             obj.checked = false;
         }
         return false;
@@ -252,8 +252,8 @@ function pasaPagina(p) {
         else if (_curso == "2º ESO") coletilla = "_2eso";
         else if (_curso == "3º ESO") coletilla = "_3eso";
         else if (_curso == "4º ESO") coletilla = "_4eso";
-        //else if (_curso == "2º ESO PMAR") coletilla = "_2esopmar";
         else if (_curso == "3º ESO DIV") coletilla = "_3esodiv";
+        else if (_curso == "4º ESO DIV") coletilla = "_4esodiv";
     }
 
     if (pagina != 5) {
@@ -333,7 +333,6 @@ function registraMatricula() {
         f.appendChild(f5.eso2_opt2);
         f.appendChild(f5.eso2_opt3);
         f.appendChild(f5.eso2_opt4);
-        f.appendChild(f5.eso2_opt5);
     } else if (_curso == "3º ESO") {
         eso3_generaDatosSerialize();
         var f5 = document.getElementById("form_pagina_5_3eso");
@@ -348,26 +347,11 @@ function registraMatricula() {
         eso4_generaDatosSerialize();
         var f5 = document.getElementById("form_pagina_5_4eso");
         f.action = "php/premat4eso.php";
-        f.modalidad.value = retornaValRadioButton(f5.eso4_modalidad);
+        f.matematicas.value = retornaValRadioButton(f5.eso4_matematicas);
         f.eso_religion.value = retornaValRadioButton(f5.eso4_religion);
         f.eso_primer_idioma.value = retornaValRadioButton(f5.eso4_primer_idioma);
-        f.espec_oblig.value = f5.eso4_esp_ob_mod.value;
-        if (f.modalidad.value == "Académicas") {
-            tronc_opcion = retornaValRadioButton(f5.eso4_tron_op_acad);
-            if (tronc_opcion == "Bio_Geo_Fis_Quim") {
-                f.troncales_opcion1.value = "Biología y Geología";
-                f.troncales_opcion2.value = "Física y Química";
-            } else if (tronc_opcion == "Economia_Latin") {
-                f.troncales_opcion1.value = "Economía";
-                f.troncales_opcion2.value = "Latín";
-            } else if (tronc_opcion == "Bio_Geo_Eco") {
-                f.troncales_opcion1.value = "Biología y Geología";
-                f.troncales_opcion2.value = "Economía";
-            }
-        } else if (f.modalidad.value == "Aplicadas") {
-            f.troncales_opcion1.value = "Tecnología";
-            f.troncales_opcion2.value = retornaValRadioButton(f5.eso4_tron_op_aplic);
-        }
+        f.opcion_bloque1.value = retornaValRadioButton(f5.eso4_bloque1);
+        
         f.appendChild(f5.eso4_opt1);
         f.appendChild(f5.eso4_opt2);
         f.appendChild(f5.eso4_opt3);
@@ -377,6 +361,12 @@ function registraMatricula() {
         f.appendChild(f5.eso4_opt7);
         f.appendChild(f5.eso4_opt8);
         f.appendChild(f5.eso4_opt9);
+        f.appendChild(f5.eso4_opt10);
+        f.appendChild(f5.eso4_opt11);
+        f.appendChild(f5.eso4_opt12);
+        f.appendChild(f5.eso4_opt13);
+        f.appendChild(f5.eso4_opt14);
+        f.appendChild(f5.eso4_opt15);
 
     }
     else if (_curso == "3º ESO DIV") {
@@ -387,7 +377,25 @@ function registraMatricula() {
         f.appendChild(f5.eso3_div_opt1);
         f.appendChild(f5.eso3_div_opt2);
         f.appendChild(f5.eso3_div_opt3);
-        f.appendChild(f5.eso3_div_opt4);
+    } 
+    else if (_curso == "4º ESO DIV") {
+        eso4div_generaDatosSerialize();
+        var f5 = document.getElementById("form_pagina_5_4esodiv");
+        f.action = "php/premat4esodiv.php";
+        f.eso_religion.value = retornaValRadioButton(f5.eso4div_religion);
+        
+        f.appendChild(f5.eso4_opt1);
+        f.appendChild(f5.eso4_opt2);
+        f.appendChild(f5.eso4_opt3);
+        f.appendChild(f5.eso4_opt4);
+        f.appendChild(f5.eso4_opt5);
+        f.appendChild(f5.eso4_opt6);
+        f.appendChild(f5.eso4_opt7);
+        f.appendChild(f5.eso4_opt8);
+        f.appendChild(f5.eso4_opt9);
+        f.appendChild(f5.eso4_opt10);
+        f.appendChild(f5.eso4_opt11);
+
     }
 
     f.appendChild(f1.curso);
@@ -428,43 +436,55 @@ function registraMatricula() {
 }
 
 function cursoActual() {
+    document.getElementById("sel_curso_act").value="";
     if (document.getElementById("curso").value == "2º ESO") {
-        document.getElementById("sel_curso_act").style.display = "none";
-        document.getElementById("t_curso_actual").style.display = "inherit";
-        document.getElementById("t_curso_actual").value = "1º ESO";
+        document.getElementById("sel_curso_act").disabled = true;
+        document.getElementById("sel_curso_act").querySelector('option[value="1º ESO"]').style.display="inherit";
+        document.getElementById("sel_curso_act").value = "1º ESO";
         document.getElementById("sel_grupo_curso_act").disabled = false;
         document.getElementById("curso_actual").value = "1º ESO";
-    } else if (document.getElementById("curso").value == "3º ESO") {
-        document.getElementById("sel_curso_act").style.display = "none";
-        document.getElementById("t_curso_actual").style.display = "inherit";
-        document.getElementById("t_curso_actual").value = "2º ESO";
+    } else if (document.getElementById("curso").value == "3º ESO" || document.getElementById("curso").value == "3º ESO DIV") {
+        document.getElementById("sel_curso_act").disabled = false;
+        document.getElementById("sel_curso_act").querySelector('option[value="1º ESO"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="2º ESO"]').style.display="inherit";
+        document.getElementById("sel_curso_act").querySelector('option[value="2º ESO PMAR"]').style.display="inherit";
+        document.getElementById("sel_curso_act").querySelector('option[value="3º ESO"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="3º ESO DIV"]').style.display="none";
         document.getElementById("sel_grupo_curso_act").disabled = false;
-        document.getElementById("curso_actual").value = "2 ESO";
-    } else if (document.getElementById("curso").value == "3º ESO DIV") {
-        document.getElementById("sel_curso_act").style.display = "none";
-        document.getElementById("t_curso_actual").style.display = "inherit";
-        document.getElementById("t_curso_actual").value = "2º ESO PMAR";
-        document.getElementById("sel_grupo_curso_act").disabled = true;
-        document.getElementById("sel_grupo_curso_act").value = "A";
-        document.getElementById("grupo_curso_actual").value = "A";
-        document.getElementById("curso_actual").value = "2º ESO PMAR";
-    } else if (document.getElementById("curso").value == "4º ESO") {
-        document.getElementById("sel_curso_act").style.display = "inherit";
-        document.getElementById("t_curso_actual").style.display = "none";
+    }  else if (document.getElementById("curso").value == "4º ESO" || document.getElementById("curso").value == "4º ESO DIV") {
+        document.getElementById("sel_curso_act").disabled = false;
+        document.getElementById("sel_curso_act").querySelector('option[value="1º ESO"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="2º ESO"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="2º ESO PMAR"]').style.display="none";
+        document.getElementById("sel_curso_act").querySelector('option[value="3º ESO"]').style.display="inherit";
+        document.getElementById("sel_curso_act").querySelector('option[value="3º ESO DIV"]').style.display="inherit";
         document.getElementById("sel_grupo_curso_act").disabled = false;
-    }
+    } 
 }
 
 function seleccionCursoActual(c) {
-    if (c == "3º ESO") {
-        document.getElementById("sel_grupo_curso_act").disabled = false;
-        document.getElementById("curso_actual").value = "3º ESO";
-    } else if (c == "3º ESO PMAR") {
+    document.getElementById("curso_actual").value = c;
+    if (c == "2º ESO PMAR") {
         document.getElementById("sel_grupo_curso_act").disabled = true;
         document.getElementById("sel_grupo_curso_act").value = "A";
         document.getElementById("grupo_curso_actual").value = "A";
-        document.getElementById("curso_actual").value = "3º ESO PMAR";
     }
+    else if (c == "3º ESO") {
+        document.getElementById("sel_grupo_curso_act").disabled = false;
+    } else if (c == "3º ESO DIV") {
+        document.getElementById("sel_grupo_curso_act").disabled = true;
+        document.getElementById("sel_grupo_curso_act").value = "A";
+        document.getElementById("grupo_curso_actual").value = "A";
+    }
+    else if (c == "4º ESO") {
+        document.getElementById("sel_grupo_curso_act").disabled = false;
+    } else if (c == "4º ESO DIV") {
+        document.getElementById("sel_grupo_curso_act").disabled = true;
+        document.getElementById("sel_grupo_curso_act").value = "A";
+        document.getElementById("grupo_curso_actual").value = "A";
+    }
+    else document.getElementById("sel_grupo_curso_act").disabled = false;
+
 }
 
 function confirmarnuevaPrem(mensaje, titulo, botonAceptar) {

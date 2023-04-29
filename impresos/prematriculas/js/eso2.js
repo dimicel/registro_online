@@ -15,5 +15,4 @@ function eso2_generaDatosSerialize() {
     document.getElementById("eso2_opt2").value = document.getElementById("eso2_lista_optativas").options[1].innerHTML;
     document.getElementById("eso2_opt3").value = document.getElementById("eso2_lista_optativas").options[2].innerHTML;
     document.getElementById("eso2_opt4").value = document.getElementById("eso2_lista_optativas").options[3].innerHTML;
-    document.getElementById("eso2_opt5").value = document.getElementById("eso2_lista_optativas").options[4].innerHTML;
 }

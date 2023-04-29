@@ -11,29 +11,10 @@
 <div class="w-100"></div>
 <form id="form_pagina_5_4eso" class="form needs-validation" style="margin-left:20px" novalidate>
     <hr>
-    <div class="row justify-content-center mt-4">
-        <div class="col-2  p-2 justify-content-center border border-success rounded" style="background-color:#56a717;width: 150px; height: 40px;">
-            <p style="font-weight: bold; text-align: center; color:white">*MODALIDAD:</p>
-        </div>
-        <div class="col-3 offset-1 justify-content-center">
-            <div class="row">
-                <div class="col custom-control custom-switch mi-checkbox p-2">
-                    <input type="radio" class="custom-control-input" name="eso4_modalidad" id="eso4_academicas" value="Académicas" onclick="eso4_seleccionModalidad(this)" />
-                    <label for="eso4_academicas" class="custom-control-label">Académicas</label>
-                </div>
-                <div class="col custom-control custom-switch mi-checkbox p-2">
-                    <input type="radio" class="custom-control-input" name="eso4_modalidad" id="eso4_aplicadas" value="Aplicadas" onclick="eso4_seleccionModalidad(this)" />
-                    <label for="eso4_aplicadas" class="custom-control-label">Aplicadas</label>
-                </div>
-            </div>
-            <div class="errorTxt row justify-content-center" style=" font-size: 1.2em;margin-top:15px"></div>
-        </div>
-    </div>
-    <hr>
     <div class="row">
         <div class="col">
             <div class="row justify-content-center border border-success rounded" style="height: 40px;border:thin; background-color:#56a717;color:white;align-content: center; ">
-                TRONCALES GENERALES
+                MATERIAS OBLIGATORIAS
             </div>
             <div class="row border  border-success rounded">
                 <div class="col ">
@@ -64,17 +45,39 @@
             <div class="row border  border-success rounded">
                 <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
                     <input type="radio" id="fijo3" class="custom-control-input" checked/>
-                    <label for="fijo3" class="custom-control-label">Matemáticas</label>
+                    <label for="fijo3" class="custom-control-label">Eduación Física</label>
                 </div>
                 <div class=" col-4 text-center">
-                    4
+                    2
                 </div>
             </div>
             <div class="row border  border-success rounded">
                 <div class="col" style="margin-left:10px">
                     <div class="row custom-control custom-switch mi-checkbox">
                         <input type="radio" id="fijo4" class="custom-control-input" checked/>
-                        <label for="fijo4" class="custom-control-label">*1ª Lengua Extranjera</label>
+                        <label for="fijo4" class="custom-control-label">*Matemáticas</label>
+                        <span class="errorTxt mt-2 ml-4" style="font-size: 1.2em;margin-top:15px"></span>
+                    </div>
+                    <div class="row">
+                        <div class=" col-5 offset-1 custom-control custom-switch mi-checkbox">
+                            <input type="radio" class="custom-control-input" name="eso4_matematicas" id="eso4_matematicasA" value="Matemáticas A"  />
+                            <label for="eso4_matematicasA" class="custom-control-label">Matemáticas A</label>
+                        </div>
+                        <div class="col custom-control custom-switch mi-checkbox">
+                            <input type="radio" class="custom-control-input" name="eso4_matematicas" id="eso4_matematicasB" value="Matemáticas B"  />
+                            <label for="eso4_matematicasB" class="custom-control-label">Matemáticas B</label>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-4 text-center mt-3">
+                    4
+                </div>
+            </div>
+            <div class="row border  border-success rounded">
+                <div class="col" style="margin-left:10px">
+                    <div class="row custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="fijo5" class="custom-control-input" checked/>
+                        <label for="fijo5" class="custom-control-label">*1ª Lengua Extranjera</label>
                         <span class="errorTxt mt-2 ml-4" style="font-size: 1.2em;margin-top:15px"></span>
                     </div>
                     <div class="row">
@@ -92,124 +95,137 @@
                     4
                 </div>
             </div>
-            <div class="row justify-content-center border border-success rounded" style="height: 40px;border:thin; background-color:#56a717;color:white;align-content: center; ">
-                ESPECÍFICAS OBLIGATORIAS
-            </div>
             <div class="row border  border-success rounded">
-                <div class="col ">
-                    Materia
-                </div>
-                <div class=" col-4 text-center">
-                    Hor. Seman.
-                </div>
-            </div>
-            <div class="row border  border-success rounded">
-                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                    <input type="radio" id="fijo5" class="custom-control-input" checked/>
-                    <label for="fijo5" class="custom-control-label" v>Educación Física</label>
-                </div>
-                <div class=" col-4 text-center">
-                    2
-                </div>
-            </div>
-            <div class="row border  border-success rounded">
-                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                    <input type="radio" id="fijo6" class="custom-control-input" checked/>
-                    <label for="fijo6" class="custom-control-label" id="eso4_espc_oblig_modalidad">(Seleccionar antes Modalidad)</label>
-                    <input type="hidden" name="eso4_esp_ob_mod" id="eso4_esp_ob_mod" />
-                </div>
-                <div class=" col-4 text-center">
-                    2
-                </div>
-            </div>
-            <div class="row border  border-success rounded">
-                <div class="col p-0">
-                    <div class="custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                        <input type="radio" class="custom-control-input" name="eso4_religion" id="eso4_religion" value="Religión" />
-                        <label for="eso4_religion" class="custom-control-label">Religión</label>
+                <div class="col" style="margin-left:10px">
+                    <div class="row">
+                        <div class=" col-5  custom-control custom-switch mi-checkbox">
+                            <input type="radio" class="custom-control-input" name="eso4_religion" id="eso4_religion" value="Religión" />
+                            <label for="eso4_religion" class="custom-control-label">Religión</label>
+                        </div>
+                        <div class="col custom-control custom-switch mi-checkbox">
+                            <input type="radio" class="custom-control-input" name="eso4_religion" id="eso4_val_eticos" value="Atención Educativa" />
+                            <label for="eso4_val_eticos" class="custom-control-label">Atención Educativa</label>
+                        </div>
                     </div>
-                    <div class="custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                        <input type="radio" class="custom-control-input" name="eso4_religion" id="eso4_val_eticos" value="Valores Éticos" />
-                        <label for="eso4_val_eticos" class="custom-control-label">Valores Éticos</label>
+                    <div class="row justify-content-center">
+                        <span class="errorTxt mt-2 ml-4" style="font-size: 1.2em;margin-top:15px"></span>
                     </div>
                 </div>
-                <div class="col-4 errorTxt" style=" font-size: 1.2em;margin-top:15px"></div>
-                <div class=" col-4 text-center" style="margin-top:15px;">
+                <div class=" col-4 text-center">
                     1
                 </div>
             </div>
+            <div class="row border  border-success rounded">
+                <div class="col custom-control custom-switch mi-checkbox" style="margin-left:10px">
+                    <input type="radio" id="fijo7" class="custom-control-input" checked/>
+                    <label for="fijo7" class="custom-control-label">Tutoría</label>
+                </div>
+                <div class=" col-4 text-center">
+                    1
+                </div>
+            </div>
+            <div class="row justify-content-center border border-success rounded" style="height: 40px;border:thin; background-color:#56a717;color:white;align-content: center; ">
+                MATERIAS DE OPCIÓN - BLOQUE 1 (3h semanales)
+            </div>
+            <div class="row border  border-success rounded" >
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <span>Selecciona una materia:</span>
+                            <span id="errBloque1" class="errorTxt ml-4" style="font-size: 1.2em;"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="col-4  custom-control-inline custom-switch  mi-checkbox">
+                                <input class="custom-control-input" type="radio" name="eso4_bloque1" id="eso4_bloque11" value="Física y Química" onclick="mueveElementoAlFinal()"/>
+                                <label for="eso4_bloque11" class="custom-control-label">Física y Química</label>
+                            </div>
+                            <div class="col-5 custom-control-inline custom-switch  mi-checkbox">
+                                <input class="custom-control-input" type="radio" name="eso4_bloque1" id="eso4_bloque12" value="Biología y Geología" onclick="mueveElementoAlFinal()"/>
+                                <label for="eso4_bloque12" class="custom-control-label">Biología y Geología</label>
+                            </div>
+                            <div class="col-1 custom-control-inline custom-switch  mi-checkbox">
+                                <input class="custom-control-input" type="radio" name="eso4_bloque1" id="eso4_bloque13" value="Latín" onclick="mueveElementoAlFinal()"/>
+                                <label for="eso4_bloque13" class="custom-control-label">Latín</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="col-5  custom-control-inline custom-switch  mi-checkbox">
+                                <input class="custom-control-input" type="radio" name="eso4_bloque1" id="eso4_bloque14" value="Economía y Emprendimiento" onclick="mueveElementoAlFinal()"/>
+                                <label for="eso4_bloque14" class="custom-control-label">Economía y Emprendimiento</label>
+                            </div>
+                            <div class="col-5 custom-control-inline custom-switch  mi-checkbox">
+                                <input class="custom-control-input" type="radio" name="eso4_bloque1" id="eso4_bloque15" value="Formación y Orientación Laboral" onclick="mueveElementoAlFinal()"/>
+                                <label for="eso4_bloque15" class="custom-control-label">Formación y Orientación Laboral</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <span class="errorTxt mt-2 ml-4" style="font-size: 1.2em;margin-top:15px"></span>
+                    </div>
+                </div>
+            </div>
+            
         </div>
         <div class="col" style="margin-left: 10px;margin-right:10px">
-            <!--------TRONCALES DE OPCIÓN-------------------------------------->
+            <!--------MATERIAS DE OPCIÓN - BLOQUE 2-------------------------------------->
             <!----------------------------------------------------------------->
             <div class="row">
-                <div class="col border border-success rounded text-center" style="height: 50px; background-color:#56a717;color:white;">
+                <div class="col border border-success rounded text-center" style=" background-color:#56a717;color:white;">
                     <div class="row">
                         <div class="col text-center">
-                            <span>*TRONCALES DE OPCIÓN</span>
+                            <span>MATERIAS DE OPCIÓN - BLOQUE 2 (3h semanales)</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-center">
-                            <span>(6h semanales)</span>
+                            <small>(La elegida en bloque 1 queda al final de la lista y no se tendrá en cuenta)</small>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col border border-success rounded pl-4">
-                    <div id="div_eso4_modalidad_vacio" class="row">
-                        <div class="col  text-center">
-                            <p style="font-size: larger; font-weight: bold;">(Seleccionar antes Modalidad)</p>
+            <div class="row border border-success rounded">
+                <div class="col">
+                    <div class="row">
+                        <div class="col text-center">
+                            <span>(Prioriza las materias con las flechas)</span>
                         </div>
                     </div>
-                    <div id="div_eso4_tron_op_aplic" class="row" style="display: none;">
-                        <div class="row">
-                            <div class="col text-center">
-                                <strong>Enseñanzas Aplicadas</strong>
-                            </div>
+                    <div class="row">
+                        <div class="col-1 text-center">
+                            <span>Nº</span>
                         </div>
-                        <hr />
-                        <div class="row custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                            <input type="radio" id="fijo7" class="custom-control-input" checked="checked" value="" />
-                            <label for="fijo7" class="custom-control-label">Tecnología</label>
-                        </div>
-                        <hr>
-                        <div class="row custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                            <input type="radio" class="custom-control-input" name="eso4_tron_op_aplic" id="eso4_t_o_ap_1" value="Ciencias Aplicadas a la Actividad Profesional" />
-                            <label for="eso4_t_o_ap_1" class="custom-control-label">Ciencias Aplicadas a la Actividad Profesional</label>
-                        </div>
-                        <div class="row custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                            <input type="radio" class="custom-control-input" name="eso4_tron_op_aplic" id="eso4_t_o_ap_2" value="Iniciación Emprendedora y Empresarial" />
-                            <label for="eso4_t_o_ap_2" class="custom-control-label">Iniciación Emprendedora y Empresarial</label>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center errorTxt" style=" font-size: 1.2em;margin-top:15px">
-                            </div>
+                        <div class="col ml-4">
+                            <span>Materias</span>
                         </div>
                     </div>
-                    <div id="div_eso4_tron_op_acad" class="row" style="display: none; ">
-                        <div class="row text-center">
-                            <div class="col text-center">
-                                <strong>Enseñanzas Académicas</strong>
-                            </div>
+                    <div class="row" style="padding-bottom:5px">
+                        <div class="col-1" id="eso4_opc_bloq2_num">
+                            <small>
+                                <div class="w-100">1</div>
+                                <div class="w-100">2</div>
+                                <div class="w-100">3</div>
+                                <div class="w-100">4</div>
+                            </small>
                         </div>
-                        <hr />
-                        <div class="row custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                            <input type="radio" class="custom-control-input" name="eso4_tron_op_acad" id="eso4_t_o_ac_1" value="Bio_Geo_Fis_Quim" />
-                            <label for="eso4_t_o_ac_1" class="custom-control-label">- Bilogía y Geología + Física y Química</label>
+                        <div class="col-6 custom-control">
+                            <select size="4" id="eso4_opc_bloq2" class="custom-control" style="overflow:visible;">
+                                <option value="Biología y Geología">Biología y Geología</option>
+                                <option value="Economía y Emprendimiento">Economía y Emprendimiento</option>
+                                <option value="Tecnología">Tecnología</option>
+                                <option value="Expresión Artística">Expresión Artística</option>
+                            </select>
+                            <input type="hidden" name="eso4_opt1" id="eso4_opt1" />
+                            <input type="hidden" name="eso4_opt2" id="eso4_opt2" />
+                            <input type="hidden" name="eso4_opt3" id="eso4_opt3" />
+                            <input type="hidden" name="eso4_opt4" id="eso4_opt4" />
                         </div>
-                        <div class="row custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                            <input type="radio" class="custom-control-input" name="eso4_tron_op_acad" id="eso4_t_o_ac_2" value="Economia_Latin" />
-                            <label for="eso4_t_o_ac_2" class="custom-control-label">- Economía + Latín</label>
-                        </div>
-                        <div class="row  custom-control custom-switch mi-checkbox" style="margin-left:10px">
-                            <input type="radio" class="custom-control-input" name="eso4_tron_op_acad" id="eso4_t_o_ac_3" value="Bio_Geo_Eco" />
-                            <label for="eso4_t_o_ac_3" class="custom-control-label">- Biología y Geología + Economía</label>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center errorTxt" style=" font-size: 1.2em;margin-top:15px">
-                            </div>
+                        <div class="col-1 ">
+                            <input type="button"  class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="opcionSubeElemento(document.getElementById('eso4_opc_bloq2'))" />
+                            <input type="button"  class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="opcionBajaElemento(document.getElementById('eso4_opc_bloq2'))" />
                         </div>
                     </div>
                 </div>
@@ -217,84 +233,127 @@
             <!----------------------------------------------------------------->
             <!----------------------------------------------------------------->
 
-            <!--------ESPECÍFICAS DE OPCIÓN------------------------------------>
+            <!--------MATERIAS DE OPCIÓN - BLOQUE 3-------------------------------------->
             <!----------------------------------------------------------------->
-            <div class="row">
-                <div class="col border border-success rounded text-center" style="height: 55px; background-color:#56a717;color:white; ">
+            <div class="row border border-success rounded">
+                <div class="col">
                     <div class="row">
-                        <div class="col text-center">
-                            <span>ESPECÍFICAS DE OPCIÓN Y LIBRE CONFIGURACIÓN</span>
+                        <div class="col border border-success rounded text-center" style=" background-color:#56a717;color:white;">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <span>MATERIAS DE OPCIÓN - BLOQUE 3 (3h semanales)</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <small>(La elegida en bloque 1 queda al final de la lista y no se tendrá en cuenta)</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col text-center">
-                            <span>(2h semanales)</span>
+                            <span>(Prioriza las materias con las flechas)</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1 text-center">
+                            <span>Nº</span>
+                        </div>
+                        <div class="col ml-4">
+                            <span>Materias</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1" id="eso4_opc_bloq3_num">
+                            <small>
+                                <div class="w-100">1</div>
+                                <div class="w-100">2</div>
+                                <div class="w-100">3</div>
+                                <div class="w-100">4</div>
+                                <div class="w-100">5</div>
+                                <div class="w-100">6</div>
+                            </small>
+                        </div>
+                        <div class="col-6 custom-control">
+                            <select size="6" id="eso4_opc_bloq3" class="custom-control" style="overflow:visible;">
+                                <option value="Digitalización">Digitalización</option>
+                                <option value="2ª Lengua Extranjera (Francés)">2ª Lengua Extranjera (Francés)</option>
+                                <option value="2ª Lengua Extranjera (Alemán)">2ª Lengua Extranjera (Alemán)</option>
+                                <option value="Expresión Artística">Expresión Artística</option>
+                                <option value="Música">Música</option>
+                                <option value="Formación y Orientación Laboral">Formación y Orientación Laboral</option>
+                            </select>
+                            <input type="hidden" name="eso4_opt5" id="eso4_opt5" />
+                            <input type="hidden" name="eso4_opt6" id="eso4_opt6" />
+                            <input type="hidden" name="eso4_opt7" id="eso4_opt7" />
+                            <input type="hidden" name="eso4_opt8" id="eso4_opt8" />
+                            <input type="hidden" name="eso4_opt9" id="eso4_opt9" />
+                            <input type="hidden" name="eso4_opt10" id="eso4_opt10" />
+                        </div>
+                        <div class="col-1 ">
+                            <input type="button"  class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="opcionSubeElemento(document.getElementById('eso4_opc_bloq3'))" />
+                            <input type="button"  class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="opcionBajaElemento(document.getElementById('eso4_opc_bloq3'))" />
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col border border-success rounded pl-4">
-                    <div id="div_eso4_esp_op_lib_conf_vacio" class="row">
-                        <div class="col text-center">
-                            <p style="font-size: larger; font-weight: bold;">(Seleccionar antes Modalidad</p>
-                            <p style="font-size: larger; font-weight: bold;">y 1ª Lengua extranjera)</p>
+            <!----------------------------------------------------------------->
+            <!----------------------------------------------------------------->
+
+            <!--------MATERIAS OPTATIVAS-------------------------------------->
+            <!----------------------------------------------------------------->
+            <div class="row border border-success rounded">
+                <div class="col">
+                    <div class="row">
+                        <div class="col border border-success rounded text-center" style=" height: 40px;background-color:#56a717;color:white;">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <span>OPTATIVAS (2H semanales)</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div id="div_eso4_esp_op_lib_conf" class="row" style="display:none">
-                        <div class="row">
-                            <div class="col text-center">
-                                <span>(Prioriza las materias con las flechas)</span>
-                            </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <span>(Prioriza las materias con las flechas)</span>
                         </div>
-                        <div class="w-100"></div>
-                        <div class="row">
-                            <div class="col-1 text-center">
-                                <span>Nº</span>
-                            </div>
-                            <div class="col ml-4">
-                                <span>Materias</span>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1 text-center">
+                            <span>Nº</span>
                         </div>
-                        <div class="row">
-                            <div class="col-1" id="exo4_esp_op_num">
-                            </div>
-                            <div class="col-8 custom-control">
-                                <select size="9" id="eso4_lista_optativas_acad" class="custom-control" style="overflow:visible; display:none;">
-                                    <option value="2ª Lengua Extranjera (Francés)">2ª Lengua Extranjera (Francés)</option>
-                                    <option value="2ª Lengua Extranjera (Alemán)">2ª Lengua Extranjera (Alemán)</option>
-                                    <option value="Cultura Científica">Cultura Científica</option>
-                                    <option value="Cultura Clásica">Cultura Clásica</option>
-                                    <option value="Educación Plástica Visual y Audiovisual">Educación Plástica Visual y Audiovisual</option>
-                                    <option value="Música">Música</option>
-                                    <option value="Artes Escénicas y Danza">Artes Escénicas y Danza</option>
-                                    <option value="Tecnología Robótica">Tecnología Robótica</option>
-                                    <option value="Tecnologías de la Información y la Comunicación">Tecnologías de la Inf. y la Comun.</option>
-                                    </select>
-                                <select size="8" id="eso4_lista_optativas_aplic" class="custom-control" style="overflow:visible; display:none">
-                                    <option value="2ª Lengua Extranjera (Francés)">2ª Lengua Extranjera (Francés)</option>
-                                    <option value="2ª Lengua Extranjera (Alemán)">2ª Lengua Extranjera (Alemán)</option>
-                                    <option value="Cultura Científica">Cultura Científica</option>
-                                    <option value="Cultura Clásica">Cultura Clásica</option>
-                                    <option value="Educación Plástica Visual y Audiovisual">Educación Plástica Visual y Audiovisual</option>
-                                    <option value="Música">Música</option>
-                                    <option value="Artes Escénicas y Danza">Artes Escénicas y Danza</option>
-                                    <option value="Filosofía">Filosofía</option>
-                                </select>
-                                <input type="hidden" name="eso4_opt1" id="eso4_opt1" />
-                                <input type="hidden" name="eso4_opt2" id="eso4_opt2" />
-                                <input type="hidden" name="eso4_opt3" id="eso4_opt3" />
-                                <input type="hidden" name="eso4_opt4" id="eso4_opt4" />
-                                <input type="hidden" name="eso4_opt5" id="eso4_opt5" />
-                                <input type="hidden" name="eso4_opt6" id="eso4_opt6" />
-                                <input type="hidden" name="eso4_opt7" id="eso4_opt7" />
-                                <input type="hidden" name="eso4_opt8" id="eso4_opt8" />
-                                <input type="hidden" name="eso4_opt9" id="eso4_opt9" />
-                            </div>
-                            <div class="col-1 mt-4 ml-1">
-                                <input type="button" id="eso4_sube" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="eso4_subeElemento()" />
-                                <input type="button" id="eso4_baja" class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="eso4_bajaElemento()" />
-                            </div>
+                        <div class="col ml-4">
+                            <span>Materias</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1" id="eso4_optativas_num">
+                            <small>
+                                <div class="w-100">1</div>
+                                <div class="w-100">2</div>
+                                <div class="w-100">3</div>
+                                <div class="w-100">4</div>
+                                <div class="w-100">5</div>
+                            </small>
+                        </div>
+                        <div class="col-6 custom-control">
+                            <select size="5" id="eso4_optativas" class="custom-control" style="overflow:visible;">
+                                <option value="Filosofía">Filosofía</option>
+                                <option value="Cultura Clásica">Cultura Clásica</option>
+                                <option value="Cultura Científica">Cultura Científica</option>
+                                <option value="Proyectos de Robótica">Proyectos de Robótica</option>
+                                <option value="Artes Escénicas, Danza y Folclore">Artes Escénicas, Danza y Folclore</option>
+                            </select>
+                            <input type="hidden" name="eso4_opt11" id="eso4_opt11" />
+                            <input type="hidden" name="eso4_opt12" id="eso4_opt12" />
+                            <input type="hidden" name="eso4_opt13" id="eso4_opt13" />
+                            <input type="hidden" name="eso4_opt14" id="eso4_opt14" />
+                            <input type="hidden" name="eso4_opt15" id="eso4_opt15" />
+                        </div>
+                        <div class="col-1 ">
+                            <input type="button" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="subeElemento(document.getElementById('eso4_optativas'))" />
+                            <input type="button" class="btn btn-success" style="margin-top:5px" value="🡇" data-toggle="tooltip" data-placement="bottom" title="Baja materia" onclick="bajaElemento(document.getElementById('eso4_optativas'))" />
                         </div>
                     </div>
                 </div>

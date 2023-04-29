@@ -33,7 +33,8 @@ function creaValidatorPagina2() {
         minDate: new Date(2000, 0, 1),
         maxDate: "-12y",
         nextText: "Siguiente",
-        prevText: "Previo"
+        prevText: "Previo",
+        onclose:function(){$("#form_pagina_2").validate();}
     });
 
     $("#form_pagina_2").validate({
@@ -219,7 +220,11 @@ function creaValidatorPagina5_1() {
     });
 }
 
-
+jQuery.validator.addMethod("dosDeModalidad", function(value, element) {
+    _selecc=document.querySelectorAll('input[name='+$(element).attr('name')+']:checked').length;
+    if (_selecc<2) return false;
+    else return true;
+});
 
 function creaValidatorPagina5_2c() {
     $("#form_pagina_5_2c").validate({
@@ -227,35 +232,28 @@ function creaValidatorPagina5_2c() {
             b2c_primer_idioma: {
                 required: true
             },
-            b2c_itin: {
+            b2c_mat: {
                 required: true
             },
-            b2c_op1: {
-                required: true
-            },
-            b2c_op2: {
-                required: true
+            b2c_mod: {
+                dosDeModalidad: true
             }
         },
         messages: {
             b2c_primer_idioma: {
                 required: "Seleccione uno"
             },
-            b2c_itin: {
+            b2c_mat: {
                 required: "Seleccione uno"
             },
-            b2c_op1: {
-                required: "Seleccione uno"
-            },
-            b2c_op2: {
-                required: "Seleccione uno"
+            b2c_mod: {
+                dosDeModalidad: "Seleccione dos"
             }
         },
         errorPlacement: function(error, element) {
             if ($(element).attr("name") == "b2c_primer_idioma") $(element).parent().parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name") == "b2c_itin") $(element).parent().parent().parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name") == "b2c_op1") $(element).parent().parent().next().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name") == "b2c_op2") $(element).parent().parent().next().children($('.errorTxt')).html(error);
+            else if ($(element).attr("name") == "b2c_mat") $(element).parent().parent().next().children($('.errorTxt')).html(error);
+            else if ($(element).attr("name") == "b2c_mod") $(element).parent().parent().parent().parent().parent().next().children($('.errorTxt')).html(error);
         }
     });
 }
@@ -266,43 +264,28 @@ function creaValidatorPagina5_2hcs() {
             b2h_primer_idioma: {
                 required: true
             },
-            b2h_itin: {
+            b2h_mat: {
                 required: true
             },
-            b2h_to1: {
-                required: true
-            },
-            b2h_op1: {
-                required: true
-            },
-            b2h_op2: {
-                required: true
+            b2h_mod: {
+                dosDeModalidad: true
             }
         },
         messages: {
             b2h_primer_idioma: {
                 required: "Seleccione uno"
             },
-            b2h_itin: {
+            b2h_mat: {
                 required: "Seleccione uno"
             },
-            b2h_to1: {
-                required: "Seleccione uno"
-            },
-            b2h_op1: {
-                required: "Seleccione uno"
-            },
-            b2h_op2: {
-                required: "Seleccione uno"
+            b2h_mod: {
+                dosDeModalidad: "Seleccione dos"
             }
         },
         errorPlacement: function(error, element) {
-            if ($(element).attr("name")=="b2h_primer_idioma") $(element).parent().parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name")=="b2h_itin") $(element).parent().parent().parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name")=="b2h_to1") $(element).parent().parent().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name")=="b2h_op1") $(element).parent().parent().next().next().children($('.errorTxt')).html(error);
-            else if ($(element).attr("name")=="b2h_op2") $(element).parent().parent().next().children($('.errorTxt')).html(error);
-            
+            if ($(element).attr("name") == "b2h_primer_idioma") $(element).parent().parent().parent().next().children($('.errorTxt')).html(error);
+            else if ($(element).attr("name") == "b2h_mat") $(element).parent().parent().next().children($('.errorTxt')).html(error);
+            else if ($(element).attr("name") == "b2h_mod") $(element).parent().parent().parent().parent().parent().next().children($('.errorTxt')).html(error);
         }
     });
 }

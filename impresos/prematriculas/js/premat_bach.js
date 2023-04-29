@@ -35,7 +35,7 @@ $(document).ready(function() {
         $.post("../../php/usu_recdatospers.php",{id_nie:id_nie},(resp)=>{
             if (resp.error=="ok"){
                 for (e in resp.datos){
-                    if(typeof(resp.datos[e])=="undefined") resp.datos[e]="";
+                    if(typeof(resp.datos[e])=="undefined" || resp.datos[e]==null) resp.datos[e]="";
                 }
                 f_nac=resp.datos.fecha_nac;
                 f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
@@ -88,9 +88,9 @@ $(document).ready(function() {
     });
     document.getElementById("matricula_bach").reset();
 
-    jQuery.validator.addMethod("miFecha", function(value, element) {
+    /*jQuery.validator.addMethod("miFecha", function(value, element) {
         return (/^\d{2}\/\d{2}\/\d{4}$/).test(value);
-    });
+    });*/
 });
 
 
@@ -142,7 +142,7 @@ function pasaPagina(p) {
     if (pagina > 1) {
         if (_curso == "1º Bachillerato") coletilla = "_1";
         else if (_curso == "2º Bach. HH.CC.SS.") coletilla = "_2hcs";
-        else if (_curso == "2º Bach. Ciencias") coletilla = "_2c";
+        else if (_curso == "2º Bach. Ciencias y Tecnología") coletilla = "_2c";
     }
 
     if (pagina != 5) {
@@ -224,7 +224,7 @@ function registraMatricula() {
         f.primer_idioma.value = retornaValRadioButton(f5.b1_primer_idioma);
         f.religion.value=retornaValRadioButton(f5.b1_religion);
         f.b1_modalidad.value=_modalidad;
-        f.action = "php/premat1bach_lomloe.php";
+        f.action = "php/premat1bach.php";
         if (_modalidad=='Ciencias y Tecnología'){
             f.obligatoria1.value='Matemáticas I';
             var lista=$("#oblig2c :checked");
@@ -236,13 +236,13 @@ function registraMatricula() {
             var lista=$("#oblig2h :checked");
             f.obligatoria2.value=$("[for="+$(lista[0]).attr('id')+"]").html();
             f.obligatoria3.value=$("[for="+$(lista[1]).attr('id')+"]").html();
-        } 
+        } /*
         else if (_modalidad=='General'){
             f.obligatoria1.value='Matemáticas Generales';
             var lista=$("#oblig2g :checked");
             f.obligatoria2.value=$("[for="+$(lista[0]).attr('id')+"]").html();
             f.obligatoria3.value=$("[for="+$(lista[1]).attr('id')+"]").html();
-        }
+        }*/
         f.optativa1.value=document.getElementById("lista_optativas").options[0].value;
         f.optativa2.value=document.getElementById("lista_optativas").options[1].value;
         f.optativa3.value=document.getElementById("lista_optativas").options[2].value;
@@ -258,22 +258,15 @@ function registraMatricula() {
         f.optativa13.value=document.getElementById("lista_optativas").options[12].value;
         f.optativa14.value=document.getElementById("lista_optativas").options[13].value;
         f.optativa15.value=document.getElementById("lista_optativas").options[14].value;
-        f.optativa16.value=document.getElementById("lista_optativas").options[15].value;
-        f.optativa17.value=document.getElementById("lista_optativas").options[16].value;
     }  
-    else if (_curso == "2º Bach. Ciencias") {
+    else if (_curso == "2º Bach. Ciencias y Tecnología") {
         b2c_generaDatosSerialize();
         var f5 = document.getElementById("form_pagina_5_2c");
         f.action = "php/premat2bach_c.php";
         f.primer_idioma.value = retornaValRadioButton(f5.b2c_primer_idioma);
-        f.itinerario.value = retornaValRadioButton(f5.b2c_itin);
-        if (f.itinerario.value == "itinerario 3") {
-            f.tronc_opc1.value = "Física";
-            f.tronc_opc2.value = retornaValRadioButton(document.getElementsByName("b2c_op1"));
-        } else {
-            f.tronc_opc1.value = "Biología";
-            f.tronc_opc2.value = retornaValRadioButton(document.getElementsByName("b2c_op2"));
-        }
+        f.modalidad1.value = retornaValRadioButton(document.getElementsByName("b2c_mat"));
+        f.modalidad2.value=document.querySelectorAll('input[name="b2c_mod"]:checked')[0].value;
+        f.modalidad3.value=document.querySelectorAll('input[name="b2c_mod"]:checked')[1].value;
         f.appendChild(f5.b2c_eitin11);
         f.appendChild(f5.b2c_eitin12);
         f.appendChild(f5.b2c_eitin13);
@@ -289,24 +282,15 @@ function registraMatricula() {
         f.appendChild(f5.b2c_eitin23);
         f.appendChild(f5.b2c_eitin24);
         f.appendChild(f5.b2c_eitin25);
-        f.appendChild(f5.b2c_eitin26);
-        f.appendChild(f5.b2c_eitin27);
-        f.appendChild(f5.b2c_eitin28);
     } 
     else if (_curso == "2º Bach. HH.CC.SS.") {
         b2h_generaDatosSerialize();
         var f5 = document.getElementById("form_pagina_5_2hcs");
         f.action = "php/premat2bach_hcs.php";
         f.primer_idioma.value = retornaValRadioButton(f5.b2h_primer_idioma);
-        f.itinerario.value = retornaValRadioButton(f5.b2h_itin);
-        if (f.itinerario.value == "itinerario 1") {
-            f.tronc_gen.value = "Latín II";
-            f.tronc_opc2.value = retornaValRadioButton(document.getElementsByName("b2h_op1"));
-        } else {
-            f.tronc_gen.value = "Matemáticas aplicacadas a CC.SS.";
-            f.tronc_opc2.value = retornaValRadioButton(document.getElementsByName("b2h_op2"));
-        }
-        f.tronc_opc1.value = retornaValRadioButton(document.getElementsByName("b2h_to1"));
+        f.modalidad1.value = retornaValRadioButton(document.getElementsByName("b2h_mat"));
+        f.modalidad2.value=document.querySelectorAll('input[name="b2h_mod"]:checked')[0].value;
+        f.modalidad3.value=document.querySelectorAll('input[name="b2h_mod"]:checked')[1].value;
         f.appendChild(f5.b2h_eitin11);
         f.appendChild(f5.b2h_eitin12);
         f.appendChild(f5.b2h_eitin13);
@@ -323,7 +307,6 @@ function registraMatricula() {
         f.appendChild(f5.b2h_eitin24);
         f.appendChild(f5.b2h_eitin25);
         f.appendChild(f5.b2h_eitin26);
-        f.appendChild(f5.b2h_eitin27);
     }
 
     f.appendChild(f1.curso);
@@ -411,7 +394,7 @@ function cursoActual() {
         $("#sel_curso_act").attr("disabled", false);
         document.getElementById("sel_curso_act").value = "";
     } 
-    else if(document.getElementById("curso").value=="2º Bach. Ciencias"){
+    else if(document.getElementById("curso").value=="2º Bach. Ciencias y Tecnología"){
         $("[itemprop='eso']").hide();
         $("[itemprop='bach']").show();
         $("[itemprop~='4']").hide();

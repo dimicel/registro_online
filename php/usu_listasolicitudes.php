@@ -43,119 +43,9 @@ if ($consulta->num_rows>0){
 }
 $consulta->free();
 $contador=0;
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_1eso where id_nie='$id_nie' order by curso,fecha_registro, registro");
-if ($consulta->num_rows>0){
-    $data["error"]="ok";
-    while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Prematrículas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Prematrículas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Prematrículas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Prematrículas"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Prematrículas"][$contador]["dir"]="prematriculas";
-        $contador++;
-    }
-}
-$consulta->free();
 
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_2eso where id_nie='$id_nie' order by curso,fecha_registro, registro");
-if ($consulta->num_rows>0){
-    $data["error"]="ok";
-    while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Prematrículas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Prematrículas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Prematrículas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Prematrículas"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Prematrículas"][$contador]["dir"]="prematriculas";
-        $contador++;
-    }
-}
-$consulta->free();
 
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_3eso where id_nie='$id_nie' order by curso,fecha_registro, registro");
-if ($consulta->num_rows>0){
-    $data["error"]="ok";
-    while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Prematrículas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Prematrículas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Prematrículas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Prematrículas"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Prematrículas"][$contador]["dir"]="prematriculas";
-        $contador++;
-    }
-}
-$consulta->free();
-
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_4eso where id_nie='$id_nie' order by curso,fecha_registro, registro");
-if ($consulta->num_rows>0){
-    $data["error"]="ok";
-    while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Prematrículas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Prematrículas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Prematrículas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Prematrículas"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Prematrículas"][$contador]["dir"]="prematriculas";
-        $contador++;
-    }
-}
-$consulta->free();
-
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_2esopmar where id_nie='$id_nie' order by curso,fecha_registro, registro");
-if ($consulta->num_rows>0){
-    $data["error"]="ok";
-    while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Prematrículas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Prematrículas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Prematrículas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Prematrículas"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Prematrículas"][$contador]["dir"]="prematriculas";
-        $contador++;
-    }
-}
-$consulta->free();
-
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_3esopmar where id_nie='$id_nie' order by curso,fecha_registro, registro");
-if ($consulta->num_rows>0){
-    $data["error"]="ok";
-    while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Prematrículas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Prematrículas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Prematrículas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Prematrículas"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Prematrículas"][$contador]["dir"]="prematriculas";
-        $contador++;
-    }
-}
-$consulta->free();
-
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_1bach_hcs where id_nie='$id_nie' order by curso,fecha_registro, registro");
-if ($consulta->num_rows>0){
-    $data["error"]="ok";
-    while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Prematrículas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Prematrículas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Prematrículas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Prematrículas"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Prematrículas"][$contador]["dir"]="prematriculas";
-        $contador++;
-    }
-}
-$consulta->free();
-
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_1bach_c where id_nie='$id_nie' order by curso,fecha_registro, registro");
-if ($consulta->num_rows>0){
-    $data["error"]="ok";
-    while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Prematrículas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Prematrículas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Prematrículas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Prematrículas"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Prematrículas"][$contador]["dir"]="prematriculas";
-        $contador++;
-    }
-}
-$consulta->free();
-
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_1bach_lomloe where id_nie='$id_nie' order by curso,fecha_registro, registro");
+$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_eso where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
     $data["error"]="ok";
     while ($reg=$consulta->fetch_assoc()){
@@ -170,21 +60,8 @@ if ($consulta->num_rows>0){
 $consulta->free();
 
 
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_2bach_hcs where id_nie='$id_nie' order by curso,fecha_registro, registro");
-if ($consulta->num_rows>0){
-    $data["error"]="ok";
-    while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Prematrículas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Prematrículas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Prematrículas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Prematrículas"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Prematrículas"][$contador]["dir"]="prematriculas";
-        $contador++;
-    }
-}
-$consulta->free();
 
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_2bach_c where id_nie='$id_nie' order by curso,fecha_registro, registro");
+$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_bach where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
     $data["error"]="ok";
     while ($reg=$consulta->fetch_assoc()){

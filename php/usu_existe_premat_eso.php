@@ -13,24 +13,26 @@ if ($mysqli->errno>0){
 $id_nie=$_POST["id_nie"];
 $curso=$_POST["curso"];
 $cursos=array(
-    "pm2eso"=>"premat_2eso",
-    "pm3eso"=>"premat_3eso",
-    "pm4eso"=>"premat_4eso"
+    "pm2eso"=>"premat_eso",
+    "pm3eso"=>"premat_eso",
+    "pm4eso"=>"premat_eso",
+    "pm3esd"=>"premat_eso",
+    "pm4esd"=>"premat_eso"
     
 );
 
 $cursos2=array(
     "pm2eso"=>"2º ESO",
     "pm3eso"=>"3º ESO",
-    "pm4eso"=>"4º ESO"
+    "pm4eso"=>"4º ESO",
+    "pm3esd"=>"3º ESO DIV",
+    "pm4esd"=>"4º ESO DIV"
 );
 
 $campos="prog_ling,sexo,apellidos,nombre,id_nif,telef_alumno,email,registro,tutor1,";
 $campos.="email_tutor1,nif_nie_tutor2,tlf_tutor1,tutor2,email_tutor2,nif_nie_tutor2,tlf_tutor2,";
 $campos.="direccion,cp,localidad,provincia";
-$consulta="(select $campos from premat_2eso where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_3eso where id_nie='$id_nie' and curso='$curso') union all";
-$consulta.="(select $campos from premat_4eso where id_nie='$id_nie' and curso='$curso')";
+$consulta="(select $campos from premat_eso where id_nie='$id_nie' and curso='$curso') union all";
 
 
 $res=$mysqli->query($consulta);

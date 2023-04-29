@@ -26,7 +26,6 @@
             <input type="hidden" name="email" id="email" />
             <input type="hidden" name="b1_modalidad" id="b1_modalidad" />
             <input type="hidden" name="primer_idioma" id="primer_idioma" />
-            <input type="hidden" name="itinerario" id="itinerario" />
             <!-- 1º BACH -->
             <input type="hidden" name="religion" id="religion" />
             <input type="hidden" name="obligatoria1" id="obligatoria1" />
@@ -53,7 +52,9 @@
             <input type="hidden" name="tronc_opc1" id="tronc_opc1" />
             <input type="hidden" name="tronc_opc2" id="tronc_opc2" />
             <!-- 2º BACH HHCCSS-->
-            <input type="hidden" name="tronc_gen" id="tronc_gen" />
+            <input type="hidden" name="modalidad1" id="modalidad1" />
+            <input type="hidden" name="modalidad2" id="modalidad2" />
+            <input type="hidden" name="modalidad3" id="modalidad3" />
         </form>
     </div>
     <!-- CABECERA LOGOS ---------------------------------------------------------------------------------->

@@ -18,9 +18,9 @@
     </div>
     <div class="row justify-content-center mr-1">
         <div class="col-2 border border-success rounded" style="background-color:#56a717;color:white; ">
-            <div class="row justify-content-center" style="margin-top:80px">
-                <div class="col-10 align-self-center">
-                    TRONCALES GENERALES
+            <div class="row justify-content-center d-flex align-items-center h-100">
+                <div class="col-10 align-self-center ">
+                    MATERIAS COMUNES
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                     <div class="row">
                         <div style="margin-left: 15px;" class="col md-1 custom-control-inline custom-switch  mi-checkbox">
                             <input class="custom-control-input" id="2c3" type="radio" checked/>
-                            <label for="2c3" class="custom-control-label">Matemáticas II</label>
+                            <label for="2c3" class="custom-control-label">Historia de la Filosofía</label>
                         </div>
                     </div>
                     <div class="row">
@@ -68,9 +68,10 @@
                 <div class="col-2 align-self-top border-left border-success">
                     <div class="row mt-2 justify-content-center">
                         <div class="col-2">
-                            3<br> 4
-                            <br> 4
-                            <br> 3
+                            3<br> 
+                            4<br>
+                            3<br>
+                            4
                         </div>
                     </div>
                 </div>
@@ -80,99 +81,85 @@
     </div>
     <div class="row mt-1 mr-1">
         <div class="col-2 border border-success rounded" style="background-color:#56a717;color:white; ">
-            <div class="row justify-content-center" style="margin-top:30px">
+            <div class="row justify-content-center d-flex align-items-center h-100">
                 <div class="col-10 align-self-center">
-                    *TRONCALES DE OPCIÓN
+                    MATERIAS DE MODALIDAD
                 </div>
             </div>
         </div>
         <div class="col border border-success rounded">
-            <div class="row">
+            <div class="row border-bottom border-success">
                 <div class="col">
-                    <div class="row border-bottom border-success mt-2 justify-content-center">
+                    <div class="row">
+                        <div class="col d-flex align-self-center" style="color:#56a717; background-color: #d2e9c1;">
+                            <span class="ml-2">OBLIGATORIA (Elegir 1)</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 offset-1 custom-control-inline custom-switch  mi-checkbox">
+                            <input class="custom-control-input" type="radio" name="b2c_mat" id="b2c_mat" value="Matemáticas II" onclick="b2c_muestraEspecItin();"/>
+                            <label for="b2c_mat" class="custom-control-label">Matemáticas II</label>
+                        </div>
+                        <div class="col custom-control-inline custom-switch  mi-checkbox">
+                            <input class="custom-control-input" type="radio" name="b2c_mat" id="b2c_mat_acs" value="Matemáticas aplicadas a las Ciencias Sociales II" onclick="b2c_muestraEspecItin();"/>
+                            <label for="b2c_mat_acs" class="custom-control-label">Matemáticas aplicadas a las Ciencias Sociales II</label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="errorTxt text-center col-6" style=" font-size: 1.2em;margin-top:15px"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col  d-flex align-self-center" style="color:#56a717; background-color: #d2e9c1;">
+                            <span class="ml-2">(Elegir 2)</span>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col">
                             <div class="row">
-                                <div class="col-6">
-                                    <div class="row justify-content-center mt-2">
-                                        <div class="col text-center">
-                                            <label style="font-weight:bold;">Itinerario 3 </label>
-                                        </div>
+                                <div class="col">
+                                    <div class="col-2  custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod1" value="Biología" onclick="b2c_mod_click(this)"/>
+                                        <label for="b2c_mod1" class="custom-control-label">Biología</label>
                                     </div>
-                                    <div class="row justify-content-center" style="margin-top:-10px">
-                                        <div class="col text-center">
-                                            <label style="font-weight:bold;">CIENCIAS-INGENIERÍA</label>
-                                        </div>
+                                    <div class="col-3 custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod2" value="Dibujo Técnico II" onclick="b2c_mod_click(this)"/>
+                                        <label for="b2c_mod2" class="custom-control-label">Dibujo Técnico II</label>
                                     </div>
-                                    <div class="row justify-content-center" style="margin-top:-10px">
-                                        <div class="col-5 custom-control-inline custom-switch  mi-checkbox">
-                                            <input class="custom-control-input" type="radio" name="b2c_itin" id="b2c_itin1" value="itinerario 3" onclick="b2c_seleccItin('itinerario 3')" />
-                                            <label for="b2c_itin1" class="custom-control-label">Física</label>
-                                        </div>
+                                    <div class="col-2 custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod3" value="Física" onclick="b2c_mod_click(this)"/>
+                                        <label for="b2c_mod3" class="custom-control-label">Física</label>
                                     </div>
-                                </div>
-                                <div class="col-6 text-center">
-                                    <div class="row justify-content-center mt-2">
-                                        <div class="col text-center">
-                                            <label style="font-weight:bold;">Itinerario 4</label>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center" style="margin-top:-10px">
-                                        <div class="col text-center">
-                                            <label style="font-weight:bold;">CIENCIAS DE LA SALUD</label>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center" style="margin-top:-10px">
-                                        <div class="col-5 custom-control-inline custom-switch  mi-checkbox">
-                                            <input class="custom-control-input" type="radio" name="b2c_itin" id="b2h_itin2" value="itinerario 4" onclick="b2c_seleccItin('itinerario 4')" />
-                                            <label for="b2h_itin2" class="custom-control-label">Biología</label>
-                                        </div>
+                                    <div class="col-2 custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod4" value="Química" onclick="b2c_mod_click(this)"/>
+                                        <label for="b2c_mod4" class="custom-control-label">Química</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="errorTxt text-center col-6" style=" font-size: 1.2em;margin-top:15px"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="col-5  custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod5" value="Geología y Ciencias Ambientales" onclick="b2c_mod_click(this)"/>
+                                        <label for="b2c_mod5" class="custom-control-label">Geología y Ciencias Ambientales</label>
+                                    </div>
+                                    <div class="col-4 custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2c_mod" id="b2c_mod6" value="Tecnología e Ingeniería II" onclick="b2c_mod_click(this)"/>
+                                        <label for="b2c_mod6" class="custom-control-label">Tecnología e Ingeniería II</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <div class="row justify-content-center" id="div_b2c_op_vacio">
-                                <div class="col-5">
-                                    <label>SELECCIONE ANTES ITINERARIO</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center d-none" id="div_b2c_op1">
-                                <div class="col-4 custom-control-inline custom-switch  mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2c_op1" id="b2c_op11" value="Dibujo Técnico II" onclick="b2c_seleccTronOpItin1('Dibujo Técnico II')" />
-                                    <label for="b2c_op11" class="custom-control-label">Dibujo Técnico II</label>
-                                </div>
-                                <div class="col-4 custom-control-inline custom-switch  mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2c_op1" id="b2c_op12" value="Química" onclick="b2c_seleccTronOpItin1('Química')" />
-                                    <label for="b2c_op12" class="custom-control-label">Química</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center d-none" id="div_b2c_op2">
-                                <div class="col-4 custom-control-inline custom-switch  mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2c_op2" id="b2c_op21" value="Geología" onclick="b2c_seleccTronOpItin2('Geología')" />
-                                    <label for="b2c_op21" class="custom-control-label">Geología</label>
-                                </div>
-                                <div class="col-4 custom-control-inline custom-switch  mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2c_op2" id="b2c_op22" value="Química" onclick="b2c_seleccTronOpItin2('Química')" />
-                                    <label for="b2c_op22" class="custom-control-label">Química</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="errorTxt text-center col-6" style=" font-size: 1.2em;margin-top:15px"></div>
-                            </div>
-                        </div>
+                    <div class="row justify-content-center">
+                        <div class="errorTxt text-center col-6" style=" font-size: 1.2em;margin-top:15px"></div>
+                    </div>
+                    <div class="row alert alert-warning alert-dismissible fade show justify-content-center " role="alert" style="display:none; margin-top:10px;" >
+                        <span style="font-size: 0.75em !important; color:#228b22"> Sólo se pueden seleccionar 2 materias. Para seleccionar otra, 'apague' a una de las marcadas.</span>
                     </div>
                 </div>
-                <div class="col-2 border-left border-success">
+                <div class="col-2 align-self-top border-left border-success">
                     <div class="row mt-2 justify-content-center">
                         <div class="col-2">
-                            <br><br>
-                            <p>4</p>
-                            <p>4</p>
+                            <br>4<br><br><br>4<br>4
                         </div>
                     </div>
                 </div>
@@ -183,9 +170,9 @@
         <div class="col-2 border border-success rounded" style="background-color:#56a717;color:white; ">
             <div class="row justify-content-center">
                 <div class="col-10 text-center" id="rot_epec_itin">
-                    ESPECÍFICAS DE ITINERARIO Y COMUNES<br>
+                    OPTATIVAS<br>
                     <span><small>(Prioriza la lista con las flechas de la derecha)<br>
-                        Se cursarán dos, según la preferencia y disponibilidad
+                        Se cursará UNA, según la preferencia y disponibilidad
                     </small></span>
                 </div>
             </div>
@@ -193,11 +180,11 @@
         <div class="col border border-success rounded">
             <div id="div_b2c_esp_itin_vacio" class="row justify-content-center mt-4">
                 <div class="col-10 text-center">
-                    <p style="font-size: larger; font-weight: bold;">(Marcar antes 1ª Lengua Extranjera, Itinerario y la Troncal de Opción.)</p>
+                    <p style="font-size: larger; font-weight: bold;">(Marcar antes 1ª Lengua Extranjera, y Materias de Modalidad.)</p>
                 </div>
             </div>
             <div class="row d-none justify-content-center" id="div_b2c_esp_itin1">
-                <div class="col ml-5">
+                <div class="col offset-2">
                     <div class="row">
                         <div class="col-1 text-center">
                             Nº
@@ -223,30 +210,24 @@
                             <p style="margin-top:-19px;font-size:0.86em !important">13</p>
                             <p style="margin-top:-19px;font-size:0.86em !important">14</p>
                             <p style="margin-top:-19px;font-size:0.86em !important">15</p>
-                            <p style="margin-top:-19px;font-size:0.86em !important">16</p>
-                            <p style="margin-top:-19px;font-size:0.86em !important">17</p>
-                            <p style="margin-top:-19px;font-size:0.86em !important">18</p>
                         </div>
                         <div class="col-7 custom-control border border-success rounded ">
-                            <select name="b2c_esp_itin1" size="18" id="b2c_esp_itin1" style="margin-top:5px;overflow:visible;">
-                                <option value="1">Troncal de Opción no elegida 1</option>
-                                <option value="2">Troncal de Opción no elegida 2</option>
-                                <option value="3">Troncal de Opción no elegida 3</option>
+                            <select name="b2c_esp_itin1" size="15" id="b2c_esp_itin1" style="margin-top:5px;overflow:visible;">
                                 <option value="2ª Lengua Extranjera II (Francés)">2ª Lengua Extranjera II (Francés)</option>
                                 <option value="2ª Lengua Extranjera II (Italiano)">2ª Lengua Extranjera II (Italiano)</option>
-                                <option value="Dibujo Artístico II">Dibujo Artístico II</option>
-                                <option value="Imagen y Sonido">Imagen y Sonido</option>
-                                <option value="Tecnología Industrial II">Tecnología Industrial II</option>
-                                <option value="Tecnología de la Inf. y la Comun. II">Tecnología de la Inf. y la Comun. II</option>
-                                <option value="Fundamentos de Administración y Gestión">Fundamentos de Administración y Gestión</option>
                                 <option value="2ª Lengua Extranjera (Alemán)">2ª Lengua Extranjera (Alemán)</option>
-                                <option value="Matemáticas Aplicadas a CC.SS.">Matemáticas Aplicadas a CC.SS.</option>
-                                <option value="Ciencias de la Tierra y Medio Ambiente">Ciencias de la Tierra y Medio Ambiente</option>
-                                <option value="Historia de la Filosofía">Historia de la Filosofía</option>
+                                <option value="Investigación y Desarrollo Científico">Investigación y Desarrollo Científico</option>
+                                <option value="Creación de Contenidos Artísticos y Audiovisuales">Creación de Contenidos Artísticos y Audiovisuales</option>
+                                <option value="Historia de la Música y la Danza">Historia de la Música y la Danza</option>
+                                <option value="Fundamentos de Administración y Gestión">Fundamentos de Administración y Gestión</option>
+                                <option value="Matemáticas Aplicadas a CC.SS.">Griego II</option>
+                                <option value="Ciencias de la Tierra y Medio Ambiente">Empresa y Diseño de Modelos de Negocio</option>
+                                <option value="Historia de la Filosofía">Geografía</option>
                                 <option value="Historia del Arte">Historia del Arte</option>
-                                <option value="Geografía">Geografía</option>
-                                <option value="Historia de la Música y de la Danza">Historia de la Música y de la Danza</option>	                	  								
-                                <option value="Psicología">Psicología</option>
+                                <option value=""></option>
+                                <option value=""></option>	                	  								
+                                <option value=""></option>
+                                <option value=""></option>
                             </select>
                             <input type="hidden" name="b2c_eitin11" id="b2c_eitin11" />
                             <input type="hidden" name="b2c_eitin12" id="b2c_eitin12" />
@@ -263,9 +244,6 @@
                             <input type="hidden" name="b2c_eitin23" id="b2c_eitin23" />
                             <input type="hidden" name="b2c_eitin24" id="b2c_eitin24" />
                             <input type="hidden" name="b2c_eitin25" id="b2c_eitin25" />
-                            <input type="hidden" name="b2c_eitin26" id="b2c_eitin26" />
-                            <input type="hidden" name="b2c_eitin27" id="b2c_eitin27" />
-                            <input type="hidden" name="b2c_eitin28" id="b2c_eitin28" />
                         </div>
                         <div class="col-1" style="margin-top:100px">
                             <input type="button" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="subeElemento(document.getElementById('b2c_esp_itin1'))" />

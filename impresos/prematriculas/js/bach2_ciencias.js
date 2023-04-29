@@ -9,92 +9,34 @@ function b2c_seleccionIdioma(_idioma) {
     b2c_muestraEspecItin();
 
     for (i = 0; i < lista.length; i++) {
-        if (_idioma == "ingles" && lista.options[i].innerHTML == "2ª Lengua Extranjera II (Inglés)") lista.options[i].innerHTML = "2ª Lengua Extranjera II (Francés)";
-        else if (_idioma == "frances" && lista.options[i].innerHTML == "2ª Lengua Extranjera II (Francés)") lista.options[i].innerHTML = "2ª Lengua Extranjera II (Inglés)";
+        if (_idioma == "ingles" && lista.options[i].innerHTML == "2ª Lengua Extranjera II (Inglés)") {
+            lista.options[i].innerHTML = "2ª Lengua Extranjera II (Francés)";
+            lista.options[i].value = "2ª Lengua Extranjera II (Francés)";
+        }
+        else if (_idioma == "frances" && lista.options[i].innerHTML == "2ª Lengua Extranjera II (Francés)") {
+            lista.options[i].innerHTML = "2ª Lengua Extranjera II (Inglés)";
+            lista.options[i].value = "2ª Lengua Extranjera II (Inglés)";
+        }
     }
     lista.selectedIndex = -1;
 }
 
-function b2c_seleccItin(op) {
-    var lista = document.getElementById("b2c_esp_itin1");
 
+function b2c_mod_click(obj){
+    if(document.querySelectorAll("input[name=b2c_mod]:checked").length>2){
+        $(".alert-warning").show();
+        setTimeout(()=>{$(".alert-warning").fadeOut(1500);},1000);
+    }
+    limitCheckboxes('input[name=\'b2c_mod\']', 2);
+    b2c_cambiaOptativas(obj);
     b2c_muestraEspecItin();
-
-    if (op == "itinerario 3") {
-        $("#div_b2c_op_vacio").addClass("d-none");
-        $("#div_b2c_op1").removeClass("d-none");
-        $("#div_b2c_op2").addClass("d-none");
-    } else if (op == "itinerario 4") {
-        $("#div_b2c_op_vacio").addClass("d-none");
-        $("#div_b2c_op1").addClass("d-none");
-        $("#div_b2c_op2").removeClass("d-none");
-    }
-
-    if (op == "itinerario 3") {
-        op = "Biología";
-        b2c_seleccTronOpItin1(retornaValRadioButton(document.getElementsByName("b2c_op1")));
-    } else if (op == "itinerario 4") {
-        op = "Física";
-        b2c_seleccTronOpItin2(retornaValRadioButton(document.getElementsByName("b2c_op2")));
-    }
-
-    for (i = 0; i < lista.length; i++) {
-        if (lista.options[i].value == "1") lista.options[i].innerHTML = op;
-    }
-
-    lista.selectedIndex = -1;
 }
-
-
-
-function b2c_seleccTronOpItin1(op) {
-    var lista = document.getElementById("b2c_esp_itin1");
-
-    b2c_muestraEspecItin();
-
-    if (op == "Dibujo Técnico II") {
-        for (i = 0; i < lista.length; i++) {
-            if (lista.options[i].value == "2") lista.options[i].innerHTML = "Geología";
-            if (lista.options[i].value == "3") lista.options[i].innerHTML = "Química";
-        }
-    } else if (op == "Química") {
-        for (i = 0; i < lista.length; i++) {
-            if (lista.options[i].value == "2") lista.options[i].innerHTML = "Geología";
-            if (lista.options[i].value == "3") lista.options[i].innerHTML = "Dibujo Técnico II";
-        }
-    }
-}
-
-function b2c_seleccTronOpItin2(op) {
-    var lista = document.getElementById("b2c_esp_itin1");
-
-    b2c_muestraEspecItin();
-
-    if (op == "Geología") {
-        for (i = 0; i < lista.length; i++) {
-            if (lista.options[i].value == "2") lista.options[i].innerHTML = "Dibujo Técnico II";
-            if (lista.options[i].value == "3") lista.options[i].innerHTML = "Química";
-        }
-    } else if (op == "Química") {
-        for (i = 0; i < lista.length; i++) {
-            if (lista.options[i].value == "2") lista.options[i].innerHTML = "Dibujo Técnico II";
-            if (lista.options[i].value == "3") lista.options[i].innerHTML = "Geología";
-        }
-    }
-}
-
-
-
 
 function b2c_muestraEspecItin() {
-    var itin = retornaValRadioButton(document.getElementsByName("b2c_itin"));
     var idioma = document.getElementById("b2c_ingles").checked || document.getElementById("b2c_frances").checked;
-
-    if (itin == "itinerario 3") var itinto = document.getElementById("b2c_op11").checked || document.getElementById("b2c_op12").checked;
-    else if (itin == "itinerario 4") var itinto = document.getElementById("b2c_op21").checked || document.getElementById("b2c_op22").checked;
-    else var itinto = false;
-
-    if (idioma && itinto) {
+    var matem = document.getElementById("b2c_mat").checked || document.getElementById("b2c_mat_acs").checked;
+    
+    if (idioma && matem  && document.querySelectorAll('input[name="b2c_mod"]:checked').length>=2) {
         $("#div_b2c_esp_itin_vacio").addClass("d-none");
         $("#div_b2c_esp_itin1").removeClass("d-none");
         $("#rot_epec_itin").css("margin-top","30px");
@@ -105,6 +47,39 @@ function b2c_muestraEspecItin() {
     }
 }
 
+
+function b2c_cambiaOptativas(m){
+    var mat_modalidad=["Biología","Dibujo Técnico II","Física","Química","Geología y Ciencias Ambientales","Tecnología e Ingeniería II"]
+    var desp=document.getElementById("b2c_esp_itin1");
+    if(document.querySelectorAll('input[name="b2c_mod"]:checked').length==2){
+        //elimino del array los que están seleccionados
+        _k=document.querySelectorAll('input[name="b2c_mod"]:checked');
+        for (i=0; i<_k.length;i++){
+            mat_modalidad.splice(mat_modalidad.indexOf(_k[i].value),1);
+        }
+        //Si los options están vacío (inicialmente son 4) se le dan valores de las materis de modalidad no marcadas
+        _kk=desp.querySelectorAll("option[value='']");
+        if(_kk.length==4){
+            for (i=0;i<_kk.length;i++){
+                _kk[i].value=mat_modalidad[i];
+                _kk[i].innerHTML=mat_modalidad[i];
+            }
+        }
+        //Si ya estaban con valores, busco el seleccionado y lo cambio por el que se ha quedado deseleccionado, sin modificar el orden de los option
+        else{
+            //Al cambiar una de las materias, una de las del array mat_modalidad no está, y debe de ser la desmarcada.
+            for(i=0;i<desp.length;i++){
+                indice=mat_modalidad.indexOf(desp[i].value);
+                if (indice>-1) mat_modalidad.splice(indice,1);
+            }
+            //Asigno la que he marcado a la desmarcada
+            desm=desp.querySelectorAll("option[value='"+m.value+"']");
+            desm[0].value=mat_modalidad[0];
+            desm[0].innerHTML=mat_modalidad[0];
+        }
+    }
+    
+}
 
 
 function b2c_generaDatosSerialize() {
@@ -123,8 +98,5 @@ function b2c_generaDatosSerialize() {
     document.getElementById("b2c_eitin23").value = document.getElementById("b2c_esp_itin1").options[12].innerHTML;
     document.getElementById("b2c_eitin24").value = document.getElementById("b2c_esp_itin1").options[13].innerHTML;
     document.getElementById("b2c_eitin25").value = document.getElementById("b2c_esp_itin1").options[14].innerHTML;
-    document.getElementById("b2c_eitin26").value = document.getElementById("b2c_esp_itin1").options[15].innerHTML;
-    document.getElementById("b2c_eitin27").value = document.getElementById("b2c_esp_itin1").options[16].innerHTML;
-    document.getElementById("b2c_eitin28").value = document.getElementById("b2c_esp_itin1").options[17].innerHTML;
 
 }

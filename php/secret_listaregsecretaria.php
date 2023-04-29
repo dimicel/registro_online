@@ -16,6 +16,8 @@ $buscar=$_POST["buscar"];
 $orden_campo=$_POST["orden_campo"];
 $orden_direccion=$_POST["orden_direccion"];
 $solo_incidencias=$_POST["solo_incidencias"];
+if (isset($_POST["grupo"])) $grupo=$_POST["grupo"];
+if (isset($_POST["modalidad"])) $modalidad=$_POST["modalidad"];
 if (isset($_POST["curso_num"])) $curso_num=$_POST["curso_num"];
 else $curso_num="";
 if(isset($_POST["nuevo_otra_comunidad"])) $nuevo_otra_com=$_POST["nuevo_otra_comunidad"];
@@ -31,7 +33,7 @@ elseif($tabla=="mat_fpb"){
     $curso_ciclo=$_POST["curso_ciclo"];
 }
 
-if ($tabla=="premat_2eso" || $tabla=="premat_3eso" || $tabla=="premat_4eso"  || $tabla=="premat_3esopmar" || $tabla=="premat_1bach_lomloe" || $tabla=="premat_1bach_c" || $tabla=="premat_1bach_hcs" || $tabla=="premat_2bach_c" || $tabla=="premat_2bach_hcs"){
+if ($tabla=="premat_eso" || $tabla=="premat_bach"){
     $proceso="prematricula";
     $campos="id_nie,nombre,apellidos,registro,incidencias";
 }
@@ -72,7 +74,12 @@ if ($proceso=="matriculaciclos"){
 }
 elseif($proceso=="matriculafpb"){
     $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' and ciclo='$ciclo' and curso_ciclo='$curso_ciclo'" ;  
-} else{
+} 
+elseif($proceso=="prematricula"){
+    if ($tabla=="premat_eso") $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' and grupo='$grupo'" ;
+    elseif ($tabla=="premat_bach") $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' and grupo='$grupo' and modalidad='$modalidad'" ;
+}
+else{
     $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' " ;
 }
 

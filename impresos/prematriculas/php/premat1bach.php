@@ -57,15 +57,31 @@ $fecha_registro=date('Y-m-d');
 //Parte especifica de BACH
 $modalidad=$_POST['b1_modalidad'];	
 $primer_idioma=$_POST['primer_idioma'];
+$religion=$_POST['religion'];
 $obligatoria1=$_POST['obligatoria1'];
 $obligatoria2=$_POST['obligatoria2'];
 $obligatoria3=$_POST['obligatoria3'];	
+$optativa1=$_POST['optativa1'];
+$optativa2=$_POST['optativa2'];
+$optativa3=$_POST['optativa3'];
+$optativa4=$_POST['optativa4'];
+$optativa5=$_POST['optativa5'];
+$optativa6=$_POST['optativa6'];
+$optativa7=$_POST['optativa7'];
+$optativa8=$_POST['optativa8'];
+$optativa9=$_POST['optativa9'];
+$optativa10=$_POST['optativa10'];
+$optativa11=$_POST['optativa11'];
+$optativa12=$_POST['optativa12'];
+$optativa13=$_POST['optativa13'];
+$optativa14=$_POST['optativa14'];
+$optativa15=$_POST['optativa15'];
 
 
 $registro=generaRegistro();
 $repite_registro=true;
 while ($repite_registro){
-    $res=$mysqli->query("select * from premat_1bach_hcs where registro='$registro'");
+    $res=$mysqli->query("select * from premat_bach where registro='$registro'");
     if ($mysqli->errno>0) exit("servidor");
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
@@ -76,21 +92,16 @@ while ($repite_registro){
     $res->free();
 }
 
-$mysqli->query("delete from premat_1eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_3eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_4eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2esopmar where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_3esopmar where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_1bach_lomloe where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2bach_hcs where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2bach_c where id_nie='$id_nie' and curso='$anno_curso'");
 
-$mysqli->query("insert into premat_1bach_lomloe (id_nie,
+$mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
+
+$mysqli->query("insert into premat_bach (id_nie,
                                         registro,
                                         fecha_registro,
                                         curso,
                                         curso_premat,
+                                        grupo,
                                         apellidos,
                                         nombre,
                                         email,
@@ -106,15 +117,32 @@ $mysqli->query("insert into premat_1bach_lomloe (id_nie,
                                         curso_actual,
                                         grupo_curso_actual,
                                         modalidad,
-                                        primer_idioma,
-                                        obligatoria1,
-                                        obligatoria2,
-                                        obligatoria3) 
+                                        materia1,
+                                        materia2,
+                                        materia3,
+                                        materia4,
+                                        materia5,
+                                        materia6,
+                                        materia7,
+                                        materia8,
+                                        materia9,
+                                        materia10,
+                                        materia11,
+                                        materia12,
+                                        materia13,
+                                        materia14,
+                                        materia15,
+                                        materia16,
+                                        materia17,
+                                        materia18,
+                                        materia19,
+                                        materia20) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
                                         '$anno_curso',
                                         '$anno_curso_premat',
+                                        '$curso',
                                         '$apellidos',
                                         '$nombre',
                                         '$email_alumno',
@@ -131,9 +159,25 @@ $mysqli->query("insert into premat_1bach_lomloe (id_nie,
                                         '$grupo_curso_actual',
                                         '$modalidad',
                                         '$primer_idioma',
+                                        '$religion',
                                         '$obligatoria1',
                                         '$obligatoria2',
-                                        '$obligatoria3')");
+                                        '$obligatoria3',
+                                        '$optativa1',
+                                        '$optativa2',
+                                        '$optativa3',
+                                        '$optativa4',
+                                        '$optativa5',
+                                        '$optativa6',
+                                        '$optativa7',
+                                        '$optativa8',
+                                        '$optativa9',
+                                        '$optativa10',
+                                        '$optativa11',
+                                        '$optativa12',
+                                        '$optativa13',
+                                        '$optativa14',
+                                        '$optativa15')");
 if ($mysqli->errno>0){
     exit("registro_erroneo ".$mysqli->errno);
 }
@@ -366,7 +410,7 @@ $pdf->SetXY($XInicioRotulo,$YInicio+1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"SELECCIÓN DE MATERIAS",0,0,'L',0,'',1,false,'','');
 
-$pdf->RoundedRect($XInicio-2,$YInicio,185,25,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,70,2,'1111','','','');
 	$p_idioma="1ª Lengua Extranjera (".$primer_idioma.")";
     $obligatorias=<<<MAT
 - $obligatoria1
@@ -378,7 +422,12 @@ MAT;
 $YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', '', 8, '', true);
-$pdf->Cell(50,4,"1ª Lengua Extranjera: ".$primer_idioma,0,0,'L',0,'',0,true,'T','T');
+$pdf->Cell(50,4,"- 1ª Lengua Extranjera: ".$primer_idioma,0,0,'L',0,'',0,true,'T','T');
+
+$YInicio+=5;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->Cell(50,4,"- ".$religion,0,0,'L',0,'',0,true,'T','T');
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
@@ -386,9 +435,40 @@ $pdf->Cell(50,4,"OBLIGATORIAS",1,0,'L',1,'',0,true,'T','T');
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);	
 $pdf->MultiCell(88,0,$obligatorias,0,'L',0,1,'','',true,0,false,false,0);
+
+$YInicio+=12;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->Cell(180,4,"OPTATIVAS PRIORIZADAS",1,0,'L',1,'',0,true,'T','T');
+
+$optativas1=<<<OPT
+1 $optativa1
+2 $optativa2
+3 $optativa3
+4 $optativa4
+5 $optativa5
+6 $optativa6
+7 $optativa7
+8 $optativa8
+OPT;
+
+$optativas2=<<<OPT
+ 9 $optativa9
+10 $optativa10
+11 $optativa11
+12 $optativa12
+13 $optativa13
+14 $optativa14
+15 $optativa15
+OPT;
+
+$YInicio+=5;
+$pdf->SetXY($XInicio,$YInicio);	
+$pdf->MultiCell(80,0,$optativas1,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->SetXY($XInicio+85,$YInicio);	
+$pdf->MultiCell(80,0,$optativas2,0,'L',0,1,'','',true,0,false,false,0);
 	
 	
-$YInicio+=20;
+$YInicio+=40;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->Cell(0,0,"Nº registro " . $registro,0,0,'C',0,'',1,false,'T','T');

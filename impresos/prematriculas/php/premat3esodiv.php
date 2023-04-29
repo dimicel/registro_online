@@ -62,7 +62,7 @@ $opt4=$_POST['eso3_div_opt4'];
 $registro=generaRegistro();
 $repite_registro=true;
 while ($repite_registro){
-    $res=$mysqli->query("select * from premat_3esopmar where registro='$registro'");
+    $res=$mysqli->query("select * from premat_eso where registro='$registro'");
     if ($mysqli->errno>0) exit("servidor");
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
@@ -73,20 +73,13 @@ while ($repite_registro){
     $res->free();
 }
 
-$mysqli->query("delete from premat_1eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_3eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_4eso where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2esopmar where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_3esopmar where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_1bach_hcs where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_1bach_c where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2bach_hcs where id_nie='$id_nie' and curso='$anno_curso'");
-$mysqli->query("delete from premat_2bach_c where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
+$mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
 
-$mysqli->query("insert into premat_3esopmar (id_nie,
+$mysqli->query("insert into premat_eso (id_nie,
                                         registro,
                                         fecha_registro,
+                                        grupo,
                                         curso,
                                         curso_premat,
                                         apellidos,
@@ -100,17 +93,17 @@ $mysqli->query("insert into premat_3esopmar (id_nie,
                                         tutor2,
                                         email_tutor2,
                                         tlf_tutor2,
-                                        rel_valores_et,
-                                        optativa1,
-                                        optativa2,
-                                        optativa3,
-                                        optativa4,
+                                        materia1,
+                                        materia2,
+                                        materia3,
+                                        materia4,
                                         sexo,
                                         curso_actual,
                                         grupo_curso_actual) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
+                                        '$curso',
                                         '$anno_curso',
                                         '$anno_curso_premat',
                                         '$apellidos',
@@ -128,7 +121,6 @@ $mysqli->query("insert into premat_3esopmar (id_nie,
                                         '$opt1',
                                         '$opt2',
                                         '$opt3',
-                                        '$opt4',
                                         '$sexo',
                                         '$curso_actual',
                                         '$grupo_curso_actual')");
@@ -387,13 +379,11 @@ MAT;
     2
     2
     2
-    2
 MAT;
 	$mat_optativas=<<<MAT
    1   $opt1
    2   $opt2
    3   $opt3
-   4   $opt4
 MAT;
 
 $pdf->setFillColor(200);

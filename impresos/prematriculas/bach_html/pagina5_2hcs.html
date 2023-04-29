@@ -18,9 +18,9 @@
     </div>
     <div class="row justify-content-center mr-1">
         <div class="col-2 border border-success rounded" style="background-color:#56a717;color:white; ">
-            <div class="row justify-content-center" style="margin-top:80px">
-                <div class="col-10 align-self-center">
-                    *TRONCALES GENERALES
+            <div class="row justify-content-center d-flex align-items-center h-100">
+                <div class="col-10 align-self-center ">
+                    MATERIAS COMUNES
                 </div>
             </div>
         </div>
@@ -28,28 +28,34 @@
             <div class="row border-bottom border-success">
                 <div class="col">
                     <div class="row mt-2">
-                        <div style="margin-left: 15px;" class="col custom-control-inline custom-switch mi-checkbox">
-                            <input class="custom-control-input" id="2h1" type="radio" checked/>
-                            <label for="2h1" class="custom-control-label">Historia de España</label>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div style="margin-left: 15px;" class="col custom-control-inline custom-switch  mi-checkbox">
-                            <input class="custom-control-input" id="2h2" type="radio" checked/>
-                            <label for="2h2" class="custom-control-label">Lengua Castellana y Literatura II</label>
+                            <input class="custom-control-input" id="2c1" type="radio" checked/>
+                            <label for="2c1" class="custom-control-label">Historia de España</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div style="margin-left: 15px;" class="col-5 custom-control-inline custom-switch mi-checkbox">
-                            <input class="custom-control-input" id="2h3" type="radio" checked/>
-                            <label for="2h3" class="custom-control-label">*1ª Lengua Extranjera II</label>
+                        <div style="margin-left: 15px;" class="col md-1 custom-control-inline custom-switch  mi-checkbox">
+                            <input class="custom-control-input" id="2c2" type="radio" checked/>
+                            <label for="2c2" class="custom-control-label">Lengua Castellana y Literatura II</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="margin-left: 15px;" class="col md-1 custom-control-inline custom-switch  mi-checkbox">
+                            <input class="custom-control-input" id="2c3" type="radio" checked/>
+                            <label for="2c3" class="custom-control-label">Historia de la Filosofía</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="margin-left: 15px;" class="col-4 md-1 custom-control-inline custom-switch  mi-checkbox">
+                            <input class="custom-control-input" id="2c4" type="radio" checked/>
+                            <label for="2c4" class="custom-control-label">*1ª Lengua Extranjera II</label>
                         </div>
                         <div class="col">
-                            <div class="row custom-control-inline custom-switch mi-checkbox">
+                            <div class="row custom-control-inline custom-switch  mi-checkbox">
                                 <input class="custom-control-input" type="radio" name="b2h_primer_idioma" id="b2h_ingles" value="Inglés" onclick="b2h_seleccionIdioma('ingles')" />
                                 <label for="b2h_ingles" class="custom-control-label">Inglés</label>
                             </div>
-                            <div class="row custom-control-inline custom-switch mi-checkbox" style="margin-top:-10px">
+                            <div class="row custom-control-inline custom-switch  mi-checkbox" style="margin-top:-10px">
                                 <input class="custom-control-input" type="radio" name="b2h_primer_idioma" id="b2h_frances" value="Francés" onclick="b2h_seleccionIdioma('frances')" />
                                 <label for="b2h_frances" class="custom-control-label">Francés</label>
                             </div>
@@ -62,48 +68,84 @@
                 <div class="col-2 align-self-top border-left border-success">
                     <div class="row mt-2 justify-content-center">
                         <div class="col-2">
-                            3<br> 4
-                            <br> 3
+                            3<br> 
+                            4<br>
+                            3<br>
+                            4
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+        </div>
+    </div>
+    <div class="row mt-1 mr-1">
+        <div class="col-2 border border-success rounded" style="background-color:#56a717;color:white; ">
+            <div class="row justify-content-center d-flex align-items-center h-100">
+                <div class="col-10 align-self-center">
+                    MATERIAS DE MODALIDAD
+                </div>
+            </div>
+        </div>
+        <div class="col border border-success rounded">
+            <div class="row border-bottom border-success">
                 <div class="col">
-                    <div class="row justify-content-center">
-                        <div class="col-4">
-                            <div class="row justify-content-center mt-2">
-                                <div class="col-8 text-center">
-                                    <label style="font-weight:bold;">Itinerario 1 </label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center" style="margin-top:-10px">
-                                <div class="col-8 text-center">
-                                    <label style="font-weight:bold;">HUMANIDADES</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center" style="margin-top:-10px">
-                                <div class="col-8 custom-control-inline custom-switch mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2h_itin" id="b2h_itin1" value="itinerario 1" onclick="b2h_seleccTronGen('itinerario 1')" />
-                                    <label for="b2h_itin1" class="custom-control-label">Latín II</label>
-                                </div>
-                            </div>
+                    <div class="row">
+                        <div class="col d-flex align-self-center" style="color:#56a717; background-color: #d2e9c1;">
+                            <span class="ml-2">OBLIGATORIA (Elegir 1)</span>
                         </div>
-                        <div class="col-8 text-center">
-                            <div class="row justify-content-center mt-2">
-                                <div class="col-8 text-center">
-                                    <label style="font-weight:bold;">Itinerario 2 </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 offset-1 custom-control-inline custom-switch  mi-checkbox">
+                            <input class="custom-control-input" type="radio" name="b2h_mat" id="b2h_mat" value="Latín II" onclick="b2h_mat_click('Matemáticas aplicadas a las Ciencias Sociales II');"/>
+                            <label for="b2h_mat" class="custom-control-label">Latín II</label>
+                        </div>
+                        <div class="col custom-control-inline custom-switch  mi-checkbox">
+                            <input class="custom-control-input" type="radio" name="b2h_mat" id="b2h_mat_acs" value="Matemáticas aplicadas a las Ciencias Sociales II" onclick="b2h_mat_click('Latín II');"/>
+                            <label for="b2h_mat_acs" class="custom-control-label">Matemáticas aplicadas a las Ciencias Sociales II</label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="errorTxt text-center col-6" style=" font-size: 1.2em;margin-top:15px"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col  d-flex align-self-center" style="color:#56a717; background-color: #d2e9c1;">
+                            <span class="ml-2">(Elegir 2)</span>
+                        </div>
+                    </div>
+                    <div class="row" id="div_mod_empty">
+                        <div class="col-10 text-center">
+                            <p style="font-size: larger; font-weight: bold;">(Marcar antes una de Modalidad OBLIGATORIA.)</p>
+                        </div>
+                    </div>
+                    <div class="row" style="display:none" id="div_mod">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="col-2  custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod1" value="Griego II" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod1" class="custom-control-label">Griego II</label>
+                                    </div>
+                                    <div class="col-3 custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod2" value="Geografía" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod2" class="custom-control-label">Geografía</label>
+                                    </div>
+                                    <div class="col-3 custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod3" value="Historia del Arte" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod3" class="custom-control-label">Historia del Arte</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-center" style="margin-top:-10px">
-                                <div class="col-8 text-center">
-                                    <label style="font-weight:bold;">CIENCIAS SOCIALES</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center" style="margin-top:-10px">
-                                <div class="col-10 custom-control-inline custom-switch mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2h_itin" id="b2h_itin2" value="itinerario 2" onclick="b2h_seleccTronGen('itinerario 2')" />
-                                    <label for="b2h_itin2" class="custom-control-label">Matemáticas aplicacadas a CC.SS.</label>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="col-5  custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod4" value="Empresa y Diseño de Modelos de Negocio" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod4" class="custom-control-label">Empresa y Diseño de Modelos de Negocio</label>
+                                    </div>
+                                    <div class="col-5 custom-control-inline custom-switch  mi-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="b2h_mod" id="b2h_mod5" value="Matemáticas aplicadas a las Ciencias Sociales II" onclick="b2h_mod_click(this)"/>
+                                        <label for="b2h_mod5" class="custom-control-label">Matemáticas aplicadas a las Ciencias Sociales II</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -111,88 +153,14 @@
                     <div class="row justify-content-center">
                         <div class="errorTxt text-center col-6" style=" font-size: 1.2em;margin-top:15px"></div>
                     </div>
+                    <div class="row alert alert-warning alert-dismissible fade show  justify-content-center " role="alert" style="display:none; margin-top:10px; " >
+                        <span style="font-size: 0.75em !important; color:#228b22"> Sólo se pueden seleccionar 2 materias. Para seleccionar otra, 'apague' a una de las marcadas.</span>
+                    </div>
                 </div>
-                <div class="col-2 border-left border-success">
+                <div class="col-2 align-self-top border-left border-success">
                     <div class="row mt-2 justify-content-center">
                         <div class="col-2">
-                            <br>
-                            <p>4</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-1 mr-1">
-        <div class="col-2 border border-success rounded" style="background-color:#56a717;color:white; ">
-            <div class="row justify-content-center" style="margin-top:30px">
-                <div class="col-10 align-self-center">
-                    *TRONCALES DE OPCIÓN
-                </div>
-            </div>
-        </div>
-        <div class="col border border-success rounded">
-            <div class="row">
-                <div class="col">
-                    <div class="row border-bottom border-success mt-2">
-                        <div class="col">
-                            <div class="row justify-content-center ">
-                                <div class="col-5 custom-control-inline custom-switch mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2h_to1" id="b2h_to11" value="Economía de la Empresa" onclick="b2h_seleccTronOp('Historia de la Filosofía')" />
-                                    <label for="b2h_to11" class="custom-control-label">Economía de la Empresa</label>
-                                </div>
-                                <div class="col-5 custom-control-inline custom-switch mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2h_to1" id="b2h_to12" value="Historia de la Filosofía" onclick="b2h_seleccTronOp('Economía de la Empresa')" />
-                                    <label for="b2h_to12" class="custom-control-label">Historia de la Filosofía</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="errorTxt text-center col-6" style=" font-size: 1.2em;margin-top:15px"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <div class="row justify-content-center" id="div_b2h_op_vacio">
-                                <div class="col-5">
-                                    <label>SELECCIONE ANTES ITINERARIO</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center d-none" id="div_b2h_op1">
-                                <div class="col-3 custom-control-inline custom-switch mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2h_op1" id="b2h_op11" value="Griego II" onclick="b2h_seleccTronOpItin1('Griego II')" />
-                                    <label for="b2h_op11" class="custom-control-label">Griego II</label>
-                                </div>
-                                <div class="col-3 custom-control-inline custom-switch mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2h_op1" id="b2h_op12" value="Geografía" onclick="b2h_seleccTronOpItin1('Geografía')" />
-                                    <label for="b2h_op12" class="custom-control-label">Geografía</label>
-                                </div>
-                                <div class="col-4 custom-control-inline custom-switch mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2h_op1" id="b2h_op13" value="Historia del Arte" onclick="b2h_seleccTronOpItin1('Historia del Arte')" />
-                                    <label for="b2h_op13" class="custom-control-label">Historia del Arte</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center d-none" id="div_b2h_op2">
-                                <div class="col-5 custom-control-inline custom-switch mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2h_op2" id="b2h_op21" value="Historia del Arte" onclick="b2h_seleccTronOpItin2('Historia del Arte')" />
-                                    <label for="b2h_op21" class="custom-control-label">Historia del Arte</label>
-                                </div>
-                                <div class="col-5 custom-control-inline custom-switch mi-checkbox">
-                                    <input class="custom-control-input" type="radio" name="b2h_op2" id="b2h_op22" value="Geografía" onclick="b2h_seleccTronOpItin2('Geografía')" />
-                                    <label for="b2h_op22" class="custom-control-label">Geografía</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="errorTxt text-center col-6" style=" font-size: 1.2em;margin-top:15px"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-2 border-left border-success">
-                    <div class="row mt-2 justify-content-center">
-                        <div class="col-2">
-                            <p>4</p><br>
-                            <p>4</p>
+                            <br>4<br><br><br>4<br>4
                         </div>
                     </div>
                 </div>
@@ -203,9 +171,9 @@
         <div class="col-2 border border-success rounded" style="background-color:#56a717;color:white; ">
             <div class="row justify-content-center">
                 <div class="col-10 text-center" id="rot_epec_itin">
-                    ESPECÍFICAS DE ITINERARIO Y COMUNES<br>
+                    OPTATIVAS<br>
                     <span><small>(Prioriza la lista con las flechas de la derecha)<br>
-                        Se cursarán dos, según la preferencia y disponibilidad
+                        Se cursará UNA, según la preferencia y disponibilidad
                     </small></span>
                 </div>
             </div>
@@ -213,11 +181,11 @@
         <div class="col border border-success rounded">
             <div id="div_b2h_esp_itin_vacio" class="row justify-content-center mt-4">
                 <div class="col-10 text-center">
-                    <p style="font-size: larger; font-weight: bold;">(Marcar antes 1ª Lengua Extranjera, Itinerario y las dos Troncales de Opción.)</p>
+                    <p style="font-size: larger; font-weight: bold;">(Marcar antes 1ª Lengua Extranjera, y Materias de Modalidad.)</p>
                 </div>
             </div>
             <div class="row d-none justify-content-center" id="div_b2h_esp_itin1">
-                <div class="col ml-5">
+                <div class="col offset-2">
                     <div class="row">
                         <div class="col-1 text-center">
                             Nº
@@ -244,27 +212,25 @@
                             <p style="margin-top:-19px;font-size:0.86em !important">14</p>
                             <p style="margin-top:-19px;font-size:0.86em !important">15</p>
                             <p style="margin-top:-19px;font-size:0.86em !important">16</p>
-                            <p style="margin-top:-19px;font-size:0.86em !important">17</p>
                         </div>
-                        <div class="col-7 custom-control border border-success rounded ">
-                            <select name="b2h_esp_itin1" size="17" id="b2h_esp_itin1" style="overflow:visible;margin-left:-15px;margin-top:5px">
-                                <option value="1">Troncal General no elegida</option>
-                                <option value="2">Troncal de Opción no elegida 1</option>
-                                <option value="3">Troncal de Opción no elegida 2</option>
-                                <option value="4">Troncal de Opción no elegida 3</option>
+                        <div class="col-8 custom-control border border-success rounded ">
+                            <select name="b2h_esp_itin1" size="16" id="b2h_esp_itin1" style="margin-top:5px;overflow:visible;">
                                 <option value="2ª Lengua Extranjera II (Francés)">2ª Lengua Extranjera II (Francés)</option>
-                                <option value="Imagen y Sonido">Imagen y Sonido</option>
                                 <option value="2ª Lengua Extranjera II (Italiano)">2ª Lengua Extranjera II (Italiano)</option>
-                                <option value="Geología">Geología</option>
-                                <option value="Tecnología de la Inf. y la Comun. II">Tecnología de la Inf. y la Comun. II</option>
                                 <option value="2ª Lengua Extranjera (Alemán)">2ª Lengua Extranjera (Alemán)</option>
-                                <option value="Química">Química</option>
-                                <option value="Física">Física</option>
+                                <option value="Investigación y Desarrollo Científico">Investigación y Desarrollo Científico</option>
+                                <option value="Creación de Contenidos Artísticos y Audiovisuales">Creación de Contenidos Artísticos y Audiovisuales</option>
+                                <option value="Historia de la Música y la Danza">Historia de la Música y la Danza</option>
+                                <option value="Fundamentos de Administración y Gestión">Fundamentos de Administración y Gestión</option>
                                 <option value="Biología">Biología</option>
+                                <option value="Geología y Ciencias Ambientales">Geología y Ciencias Ambientales</option>
+                                <option value="Tecnología e Ingeniería">Tecnología e Ingeniería</option>
                                 <option value="Dibujo Técnico II">Dibujo Técnico II</option>
-                                <option value="Fundamentos de Administración Y Gestión">Fundamentos de Administración y Gestión</option>
-                                <option value="Historia de la Música y de la Danza">Historia de la Música y de la Danza</option>
-                                <option value="Psicología">Psicología</option>
+                                <option value="Física">Física</option>
+                                <option value="Química">Química</option>
+                                <option value=""></option>
+                                <option value=""></option>	                	  								
+                                <option value=""></option>
                             </select>
                             <input type="hidden" name="b2h_eitin11" id="b2h_eitin11" />
                             <input type="hidden" name="b2h_eitin12" id="b2h_eitin12" />
@@ -282,7 +248,6 @@
                             <input type="hidden" name="b2h_eitin24" id="b2h_eitin24" />
                             <input type="hidden" name="b2h_eitin25" id="b2h_eitin25" />
                             <input type="hidden" name="b2h_eitin26" id="b2h_eitin26" />
-                            <input type="hidden" name="b2h_eitin27" id="b2h_eitin27" />
                         </div>
                         <div class="col-1" style="margin-top:100px">
                             <input type="button" class="btn btn-success" value="🡅" data-toggle="tooltip" data-placement="top" title="Sube materia" onclick="subeElemento(document.getElementById('b2h_esp_itin1'))" />

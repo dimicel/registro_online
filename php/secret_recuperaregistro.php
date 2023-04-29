@@ -11,9 +11,16 @@ if ($mysqli->errno>0) {
 }
 
 $tabla=$_POST["formulario"];
+$tabla_db=$tabla;
 $registro=$_POST["registro"];
 
-$consulta="select * from $tabla where registro='$registro'";
+if(strpos($tabla_db,"premat_")>=0){
+    if (strpos($tabla_db,"eso")) $tabla_db="premat_eso";
+    else $tabla_db="premat_bach";
+}
+
+
+$consulta="select * from $tabla_db where registro='$registro'";
 
 $res=$mysqli->query($consulta);
 
@@ -64,7 +71,7 @@ while ($reg=$res->fetch_assoc()){
     } 
     elseif(substr($tabla,0,7)=="premat_" || (substr($tabla,0,4)=="mat_" && $tabla!="mat_ciclos" && $tabla!="mat_fpb")){
         if (substr($tabla,0,4)=="mat_"){
-            $data["registro"]["consolida_premat"]= $reg["consolida_premat"];
+            if(strrpos($tabla,"eso")>=0  || strrpos($tabla,"bach")>=0 )$data["registro"]["consolida_premat"]= $reg["consolida_premat"];
             $data["registro"]["al_nuevo"]= $reg["al_nuevo"];
             $data["registro"]["repite"]= $reg["repite"];
             $data["registro"]["interno"]= $reg["interno"];
@@ -82,8 +89,9 @@ while ($reg=$res->fetch_assoc()){
             if ($tabla=="mat_eso" || $tabla=="mat_bach"){
                 $data["registro"]["al_nuevo_otracomunidad"]= $reg["al_nuevo_otracomunidad"];
             }
+            if(strrpos($tabla,"eso")>=0) $data["registro"]["transporte"]= $reg["transporte"];
         }
-        if(strrpos($tabla,"eso")>=0) $data["registro"]["transporte"]= $reg["transporte"];
+        
         $data["registro"]["id_nie"]= $reg["id_nie"];
         $data["registro"]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         $data["registro"]["fecha_registro"]=$reg["fecha_registro"];
@@ -98,188 +106,131 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["email_tutor2"]=$reg["email_tutor2"];
         $data["registro"]["tlf_tutor2"]=$reg["tlf_tutor2"];
         $data["registro"]["incidencias"]=$reg["incidencias"]; 
-        if ($tabla=="premat_1eso" || $tabla=="mat_1eso"){
+        if($tabla=="premat_2eso"){
             $data["registro"]["prog_ling"]=$reg["prog_ling"];
-            $data["registro"]["rel_valores_et"]=$reg["rel_valores_et"];
-            $data["registro"]["1_lengua_extr"]=$reg["1_lengua_extr"];
-            $data["registro"]["optativa1"]=$reg["optativa1"];
-            $data["registro"]["optativa2"]=$reg["optativa2"];
-            $data["registro"]["optativa3"]=$reg["optativa3"];
-            $data["registro"]["optativa4"]=$reg["optativa4"];
+            $data["registro"]["1_lengua_extr"]=$reg["materia1"];
+            $data["registro"]["rel_valores_et"]=$reg["materia2"];
+            $data["registro"]["optativa1"]=$reg["materia3"];
+            $data["registro"]["optativa2"]=$reg["materia4"];
+            $data["registro"]["optativa3"]=$reg["materia5"];
+            $data["registro"]["optativa4"]=$reg["materia6"];
         }
-        elseif($tabla=="premat_2eso" || $tabla=="mat_2eso"){
+        elseif($tabla=="premat_3eso"){
             $data["registro"]["prog_ling"]=$reg["prog_ling"];
-            $data["registro"]["rel_valores_et"]=$reg["rel_valores_et"];
-            $data["registro"]["1_lengua_extr"]=$reg["1_lengua_extr"];
-            $data["registro"]["optativa1"]=$reg["optativa1"];
-            $data["registro"]["optativa2"]=$reg["optativa2"];
-            $data["registro"]["optativa3"]=$reg["optativa3"];
-            $data["registro"]["optativa4"]=$reg["optativa4"];
-            $data["registro"]["optativa5"]=$reg["optativa5"];
+            $data["registro"]["1_lengua_extr"]=$reg["materia1"];
+            $data["registro"]["rel_valores_et"]=$reg["materia2"];
+            $data["registro"]["optativa1"]=$reg["materia3"];
+            $data["registro"]["optativa2"]=$reg["materia4"];
+            $data["registro"]["optativa3"]=$reg["materia5"];
+            $data["registro"]["optativa4"]=$reg["materia6"];
         }
-        elseif($tabla=="premat_3eso" || $tabla=="mat_3eso"){
+        elseif($tabla=="premat_4eso"){
             $data["registro"]["prog_ling"]=$reg["prog_ling"];
-            $data["registro"]["matematicas"]=$reg["matematicas"];
-            $data["registro"]["rel_valores_et"]=$reg["rel_valores_et"];
-            $data["registro"]["1_lengua_extr"]=$reg["1_lengua_extr"];
-            $data["registro"]["optativa1"]=$reg["optativa1"];
-            $data["registro"]["optativa2"]=$reg["optativa2"];
-            $data["registro"]["optativa3"]=$reg["optativa3"];
-            $data["registro"]["optativa4"]=$reg["optativa4"];
+            $data["registro"]["1_lengua_extr"]=$reg["materia1"];
+            $data["registro"]["rel_valores_et"]=$reg["materia2"];
+            $data["registro"]["matematicas"]=$reg["materia3"];
+            $data["registro"]["opc_bloque1"]=$reg["materia4"];
+            $data["registro"]["opc_bloque21"]=$reg["materia5"];
+            $data["registro"]["opc_bloque22"]=$reg["materia6"];
+            $data["registro"]["opc_bloque23"]=$reg["materia7"];
+            $data["registro"]["opc_bloque24"]=$reg["materia8"];
+            $data["registro"]["opc_bloque31"]=$reg["materia9"];
+            $data["registro"]["opc_bloque32"]=$reg["materia10"];
+            $data["registro"]["opc_bloque33"]=$reg["materia11"];
+            $data["registro"]["opc_bloque34"]=$reg["materia12"];
+            $data["registro"]["opc_bloque35"]=$reg["materia13"];
+            $data["registro"]["opc_bloque36"]=$reg["materia14"];
+            $data["registro"]["optativa1"]=$reg["materia15"];
+            $data["registro"]["optativa2"]=$reg["materia16"];
+            $data["registro"]["optativa3"]=$reg["materia17"];
+            $data["registro"]["optativa4"]=$reg["materia18"];
+            $data["registro"]["optativa5"]=$reg["materia19"];
         }
-        elseif($tabla=="premat_4eso" || $tabla=="mat_4eso"){
-            $data["registro"]["prog_ling"]=$reg["prog_ling"];
+        elseif($tabla=="premat_3esodiv"){
+            $data["registro"]["rel_valores_et"]=$reg["materia1"];
+            $data["registro"]["optativa1"]=$reg["materia2"];
+            $data["registro"]["optativa2"]=$reg["materia3"];
+            $data["registro"]["optativa3"]=$reg["materia4"];
+        }
+        elseif($tabla=="premat_4esodiv"){
+            $data["registro"]["rel_valores_et"]=$reg["materia1"];
+            $data["registro"]["opcion1"]=$reg["materia2"];
+            $data["registro"]["opcion2"]=$reg["materia3"];
+            $data["registro"]["opcion3"]=$reg["materia4"];
+            $data["registro"]["opcion4"]=$reg["materia5"];
+            $data["registro"]["opcion5"]=$reg["materia6"];
+            $data["registro"]["opcion6"]=$reg["materia7"];
+            $data["registro"]["optativa1"]=$reg["materia8"];
+            $data["registro"]["optativa2"]=$reg["materia9"];
+            $data["registro"]["optativa3"]=$reg["materia10"];
+            $data["registro"]["optativa4"]=$reg["materia11"];
+            $data["registro"]["optativa5"]=$reg["materia12"];
+        }
+        elseif($tabla=="premat_1bach_h" || $tabla=="premat_1bach_c"){
             $data["registro"]["modalidad"]=$reg["modalidad"];
-            $data["registro"]["rel_valores_et"]=$reg["rel_valores_et"];
-            $data["registro"]["1_lengua_extr"]=$reg["1_lengua_extr"];
-            $data["registro"]["espec_oblig"]=$reg["espec_oblig"];
-            $data["registro"]["troncales_opcion1"]=$reg["troncales_opcion1"];
-            $data["registro"]["troncales_opcion2"]=$reg["troncales_opcion2"];
-            $data["registro"]["optativa1"]=$reg["espec_opcion1"];
-            $data["registro"]["optativa2"]=$reg["espec_opcion2"];
-            $data["registro"]["optativa3"]=$reg["espec_opcion3"];
-            $data["registro"]["optativa4"]=$reg["espec_opcion4"];
-            $data["registro"]["optativa5"]=$reg["espec_opcion5"];
-            $data["registro"]["optativa6"]=$reg["espec_opcion6"];
-            $data["registro"]["optativa7"]=$reg["espec_opcion7"];
-            $data["registro"]["optativa8"]=$reg["espec_opcion8"];
-            $data["registro"]["optativa9"]=$reg["espec_opcion9"];
+            $data["registro"]["primer_idioma"]=$reg["materia1"];
+            $data["registro"]["rel_valores_et"]=$reg["materia2"];
+            $data["registro"]["obligatoria1"]=$reg["materia3"];
+            $data["registro"]["obligatoria2"]=$reg["materia4"];
+            $data["registro"]["obligatoria3"]=$reg["materia5"];
+            $data["registro"]["optativa1"]=$reg["materia6"];
+            $data["registro"]["optativa2"]=$reg["materia7"];
+            $data["registro"]["optativa3"]=$reg["materia8"];
+            $data["registro"]["optativa4"]=$reg["materia9"];
+            $data["registro"]["optativa5"]=$reg["materia10"];
+            $data["registro"]["optativa6"]=$reg["materia11"];
+            $data["registro"]["optativa7"]=$reg["materia12"];
+            $data["registro"]["optativa8"]=$reg["materia13"];
+            $data["registro"]["optativa9"]=$reg["materia14"];
+            $data["registro"]["optativa10"]=$reg["materia15"];
+            $data["registro"]["optativa11"]=$reg["materia16"];
+            $data["registro"]["optativa12"]=$reg["materia17"];
+            $data["registro"]["optativa13"]=$reg["materia18"];
+            $data["registro"]["optativa14"]=$reg["materia19"];
+            $data["registro"]["optativa15"]=$reg["materia20"];
         }
-        elseif($tabla=="premat_2esopmar" || $tabla=="mat_2esopmar"){
-            $data["registro"]["rel_valores_et"]=$reg["rel_valores_et"];
-            $data["registro"]["optativa1"]=$reg["optativa1"];
-            $data["registro"]["optativa2"]=$reg["optativa2"];
-            $data["registro"]["optativa3"]=$reg["optativa3"];
-            $data["registro"]["optativa4"]=$reg["optativa4"];
+        elseif($tabla=="premat_2bach_h"){
+            $data["registro"]["primer_idioma"]=$reg["materia1"];
+            $data["registro"]["modalidad1"]=$reg["materia2"];
+            $data["registro"]["modalidad2"]=$reg["materia3"];
+            $data["registro"]["modalidad3"]=$reg["materia4"];
+            $data["registro"]["optativa1"]=$reg["materia5"];
+            $data["registro"]["optativa2"]=$reg["materia6"];
+            $data["registro"]["optativa3"]=$reg["materia7"];
+            $data["registro"]["optativa4"]=$reg["materia8"];
+            $data["registro"]["optativa5"]=$reg["materia9"];
+            $data["registro"]["optativa6"]=$reg["materia10"];
+            $data["registro"]["optativa7"]=$reg["materia11"];
+            $data["registro"]["optativa8"]=$reg["materia12"];
+            $data["registro"]["optativa9"]=$reg["materia13"];
+            $data["registro"]["optativa10"]=$reg["materia14"];
+            $data["registro"]["optativa11"]=$reg["materia15"];
+            $data["registro"]["optativa12"]=$reg["materia16"];
+            $data["registro"]["optativa13"]=$reg["materia17"];
+            $data["registro"]["optativa14"]=$reg["materia18"];
+            $data["registro"]["optativa15"]=$reg["materia19"];
+            $data["registro"]["optativa16"]=$reg["materia20"];
         }
-        elseif($tabla=="premat_3esopmar" || $tabla=="mat_3esopmar"){
-            $data["registro"]["rel_valores_et"]=$reg["rel_valores_et"];
-            $data["registro"]["optativa1"]=$reg["optativa1"];
-            $data["registro"]["optativa2"]=$reg["optativa2"];
-            $data["registro"]["optativa3"]=$reg["optativa3"];
-            $data["registro"]["optativa4"]=$reg["optativa4"];
-        }
-        elseif($tabla=="premat_1bach_lomloe"){
-            $data["registro"]["primer_idioma"]=$reg["primer_idioma"];
-            $data["registro"]["religion"]=$reg["religion"];
-            $data["registro"]["modalidad"]=$reg["modalidad"];
-            $data["registro"]["obligatoria1"]=$reg["obligatoria1"];
-            $data["registro"]["obligatoria2"]=$reg["obligatoria2"];
-            $data["registro"]["obligatoria3"]=$reg["obligatoria3"];
-            $data["registro"]["optativa1"]=$reg["optativa1"];
-            $data["registro"]["optativa2"]=$reg["optativa2"];
-            $data["registro"]["optativa3"]=$reg["optativa3"];
-            $data["registro"]["optativa4"]=$reg["optativa4"];
-            $data["registro"]["optativa5"]=$reg["optativa5"];
-            $data["registro"]["optativa6"]=$reg["optativa6"];
-            $data["registro"]["optativa7"]=$reg["optativa7"];
-            $data["registro"]["optativa8"]=$reg["optativa8"];
-            $data["registro"]["optativa9"]=$reg["optativa9"];
-            $data["registro"]["optativa10"]=$reg["optativa10"];
-            $data["registro"]["optativa11"]=$reg["optativa11"];
-            $data["registro"]["optativa12"]=$reg["optativa12"];
-            $data["registro"]["optativa13"]=$reg["optativa13"];
-            $data["registro"]["optativa14"]=$reg["optativa14"];
-            $data["registro"]["optativa15"]=$reg["optativa15"];
-            $data["registro"]["optativa16"]=$reg["optativa16"];
-            $data["registro"]["optativa17"]=$reg["optativa17"];
-        }
-        elseif($tabla=="premat_1bach_hcs" || $tabla=="mat_1bach_hcs"){
-            $data["registro"]["primer_idioma"]=$reg["primer_idioma"];
-            $data["registro"]["itinerario"]=$reg["itinerario"];
-            $data["registro"]["tronc_gen1"]=$reg["tronc_gen1"];
-            $data["registro"]["tronc_gen2"]=$reg["tronc_gen2"];
-            $data["registro"]["tronc_opcion"]=$reg["tronc_opcion"];
-            $data["registro"]["espec_itin1"]=$reg["espec_itin1"];
-            $data["registro"]["espec_itin2"]=$reg["espec_itin2"];
-            $data["registro"]["espec_itin3"]=$reg["espec_itin3"];
-            $data["registro"]["espec_itin4"]=$reg["espec_itin4"];
-            $data["registro"]["espec_itin5"]=$reg["espec_itin5"];
-            $data["registro"]["espec_itin6"]=$reg["espec_itin6"];
-            $data["registro"]["espec_itin7"]=$reg["espec_itin7"];
-            $data["registro"]["espec_itin8"]=$reg["espec_itin8"];
-
-            $data["registro"]["espec_com1"]=$reg["espec_com1"];
-            $data["registro"]["espec_com2"]=$reg["espec_com2"];
-            $data["registro"]["espec_com3"]=$reg["espec_com3"];
-            $data["registro"]["espec_com4"]=$reg["espec_com4"];
-            $data["registro"]["espec_com5"]=$reg["espec_com5"];
-            $data["registro"]["espec_com6"]=$reg["espec_com6"];
-            $data["registro"]["espec_com7"]=$reg["espec_com7"];
-            
-        }
-        elseif($tabla=="premat_1bach_c" || $tabla=="mat_1bach_c"){
-            $data["registro"]["primer_idioma"]=$reg["primer_idioma"];
-            $data["registro"]["itinerario"]=$reg["itinerario"];
-            $data["registro"]["tronc_gen1"]=$reg["tronc_gen1"];
-            $data["registro"]["tronc_gen2"]=$reg["tronc_gen2"];
-            $data["registro"]["espec_itin1"]=$reg["espec_itin1"];
-            $data["registro"]["espec_itin2"]=$reg["espec_itin2"];
-            $data["registro"]["espec_itin3"]=$reg["espec_itin3"];
-            $data["registro"]["espec_itin4"]=$reg["espec_itin4"];
-            $data["registro"]["espec_itin5"]=$reg["espec_itin5"];
-            $data["registro"]["espec_itin6"]=$reg["espec_itin6"];
-            $data["registro"]["espec_itin7"]=$reg["espec_itin7"];
-            $data["registro"]["espec_itin8"]=$reg["espec_itin8"];
-            $data["registro"]["espec_itin9"]=$reg["espec_itin9"];
-            $data["registro"]["espec_itin10"]=$reg["espec_itin10"];
-            $data["registro"]["espec_itin11"]=$reg["espec_itin11"];
-
-            $data["registro"]["espec_com1"]=$reg["espec_com1"];
-            $data["registro"]["espec_com2"]=$reg["espec_com2"];
-            $data["registro"]["espec_com3"]=$reg["espec_com3"];
-            $data["registro"]["espec_com4"]=$reg["espec_com4"];
-            $data["registro"]["espec_com5"]=$reg["espec_com5"];
-            $data["registro"]["espec_com6"]=$reg["espec_com6"];
-            $data["registro"]["espec_com7"]=$reg["espec_com7"];
-        }
-        elseif($tabla=="premat_2bach_hcs" || $tabla=="mat_2bach_hcs"){
-            $data["registro"]["primer_idioma"]=$reg["primer_idioma"];
-            $data["registro"]["itinerario"]=$reg["itinerario"];
-            $data["registro"]["tronc_opc1"]=$reg["tronc_opc1"];
-            $data["registro"]["tronc_opc2"]=$reg["tronc_opc2"];
-            $data["registro"]["tronc_gen"]=$reg["tronc_gen"];
-            $data["registro"]["espec_itin_com1"]=$reg["espec_itin_com1"];
-            $data["registro"]["espec_itin_com2"]=$reg["espec_itin_com2"];
-            $data["registro"]["espec_itin_com3"]=$reg["espec_itin_com3"];
-            $data["registro"]["espec_itin_com4"]=$reg["espec_itin_com4"];
-            $data["registro"]["espec_itin_com5"]=$reg["espec_itin_com5"];
-            $data["registro"]["espec_itin_com6"]=$reg["espec_itin_com6"];
-            $data["registro"]["espec_itin_com7"]=$reg["espec_itin_com7"];
-            $data["registro"]["espec_itin_com8"]=$reg["espec_itin_com8"];
-            $data["registro"]["espec_itin_com9"]=$reg["espec_itin_com9"];
-            $data["registro"]["espec_itin_com10"]=$reg["espec_itin_com10"];
-            $data["registro"]["espec_itin_com11"]=$reg["espec_itin_com11"];
-            $data["registro"]["espec_itin_com12"]=$reg["espec_itin_com12"];
-            $data["registro"]["espec_itin_com13"]=$reg["espec_itin_com13"];
-            $data["registro"]["espec_itin_com14"]=$reg["espec_itin_com14"];
-            $data["registro"]["espec_itin_com15"]=$reg["espec_itin_com15"];
-            $data["registro"]["espec_itin_com16"]=$reg["espec_itin_com16"];
-            $data["registro"]["espec_itin_com17"]=$reg["espec_itin_com17"];
-        }
-        elseif($tabla=="premat_2bach_c" || $tabla=="mat_2bach_c"){
-            $data["registro"]["primer_idioma"]=$reg["primer_idioma"];
-            $data["registro"]["itinerario"]=$reg["itinerario"];
-            $data["registro"]["tronc_opc1"]=$reg["tronc_opc1"];
-            $data["registro"]["tronc_opc2"]=$reg["tronc_opc2"];
-            $data["registro"]["espec_itin_com1"]=$reg["espec_itin_com1"];
-            $data["registro"]["espec_itin_com2"]=$reg["espec_itin_com2"];
-            $data["registro"]["espec_itin_com3"]=$reg["espec_itin_com3"];
-            $data["registro"]["espec_itin_com4"]=$reg["espec_itin_com4"];
-            $data["registro"]["espec_itin_com5"]=$reg["espec_itin_com5"];
-            $data["registro"]["espec_itin_com6"]=$reg["espec_itin_com6"];
-            $data["registro"]["espec_itin_com7"]=$reg["espec_itin_com7"];
-            $data["registro"]["espec_itin_com8"]=$reg["espec_itin_com8"];
-            $data["registro"]["espec_itin_com9"]=$reg["espec_itin_com9"];
-            $data["registro"]["espec_itin_com10"]=$reg["espec_itin_com10"];
-            $data["registro"]["espec_itin_com11"]=$reg["espec_itin_com11"];
-            $data["registro"]["espec_itin_com12"]=$reg["espec_itin_com12"];
-            $data["registro"]["espec_itin_com13"]=$reg["espec_itin_com13"];
-            $data["registro"]["espec_itin_com14"]=$reg["espec_itin_com14"];
-            $data["registro"]["espec_itin_com15"]=$reg["espec_itin_com15"];
-            $data["registro"]["espec_itin_com16"]=$reg["espec_itin_com16"];
-            $data["registro"]["espec_itin_com17"]=$reg["espec_itin_com17"];
-            $data["registro"]["espec_itin_com18"]=$reg["espec_itin_com18"];
+        elseif($tabla=="premat_2bach_c"){
+            $data["registro"]["primer_idioma"]=$reg["materia1"];
+            $data["registro"]["modalidad1"]=$reg["materia2"];
+            $data["registro"]["modalidad2"]=$reg["materia3"];
+            $data["registro"]["modalidad3"]=$reg["materia4"];
+            $data["registro"]["optativa1"]=$reg["materia5"];
+            $data["registro"]["optativa2"]=$reg["materia6"];
+            $data["registro"]["optativa3"]=$reg["materia7"];
+            $data["registro"]["optativa4"]=$reg["materia8"];
+            $data["registro"]["optativa5"]=$reg["materia9"];
+            $data["registro"]["optativa6"]=$reg["materia10"];
+            $data["registro"]["optativa7"]=$reg["materia11"];
+            $data["registro"]["optativa8"]=$reg["materia12"];
+            $data["registro"]["optativa9"]=$reg["materia13"];
+            $data["registro"]["optativa10"]=$reg["materia14"];
+            $data["registro"]["optativa11"]=$reg["materia15"];
+            $data["registro"]["optativa12"]=$reg["materia16"];
+            $data["registro"]["optativa13"]=$reg["materia17"];
+            $data["registro"]["optativa14"]=$reg["materia18"];
+            $data["registro"]["optativa15"]=$reg["materia19"];
         }
     }
     else if($tabla=="mat_ciclos"){

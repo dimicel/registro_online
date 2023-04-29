@@ -138,3 +138,21 @@ function revisaNIF_Pasaporte(obj){
     }
     obj.value=aux;
 }
+
+
+//Limita un grupo de checkbox a que puedan activar si hay menos de un número de ellos activo
+function limitCheckboxes(selector, maxCount) {
+    const checkboxes = document.querySelectorAll(selector);
+  
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener('click', (e) => {
+        const checkedCount = document.querySelectorAll(`${selector}:checked`).length;
+  
+        if (checkedCount > maxCount) {
+          e.preventDefault();
+          checkbox.checked = false;
+        }
+      });
+    });
+  }
+  
