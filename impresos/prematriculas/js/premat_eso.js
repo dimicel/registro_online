@@ -362,7 +362,7 @@ function pasaPagina(p) {
         6:{
             pag:"eso_html/pagina_final.html?q="+Date.now().toString(),
             valid:"creaValidatorPagina6()",
-            validExec:"#form_pagina_5"+arrayCurso[_curso]
+            validExec:"#form_pagina_5"+arrayCursos[_curso]
         }
     };
 
