@@ -365,13 +365,13 @@ function pasaPagina(p) {
             validExec:"#form_pagina_5"+arrayCursos[_curso]
         }
     };
-    alert(pagina+"     "+arrayPaginas[pagina].pag);return;
+    
     if (pagina == 1) {
         $('#pagina_2').css('display', 'none');
         $('#pagina_1').fadeIn(500);
     } else {
         if ($(arrayPaginas[pagina].validExec).valid()) {
-            if (document.getElementById(arrayPaginas[pagina].pag).innerHTML.length == 0) {
+            if (document.getElementById("pagina_"+pagina).innerHTML.length == 0) {
                 $("#pagina_" + pagina).load(arrayPaginas[pagina].pag, function() {
                     if (pag!=6 ) eval(arrayPaginas[pagina].valid);
                     pasaPagina_actualizaHTML(pagina);
