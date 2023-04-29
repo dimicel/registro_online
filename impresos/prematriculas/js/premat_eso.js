@@ -355,8 +355,8 @@ function pasaPagina(p) {
             validExec:"#form_pagina_3"
         },
         5:{
-            pag:"eso_html/pagina5"+arrayCurso[_curso]+".html?q="+Date.now().toString(),
-            valid:"creaValidatorPagina5"+arrayCurso[_curso]+"()",
+            pag:"eso_html/pagina5"+arrayCursos[_curso]+".html?q="+Date.now().toString(),
+            valid:"creaValidatorPagina5"+arrayCursos[_curso]+"()",
             validExec:"#form_pagina_4"
         },
         6:{
