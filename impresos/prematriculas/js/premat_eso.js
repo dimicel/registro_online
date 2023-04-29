@@ -372,7 +372,6 @@ function pasaPagina(p) {
     } else {
         if ($(arrayPaginas[pagina].validExec).valid()) {
             if (document.getElementById("pagina_"+pagina).innerHTML.length == 0) {
-                alert(arrayPaginas[pagina].pag);
                 $("#pagina_" + pagina).load(arrayPaginas[pagina].pag, function() {
                     if (pagina!=6 ) eval(arrayPaginas[pagina].valid);
                     pasaPagina_actualizaHTML(pagina);
