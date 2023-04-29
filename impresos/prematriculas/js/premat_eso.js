@@ -370,8 +370,11 @@ function pasaPagina(p) {
         $('#pagina_2').css('display', 'none');
         $('#pagina_1').fadeIn(500);
     } else {*/
-    alert(arrayPaginas[pagina].validExec.length);
-    if(arrayPaginas[pagina].validExec.length>0){
+    if(arrayPaginas[pagina].validExec==""){
+        $('#pagina_2').css('display', 'none');
+        $('#pagina_1').fadeIn(500);
+    }
+    else {
         if ($(arrayPaginas[pagina].validExec).valid()) {
             if (document.getElementById("pagina_"+pagina).innerHTML.length == 0) {
                 $("#pagina_" + pagina).load(arrayPaginas[pagina].pag, function() {
