@@ -374,7 +374,7 @@ function pasaPagina(p) {
             if (document.getElementById("pagina_"+pagina).innerHTML.length == 0) {
                 alert(arrayPaginas[pagina].pag);
                 $("#pagina_" + pagina).load(arrayPaginas[pagina].pag, function() {
-                    if (pag!=6 ) eval(arrayPaginas[pagina].valid);
+                    if (pagina!=6 ) eval(arrayPaginas[pagina].valid);
                     pasaPagina_actualizaHTML(pagina);
                 });
             } else {
