@@ -366,10 +366,7 @@ function pasaPagina(p) {
         }
     };
     
-    /*if (pagina == 1) {
-        $('#pagina_2').css('display', 'none');
-        $('#pagina_1').fadeIn(500);
-    } else {*/
+    
     if(arrayPaginas[pagina].validExec==""){
         $('#pagina_2').css('display', 'none');
         $('#pagina_1').fadeIn(500);
