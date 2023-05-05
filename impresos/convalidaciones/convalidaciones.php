@@ -44,8 +44,13 @@
             </div>
         </div>
     </header>
-    <section id="intro">
+    <section id="seccion-intro">
         <div class="container w-100">
+            <div class="row">
+                <div class="col">
+                    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="javascript:window.history.back();" />
+                </div>
+            </div>
             <div class="d-flex flex-row">
                 <div class="col">
                     <div class="row">
@@ -67,7 +72,7 @@
         </div>
     </section>
 
-    <section id="form-consejeria" style="display:none">
+    <section id="seccion-consejeria" style="display:none">
         <div class="container w-100">
             <div class="d-flex flex-row">
                 <div class="col">

@@ -62,11 +62,18 @@ function seleccion(obj){
         open("instrucciones/instrucciones.pdf","_blank");
     }
     else if (obj.id=="consejeria"){
+        $("#seccion-intro").hide();
+        $("#seccion-consejeria").show();
 
     }
     else if(obj.id=="centro_ministerio"){
 
     }
+}
+
+function vuelve(){
+    $("#seccion-intro").show();
+    $("#seccion-consejeria").hide();
 }
 
 
