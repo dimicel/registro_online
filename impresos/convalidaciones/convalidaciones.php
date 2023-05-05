@@ -50,9 +50,9 @@
                 <div class="col">
                     <div class="row">
                         <div class="col">
-                            <input type="button" id="instrucciones" class="btn btn-success textoboton" value="Instrucciones" onclick="instrucciones()"><br />
-                            <input style="margin-top:10px" type="button" id="consejeria" class="btn btn-success textoboton" value="Anexo X -> Convalidaciones  cuyo reconocimiento corresponde a la Consejería de Educación" onclick="seleccion('anexo_x.html')" /><br />
-                            <input style="margin-top:10px" type="button" id="centro_ministerio" class="btn btn-success textoboton" value="Anexo V -> Convalidaciones cuyo reconocimiento corresponde al Centro y al Ministerio de Educación" onclick="seleccion('ministerio.html')" />
+                            <input type="button" id="instrucciones" class="btn btn-success textoboton" value="Instrucciones" onclick="seleccion(this)"><br />
+                            <input style="margin-top:10px" type="button" id="consejeria" class="btn btn-success textoboton" value="Anexo X -> Convalidaciones  cuyo reconocimiento corresponde a la Consejería de Educación" onclick="seleccion(this)" /><br />
+                            <input style="margin-top:10px" type="button" id="centro_ministerio" class="btn btn-success textoboton" value="Anexo V -> Convalidaciones cuyo reconocimiento corresponde al Centro y al Ministerio de Educación" onclick="seleccion(this)" />
                         </div>
                     </div>
                     <div class="row">

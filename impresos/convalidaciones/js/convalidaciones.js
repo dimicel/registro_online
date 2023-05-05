@@ -55,8 +55,18 @@ $(document).ready(function() {
 
 });
 
-function instrucciones(){
-	open("instrucciones/instrucciones.pdf","_blank");
+
+
+function seleccion(obj){
+    if (obj.id=="instrucciones"){
+        open("instrucciones/instrucciones.pdf","_blank");
+    }
+    else if (obj.id=="consejeria"){
+
+    }
+    else if(obj.id=="centro_ministerio"){
+
+    }
 }
 
 
