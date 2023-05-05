@@ -105,6 +105,11 @@
                     <a id="docs_premat_bach" class="enlaceEnabled" href="" target="_self">Prematrícula de Bachillerato</a><br>
                 </div>
 
+                <span>FORMACIÓN PROFESIONAL</span>
+                <div style="display:list-item; margin-left:50px">
+                    <a id="docs_convalidaciones" class="enlaceEnabled" href="impresos/convalidaciones/convalidaciones.php" target="_self">Convalidaciones</a><br>
+                </div>
+
                 <span>OTROS</span>
                 <div style="display:list-item; margin-left:50px">
                     <a id="docs_transporte_escolar" class="enlaceEnabled" href="impresos/transporte/transporte.php" target="_self">Transporte Escolar</a><br>
