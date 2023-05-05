@@ -46,12 +46,12 @@
     </header>
     <section id="seccion-intro">
         <div class="container w-100">
-            <div class="row">
+            <div class="flex-row">
                 <div class="col">
                     <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="javascript:window.history.back();" />
                 </div>
             </div>
-            <div class="d-flex row">
+            <div class="flex-row">
                 <div class="col">
                     <div class="row">
                         <div class="col">
