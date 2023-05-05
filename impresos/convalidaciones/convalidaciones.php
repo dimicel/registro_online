@@ -45,7 +45,13 @@
         </div>
         <div class="d-flex flex-row">
             <div class="col">
-                
+                <span style="color:brown; font-size:24px">RESOLUCIÓN DE LAS CONVALIDACIONES</span>
+                <span style="color:black; font-size:16px">
+                    <ul>
+                        <li>Las convalidaciones resueltas positivamente por la Dirección del centro serán reconocidas automáticamente en el expediente del alumno.</li>
+                        <li>Para que las convalidaciones resueltas por Consejería o el Ministerio sean reconocidas en el expediente, será necesario que el alumno presente la resolución positiva en el centro.</li>
+                    </ul>
+                </span>
             </div>
         </div>
 
