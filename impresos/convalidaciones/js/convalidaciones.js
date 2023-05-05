@@ -55,4 +55,8 @@ $(document).ready(function() {
 
 });
 
+function instrucciones(){
+	open("instrucciones/instrucciones.pdf","_blank");
+}
+
 
