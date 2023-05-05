@@ -102,7 +102,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para obtener el número de registros de cada tabla con revisado=false
-$sql = "SELECT COUNT(*) AS num_registros, table_name FROM information_schema.columns WHERE table_schema = '$dbname' AND column_name = 'revisado' AND column_default = '0' GROUP BY table_name";
+$sql = "SELECT COUNT(*) AS num_registros, table_name FROM information_schema.columns WHERE table_schema = '$dbname' AND column_name = 'procesado' AND column_default = '0' GROUP BY table_name";
 
 $resultado = $conn->query($sql);
 
