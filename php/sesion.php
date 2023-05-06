@@ -28,6 +28,14 @@ if ($respuesta["error"]=="ok"){
     $respuesta["anno_ini_curso_docs"]=calculaCurso_ini_docs();
     $respuesta["mes"]=$mes;
     $respuesta["dia"]=$dia;
+    if (!isset($_SESSION['primera_carga'])){
+        $respuesta['primera_carga']=true;
+        $_SESSION['primera_carga']=false;
+    }
+    else{
+        $respuesta['primera_carga']=false;
+    }
+
 }
 
 exit (json_encode($respuesta));

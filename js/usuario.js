@@ -15,6 +15,7 @@ var mes_sesion;
 var dia_sesion;
 var tipo_matricula;
 var datos_usu_vacios=false;
+var primera_carga=true;
 
 
 
@@ -52,6 +53,7 @@ $(function() {
             anno_ini_curso = resp["anno_ini_curso"];
             if (mes_sesion != 6) anno_curso_usu = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
             else anno_curso_usu = (anno_ini_curso + 1) + "-" + (anno_ini_curso + 2);
+            primera_carga=resp["primera_carga"];
         }
         return $.post("php/usu_verificapremat.php", {}, () => {}, "json");
     });
@@ -148,7 +150,7 @@ $(function() {
         }
        
         document.getElementById("cargando").style.display = "none";
-        if (datos_usu_vacios)alerta("Es recomendable cumplimentar los datos en 'Mis datos', en la parte superior del menú.<br>Le facilitará el trabajo a la hora de cumplimentar los formularios.","SUGERENCIA");
+        if (datos_usu_vacios && primera_carga)alerta("Es recomendable cumplimentar los datos en 'Mis datos', en la parte superior del menú.<br>Le facilitará el trabajo a la hora de cumplimentar los formularios.","SUGERENCIA");
         listaSolicitudes();
     });
 
