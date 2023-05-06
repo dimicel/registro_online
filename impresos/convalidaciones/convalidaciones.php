@@ -110,7 +110,7 @@
                                     <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass"/><label>Pasaporte</label>
                                     <label style="margin-left: 20px">Nº documento:</label>
                                     <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9" title="Sin espacios ni guiones" /><br><br>
-                                    <label>Dirección (calle, plaza, número, escalera, puerta ...</label>
+                                    <label>Dirección (calle, plaza, número, escalera, puerta ...)</label>
                                     <label style="margin-left:145px">C.P.</label>
                                     <input name="direccion" type="text" id="direccion" size="70" maxlength="70" />
                                     <input style="margin-left:6px" name="cp" type="text" id="cp" size="6" maxlength="5" />
