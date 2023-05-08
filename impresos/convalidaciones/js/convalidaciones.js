@@ -78,8 +78,8 @@ function vuelve(){
 
 function selGrado(obj){
     sel=document.getElementById("ciclos");
-    alert(obj.selectedIndex.value)
-    if (obj.selectedIndex.value==""){
+    alert(obj.value)
+    if (obj.value==""){
         alert(1);
         sel.innerHTML="";
         option = document.createElement('option');
@@ -102,7 +102,7 @@ function selGrado(obj){
             sel.innerHTML="";
             option = document.createElement('option');
             option.value = "";
-            if (obj.selectedIndex.value=="") option.text = "Selecciona grado ...";
+            if (obj.value=="") option.text = "Selecciona grado ...";
             else option.text = "Selecciona ciclo ...";
             sel.appendChild(option);
             for (i=0;i<resp["datos"].length;i++){
