@@ -77,11 +77,12 @@ function vuelve(){
 }
 
 function selGrado(obj){
-    seleccionado=obj.selectedIndex;
-    if (obj.value!="" && obj.options.length==3){
-        obj.removeChild(obj.options[0]);
-        obj.selectedIndex=seleccionado--;
-    } 
+    sel=document.getElementById("ciclos");
+    if (obj.value=""){
+        sel.innerHTML="";
+        option.text = "Selecciona grado ...";
+        return;
+    }
     $.post("php/listaciclos.php",{grado:obj.value},(resp)=>{
         if (resp["error"]=="servidor"){
             alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
@@ -93,7 +94,6 @@ function selGrado(obj){
             alerta("No se encuentran ciclos formativos registrados.","SELECT SIN CICLOS");
         }
         else if(resp["error"]=="ok"){
-            sel=document.getElementById("ciclos");
             sel.innerHTML="";
             const option = document.createElement('option');
             option.value = "";
