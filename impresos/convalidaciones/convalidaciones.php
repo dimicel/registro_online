@@ -109,40 +109,49 @@
                         </div>
                     </div>
                     <div class="row">
-
-                    </div>
-                        <div class="ui-widget-header ui-corner-all ancho" style="display:inline-block; padding-left:10px; padding-right:10px; padding-bottom:10px;">
-                            <div style="display:inline-block; margin-top:20px">
-                                <div style="display:inline-block;">
-                                    <label style="margin-left: 20px">NIF/NIE/Pasaporte:</label>
-                                    <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9" title="Sin espacios ni guiones" /><br><br>
-                                    <label>Dirección (calle, plaza, número, escalera, puerta ...)</label>
-                                    <label style="margin-left:145px">C.P.</label>
-                                    <input name="direccion" type="text" id="direccion" size="70" maxlength="70" />
-                                    <input style="margin-left:6px" name="cp" type="text" id="cp" size="6" maxlength="5" />
-                                </div>
-                                <div style="clear:both"></div>
-                                <div style="display:inline-block;">
-                                    <label>Localidad</label><br /><input type="text" name="localidad" id="localidad" size="35" maxlength="35" />
-                                </div>
-                                <div style="display:inline-block;">
-                                    <label>Provincia</label><br /><input type="text" name="provincia" id="provincia" size="25" maxlength="25" />
-                                </div>
-                                <div style="clear:both"></div>
-                                <div style="display:inline-block;">
-                                    <label>Tlf. Fijo:</label><br /><input type="text" name="tlf_dom" id="tlf_dom" size="10" maxlength="9" />
-                                </div>
-                                <div style="display:inline-block; margin-left:10px">
-                                    <label>Tlf. Móvil:</label><br /><input type="text" name="tlf_mov" id="tlf_mov" size="10" maxlength="9" />
-                                </div>
-                                <div style="display:inline-block; margin-left:10px">
-                                    <label>Email:</label><br /><input type="text" name="email" id="email" size="30" maxlength="30" />
-                                </div>
-                            </div>
+                        <div class="col-1">
+                            <label>Localidad</label>
                         </div>
-
-
-
+                        <div class="col-1 offset-3">
+                            <label>Provincia</label>
+                        </div>
+                        <div class="col-1 offset-3">
+                            <label>CP</label>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4">
+                            <input type="text" name="localidad" id="localidad" size="35" maxlength="35" />
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="provincia" id="provincia" size="25" maxlength="25" />
+                        </div>
+                        <div class="col">
+                            <input type="text" name="cp" id="cp" size="5" maxlength="5" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <label>Tlf. Fijo</label>
+                        </div>
+                        <div class="col-1 offset-3">
+                            <label>Tlf. Móvil</label>
+                        </div>
+                        <div class="col-1 offset-3">
+                            <label>Email</label>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4">
+                            <input type="text" name="tlf_fijo" id="tlf_fijo" size="10" maxlength="9" />
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="tlf_movil" id="tlf_movil" size="10" maxlength="9" />
+                        </div>
+                        <div class="col">
+                            <input type="text" name="email" id="email" size="30" maxlength="30" />
+                        </div>
+                    </div>
                         <div id="expone" class="ui-widget-header ui-corner-all ancho" style="display:inline-block; padding-left:10px; padding-right:10px; padding-bottom:10px; margin-top:10px;">
                             <p style="font-size: larger; color: #900; font-weight: bold;">MÓDULOS QUE SOLICITA CONVALIDAR</p>
                             <div id="div_ciclo" style="display:inline-block">
