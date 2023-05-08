@@ -92,7 +92,8 @@ function selgrado(obj){
             sel=document.getElementById("ciclos");
             const option = document.createElement('option');
             option.value = "";
-            option.text = "Selecciona uno ...";
+            if (obj.selectedIndex==0) option.text = "Selecciona grado ...";
+            else option.text = "Selecciona ciclo ...";
             sel.appendChild(option);
             for (i=0;i<resp.length();i++){
                 const option = document.createElement('option');

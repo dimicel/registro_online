@@ -142,12 +142,12 @@
                             <div id="div_ciclo" style="display:inline-block">
                                 <label>Ciclo Formativo de Grado</label>
                                 <select name="grado" id="grado" size="1" onchange="selGrado(this)">
-                                    <option value=""></option>
+                                    <option value="">Seleccione uno...</option>
                                     <option value="Medio">Medio</option>
                                     <option value="Superior">Superior</option>
                                 </select> 
                             </div>
-                            <div id="div_grado_medio" style="display:none; margin-left:10px">
+                            <div id="div_grado_medio" style=" margin-left:10px">
                                 <label>Denominación:</label>
                                 <select name="ciclos" id="ciclos" size="1">
                                 </select>
