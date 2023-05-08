@@ -78,7 +78,7 @@
                 <div class="col">
                     <div class="row d-flex w-100 justify-content-center">
                         <div class="col">
-                            <h3>SOLICITUD CONVALIDACIONES PARA EL MINISTERIO</h3>
+                            <h5>SOLICITUD CONVALIDACIONES PARA EL MINISTERIO</h5>
                         </div>
                     </div>
                     <div class="row ">
@@ -90,12 +90,12 @@
                         <div class="col-1">
                             <label>Nombre</label>
                         </div>
-                        <div class="col-1 offset-4">
+                        <div class="col-1 offset-3">
                             <label>Apellidos</label>
                         </div>
                     </div>
                     <div class="row ">
-                        <div class="col-5">
+                        <div class="col-4">
                             <input type="text" name="nombre" id="nombre" size="40" maxlength="40"/>
                         </div>
                         <div class="col">
