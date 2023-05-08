@@ -78,7 +78,7 @@ function vuelve(){
 
 function selGrado(obj){
     sel=document.getElementById("ciclos");
-    if (obj.selectedIndex.value=""){
+    if (obj.selectedIndex.value==""){
         sel.innerHTML="";
         option.text = "Selecciona grado ...";
         return;
@@ -97,7 +97,7 @@ function selGrado(obj){
             sel.innerHTML="";
             const option = document.createElement('option');
             option.value = "";
-            if (obj.selectedIndex.value="") option.text = "Selecciona grado ...";
+            if (obj.selectedIndex.value=="") option.text = "Selecciona grado ...";
             else option.text = "Selecciona ciclo ...";
             sel.appendChild(option);
             for (i=0;i<resp["datos"].length;i++){
