@@ -95,7 +95,7 @@ function selGrado(obj){
             if (obj.selectedIndex==0) option.text = "Selecciona grado ...";
             else option.text = "Selecciona ciclo ...";
             sel.appendChild(option);
-            for (i=0;i<resp["datos"].length();i++){
+            for (i=0;i<resp["datos"].length;i++){
                 const option = document.createElement('option');
                 option.value = resp["datos"][i];
                 option.text = resp["datos"][i];
