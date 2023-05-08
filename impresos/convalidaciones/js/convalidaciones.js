@@ -79,8 +79,12 @@ function vuelve(){
 function selGrado(obj){
     sel=document.getElementById("ciclos");
     if (obj.selectedIndex.value==""){
+        alert(1);
         sel.innerHTML="";
+        option = document.createElement('option');
+        option.value = "";
         option.text = "Selecciona grado ...";
+        sel.appendChild(option);
         return;
     }
     $.post("php/listaciclos.php",{grado:obj.value},(resp)=>{
@@ -95,7 +99,7 @@ function selGrado(obj){
         }
         else if(resp["error"]=="ok"){
             sel.innerHTML="";
-            const option = document.createElement('option');
+            option = document.createElement('option');
             option.value = "";
             if (obj.selectedIndex.value=="") option.text = "Selecciona grado ...";
             else option.text = "Selecciona ciclo ...";
