@@ -93,22 +93,28 @@
                         <div class="col-1 offset-3">
                             <label>Apellidos</label>
                         </div>
+                        <div class="col-2 offset-3">
+                            <label>NIF/NIE/Pasaporte</label>
+                        </div>
                     </div>
                     <div class="row ">
                         <div class="col-4">
                             <input type="text" name="nombre" id="nombre" size="40" maxlength="40"/>
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             <input type="text" name="apellidos" id="apellidos" size="60" maxlength="60"/>
                         </div>
+                        <div class="col">
+                        <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9"/><br><br>
+                        </div>
+                    </div>
+                    <div class="row">
+
                     </div>
                         <div class="ui-widget-header ui-corner-all ancho" style="display:inline-block; padding-left:10px; padding-right:10px; padding-bottom:10px;">
                             <div style="display:inline-block; margin-top:20px">
                                 <div style="display:inline-block;">
-                                    <br>
-                                    <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label>NIF/NIE</label>
-                                    <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass"/><label>Pasaporte</label>
-                                    <label style="margin-left: 20px">Nº documento:</label>
+                                    <label style="margin-left: 20px">NIF/NIE/Pasaporte:</label>
                                     <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9" title="Sin espacios ni guiones" /><br><br>
                                     <label>Dirección (calle, plaza, número, escalera, puerta ...)</label>
                                     <label style="margin-left:145px">C.P.</label>
