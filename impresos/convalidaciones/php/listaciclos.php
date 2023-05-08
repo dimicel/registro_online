@@ -12,7 +12,7 @@ if ($mysqli->errno>0) {
 
 $grado=$_POST["grado"];
 
-$c=$mysqli->query("select * from ciclos where grado='$grado' order by ciclo");
+$c=$mysqli->query("select * from ciclos where grado='$grado' order by denominacion");
 if ($mysqli->errno>0){
     $resp["error"]="error_consulta";
     exit (json_encode($resp));
@@ -24,7 +24,7 @@ elseif ($c->num_rows==0){
 else {
     $cont=0;
     while($r=$c->fetch_assoc()){
-        $resp["datos"][$cont]=$r["ciclo"];
+        $resp["datos"][$cont]=$r["denominacion"];
         $cont++;
     }
     $resp["error"]="ok";
