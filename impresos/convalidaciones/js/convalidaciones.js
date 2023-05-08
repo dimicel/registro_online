@@ -77,7 +77,11 @@ function vuelve(){
 }
 
 function selGrado(obj){
-    if (obj.value!="" && obj.options.length==3) obj.removeChild(obj.options[0]);
+    seleccionado=obj.selectedIndex;
+    if (obj.value!="" && obj.options.length==3){
+        obj.removeChild(obj.options[0]);
+        obj.selectedIndex=seleccionado--;
+    } 
     $.post("php/listaciclos.php",{grado:obj.value},(resp)=>{
         if (resp["error"]=="servidor"){
             alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
