@@ -149,30 +149,7 @@
                             </div>
                             <div id="div_grado_medio" style="display:none; margin-left:10px">
                                 <label>Denominación:</label>
-                                <select name="gmedio" id="gmedio" size="1">
-                                    <option value=""></option>
-                                    <option value="Cocina y Gastronomía">Cocina y Gastronomía</option>
-                                    <option value="Gestión Administrativa">Gestión Administrativa</option>
-                                    <option value="Instalaciones Eléctricas y Automáticas">Instalaciones Eléctricas y Automáticas</option>
-                                    <option value="Instalaciones Frigoríficas y de Climatización">Instalaciones Frigoríficas y de Climatización</option>
-                                    <option value="Instalaciones de Producción de Calor">Instalaciones de Producción de Calor</option>
-                                    <option value="Panadería, Repostería y Confitería">Panadería, Repostería y Confitería</option>
-                                    <option value="Servicios en Restauración">Servicios en Restauración</option>
-                                </select>
-                            </div>
-                            <div id="div_grado_superior" style="display:none; margin-left:10px">
-                                <label>Denominación: </label>
-                                <select name="gsuperior" id="gsuperior" size="1">
-                                    <option value=""></option>
-                                    <option value="Administración y Finanzas">Administración y Finanzas</option>
-                                    <option value="Agencias de Viajes y Gestión de Eventos">Agencias de Viajes y Gestión de Eventos</option>
-                                    <option value="Asistencia a la Dirección">Asistencia a la Dirección</option>
-                                    <option value="Automatización y Robótica Industrial">Automatización y Robótica Industrial</option>
-                                    <option value="Dirección de Cocina">Dirección de Cocina</option>
-                                    <option value="Gestión de Alojamientos Turísticos">Gestión de Alojamientos Turísticos</option>
-                                    <option value="Guía, Información y Asistencia Turísticas">Guía, Información y Asistencia Turísticas</option>
-                                    <option value="Mantenimiento de Instalaciones Térmicas y Fluidos">Mantenimiento de Instalaciones Térmicas y Fluidos</option>
-                                    <option value="Sistemas Electrotécnicos y Automatizados">Sistemas Electrotécnicos y Automatizados</option>
+                                <select name="ciclos" id="ciclos" size="1">
                                 </select>
                             </div>
                             <div style="clear:both"></div>

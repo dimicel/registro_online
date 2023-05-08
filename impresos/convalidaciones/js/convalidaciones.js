@@ -49,6 +49,7 @@ $(document).ready(function() {
     });
     dat3 = dat2.then(() => {
         curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
+
     });
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
@@ -74,6 +75,34 @@ function seleccion(obj){
 function vuelve(){
     $("#seccion-intro").show();
     $("#seccion-consejeria").hide();
+}
+
+function selgrado(obj){
+    $.post("php/listaciclos.php",{grado:obj.value},(resp)=>{
+        if (resp["error"]=="servidor"){
+            alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+        }
+        else if(resp["error"]=="error_consulta"){
+            alerta("Hay un problema con la base de datos. Inténtelo más tarde.","ERROR DB");
+        }
+        else if(resp["error"]=="no_ciclos"){
+            alerta("No se encuentran ciclos formativos registrados.","SELECT SIN CICLOS");
+        }
+        else if(resp["error"]=="ok"){
+            sel=document.getElementById("ciclos");
+            const option = document.createElement('option');
+            option.value = "";
+            option.text = "Selecciona uno ...";
+            sel.appendChild(option);
+            for (i=0;i<resp.length();i++){
+                const option = document.createElement('option');
+                option.value = resp[i];
+                option.text = resp[i];
+                sel.appendChild(option);
+            }
+            sel.selectedIndex=0;
+        }
+    },"json");
 }
 
 
