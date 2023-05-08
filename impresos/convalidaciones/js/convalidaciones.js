@@ -77,7 +77,7 @@ function vuelve(){
 }
 
 function selGrado(obj){
-    if (obj.value!="") obj.removeChild(obj.options[0]);
+    if (obj.value!="" && obj.options.length==3) obj.removeChild(obj.options[0]);
     $.post("php/listaciclos.php",{grado:obj.value},(resp)=>{
         if (resp["error"]=="servidor"){
             alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
@@ -93,7 +93,7 @@ function selGrado(obj){
             sel.innerHTML="";
             const option = document.createElement('option');
             option.value = "";
-            if (obj.selectedIndex==0) option.text = "Selecciona grado ...";
+            if (obj.value="") option.text = "Selecciona grado ...";
             else option.text = "Selecciona ciclo ...";
             sel.appendChild(option);
             for (i=0;i<resp["datos"].length;i++){
