@@ -86,6 +86,11 @@
                             <input type="button" id="volver" class="btn btn-success textoboton" value="<<< Volver" onclick="vuelve()"/>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <h6>DATOS PERSONALES</h6>
+                        </div>
+                    </div>
                     <div class="row ">
                         <div class="col-1">
                             <label>Nombre</label>
