@@ -23,7 +23,6 @@ $(document).ready(function() {
             anno_ini_curso = resp["anno_ini_curso"];
             document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
             document.getElementById("anno_curso").value = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
-            document.getElementById("anno_curso_premat").value = (anno_ini_curso + 1) + "/" + (anno_ini_curso + 2);
             document.getElementById("email").value = email;
 
             if (id_nie.trim() == "" || anno_ini_curso.toString().trim() == "") {
@@ -77,7 +76,7 @@ function vuelve(){
     $("#seccion-consejeria").hide();
 }
 
-function selgrado(obj){
+function selGrado(obj){
     $.post("php/listaciclos.php",{grado:obj.value},(resp)=>{
         if (resp["error"]=="servidor"){
             alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
