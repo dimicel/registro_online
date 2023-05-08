@@ -150,6 +150,7 @@
                             <div id="div_grado_medio" style=" margin-left:10px">
                                 <label>Denominación:</label>
                                 <select name="ciclos" id="ciclos" size="1">
+                                <option value="">Seleccione grado...</option>
                                 </select>
                             </div>
                             <div style="clear:both"></div>

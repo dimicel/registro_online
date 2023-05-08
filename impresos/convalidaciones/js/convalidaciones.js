@@ -90,6 +90,7 @@ function selgrado(obj){
         }
         else if(resp["error"]=="ok"){
             sel=document.getElementById("ciclos");
+            sel.innerHTML="";
             const option = document.createElement('option');
             option.value = "";
             if (obj.selectedIndex==0) option.text = "Selecciona grado ...";
