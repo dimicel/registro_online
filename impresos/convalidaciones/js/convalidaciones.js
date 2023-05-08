@@ -78,9 +78,7 @@ function vuelve(){
 
 function selGrado(obj){
     sel=document.getElementById("ciclos");
-    alert(obj.value)
     if (obj.value==""){
-        alert(1);
         sel.innerHTML="";
         option = document.createElement('option');
         option.value = "";
