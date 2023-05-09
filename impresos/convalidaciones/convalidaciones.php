@@ -57,14 +57,14 @@
                         <div class="col">
                             <center>
                             <input type="button" id="instrucciones" class="btn btn-success textoboton" value="Instrucciones" onclick="seleccion(this)">
-                            <input style="margin-top:10px" type="button" id="consejeria" class="btn btn-success textoboton" value="Convalidaciones  Consejería de Educación" onclick="seleccion(this)" />
-                            <input style="margin-top:10px" type="button" id="centro_ministerio" class="btn btn-success textoboton" value="Convalidaciones Centro Educativo y Ministerio de Educación" onclick="seleccion(this)" />
+                            <input type="button" id="consejeria" class="btn btn-success textoboton" value="Convalidaciones  Consejería de Educación" onclick="seleccion(this)" />
+                            <input type="button" id="centro_ministerio" class="btn btn-success textoboton" value="Convalidaciones Centro Educativo y Ministerio de Educación" onclick="seleccion(this)" />
                             </center>
                         </div>
                     </div>
                     <div class="row mt-1">
                         <div class="col">
-                            <h4 style="color:brown">RESOLUCIÓN DE LAS CONVALIDACIONES</h4>
+                            <h5 style="color:brown; font-weight:bold">RESOLUCIÓN DE LAS CONVALIDACIONES</h5>
                             <p>Las convalidaciones resueltas positivamente por la Dirección del centro serán reconocidas automáticamente en el expediente del alumno.</p>
                             <p>Para que las convalidaciones resueltas por Consejería o el Ministerio sean reconocidas en el expediente, será necesario que el alumno presente la resolución positiva en el centro.</p>  
                         </div>
