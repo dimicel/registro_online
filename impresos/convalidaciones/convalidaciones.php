@@ -79,7 +79,7 @@
             <div class="d-flex flex-row">
                 <div class="col">
                     <div class="row d-flex w-100 justify-content-center">
-                        <div class="col">
+                        <div class="col" style="text-align: center;">
                             <h5>SOLICITUD CONVALIDACIONES PARA EL MINISTERIO</h5>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col">
-                                    <h6 style="color:brown">DATOS PERSONALES</h6>
+                                    <h6 style="color:brown; font-weight:bold">DATOS PERSONALES</h6>
                                 </div>
                             </div>
                             <div class="row ">
@@ -167,7 +167,7 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col">
-                                    <h6 style="color:brown">MÓDULOS QUE SOLICITA CONVALIDAR</h6>
+                                    <h6 style="color:brown; font-weight:bold">MÓDULOS QUE SOLICITA CONVALIDAR</h6>
                                 </div>
                             </div>
                             <div class="row">
