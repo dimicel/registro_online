@@ -65,7 +65,6 @@ function seleccion(obj){
         $("#seccion-intro").hide();
         $("#seccion-consejeria").show();
         $("#seccion-centro_ministerio").hide();
-
     }
     else if(obj.id=="centro_ministerio"){
         $("#seccion-intro").hide();
@@ -77,6 +76,7 @@ function seleccion(obj){
 function vuelve(){
     $("#seccion-intro").show();
     $("#seccion-consejeria").hide();
+    $("#seccion-centro_ministerio").hide();
 }
 
 function selGrado(obj){
