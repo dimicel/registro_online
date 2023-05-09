@@ -46,7 +46,7 @@
     </header>
     <section id="seccion-intro">
         <div class="container w-100 ui-widget-header ui-corner-all">
-            <div class="flex-row">
+            <div class="flex-row mt-1">
                 <div class="col">
                     <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="javascript:window.history.back();" />
                 </div>
