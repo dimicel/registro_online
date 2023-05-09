@@ -86,110 +86,135 @@
                             <input type="button" id="volver" class="btn btn-success textoboton" value="<<< Volver" onclick="vuelve()"/>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-1 ui-widget-header ui-corner-all">
                         <div class="col">
-                            <h6>DATOS PERSONALES</h6>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-1">
-                            <label>Nombre</label>
-                        </div>
-                        <div class="col-1 offset-3">
-                            <label>Apellidos</label>
-                        </div>
-                        <div class="col-2 offset-3">
-                            <label>NIF/NIE/Pasaporte</label>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-4">
-                            <input type="text" name="nombre" id="nombre" size="40" maxlength="40"/>
-                        </div>
-                        <div class="col-4">
-                            <input type="text" name="apellidos" id="apellidos" size="60" maxlength="60"/>
-                        </div>
-                        <div class="col">
-                        <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9"/><br><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <label>Localidad</label>
-                        </div>
-                        <div class="col-1 offset-3">
-                            <label>Provincia</label>
-                        </div>
-                        <div class="col-1 offset-3">
-                            <label>CP</label>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-4">
-                            <input type="text" name="localidad" id="localidad" size="35" maxlength="35" />
-                        </div>
-                        <div class="col-4">
-                            <input type="text" name="provincia" id="provincia" size="25" maxlength="25" />
-                        </div>
-                        <div class="col">
-                            <input type="text" name="cp" id="cp" size="5" maxlength="5" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <label>Tlf. Fijo</label>
-                        </div>
-                        <div class="col-1 offset-3">
-                            <label>Tlf. Móvil</label>
-                        </div>
-                        <div class="col-1 offset-3">
-                            <label>Email</label>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-4">
-                            <input type="text" name="tlf_fijo" id="tlf_fijo" size="10" maxlength="9" />
-                        </div>
-                        <div class="col-4">
-                            <input type="text" name="tlf_movil" id="tlf_movil" size="10" maxlength="9" />
-                        </div>
-                        <div class="col">
-                            <input type="text" name="email" id="email" size="30" maxlength="30" />
-                        </div>
-                    </div>
-                        <div id="expone" class="ui-widget-header ui-corner-all ancho" style="display:inline-block; padding-left:10px; padding-right:10px; padding-bottom:10px; margin-top:10px;">
-                            <p style="font-size: larger; color: #900; font-weight: bold;">MÓDULOS QUE SOLICITA CONVALIDAR</p>
-                            <div id="div_ciclo" style="display:inline-block">
-                                <label>Ciclo Formativo de Grado</label>
-                                <select name="grado" id="grado" size="1" onchange="selGrado(this)">
-                                    <option value="">Seleccione uno...</option>
-                                    <option value="Medio">Medio</option>
-                                    <option value="Superior">Superior</option>
-                                </select> 
+                            <div class="row">
+                                <div class="col">
+                                    <h6 style="color:brown">DATOS PERSONALES</h6>
+                                </div>
                             </div>
-                            <div id="div_grado_medio" style=" margin-left:10px">
-                                <label>Denominación:</label>
-                                <select name="ciclos" id="ciclos" size="1">
-                                <option value="">Seleccione grado...</option>
-                                </select>
+                            <div class="row ">
+                                <div class="col-1">
+                                    <label>Nombre</label>
+                                </div>
+                                <div class="col-1 offset-3">
+                                    <label>Apellidos</label>
+                                </div>
+                                <div class="col-2 offset-3">
+                                    <label>NIF/NIE/Pasaporte</label>
+                                </div>
                             </div>
-                            <div style="clear:both"></div>
-                            <div style="margin-top: 10px">
-                                <label>Módulos que solicita convalidar: (escribirlos uno a continuación del otro y separados por punto y coma (;), poniendo delante el código del módulo según indica el Real Decreto que establece el Título del Ciclo Formativo al que corresponde, seguio de un guión.)</label><br />
-                                <label>Ejemplo: 0966-Robótica Industrial; 0967-Comunicaciones Industriales</label><a style="margin-left:100px; color:#00C" href="docs/modulos_y_codigos.htm" target="_blank">Ver Códigos y Módulos</a><br />
-                                <textarea name="modulos" cols="107" rows="3" id="modulos" maxlength="630"></textarea>  
+                            <div class="row ">
+                                <div class="col-3">
+                                    <input type="text" name="nombre" id="nombre" size="30" maxlength="40"/>
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" name="apellidos" id="apellidos" size="50" maxlength="60"/>
+                                </div>
+                                <div class="col">
+                                <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9"/><br><br>
+                                </div>
                             </div>
-                            <div style="clear:both"></div>
-                            <div style="margin-top: 10px">
-                                <label>Estudios que aporta (indicar si son LOGSE/ LOE/Estudios universitarios/Otros)</label><br />
-                                <textarea name="estudios" cols="107" rows="3" id="estudios" maxlength="321"></textarea>  
+                            <div class="row">
+                                <div class="col-1">
+                                    <label>Localidad</label>
+                                </div>
+                                <div class="col-1 offset-3">
+                                    <label>Provincia</label>
+                                </div>
+                                <div class="col-1 offset-3">
+                                    <label>CP</label>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-4">
+                                    <input type="text" name="localidad" id="localidad" size="35" maxlength="35" />
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" name="provincia" id="provincia" size="25" maxlength="25" />
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="cp" id="cp" size="5" maxlength="5" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <label>Tlf. Fijo</label>
+                                </div>
+                                <div class="col-1 offset-3">
+                                    <label>Tlf. Móvil</label>
+                                </div>
+                                <div class="col-1 offset-3">
+                                    <label>Email</label>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-4">
+                                    <input type="text" name="tlf_fijo" id="tlf_fijo" size="10" maxlength="9" />
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" name="tlf_movil" id="tlf_movil" size="10" maxlength="9" />
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="email" id="email" size="30" maxlength="30" />
+                                </div>
                             </div>
                         </div>
-
-                        <div style="display:inline-block; margin-top:10px; margin-bottom:30px">
-                            <input type="button" id="generar" value="GENERAR IMPRESO" onclick="generaImpreso()"/>
+                    </div>
+                    <div id="expone" class="row ui-widget-header ui-corner-all ancho" style="display:inline-block; padding-left:10px; padding-right:10px; padding-bottom:10px; margin-top:10px;">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 style="color:brown">MÓDULOS QUE SOLICITA CONVALIDAR</h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div id="div_ciclo" style="display:inline-block">
+                                        <label>Ciclo Formativo de Grado</label>
+                                        <select name="grado" id="grado" size="1" onchange="selGrado(this)">
+                                            <option value="">Seleccione uno...</option>
+                                            <option value="Medio">Medio</option>
+                                            <option value="Superior">Superior</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div id="div_grado_medio" style=" margin-left:10px">
+                                        <label>Denominación:</label>
+                                        <select name="ciclos" id="ciclos" size="1">
+                                        <option value="">Seleccione grado...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label>Módulos que solicita convalidar (<a style="margin-left:10px; color:#00C" href="#" >(Clic AQUÍ para añadir o quitar módulos)</a>)</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <textarea name="modulos" cols="107" rows="3" id="modulos" maxlength="1000" readonly></textarea>  
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                <label>Estudios que aporta (indicar si son LOGSE/ LOE/Estudios universitarios/Otros)</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                <textarea name="estudios" cols="107" rows="3" id="estudios" maxlength="1000"></textarea>
+                                </div>
+                            </div>
                         </div>
-                    
+                    </div>
+                    <div class="flex-row">
+                        <div class="col">
+                            <input type="button" id="generar" value="REGISTRAR SOLICITUD" onclick="registraSol()"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>        
