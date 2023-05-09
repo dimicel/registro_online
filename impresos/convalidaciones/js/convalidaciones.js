@@ -120,7 +120,6 @@ function selGrado(obj){
 
 function selModulos(e){
     e.preventDefault();
-    alert(1);
     if (document.getElementById("ciclos").selectedIndex==0){
         alerta("Seleccione antes un ciclo formativo.","CICLO SIN SELECCIÓN");
         return;
