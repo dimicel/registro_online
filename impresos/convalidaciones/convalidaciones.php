@@ -55,9 +55,11 @@
                 <div class="col">
                     <div class="row">
                         <div class="col">
+                            <center>
                             <input type="button" id="instrucciones" class="btn btn-success textoboton" value="Instrucciones" onclick="seleccion(this)">
                             <input style="margin-top:10px" type="button" id="consejeria" class="btn btn-success textoboton" value="Convalidaciones  Consejería de Educación" onclick="seleccion(this)" />
                             <input style="margin-top:10px" type="button" id="centro_ministerio" class="btn btn-success textoboton" value="Convalidaciones Centro Educativo y Ministerio de Educación" onclick="seleccion(this)" />
+                            </center>
                         </div>
                     </div>
                     <div class="row mt-1">
