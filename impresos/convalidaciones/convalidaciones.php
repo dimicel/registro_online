@@ -118,25 +118,25 @@
                                 </div>
                             </div>
                             <div class="row mt-2">
+                                <div class="col-1 offset-3">
+                                    <label for="cp">CP</label>
+                                </div>
                                 <div class="col-1">
                                     <label for="localidad">Localidad</label>
                                 </div>
                                 <div class="col-1 offset-3">
                                     <label for="provincia">Provincia</label>
                                 </div>
-                                <div class="col-1 offset-3">
-                                    <label for="cp">CP</label>
-                                </div>
                             </div>
                             <div class="row ">
+                                <div class="col-1">
+                                    <input type="text" class="form-control" name="cp" id="cp" size="5" maxlength="5" />
+                                </div>
                                 <div class="col-4">
                                     <input type="text" class="form-control" name="localidad" id="localidad" size="35" maxlength="35" />
                                 </div>
                                 <div class="col-4">
                                     <input type="text" class="form-control" name="provincia" id="provincia" size="25" maxlength="25" />
-                                </div>
-                                <div class="col-1">
-                                    <input type="text" class="form-control" name="cp" id="cp" size="5" maxlength="5" />
                                 </div>
                             </div>
                             <div class="row mt-2">
