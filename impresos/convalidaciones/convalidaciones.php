@@ -135,7 +135,7 @@
                                 <div class="col-4">
                                     <input type="text" class="form-control" name="provincia" id="provincia" size="25" maxlength="25" />
                                 </div>
-                                <div class="col">
+                                <div class="col-1">
                                     <input type="text" class="form-control" name="cp" id="cp" size="5" maxlength="5" />
                                 </div>
                             </div>
