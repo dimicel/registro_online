@@ -60,7 +60,7 @@
                             <input style="margin-top:10px" type="button" id="centro_ministerio" class="btn btn-success textoboton" value="Convalidaciones Centro Educativo y Ministerio de Educación" onclick="seleccion(this)" />
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-1">
                         <div class="col">
                             <h4 style="color:brown">RESOLUCIÓN DE LAS CONVALIDACIONES</h4>
                             <p>Las convalidaciones resueltas positivamente por la Dirección del centro serán reconocidas automáticamente en el expediente del alumno.</p>
