@@ -99,10 +99,10 @@
                                 <div class="col-1">
                                     <label>Nombre</label>
                                 </div>
-                                <div class="col-1 offset-3">
+                                <div class="col-1 offset-2">
                                     <label>Apellidos</label>
                                 </div>
-                                <div class="col-2 offset-3">
+                                <div class="col-2 offset-4">
                                     <label>NIF/NIE/Pasaporte</label>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                     <input type="text" name="apellidos" id="apellidos" size="50" maxlength="60"/>
                                 </div>
                                 <div class="col">
-                                <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9"/><br><br>
+                                    <input  type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9"/><br><br>
                                 </div>
                             </div>
                             <div class="row">
