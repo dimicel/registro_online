@@ -108,7 +108,7 @@
                             </div>
                             <div class="row ">
                                 <div class="col-3">
-                                    <input type="text" name="nombre" id="nombre" size="30" maxlength="40"/>
+                                    <input type="text" name="nombre" id="nombre" size="40" maxlength="40"/>
                                 </div>
                                 <div class="col-4 offset-1">
                                     <input type="text" name="apellidos" id="apellidos" size="50" maxlength="60"/>
