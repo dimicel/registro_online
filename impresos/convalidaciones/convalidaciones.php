@@ -192,7 +192,7 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <label>Módulos que solicita convalidar (<a style="color:#00C" href="#">Clic AQUÍ para añadir o quitar módulos</a>)</label>
+                                    <label>Módulos que solicita convalidar (<a style="color:#00C" href="#" onclick="selModulos()">Clic AQUÍ para añadir o quitar módulos</a>)</label>
                                 </div>
                             </div>
                             <div class="row">
