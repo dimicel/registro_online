@@ -171,7 +171,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div id="div_ciclo" style="display:inline-block">
                                         <label>Está matriculado en Ciclo Formativo de Grado</label>
                                         <select name="grado" id="grado" size="1" onchange="selGrado(this)">
