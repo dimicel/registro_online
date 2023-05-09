@@ -80,7 +80,7 @@
                 <div class="col">
                     <div class="row d-flex w-100 justify-content-center">
                         <div class="col" style="text-align: center;">
-                            <h5>SOLICITUD CONVALIDACIONES PARA EL MINISTERIO</h5>
+                            <h5>SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO</h5>
                         </div>
                     </div>
                     <div class="row ">
@@ -173,7 +173,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div id="div_ciclo" style="display:inline-block">
-                                        <label>Ciclo Formativo de Grado</label>
+                                        <label>Está matriculado en Ciclo Formativo de Grado</label>
                                         <select name="grado" id="grado" size="1" onchange="selGrado(this)">
                                             <option value="">Seleccione uno...</option>
                                             <option value="Medio">Medio</option>
@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="col">
                                     <div id="div_grado_medio" style=" margin-left:10px">
-                                        <label>Denominación:</label>
+                                        <label>Denominado:</label>
                                         <select name="ciclos" id="ciclos" size="1">
                                         <option value="">Seleccione grado...</option>
                                         </select>
