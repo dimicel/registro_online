@@ -161,7 +161,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="expone" class="row ui-widget-header ui-corner-all ancho" style="display:inline-block; padding-left:10px; padding-right:10px; padding-bottom:10px; margin-top:10px;">
+                    <div id="expone" class="row ui-widget-header ui-corner-all " >
                         <div class="col">
                             <div class="row">
                                 <div class="col">
