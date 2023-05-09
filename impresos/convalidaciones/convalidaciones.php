@@ -88,7 +88,7 @@
                             <input type="button" id="volver" class="btn btn-success textoboton" value="<<< Volver" onclick="vuelve()"/>
                         </div>
                     </div>
-                    <div class="row mt-1 ui-widget-header ui-corner-all">
+                    <div class="row mt-1 ui-widget-header ui-corner-all" style="padding:10px">
                         <div class="col">
                             <div class="row">
                                 <div class="col">
@@ -163,7 +163,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="expone" class="row ui-widget-header ui-corner-all " >
+                    <div id="expone" class="row ui-widget-header ui-corner-all mt-2"   style="padding:10px">
                         <div class="col">
                             <div class="row">
                                 <div class="col">
