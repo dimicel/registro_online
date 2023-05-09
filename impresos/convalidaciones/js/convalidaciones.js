@@ -64,10 +64,13 @@ function seleccion(obj){
     else if (obj.id=="consejeria"){
         $("#seccion-intro").hide();
         $("#seccion-consejeria").show();
+        $("#seccion-centro_ministerio").hide();
 
     }
     else if(obj.id=="centro_ministerio"){
-
+        $("#seccion-intro").hide();
+        $("#seccion-consejeria").hide();
+        $("#seccion-centro_ministerio").show();
     }
 }
 

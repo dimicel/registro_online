@@ -74,7 +74,7 @@
         </div>
     </section>
 
-    <section id="seccion-consejeria" style="display:none">
+    <section id="seccion-centro_ministerio" style="display:none">
         <div class="container w-100">
             <div class="d-flex flex-row">
                 <div class="col">
