@@ -210,9 +210,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex-row">
+                    <div class="flex-row mt-1 w-100 justify-content-center">
                         <div class="col">
-                            <input type="button" id="generar" value="REGISTRAR SOLICITUD" onclick="registraSol()"/>
+                            <input type="button" class="btn btn-success textoboton" id="generar" value="REGISTRAR SOLICITUD" onclick="registraSol()"/>
                         </div>
                     </div>
                 </div>
