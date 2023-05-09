@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                             <div class="row mt-2">
-                                <div class="col-1 offset-3">
+                                <div class="col-1">
                                     <label for="cp">CP</label>
                                 </div>
                                 <div class="col-1">
