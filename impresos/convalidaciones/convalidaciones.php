@@ -97,68 +97,68 @@
                             </div>
                             <div class="row ">
                                 <div class="col-1">
-                                    <label>Nombre</label>
+                                    <label for="nombre">Nombre</label>
                                 </div>
                                 <div class="col-1 offset-3">
-                                    <label>Apellidos</label>
+                                    <label for="apellidos">Apellidos</label>
                                 </div>
                                 <div class="col-2 offset-4">
-                                    <label>NIF/NIE/Pasaporte</label>
+                                    <label for="nif_nie">NIF/NIE/Pasaporte</label>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-3">
-                                    <input type="text" name="nombre" id="nombre" size="40" maxlength="40"/>
+                                    <input type="text" class="form-control" name="nombre" id="nombre" size="40" maxlength="40"/>
                                 </div>
                                 <div class="col-4 offset-1">
-                                    <input type="text" name="apellidos" id="apellidos" size="50" maxlength="60"/>
+                                    <input type="text" class="form-control" name="apellidos" id="apellidos" size="50" maxlength="60"/>
                                 </div>
                                 <div class="col offset-1">
-                                    <input  type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9"/>
+                                    <input  type="text" class="form-control" name="nif_nie" id="nif_nie" size="10" maxlength="9"/>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-1">
-                                    <label>Localidad</label>
+                                    <label for="localidad">Localidad</label>
                                 </div>
                                 <div class="col-1 offset-3">
-                                    <label>Provincia</label>
+                                    <label for="provincia">Provincia</label>
                                 </div>
                                 <div class="col-1 offset-3">
-                                    <label>CP</label>
+                                    <label for="cp">CP</label>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-4">
-                                    <input type="text" name="localidad" id="localidad" size="35" maxlength="35" />
+                                    <input type="text" class="form-control" name="localidad" id="localidad" size="35" maxlength="35" />
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" name="provincia" id="provincia" size="25" maxlength="25" />
+                                    <input type="text" class="form-control" name="provincia" id="provincia" size="25" maxlength="25" />
                                 </div>
                                 <div class="col">
-                                    <input type="text" name="cp" id="cp" size="5" maxlength="5" />
+                                    <input type="text" class="form-control" name="cp" id="cp" size="5" maxlength="5" />
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-1">
-                                    <label>Tlf. Fijo</label>
+                                    <label for="tlf_fijo">Tlf. Fijo</label>
                                 </div>
                                 <div class="col-1 offset-3">
-                                    <label>Tlf. Móvil</label>
+                                    <label for="tlf_movil">Tlf. Móvil</label>
                                 </div>
                                 <div class="col-1 offset-3">
-                                    <label>Email</label>
+                                    <label for="email">Email</label>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-4">
-                                    <input type="text" name="tlf_fijo" id="tlf_fijo" size="10" maxlength="9" />
+                                    <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo" size="10" maxlength="9" />
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" name="tlf_movil" id="tlf_movil" size="10" maxlength="9" />
+                                    <input type="text" class="form-control" name="tlf_movil" id="tlf_movil" size="10" maxlength="9" />
                                 </div>
                                 <div class="col">
-                                    <input type="text" name="email" id="email" size="30" maxlength="30" />
+                                    <input type="text" class="form-control" name="email" id="email" size="30" maxlength="30" />
                                 </div>
                             </div>
                         </div>
@@ -173,8 +173,8 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div id="div_ciclo" style="display:inline-block">
-                                        <label>Está matriculado en Ciclo Formativo de Grado</label>
-                                        <select name="grado" id="grado" size="1" onchange="selGrado(this)">
+                                        <label for="grado">Está matriculado en Ciclo Formativo de Grado</label>
+                                        <select class="form-control" name="grado" id="grado" size="1" onchange="selGrado(this)">
                                             <option value="">Seleccione uno...</option>
                                             <option value="Medio">Medio</option>
                                             <option value="Superior">Superior</option>
@@ -183,8 +183,8 @@
                                 </div>
                                 <div class="col">
                                     <div id="div_grado_medio" style=" margin-left:10px">
-                                        <label>Denominado:</label>
-                                        <select name="ciclos" id="ciclos" size="1">
+                                        <label for="ciclos">Denominado:</label>
+                                        <select class="form-control" name="ciclos" id="ciclos" size="1">
                                         <option value="">Seleccione grado...</option>
                                         </select>
                                     </div>
@@ -192,22 +192,22 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <label>Módulos que solicita convalidar (<a style="color:#00C" href='' onclick="selModulos()">Clic AQUÍ para añadir o quitar módulos</a>)</label>
+                                    <label for="modulos">Módulos que solicita convalidar (<a style="color:#00C" href='' onclick="selModulos()">Clic AQUÍ para añadir o quitar módulos</a>)</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <textarea name="modulos" cols="107" rows="3" id="modulos" maxlength="1000" readonly></textarea>  
+                                    <textarea class="form-control" name="modulos" cols="107" rows="3" id="modulos" maxlength="1000" readonly></textarea>  
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                <label>Estudios que aporta (indicar si son LOGSE/ LOE/Estudios universitarios/Otros)</label>
+                                <label for="estudios">Estudios que aporta (indicar si son LOGSE/ LOE/Estudios universitarios/Otros)</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                <textarea name="estudios" cols="107" rows="3" id="estudios" maxlength="1000"></textarea>
+                                <textarea class="form-control" name="estudios" cols="107" rows="3" id="estudios" maxlength="1000"></textarea>
                                 </div>
                             </div>
                         </div>
