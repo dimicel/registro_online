@@ -5,6 +5,7 @@ var apellidos = "";
 var email = "";
 var anno_ini_curso;
 var telef_alumno,email_alumno;
+var modulos_seleccionados=new Array();
 
 
 
@@ -124,6 +125,7 @@ function selModulos(e){
         alerta("Seleccione antes un ciclo formativo.","CICLO SIN SELECCIÓN");
         return;
     }
+    
 }
 
 
