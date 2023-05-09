@@ -113,7 +113,7 @@
                                 <div class="col-4 offset-1">
                                     <input type="text" class="form-control" name="apellidos" id="apellidos" size="60" maxlength="60"/>
                                 </div>
-                                <div class="col-2 offset-1">
+                                <div class="col-2 ">
                                     <input  type="text" class="form-control" name="nif_nie" id="nif_nie" size="10" maxlength="9"/>
                                 </div>
                             </div>
