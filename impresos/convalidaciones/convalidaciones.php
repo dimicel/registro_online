@@ -114,10 +114,10 @@
                                     <input type="text" name="apellidos" id="apellidos" size="50" maxlength="60"/>
                                 </div>
                                 <div class="col offset-1">
-                                    <input  type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9"/><br><br>
+                                    <input  type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9"/>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="col-1">
                                     <label>Localidad</label>
                                 </div>
@@ -139,7 +139,7 @@
                                     <input type="text" name="cp" id="cp" size="5" maxlength="5" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="col-1">
                                     <label>Tlf. Fijo</label>
                                 </div>
