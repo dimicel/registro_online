@@ -62,7 +62,7 @@
                             </center>
                         </div>
                     </div>
-                    <div class="row mt-1">
+                    <div class="row mt-3">
                         <div class="col">
                             <h5 style="color:brown; font-weight:bold">RESOLUCIÓN DE LAS CONVALIDACIONES</h5>
                             <p>Las convalidaciones resueltas positivamente por la Dirección del centro serán reconocidas automáticamente en el expediente del alumno.</p>
