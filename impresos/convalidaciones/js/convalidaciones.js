@@ -160,7 +160,7 @@ function selModulos(e){
                 resizable: false,
                 show: { effect: "fade", duration: 0 },
                 title: "SELECCIÓN DE MÓDULOS A CONVALIDAR",
-                width: 600,
+                width: 700,
                 buttons: [{
                     class: "btn btn-success textoboton",
                     text: "Cerrar",
