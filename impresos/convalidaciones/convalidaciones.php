@@ -178,22 +178,18 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <div id="div_ciclo" style="display:inline-block">
-                                        <label for="grado">Está matriculado en Ciclo Formativo de Grado</label>
-                                        <select class="form-control" name="grado" id="grado" size="1" onchange="selGrado(this)">
-                                            <option value="">Seleccione uno...</option>
-                                            <option value="Medio">Medio</option>
-                                            <option value="Superior">Superior</option>
-                                        </select> 
-                                    </div>
+                                    <label for="grado">Está matriculado en Ciclo Formativo de Grado</label>
+                                    <select class="form-control" name="grado" id="grado" size="1" onchange="selGrado(this)">
+                                        <option value="">Seleccione uno...</option>
+                                        <option value="Medio">Medio</option>
+                                        <option value="Superior">Superior</option>
+                                    </select> 
                                 </div>
                                 <div class="col">
-                                    <div id="div_grado_medio" style=" margin-left:10px">
-                                        <label for="ciclos">Denominado:</label>
-                                        <select class="form-control" name="ciclos" id="ciclos" size="1">
+                                    <label for="ciclos">Denominado</label>
+                                    <select class="form-control" name="ciclos" id="ciclos" size="1">
                                         <option value="">Seleccione grado...</option>
-                                        </select>
-                                    </div>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
