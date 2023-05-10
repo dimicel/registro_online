@@ -228,6 +228,9 @@
     <div id="anade_documento" style="display:none">
         <div class="container">
             <div class="row">
+                <div class="col-1">
+                    <label>Tipo:</label>
+                </div>
                 <div class="col custom-control custom-switch mi-checkbox">
                     <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
                     <label for="loe" class="custom-control-label">LOE</label>
