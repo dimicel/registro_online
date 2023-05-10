@@ -178,7 +178,7 @@ function selModulos(e){
 function selTablaListaMod(obj){
     //Color fondo normal #f4f3e5
     //Color texto normal #312e25
-    alert(obj.cells[0].innerHTML)
+    alert(obj.cells[0].style.backgroundColor)
 }
 
 
