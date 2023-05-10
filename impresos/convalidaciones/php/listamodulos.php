@@ -17,7 +17,7 @@ $grado=$_POST["grado"];
 
 $c=$mysqli->query("SELECT materias_ciclos.materia FROM ciclos JOIN materias_ciclos ON ciclos.id=materias_ciclos.id WHERE ciclos.grado='$grado' AND ciclos.ciclo='$ciclo' ORDER BY materias_ciclos.materia");
 if ($mysqli->errno>0){
-    $resp["error"]="error_consulta";
+    $resp["error"]="error_consulta ".$mysqli->errno;
     exit (json_encode($resp));
 }
 elseif ($c->num_rows==0){

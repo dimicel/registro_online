@@ -129,8 +129,8 @@ function selModulos(e){
         if (resp["error"]=="servidor"){
             alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
         }
-        else if(resp["error"]=="error_consulta"){
-            alerta("Hay un problema con la base de datos. Inténtelo más tarde.","ERROR DB");
+        else if(resp["error"].indexOf("error_consulta")>-1){
+            alerta("Hay un problema con la base de datos. Inténtelo más tarde.",resp["error"]);
         }
         else if(resp["error"]=="no_materias"){
             alerta("No se encuentran módulos registrados para el ciclo formativo seleccionado.","SELECT SIN MÓDULOS");
