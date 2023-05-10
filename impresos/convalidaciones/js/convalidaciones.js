@@ -137,7 +137,7 @@ function selModulos(e){
         }
         else if(resp["error"]=="ok"){
             var existeDiv = document.getElementById("sMod") !== null;
-            if (existeDiv===NULL){
+            if (existeDiv===null){
                 marco=document.createElement('div');
                 marco.id="sMod";
                 document.body.appendChild(marco);
