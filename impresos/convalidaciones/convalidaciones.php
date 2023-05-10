@@ -228,13 +228,26 @@
     <div id="anade_documento" style="display:none">
         <div class="container">
             <div class="row">
-                <div class="col" style="text-align:center">
-                    <h5 style="font-weight:bold; color:brown">AÑADIR ESTUDIOS A APORTAR</h5>
+                <div class="col custom-control custom-switch mi-checkbox">
+                    <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
+                    <label for="loe" class="custom-control-label">LOE</label>
+                </div>
+                <div class="col custom-control custom-switch mi-checkbox">
+                    <input type="radio" id="logse" name="tipo" class="custom-control-input" value="LOGSE"/>
+                    <label for="logse" class="custom-control-label">LOGSE</label>
+                </div>
+                <div class="col custom-control custom-switch mi-checkbox">
+                    <input type="radio" id="universitarios" name="tipo" class="custom-control-input" value="Universitarios"/>
+                    <label for="universitarios" class="custom-control-label">Universitarios</label>
+                </div>
+                <div class="col custom-control custom-switch mi-checkbox">
+                    <input type="radio" id="otro" name="tipo" class="custom-control-input" value="Otro" />
+                    <label for="otro" class="custom-control-label">Otro</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    
+
                 </div>
             </div>
         </div>
