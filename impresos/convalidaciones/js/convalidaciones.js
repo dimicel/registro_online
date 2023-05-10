@@ -125,7 +125,7 @@ function selModulos(e){
         alerta("Seleccione antes un ciclo formativo.","CICLO SIN SELECCIÓN");
         return;
     }
-    $.post("php/listamodulos.php",{ciclo:document.getElementById("ciclos").value},(resp)=>{
+    $.post("php/listamodulos.php",{ciclo:document.getElementById("ciclos").value,grado:document.getElementById("grado").value},(resp)=>{
         if (resp["error"]=="servidor"){
             alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
         }

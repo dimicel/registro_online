@@ -11,9 +11,11 @@ if ($mysqli->errno>0) {
 }
 
 $ciclo=$_POST["ciclo"];
+$grado=$_POST["grado"];
 
 
-$c=$mysqli->query("select * from ciclos where grado='$grado' order by materia");
+
+$c=$mysqli->query("SELECT materias_ciclos.materia FROM ciclos JOIN materias_ciclos ON ciclos.id=materias_ciclos.id WHERE ciclos.grado='$grado' AND ciclos.ciclo='$ciclo' ORDER BY materias_ciclos.materia");
 if ($mysqli->errno>0){
     $resp["error"]="error_consulta";
     exit (json_encode($resp));
