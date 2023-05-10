@@ -136,9 +136,16 @@ function selModulos(e){
             alerta("No se encuentran módulos registrados para el ciclo formativo seleccionado.","SELECT SIN MÓDULOS");
         }
         else if(resp["error"]=="ok"){
-            marco=document.createElement('div');
-            marco.id="sMod";
-            document.body.appendChild(marco);
+            var existeDiv = document.getElementById("sMod") !== null;
+            if (existeDiv===NULL){
+                marco=document.createElement('div');
+                marco.id="sMod";
+                document.body.appendChild(marco);
+            }
+            else {
+                document.getElementById("sMod").innerHTML="";
+            }
+            
             $("#sMod").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
@@ -153,7 +160,7 @@ function selModulos(e){
                     text: "Cerrar",
                     click: function() {
                         $("#sMod").dialog("close");
-                        $("#sMod").dialog("destroy");
+                        //$("#sMod").dialog("destroy");
                     }
                 }]
             });       
