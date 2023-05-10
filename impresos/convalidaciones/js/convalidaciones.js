@@ -165,7 +165,8 @@ function selModulos(e){
                     class: "btn btn-success textoboton",
                     text: "Cerrar",
                     click: function() {
-                        elementos = document.getElementById("tab_lista_modulos").querySelectorAll("tr[style='background-color: yellow;']");
+                        elementos = document.getElementById("tab_lista_modulos").querySelectorAll("tr.selected");
+                        alert(elementos.length);
                         textModulos="";
                         for (i=0;i<elementos.length;i++){
                             textModulos+=elementos[i].cells[0].innerHTML+"-"+elementos[i].cells[1].innerHTML+";"
@@ -182,16 +183,13 @@ function selModulos(e){
 
 
 function selTablaListaMod(obj){
-    //Color fondo normal #f4f3e5
-    //Color texto normal #312e25
-    if (obj.style.backgroundColor=="yellow"){
-        obj.style.backgroundColor="#f4f3e5";
-        obj.style.color="#312e25";
-    }
-    else{
-        obj.style.backgroundColor="yellow";
-        obj.style.color="brown";
-    }
+    if (obj.classList.contains("selected")) {
+        obj.classList.remove("selected");
+        obj.classList.add("deselected");
+      } else {
+        obj.classList.remove("deselected");
+        obj.classList.add("selected");
+      }
 }
 
 
