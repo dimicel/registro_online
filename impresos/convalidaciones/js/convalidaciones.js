@@ -145,6 +145,11 @@ function selModulos(e){
             else {
                 document.getElementById("sMod").innerHTML="";
             }
+            t="<table id='tab_lista_modulos'><tr><td><b>Código</b></td><td><b>Módulo</b></td></tr>";
+            for (i=0; i<resp["datos"].length;i++){
+                t+="<tr onclick='selTablaListaMod(this)'><td>"+resp["datos"][i]["codigo"]+"</td><td>"+resp["datos"][i]["codigo"]+"</td></tr>";
+            }
+            t+="</table>";
             
             $("#sMod").dialog({
                 autoOpen: true,
@@ -166,6 +171,11 @@ function selModulos(e){
             });       
         }
     },"json");
+}
+
+
+function selTablaListaMod(obj){
+    alert(1);
 }
 
 
