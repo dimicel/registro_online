@@ -192,7 +192,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="col">
                                     <label for="modulos">Módulos que solicita convalidar (<a style="color:#00C" href="#" onclick="selModulos(event)">Clic AQUÍ para añadir o quitar módulos</a>)</label>
                                 </div>
@@ -202,7 +202,7 @@
                                     <textarea class="form-control" name="modulos" cols="107" rows="3" id="modulos" maxlength="1000" readonly></textarea>  
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="col">
                                 <label for="estudios">Estudios que aporta (indicar si son LOGSE/ LOE/Estudios universitarios/Otros)</label>
                                 </div>
