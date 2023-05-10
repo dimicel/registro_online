@@ -176,7 +176,7 @@ function selModulos(e){
 
 
 function selTablaListaMod(obj){
-    alert(1);
+    alert(obj.style.backgroundColor);
 }
 
 
