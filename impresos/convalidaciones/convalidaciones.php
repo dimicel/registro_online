@@ -114,29 +114,35 @@
                                     <input type="text" class="form-control" name="apellidos" id="apellidos" size="60" maxlength="60"/>
                                 </div>
                                 <div class="col-2 ">
-                                    <input  type="text" class="form-control" name="nif_nie" id="nif_nie" size="10" maxlength="9"/>
+                                    <input  type="text" class="form-control" name="nif_nie" id="nif_nie"  maxlength="12"/>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-1">
+                                    <label for="direccion">Domicilio</label>
+                                </div>
+                                <div class="col-1 offset-4">
                                     <label for="cp">CP</label>
                                 </div>
                                 <div class="col-1">
                                     <label for="localidad">Localidad</label>
                                 </div>
-                                <div class="col-1 offset-3">
+                                <div class="col-1 offset-2">
                                     <label for="provincia">Provincia</label>
                                 </div>
                             </div>
                             <div class="row ">
+                                <div class="col-5">
+                                    <input type="text" class="form-control" name="direccion" id="direccion"  maxlength="50" />
+                                </div>
                                 <div class="col-1">
-                                    <input type="text" class="form-control" name="cp" id="cp" size="5" maxlength="5" />
+                                    <input type="text" class="form-control" name="cp" id="cp"  maxlength="5" />
                                 </div>
-                                <div class="col-4">
-                                    <input type="text" class="form-control" name="localidad" id="localidad" size="35" maxlength="35" />
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="localidad" id="localidad"  maxlength="35" />
                                 </div>
-                                <div class="col-4">
-                                    <input type="text" class="form-control" name="provincia" id="provincia" size="25" maxlength="25" />
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="provincia" id="provincia"  maxlength="35" />
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -152,13 +158,13 @@
                             </div>
                             <div class="row ">
                                 <div class="col-4">
-                                    <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo" size="10" maxlength="9" />
+                                    <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo"  maxlength="9" />
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" class="form-control" name="tlf_movil" id="tlf_movil" size="10" maxlength="9" />
+                                    <input type="text" class="form-control" name="tlf_movil" id="tlf_movil"  maxlength="9" />
                                 </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" name="email" id="email" size="30" maxlength="30" />
+                                <div class="col-4">
+                                    <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
                                 </div>
                             </div>
                         </div>
