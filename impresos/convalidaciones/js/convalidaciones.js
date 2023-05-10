@@ -171,7 +171,7 @@ function selModulos(e){
                             textModulos+=elementos[i].cells[0].innerHTML+"-"+elementos[i].cells[1].innerHTML+";"
                         }
                         document.getElementById("modulos").value=textModulos;
-                        alert(textModulo.length)
+                        alert(textModulos.length)
                         $("#sMod").dialog("close");
                         //$("#sMod").dialog("destroy");
                     }
