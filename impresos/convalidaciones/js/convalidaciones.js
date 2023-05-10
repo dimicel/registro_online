@@ -147,7 +147,7 @@ function selModulos(e){
             }
             t="<table id='tab_lista_modulos'><tr><td><b>Código</b></td><td><b>Módulo</b></td></tr>";
             for (i=0; i<resp["datos"].length;i++){
-                t+="<tr onclick='selTablaListaMod(this)'><td>"+resp["datos"][i]["codigo"]+"</td><td>"+resp["datos"][i]["codigo"]+"</td></tr>";
+                t+="<tr onclick='selTablaListaMod(this)'><td>"+resp["datos"][i]["codigo"]+"</td><td>"+resp["datos"][i]["materia"]+"</td></tr>";
             }
             t+="</table>";
             document.getElementById("sMod").innerHTML=t;
