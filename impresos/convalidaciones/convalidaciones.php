@@ -250,7 +250,13 @@
             </div>
             <div class="row">
                 <div class="col">
-
+                    <label for="den_estudios">Estudios que aporta:</label>
+                    <input type="text" id="den_estudios" class="form-control" maxlength="40"/>
+                </div>
+                <div class="col">
+                    <label for="archivo">Documento:</label>
+                    <input type="text" id="archivo" class="form-control" maxlength="256" onclick="document.getElementById('sel_archivo').click()"/>
+                    <input type="file" id="sel_archivo" class="d-none" />
                 </div>
             </div>
         </div>
