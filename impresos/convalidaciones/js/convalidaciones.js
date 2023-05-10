@@ -167,6 +167,7 @@ function selModulos(e){
                     click: function() {
                         elementos = document.querySelectorAll("#tab_lista_modulos[style='background-color: yellow;']");
                         textModulos="";
+                        alert(elementos.length)
                         for (i=0;i<elementos.length;i++){
                             textModulos+=elementos[i].cells[0].innerHTML+"-"+elementos[i].cells[1].innerHTML+";"
                         }
