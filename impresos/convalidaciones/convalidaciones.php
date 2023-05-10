@@ -205,12 +205,13 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col">
-                                <label for="estudios">Estudios que aporta (indicar si son LOGSE/ LOE/Estudios universitarios/Otros)</label>
+                                <label for="estudios">Estudios que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                <textarea class="form-control" name="estudios" cols="107" rows="3" id="estudios" maxlength="1000"></textarea>
+                                    <table><tr><td><b>Nombre</b></td><td><b>Documento</b></td></tr></table>
+                                    <table id="tab_lista_docs"><tr><td>LISTA DE DOCUMENTOS VACÍA</td></tr></table>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +225,15 @@
             </div>
         </div>        
     </section>
-
+    <div id="anade_documento" style="display:none">
+        <div class="container">
+            <div class="row">
+                <div class="col" style="text-align:center">
+                    <h5 style="font-weight:bold; color:brown">AÑADIR ESTUDIO A APORTAR</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

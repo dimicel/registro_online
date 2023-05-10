@@ -191,4 +191,35 @@ function selTablaListaMod(obj){
       }
 }
 
+function anadeDoc(e){
+    e.preventDefault();
+    $("#sMod").dialog({
+        autoOpen: true,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "AÑADIR ESTUDIO A APORTAR",
+        width: 700,
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Aceptar",
+                click: function() {
+                    $("#sMod").dialog("close");
+                    $("#sMod").dialog("destroy");
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    $("#sMod").dialog("close");
+                    $("#sMod").dialog("destroy");
+                }
+            }]
+    });       
+}
+
 
