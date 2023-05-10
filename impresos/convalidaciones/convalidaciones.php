@@ -256,7 +256,7 @@
                 <div class="col">
                     <label for="archivo">Documento:</label>
                     <input type="text" id="archivo" class="form-control" maxlength="256" onclick="document.getElementById('sel_archivo').click()"/>
-                    <input type="file" id="sel_archivo" class="d-none" onchange="document.getElementById('archivo').value=this.file[0]"/>
+                    <input type="file" id="sel_archivo" class="d-none" onchange="document.getElementById('archivo').value=this.files[0].name"/>
                 </div>
             </div>
         </div>
