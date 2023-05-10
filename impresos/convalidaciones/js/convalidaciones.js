@@ -165,7 +165,7 @@ function selModulos(e){
                     class: "btn btn-success textoboton",
                     text: "Cerrar",
                     click: function() {
-                        elementos = document.querySelectorAll("#tab_lista_modulos[style='background-color: brown;']");
+                        elementos = document.querySelectorAll("#tab_lista_modulos[style='background-color: yellow;']");
                         textModulos="";
                         for (i=0;i<elementos.length;i++){
                             textModulos+=elementos[i].cells[0].innerHTML+"-"+elementos[i].cells[1].innerHTML+";"
