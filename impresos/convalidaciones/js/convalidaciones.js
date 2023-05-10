@@ -178,7 +178,14 @@ function selModulos(e){
 function selTablaListaMod(obj){
     //Color fondo normal #f4f3e5
     //Color texto normal #312e25
-    alert(obj.cells[0].style.backgroundColor)
+    if (obj.style.backgroundColor=="yellow"){
+        obj.style.backgroundColor="#f4f3e5";
+        obj.style.color="#312e25";
+    }
+    else{
+        obj.style.backgroundColor="yellow";
+        obj.style.color="brown";
+    }
 }
 
 
