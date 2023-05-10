@@ -125,7 +125,40 @@ function selModulos(e){
         alerta("Seleccione antes un ciclo formativo.","CICLO SIN SELECCIÓN");
         return;
     }
-    
+    $.post("php/listamodulos.php",{ciclo:document.getElementById("ciclos").value},(resp)=>{
+        if (resp["error"]=="servidor"){
+            alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+        }
+        else if(resp["error"]=="error_consulta"){
+            alerta("Hay un problema con la base de datos. Inténtelo más tarde.","ERROR DB");
+        }
+        else if(resp["error"]=="no_materias"){
+            alerta("No se encuentran módulos registrados para el ciclo formativo seleccionado.","SELECT SIN MÓDULOS");
+        }
+        else if(resp["error"]=="ok"){
+            marco=document.createElement('div');
+            marco.id="sMod";
+            document.body.appendChild(marco);
+            $("#sMod").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "SELECCIÓN DE MÓDULOS A CONVALIDAR",
+                width: 500,
+                buttons: [{
+                    class: "btn btn-success textoboton",
+                    text: "Cerrar",
+                    click: function() {
+                        $("#sMod").dialog("close");
+                        $("#sMod").dialog("destroy");
+                    }
+                }]
+            });       
+        }
+    },"json");
 }
 
 
