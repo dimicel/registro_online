@@ -145,11 +145,11 @@ function selModulos(e){
                 marco.id="sMod";
                 document.body.appendChild(marco);
             }
-            t="<table id='tab_lista_modulos'><tr><td><b>Código</b></td><td><b>Módulo</b></td></tr>";
+            t="<center><table id='tab_lista_modulos'><tr><td><b>Código</b></td><td><b>Módulo</b></td></tr>";
             for (i=0; i<resp["datos"].length;i++){
                 t+="<tr onclick='selTablaListaMod(this)'><td>"+resp["datos"][i]["codigo"]+"</td><td>"+resp["datos"][i]["materia"]+"</td></tr>";
             }
-            t+="</table>";
+            t+="</table></center>";
             document.getElementById("sMod").innerHTML=t;
             
             $("#sMod").dialog({
@@ -160,7 +160,7 @@ function selModulos(e){
                 resizable: false,
                 show: { effect: "fade", duration: 0 },
                 title: "SELECCIÓN DE MÓDULOS A CONVALIDAR",
-                width: 500,
+                width: 600,
                 buttons: [{
                     class: "btn btn-success textoboton",
                     text: "Cerrar",
