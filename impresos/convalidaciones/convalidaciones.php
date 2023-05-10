@@ -231,7 +231,7 @@
                 <div class="col-1">
                     <label>Tipo:</label>
                 </div>
-                <div class="col custom-control custom-switch mi-checkbox">
+                <div class="col offset-1 custom-control custom-switch mi-checkbox">
                     <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
                     <label for="loe" class="custom-control-label">LOE</label>
                 </div>
