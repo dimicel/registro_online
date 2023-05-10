@@ -229,7 +229,12 @@
         <div class="container">
             <div class="row">
                 <div class="col" style="text-align:center">
-                    <h5 style="font-weight:bold; color:brown">AÑADIR ESTUDIO A APORTAR</h5>
+                    <h5 style="font-weight:bold; color:brown">AÑADIR ESTUDIOS A APORTAR</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    
                 </div>
             </div>
         </div>

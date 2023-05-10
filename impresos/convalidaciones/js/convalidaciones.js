@@ -193,7 +193,7 @@ function selTablaListaMod(obj){
 
 function anadeDoc(e){
     e.preventDefault();
-    $("#sMod").dialog({
+    $("#anade_documento").dialog({
         autoOpen: true,
         dialogClass: "alert no-close",
         modal: true,
@@ -207,16 +207,16 @@ function anadeDoc(e){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
-                    $("#sMod").dialog("close");
-                    $("#sMod").dialog("destroy");
+                    $("#anade_documento").dialog("close");
+                    $("#anade_documento").dialog("destroy");
                 }
             },
             {
                 class: "btn btn-success textoboton",
                 text: "Cancelar",
                 click: function() {
-                    $("#sMod").dialog("close");
-                    $("#sMod").dialog("destroy");
+                    $("#anade_documento").dialog("close");
+                    $("#anade_documento").dialog("destroy");
                 }
             }]
     });       
