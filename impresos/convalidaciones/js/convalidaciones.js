@@ -166,7 +166,6 @@ function selModulos(e){
                     text: "Cerrar",
                     click: function() {
                         elementos = document.getElementById("tab_lista_modulos").querySelectorAll("tr.selected");
-                        alert(elementos.length);
                         textModulos="";
                         for (i=0;i<elementos.length;i++){
                             textModulos+=elementos[i].cells[0].innerHTML+"-"+elementos[i].cells[1].innerHTML+";"
