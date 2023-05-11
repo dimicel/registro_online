@@ -288,23 +288,18 @@ function borraFila(obj,e){
     inputsFiles=document.getElementById("array_input_type_file").querySelectorAll('input[type="file"]');
     inputsFiles[num_fila].remove();
 }
-    //txtCelda2=e.target.parentNode.previousElementSibling.textContent;
-    //txtCelda1=e.target.parentNode.previousElementSiblingc.previousElementSibling.textContent;
-    /*inputsHidden.forEach(function(inputHidden) {
-        // Verificar si el valor del input coincide con la variable txtCelda1
-        if (inputHidden.value === txtCelda1) {
-          // Eliminar el input del DOM
-          inputHidden.remove();
-        }
-      });
-      
-    
-    inputsFiles.forEach(function(inputFile) {
-        // Verificar si el nombre de archivo del input coincide con la variable txtCelda2
-        if (inputFile.files[0].name === txtCelda2) {
-          // Eliminar el input del DOM
-          inputFile.remove();
-        }
-      });
-      */
+
+
+function ayudaFirma(e){
+    e.preventDefault();
+    mensaje="Haz tu firma con bolígrafo negro o azul en un papel en blanco.<br>";
+    mensaje+="Haz una foto de la firma en formato JPEG o JPG.<br>";
+    mensaje+="MUY IMPORTANTE: CON EL MÓVIL EN POSICIÓN HORIZONTAL Y ENCUADRANDO LA FIRMA EN LA FOTOGRAFÍA.<br>";
+    mensaje+="PRESTA ATENCIÓN PARA QUE LA FIRMA QUEDE AJUSTADA AL TAMAÑO DE LA FOTO.<br>";
+    mensaje+="No hagas una fotografía en la que la firma quede muy pequeña en ella.<br>";
+    mensaje+="Si incumples lo anterior, la firma no será válida.<br>"
+    mensaje+="Si crees que la foto de la firma que has subido no es buena, puedes volver a subirla las veces que quieras. Sólo valdrá la última foto de firma añadida.<br>";
+    mensaje+="La fotografía de la firma se incrustará en el fichero PDF que se va a generar en el registro de la solicitud, y después será eliminada del servidor."
+    alerta(mensaje,"INSTRUCCIONES FOTOGRAFÍA DE FIRMA");
+}
 

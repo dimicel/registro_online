@@ -24,7 +24,7 @@
             <input type="hidden" name="tlf_movil" id="tlf_movil" />
             <input type="hidden" name="tlf_fijo" id="tlf_fijo" />
             <input type="hidden" name="email" id="email" />
-            <input type="file" name="docs_adjuntos" id="docs_adjuntos" multiple style="display:none"/>
+            <input type="file" name="firma" id="firma" style="display:none" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>
         </form>
     </div>
     <header>
@@ -151,22 +151,29 @@
                                 <div class="col-1">
                                     <label for="tlf_fijo">Tlf. Fijo</label>
                                 </div>
-                                <div class="col-1 offset-3">
+                                <div class="col-1 offset-2">
                                     <label for="tlf_movil">Tlf. Móvil</label>
                                 </div>
-                                <div class="col-1 offset-3">
+                                <div class="col-1 offset-2">
                                     <label for="email">Email</label>
                                 </div>
+                                <div class="col-1 offset-2">
+                                    <label for="t_firm">Firma (<a href='#' style="color:#00C;font-weight:bolder" onclick="ayudaFirma(event)">?</a>)</label>
+                                </div>
+
                             </div>
                             <div class="row ">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo"  maxlength="9" />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <input type="text" class="form-control" name="tlf_movil" id="tlf_movil"  maxlength="9" />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="t_firm" id="t_firm" readonly onclick="document.getElementById('firma').click()" />
                                 </div>
                             </div>
                         </div>
