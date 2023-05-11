@@ -208,8 +208,8 @@ function anadeDoc(e){
                 text: "Aceptar",
                 click: function() {
                     if (document.querySelectorAll("input[name=tipo]:checked").length==0 || 
-                        document.getElementById("den_estudios").trim.length==0 || 
-                        document.getElementById("archivo").trim.length==0){
+                        document.getElementById("den_estudios").value.trim().length==0 || 
+                        document.getElementById("archivo").value.trim().length==0){
                             alert("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.","FALTAN DATOS");
                             return;
                     }
