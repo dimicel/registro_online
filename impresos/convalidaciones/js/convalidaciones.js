@@ -145,8 +145,7 @@ function creaValidadorCentroMin(){
             }
         },
         errorPlacement: function(error, element) {
-            $("label[for='"+$(element).attr('name')+"']")[0].html(error);
-            //$(element).prev($('.errorTxt')).html(error);
+            $("label[for='"+$(element).attr('name')+"']")[0].next($('.errorTxt')).html(error);
         }
     });
 }
