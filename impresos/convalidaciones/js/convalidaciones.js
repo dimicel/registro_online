@@ -411,9 +411,14 @@ function ayudaFirma(e){
 
 function registraForm(){
     if (formulario=="centro_ministerio"){
-       if ($("#form_centro_ministerio").valid()) {
+        document.getElementById("modulos").readonly=false;
+        if ($("#form_centro_ministerio").valid()) {
 
-       }
+        }
+        else {
+                alerta ("Revisa los campos que se han marcado en rojo.","DATOS INVÁLIDOS O AUSENTES");
+        }
+        document.getElementById("modulos").readonly=true;
     } 
 }
 
