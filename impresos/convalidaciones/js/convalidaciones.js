@@ -282,7 +282,7 @@ function actualizaTablaListaDocs(){
 function borraFila(obj,e){
     e.preventDefault();
     num_fila=obj.parentNode.parentNode.rowIndex;
-    obj.parentNode.parentNode.deleteRow();
+    document.getElementById("tab_lista_docs").deleteRow(num_fila);
     inputsHidden=document.getElementById("array_input_type_file").querySelectorAll('input[type="hidden"]');
     inputsHidden[num_fila].remove();
     inputsFiles=document.getElementById("array_input_type_file").querySelectorAll('input[type="file"]');
