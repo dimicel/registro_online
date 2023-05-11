@@ -294,7 +294,7 @@ function ayudaFirma(e){
     e.preventDefault();
     mensaje="- Haz tu firma con bolígrafo negro o azul en un papel en blanco.<br>";
     mensaje+="- Haz una foto de la firma en formato JPEG o JPG.<br>";
-    mensaje+="- MUY IMPORTANTE: LAQ FOTO DEBE HACERSE CON EL MÓVIL EN POSICIÓN HORIZONTAL Y ENCUADRANDO LA FIRMA EN LA FOTOGRAFÍA.<br>";
+    mensaje+="- MUY IMPORTANTE: LA FOTO DEBE HACERSE CON EL MÓVIL EN POSICIÓN HORIZONTAL Y ENCUADRANDO LA FIRMA EN LA FOTOGRAFÍA.<br>";
     mensaje+="- PRESTA ATENCIÓN PARA QUE LA FIRMA QUEDE AJUSTADA AL TAMAÑO DE LA FOTO.<br>";
     mensaje+="- No hagas una fotografía en la que la firma quede muy pequeña en ella.<br>";
     mensaje+="- Si incumples lo anterior, la firma no será válida.<br>"
