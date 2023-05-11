@@ -219,7 +219,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control" style="height:3em" name="modulos" rows="3" id="modulos" maxlength="1000"/>  
+                                        <textarea class="form-control"  name="modulos" rows="3" id="modulos" maxlength="1000" ></textarea>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
