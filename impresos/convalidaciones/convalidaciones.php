@@ -78,159 +78,162 @@
 
     <section id="seccion-centro_ministerio" style="display:none">
         <div class="container w-100">
-            <div class="d-flex flex-row">
-                <div class="col">
-                    <div class="row d-flex w-100 justify-content-center">
-                        <div class="col" style="text-align: center;">
-                            <h5>SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO</h5>
+            <form id="form_centro_ministerio">
+                <div class="d-flex flex-row">
+                    <div class="col">
+                        <div class="row d-flex w-100 justify-content-center">
+                            <div class="col" style="text-align: center;">
+                                <h5>SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col">
-                            <input type="button" id="volver" class="btn btn-success textoboton" value="<<< Volver" onclick="vuelve()"/>
+                        <div class="row ">
+                            <div class="col">
+                                <input type="button" id="volver" class="btn btn-success textoboton" value="<<< Volver" onclick="vuelve()"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-1 ui-widget-header ui-corner-all" style="padding:10px">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <h6 style="color:brown; font-weight:bold">DATOS PERSONALES</h6>
+                        <div class="row mt-1 ui-widget-header ui-corner-all" style="padding:10px">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 style="color:brown; font-weight:bold">DATOS PERSONALES</h6>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-1">
-                                    <label for="nombre">Nombre</label>
+                                <div class="row ">
+                                    <div class="col-1">
+                                        <label for="nombre">Nombre</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
+                                    </div>
+                                    <div class="col-1 offset-3">
+                                        <label for="apellidos">Apellidos</label>
+                                    </div>
+                                    <div class="col-2 offset-3">
+                                        <label for="nif_nie">NIF/NIE/Pasaporte</label>
+                                    </div>
                                 </div>
-                                <div class="col-1 offset-3">
-                                    <label for="apellidos">Apellidos</label>
+                                <div class="row ">
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" name="nombre" id="nombre" size="40" maxlength="40"/>
+                                    </div>
+                                    <div class="col-4 offset-1">
+                                        <input type="text" class="form-control" name="apellidos" id="apellidos" size="60" maxlength="60"/>
+                                    </div>
+                                    <div class="col-2 ">
+                                        <input  type="text" class="form-control" name="nif_nie" id="nif_nie"  maxlength="12"/>
+                                    </div>
                                 </div>
-                                <div class="col-2 offset-3">
-                                    <label for="nif_nie">NIF/NIE/Pasaporte</label>
+                                <div class="row mt-2">
+                                    <div class="col-1">
+                                        <label for="direccion">Domicilio</label>
+                                    </div>
+                                    <div class="col-1 offset-4">
+                                        <label for="cp">CP</label>
+                                    </div>
+                                    <div class="col-1">
+                                        <label for="localidad">Localidad</label>
+                                    </div>
+                                    <div class="col-1 offset-2">
+                                        <label for="provincia">Provincia</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-3">
-                                    <input type="text" class="form-control" name="nombre" id="nombre" size="40" maxlength="40"/>
+                                <div class="row ">
+                                    <div class="col-5">
+                                        <input type="text" class="form-control" name="direccion" id="direccion"  maxlength="50" />
+                                    </div>
+                                    <div class="col-1">
+                                        <input type="text" class="form-control" name="cp" id="cp"  maxlength="5" />
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" name="localidad" id="localidad"  maxlength="35" />
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" name="provincia" id="provincia"  maxlength="35" />
+                                    </div>
                                 </div>
-                                <div class="col-4 offset-1">
-                                    <input type="text" class="form-control" name="apellidos" id="apellidos" size="60" maxlength="60"/>
-                                </div>
-                                <div class="col-2 ">
-                                    <input  type="text" class="form-control" name="nif_nie" id="nif_nie"  maxlength="12"/>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-1">
-                                    <label for="direccion">Domicilio</label>
-                                </div>
-                                <div class="col-1 offset-4">
-                                    <label for="cp">CP</label>
-                                </div>
-                                <div class="col-1">
-                                    <label for="localidad">Localidad</label>
-                                </div>
-                                <div class="col-1 offset-2">
-                                    <label for="provincia">Provincia</label>
-                                </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-5">
-                                    <input type="text" class="form-control" name="direccion" id="direccion"  maxlength="50" />
-                                </div>
-                                <div class="col-1">
-                                    <input type="text" class="form-control" name="cp" id="cp"  maxlength="5" />
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" name="localidad" id="localidad"  maxlength="35" />
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" name="provincia" id="provincia"  maxlength="35" />
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-1">
-                                    <label for="tlf_fijo">Tlf. Fijo</label>
-                                </div>
-                                <div class="col-1 offset-2">
-                                    <label for="tlf_movil">Tlf. Móvil</label>
-                                </div>
-                                <div class="col-1 offset-2">
-                                    <label for="email">Email</label>
-                                </div>
-                                <div class="col offset-2">
-                                    <label for="t_firm">Firma (<a href='#' style="color:#00C;font-weight:bolder" onclick="ayudaFirma(event)">Instrucciones</a>)</label>
-                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-1">
+                                        <label for="tlf_fijo">Tlf. Fijo</label>
+                                    </div>
+                                    <div class="col-1 offset-2">
+                                        <label for="tlf_movil">Tlf. Móvil</label>
+                                    </div>
+                                    <div class="col-1 offset-2">
+                                        <label for="email">Email</label>
+                                    </div>
+                                    <div class="col offset-2">
+                                        <label for="t_firm">Firma (<a href='#' style="color:#00C;font-weight:bolder" onclick="ayudaFirma(event)">Instrucciones</a>)</label>
+                                    </div>
 
-                            </div>
-                            <div class="row ">
-                                <div class="col-3">
-                                    <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo"  maxlength="9" />
                                 </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" name="tlf_movil" id="tlf_movil"  maxlength="9" />
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" name="t_firm" id="t_firm" readonly onclick="document.getElementById('firma').click()" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="expone" class="row ui-widget-header ui-corner-all mt-2"   style="padding:10px">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <h6 style="color:brown; font-weight:bold">MÓDULOS QUE SOLICITA CONVALIDAR</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="grado">Está matriculado en Ciclo Formativo de Grado</label>
-                                    <select class="form-control" name="grado" id="grado" size="1" onchange="selGrado(this)">
-                                        <option value="">Seleccione uno...</option>
-                                        <option value="Medio">Medio</option>
-                                        <option value="Superior">Superior</option>
-                                    </select> 
-                                </div>
-                                <div class="col">
-                                    <label for="ciclos">Denominado</label>
-                                    <select class="form-control" name="ciclos" id="ciclos" size="1">
-                                        <option value="">Seleccione grado...</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col">
-                                    <label for="modulos">Módulos que solicita convalidar (<a style="color:#00C" href="#" onclick="selModulos(event)">Clic AQUÍ para añadir o quitar módulos</a>)</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <textarea class="form-control" name="modulos" cols="107" rows="3" id="modulos" maxlength="1000" readonly></textarea>  
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col">
-                                <label for="estudios">Estudios que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col" >
-                                    <table  style="width: 70%; margin: 0 auto;"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
-                                    <table id="tab_lista_docs"  style="width: 70%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
+                                <div class="row ">
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo"  maxlength="9" />
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" name="tlf_movil" id="tlf_movil"  maxlength="9" />
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" name="t_firm" id="t_firm" readonly onclick="document.getElementById('firma').click()" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex-row mt-1 w-100 justify-content-center">
-                        <div class="col" style="text-align: center;">
-                            <input type="button" class="btn btn-success textoboton" id="generar" value="REGISTRAR SOLICITUD" onclick="registraSol()"/>
+                        <div id="expone" class="row ui-widget-header ui-corner-all mt-2"   style="padding:10px">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 style="color:brown; font-weight:bold">MÓDULOS QUE SOLICITA CONVALIDAR</h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="grado">Está matriculado en Ciclo Formativo de Grado</label>
+                                        <select class="form-control" name="grado" id="grado" size="1" onchange="selGrado(this)">
+                                            <option value="">Seleccione uno...</option>
+                                            <option value="Medio">Medio</option>
+                                            <option value="Superior">Superior</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col">
+                                        <label for="ciclos">Denominado</label>
+                                        <select class="form-control" name="ciclos" id="ciclos" size="1">
+                                            <option value="">Seleccione grado...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <label for="modulos">Módulos que solicita convalidar (<a style="color:#00C" href="#" onclick="selModulos(event)">Clic AQUÍ para añadir o quitar módulos</a>)</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <textarea class="form-control" name="modulos" cols="107" rows="3" id="modulos" maxlength="1000" readonly></textarea>  
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col">
+                                    <label for="estudios">Estudios que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col" >
+                                        <table  style="width: 70%; margin: 0 auto;"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
+                                        <table id="tab_lista_docs"  style="width: 70%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-row mt-1 w-100 justify-content-center">
+                            <div class="col" style="text-align: center;">
+                                <input type="button" class="btn btn-success textoboton" id="generar" value="REGISTRAR SOLICITUD" onclick="registraSol()"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>        
     </section>
     <div id="anade_documento" style="display:none">

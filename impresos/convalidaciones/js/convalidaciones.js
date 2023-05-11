@@ -70,7 +70,64 @@ function seleccion(obj){
         $("#seccion-intro").hide();
         $("#seccion-consejeria").hide();
         $("#seccion-centro_ministerio").show();
+        creaValidadorCentroMin()
     }
+}
+
+function creaValidadorCentroMin(){
+
+    $("#form_centro_ministerio").validate({
+        rules: {
+            apellidos: {
+                required: true
+            },
+            nombre: {
+                required: true
+            },
+            nif_nie: {
+                required: true
+            },
+            cp: {
+                required: true
+            },
+            direccion: {
+                required: true,
+                miFecha: true
+            },
+            localidad: {
+                email: true
+            },
+            provincia: {
+                email: true
+            }
+        },
+        messages: {
+            apellidos: {
+                required: "Complete el campo"
+            },
+            nombre: {
+                required: "Complete el campo"
+            },
+            nif_nie: {
+                required: "Complete el campo"
+            },
+            cp: {
+                required: "Falta"
+            },
+            direccion: {
+                required: "Complete el campo"
+            },
+            localidad: {
+                required: "Complete el campo"
+            },
+            provincia: {
+                required: "Complete el campo"
+            }
+        },
+        errorPlacement: function(error, element) {
+            $(element).prev($('.errorTxt')).html(error);
+        }
+    });
 }
 
 function vuelve(){
