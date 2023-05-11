@@ -245,5 +245,34 @@ function selUltimoFile(){
 }
 
 function actualizaTablaListaDocs(){
-    
+    _a=document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
+    _arch=_a[_a.length-1].files[0].name;
+    _d=document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
+    _desc=_d[_d.length-1].value;
+    _t=document.getElementById("tab_lista_docs");
+    if (_t.rows[0].cells.length==1){
+        _t.deleteRow(0);
+    }
+    var nuevaFila = _t.insertRow();
+
+    // Insertar una celda en la nueva fila (primera columna)
+    var celda1 = nuevaFila.insertCell();
+    celda1.textContent = _desc;
+    celda1.style.width="50%";
+
+    // Insertar una celda en la nueva fila (segunda columna)
+    var celda2 = nuevaFila.insertCell();
+    celda2.textContent = _arch;
+    celda2.style.width="45%";
+
+    var celda3=nuevaFila.inserCell();
+    celda3.innerHTML="<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
+    celda3.style.width="5%";
+    celda3.style.textAlign="center";
+}
+
+
+function borraFila(obj,e){
+    e.preventDefault();
+    obj.parentNode.parentNode.deleteRow();
 }
