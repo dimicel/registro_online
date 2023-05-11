@@ -78,11 +78,8 @@ function seleccion(obj){
 
 function creaValidadorCentroMin(){
     jQuery.validator.addMethod("textareaVacia", function(value, element, param){
-        var elem = $(element);
-        var val = element.val();
-        //Now you have a choice.  Either use trim, or if you believe that 
-        //  that is not working, use a regex.
-        if(val && $.trim(val) == '') {
+        var val = $(element).val().trim();
+        if(val  == '') {
             return false;
         }
         
