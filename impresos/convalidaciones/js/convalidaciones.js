@@ -283,8 +283,15 @@ function actualizaTablaListaDocs(){
 
 function borraFila(obj,e){
     e.preventDefault();
+    _t=document.getElementById("tab_lista_docs");
     num_fila=obj.parentNode.parentNode.rowIndex;
-    document.getElementById("tab_lista_docs").deleteRow(num_fila);
+    if (_t.rows.length==1){
+        _t.innerHTML="<tr><td style='text-align:center'>LISTA DE DOCUMENTOS VACÍA</td></tr>";
+    }
+    else{
+        _t.deleteRow(num_fila);
+    }
+    
     inputsHidden=document.getElementById("array_input_type_file").querySelectorAll('input[type="hidden"]');
     inputsHidden[num_fila].remove();
     inputsFiles=document.getElementById("array_input_type_file").querySelectorAll('input[type="file"]');
