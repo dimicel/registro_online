@@ -281,18 +281,24 @@ function actualizaTablaListaDocs(){
 
 function borraFila(obj,e){
     e.preventDefault();
+    num_fila=obj.parentNode.parentNode.rowIndex;
     obj.parentNode.parentNode.deleteRow();
-    txtCelda2=e.target.parentNode.previousElementSibling.textContent;
-    txtCelda1=e.target.parentNode.previousElementSiblingc.previousElementSibling.textContent;
     inputsHidden=document.getElementById("array_input_type_file").querySelectorAll('input[type="hidden"]');
-    inputsHidden.forEach(function(inputHidden) {
+    inputsHidden[num_fila].remove();
+    inputsFiles=document.getElementById("array_input_type_file").querySelectorAll('input[type="file"]');
+    inputsFiles[num_fila].remove();
+}
+    //txtCelda2=e.target.parentNode.previousElementSibling.textContent;
+    //txtCelda1=e.target.parentNode.previousElementSiblingc.previousElementSibling.textContent;
+    /*inputsHidden.forEach(function(inputHidden) {
         // Verificar si el valor del input coincide con la variable txtCelda1
         if (inputHidden.value === txtCelda1) {
           // Eliminar el input del DOM
           inputHidden.remove();
         }
       });
-    inputsFiles=document.getElementById("array_input_type_file").querySelectorAll('input[type="file"]');
+      
+    
     inputsFiles.forEach(function(inputFile) {
         // Verificar si el nombre de archivo del input coincide con la variable txtCelda2
         if (inputFile.files[0].name === txtCelda2) {
@@ -300,4 +306,5 @@ function borraFila(obj,e){
           inputFile.remove();
         }
       });
-}
+      */
+
