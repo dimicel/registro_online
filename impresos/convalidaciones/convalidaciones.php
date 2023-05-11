@@ -215,6 +215,7 @@
                                 <div class="row mt-2">
                                     <div class="col">
                                         <label for="modulos">Módulos que solicita convalidar (<a style="color:#00C" href="#" onclick="selModulos(event)">Clic AQUÍ para añadir o quitar módulos</a>)</label>
+                                        <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
                                 </div>
                                 <div class="row">

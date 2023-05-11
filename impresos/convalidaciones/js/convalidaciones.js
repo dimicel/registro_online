@@ -127,7 +127,7 @@ function creaValidadorCentroMin(){
                 required: true
             },
             modulos: {
-                textareaVacia: true
+                required: true
             }
         },
         messages: {
@@ -169,11 +169,11 @@ function creaValidadorCentroMin(){
                 required: "Selecciona uno"
             },
             modulos: {
-                textareaVacia: "Selecciona módulos"
+                required: "Selecciona módulos"
             }
         },
         errorPlacement: function(error, element) {
-            //$("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
+            if ($(element).attr('name')=="modulos") $("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
         }
     });
 }
