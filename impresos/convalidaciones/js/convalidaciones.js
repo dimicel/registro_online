@@ -5,7 +5,6 @@ var apellidos = "";
 var email = "";
 var anno_ini_curso;
 var telef_alumno,email_alumno;
-var modulos_seleccionados=new Array();
 
 
 
@@ -193,6 +192,7 @@ function selTablaListaMod(obj){
 
 function anadeDoc(e){
     e.preventDefault();
+    creaInputs();
     $("#anade_documento").dialog({
         autoOpen: true,
         dialogClass: "alert no-close",
@@ -207,6 +207,7 @@ function anadeDoc(e){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
+                    actualizaTablaListaDocs();
                     $("#anade_documento").dialog("close");
                     $("#anade_documento").dialog("destroy");
                 }
@@ -223,3 +224,26 @@ function anadeDoc(e){
 }
 
 
+
+function creaInputs(){
+    divArray=document.getElementById("array_input_type_file");
+    tipoHidden=document.createElement("input");
+    tipoHidden.type="hidden";
+    tipoFile=document.createElement("input");
+    tipoFile.type="file";
+    tipoFile.multiple=false;
+    divArray.appendChild(tipoHidden);
+    divArray.appendChild(tipoFile);
+    tipoFile.addEventListener("click", function() {
+        document.getElementById('archivo').value=tipoFile.files[0].name;
+    });
+}
+
+function selUltimoFile(){
+    _a=document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
+    _a[_a.length-1].click();
+}
+
+function actualizaTablaListaDocs(){
+    
+}

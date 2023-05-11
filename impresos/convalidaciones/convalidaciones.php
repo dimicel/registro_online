@@ -24,6 +24,7 @@
             <input type="hidden" name="tlf_movil" id="tlf_movil" />
             <input type="hidden" name="tlf_fijo" id="tlf_fijo" />
             <input type="hidden" name="email" id="email" />
+            <input type="file" name="docs_adjuntos" id="docs_adjuntos" multiple style="display:none"/>
         </form>
     </div>
     <header>
@@ -255,12 +256,14 @@
                 </div>
                 <div class="col">
                     <label for="archivo">Documento:</label>
-                    <input type="text" id="archivo" class="form-control" maxlength="256" onclick="document.getElementById('sel_archivo').click()" readonly/>
-                    <input type="file" id="sel_archivo" class="d-none" onchange="document.getElementById('archivo').value=this.files[0].name"/>
+                    <input type="text" id="archivo" class="form-control" maxlength="256" onclick="selUltimoFile()" readonly/>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div id="array_input_type_file" style="display:none"></div>
 
 
 
