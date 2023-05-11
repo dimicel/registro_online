@@ -234,8 +234,8 @@ function creaInputs(){
     tipoFile.multiple=false;
     divArray.appendChild(tipoHidden);
     divArray.appendChild(tipoFile);
-    tipoFile.addEventListener("click", function() {
-        document.getElementById('archivo').value=tipoFile.files[0].name;
+    tipoFile.addEventListener("click", function(this) {
+        document.getElementById('archivo').value=this.files[0].name;
     });
 }
 
