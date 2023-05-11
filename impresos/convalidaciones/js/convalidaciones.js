@@ -1,11 +1,7 @@
 var curso;
 var id_nie = "";
-var nombre = "";
-var apellidos = "";
-var email = "";
-var anno_ini_curso;
-var telef_alumno,email_alumno;
 var formulario="";
+var curso="";
 
 
 
@@ -17,13 +13,12 @@ $(document).ready(function() {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
             id_nie = resp["id_nie"];
-            document.getElementById("id_nie").value = resp["id_nie"];
-            nombre = resp["nombre"];
-            apellidos = resp["apellidos"];
-            email = resp["email"];
+            document.getElementById("nif_nie").value = resp["id_nif"];
+            document.getElementById("nombre").value = resp["nombre"];
+            document.getElementById("apellidos").value = resp["apellidos"];
             anno_ini_curso = resp["anno_ini_curso"];
             document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
-            document.getElementById("anno_curso").value = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
+            curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
             document.getElementById("email").value = email;
 
             if (id_nie.trim() == "" || anno_ini_curso.toString().trim() == "") {
@@ -38,17 +33,25 @@ $(document).ready(function() {
                 for (e in resp.datos){
                     if(typeof(resp.datos[e])=="undefined" || resp.datos[e]==null) resp.datos[e]="";
                 }
-                telef_alumno=resp.datos.telef_alumno;
-                email_alumno=resp.datos.email;
+                document.getElementById("tlf_movil").value=resp.datos.telef_alumno;
+                document.getElementById("email").value=resp.datos.email;
+                document.getElementById("direccion").value=resp.datos.direccion;
+                document.getElementById("cp").value=resp.datos.cp;
+                document.getElementById("localidad").value=resp.datos.localidad;
+                document.getElementById("provincia").value=resp.datos.provincia;
             }
             else{
-                telef_alumno='';
-                email_alumno='';
+                document.getElementById("tlf_movil").value='';
+                document.getElementById("email").value='';
+                document.getElementById("direccion").value='';
+                document.getElementById("cp").value='';
+                document.getElementById("localidad").value='';
+                document.getElementById("provincia").value='';
             }
         },"json");
     });
     dat3 = dat2.then(() => {
-        curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
+        
 
     });
 

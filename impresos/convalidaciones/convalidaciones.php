@@ -20,10 +20,6 @@
     <div style="display:none">
         <form id="convalidaciones" name="convalidaciones" class="needs-validation" novalidate method="post">
             <input type="hidden" name="anno_curso" id="anno_curso" />
-            <input type="hidden" name="id_nie" id="id_nie" />
-            <input type="hidden" name="tlf_movil" id="tlf_movil" />
-            <input type="hidden" name="tlf_fijo" id="tlf_fijo" />
-            <input type="hidden" name="email" id="email" />
             <input type="file" name="firma" id="firma" style="display:none" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>
         </form>
     </div>
