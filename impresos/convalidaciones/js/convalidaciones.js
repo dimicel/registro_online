@@ -105,6 +105,7 @@ function creaValidadorCentroMin(){
                 required: true
             },
             email: {
+                required:true,
                 email: true
             },
             t_firm: {
@@ -137,7 +138,8 @@ function creaValidadorCentroMin(){
                 required: "Complete el campo"
             },
             email: {
-                required: "Complete el campo"
+                required: "Complete el campo",
+                email:"Inválido"
             },
             t_firm: {
                 required: "Falta archivo"
