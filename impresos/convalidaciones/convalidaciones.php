@@ -210,8 +210,8 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <table><tr><td><b>Nombre</b></td><td><b>Documento</b></td></tr></table>
-                                    <table id="tab_lista_docs"><tr><td>LISTA DE DOCUMENTOS VACÍA</td></tr></table>
+                                    <table><tr><td width="45%"><b>Descripción</b></td><td  width="45%"><b>Documento</b></td></tr></table>
+                                    <table id="tab_lista_docs"><tr><td  width="90%">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
                                 </div>
                             </div>
                         </div>
