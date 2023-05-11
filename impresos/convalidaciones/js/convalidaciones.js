@@ -207,6 +207,12 @@ function anadeDoc(e){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
+                    if (document.querySelectorAll("input[name=tipo]:checked").length==0 || 
+                        document.getElementById("den_estudios").trim.length==0 || 
+                        document.getElementById("archivo").trim.length==0){
+                            alert("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.","FALTAN DATOS");
+                            return;
+                    }
                     actualizaTablaListaDocs();
                     $("#anade_documento").dialog("close");
                     $("#anade_documento").dialog("destroy");
@@ -258,7 +264,7 @@ function actualizaTablaListaDocs(){
 
     // Insertar una celda en la nueva fila (primera columna)
     var celda1 = nuevaFila.insertCell();
-    celda1.textContent = _desc;
+    celda1.textContent = "("+document.querySelectorAll("input[name=tipo]:checked")[0].value+") "+_desc;
     celda1.style.width="50%";
 
     // Insertar una celda en la nueva fila (segunda columna)
@@ -266,7 +272,7 @@ function actualizaTablaListaDocs(){
     celda2.textContent = _arch;
     celda2.style.width="45%";
 
-    var celda3=nuevaFila.inserCell();
+    var celda3=nuevaFila.insertCell();
     celda3.innerHTML="<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
     celda3.style.width="5%";
     celda3.style.textAlign="center";
