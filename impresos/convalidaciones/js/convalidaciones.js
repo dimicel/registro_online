@@ -282,4 +282,22 @@ function actualizaTablaListaDocs(){
 function borraFila(obj,e){
     e.preventDefault();
     obj.parentNode.parentNode.deleteRow();
+    txtCelda2=e.target.parentNode.previousElementSibling.textContent;
+    txtCelda1=e.target.parentNode.previousElementSiblingc.previousElementSibling.textContent;
+    inputsHidden=document.getElementById("array_input_type_file").querySelectorAll('input[type="hidden"]');
+    inputsHidden.forEach(function(inputHidden) {
+        // Verificar si el valor del input coincide con la variable txtCelda1
+        if (inputHidden.value === txtCelda1) {
+          // Eliminar el input del DOM
+          inputHidden.remove();
+        }
+      });
+    inputsFiles=document.getElementById("array_input_type_file").querySelectorAll('input[type="file"]');
+    inputsFiles.forEach(function(inputFile) {
+        // Verificar si el nombre de archivo del input coincide con la variable txtCelda2
+        if (inputFile.files[0].name === txtCelda2) {
+          // Eliminar el input del DOM
+          inputFile.remove();
+        }
+      });
 }
