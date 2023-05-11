@@ -300,6 +300,6 @@ function ayudaFirma(e){
     mensaje+="Si incumples lo anterior, la firma no será válida.<br>"
     mensaje+="Si crees que la foto de la firma que has subido no es buena, puedes volver a subirla las veces que quieras. Sólo valdrá la última foto de firma añadida.<br>";
     mensaje+="La fotografía de la firma se incrustará en el fichero PDF que se va a generar en el registro de la solicitud, y después será eliminada del servidor."
-    alerta(mensaje,"INSTRUCCIONES FOTOGRAFÍA DE FIRMA");
+    alerta(mensaje,"INSTRUCCIONES FOTOGRAFÍA DE FIRMA",false,500);
 }
 
