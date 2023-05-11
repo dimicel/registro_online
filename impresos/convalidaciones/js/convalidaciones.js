@@ -77,6 +77,17 @@ function seleccion(obj){
 }
 
 function creaValidadorCentroMin(){
+    jQuery.validator.addMethod("textareaVacia", function(value, element, param){
+        var elem = $(element);
+        var val = element.val();
+        //Now you have a choice.  Either use trim, or if you believe that 
+        //  that is not working, use a regex.
+        if(val && $.trim(val) == '') {
+            return false;
+        }
+        
+        return true;
+    });
 
     $("#form_centro_ministerio").validate({
         rules: {
@@ -118,7 +129,7 @@ function creaValidadorCentroMin(){
                 required: true
             },
             modulos: {
-                required: true
+                textareaVacia: true
             }
         },
         messages: {
@@ -160,7 +171,7 @@ function creaValidadorCentroMin(){
                 required: "Selecciona uno"
             },
             modulos: {
-                required: "Selecciona módulos"
+                textareaVacia: "Selecciona módulos"
             }
         },
         errorPlacement: function(error, element) {
