@@ -80,9 +80,10 @@ function creaValidadorCentroMin(){
     jQuery.validator.addMethod("textareaVacia", function(value, element, param){
         var val = $(element).val().trim();
         if(val  == '') {
+            alert(false)
             return false;
         }
-        
+        alert(true)
         return true;
     });
 
