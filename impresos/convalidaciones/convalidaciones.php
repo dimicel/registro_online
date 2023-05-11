@@ -209,9 +209,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <table  style="width: 100%;"><tr><td style="width:45%"><b>Descripción</b></td><td  style="width:45%"><b>Documento</b></td></tr></table>
-                                    <table id="tab_lista_docs"  style="width: 100%;"><tr><td  style="width:90%">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
+                                <div class="col" style="text-align: center;">
+                                    <table  style="width: 80%;"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
+                                    <table id="tab_lista_docs"  style="width: 80%;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
                                 </div>
                             </div>
                         </div>
