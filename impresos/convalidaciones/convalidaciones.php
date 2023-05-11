@@ -219,7 +219,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <tinput type="text" class="form-control" name="modulos" cols="107" rows="3" id="modulos" maxlength="1000" multiline/>  
+                                        <input type="text" class="form-control" name="modulos" rows="3" id="modulos" maxlength="1000" multiline/>  
                                     </div>
                                 </div>
                                 <div class="row mt-2">
