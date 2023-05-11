@@ -110,6 +110,15 @@ function creaValidadorCentroMin(){
             },
             t_firm: {
                 required: true
+            },
+            grado: {
+                required: true
+            },
+            ciclos: {
+                required: true
+            },
+            modulos: {
+                required: true
             }
         },
         messages: {
@@ -143,6 +152,15 @@ function creaValidadorCentroMin(){
             },
             t_firm: {
                 required: "Falta archivo"
+            },
+            grado: {
+                required: "Selecciona uno"
+            },
+            ciclos: {
+                required: "Selecciona uno"
+            },
+            modulos: {
+                required: "Selecciona módulos"
             }
         },
         errorPlacement: function(error, element) {
