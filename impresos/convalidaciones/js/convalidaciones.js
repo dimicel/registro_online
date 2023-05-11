@@ -12,7 +12,6 @@ $(document).ready(function() {
     dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, function(resp) {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
-            alert(resp["id_nif"])
             id_nie = resp["id_nie"];
             document.getElementById("nif_nie").value = resp["id_nif"];
             document.getElementById("nombre").value = resp["nombre"];
