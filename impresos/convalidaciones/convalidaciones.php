@@ -105,9 +105,11 @@
                                     </div>
                                     <div class="col-1 offset-3">
                                         <label for="apellidos">Apellidos</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
                                     </div>
                                     <div class="col-2 offset-3">
                                         <label for="nif_nie">NIF/NIE/Pasaporte</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
                                     </div>
                                 </div>
                                 <div class="row ">
@@ -124,15 +126,19 @@
                                 <div class="row mt-2">
                                     <div class="col-1">
                                         <label for="direccion">Domicilio</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
                                     </div>
                                     <div class="col-1 offset-4">
                                         <label for="cp">CP</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
                                     </div>
                                     <div class="col-1">
                                         <label for="localidad">Localidad</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
                                     </div>
                                     <div class="col-1 offset-2">
                                         <label for="provincia">Provincia</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
                                     </div>
                                 </div>
                                 <div class="row ">
@@ -155,12 +161,15 @@
                                     </div>
                                     <div class="col-1 offset-2">
                                         <label for="tlf_movil">Tlf. Móvil</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
                                     </div>
                                     <div class="col-1 offset-2">
                                         <label for="email">Email</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
                                     </div>
                                     <div class="col offset-2">
                                         <label for="t_firm">Firma (<a href='#' style="color:#00C;font-weight:bolder" onclick="ayudaFirma(event)">Instrucciones</a>)</label>
+                                        <label class="errorTxt" style="font-size: 1em;"></label>
                                     </div>
 
                                 </div>

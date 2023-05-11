@@ -5,6 +5,7 @@ var apellidos = "";
 var email = "";
 var anno_ini_curso;
 var telef_alumno,email_alumno;
+var formulario="";
 
 
 
@@ -58,6 +59,7 @@ $(document).ready(function() {
 
 
 function seleccion(obj){
+    formulario=obj.id;
     if (obj.id=="instrucciones"){
         open("instrucciones/instrucciones.pdf","_blank");
     }
@@ -99,6 +101,15 @@ function creaValidadorCentroMin(){
             },
             provincia: {
                 email: true
+            },
+            tlf_movil: {
+                email: true
+            },
+            email: {
+                email: true
+            },
+            t_firm: {
+                email: true
             }
         },
         messages: {
@@ -122,10 +133,20 @@ function creaValidadorCentroMin(){
             },
             provincia: {
                 required: "Complete el campo"
+            },
+            tlf_movil: {
+                required: "Complete el campo"
+            },
+            email: {
+                required: "Complete el campo"
+            },
+            t_firm: {
+                required: "Falta archivo"
             }
         },
         errorPlacement: function(error, element) {
-            $(element).prev($('.errorTxt')).html(error);
+            $("label[for='"+$(element).attr('name')+"']")[0].html(error);
+            //$(element).prev($('.errorTxt')).html(error);
         }
     });
 }
@@ -367,5 +388,14 @@ function ayudaFirma(e){
     mensaje+="- Si crees que la foto de la firma que has subido no es buena, puedes volver a subirla las veces que quieras. Sólo valdrá la última foto de firma añadida.<br>";
     mensaje+="- La fotografía de la firma se incrustará en el fichero PDF que se va a generar en el registro de la solicitud, y después será eliminada del servidor."
     alerta(mensaje,"INSTRUCCIONES FOTOGRAFÍA DE FIRMA",false,700);
+}
+
+
+function registraForm(){
+    if (formulario=="centro_ministerio"){
+       if ($("#form_centro_ministerio").validate()) {
+
+       }
+    } 
 }
 
