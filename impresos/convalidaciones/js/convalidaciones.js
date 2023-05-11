@@ -93,23 +93,22 @@ function creaValidadorCentroMin(){
                 required: true
             },
             direccion: {
-                required: true,
-                miFecha: true
+                required: true
             },
             localidad: {
-                email: true
+                required: true
             },
             provincia: {
-                email: true
+                required: true
             },
             tlf_movil: {
-                email: true
+                required: true
             },
             email: {
                 email: true
             },
             t_firm: {
-                email: true
+                required: true
             }
         },
         messages: {
