@@ -158,7 +158,7 @@
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="col-1 offset-2">
-                                    <label for="t_firm">Firma (<a href='#' style="color:#00C;font-weight:bolder" onclick="ayudaFirma(event)">?</a>)</label>
+                                    <label for="t_firm">Firma (<a href='#' style="color:#00C;font-weight:bolder" onclick="ayudaFirma(event)">Instrucciones</a>)</label>
                                 </div>
 
                             </div>
