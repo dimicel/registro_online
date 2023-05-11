@@ -234,39 +234,41 @@
         </div>        
     </section>
     <div id="anade_documento" style="display:none">
-        <div class="container">
-            <div class="row">
-                <div class="col-1">
-                    <label style="font-weight:bolder">Tipo:</label>
+        <form id="form_anade_documento">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1">
+                        <label style="font-weight:bolder">Tipo:</label>
+                    </div>
+                    <div class="col offset-1 custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
+                        <label for="loe" class="custom-control-label">LOE</label>
+                    </div>
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="logse" name="tipo" class="custom-control-input" value="LOGSE"/>
+                        <label for="logse" class="custom-control-label">LOGSE</label>
+                    </div>
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="universitarios" name="tipo" class="custom-control-input" value="Universitarios"/>
+                        <label for="universitarios" class="custom-control-label">Universitarios</label>
+                    </div>
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="otro" name="tipo" class="custom-control-input" value="Otro" />
+                        <label for="otro" class="custom-control-label">Otro</label>
+                    </div>
                 </div>
-                <div class="col offset-1 custom-control custom-switch mi-checkbox">
-                    <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
-                    <label for="loe" class="custom-control-label">LOE</label>
-                </div>
-                <div class="col custom-control custom-switch mi-checkbox">
-                    <input type="radio" id="logse" name="tipo" class="custom-control-input" value="LOGSE"/>
-                    <label for="logse" class="custom-control-label">LOGSE</label>
-                </div>
-                <div class="col custom-control custom-switch mi-checkbox">
-                    <input type="radio" id="universitarios" name="tipo" class="custom-control-input" value="Universitarios"/>
-                    <label for="universitarios" class="custom-control-label">Universitarios</label>
-                </div>
-                <div class="col custom-control custom-switch mi-checkbox">
-                    <input type="radio" id="otro" name="tipo" class="custom-control-input" value="Otro" />
-                    <label for="otro" class="custom-control-label">Otro</label>
+                <div class="row">
+                    <div class="col">
+                        <label for="den_estudios">Estudios que aporta:</label>
+                        <input type="text" id="den_estudios" class="form-control" maxlength="40"/>
+                    </div>
+                    <div class="col">
+                        <label for="archivo">Documento:</label>
+                        <input type="text" id="archivo" class="form-control" maxlength="256" onclick="selUltimoFile()" readonly/>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <label for="den_estudios">Estudios que aporta:</label>
-                    <input type="text" id="den_estudios" class="form-control" maxlength="40"/>
-                </div>
-                <div class="col">
-                    <label for="archivo">Documento:</label>
-                    <input type="text" id="archivo" class="form-control" maxlength="256" onclick="selUltimoFile()" readonly/>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 
 

@@ -276,6 +276,8 @@ function actualizaTablaListaDocs(){
     celda3.innerHTML="<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
     celda3.style.width="5%";
     celda3.style.textAlign="center";
+
+    document.getElementById("form_anade_documento").reset();
 }
 
 
