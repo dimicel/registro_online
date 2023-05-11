@@ -393,7 +393,7 @@ function ayudaFirma(e){
 
 function registraForm(){
     if (formulario=="centro_ministerio"){
-       if ($("#form_centro_ministerio").validate()) {
+       if ($("#form_centro_ministerio").valid()) {
 
        }
     } 

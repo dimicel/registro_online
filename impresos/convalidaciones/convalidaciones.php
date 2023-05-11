@@ -237,7 +237,7 @@
                         </div>
                         <div class="flex-row mt-1 w-100 justify-content-center">
                             <div class="col" style="text-align: center;">
-                                <input type="button" class="btn btn-success textoboton" id="generar" value="REGISTRAR SOLICITUD" onclick="registraSol()"/>
+                                <input type="button" class="btn btn-success textoboton" id="generar" value="REGISTRAR SOLICITUD" onclick="registraForm()"/>
                             </div>
                         </div>
                     </div>
