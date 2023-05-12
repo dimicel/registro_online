@@ -171,10 +171,10 @@
                                 </div>
                                 <div class="row ">
                                     <div class="col-3">
-                                        <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo"  maxlength="9" />
+                                        <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo"  maxlength="12" />
                                     </div>
                                     <div class="col-3">
-                                        <input type="text" class="form-control" name="tlf_movil" id="tlf_movil"  maxlength="9" />
+                                        <input type="text" class="form-control" name="tlf_movil" id="tlf_movil"  maxlength="12" />
                                     </div>
                                     <div class="col-3">
                                         <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
