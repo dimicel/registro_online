@@ -32,6 +32,7 @@ function generaRegistro(){
 
 $id_nie = urldecode($_POST['id_nie']);
 $anno_curso = urldecode($_POST['curso']);
+$fecha_registro=date('Y-m-d');
 $formulario = urldecode($_POST['formulario']);
 $nombre = urldecode($_POST['nombre']);
 $apellidos = urldecode($_POST['apellidos']);
@@ -46,6 +47,65 @@ $email = urldecode($_POST['email']);
 $grado = urldecode($_POST['grado']);
 $ciclo = urldecode($_POST['ciclo']);
 $modulos = urldecode($_POST['modulos']);
+$desc= array();
+foreach($_POST["desc"] as $value) {
+    $desc[]=urldecode($value);
+}
+$docs=$_FILES['docs'];
+
+$repite_registro=true;
+while($repite_registro){
+    $registro=generaRegistro();
+    $vReg=$mysqli->query("select * from convalidaciones where registro='$registro'");
+    if ($mysqli->errno>0){
+        exit("database");
+    }
+    if ($vReg->num_rows==0) {
+        $repite_registro=false;
+    }
+    $vReg->free();
+}
+$dirRegistro=substr($registro, 17);
+
+
+//ver esto que es la hostia made in chatGPT////////////////////////////////////////////////////////////
+///Parametro de bind sss por la siguiente tabla
+//"i": Entero (integer)
+//"d": Decimal (double)
+//"s": Cadena (string) y fechas
+//"b": Blob (para datos binarios)
+
+// Iniciar una transacción para asegurar la integridad de los datos
+$mysqli->begin_transaction();
+
+try {
+    // Insertar registro en la primera tabla
+    $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,organismo_destino,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,
+                                                            tlf_fijo,tlf_movil,email,grado,ciclo,ley,modulos) 
+                                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt1->bind_param("ssssssssssssssssssss", $id_nie,$formulario,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
+                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,'LOE',$modulos);
+    $stmt1->execute();
+    $stmt1->close();
+
+    // Insertar registros en la segunda tabla
+    $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
+    
+    for($i=0;$i<count($desc);$i++) {
+        $stmt2->bind_param("sss", $registro, $desc[$i], "docs/".$id_nie."/".$anno_curso."/".$dirRegistro."/docs"."/".$docs[$i]["name"]);
+        $stmt2->execute();
+    }
+    
+    $stmt2->close();
+
+    // Confirmar la transacción
+    $mysqli->commit();
+} catch (Exception $e) {
+    // En caso de error, revertir la transacción
+    $mysqli->rollback();
+    exit("database");
+}
+////////////////////////////////////////////////////////////
 
 
 
