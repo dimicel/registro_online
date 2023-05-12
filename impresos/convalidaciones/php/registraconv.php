@@ -92,7 +92,7 @@ try {
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
     
     for($i=0;$i<count($desc);$i++) {
-        $stmt2->bind_param("sss", $registro, $desc[$i], "docs/".$id_nie."/".$anno_curso."/".$dirRegistro."/docs"."/".$docs[$i]["name"]);
+        $stmt2->bind_param("sss", $registro, $desc[$i], "docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$docs[$i]["name"]);
         $stmt2->execute();
     }
     
@@ -123,7 +123,7 @@ $nombre_fichero=$registro . '.pdf';
 if (!is_dir(__DIR__."/../../../docs/".$id_nie))mkdir(__DIR__."/../../../docs/".$id_nie,0777);
 if(!is_dir(__DIR__."/../../../docs/".$id_nie."/convalidaciones"))mkdir(__DIR__."/../../../docs/".$id_nie."/convalidaciones",0777);
 if(!is_dir(__DIR__."/../../../docs/".$id_nie."/convalidaciones"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/convalidaciones"."/".$anno_curso,0777);
-$ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/". $nombre_fichero;///hay qu añadir el directorio de cada solicitud de convalidación
+$ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/". $nombre_fichero;
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 exit("envio_ok ");
