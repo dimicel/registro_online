@@ -160,7 +160,6 @@
                                     <div class="col offset-2">
                                         <label for="t_firm">Firma (<a href='#' style="color:#00C;font-weight:bolder" onclick="ayudaFirma(event)">Instrucciones</a>)</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
-                                        <input type="file" name="firma" id="firma" style="position: absolute; left: -9999px;" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>
                                     </div>
 
                                 </div>
@@ -176,6 +175,7 @@
                                     </div>
                                     <div class="col-3">
                                         <input type="text" class="form-control" name="t_firm" id="t_firm" readonly onclick="document.getElementById('firma').click()" />
+                                        <input type="file" name="firma" id="firma" style="position: absolute; left: -9999px;" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>
                                     </div>
                                 </div>
                             </div>

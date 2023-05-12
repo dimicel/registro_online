@@ -1,4 +1,3 @@
-var curso;
 var id_nie = "";
 var formulario="";
 var curso="";
@@ -413,25 +412,46 @@ function ayudaFirma(e){
 function registraForm(){
     if (formulario=="centro_ministerio"){
         if ($("#form_centro_ministerio").valid()) {
-            document.getElementById("firma").style.display="inherit"; // Hace visible el input de tipo file
             var formData = new FormData();
-            formData.append("archivo", $("#archivoInput")[0].files[0]);
-        
-            // Vuelve a ocultar el input de tipo file
-            $("#archivoInput").css("display", "none");
+            formData.append("id_nie",encodeURIComponent(id_nie));
+            formData.append("curso",encodeURIComponent(curso));
+            formData.append("formulario",encodeURIComponent(formulario));
+            formData.append("nombre", encodeURIComponent(document.getElementById("nombre").value));
+            formData.append("apellidos", encodeURIComponent(document.getElementById("apellidos").value));
+            formData.append("id_nif", encodeURIComponent(document.getElementById("nif_nie").value));
+            formData.append("direccion", encodeURIComponent(document.getElementById("direccion").value));
+            formData.append("cp", encodeURIComponent(document.getElementById("cp").value));
+            formData.append("localidad", encodeURIComponent(document.getElementById("localidad").value));
+            formData.append("provincia", encodeURIComponent(document.getElementById("provincia").value));
+            formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
+            formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
+            formData.append("email", encodeURIComponent(document.getElementById("email").value));
+            formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
+            formData.append("ciclo", encodeURIComponent(document.getElementById("ciclo").value));
+            formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
+            formData.append("firma",document.getElementById("foto").files[0]);
+
+            datosHidden = document.querySelectorAll('input[name="desc[]"]');
+            for (var i = 0; i < datosHidden.length; i++) {
+                formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
+            }
+            datosFiles = document.querySelectorAll('input[name="docs[]"]');
+            for (var i = 0; i < datosFiles.length; i++) {
+                formData.append("docs[]", datosFiles[i].files[0]);
+            }
         
             $.post({
-                url: "archivo.php", // Ruta al archivo PHP que manejará la petición
+                url: "php/registraconv.php", // Ruta al archivo PHP que manejará la petición
                 data: formData,
                 contentType: false,
                 processData: false,
                 success: function(response) {
                 // Maneja la respuesta del servidor
-                console.log(response);
+                    console.log(response);
                 },
                 error: function(xhr, status, error) {
-                // Maneja los errores
-                console.error(error);
+                    console.error(error);
+                    alerta("Error en servidor. Código "+error+"<br>Inténtelo más tarde.","ERROR DE SERVIDOR");
                 }
             });
         }
