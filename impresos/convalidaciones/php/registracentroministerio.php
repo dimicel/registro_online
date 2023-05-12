@@ -107,7 +107,7 @@ try {
 }
 ////////////////////////////////////////////////////////////
 
-
+$ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
 
 
 

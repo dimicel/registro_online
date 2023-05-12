@@ -441,7 +441,7 @@ function registraForm(){
             }
         
             $.post({
-                url: "php/registracentroministerio.php", // Ruta al archivo PHP que manejará la petición
+                url: "php/registracentroministerio.php", 
                 data: formData,
                 contentType: false,
                 processData: false,
