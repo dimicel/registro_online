@@ -162,8 +162,8 @@ function creaValidadorCentroMin(){
             }
         },
         errorPlacement: function(error, element) {
-            //if ($(element).attr('name')=="modulos") $("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
-            $("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
+            if ($(element).attr('name')=="modulos") $("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
+            //$("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
         }
     });
 }
