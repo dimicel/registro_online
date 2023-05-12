@@ -445,9 +445,8 @@ function registraForm(){
                 data: formData,
                 contentType: false,
                 processData: false,
-                success: function(response) {
-                // Maneja la respuesta del servidor
-                    console.log(response);
+                success: function(resp) {
+                    if (resp=="servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
                 },
                 error: function(xhr, status, error) {
                     console.error(error);
