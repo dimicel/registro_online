@@ -413,7 +413,27 @@ function ayudaFirma(e){
 function registraForm(){
     if (formulario=="centro_ministerio"){
         if ($("#form_centro_ministerio").valid()) {
-
+            document.getElementById("firma").style.display="inherit"; // Hace visible el input de tipo file
+            var formData = new FormData();
+            formData.append("archivo", $("#archivoInput")[0].files[0]);
+        
+            // Vuelve a ocultar el input de tipo file
+            $("#archivoInput").css("display", "none");
+        
+            $.post({
+                url: "archivo.php", // Ruta al archivo PHP que manejará la petición
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                // Maneja la respuesta del servidor
+                console.log(response);
+                },
+                error: function(xhr, status, error) {
+                // Maneja los errores
+                console.error(error);
+                }
+            });
         }
         else {
                 alerta ("Revisa los campos que se han marcado en rojo.","DATOS INVÁLIDOS O AUSENTES");

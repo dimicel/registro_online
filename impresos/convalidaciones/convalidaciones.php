@@ -68,7 +68,7 @@
 
     <section id="seccion-centro_ministerio" style="display:none">
         <div class="container w-100">
-            <form id="form_centro_ministerio">
+            <form id="form_convalidaciones">
                 <div class="d-flex flex-row">
                     <div class="col">
                         <div class="row d-flex w-100 justify-content-center">
@@ -160,7 +160,7 @@
                                     <div class="col offset-2">
                                         <label for="t_firm">Firma (<a href='#' style="color:#00C;font-weight:bolder" onclick="ayudaFirma(event)">Instrucciones</a>)</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
-                                        <input type="file" name="firma" id="firma" style="display:none" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>
+                                        <input type="file" name="firma" id="firma" style="position: absolute; left: -9999px;" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>
                                     </div>
 
                                 </div>
