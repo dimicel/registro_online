@@ -17,12 +17,6 @@
 </head>
 
 <body>
-    <div style="display:none">
-        <form id="convalidaciones" name="convalidaciones" class="needs-validation" novalidate method="post">
-            <input type="hidden" name="anno_curso" id="anno_curso" />
-            <input type="file" name="firma" id="firma" style="display:none" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>
-        </form>
-    </div>
     <header>
         <div class="container w-100">
             <!--CABECERA  ------------------------------------------------------------------------------------>
@@ -166,6 +160,7 @@
                                     <div class="col offset-2">
                                         <label for="t_firm">Firma (<a href='#' style="color:#00C;font-weight:bolder" onclick="ayudaFirma(event)">Instrucciones</a>)</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
+                                        <input type="file" name="firma" id="firma" style="display:none" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>
                                     </div>
 
                                 </div>

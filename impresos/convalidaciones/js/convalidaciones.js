@@ -330,8 +330,10 @@ function creaInputs(){
     divArray=document.getElementById("array_input_type_file");
     tipoHidden=document.createElement("input");
     tipoHidden.type="hidden";
+    tipoHidden.name="desc[]";
     tipoFile=document.createElement("input");
     tipoFile.type="file";
+    tipoFile.name="docs[]";
     tipoFile.multiple=false;
     divArray.appendChild(tipoHidden);
     divArray.appendChild(tipoFile);
