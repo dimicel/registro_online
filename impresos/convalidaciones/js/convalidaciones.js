@@ -50,10 +50,6 @@ $(document).ready(function() {
             }
         },"json");
     });
-    dat3 = dat2.then(() => {
-        
-
-    });
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
@@ -125,48 +121,49 @@ function creaValidadorCentroMin(){
         },
         messages: {
             apellidos: {
-                required: "Complete el campo"
+                required: "Vacío"
             },
             nombre: {
-                required: "Complete el campo"
+                required: "Vacío"
             },
             nif_nie: {
-                required: "Complete el campo"
+                required: "Vacío"
             },
             cp: {
-                required: "Falta"
+                required: "Vacío"
             },
             direccion: {
-                required: "Complete el campo"
+                required: "Vacío"
             },
             localidad: {
-                required: "Complete el campo"
+                required: "Vacío"
             },
             provincia: {
-                required: "Complete el campo"
+                required: "Vacío"
             },
             tlf_movil: {
-                required: "Complete el campo"
+                required: "Vacío"
             },
             email: {
-                required: "Complete el campo",
+                required: "Vacío",
                 email:"Inválido"
             },
             t_firm: {
-                required: "Falta archivo"
+                required: "Vacío"
             },
             grado: {
-                required: "Selecciona uno"
+                required: "Seleccione uno"
             },
             ciclos: {
-                required: "Selecciona uno"
+                required: "Seleccione uno"
             },
             modulos: {
-                required: "Selecciona módulos"
+                required: "Seleccione módulos"
             }
         },
         errorPlacement: function(error, element) {
-            if ($(element).attr('name')=="modulos") $("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
+            //if ($(element).attr('name')=="modulos") $("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
+            $("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
         }
     });
 }
