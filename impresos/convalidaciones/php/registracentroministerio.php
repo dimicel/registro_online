@@ -283,7 +283,7 @@ $pdf->Cell(0,0,$dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T'
 
 $pdf->SetFont('dejavusans', '', 5, '', true);
 $pdf->SetXY(90,275);
-$pdf->Cell(0,0,"925222454",0,0,'L',0,'',1,true,'T','T');
+$pdf->Cell(0,0,$registro,0,0,'L',0,'',1,true,'T','T');
 
 
 //GENERA EL ARCHIVO NUEVO
