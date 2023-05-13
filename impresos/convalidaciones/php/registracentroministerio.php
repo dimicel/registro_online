@@ -154,49 +154,43 @@ $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$
 
 //GENERA EL PDF Y LO GUARDA EN EL SERVIDOR
 
+$meses = array("enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
+$fecha_actual=getdate();
+$dia=$fecha_actual["mday"];
+$mes=$meses[$fecha_actual["mon"]-1];
+$anno=$fecha_actual["year"];
+
 class MYPDF extends TCPDF {
+    // Constructor
+    public function __construct($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false) {
+        parent::__construct($orientation, $unit, $format, $unicode, $encoding, $diskcache);
+    }
 
 	//Page header
 	public function Header() {}
 }
 
 // create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('IES Universidad Laboral');
-$pdf->SetTitle('Convalidaciones Ministerio');
+$pdf->SetTitle('Convalidaciones Centro Educativo y Ministerio');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Convalidaciones Ministerio');
-
-// set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-//$pdf->setFooterData();
-
-// set header and footer fonts
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-//$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Convalidaciones Centro Educativo y Ministerio');
 
 // set default monospaced font
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-//$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT, PDF_MARGIN_HEADER);
 
 // set auto page breaks
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
 // set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-// set some language-dependent strings (optional)
-if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
-	require_once(dirname(__FILE__).'/lang/spa.php');
-	$pdf->setLanguageArray($l);
-}
 
 // ---------------------------------------------------------
 
@@ -225,20 +219,13 @@ $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 $pdf->setPageMark();
 
 
-$meses = array("enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
-$fecha_actual=getdate();
-$dia=$fecha_actual["mday"];
-$mes=$meses[$fecha_actual["mon"]-1];
-$anno=$fecha_actual["year"];
-
-
-$pdf->SetXY(58,46.5);
+$pdf->SetXY(61,65);
 $pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(105,46.5);
+$pdf->SetXY(104,65);
 $pdf->Cell(0,0,$nombre,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(42,51);
+$pdf->SetXY(48,68);
 $pdf->Cell(0,0,$apellidos,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(42,55);
+$pdf->SetXY(48,72.5);
 $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(48,59);
 $pdf->Cell(0,0,$cp,0,0,'L',0,'',1,true,'T','T');
@@ -287,8 +274,6 @@ $pdf->setCellHeightRatio(1.4);
 $pdf->SetXY(147,181);
 $pdf->Cell(0,0,$dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T');
 
-$pdf->SetXY(40,198);
-$pdf->Cell(0,0,"Luis Corrales Mariblanca",0,0,'L',0,'',1,true,'T','T');
 
 
 //GENERA EL ARCHIVO NUEVO
