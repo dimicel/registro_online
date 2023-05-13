@@ -494,7 +494,8 @@ function canvasFirma(){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
-                    
+                    if(!isCanvasEmpty())document.getElementById("t_firm").value="FORMULARIO FIRMADO";
+                    else document.getElementById("t_firm").value="";
                     $("#div_canvas_firma").dialog("close");
                     $("#div_canvas_firma").dialog("destroy");
                 }
@@ -504,14 +505,15 @@ function canvasFirma(){
                 text: "Borrar",
                 click: function() {
                     context.clearRect(0, 0, canvas.width, canvas.height);
+                    document.getElementById("t_firm").value="";
                 }
             },
             {
                 class: "btn btn-success textoboton",
                 text: "Cancelar",
                 click: function() {
-                    context.clearRect(0, 0, canvas.width, canvas.height);
-                    alerta("La firma se ha borrado.","FIRMA BORRADA");
+                    if(!isCanvasEmpty())document.getElementById("t_firm").value="FORMULARIO FIRMADO";
+                    else document.getElementById("t_firm").value="";
                     $("#div_canvas_firma").dialog("close");
                     $("#div_canvas_firma").dialog("destroy");
                 }
@@ -569,38 +571,17 @@ function tool_pencil () {
   }
 
 
-/*function startDrawing(event) {
-    drawing = true;
-    mouseX = event.pageX - canvas.offsetLeft;
-    mouseY = event.pageY - canvas.offsetTop;
-  }
-
-
-function draw(event) {
- 
-    var x, y;
-
-	// Get the mouse position relative to the <canvas> element
-	if (ev.layerX || ev.layerX == 0) { // Firefox
-		x = ev.layerX;
-		y = ev.layerY;
-	} else if (ev.offsetX || ev.offsetX == 0) { // Opera
-		x = ev.offsetX;
-		y = ev.offsetY;
-	}
-
-	// The event handler works like a drawing pencil which
-	// tracks the mouse movements. We start drawing a path made up of lines
-	if (!started) {
-		context.beginPath();
-		context.moveTo(x, y);
-		started = true;
-	} else {
-		context.lineTo(x, y);
-		context.stroke();
-	}
-  }
+// Función para verificar si el canvas contiene algo dibujado
+function isCanvasEmpty() {
+    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    var data = imageData.data;
   
-  function stopDrawing() {
-    drawing = false;
-  }*/
+    for (var i = 0; i < data.length; i += 4) {
+      // Comprobar si el canal alfa (transparencia) es mayor que 0
+      if (data[i + 3] !== 0) {
+        return false; // El canvas contiene algo dibujado
+      }
+    }
+  
+    return true; // El canvas está vacío
+  }

@@ -174,8 +174,8 @@
                                         <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
                                     </div>
                                     <div class="col-3">
-                                        <input type="text" class="form-control" name="t_firm" id="t_firm" readonly onclick="canvasFirma();//document.getElementById('firma').click()" />
-                                        <input type="file" name="firma" id="firma" style="position: absolute; left: -9999px;" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>
+                                        <input type="text" class="form-control" name="t_firm" id="t_firm" readonly onclick="canvasFirma();" />
+                                        <!--<input type="file" name="firma" id="firma" style="position: absolute; left: -9999px;" accept=".jpg, .jpeg" onchange="document.getElementById('t_firm').value=this.files[0].name"/>-->
                                     </div>
                                 </div>
                             </div>
