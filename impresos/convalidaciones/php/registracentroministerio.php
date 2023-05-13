@@ -99,19 +99,17 @@ try {
     
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
-    
     for($i=0;$i<count($desc);$i++) {
         $indice=sprintf("%02d", $i+1)."_";
         $stmt2->bind_param("sss", $registro, $desc[$i], "docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$docs[$i]["name"]);
         $stmt2->execute();
     }
-    
+    exit("aqui");
     $stmt2->close();
     $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
     if (!is_dir($rutaCompleta)) {
         mkdir($rutaCompleta, 0777, true);
     }
-    exit("aqui");
     if (isset($_FILES["docs"])){
         for ($i=0;$i<count($_FILES["docs"]["tmp_name"]);$i++){
             $indice=sprintf("%02d", $i+1)."_";
