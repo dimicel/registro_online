@@ -76,7 +76,7 @@ while($repite_registro){
 }
 $dirRegistro=substr($registro, 17);
 
-exit("aqui");
+
 //ver esto que es la hostia made in chatGPT////////////////////////////////////////////////////////////
 ///Parametro de bind sss por la siguiente tabla
 //"i": Entero (integer)
@@ -148,7 +148,7 @@ try {
 
 $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
 
-
+exit("aqui");
 
 
 //////////////PDF///////////////////////
