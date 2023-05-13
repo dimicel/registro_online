@@ -48,10 +48,19 @@ $grado = urldecode($_POST['grado']);
 $ciclo = urldecode($_POST['ciclo']);
 $modulos = urldecode($_POST['modulos']);
 $desc= array();
-foreach($_POST["desc"] as $value) {
-    $desc[]=urldecode($value);
+$estudios_aportados="";
+if (isset($_POST["desc"])){
+    foreach($_POST["desc"] as $value) {
+        $desc[]=urldecode($value);
+    }
+    $docs=$_FILES['docs'];
+    
+    $estudios_aportados=$desc[0];
+    for($i=1;$i<count($desc);$i++){
+        $estudios_aportados.=", ".$desc[$i];
+    }
 }
-$docs=$_FILES['docs'];
+
 
 $repite_registro=true;
 while($repite_registro){
@@ -102,27 +111,29 @@ try {
     if (!is_dir($rutaCompleta)) {
         mkdir($rutaCompleta, 0777, true);
     }
-    for ($i=0;$i<count($_FILES["docs"]["tmp_name"]);$i++){
-        $indice=sprintf("%02d", $i+1)."_";
-        $nombreDoc=$indice.$_FILES["docs"]["name"][$i];
-        try {
-            move_uploaded_file($_FILES["docs"]["tmp_name"][$i], $rutaCompleta.$nombreDoc);
-        } catch (Exception $ex) {
-            // Si hay un error al mover el archivo, eliminar los archivos ya movidos
-            $archivosEliminados = glob($rutaCompleta . "*");
-            foreach ($archivosEliminados as $archivoEliminado) {
-                unlink($archivoEliminado);
+    if (isset($_FILES["docs"])){
+        for ($i=0;$i<count($_FILES["docs"]["tmp_name"]);$i++){
+            $indice=sprintf("%02d", $i+1)."_";
+            $nombreDoc=$indice.$_FILES["docs"]["name"][$i];
+            try {
+                move_uploaded_file($_FILES["docs"]["tmp_name"][$i], $rutaCompleta.$nombreDoc);
+            } catch (Exception $ex) {
+                // Si hay un error al mover el archivo, eliminar los archivos ya movidos
+                $archivosEliminados = glob($rutaCompleta . "*");
+                foreach ($archivosEliminados as $archivoEliminado) {
+                    unlink($archivoEliminado);
+                }
+    
+                // Eliminar la ruta creada
+                rmdir($rutaCompleta);
+                rmdir(__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/");
+    
+                // Revertir la transacción en la base de datos
+                $mysqli->rollback();
+    
+                // Mostrar mensaje de error o realizar otras acciones necesarias
+                exit("error_subida");
             }
-
-            // Eliminar la ruta creada
-            rmdir($rutaCompleta);
-            rmdir(__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/");
-
-            // Revertir la transacción en la base de datos
-            $mysqli->rollback();
-
-            // Mostrar mensaje de error o realizar otras acciones necesarias
-            exit("error_subida");
         }
     }
 
@@ -138,7 +149,135 @@ try {
 $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
 
 
+// create new PDF document
+$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+// set document information
+$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('IES Universidad Laboral');
+$pdf->SetTitle('Convalidaciones Ministerio');
+$pdf->SetSubject('Secretaría');
+$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Convalidaciones Ministerio');
+
+// set default header data
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+//$pdf->setFooterData();
+
+// set header and footer fonts
+$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+//$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+// set default monospaced font
+$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+// set margins
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+//$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+// set auto page breaks
+$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+// set image scale factor
+$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+// set some language-dependent strings (optional)
+if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
+	require_once(dirname(__FILE__).'/lang/spa.php');
+	$pdf->setLanguageArray($l);
+}
+
+// ---------------------------------------------------------
+
+$pdf->setFontSubsetting(true);
+
+$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->setFillColor(200);  //Relleno en gris
+//Padding dentro de la celda del texto
+$pdf->setCellPaddings(0,0,0,0);
+//Interlineado
+$pdf->setCellHeightRatio(1.5);
+
+
+$pdf->AddPage();
+// get the current page break margin
+$bMargin = $pdf->getBreakMargin();
+// get current auto-page-break mode
+$auto_page_break = $pdf->getAutoPageBreak();
+// disable auto-page-break
+$pdf->SetAutoPageBreak(false, 0);
+// set background image
+$pdf->Image("../recursos/centroministerio.jpg", 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+// restore auto-page-break status
+$pdf->SetAutoPageBreak($auto_page_break, $bMargin);
+// set the starting point for the page content
+$pdf->setPageMark();
+
+
+$meses = array("enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
+$fecha_actual=getdate();
+$dia=$fecha_actual["mday"];
+$mes=$meses[$fecha_actual["mon"]-1];
+$anno=$fecha_actual["year"];
+
+
+$pdf->SetXY(58,46.5);
+$pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(105,46.5);
+$pdf->Cell(0,0,$nombre,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(42,51);
+$pdf->Cell(0,0,$apellidos,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(42,55);
+$pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(48,59);
+$pdf->Cell(0,0,$cp,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(74,59);
+$pdf->Cell(54,0,$localidad,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(145,59);
+$pdf->Cell(40,0,$provincia,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(38,63);
+$pdf->Cell(0,0,$tlf_fijo,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(78,63);
+$pdf->Cell(0,0,$tlf_movil,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(130,63);
+$pdf->Cell(52,0,$email,0,0,'L',0,'',1,true,'T','T');
+
+$pdf->SetXY(50,81);
+$pdf->Cell(0,0,"IES UNIVERSIDAD LABORAL",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(50,85);
+$pdf->Cell(0,0,"AVDA. EUROPA, 28",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(48,89);
+$pdf->Cell(0,0,"45003",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(80,89);
+$pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(150,89);
+$pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(40,93);
+$pdf->Cell(0,0,"925223400",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(73,93);
+$pdf->Cell(0,0,"925222454",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(125,93);
+$pdf->Cell(0,0,"45003796.ies@edu.jccm.es",0,0,'L',0,'',1,true,'T','T');
+
+$pdf->SetXY(18,111);
+$pdf->Cell(125,0,"Grado " . $grado . " de " . $ciclo,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(166,115);
+$pdf->Cell(0,0,"X",0,0,'L',0,'',1,true,'T','T');
+
+$pdf->setCellHeightRatio(1.3);
+$pdf->SetXY(15,127);
+$pdf->MultiCell(175,0,$estudios_aportados,0,'L',0,1,'','',true,0,false,false,0);
+
+$pdf->setCellHeightRatio(1.4);
+$pdf->SetXY(15,150);
+$pdf->MultiCell(175,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
+
+$pdf->setCellHeightRatio(1.4);
+$pdf->SetXY(147,181);
+$pdf->Cell(0,0,$dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T');
+
+$pdf->SetXY(40,198);
+$pdf->Cell(0,0,"Luis Corrales Mariblanca",0,0,'L',0,'',1,true,'T','T');
 
 
 
