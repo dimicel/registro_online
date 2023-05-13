@@ -77,7 +77,7 @@ while($repite_registro){
 }
 $dirRegistro=substr($registro, 17);
 
-
+exit("aqui");
 //ver esto que es la hostia made in chatGPT////////////////////////////////////////////////////////////
 ///Parametro de bind sss por la siguiente tabla
 //"i": Entero (integer)
@@ -91,7 +91,7 @@ $mysqli->begin_transaction();
 try {
     // Insertar registro en la primera tabla
     $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,organismo_destino,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,
-                                                            tlf_fijo,tlf_movil,email,grado,ciclo,ley,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");exit("aqui");
+                                                            tlf_fijo,tlf_movil,email,grado,ciclo,ley,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt1->bind_param("sssssssssssssssssss", $id_nie,$formulario,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
                                                 $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$ley,$modulos);
     $stmt1->execute();
