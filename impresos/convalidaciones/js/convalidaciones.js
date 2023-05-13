@@ -52,6 +52,14 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
+    const canvas = document.getElementById('firmaCanvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+
 });
 
 
@@ -430,7 +438,8 @@ function registraForm(){
             formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
             formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
             formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
-            formData.append("firma",document.getElementById("firma").files[0]);
+            //formData.append("firma",document.getElementById("firma").files[0]);
+            formData.append("firma",canvas.toDataURL('image/jpeg'));
             datosHidden = document.querySelectorAll('input[name="desc[]"]');
             for (var i = 0; i < datosHidden.length; i++) {
                 formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
@@ -464,3 +473,54 @@ function registraForm(){
     } 
 }
 
+
+
+function canvasFirma(){
+    $("#div_canvas_firma").dialog({
+        autoOpen: true,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "FIRMA",
+        //width: 500,
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Aceptar",
+                click: function() {
+                    
+                    $("#div_canvas_firma").dialog("close");
+                    $("#div_canvas_firma").dialog("destroy");
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    $("#div_canvas_firma").dialog("close");
+                    $("#div_canvas_firma").dialog("destroy");
+                }
+            }]
+    });       
+}
+
+function startDrawing() {
+    drawing = true;
+    ctx.beginPath();
+  }
+  
+  function draw(event) {
+    if (!drawing) return;
+    
+    const x = event.clientX - canvas.offsetLeft;
+    const y = event.clientY - canvas.offsetTop;
+    
+    ctx.lineTo(x, y);
+    ctx.stroke();
+  }
+  
+  function stopDrawing() {
+    drawing = false;
+  }
