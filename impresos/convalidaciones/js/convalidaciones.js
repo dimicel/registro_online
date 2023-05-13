@@ -456,7 +456,6 @@ function registraForm(){
                 contentType: false,
                 processData: false,
                 success: function(resp) {
-                    alert(resp);
                     if (resp=="servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
                     else if (resp=="database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.","ERROR DB");
                     else if (resp=="error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.","ERROR UPLOAD");
