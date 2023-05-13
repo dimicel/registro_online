@@ -196,7 +196,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 $pdf->setFontSubsetting(true);
 
-$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->SetFont('dejavusans', '', 7, '', true);
 $pdf->setFillColor(200);  //Relleno en gris
 //Padding dentro de la celda del texto
 $pdf->setCellPaddings(0,0,0,0);
@@ -240,26 +240,26 @@ $pdf->Cell(0,0,$tlf_movil,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(130,77);
 $pdf->Cell(52,0,$email,0,0,'L',0,'',1,true,'T','T');
 
-$pdf->SetXY(50,81);
+$pdf->SetXY(60,98);
 $pdf->Cell(0,0,"IES UNIVERSIDAD LABORAL",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(50,85);
+$pdf->SetXY(50,102);
 $pdf->Cell(0,0,"AVDA. EUROPA, 28",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(48,89);
+$pdf->SetXY(55,106);
 $pdf->Cell(0,0,"45003",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(80,89);
+$pdf->SetXY(85,106);
 $pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(150,89);
+$pdf->SetXY(48,110);
 $pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(40,93);
+$pdf->SetXY(76,110);
 $pdf->Cell(0,0,"925223400",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(73,93);
+$pdf->SetXY(97,110);
 $pdf->Cell(0,0,"925222454",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(125,93);
+$pdf->SetXY(135,110);
 $pdf->Cell(0,0,"45003796.ies@edu.jccm.es",0,0,'L',0,'',1,true,'T','T');
 
-$pdf->SetXY(18,111);
+$pdf->SetXY(35,127);
 $pdf->Cell(125,0,"Grado " . $grado . " de " . $ciclo,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(166,115);
+$pdf->SetXY(147,134);
 $pdf->Cell(0,0,"X",0,0,'L',0,'',1,true,'T','T');
 
 $pdf->setCellHeightRatio(1.3);
