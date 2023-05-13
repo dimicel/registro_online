@@ -63,7 +63,7 @@ if (isset($_POST["desc"])){
 }
 
 $imageData = urldecode($_POST['imageData']);
-$tempFile = tempnam(sys_get_temp_dir(), 'canvas_');
+$tempFile = tempnam(sys_get_temp_dir(), 'canvas_'. session_id() . '_');
 file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 $firma = $tempFile;
 
@@ -73,6 +73,7 @@ while($repite_registro){
     $registro=generaRegistro();
     $vReg=$mysqli->query("select * from convalidaciones where registro='$registro'");
     if ($mysqli->errno>0){
+        unlink($tempFile);
         exit("database");
     }
     if ($vReg->num_rows==0) {
@@ -136,6 +137,7 @@ try {
                 $mysqli->rollback();
     
                 // Mostrar mensaje de error o realizar otras acciones necesarias
+                unlink($tempFile);
                 exit("error_subida");
             }
         }
@@ -146,6 +148,7 @@ try {
 } catch (Exception $e) {
     // En caso de error, revertir la transacción
     $mysqli->rollback();
+    unlink($tempFile);
     exit("database");
 }
 ////////////////////////////////////////////////////////////
@@ -302,4 +305,5 @@ if(!is_dir(__DIR__."/../../../docs/".$id_nie."/convalidaciones"."/".$anno_curso)
 $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/". $nombre_fichero;
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
+unlink($tempFile);
 exit("ok");
