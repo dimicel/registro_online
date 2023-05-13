@@ -468,15 +468,14 @@ function listaSolicitudes() {
         else if (data["error"] == "ok") {
             tabla = "<tr><th>Curso</th><th>Fecha</th><th>Número de Registro</th><th>Incidencias</th></tr>";
             Object.keys(data.proceso).forEach(function(proc) {
+                alert(proc);
                 tabla += "<tr><th colspan='5' style='text-align:left'><label style='font-size:1em;color:black !important'>" + proc.toUpperCase() + "</label></th></tr>";
                 for (i = 0; i < data["proceso"][proc].length; i++) {
                     item = data["proceso"][proc][i];
                     f_reg = item["fecha_registro"];
                     tabla += "<tr><td style='width:90px;text-align:center;color:blue'>" + item["curso"] + "</td>";
                     tabla += "<td style='width:90px;text-align:center;color:blue'>" + f_reg.substr(8, 2) + "-" + f_reg.substr(5, 2) + "-" + f_reg.substr(0, 4) + "</td>";
-                    alert(proc);
                     if (proc=="Convalidaciones"){
-                        alert(item["registro"].substring(17));
                         tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a>";
                         if (item["procesado"]=="positiva"){
                             tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución POSITIVA)</a>"
