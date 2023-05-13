@@ -252,8 +252,10 @@ $pdf->SetXY(48,110);
 $pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(76,110);
 $pdf->Cell(0,0,"925223400",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetFont('dejavusans', '', 6, '', true);
 $pdf->SetXY(97,110);
 $pdf->Cell(0,0,"925222454",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetFont('dejavusans', '', 7, '', true);
 $pdf->SetXY(135,110);
 $pdf->Cell(0,0,"45003796.ies@edu.jccm.es",0,0,'L',0,'',1,true,'T','T');
 
