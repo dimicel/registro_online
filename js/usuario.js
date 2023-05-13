@@ -475,12 +475,13 @@ function listaSolicitudes() {
                     tabla += "<tr><td style='width:90px;text-align:center;color:blue'>" + item["curso"] + "</td>";
                     tabla += "<td style='width:90px;text-align:center;color:blue'>" + f_reg.substr(8, 2) + "-" + f_reg.substr(5, 2) + "-" + f_reg.substr(0, 4) + "</td>";
                     if (proc=="convalidaciones"){
-                        tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17);+"/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a>";
+                        alert(item["registro"].substring(17));
+                        tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a>";
                         if (item["procesado"]=="positiva"){
-                            tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17);+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución POSITIVA)</a>"
+                            tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución POSITIVA)</a>"
                         }
                         else if(item["procesado"]=="negativa"){
-                            tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17);+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución NEGATIVA)</a>"
+                            tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución NEGATIVA)</a>"
                         }
                         else{
                             tabla += " (Resolución NO RESUELTA)"
