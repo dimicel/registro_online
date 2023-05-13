@@ -469,6 +469,7 @@ function listaSolicitudes() {
             tabla = "<tr><th>Curso</th><th>Fecha</th><th>Número de Registro</th><th>Incidencias</th></tr>";
             Object.keys(data.proceso).forEach(function(proc) {
                 alert(proc);
+                alert(data["proceso"][proc].length)
                 tabla += "<tr><th colspan='5' style='text-align:left'><label style='font-size:1em;color:black !important'>" + proc.toUpperCase() + "</label></th></tr>";
                 for (i = 0; i < data["proceso"][proc].length; i++) {
                     item = data["proceso"][proc][i];
