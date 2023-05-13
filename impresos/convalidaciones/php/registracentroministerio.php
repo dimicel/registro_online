@@ -61,7 +61,7 @@ if (isset($_POST["desc"])){
         $estudios_aportados.=", ".$desc[$i];
     }
 }
-$firma = base64_decode(str_replace("data:image/jpeg;base64,", "", $_POST['firma']));
+$firma = base64_decode(str_replace("data:image/jpeg;base64,", "", urldecode($_POST['firma'])));
 
 
 $repite_registro=true;
