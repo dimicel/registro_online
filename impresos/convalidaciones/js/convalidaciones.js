@@ -412,7 +412,7 @@ function ayudaFirma(e){
 
 function registraForm(){
     alert(0);
-    if (formulario=="centro_ministerio"){
+    if (formulario=="Centro-Ministerio"){
         alert(100);
         if ($("#form_convalidaciones").valid()) {
             alert(200);
