@@ -474,6 +474,7 @@ function listaSolicitudes() {
                     f_reg = item["fecha_registro"];
                     tabla += "<tr><td style='width:90px;text-align:center;color:blue'>" + item["curso"] + "</td>";
                     tabla += "<td style='width:90px;text-align:center;color:blue'>" + f_reg.substr(8, 2) + "-" + f_reg.substr(5, 2) + "-" + f_reg.substr(0, 4) + "</td>";
+                    alert(proc);
                     if (proc=="convalidaciones"){
                         alert(item["registro"].substring(17));
                         tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a>";
