@@ -274,7 +274,7 @@ $pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 
 /////Tratamiento de la imagen
-$pdf->Image($_FILES["firma"]["tmp_name"], 110, 235, 50, 0, '', '', '', false, 300);
+$pdf->Image($_FILES["firma"]["tmp_name"], 100, 235, 50, 0, '', '', '', false, 300);
 $pdf->SetFont('dejavusans', '', 9, '', true);
 $pdf->SetXY(101,227);
 $pdf->Cell(0,0,"FIRMA DEL SOLICITANTE y FECHA",0,0,'L',0,'',1,true,'T','T');
