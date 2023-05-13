@@ -299,4 +299,4 @@ if(!is_dir(__DIR__."/../../../docs/".$id_nie."/convalidaciones"."/".$anno_curso)
 $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/". $nombre_fichero;
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
-exit("envio_ok ");
+exit("ok ");
