@@ -3,7 +3,8 @@ var formulario="";
 var curso="";
 var drawing = false;
 var mouseX, mouseY;
-var canvas,ctx;
+
+var canvas, context, tool;
 
 
 $(document).ready(function() {
@@ -55,8 +56,9 @@ $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
     canvas = document.getElementById('firmaCanvas');
-    ctx = canvas.getContext('2d');
-    
+    context = canvas.getContext('2d');
+
+       
     canvas.addEventListener("mousedown", startDrawing);
     canvas.addEventListener("mousemove", draw);
     canvas.addEventListener("mouseup", stopDrawing);
@@ -478,6 +480,7 @@ function registraForm(){
 
 
 function canvasFirma(){
+    tool = new tool_pencil();
     $("#div_canvas_firma").dialog({
         autoOpen: true,
         dialogClass: "alert no-close",
@@ -508,7 +511,57 @@ function canvasFirma(){
     });       
 }
 
-function startDrawing(event) {
+function tool_pencil () {
+    var tool = this;
+    this.started = false;
+
+    // This is called when you start holding down the mouse button.
+    // This starts the pencil drawing.
+    this.mousedown = function (ev) {
+        context.beginPath();
+        context.moveTo(ev._x, ev._y);
+        tool.started = true;
+    };
+
+    // This function is called every time you move the mouse. Obviously, it only 
+    // draws if the tool.started state is set to true (when you are holding down 
+    // the mouse button).
+    this.mousemove = function (ev) {
+      if (tool.started) {
+        context.lineTo(ev._x, ev._y);
+        context.stroke();
+      }
+    };
+
+    // This is called when you release the mouse button.
+    this.mouseup = function (ev) {
+      if (tool.started) {
+        tool.mousemove(ev);
+        tool.started = false;
+      }
+    };
+  }
+
+  // The general-purpose event handler. This function just determines the mouse 
+  // position relative to the canvas element.
+  function ev_canvas (ev) {
+    if (ev.layerX || ev.layerX == 0) { // Firefox
+      ev._x = ev.layerX;
+      ev._y = ev.layerY;
+    } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+      ev._x = ev.offsetX;
+      ev._y = ev.offsetY;
+    }
+
+    // Call the event handler of the tool.
+    var func = tool[ev.type];
+    if (func) {
+      func(ev);
+    }
+  }
+
+
+/*function startDrawing(event) {
     drawing = true;
     mouseX = event.pageX - canvas.offsetLeft;
     mouseY = event.pageY - canvas.offsetTop;
@@ -516,20 +569,7 @@ function startDrawing(event) {
 
 
 function draw(event) {
-    /*if (drawing) {
-      var currentX = event.pageX - canvas.offsetLeft;
-      var currentY = event.pageY - canvas.offsetTop;
-      
-      // Dibujar el trazo
-      context.beginPath();
-      context.moveTo(mouseX, mouseY);
-      context.lineTo(currentX, currentY);
-      context.stroke();
-      
-      // Actualizar las coordenadas del ratón
-      mouseX = currentX;
-      mouseY = currentY;
-    }*/
+ 
     var x, y;
 
 	// Get the mouse position relative to the <canvas> element
@@ -555,4 +595,4 @@ function draw(event) {
   
   function stopDrawing() {
     drawing = false;
-  }
+  }*/
