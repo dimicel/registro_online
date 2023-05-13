@@ -501,8 +501,17 @@ function canvasFirma(){
             },
             {
                 class: "btn btn-success textoboton",
+                text: "Limpiar Lienzo",
+                click: function() {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
                 text: "Cancelar",
                 click: function() {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    alerta("La firma se ha borrado.","FIRMA BORRADA");
                     $("#div_canvas_firma").dialog("close");
                     $("#div_canvas_firma").dialog("destroy");
                 }
