@@ -25,7 +25,7 @@ function generaRegistro(){
     $array[6]=substr($nums,mt_rand(0,strlen("mayus")-1),1);
     $array[7]=substr($minus,mt_rand(0,strlen("signos")-1),1);
     shuffle($array);
-    return "iesulabto_conval_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];   
+    return "iesulabto_convcm_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];   
 }
 
 
