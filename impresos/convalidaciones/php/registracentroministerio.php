@@ -273,7 +273,7 @@ $pdf->SetXY(35,189);
 $pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 $pdf->setCellHeightRatio(1.4);
-$pdf->SetXY(100,260);
+$pdf->SetXY(120,260);
 $pdf->Cell(0,0,$dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T');
 
 
