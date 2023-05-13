@@ -474,7 +474,22 @@ function listaSolicitudes() {
                     f_reg = item["fecha_registro"];
                     tabla += "<tr><td style='width:90px;text-align:center;color:blue'>" + item["curso"] + "</td>";
                     tabla += "<td style='width:90px;text-align:center;color:blue'>" + f_reg.substr(8, 2) + "-" + f_reg.substr(5, 2) + "-" + f_reg.substr(0, 4) + "</td>";
-                    tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a></td>";
+                    if (proc=="convalidaciones"){
+                        tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17);+"/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a>";
+                        if (item["procesado"]=="positiva"){
+                            tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17);+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución POSITIVA)</a>"
+                        }
+                        else if(item["procesado"]=="negativa"){
+                            tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17);+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución NEGATIVA)</a>"
+                        }
+                        else{
+                            tabla += " (Resolución NO RESUELTA)"
+                        }
+                        tabla+="</td>";
+                    }
+                    else{
+                        tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a></td>";
+                    }
                     if (item["incidencias"].miTrim() != "") tabla += "<td style='text-align:center;color:blue !important'><a style='color:blue' href=javascript:alerta('" + item["incidencias"] + "','INCIDENCIAS')>Ver</a></td></tr>";
                     else tabla += "<td style='text-align:center;color:blue'>-</td></tr>";
                 };

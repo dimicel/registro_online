@@ -45,6 +45,23 @@ $consulta->free();
 $contador=0;
 
 
+$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias,organismo_destino,resolucion from convalidaciones where id_nie='$id_nie' order by curso, fecha_registro,organismo_destino,registro");
+if ($consulta->num_rows>0){
+    $data["error"]="ok";
+    $contador=0;
+    while ($reg=$consulta->fetch_assoc()){
+        $data["proceso"]["Convalidaciones"][$contador]["fecha_registro"]=$reg["fecha_registro"];
+        $data["proceso"]["Convalidaciones"][$contador]["registro"]=$reg["registro"];
+        $data["proceso"]["Convalidaciones"][$contador]["curso"]=$reg["curso"];
+        $data["proceso"]["Convalidaciones"][$contador]["organismo_destino"]=$reg["organismo_destino"];
+        $data["proceso"]["Convalidaciones"][$contador]["resolucion"]=$reg["resolucion"];
+        $data["proceso"]["Convalidaciones"][$contador]["incidencias"]=$reg["incidencias"];
+        $data["proceso"]["Convalidaciones"][$contador]["dir"]="convalidaciones";
+        $contador++;
+    }
+}
+$consulta->free();
+
 $consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from premat_eso where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
     $data["error"]="ok";
