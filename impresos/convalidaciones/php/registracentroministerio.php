@@ -278,11 +278,10 @@ $pdf->Cell(0,0,$dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T'
 /////Tratamiento de la imagen
 $pdf->Image($_FILES["firma"]["tmp_name"], 120, 240, 0, 35);
 
-//Poner el número de registro a la izquierda y vertical
-$pdf->StartTransform();
-$pdf->Rotate(90);
-$pdf->Text(0, $pdf->GetY(), $registro);
-$pdf->StopTransform();
+
+$pdf->SetFont('dejavusans', '', 5, '', true);
+$pdf->SetXY(90,275);
+$pdf->Cell(0,0,"925222454",0,0,'L',0,'',1,true,'T','T');
 
 
 //GENERA EL ARCHIVO NUEVO
