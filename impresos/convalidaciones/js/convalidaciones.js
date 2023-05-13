@@ -75,7 +75,7 @@ function seleccion(obj){
 }
 
 function creaValidadorCentroMin(){
-    $("#form_centro_ministerio").validate({
+    $("#form_convalidaciones").validate({
         rules: {
             apellidos: {
                 required: true
@@ -411,7 +411,7 @@ function ayudaFirma(e){
 
 function registraForm(){
     if (formulario=="centro_ministerio"){
-        if ($("#form_centro_ministerio").valid()) {
+        if ($("#form_convalidaciones").valid()) {
             var formData = new FormData();
             formData.append("id_nie",encodeURIComponent(id_nie));
             formData.append("curso",encodeURIComponent(curso));

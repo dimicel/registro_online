@@ -280,11 +280,6 @@ $pdf->SetXY(40,198);
 $pdf->Cell(0,0,"Luis Corrales Mariblanca",0,0,'L',0,'',1,true,'T','T');
 
 
-
-
-
-
-
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';
 if (!is_dir(__DIR__."/../../../docs/".$id_nie))mkdir(__DIR__."/../../../docs/".$id_nie,0777);
