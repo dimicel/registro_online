@@ -83,7 +83,7 @@ function creaValidadorCentroMin(){
             },
             nombre: {
                 required: true
-            },
+            }/*,
             nif_nie: {
                 required: true
             },
@@ -117,7 +117,7 @@ function creaValidadorCentroMin(){
             },
             modulos: {
                 required: true
-            }
+            }*/
         },
         messages: {
             apellidos: {
@@ -125,7 +125,7 @@ function creaValidadorCentroMin(){
             },
             nombre: {
                 required: "Vacío"
-            },
+            }/*,
             nif_nie: {
                 required: "Vacío"
             },
@@ -159,7 +159,7 @@ function creaValidadorCentroMin(){
             },
             modulos: {
                 required: "Seleccione módulos"
-            }
+            }*/
         },
         errorPlacement: function(error, element) {
             if ($(element).attr('name')=="modulos") $("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
