@@ -488,7 +488,7 @@ function canvasFirma(){
         resizable: false,
         show: { effect: "fade", duration: 0 },
         title: "FIRMA",
-        width: 500,
+        //width: 500,
         buttons: [
             {
                 class: "btn btn-success textoboton",
@@ -501,7 +501,7 @@ function canvasFirma(){
             },
             {
                 class: "btn btn-success textoboton",
-                text: "Limpiar Lienzo",
+                text: "Borrar",
                 click: function() {
                     context.clearRect(0, 0, canvas.width, canvas.height);
                 }

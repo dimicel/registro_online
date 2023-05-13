@@ -275,7 +275,7 @@
         </form>
     </div>
     <div id="div_canvas_firma" style="display:none;width: 400px;height: 200px;border: 1px solid black;">
-        <canvas id="firmaCanvas" style="width: 400px;height: 200px;"></canvas>
+        <canvas id="firmaCanvas"></canvas>
     </div>
 
 
