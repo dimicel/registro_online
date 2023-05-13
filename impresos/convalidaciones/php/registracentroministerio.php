@@ -275,7 +275,12 @@ $pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 $pdf->setCellHeightRatio(1.4);
 $pdf->SetXY(120,260);
 $pdf->Cell(0,0,$dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T');
-
+$pdf->Image($_FILES["firma"]["tmp_name"], 120, 110, 0, 35);
+//Poner el número de registro a la izquierda y vertical
+$pdf->StartTransform();
+$pdf->Rotate(90);
+$pdf->Text(0, $pdf->GetY(), $registro);
+$pdf->StopTransform();
 
 
 //GENERA EL ARCHIVO NUEVO
