@@ -57,7 +57,6 @@ $(document).ready(function() {
 
 
 function seleccion(obj){
-    formulario=obj.id;
     if (obj.id=="instrucciones"){
         open("instrucciones/instrucciones.pdf","_blank");
     }
@@ -65,11 +64,13 @@ function seleccion(obj){
         $("#seccion-intro").hide();
         $("#seccion-consejeria").show();
         $("#seccion-centro_ministerio").hide();
+        formulario="Consejería";
     }
     else if(obj.id=="centro_ministerio"){
         $("#seccion-intro").hide();
         $("#seccion-consejeria").hide();
         $("#seccion-centro_ministerio").show();
+        formulario="Centro-Ministerio";
         creaValidadorCentroMin()
     }
 }
