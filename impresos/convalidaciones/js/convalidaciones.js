@@ -4,7 +4,7 @@ var curso="";
 var drawing = false;
 var mouseX, mouseY;
 
-var canvas, context, tool;
+var canvas, context, tool, canvas_upload;
 
 
 $(document).ready(function() {
@@ -441,7 +441,7 @@ function registraForm(){
             formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
             formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
             //formData.append("firma",document.getElementById("firma").files[0]);
-            formData.append("firma",canvas.toDataURL('image/jpeg'));
+            formData.append("firma",canvas_upload);
             datosHidden = document.querySelectorAll('input[name="desc[]"]');
             for (var i = 0; i < datosHidden.length; i++) {
                 formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
@@ -494,8 +494,13 @@ function canvasFirma(){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
-                    if(!isCanvasEmpty())document.getElementById("t_firm").value="FORMULARIO FIRMADO";
-                    else document.getElementById("t_firm").value="";
+                    if(!isCanvasEmpty()){
+                        document.getElementById("t_firm").value="FORMULARIO FIRMADO";
+                        canvas_upload=canvas.toDataURL('image/jpeg');
+                    }
+                    else{
+                        document.getElementById("t_firm").value="";
+                    } 
                     $("#div_canvas_firma").dialog("close");
                     $("#div_canvas_firma").dialog("destroy");
                 }
@@ -512,8 +517,13 @@ function canvasFirma(){
                 class: "btn btn-success textoboton",
                 text: "Cancelar",
                 click: function() {
-                    if(!isCanvasEmpty())document.getElementById("t_firm").value="FORMULARIO FIRMADO";
-                    else document.getElementById("t_firm").value="";
+                    if(!isCanvasEmpty()){
+                        document.getElementById("t_firm").value="FORMULARIO FIRMADO";
+                        canvas_upload=canvas.toDataURL('image/jpeg');
+                    }
+                    else{
+                        document.getElementById("t_firm").value="";
+                    } 
                     $("#div_canvas_firma").dialog("close");
                     $("#div_canvas_firma").dialog("destroy");
                 }
