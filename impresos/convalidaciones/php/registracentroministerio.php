@@ -276,32 +276,7 @@ $pdf->setCellHeightRatio(1.4);
 $pdf->SetXY(110,260);
 $pdf->Cell(0,0,$dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T');
 /////Tratamiento de la imagen
-//$pdf->Image($_FILES["firma"]["tmp_name"], 120, 240, 0, 35);
-// Obtener la ruta de la imagen subida
-$rutaImagen = $_FILES["firma"]["tmp_name"];
-
-// Calcular las dimensiones de la imagen
-$dimensiones = getimagesize($rutaImagen);
-$ancho = $dimensiones[0];
-$alto = $dimensiones[1];
-
-// Calcular la relación de aspecto de la imagen
-$relacionAspecto = $ancho / $alto;
-
-// Definir la posición y tamaño de la imagen en el PDF
-$x = 120;
-$y = 240;
-$altoDeseado = 35;
-$anchoDeseado = $altoDeseado * $relacionAspecto;
-
-// Cargar la imagen en el PDF y ajustar la rotación
-$pdf->Image($rutaImagen, $x, $y, $anchoDeseado, $altoDeseado, '', '', '', false, 300, 'L', false, false);
-
-// Aumentar el contraste de la imagen
-$pdf->Image($rutaImagen, $x, $y, $anchoDeseado, $altoDeseado, '', '', '', false, 300, 'L', true, false);
-
-// Convertir la imagen a blanco y negro
-$pdf->Image($rutaImagen, $x, $y, $anchoDeseado, $altoDeseado, '', '', '', false, 300, 'L', false, true);
+$pdf->Image($_FILES["firma"]["tmp_name"], 120, 240, 0, 35);
 
 //Poner el número de registro a la izquierda y vertical
 $pdf->StartTransform();
