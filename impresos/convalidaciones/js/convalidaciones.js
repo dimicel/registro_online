@@ -55,14 +55,11 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
-    canvas = document.getElementById('firmaCanvas');
-    context = canvas.getContext('2d');
-
-       
-    canvas.addEventListener("mousedown", startDrawing);
-    canvas.addEventListener("mousemove", draw);
-    canvas.addEventListener("mouseup", stopDrawing);
-    canvas.addEventListener("mouseout", stopDrawing);
+          
+    canvas.addEventListener('mousedown', ev_canvas, false);
+	canvas.addEventListener('mousemove', ev_canvas, false);
+	canvas.addEventListener('mouseup',	 ev_canvas, false);
+    canvas.addEventListener("mouseout", ev_canvas, false);
 
 });
 
@@ -480,6 +477,8 @@ function registraForm(){
 
 
 function canvasFirma(){
+    canvas = document.getElementById('firmaCanvas');
+    context = canvas.getContext('2d');
     tool = new tool_pencil();
     $("#div_canvas_firma").dialog({
         autoOpen: true,
