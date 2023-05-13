@@ -223,7 +223,7 @@ $pdf->SetXY(61,62);
 $pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(104,62);
 $pdf->Cell(0,0,$nombre,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(48,65);
+$pdf->SetXY(48,67);
 $pdf->Cell(0,0,$apellidos,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(48,69.5);
 $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
