@@ -411,8 +411,11 @@ function ayudaFirma(e){
 
 
 function registraForm(){
+    alert(0);
     if (formulario=="centro_ministerio"){
+        alert(100);
         if ($("#form_convalidaciones").valid()) {
+            alert(200);
             var formData = new FormData();
             formData.append("id_nie",encodeURIComponent(id_nie));
             formData.append("curso",encodeURIComponent(curso));
