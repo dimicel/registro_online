@@ -430,7 +430,7 @@ function registraForm(){
             formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
             formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
             formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
-            formData.append("firma",document.getElementById("foto").files[0]);
+            formData.append("firma",document.getElementById("firma").files[0]);
             datosHidden = document.querySelectorAll('input[name="desc[]"]');
             for (var i = 0; i < datosHidden.length; i++) {
                 formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
