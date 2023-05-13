@@ -92,11 +92,39 @@ try {
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
     
     for($i=0;$i<count($desc);$i++) {
-        $stmt2->bind_param("sss", $registro, $desc[$i], "docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$docs[$i]["name"]);
+        $indice=sprintf("%02d", $i+1)."_";
+        $stmt2->bind_param("sss", $registro, $desc[$i], "docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$docs[$i]["name"]);
         $stmt2->execute();
     }
     
     $stmt2->close();
+    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
+    if (!is_dir($rutaCompleta)) {
+        mkdir($rutaCompleta, 0777, true);
+    }
+    for ($i=0;$i<count($_FILES["docs"]["tmp_name"]);$i++){
+        $indice=sprintf("%02d", $i+1)."_";
+        $nombreDoc=$indice.$_FILES["docs"]["name"][$i];
+        try {
+            move_uploaded_file($_FILES["docs"]["tmp_name"][$i], $rutaCompleta.$nombreDoc);
+        } catch (Exception $ex) {
+            // Si hay un error al mover el archivo, eliminar los archivos ya movidos
+            $archivosEliminados = glob($rutaCompleta . "*");
+            foreach ($archivosEliminados as $archivoEliminado) {
+                unlink($archivoEliminado);
+            }
+
+            // Eliminar la ruta creada
+            rmdir($rutaCompleta);
+            rmdir(__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/");
+
+            // Revertir la transacción en la base de datos
+            $mysqli->rollback();
+
+            // Mostrar mensaje de error o realizar otras acciones necesarias
+            exit("error_subida");
+        }
+    }
 
     // Confirmar la transacción
     $mysqli->commit();
