@@ -96,7 +96,7 @@ try {
                                                 $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,'LOE',$modulos);
     $stmt1->execute();
     $stmt1->close();
-
+    exit("aqui");
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
     
@@ -148,7 +148,7 @@ try {
 
 $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
 
-exit("aqui");
+
 
 
 //////////////PDF///////////////////////
