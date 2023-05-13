@@ -28,7 +28,7 @@ function generaRegistro(){
     return "iesulabto_conval_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];   
 }
 
-
+exit("aqui");
 
 $id_nie = urldecode($_POST['id_nie']);
 $anno_curso = urldecode($_POST['curso']);
@@ -77,7 +77,7 @@ while($repite_registro){
 }
 $dirRegistro=substr($registro, 17);
 
-exit("aqui");
+
 //ver esto que es la hostia made in chatGPT////////////////////////////////////////////////////////////
 ///Parametro de bind sss por la siguiente tabla
 //"i": Entero (integer)
