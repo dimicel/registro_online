@@ -441,7 +441,7 @@ function registraForm(){
             formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
             formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
             //formData.append("firma",document.getElementById("firma").files[0]);
-            formData.append("firma",canvas_upload);
+            formData.append("firma",encodeURIComponent(canvas_upload));
             datosHidden = document.querySelectorAll('input[name="desc[]"]');
             for (var i = 0; i < datosHidden.length; i++) {
                 formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
@@ -495,7 +495,7 @@ function canvasFirma(){
                 click: function() {
                     if(!isCanvasEmpty()){
                         document.getElementById("t_firm").value="FORMULARIO FIRMADO";
-                        canvas_upload=canvas.toDataURL('image/jpeg');
+                        canvas_upload=canvas.toDataURL('image/png');
                     }
                     else{
                         document.getElementById("t_firm").value="";
@@ -518,7 +518,7 @@ function canvasFirma(){
                 click: function() {
                     if(!isCanvasEmpty()){
                         document.getElementById("t_firm").value="FORMULARIO FIRMADO";
-                        canvas_upload=canvas.toDataURL('image/jpeg');
+                        canvas_upload=canvas.toDataURL('image/png');
                     }
                     else{
                         document.getElementById("t_firm").value="";
