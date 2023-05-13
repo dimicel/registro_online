@@ -352,7 +352,7 @@ function actualizaTablaListaDocs(){
     _a=document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
     _arch=_a[_a.length-1].files[0].name;
     _d=document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
-    _d[_d.length-1].value=document.getElementById("den_estudios").value;
+    _d[_d.length-1].value="("+document.querySelectorAll("input[name=tipo]:checked")[0].value+") "+document.getElementById("den_estudios").value;
     _t=document.getElementById("tab_lista_docs");
     if (_t.rows[0].cells.length==1){
         _t.deleteRow(0);
