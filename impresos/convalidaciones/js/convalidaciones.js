@@ -1,7 +1,9 @@
 var id_nie = "";
 var formulario="";
 var curso="";
-
+var drawing = false;
+var mouseX, mouseY;
+var canvas,ctx;
 
 
 $(document).ready(function() {
@@ -52,13 +54,13 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
-    const canvas = document.getElementById('firmaCanvas');
-    const ctx = canvas.getContext('2d');
-    let drawing = false;
-
-    canvas.addEventListener('mousedown', startDrawing);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDrawing);
+    canvas = document.getElementById('firmaCanvas');
+    ctx = canvas.getContext('2d');
+    
+    canvas.addEventListener("mousedown", startDrawing);
+    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener("mouseup", stopDrawing);
+    canvas.addEventListener("mouseout", stopDrawing);
 
 });
 
@@ -506,19 +508,28 @@ function canvasFirma(){
     });       
 }
 
-function startDrawing() {
+function startDrawing(event) {
     drawing = true;
-    ctx.beginPath();
+    mouseX = event.pageX - canvas.offsetLeft;
+    mouseY = event.pageY - canvas.offsetTop;
   }
-  
-  function draw(event) {
-    if (!drawing) return;
-    
-    const x = event.clientX - canvas.offsetLeft;
-    const y = event.clientY - canvas.offsetTop;
-    
-    ctx.lineTo(x, y);
-    ctx.stroke();
+
+
+function draw(event) {
+    if (drawing) {
+      var currentX = event.pageX - canvas.offsetLeft;
+      var currentY = event.pageY - canvas.offsetTop;
+      
+      // Dibujar el trazo
+      context.beginPath();
+      context.moveTo(mouseX, mouseY);
+      context.lineTo(currentX, currentY);
+      context.stroke();
+      
+      // Actualizar las coordenadas del ratón
+      mouseX = currentX;
+      mouseY = currentY;
+    }
   }
   
   function stopDrawing() {
