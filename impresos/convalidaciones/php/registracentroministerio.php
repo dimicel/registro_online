@@ -61,7 +61,11 @@ if (isset($_POST["desc"])){
         $estudios_aportados.=", ".$desc[$i];
     }
 }
-$firma = base64_decode(str_replace("data:image/png;base64,", "", urldecode($_POST['firma'])));
+
+$imageData = urldecode($_POST['imageData']);
+$tempFile = tempnam(sys_get_temp_dir(), 'canvas_');
+file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
+$firma = $tempFile;
 
 
 $repite_registro=true;
