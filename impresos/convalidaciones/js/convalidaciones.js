@@ -411,11 +411,8 @@ function ayudaFirma(e){
 
 
 function registraForm(){
-    alert(0);
     if (formulario=="Centro-Ministerio"){
-        alert(100);
         if ($("#form_convalidaciones").validate()) {
-            alert(200);
             var formData = new FormData();
             formData.append("id_nie",encodeURIComponent(id_nie));
             formData.append("curso",encodeURIComponent(curso));
@@ -431,20 +428,17 @@ function registraForm(){
             formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
             formData.append("email", encodeURIComponent(document.getElementById("email").value));
             formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
-            formData.append("ciclo", encodeURIComponent(document.getElementById("ciclo").value));
+            formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
             formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
             formData.append("firma",document.getElementById("foto").files[0]);
-            alert(1);
             datosHidden = document.querySelectorAll('input[name="desc[]"]');
             for (var i = 0; i < datosHidden.length; i++) {
                 formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
             }
-            alert(2);
             datosFiles = document.querySelectorAll('input[name="docs[]"]');
             for (var i = 0; i < datosFiles.length; i++) {
                 formData.append("docs[]", datosFiles[i].files[0]);
             }
-            alert(3);
             $.post({
                 url: "php/registracentroministerio.php", 
                 data: formData,
