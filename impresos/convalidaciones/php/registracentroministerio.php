@@ -219,25 +219,25 @@ $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 $pdf->setPageMark();
 
 
-$pdf->SetXY(61,65);
+$pdf->SetXY(61,62);
 $pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(104,65);
+$pdf->SetXY(104,62);
 $pdf->Cell(0,0,$nombre,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(48,68);
+$pdf->SetXY(48,65);
 $pdf->Cell(0,0,$apellidos,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(48,72.5);
+$pdf->SetXY(48,69.5);
 $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(48,59);
+$pdf->SetXY(55,73);
 $pdf->Cell(0,0,$cp,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(74,59);
+$pdf->SetXY(81,73);
 $pdf->Cell(54,0,$localidad,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(145,59);
+$pdf->SetXY(131,73);
 $pdf->Cell(40,0,$provincia,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(38,63);
+$pdf->SetXY(46,77);
 $pdf->Cell(0,0,$tlf_fijo,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(78,63);
+$pdf->SetXY(82,77);
 $pdf->Cell(0,0,$tlf_movil,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(130,63);
+$pdf->SetXY(130,77);
 $pdf->Cell(52,0,$email,0,0,'L',0,'',1,true,'T','T');
 
 $pdf->SetXY(50,81);
