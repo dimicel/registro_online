@@ -149,6 +149,18 @@ try {
 $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
 
 
+
+
+//////////////PDF///////////////////////
+
+//GENERA EL PDF Y LO GUARDA EN EL SERVIDOR
+
+class MYPDF extends TCPDF {
+
+	//Page header
+	public function Header() {}
+}
+
 // create new PDF document
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
