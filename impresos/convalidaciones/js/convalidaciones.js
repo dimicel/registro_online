@@ -450,7 +450,7 @@ function registraForm(){
                     else if (resp=="database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.","ERROR DB");
                     else if (resp=="error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.","ERROR UPLOAD");
                     else if(resp=="ok"){
-                        alerta("Solicitud de convalidación registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", false, 500);
+                        alerta("Solicitud de convalidación registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", true, 500);
                     } 
                 },
                 error: function(xhr, status, error) {
