@@ -60,7 +60,7 @@ if (isset($_POST["desc"])){
         $estudios_aportados.=", ".$desc[$i];
     }
 }
-exit("aqui");
+
 
 $repite_registro=true;
 while($repite_registro){
@@ -76,7 +76,7 @@ while($repite_registro){
 }
 $dirRegistro=substr($registro, 17);
 
-
+exit("aqui");
 //ver esto que es la hostia made in chatGPT////////////////////////////////////////////////////////////
 ///Parametro de bind sss por la siguiente tabla
 //"i": Entero (integer)
