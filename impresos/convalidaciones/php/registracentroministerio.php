@@ -266,14 +266,14 @@ $pdf->Cell(0,0,"X",0,0,'L',0,'',1,true,'T','T');
 
 $pdf->setCellHeightRatio(1.3);
 $pdf->SetXY(15,127);
-$pdf->MultiCell(175,0,$estudios_aportados,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->MultiCell(150,0,$estudios_aportados,0,'L',0,1,'','',true,0,false,false,0);
 
 $pdf->setCellHeightRatio(1.4);
 $pdf->SetXY(35,189);
-$pdf->MultiCell(175,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 $pdf->setCellHeightRatio(1.4);
-$pdf->SetXY(100,290);
+$pdf->SetXY(100,250);
 $pdf->Cell(0,0,$dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T');
 
 
