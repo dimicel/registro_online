@@ -96,10 +96,10 @@ try {
                                                 $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$ley,$modulos);
     $stmt1->execute();
     $stmt1->close();
-    exit("aqui");
+    
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
-    
+    exit("aqui");
     for($i=0;$i<count($desc);$i++) {
         $indice=sprintf("%02d", $i+1)."_";
         $stmt2->bind_param("sss", $registro, $desc[$i], "docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$docs[$i]["name"]);
