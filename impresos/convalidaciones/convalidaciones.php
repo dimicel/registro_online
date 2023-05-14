@@ -174,7 +174,7 @@
                                         <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
                                     </div>
                                     <div class="col-3">
-                                        <input type="text" class="form-control" name="t_firm" id="t_firm" readonly onclick="canvasFirma();" />
+                                        <input type="text" class="form-control" name="t_firm" id="t_firm" placeholder="Clic aquí para firmar" readonly onclick="canvasFirma();" />
                                     </div>
                                 </div>
                             </div>
@@ -274,6 +274,7 @@
         </form>
     </div>
     <div id="div_canvas_firma" style="display:none;width: 400px;height: 200px;border: 1px solid black;">
+        <label>Mentenga pulsado el botón del ratón para dibujar la firma</label><br>
         <canvas id="firmaCanvas"></canvas>
     </div>
 
