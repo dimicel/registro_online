@@ -273,13 +273,11 @@
             </div>
         </form>
     </div>
-    <div id="div_canvas_firma" style="display:none;">
-        <label><small>Mentenga pulsado el botón del ratón para dibujar la firma</small></label><br>
-        <center>
+    <div id="div_canvas_firma" style="display:none;display: flex; justify-content: center;">
+        <label  style="text-align: center;"><small>Mentenga pulsado el botón del ratón para dibujar la firma.</small></label><br>
         <div id="div_lienzo" >
             <canvas id="firmaCanvas" width="400" height="200" style="background-color:white; border: 1px solid black;"></canvas>
         </div>
-        </center>
     </div>
     
 
