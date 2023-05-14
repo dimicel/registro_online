@@ -62,7 +62,7 @@ if (isset($_POST["desc"])){
     }
 }
 
-$imageData = urldecode($_POST['imageData']);exit (strlen($imageData));
+$imageData = urldecode($_POST['imageData']);exit (strlen($_POST['imageData']));
 if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
 $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '_');
 file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
