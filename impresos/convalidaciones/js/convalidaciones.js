@@ -551,7 +551,7 @@ function tool_pencil () {
   // The general-purpose event handler. This function just determines the mouse 
   // position relative to the canvas element.
   function ev_canvas (ev) {
-    if (ev.layerX || ev.layerX == 0) { // Firefox
+    /*if (ev.layerX || ev.layerX == 0) { // Firefox
       ev._x = ev.layerX;
       ev._y = ev.layerY;
     } else if (ev.offsetX || ev.offsetX == 0) { // Opera
@@ -560,6 +560,14 @@ function tool_pencil () {
     }
 
     // Call the event handler of the tool.
+    var func = tool[ev.type];
+    if (func) {
+      func(ev);
+    }*/
+    var canvasRect = canvas.getBoundingClientRect();
+    ev._x = ev.clientX - canvasRect.left;
+    ev._y = ev.clientY - canvasRect.top;
+  
     var func = tool[ev.type];
     if (func) {
       func(ev);
