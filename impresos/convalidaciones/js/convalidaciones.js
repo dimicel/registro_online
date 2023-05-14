@@ -474,7 +474,7 @@ function canvasFirma(){
         resizable: false,
         show: { effect: "fade", duration: 0 },
         title: "FIRMA",
-        //width: 500,
+        width: 500,
         buttons: [
             {
                 class: "btn btn-success textoboton",
