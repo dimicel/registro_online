@@ -63,7 +63,8 @@ if (isset($_POST["desc"])){
 }
 
 $imageData = urldecode($_POST['imageData']);
-$tempFile = tempnam(sys_get_temp_dir(), 'canvas_'. session_id() . '_');
+if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
+$tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '_');
 file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 $firma = $tempFile;
 
