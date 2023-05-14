@@ -64,7 +64,7 @@ if (isset($_POST["desc"])){
 
 $imageData = urldecode($_POST['firma']);
 if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
-$tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '_');
+$tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.png');
 file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 $firma = $tempFile;
 
@@ -283,7 +283,7 @@ $pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 
 /////Tratamiento de la imagen
-$pdf->Image('@'.$firma, 100, 235, 50, 0, '', '', '', false, 300);
+$pdf->Image($firma, 100, 235, 50, 0, '', '', '', false, 300);
 $pdf->SetFont('dejavusans', '', 9, '', true);
 $pdf->SetXY(101,227);
 $pdf->Cell(0,0,"FIRMA DEL SOLICITANTE y FECHA",0,0,'L',0,'',1,true,'T','T');
