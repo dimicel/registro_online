@@ -276,8 +276,7 @@
     <div id="div_canvas_firma" style="display:none;">
         <label><small>Mentenga pulsado el botón del ratón para dibujar la firma</small></label><br>
         <div id="div_lienzo" style="width: 400px;height: 200px;border: 1px solid black;">
-            
-            <canvas id="firmaCanvas"></canvas>
+            <canvas id="firmaCanvas" style="width: 400px;height: 200px"></canvas>
         </div>
     </div>
     
