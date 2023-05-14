@@ -273,10 +273,14 @@
             </div>
         </form>
     </div>
-    <div id="div_canvas_firma" style="display:none;width: 400px;height: 200px;border: 1px solid black;">
-        <label>Mentenga pulsado el botón del ratón para dibujar la firma</label><br>
-        <canvas id="firmaCanvas"></canvas>
+    <div id="div_canvas_firma" style="display:none">
+        <label><small>Mentenga pulsado el botón del ratón para dibujar la firma</small></label><br>
+        <div id="div_lienzo" style="width: 400px;height: 200px;border: 1px solid black;">
+            
+            <canvas id="firmaCanvas"></canvas>
+        </div>
     </div>
+    
 
 
     <div id="array_input_type_file" style="display:none"></div>
