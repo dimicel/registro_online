@@ -294,6 +294,7 @@ function selTablaListaMod(obj) {
 function anadeDoc(e) {
     e.preventDefault();
     creaInputs();
+    alert(formulario);
     if (formulario=="Centro-Ministerio"){
         $("#anade_documento_centroministerio").dialog({
             autoOpen: true,
@@ -330,7 +331,7 @@ function anadeDoc(e) {
             ]
         });
     }
-    else if(formulario=="Consejeria"){
+    else if(formulario=="Consejeria"){alert("SE");
         $("#anade_documento_consejeria").dialog({
             autoOpen: true,
             dialogClass: "alert no-close",
