@@ -408,7 +408,14 @@ function actualizaTablaListaDocs() {
 
     // Insertar una celda en la nueva fila (primera columna)
     var celda1 = nuevaFila.insertCell();
-    celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
+    if (formulario=="Centro-Ministerio"){
+        celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
+
+    }
+    else {
+        celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios_con").value;
+
+    }
     celda1.style.width = "50%";
 
     // Insertar una celda en la nueva fila (segunda columna)
@@ -421,7 +428,8 @@ function actualizaTablaListaDocs() {
     celda3.style.width = "5%";
     celda3.style.textAlign = "center";
 
-    document.getElementById("form_anade_documento").reset();
+    document.getElementById("form_anade_documento_cenminis").reset();
+    document.getElementById("form_anade_documento_con").reset();
 }
 
 

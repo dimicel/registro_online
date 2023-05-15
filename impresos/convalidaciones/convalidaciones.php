@@ -238,7 +238,7 @@
         </div> 
     </section>       
     <div id="anade_documento_centroministerio" style="display:none">
-        <form id="form_anade_documento">
+        <form id="form_anade_documento_cenminis">
             <div class="container">
                 <div class="row">
                     <div class="col-1">
@@ -275,7 +275,7 @@
         </form>
     </div>
     <div id="anade_documento_consejeria" style="display:none">
-        <form id="form_anade_documento2">
+        <form id="form_anade_documento_cen">
             <div class="container">
                 <div class="row">
                     <div class="col-1">
