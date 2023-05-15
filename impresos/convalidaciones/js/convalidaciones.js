@@ -74,20 +74,20 @@ function seleccion(obj) {
     } else if (obj.id == "consejeria") {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
-        $("#seccion-consejeria").show();
-        $("#seccion-centro_ministerio").hide();
         formulario = "Consejería";
+        document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
+        document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
     } else if (obj.id == "centro_ministerio") {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
-        $("#seccion-consejeria").hide();
-        $("#seccion-centro_ministerio").show();
         formulario = "Centro-Ministerio";
-        creaValidadorCentroMin()
+        creaValidador()
+        document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO";
+        document.getElementById("label_estudios_aportados").innerHTML="Documentos que adjunta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
     }
 }
 
-function creaValidadorCentroMin() {
+function creaValidador() {
     $("#form_convalidaciones").validate({
         rules: {
             apellidos: {
@@ -183,8 +183,8 @@ function creaValidadorCentroMin() {
 function vuelve() {
     $("#seccion-intro").show();
     $("#seccion-formulario").hide();
-    $("#seccion-consejeria").hide();
-    $("#seccion-centro_ministerio").hide();
+    document.getElementById("array_input_type_file").innerHTML="";
+    document.getElementById("form_convalidaciones").reset();
 }
 
 function selGrado(obj) {
@@ -294,41 +294,82 @@ function selTablaListaMod(obj) {
 function anadeDoc(e) {
     e.preventDefault();
     creaInputs();
-    $("#anade_documento").dialog({
-        autoOpen: true,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "AÑADIR ESTUDIO A APORTAR",
-        width: 700,
-        buttons: [{
-                class: "btn btn-success textoboton",
-                text: "Aceptar",
-                click: function() {
-                    if (document.querySelectorAll("input[name=tipo]:checked").length == 0 ||
-                        document.getElementById("den_estudios").value.trim().length == 0 ||
-                        document.getElementById("archivo").value.trim().length == 0) {
-                        alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.", "FALTAN DATOS");
-                        return;
+    if (formulario=="Centro-Ministerio"){
+        $("#anade_documento_centroministerio").dialog({
+            autoOpen: true,
+            dialogClass: "alert no-close",
+            modal: true,
+            hide: { effect: "fade", duration: 0 },
+            resizable: false,
+            show: { effect: "fade", duration: 0 },
+            title: "AÑADIR ESTUDIO A APORTAR",
+            width: 700,
+            buttons: [{
+                    class: "btn btn-success textoboton",
+                    text: "Aceptar",
+                    click: function() {
+                        if (document.querySelectorAll("input[name=tipo]:checked").length == 0 ||
+                            document.getElementById("den_estudios").value.trim().length == 0 ||
+                            document.getElementById("archivo").value.trim().length == 0) {
+                            alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.", "FALTAN DATOS");
+                            return;
+                        }
+                        actualizaTablaListaDocs();
+                        $("#anade_documento_centroministerio").dialog("close");
+                        $("#anade_documento_centroministerio").dialog("destroy");
                     }
-                    actualizaTablaListaDocs();
-                    $("#anade_documento").dialog("close");
-                    $("#anade_documento").dialog("destroy");
+                },
+                {
+                    class: "btn btn-success textoboton",
+                    text: "Cancelar",
+                    click: function() {
+                        $("#anade_documento_centroministerio").dialog("close");
+                        $("#anade_documento_centroministerio").dialog("destroy");
+                    }
                 }
-            },
-            {
-                class: "btn btn-success textoboton",
-                text: "Cancelar",
-                click: function() {
-                    $("#anade_documento").dialog("close");
-                    $("#anade_documento").dialog("destroy");
+            ]
+        });
+    }
+    else if(formulario=="Consejeria"){
+        $("#anade_documento_consejeria").dialog({
+            autoOpen: true,
+            dialogClass: "alert no-close",
+            modal: true,
+            hide: { effect: "fade", duration: 0 },
+            resizable: false,
+            show: { effect: "fade", duration: 0 },
+            title: "AÑADIR DOCUMENTO ADJUNTO",
+            width: 700,
+            buttons: [{
+                    class: "btn btn-success textoboton",
+                    text: "Aceptar",
+                    click: function() {
+                        if (document.querySelectorAll("input[name=tipo]:checked").length == 0 ||
+                            document.getElementById("den_estudios_con").value.trim().length == 0 ||
+                            document.getElementById("archivo_CON").value.trim().length == 0) {
+                            alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.", "FALTAN DATOS");
+                            return;
+                        }
+                        actualizaTablaListaDocs();
+                        $("#anade_documento_consejeria").dialog("close");
+                        $("#anade_documento_consejeria").dialog("destroy");
+                    }
+                },
+                {
+                    class: "btn btn-success textoboton",
+                    text: "Cancelar",
+                    click: function() {
+                        $("#anade_documento_consejeria").dialog("close");
+                        $("#anade_documento_consejeria").dialog("destroy");
+                    }
                 }
-            }
-        ]
-    });
+            ]
+        });
+    }
+
 }
+
+
 
 
 

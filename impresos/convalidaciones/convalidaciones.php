@@ -73,7 +73,7 @@
                     <div class="col">
                         <div class="row d-flex w-100 justify-content-center">
                             <div class="col" style="text-align: center;">
-                                <h5>SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO</h5>
+                                <h5 id="rotulo">SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO</h5>
                             </div>
                         </div>
                         <div class="row ">
@@ -213,76 +213,18 @@
                                         <textarea class="form-control"  name="modulos" rows="3" id="modulos" maxlength="1000" readonly></textarea>
                                     </div>
                                 </div>
-                                <section id="seccion-centro_ministerio" style="display:none">
-                                    <div class="row mt-2">
-                                        <div class="col">
-                                        <label for="estudios">Estudios que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
-                                        </div>
+                                <div class="row mt-2">
+                                    <div class="col">
+                                    <label id="label_estudios_aportados" for="estudios">Estudios que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
                                     </div>
-                                    <div class="row">
-                                        <div class="col" >
-                                            <table  style="width: 70%; margin: 0 auto;background-color:lightslategrey"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
-                                            <table id="tab_lista_docs"  style="width: 70%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col" >
+                                        <table  style="width: 70%; margin: 0 auto;background-color:lightslategrey"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
+                                        <table id="tab_lista_docs"  style="width: 70%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
                                     </div>
-                                </section>
-                                <section id="seccion-consejeria" style="display:none">
-                                    <div class="row mt-2">
-                                        <div class="col">
-                                        <label for="estudios">Documentación a presentar:</label>
-                                        </div>
-                                    </div>
-                                    <div class="row ml-2">
-                                        <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]" id="doc1" value="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita"  class="custom-control-input"  onclick="" />
-                                            <label for="doc1" class="custom-control-label">Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita.</label>
-                                        </div>
-                                        <div class="col-3" style="margin-left:-60px">
-                                            <input type="textbox"  id="t_file1" class="form-control" onclick="" style="display:none" readonly/>
-                                            <input type="file" name="cert_mat" id="cert_mat" style="position:absolute;left: -9999px;"/>
-                                        </div>
-                                    </div>
-                                    <div class="row ml-2">
-                                        <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]"  id="doc2" value="Fotocopia del documento de identificación" class="custom-control-input" onclick=""/>
-                                            <label for="doc2" class="custom-control-label">Fotocopia del documento de identificación.</label>
-                                        </div>
-                                        <div class="col-3" style="margin-left:-60px">
-                                            <input type="textbox"  id="t_file2"  class="form-control"   onclick="" style="display:none" readonly/>
-                                            <input type="file" name="doc_ident" id="doc_ident" style="position:absolute;left: -9999px;"/>
-                                        </div>
-                                    </div>
-                                    <div class="row ml-2">
-                                        <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]"  id="doc3" value="Fotocopia compulsada de la certificación académica de los estudios realizados" class="custom-control-input" onclick="" />
-                                            <label for="doc3" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados.</label>
-                                        </div>
-                                        <div class="col-3" style="margin-left:-60px">
-                                            <input type="textbox"  id="t_file3" class="form-control"   onclick="" style="display:none" readonly/>
-                                            <input type="file" name="fotoc_cert" id="fotoc_cert" style="position:absolute;left: -9999px;"/>
-                                        </div>
-                                    </div>
-                                    <div class="row ml-2">
-                                        <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]"  id="doc4" value="Fotocopia compulsada del título" class="custom-control-input" onclick="" />
-                                            <label for="doc4" class="custom-control-label">Fotocopia compulsada del título.</label>
-                                        </div>
-                                        <div class="col-3" style="margin-left:-60px">
-                                            <input type="textbox"  id="t_file4"  class="form-control"   onclick="" style="display:none" readonly/>
-                                            <input type="file" name="fotoc_tit" id="fotoc_tit" style="position:absolute;left: -9999px;"/>
-                                        </div>
-                                    </div>
-                                    <div class="row ml-2">
-                                        <div class="col-3 custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]"  id="doc5" value="otra" class="custom-control-input" onclick="selecOtraDoc(this)" />
-                                            <label for="doc5" class="custom-control-label">Otra documentación.</label>
-                                        </div>
-                                        <div class="col-3" style="margin-left:-60px">
-                                            <input type="textbox" name="otra_desc" id="otra_desc" placeholder="Especificar cuál" class="form-control"  maxlength="40" onclick="" style="display:none"/>
-                                            <input type="file" name="otro_doc" id="otro_doc" style="position:absolute;left: -9999px;"/>
-                                        </div>
-                                    </div>
-                                </section>
+                                </div>
+                                
                             </div>
                         </div>
                         <div class="flex-row mt-1 w-100 justify-content-center">
@@ -295,7 +237,7 @@
             </form>
         </div> 
     </section>       
-    <div id="anade_documento" style="display:none">
+    <div id="anade_documento_centroministerio" style="display:none">
         <form id="form_anade_documento">
             <div class="container">
                 <div class="row">
@@ -332,21 +274,58 @@
             </div>
         </form>
     </div>
+    <div id="anade_documento_consejeria" style="display:none">
+        <form id="form_anade_documento2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1">
+                        <label style="font-weight:bolder">Tipo:</label>
+                    </div>
+                    <div class="col offset-1 custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
+                        <label for="loe" class="custom-control-label">LOE</label>
+                    </div>
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="logse" name="tipo" class="custom-control-input" value="LOGSE"/>
+                        <label for="logse" class="custom-control-label">LOGSE</label>
+                    </div>
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="universitarios" name="tipo" class="custom-control-input" value="Universitarios"/>
+                        <label for="universitarios" class="custom-control-label">Universitarios</label>
+                    </div>
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="otro" name="tipo" class="custom-control-input" value="Otro" />
+                        <label for="otro" class="custom-control-label">Otro</label>
+                    </div>
+                </div>
+                <div class="row" id="ayuda_doc_identificacion">
+                    <div class="col" style="text-align:center">
+                        <label><small>Selecciona foto de anverso y reverso del documento si es NIE o DNI, o la página con datos y foto si es pasaporte</small></label> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="den_estudios_con">Tipo documento:</label>
+                        <input type="text" id="den_estudios_con" class="form-control" maxlength="40" readonly/>
+                    </div>
+                    <div class="col">
+                        <label for="archivo_con">Documento:</label>
+                        <input type="text" id="archivo_con" class="form-control" maxlength="256" onclick="selUltimoFile()" readonly/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
     <div id="div_canvas_firma" style="display:none; text-align:center;">
         <label><small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small></label><br>
         <div id="div_lienzo" >
             <canvas id="firmaCanvas" width="400" height="200" style="background-color:white; border: 1px solid black;"></canvas>
         </div>
     </div>
-    
-
 
     <div id="array_input_type_file" style="display:none"></div>
-    <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('../../recursos/espera.gif') no-repeat center center; opacity: .7;"></div>
-
-
-
-
     <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('../../recursos/espera.gif') no-repeat center center; opacity: .7;"></div>
     <div id="mensaje_div" style="display:none"></div>
     
