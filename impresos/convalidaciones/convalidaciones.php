@@ -261,7 +261,7 @@
                                             <input type="checkbox" name="doc[]"  id="doc5" value="otra" class="custom-control-input" onclick="" />
                                             <label for="doc5" class="custom-control-label">Otra documentación.</label>
                                         </div>
-                                        <div class="col-3" style="margin-left:-10px" >
+                                        <div class="col-3" >
                                             <input type="textbox" name="otra_desc" id="otra_desc" placeholder="Especificar cuál" class="form-control" onclick="" />
                                         </div>
                                     </div>
