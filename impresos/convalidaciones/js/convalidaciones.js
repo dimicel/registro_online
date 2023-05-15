@@ -88,7 +88,7 @@ function seleccion(obj) {
     }
 }
 
-function creaValidador() {alert(0);
+function creaValidador() {
     $("#form_convalidaciones").validate({
         rules: {
             apellidos: {
