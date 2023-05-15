@@ -584,6 +584,7 @@ function tool_pencil() {
     // This is called when you start holding down the mouse button.
     // This starts the pencil drawing.
     this.mousedown = function(ev) {
+        if (ev.touches && ev.touches.length > 0) return; // Ignore touch events
         context.beginPath();
         context.moveTo(ev._x, ev._y);
         tool.started = true;
@@ -591,6 +592,7 @@ function tool_pencil() {
 
     this.touchstart = function(ev) {
         ev.preventDefault(); // Prevent scrolling on touch devices
+        if (ev.touches && ev.touches.length > 1) return; // Ignore multi-touch events
         context.beginPath();
         const { clientX, clientY } = ev.touches[0];
         context.moveTo(clientX, clientY);
@@ -601,34 +603,34 @@ function tool_pencil() {
     // draws if the tool.started state is set to true (when you are holding down 
     // the mouse button).
     this.mousemove = function(ev) {
-        if (tool.started) {
-            context.lineTo(ev._x, ev._y);
-            context.stroke();
-        }
+        if (!tool.started) return;
+        if (ev.touches && ev.touches.length > 0) return; // Ignore touch events
+        context.lineTo(ev._x, ev._y);
+        context.stroke();
     };
 
     this.touchmove = function(ev) {
         ev.preventDefault(); // Prevent scrolling on touch devices
-        if (tool.started) {
-            const { clientX, clientY } = ev.touches[0];
-            context.lineTo(clientX, clientY);
-            context.stroke();
-        }
+        if (!tool.started) return;
+        if (ev.touches && ev.touches.length > 1) return; // Ignore multi-touch events
+        const { clientX, clientY } = ev.touches[0];
+        context.lineTo(clientX, clientY);
+        context.stroke();
     };
 
     // This is called when you release the mouse button.
     this.mouseup = function(ev) {
-        if (tool.started) {
-            tool.mousemove(ev);
-            tool.started = false;
-        }
+        if (!tool.started) return;
+        if (ev.touches && ev.touches.length > 0) return; // Ignore touch events
+        tool.mousemove(ev);
+        tool.started = false;
     };
 
     this.touchend = function(ev) {
-        if (tool.started) {
-            tool.touchmove(ev);
-            tool.started = false;
-        }
+        if (!tool.started) return;
+        if (ev.touches && ev.touches.length > 1) return; // Ignore multi-touch events
+        tool.touchmove(ev);
+        tool.started = false;
     };
 }
 
