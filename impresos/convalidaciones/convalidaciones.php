@@ -229,12 +229,40 @@
                                 <section id="seccion-consejeria" style="display:none">
                                     <div class="row mt-2">
                                         <div class="col">
-                                        <label for="estudios">Documentos aportados(<a style="color:#00C" href="#" onclick="anadeDoc_con(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                                        <label for="estudios">Documentación a presentar:</label>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col" >
-
+                                        <div class="col custom-control custom-switch mi-checkbox" >
+                                            <input type="checkbox" name="doc[]" value="certificado"  class="custom-control-input"  onclick="" />
+                                            <label for="doc[]" class="custom-control-label">Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita.</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col custom-control custom-switch mi-checkbox" >
+                                            <input type="checkbox" name="doc[]" value="identificacion" class="custom-control-input" onclick="" />
+                                            <label for="doc[]" class="custom-control-label">Fotocopia del documento de identificación.</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col custom-control custom-switch mi-checkbox" >
+                                            <input type="checkbox" name="doc[]" value="fotoc_compulsada" class="custom-control-input" onclick="" />
+                                            <label for="doc[]" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados.</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col custom-control custom-switch mi-checkbox" >
+                                            <input type="checkbox" name="doc[]" value="titulo" class="custom-control-input" onclick="" />
+                                            <label for="doc[]" class="custom-control-label">Fotocopia compulsada del título.</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2 custom-control custom-switch mi-checkbox" >
+                                            <input type="checkbox" name="doc[]" value="otra" class="custom-control-input" onclick="" />
+                                            <label for="doc[]" class="custom-control-label">Otra documentación.</label>
+                                        </div>
+                                        <div class="col custom-control custom-switch mi-checkbox" >
+                                            <input type="checkbox" name="otra_desc" id="otra_desc" placeholder="Especificar cuál" class="custom-control-input" onclick="" />
                                         </div>
                                     </div>
                                 </section>
