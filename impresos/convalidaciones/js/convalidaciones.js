@@ -173,7 +173,7 @@ function creaValidador() {
                 required: "Seleccione módulos"
             }
         },
-        errorPlacement: function(error, element) {
+        errorPlacement: function(error, element) {alert(1111);
             if ($(element).attr('name') == "modulos") $("label[for='" + $(element).attr('name') + "']").next($('.errorTxt')).html(error);
             //$("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
         }
@@ -452,7 +452,7 @@ function borraFila(obj, e) {
 
 
 function registraForm() {
-    if (formulario == "Centro-Ministerio") {alert($("#form_convalidaciones").validate())
+    if (formulario == "Centro-Ministerio") {
         if ($("#form_convalidaciones").validate()) {return;
             var formData = new FormData();
             formData.append("id_nie", encodeURIComponent(id_nie));
