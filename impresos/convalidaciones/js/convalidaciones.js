@@ -60,6 +60,9 @@ $(document).ready(function() {
     canvas.addEventListener('mousemove', ev_canvas, false);
     canvas.addEventListener('mouseup', ev_canvas, false);
     canvas.addEventListener("mouseout", ev_canvas, false);
+    canvas.addEventListener('touchstart', ev_canvas, false);
+    canvas.addEventListener('touchmove', ev_canvas, false);
+    canvas.addEventListener('touchend', ev_canvas, false);
 
 });
 
@@ -520,12 +523,27 @@ function tool_pencil() {
         tool.started = true;
     };
 
+    this.touchstart=function(ev){
+        context.beginPath();
+        const { clientX, clientY } = ev.touches[0];
+        context.moveTo(clientX, clientY);
+        tool.started = true;
+    };
+
     // This function is called every time you move the mouse. Obviously, it only 
     // draws if the tool.started state is set to true (when you are holding down 
     // the mouse button).
     this.mousemove = function(ev) {
         if (tool.started) {
             context.lineTo(ev._x, ev._y);
+            context.stroke();
+        }
+    };
+
+    this.touchmove=function(ev){
+        if (tool.started) {
+            const { clientX, clientY } = ev.touches[0];
+            context.lineTo(clientX, clientY);
             context.stroke();
         }
     };
@@ -537,24 +555,18 @@ function tool_pencil() {
             tool.started = false;
         }
     };
+
+    this.touchend = function(ev) {
+        if (tool.started) {
+            tool.touchmove(ev);
+            tool.started = false;
+        }
+    };
 }
 
 // The general-purpose event handler. This function just determines the mouse 
 // position relative to the canvas element.
 function ev_canvas(ev) {
-    /*if (ev.layerX || ev.layerX == 0) { // Firefox
-      ev._x = ev.layerX;
-      ev._y = ev.layerY;
-    } else if (ev.offsetX || ev.offsetX == 0) { // Opera
-      ev._x = ev.offsetX;
-      ev._y = ev.offsetY;
-    }
-
-    // Call the event handler of the tool.
-    var func = tool[ev.type];
-    if (func) {
-      func(ev);
-    }*/
     var canvasRect = canvas.getBoundingClientRect();
     ev._x = ev.clientX - canvasRect.left;
     ev._y = ev.clientY - canvasRect.top;
