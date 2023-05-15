@@ -237,11 +237,19 @@
                                             <input type="checkbox" name="doc[]" id="doc1" value="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita"  class="custom-control-input"  onclick="" />
                                             <label for="doc1" class="custom-control-label">Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita.</label>
                                         </div>
+                                        <div class="col-3" style="margin-left:-60px">
+                                            <input type="textbox"  id="t_file1" class="form-control" onclick="" style="display:none" readonly/>
+                                            <input type="file" name="cert_mat" id="cert_mat" style="position:absolute;left: -9999px;"/>
+                                        </div>
                                     </div>
                                     <div class="row ml-2">
                                         <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]"  id="doc2" value="Fotocopia del documento de identificación" class="custom-control-input" onclick="" />
+                                            <input type="checkbox" name="doc[]"  id="doc2" value="Fotocopia del documento de identificación" class="custom-control-input" onclick=""/>
                                             <label for="doc2" class="custom-control-label">Fotocopia del documento de identificación.</label>
+                                        </div>
+                                        <div class="col-3" style="margin-left:-60px">
+                                            <input type="textbox"  id="t_file2"  class="form-control"   onclick="" style="display:none" readonly/>
+                                            <input type="file" name="doc_ident" id="doc_ident" style="position:absolute;left: -9999px;"/>
                                         </div>
                                     </div>
                                     <div class="row ml-2">
@@ -249,11 +257,19 @@
                                             <input type="checkbox" name="doc[]"  id="doc3" value="Fotocopia compulsada de la certificación académica de los estudios realizados" class="custom-control-input" onclick="" />
                                             <label for="doc3" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados.</label>
                                         </div>
+                                        <div class="col-3" style="margin-left:-60px">
+                                            <input type="textbox"  id="t_file3" class="form-control"   onclick="" style="display:none" readonly/>
+                                            <input type="file" name="fotoc_cert" id="fotoc_cert" style="position:absolute;left: -9999px;"/>
+                                        </div>
                                     </div>
                                     <div class="row ml-2">
                                         <div class="col custom-control custom-switch mi-checkbox" >
                                             <input type="checkbox" name="doc[]"  id="doc4" value="Fotocopia compulsada del título" class="custom-control-input" onclick="" />
                                             <label for="doc4" class="custom-control-label">Fotocopia compulsada del título.</label>
+                                        </div>
+                                        <div class="col-3" style="margin-left:-60px">
+                                            <input type="textbox"  id="t_file4"  class="form-control"   onclick="" style="display:none" readonly/>
+                                            <input type="file" name="fotoc_tit" id="fotoc_tit" style="position:absolute;left: -9999px;"/>
                                         </div>
                                     </div>
                                     <div class="row ml-2">
@@ -263,6 +279,7 @@
                                         </div>
                                         <div class="col-3" style="margin-left:-60px">
                                             <input type="textbox" name="otra_desc" id="otra_desc" placeholder="Especificar cuál" class="form-control"  maxlength="40" onclick="" style="display:none"/>
+                                            <input type="file" name="otro_doc" id="otro_doc" style="position:absolute;left: -9999px;"/>
                                         </div>
                                     </div>
                                 </section>
