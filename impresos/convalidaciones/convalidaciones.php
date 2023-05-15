@@ -234,35 +234,35 @@
                                     </div>
                                     <div class="row ml-2">
                                         <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]" id="doc1" value="certificado"  class="custom-control-input"  onclick="" />
+                                            <input type="checkbox" name="doc[]" id="doc1" value="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita"  class="custom-control-input"  onclick="" />
                                             <label for="doc1" class="custom-control-label">Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita.</label>
                                         </div>
                                     </div>
                                     <div class="row ml-2">
                                         <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]"  id="doc2" value="identificacion" class="custom-control-input" onclick="" />
+                                            <input type="checkbox" name="doc[]"  id="doc2" value="Fotocopia del documento de identificación" class="custom-control-input" onclick="" />
                                             <label for="doc2" class="custom-control-label">Fotocopia del documento de identificación.</label>
                                         </div>
                                     </div>
                                     <div class="row ml-2">
                                         <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]"  id="doc3" value="fotoc_compulsada" class="custom-control-input" onclick="" />
+                                            <input type="checkbox" name="doc[]"  id="doc3" value="Fotocopia compulsada de la certificación académica de los estudios realizados" class="custom-control-input" onclick="" />
                                             <label for="doc3" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados.</label>
                                         </div>
                                     </div>
                                     <div class="row ml-2">
                                         <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]"  id="doc4" value="titulo" class="custom-control-input" onclick="" />
+                                            <input type="checkbox" name="doc[]"  id="doc4" value="Fotocopia compulsada del título" class="custom-control-input" onclick="" />
                                             <label for="doc4" class="custom-control-label">Fotocopia compulsada del título.</label>
                                         </div>
                                     </div>
                                     <div class="row ml-2">
                                         <div class="col-3 custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]"  id="doc5" value="otra" class="custom-control-input" onclick="" />
+                                            <input type="checkbox" name="doc[]"  id="doc5" value="otra" class="custom-control-input" onclick="selecOtraDoc(this)" />
                                             <label for="doc5" class="custom-control-label">Otra documentación.</label>
                                         </div>
                                         <div class="col-3" style="margin-left:-60px">
-                                            <input type="textbox" name="otra_desc" id="otra_desc" placeholder="Especificar cuál" class="form-control" onclick="" />
+                                            <input type="textbox" name="otra_desc" id="otra_desc" placeholder="Especificar cuál" class="form-control"  maxlength="40" onclick="" style="display:none"/>
                                         </div>
                                     </div>
                                 </section>

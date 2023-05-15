@@ -582,3 +582,15 @@ function isCanvasEmpty() {
 
     return true; // El canvas está vacío
 }
+
+
+///////////////////FUNCIONES ESPECÍFICAS FORMULARIO PARA CONSEJERÍA
+function selecOtraDoc(obj){
+    if (obj.checked){
+        $("#otra_desc").show();
+    } 
+    else {
+        $("#otra_desc").hide();
+        document.getElementById("otra_desc").value="";
+    }
+}
