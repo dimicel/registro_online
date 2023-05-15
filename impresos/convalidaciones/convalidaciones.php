@@ -256,7 +256,7 @@
                                             <label for="doc4" class="custom-control-label">Fotocopia compulsada del título.</label>
                                         </div>
                                     </div>
-                                    <div class="row ml-3">
+                                    <div class="row ml-2">
                                         <div class="col-3 custom-control custom-switch mi-checkbox" >
                                             <input type="checkbox" name="doc[]"  id="doc5" value="otra" class="custom-control-input" onclick="" />
                                             <label for="doc5" class="custom-control-label">Otra documentación.</label>
