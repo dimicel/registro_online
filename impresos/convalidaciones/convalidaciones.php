@@ -240,25 +240,25 @@
                                     </div>
                                     <div class="row">
                                         <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]" value="identificacion" class="custom-control-input" onclick="" />
+                                            <input type="checkbox" name="doc[]"  id="doc[]" value="identificacion" class="custom-control-input" onclick="" />
                                             <label for="doc[]" class="custom-control-label">Fotocopia del documento de identificación.</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]" value="fotoc_compulsada" class="custom-control-input" onclick="" />
+                                            <input type="checkbox" name="doc[]"  id="doc[]" value="fotoc_compulsada" class="custom-control-input" onclick="" />
                                             <label for="doc[]" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados.</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]" value="titulo" class="custom-control-input" onclick="" />
+                                            <input type="checkbox" name="doc[]"  id="doc[]" value="titulo" class="custom-control-input" onclick="" />
                                             <label for="doc[]" class="custom-control-label">Fotocopia compulsada del título.</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-2 custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]" value="otra" class="custom-control-input" onclick="" />
+                                            <input type="checkbox" name="doc[]"  id="doc[]" value="otra" class="custom-control-input" onclick="" />
                                             <label for="doc[]" class="custom-control-label">Otra documentación.</label>
                                         </div>
                                         <div class="col custom-control custom-switch mi-checkbox" >
