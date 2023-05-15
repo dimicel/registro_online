@@ -227,7 +227,7 @@
                                     </div>
                                 </section>
                                 <section id="seccion-consejeria" style="display:none">
-                                    <div class="row mt-2 ml-2">
+                                    <div class="row mt-2">
                                         <div class="col">
                                         <label for="estudios">Documentación a presentar:</label>
                                         </div>
@@ -257,7 +257,7 @@
                                         </div>
                                     </div>
                                     <div class="row ml-2">
-                                        <div class="col-2 custom-control custom-switch mi-checkbox" >
+                                        <div class="col-3 custom-control custom-switch mi-checkbox" >
                                             <input type="checkbox" name="doc[]"  id="doc5" value="otra" class="custom-control-input" onclick="" />
                                             <label for="doc5" class="custom-control-label">Otra documentación.</label>
                                         </div>
