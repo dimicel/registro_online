@@ -288,7 +288,7 @@
         </form>
     </div>
     <div id="div_canvas_firma" style="display:none; text-align: center;">
-        <label><small>Mentenga pulsado el botón del ratón para dibujar la firma.</small></label><br>
+        <label><small>Mentenga pulsado el botón del ratón para dibujar la firma. También puede firmar con una tableta digitalizadora, o con el dedo si está con una tablet o un móvil.</small></label><br>
         <div id="div_lienzo" >
             <canvas id="firmaCanvas" width="400" height="200" style="background-color:white; border: 1px solid black;"></canvas>
         </div>
