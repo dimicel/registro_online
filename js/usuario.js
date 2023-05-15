@@ -483,7 +483,7 @@ function listaSolicitudes() {
                             tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución NO FAVORABLE)</a>"
                         }
                         else{
-                            tabla += " (A la espera de resolver)"
+                            tabla += " (Resolución EN ESPERA)"
                         }
                         tabla+="</td>";
                     }
