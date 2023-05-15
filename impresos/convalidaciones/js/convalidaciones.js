@@ -452,7 +452,7 @@ function borraFila(obj, e) {
 
 
 function registraForm() {
-    if (formulario == "Centro-Ministerio") {
+    if (formulario == "Centro-Ministerio") {alert($("#form_convalidaciones").validate())
         if ($("#form_convalidaciones").validate()) {return;
             var formData = new FormData();
             formData.append("id_nie", encodeURIComponent(id_nie));
