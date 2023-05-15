@@ -1,6 +1,6 @@
 var id_nie = "";
-var formulario="";
-var curso="";
+var formulario = "";
+var curso = "";
 var drawing = false;
 var mouseX, mouseY;
 
@@ -29,63 +29,62 @@ $(document).ready(function() {
 
         }
     }, "json"));
-    dat2=dat1.then(()=>{
-        $.post("../../php/usu_recdatospers.php",{id_nie:id_nie},(resp)=>{
-            if (resp.error=="ok"){
-                for (e in resp.datos){
-                    if(typeof(resp.datos[e])=="undefined" || resp.datos[e]==null) resp.datos[e]="";
+    dat2 = dat1.then(() => {
+        $.post("../../php/usu_recdatospers.php", { id_nie: id_nie }, (resp) => {
+            if (resp.error == "ok") {
+                for (e in resp.datos) {
+                    if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
                 }
-                document.getElementById("tlf_movil").value=resp.datos.telef_alumno;
-                document.getElementById("email").value=resp.datos.email;
-                document.getElementById("direccion").value=resp.datos.direccion;
-                document.getElementById("cp").value=resp.datos.cp;
-                document.getElementById("localidad").value=resp.datos.localidad;
-                document.getElementById("provincia").value=resp.datos.provincia;
+                document.getElementById("tlf_movil").value = resp.datos.telef_alumno;
+                document.getElementById("email").value = resp.datos.email;
+                document.getElementById("direccion").value = resp.datos.direccion;
+                document.getElementById("cp").value = resp.datos.cp;
+                document.getElementById("localidad").value = resp.datos.localidad;
+                document.getElementById("provincia").value = resp.datos.provincia;
+            } else {
+                document.getElementById("tlf_movil").value = '';
+                document.getElementById("email").value = '';
+                document.getElementById("direccion").value = '';
+                document.getElementById("cp").value = '';
+                document.getElementById("localidad").value = '';
+                document.getElementById("provincia").value = '';
             }
-            else{
-                document.getElementById("tlf_movil").value='';
-                document.getElementById("email").value='';
-                document.getElementById("direccion").value='';
-                document.getElementById("cp").value='';
-                document.getElementById("localidad").value='';
-                document.getElementById("provincia").value='';
-            }
-        },"json");
+        }, "json");
     });
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
     canvas = document.getElementById('firmaCanvas');
-    context = canvas.getContext('2d');      
+    context = canvas.getContext('2d');
     canvas.addEventListener('mousedown', ev_canvas, false);
-	canvas.addEventListener('mousemove', ev_canvas, false);
-	canvas.addEventListener('mouseup',	 ev_canvas, false);
+    canvas.addEventListener('mousemove', ev_canvas, false);
+    canvas.addEventListener('mouseup', ev_canvas, false);
     canvas.addEventListener("mouseout", ev_canvas, false);
 
 });
 
 
 
-function seleccion(obj){
-    if (obj.id=="instrucciones"){
-        open("instrucciones/instrucciones.pdf","_blank");
-    }
-    else if (obj.id=="consejeria"){
+function seleccion(obj) {
+    if (obj.id == "instrucciones") {
+        open("instrucciones/instrucciones.pdf", "_blank");
+    } else if (obj.id == "consejeria") {
         $("#seccion-intro").hide();
+        $("#seccion-formulario").show();
         $("#seccion-consejeria").show();
         $("#seccion-centro_ministerio").hide();
-        formulario="Consejería";
-    }
-    else if(obj.id=="centro_ministerio"){
+        formulario = "Consejería";
+    } else if (obj.id == "centro_ministerio") {
         $("#seccion-intro").hide();
+        $("#seccion-formulario").show();
         $("#seccion-consejeria").hide();
         $("#seccion-centro_ministerio").show();
-        formulario="Centro-Ministerio";
+        formulario = "Centro-Ministerio";
         creaValidadorCentroMin()
     }
 }
 
-function creaValidadorCentroMin(){
+function creaValidadorCentroMin() {
     $("#form_convalidaciones").validate({
         rules: {
             apellidos: {
@@ -113,7 +112,7 @@ function creaValidadorCentroMin(){
                 required: true
             },
             email: {
-                required:true,
+                required: true,
                 email: true
             },
             t_firm: {
@@ -156,7 +155,7 @@ function creaValidadorCentroMin(){
             },
             email: {
                 required: "Vacío",
-                email:"Inválido"
+                email: "Inválido"
             },
             t_firm: {
                 required: "Vacío"
@@ -172,90 +171,84 @@ function creaValidadorCentroMin(){
             }
         },
         errorPlacement: function(error, element) {
-            if ($(element).attr('name')=="modulos") $("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
+            if ($(element).attr('name') == "modulos") $("label[for='" + $(element).attr('name') + "']").next($('.errorTxt')).html(error);
             //$("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
         }
     });
 }
 
-function vuelve(){
+function vuelve() {
     $("#seccion-intro").show();
+    $("#seccion-seccion-formulario").hide();
     $("#seccion-consejeria").hide();
     $("#seccion-centro_ministerio").hide();
 }
 
-function selGrado(obj){
-    sel=document.getElementById("ciclos");
-    if (obj.value==""){
-        sel.innerHTML="";
+function selGrado(obj) {
+    sel = document.getElementById("ciclos");
+    if (obj.value == "") {
+        sel.innerHTML = "";
         option = document.createElement('option');
         option.value = "";
         option.text = "Selecciona grado ...";
         sel.appendChild(option);
         return;
     }
-    $.post("php/listaciclos.php",{grado:obj.value},(resp)=>{
-        if (resp["error"]=="servidor"){
-            alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
-        }
-        else if(resp["error"]=="error_consulta"){
-            alerta("Hay un problema con la base de datos. Inténtelo más tarde.","ERROR DB");
-        }
-        else if(resp["error"]=="no_ciclos"){
-            alerta("No se encuentran ciclos formativos registrados.","SELECT SIN CICLOS");
-        }
-        else if(resp["error"]=="ok"){
-            sel.innerHTML="";
+    $.post("php/listaciclos.php", { grado: obj.value }, (resp) => {
+        if (resp["error"] == "servidor") {
+            alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+        } else if (resp["error"] == "error_consulta") {
+            alerta("Hay un problema con la base de datos. Inténtelo más tarde.", "ERROR DB");
+        } else if (resp["error"] == "no_ciclos") {
+            alerta("No se encuentran ciclos formativos registrados.", "SELECT SIN CICLOS");
+        } else if (resp["error"] == "ok") {
+            sel.innerHTML = "";
             option = document.createElement('option');
             option.value = "";
-            if (obj.value=="") option.text = "Selecciona grado ...";
+            if (obj.value == "") option.text = "Selecciona grado ...";
             else option.text = "Selecciona ciclo ...";
             sel.appendChild(option);
-            for (i=0;i<resp["datos"].length;i++){
+            for (i = 0; i < resp["datos"].length; i++) {
                 const option = document.createElement('option');
                 option.value = resp["datos"][i];
                 option.text = resp["datos"][i];
                 sel.appendChild(option);
             }
-            sel.selectedIndex=0;
+            sel.selectedIndex = 0;
         }
-    },"json");
+    }, "json");
 }
 
 
-function selModulos(e){
+function selModulos(e) {
     e.preventDefault();
-    if (document.getElementById("ciclos").selectedIndex==0){
-        alerta("Seleccione antes un ciclo formativo.","CICLO SIN SELECCIÓN");
+    if (document.getElementById("ciclos").selectedIndex == 0) {
+        alerta("Seleccione antes un ciclo formativo.", "CICLO SIN SELECCIÓN");
         return;
     }
-    $.post("php/listamodulos.php",{ciclo:document.getElementById("ciclos").value,grado:document.getElementById("grado").value},(resp)=>{
-        if (resp["error"]=="servidor"){
-            alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
-        }
-        else if(resp["error"].indexOf("error_consulta")>-1){
-            alerta("Hay un problema con la base de datos. Inténtelo más tarde.",resp["error"]);
-        }
-        else if(resp["error"]=="no_materias"){
-            alerta("No se encuentran módulos registrados para el ciclo formativo seleccionado.","SELECT SIN MÓDULOS");
-        }
-        else if(resp["error"]=="ok"){
+    $.post("php/listamodulos.php", { ciclo: document.getElementById("ciclos").value, grado: document.getElementById("grado").value }, (resp) => {
+        if (resp["error"] == "servidor") {
+            alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+        } else if (resp["error"].indexOf("error_consulta") > -1) {
+            alerta("Hay un problema con la base de datos. Inténtelo más tarde.", resp["error"]);
+        } else if (resp["error"] == "no_materias") {
+            alerta("No se encuentran módulos registrados para el ciclo formativo seleccionado.", "SELECT SIN MÓDULOS");
+        } else if (resp["error"] == "ok") {
             var existeDiv = document.getElementById("sMod") !== null;
-            if (existeDiv){
-                document.getElementById("sMod").innerHTML="";
-            }
-            else {
-                marco=document.createElement('div');
-                marco.id="sMod";
+            if (existeDiv) {
+                document.getElementById("sMod").innerHTML = "";
+            } else {
+                marco = document.createElement('div');
+                marco.id = "sMod";
                 document.body.appendChild(marco);
             }
-            t="<center><table id='tab_lista_modulos'><tr><td><b>Código</b></td><td><b>Módulo</b></td></tr>";
-            for (i=0; i<resp["datos"].length;i++){
-                t+="<tr onclick='selTablaListaMod(this)'><td>"+resp["datos"][i]["codigo"]+"</td><td>"+resp["datos"][i]["materia"]+"</td></tr>";
+            t = "<center><table id='tab_lista_modulos'><tr><td><b>Código</b></td><td><b>Módulo</b></td></tr>";
+            for (i = 0; i < resp["datos"].length; i++) {
+                t += "<tr onclick='selTablaListaMod(this)'><td>" + resp["datos"][i]["codigo"] + "</td><td>" + resp["datos"][i]["materia"] + "</td></tr>";
             }
-            t+="</table></center>";
-            document.getElementById("sMod").innerHTML=t;
-            
+            t += "</table></center>";
+            document.getElementById("sMod").innerHTML = t;
+
             $("#sMod").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
@@ -270,32 +263,32 @@ function selModulos(e){
                     text: "Cerrar",
                     click: function() {
                         elementos = document.getElementById("tab_lista_modulos").querySelectorAll("tr.selected");
-                        textModulos="";
-                        for (i=0;i<elementos.length;i++){
-                            textModulos+=elementos[i].cells[0].innerHTML+"-"+elementos[i].cells[1].innerHTML+";"
+                        textModulos = "";
+                        for (i = 0; i < elementos.length; i++) {
+                            textModulos += elementos[i].cells[0].innerHTML + "-" + elementos[i].cells[1].innerHTML + ";"
                         }
-                        document.getElementById("modulos").value=textModulos;
+                        document.getElementById("modulos").value = textModulos;
                         $("#sMod").dialog("close");
                         //$("#sMod").dialog("destroy");
                     }
                 }]
-            });       
+            });
         }
-    },"json");
+    }, "json");
 }
 
 
-function selTablaListaMod(obj){
+function selTablaListaMod(obj) {
     if (obj.classList.contains("selected")) {
         obj.classList.remove("selected");
         obj.classList.add("deselected");
-      } else {
+    } else {
         obj.classList.remove("deselected");
         obj.classList.add("selected");
-      }
+    }
 }
 
-function anadeDoc(e){
+function anadeDoc(e) {
     e.preventDefault();
     creaInputs();
     $("#anade_documento").dialog({
@@ -307,16 +300,15 @@ function anadeDoc(e){
         show: { effect: "fade", duration: 0 },
         title: "AÑADIR ESTUDIO A APORTAR",
         width: 700,
-        buttons: [
-            {
+        buttons: [{
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
-                    if (document.querySelectorAll("input[name=tipo]:checked").length==0 || 
-                        document.getElementById("den_estudios").value.trim().length==0 || 
-                        document.getElementById("archivo").value.trim().length==0){
-                            alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.","FALTAN DATOS");
-                            return;
+                    if (document.querySelectorAll("input[name=tipo]:checked").length == 0 ||
+                        document.getElementById("den_estudios").value.trim().length == 0 ||
+                        document.getElementById("archivo").value.trim().length == 0) {
+                        alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.", "FALTAN DATOS");
+                        return;
                     }
                     actualizaTablaListaDocs();
                     $("#anade_documento").dialog("close");
@@ -330,90 +322,90 @@ function anadeDoc(e){
                     $("#anade_documento").dialog("close");
                     $("#anade_documento").dialog("destroy");
                 }
-            }]
-    });       
-}
-
-
-
-function creaInputs(){
-    divArray=document.getElementById("array_input_type_file");
-    tipoHidden=document.createElement("input");
-    tipoHidden.type="hidden";
-    tipoHidden.name="desc[]";
-    tipoFile=document.createElement("input");
-    tipoFile.type="file";
-    tipoFile.name="docs[]";
-    tipoFile.multiple=false;
-    divArray.appendChild(tipoHidden);
-    divArray.appendChild(tipoFile);
-    tipoFile.addEventListener("change", function() {
-        _a=document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
-        document.getElementById('archivo').value=_a[_a.length-1].files[0].name;
+            }
+        ]
     });
 }
 
-function selUltimoFile(){
-    _a=document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
-    _a[_a.length-1].click();
+
+
+function creaInputs() {
+    divArray = document.getElementById("array_input_type_file");
+    tipoHidden = document.createElement("input");
+    tipoHidden.type = "hidden";
+    tipoHidden.name = "desc[]";
+    tipoFile = document.createElement("input");
+    tipoFile.type = "file";
+    tipoFile.name = "docs[]";
+    tipoFile.multiple = false;
+    divArray.appendChild(tipoHidden);
+    divArray.appendChild(tipoFile);
+    tipoFile.addEventListener("change", function() {
+        _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
+        document.getElementById('archivo').value = _a[_a.length - 1].files[0].name;
+    });
 }
 
-function actualizaTablaListaDocs(){
-    _a=document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
-    _arch=_a[_a.length-1].files[0].name;
-    _d=document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
-    _d[_d.length-1].value="("+document.querySelectorAll("input[name=tipo]:checked")[0].value+") "+document.getElementById("den_estudios").value;
-    _t=document.getElementById("tab_lista_docs");
-    if (_t.rows[0].cells.length==1){
+function selUltimoFile() {
+    _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
+    _a[_a.length - 1].click();
+}
+
+function actualizaTablaListaDocs() {
+    _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
+    _arch = _a[_a.length - 1].files[0].name;
+    _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
+    _d[_d.length - 1].value = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
+    _t = document.getElementById("tab_lista_docs");
+    if (_t.rows[0].cells.length == 1) {
         _t.deleteRow(0);
     }
     var nuevaFila = _t.insertRow();
 
     // Insertar una celda en la nueva fila (primera columna)
     var celda1 = nuevaFila.insertCell();
-    celda1.textContent = "("+document.querySelectorAll("input[name=tipo]:checked")[0].value+") "+document.getElementById("den_estudios").value;
-    celda1.style.width="50%";
+    celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
+    celda1.style.width = "50%";
 
     // Insertar una celda en la nueva fila (segunda columna)
     var celda2 = nuevaFila.insertCell();
     celda2.textContent = _arch;
-    celda2.style.width="45%";
+    celda2.style.width = "45%";
 
-    var celda3=nuevaFila.insertCell();
-    celda3.innerHTML="<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
-    celda3.style.width="5%";
-    celda3.style.textAlign="center";
+    var celda3 = nuevaFila.insertCell();
+    celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
+    celda3.style.width = "5%";
+    celda3.style.textAlign = "center";
 
     document.getElementById("form_anade_documento").reset();
 }
 
 
-function borraFila(obj,e){
+function borraFila(obj, e) {
     e.preventDefault();
-    _t=document.getElementById("tab_lista_docs");
-    num_fila=obj.parentNode.parentNode.rowIndex;
-    if (_t.rows.length==1){
-        _t.innerHTML="<tr><td style='text-align:center'>LISTA DE DOCUMENTOS VACÍA</td></tr>";
-    }
-    else{
+    _t = document.getElementById("tab_lista_docs");
+    num_fila = obj.parentNode.parentNode.rowIndex;
+    if (_t.rows.length == 1) {
+        _t.innerHTML = "<tr><td style='text-align:center'>LISTA DE DOCUMENTOS VACÍA</td></tr>";
+    } else {
         _t.deleteRow(num_fila);
     }
-    
-    inputsHidden=document.getElementById("array_input_type_file").querySelectorAll('input[type="hidden"]');
+
+    inputsHidden = document.getElementById("array_input_type_file").querySelectorAll('input[type="hidden"]');
     inputsHidden[num_fila].remove();
-    inputsFiles=document.getElementById("array_input_type_file").querySelectorAll('input[type="file"]');
+    inputsFiles = document.getElementById("array_input_type_file").querySelectorAll('input[type="file"]');
     inputsFiles[num_fila].remove();
 }
 
 
 
-function registraForm(){
-    if (formulario=="Centro-Ministerio"){
+function registraForm() {
+    if (formulario == "Centro-Ministerio") {
         if ($("#form_convalidaciones").validate()) {
             var formData = new FormData();
-            formData.append("id_nie",encodeURIComponent(id_nie));
-            formData.append("curso",encodeURIComponent(curso));
-            formData.append("formulario",encodeURIComponent(formulario));
+            formData.append("id_nie", encodeURIComponent(id_nie));
+            formData.append("curso", encodeURIComponent(curso));
+            formData.append("formulario", encodeURIComponent(formulario));
             formData.append("nombre", encodeURIComponent(document.getElementById("nombre").value));
             formData.append("apellidos", encodeURIComponent(document.getElementById("apellidos").value));
             formData.append("id_nif", encodeURIComponent(document.getElementById("nif_nie").value));
@@ -428,7 +420,7 @@ function registraForm(){
             formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
             formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
             //formData.append("firma",document.getElementById("firma").files[0]);
-            formData.append("firma",encodeURIComponent(canvas_upload));
+            formData.append("firma", encodeURIComponent(canvas_upload));
             datosHidden = document.querySelectorAll('input[name="desc[]"]');
             for (var i = 0; i < datosHidden.length; i++) {
                 formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
@@ -439,34 +431,33 @@ function registraForm(){
             }
             document.getElementById("cargando").style.display = 'inherit';
             $.post({
-                url: "php/registracentroministerio.php", 
+                url: "php/registracentroministerio.php",
                 data: formData,
                 contentType: false,
                 processData: false,
                 success: function(resp) {
                     document.getElementById("cargando").style.display = 'none';
-                    if (resp=="servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
-                    else if (resp=="database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.","ERROR DB");
-                    else if (resp=="error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.","ERROR UPLOAD");
-                    else if(resp=="ok"){
+                    if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                    else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+                    else if (resp == "error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.", "ERROR UPLOAD");
+                    else if (resp == "ok") {
                         alerta("Solicitud de convalidación registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", true, 500);
-                    } 
+                    }
                 },
                 error: function(xhr, status, error) {
-                    alerta("Error en servidor. Código "+error+"<br>Inténtelo más tarde.","ERROR DE SERVIDOR");
+                    alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                 }
             });
+        } else {
+            alerta("Revisa los campos que se han marcado en rojo.", "DATOS INVÁLIDOS O AUSENTES");
         }
-        else {
-                alerta ("Revisa los campos que se han marcado en rojo.","DATOS INVÁLIDOS O AUSENTES");
-        }
-    } 
+    }
 }
 
 
 
-function canvasFirma(){
-    
+function canvasFirma() {
+
     tool = new tool_pencil();
     $("#div_canvas_firma").dialog({
         autoOpen: true,
@@ -477,18 +468,16 @@ function canvasFirma(){
         show: { effect: "fade", duration: 0 },
         title: "FIRMA",
         width: 500,
-        buttons: [
-            {
+        buttons: [{
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
-                    if(!isCanvasEmpty()){
-                        document.getElementById("t_firm").value="FORMULARIO FIRMADO";
-                        canvas_upload=canvas.toDataURL('image/png');
+                    if (!isCanvasEmpty()) {
+                        document.getElementById("t_firm").value = "FORMULARIO FIRMADO";
+                        canvas_upload = canvas.toDataURL('image/png');
+                    } else {
+                        document.getElementById("t_firm").value = "";
                     }
-                    else{
-                        document.getElementById("t_firm").value="";
-                    } 
                     $("#div_canvas_firma").dialog("close");
                     $("#div_canvas_firma").dialog("destroy");
                 }
@@ -498,34 +487,34 @@ function canvasFirma(){
                 text: "Borrar",
                 click: function() {
                     context.clearRect(0, 0, canvas.width, canvas.height);
-                    document.getElementById("t_firm").value="";
+                    document.getElementById("t_firm").value = "";
                 }
             },
             {
                 class: "btn btn-success textoboton",
                 text: "Cancelar",
                 click: function() {
-                    if(!isCanvasEmpty()){
-                        document.getElementById("t_firm").value="FORMULARIO FIRMADO";
-                        canvas_upload=canvas.toDataURL('image/png');
+                    if (!isCanvasEmpty()) {
+                        document.getElementById("t_firm").value = "FORMULARIO FIRMADO";
+                        canvas_upload = canvas.toDataURL('image/png');
+                    } else {
+                        document.getElementById("t_firm").value = "";
                     }
-                    else{
-                        document.getElementById("t_firm").value="";
-                    } 
                     $("#div_canvas_firma").dialog("close");
                     $("#div_canvas_firma").dialog("destroy");
                 }
-            }]
-    });       
+            }
+        ]
+    });
 }
 
-function tool_pencil () {
+function tool_pencil() {
     var tool = this;
     this.started = false;
 
     // This is called when you start holding down the mouse button.
     // This starts the pencil drawing.
-    this.mousedown = function (ev) {
+    this.mousedown = function(ev) {
         context.beginPath();
         context.moveTo(ev._x, ev._y);
         tool.started = true;
@@ -534,25 +523,25 @@ function tool_pencil () {
     // This function is called every time you move the mouse. Obviously, it only 
     // draws if the tool.started state is set to true (when you are holding down 
     // the mouse button).
-    this.mousemove = function (ev) {
-      if (tool.started) {
-        context.lineTo(ev._x, ev._y);
-        context.stroke();
-      }
+    this.mousemove = function(ev) {
+        if (tool.started) {
+            context.lineTo(ev._x, ev._y);
+            context.stroke();
+        }
     };
 
     // This is called when you release the mouse button.
-    this.mouseup = function (ev) {
-      if (tool.started) {
-        tool.mousemove(ev);
-        tool.started = false;
-      }
+    this.mouseup = function(ev) {
+        if (tool.started) {
+            tool.mousemove(ev);
+            tool.started = false;
+        }
     };
-  }
+}
 
-  // The general-purpose event handler. This function just determines the mouse 
-  // position relative to the canvas element.
-  function ev_canvas (ev) {
+// The general-purpose event handler. This function just determines the mouse 
+// position relative to the canvas element.
+function ev_canvas(ev) {
     /*if (ev.layerX || ev.layerX == 0) { // Firefox
       ev._x = ev.layerX;
       ev._y = ev.layerY;
@@ -569,25 +558,25 @@ function tool_pencil () {
     var canvasRect = canvas.getBoundingClientRect();
     ev._x = ev.clientX - canvasRect.left;
     ev._y = ev.clientY - canvasRect.top;
-  
+
     var func = tool[ev.type];
     if (func) {
-      func(ev);
+        func(ev);
     }
-  }
+}
 
 
 // Función para verificar si el canvas contiene algo dibujado
 function isCanvasEmpty() {
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     var data = imageData.data;
-  
+
     for (var i = 0; i < data.length; i += 4) {
-      // Comprobar si el canal alfa (transparencia) es mayor que 0
-      if (data[i + 3] !== 0) {
-        return false; // El canvas contiene algo dibujado
-      }
+        // Comprobar si el canal alfa (transparencia) es mayor que 0
+        if (data[i + 3] !== 0) {
+            return false; // El canvas contiene algo dibujado
+        }
     }
-  
+
     return true; // El canvas está vacío
-  }
+}

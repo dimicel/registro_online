@@ -66,7 +66,7 @@
         </div>
     </section>
 
-    <section id="seccion-centro_ministerio" style="display:none">
+    <section id="seccion-formulario" style="display:none">
         <div class="container w-100">
             <form id="form_convalidaciones">
                 <div class="d-flex flex-row">
@@ -213,17 +213,31 @@
                                         <textarea class="form-control"  name="modulos" rows="3" id="modulos" maxlength="1000" readonly></textarea>
                                     </div>
                                 </div>
-                                <div class="row mt-2">
-                                    <div class="col">
-                                    <label for="estudios">Estudios que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                                <section id="seccion-centro_ministerio" style="display:none">
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                        <label for="estudios">Estudios que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col" >
-                                        <table  style="width: 70%; margin: 0 auto;background-color:lightslategrey"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
-                                        <table id="tab_lista_docs"  style="width: 70%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
+                                    <div class="row">
+                                        <div class="col" >
+                                            <table  style="width: 70%; margin: 0 auto;background-color:lightslategrey"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
+                                            <table id="tab_lista_docs"  style="width: 70%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
+                                        </div>
                                     </div>
-                                </div>
+                                </section>
+                                <section id="seccion-consejeria" style="display:none">
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                        <label for="estudios">Documentos aportados(<a style="color:#00C" href="#" onclick="anadeDoc_con(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col" >
+
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
                         </div>
                         <div class="flex-row mt-1 w-100 justify-content-center">
@@ -234,8 +248,8 @@
                     </div>
                 </div>
             </form>
-        </div>        
-    </section>
+        </div> 
+    </section>       
     <div id="anade_documento" style="display:none">
         <form id="form_anade_documento">
             <div class="container">
