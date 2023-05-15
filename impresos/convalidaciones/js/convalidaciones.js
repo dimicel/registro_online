@@ -179,7 +179,7 @@ function creaValidadorCentroMin() {
 
 function vuelve() {
     $("#seccion-intro").show();
-    $("#seccion-seccion-formulario").hide();
+    $("#seccion-formulario").hide();
     $("#seccion-consejeria").hide();
     $("#seccion-centro_ministerio").hide();
 }
