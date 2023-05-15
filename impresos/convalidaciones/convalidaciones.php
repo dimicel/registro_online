@@ -275,7 +275,7 @@
         </form>
     </div>
     <div id="anade_documento_consejeria" style="display:none">
-        <form id="form_anade_documento_cen">
+        <form id="form_anade_documento_con">
             <div class="container">
                 <div class="row">
                     <div class="col">
