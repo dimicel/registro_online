@@ -278,10 +278,12 @@
         <form id="form_anade_documento_cen">
             <div class="container">
                 <div class="row">
-                    <div class="col-1">
-                        <label style="font-weight:bolder">Tipo:</label>
+                    <div class="col">
+                        <label style="font-weight:bolder">TIPO DOCUMENTO:</label>
                     </div>
-                    <div class="col offset-1 custom-control custom-switch mi-checkbox">
+                </div>
+                <div class="row">
+                    <div class="col custom-control custom-switch mi-checkbox">
                         <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
                         <label for="loe" class="custom-control-label">LOE</label>
                     </div>
@@ -298,9 +300,9 @@
                         <label for="otro" class="custom-control-label">Otro</label>
                     </div>
                 </div>
-                <div class="row" id="ayuda_doc_identificacion">
+                <div class="row" id="ayuda_doc_identificacion" style="display:none">
                     <div class="col" style="text-align:center">
-                        <label><small>Selecciona foto de anverso y reverso del documento si es NIE o DNI, o la página con datos y foto si es pasaporte</small></label> 
+                        <label><small>Selecciona foto de anverso y reverso del documento si es NIE o DNI, o sólo la página con datos y foto si es pasaporte.</small></label> 
                     </div>
                 </div>
                 <div class="row">
