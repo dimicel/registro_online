@@ -75,19 +75,20 @@ function seleccion(obj) {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
         formulario = "Consejería";
+        creaValidador();
         document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
         document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
     } else if (obj.id == "centro_ministerio") {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
         formulario = "Centro-Ministerio";
-        creaValidador()
+        creaValidador();
         document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO";
         document.getElementById("label_estudios_aportados").innerHTML="Documentos que adjunta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
     }
 }
 
-function creaValidador() {
+function creaValidador() {alert(0);
     $("#form_convalidaciones").validate({
         rules: {
             apellidos: {
@@ -173,7 +174,7 @@ function creaValidador() {
                 required: "Seleccione módulos"
             }
         },
-        errorPlacement: function(error, element) {alert(1111);
+        errorPlacement: function(error, element) {
             if ($(element).attr('name') == "modulos") $("label[for='" + $(element).attr('name') + "']").next($('.errorTxt')).html(error);
             //$("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
         }
