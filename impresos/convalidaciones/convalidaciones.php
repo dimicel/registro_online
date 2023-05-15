@@ -234,7 +234,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col custom-control custom-switch mi-checkbox" >
-                                            <input type="checkbox" name="doc[]" value="certificado"  class="custom-control-input"  onclick="" />
+                                            <input type="checkbox" name="doc[]" id="doc[]" value="certificado"  class="custom-control-input"  onclick="" />
                                             <label for="doc[]" class="custom-control-label">Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita.</label>
                                         </div>
                                     </div>
