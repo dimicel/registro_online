@@ -454,7 +454,7 @@ function borraFila(obj, e) {
 
 function registraForm() {
     if (formulario == "Centro-Ministerio") {
-        if ($("#form_convalidaciones").validate()) {return;
+        if ($("#form_convalidaciones").valid()) {return;
             var formData = new FormData();
             formData.append("id_nie", encodeURIComponent(id_nie));
             formData.append("curso", encodeURIComponent(curso));
