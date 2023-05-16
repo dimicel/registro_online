@@ -502,7 +502,7 @@ function registraForm() {
                 }
             });
         } else {
-            alerta("Revisa los campos que se han marcado en rojo.", "DATOS INVÁLIDOS O AUSENTES");
+            alerta("Revisa los campos que se han marcado en rojo. Revisa que hayas seleccionado al menos un módulo a convalidar.", "DATOS INVÁLIDOS O AUSENTES");
         }
     }
 }
