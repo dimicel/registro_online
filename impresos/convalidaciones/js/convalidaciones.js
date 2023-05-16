@@ -282,6 +282,22 @@ function selModulos(e) {
     }, "json");
 }
 
+function resaltarFilas() {
+    var textarea = document.getElementById("modulos");
+    var tabla = document.getElementById("tab_lista_docs");
+    var elementos = textarea.value.split(";");alert(elementos.length)
+  
+    for (var i = 0; i < tabla.rows.length; i++) {
+      var codigo = tabla.rows[i].cells[0].innerText;
+      var descripcion = tabla.rows[i].cells[1].innerText;
+  
+      if (elementos.includes(codigo + "-" + descripcion)) {
+        tabla.rows[i].style.backgroundColor = "yellow";
+        tabla.rows[i].style.color = "brown";
+      }
+    }
+}
+
 
 function selTablaListaMod(obj) {
     if (obj.classList.contains("selected")) {
@@ -434,21 +450,7 @@ function actualizaTablaListaDocs() {
     document.getElementById("form_anade_documento_con").reset();
 }
 
-function resaltarFilas() {
-    var textarea = document.getElementById("modulos");
-    var tabla = document.getElementById("tab_lista_docs");
-    var elementos = textarea.value.split(";");
-  
-    for (var i = 0; i < tabla.rows.length; i++) {
-      var codigo = tabla.rows[i].cells[0].innerText;
-      var descripcion = tabla.rows[i].cells[1].innerText;
-  
-      if (elementos.includes(codigo + "-" + descripcion)) {
-        tabla.rows[i].style.backgroundColor = "yellow";
-        tabla.rows[i].style.color = "brown";
-      }
-    }
-  }
+
 
 
 function borraFila(obj, e) {
