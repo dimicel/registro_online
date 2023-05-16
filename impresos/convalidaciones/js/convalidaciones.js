@@ -292,8 +292,7 @@ function resaltarFilas() {
       var descripcion = tabla.rows[i].cells[1].innerText;
   
       if (elementos.includes(codigo + "-" + descripcion)) {
-        tabla.rows[i].style.backgroundColor = "yellow";
-        tabla.rows[i].style.color = "brown";
+        tabla.rows[i].classList.add("selected");
       }
     }
 }
