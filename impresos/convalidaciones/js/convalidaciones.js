@@ -246,13 +246,14 @@ function selModulos(e) {
                 marco.id = "sMod";
                 document.body.appendChild(marco);
             }
-            t = "<center><table id='tab_lista_modulos'><tr><td><b>Código</b></td><td><b>Módulo</b></td></tr>";
+            t="<label><small>Haz clic sobre los módulos que desses seleccionar. Si quieres quitar uno, tanbién haz clic sobre él</small></label><br>";
+            t += "<center><table id='tab_lista_modulos'><tr><td><b>Código</b></td><td><b>Módulo</b></td></tr>";
             for (i = 0; i < resp["datos"].length; i++) {
                 t += "<tr onclick='selTablaListaMod(this)'><td>" + resp["datos"][i]["codigo"] + "</td><td>" + resp["datos"][i]["materia"] + "</td></tr>";
             }
             t += "</table></center>";
             document.getElementById("sMod").innerHTML = t;
-
+            resaltarFilas();
             $("#sMod").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
@@ -432,6 +433,22 @@ function actualizaTablaListaDocs() {
     document.getElementById("form_anade_documento_cenminis").reset();
     document.getElementById("form_anade_documento_con").reset();
 }
+
+function resaltarFilas() {
+    var textarea = document.getElementById("modulos");
+    var tabla = document.getElementById("tab_lista_docs");
+    var elementos = textarea.value.split(";");
+  
+    for (var i = 0; i < tabla.rows.length; i++) {
+      var codigo = tabla.rows[i].cells[0].innerText;
+      var descripcion = tabla.rows[i].cells[1].innerText;
+  
+      if (elementos.includes(codigo + "-" + descripcion)) {
+        tabla.rows[i].style.backgroundColor = "yellow";
+        tabla.rows[i].style.color = "brown";
+      }
+    }
+  }
 
 
 function borraFila(obj, e) {
