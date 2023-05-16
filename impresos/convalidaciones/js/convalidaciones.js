@@ -253,7 +253,6 @@ function selModulos(e) {
             }
             t += "</table></center>";
             document.getElementById("sMod").innerHTML = t;
-            resaltarFilas();
             $("#sMod").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
@@ -278,6 +277,7 @@ function selModulos(e) {
                     }
                 }]
             });
+            resaltarFilas();
         }
     }, "json");
 }
