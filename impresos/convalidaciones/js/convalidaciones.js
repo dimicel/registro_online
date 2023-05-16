@@ -284,8 +284,8 @@ function selModulos(e) {
 
 function resaltarFilas() {
     var textarea = document.getElementById("modulos");
-    var tabla = document.getElementById("tab_lista_docs");
-    var elementos = textarea.value.split(";");alert(elementos.length)
+    var tabla = document.getElementById("tab_lista_modulos");
+    var elementos = textarea.value.split(";");
   
     for (var i = 0; i < tabla.rows.length; i++) {
       var codigo = tabla.rows[i].cells[0].innerText;
