@@ -284,20 +284,20 @@
                 </div>
                 <div class="row">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
-                        <label for="loe" class="custom-control-label">LOE</label>
+                        <input type="radio" id="x" name="tipo_con" class="custom-control-input" value="LOE"/>
+                        <label for="x" class="custom-control-label">LOE</label>
                     </div>
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="logse" name="tipo" class="custom-control-input" value="LOGSE"/>
-                        <label for="logse" class="custom-control-label">LOGSE</label>
+                        <input type="radio" id="y" name="tipo_con" class="custom-control-input" value="LOGSE"/>
+                        <label for="y" class="custom-control-label">LOGSE</label>
                     </div>
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="universitarios" name="tipo" class="custom-control-input" value="Universitarios"/>
-                        <label for="universitarios" class="custom-control-label">Universitarios</label>
+                        <input type="radio" id="z" name="tipo_con" class="custom-control-input" value="Universitarios"/>
+                        <label for="z" class="custom-control-label">Universitarios</label>
                     </div>
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="otro" name="tipo" class="custom-control-input" value="Otro" />
-                        <label for="otro" class="custom-control-label">Otro</label>
+                        <input type="radio" id="a" name="tipo_con" class="custom-control-input" value="Otro" />
+                        <label for="a" class="custom-control-label">Otro</label>
                     </div>
                 </div>
                 <div class="row" id="ayuda_doc_identificacion" style="display:none">
