@@ -185,6 +185,7 @@ function vuelve() {
     $("#seccion-intro").show();
     $("#seccion-formulario").hide();
     document.getElementById("array_input_type_file").innerHTML="";
+    document.getElementById("tab_lista_docs").innerHTML="<tr><td style='text-align:center'>LISTA DE DOCUMENTOS VACÍA</td></tr>";
     document.getElementById("form_convalidaciones").reset();
 }
 
