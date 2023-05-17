@@ -688,6 +688,7 @@ function selTipoDoc(v){
 
 
 function selArchConsej(){
+    alert(document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked".length))
     if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked".length==0)){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
     }
