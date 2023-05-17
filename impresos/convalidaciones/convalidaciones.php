@@ -329,7 +329,7 @@
                 </div>
                 <hr>
                 <div class="row mt-2 justify-content-center">
-                    <div class="col-md-10 form-inline">
+                    <div class="col-10 form-inline">
                         <label for="archivo_con">Documento:</label>
                         <input type="text"  id="archivo_con" class="form-control ml-2" maxlength="256" onclick="selUltimoFile()" placeholder="Click aquí para seleccionar documento" readonly/>
                     </div>
