@@ -388,9 +388,6 @@ function anadeDoc(e) {
 }
 
 
-
-
-
 function creaInputs() {
     divArray = document.getElementById("array_input_type_file");
     tipoHidden = document.createElement("input");
@@ -402,6 +399,7 @@ function creaInputs() {
     tipoFile.multiple = false;
     divArray.appendChild(tipoHidden);
     divArray.appendChild(tipoFile);
+    tipoFile.accept="application/pdf"
     tipoFile.addEventListener("change", function() {
         if (this.multiple && this.files.length!=2){
             alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS")
