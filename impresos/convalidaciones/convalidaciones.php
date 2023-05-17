@@ -288,7 +288,7 @@
                         <label for="conv_estud_solicita" class="custom-control-label">Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita</label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
                         <div class="row">
                             <div class="col-5">
@@ -305,19 +305,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
                         <input type="radio" id="cert_acad" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada de la certificación académica de los estudios realizados"/>
                         <label for="cert_acad" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados</label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
                         <input type="radio" id="fotoc_titulo" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada del título" />
                         <label for="fotoc_titulo" class="custom-control-label">Fotocopia compulsada del título</label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-2 custom-control custom-switch mi-checkbox">
                         <input type="radio" id="otro" name="tipo_con" class="custom-control-input" value="Otro" />
                         <label for="otro" class="custom-control-label">Otro</label>
@@ -327,7 +327,7 @@
                         <input type="text" id="den_otro" class="form-control" maxlength="50"/>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-8 offset-2">
                         <label for="archivo_con">Documento:</label>
                         <input type="text" id="archivo_con" class="form-control" maxlength="256" onclick="selUltimoFile()" readonly/>
