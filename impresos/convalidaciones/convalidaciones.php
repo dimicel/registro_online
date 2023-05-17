@@ -328,9 +328,9 @@
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-8 offset-2 form-inline">
+                    <div class="col-10 offset-2 form-inline">
                         <label for="archivo_con">Documento:</label>
-                        <input type="text" id="archivo_con" class="form-control" maxlength="256" onclick="selUltimoFile()" readonly/>
+                        <input type="text" style="margin-left:10px" id="archivo_con" class="form-control" maxlength="256" onclick="selUltimoFile()" readonly/>
                     </div>
                 </div>
             </div>
