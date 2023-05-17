@@ -284,8 +284,8 @@
                 </div>
                 <div class="row">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="conv_estud_solicita" name="tipo_con" class="custom-control-input" value="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita"/>
-                        <label for="conv_estud_solicita" class="custom-control-label">Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita</label>
+                        <input type="radio" id="conv_estud_solicita_con" name="tipo_con" class="custom-control-input" value="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita"/>
+                        <label for="conv_estud_solicita_con" class="custom-control-label">Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita</label>
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -295,36 +295,36 @@
                                 <label>Documento de identificación </label>
                             </div>
                             <div class="col">
-                                <input type="radio" id="dni_nie" name="tipo_con" class="custom-control-input" value="DNI/NIE"/>
-                                <label for="dni_nie" class="custom-control-label">DNI/NIE</label>
+                                <input type="radio" id="dni_nie_con" name="tipo_con" class="custom-control-input" value="DNI/NIE"/>
+                                <label for="dni_nie_con" class="custom-control-label">DNI/NIE</label>
                             </div>
                             <div class="col">
-                                <input type="radio" id="pasaporte" name="tipo_con" class="custom-control-input" value="Pasaporte"/>
-                                <label for="pasaporte" class="custom-control-label">Pasaporte</label>
+                                <input type="radio" id="pasaporte_con" name="tipo_con" class="custom-control-input" value="Pasaporte"/>
+                                <label for="pasaporte_con" class="custom-control-label">Pasaporte</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="cert_acad" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada de la certificación académica de los estudios realizados"/>
-                        <label for="cert_acad" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados</label>
+                        <input type="radio" id="cert_acad_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada de la certificación académica de los estudios realizados"/>
+                        <label for="cert_acad_con" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="fotoc_titulo" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada del título" />
-                        <label for="fotoc_titulo" class="custom-control-label">Fotocopia compulsada del título</label>
+                        <input type="radio" id="fotoc_titulo_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada del título" />
+                        <label for="fotoc_titulo_con" class="custom-control-label">Fotocopia compulsada del título</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-2 custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="otro" name="tipo_con" class="custom-control-input" value="Otro" />
-                        <label for="otro" class="custom-control-label">Otro</label>
+                        <input type="radio" id="otro_con" name="tipo_con" class="custom-control-input" value="Otro" onchange="(this.checked)?$('#div_den_otro_con').show():$('#div_den_otro_con').hide()"/>
+                        <label for="otro_con" class="custom-control-label">Otro</label>
                     </div>
-                    <div class="col form-inline" style="display:none">
-                        <label for="den_otro">Especificar:</label>
-                        <input type="text" id="den_otro" class="form-control ml-2" maxlength="50"/>
+                    <div class="col form-inline" style="display:none" id="div_den_otro_con">
+                        <label for="den_otro_con">Especificar:</label>
+                        <input type="text" id="den_otro_con" class="form-control ml-2" maxlength="50"/>
                     </div>
                 </div>
                 <hr>
