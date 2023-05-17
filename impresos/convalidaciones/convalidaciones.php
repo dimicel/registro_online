@@ -322,15 +322,16 @@
                         <input type="radio" id="otro" name="tipo_con" class="custom-control-input" value="Otro" />
                         <label for="otro" class="custom-control-label">Otro</label>
                     </div>
-                    <div class="col form-inline">
+                    <div class="col form-inline" style="display:none">
                         <label FOR="den_otro">Especificar:</label>
-                        <input type="text" style="margin-left:10px" id="den_otro" class="form-control" maxlength="50"/>
+                        <input type="text" id="den_otro" class="form-control ml-2" maxlength="50"/>
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col form-inline">
+                <hr>
+                <div class="row mt-2 justify-content-center">
+                    <div class="col-md-10 form-inline">
                         <label for="archivo_con">Documento:</label>
-                        <input type="text" style="margin-left:10px" id="archivo_con" class="form-control" maxlength="256" onclick="selUltimoFile()" placeholder="Click aquí para seleccionar documento" readonly/>
+                        <input type="text"  id="archivo_con" class="form-control ml-2" maxlength="256" onclick="selUltimoFile()" placeholder="Click aquí para seleccionar documento" readonly/>
                     </div>
                 </div>
             </div>
