@@ -688,7 +688,7 @@ function selTipoDoc(v){
 
 
 function selArchConsej(){
-    if (formulario=="Consejería" && document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked".length==0)){
+    if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked".length==0)){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
     }
     else selUltimoFile().click();
