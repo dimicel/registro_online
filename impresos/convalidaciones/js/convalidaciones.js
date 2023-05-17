@@ -333,6 +333,7 @@ function anadeDoc(e) {
                             return;
                         }
                         actualizaTablaListaDocs();
+                        document.getElementById("form_anade_documento_cenminis").reset();
                         $("#anade_documento_centroministerio").dialog("close");
                         $("#anade_documento_centroministerio").dialog("destroy");
                     }
@@ -341,6 +342,7 @@ function anadeDoc(e) {
                     class: "btn btn-success textoboton",
                     text: "Cancelar",
                     click: function() {
+                        document.getElementById("form_anade_documento_cenminis").reset();
                         $("#anade_documento_centroministerio").dialog("close");
                         $("#anade_documento_centroministerio").dialog("destroy");
                     }
@@ -362,13 +364,18 @@ function anadeDoc(e) {
                     class: "btn btn-success textoboton",
                     text: "Aceptar",
                     click: function() {
-                        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_doc]:checked").length == 0 ||
-                            document.getElementById("den_estudios_con").value.trim().length == 0 ||
-                            document.getElementById("den_otro_con").value.trim().length == 0) {
-                            alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.", "FALTAN DATOS");
-                            return;
+                        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_doc]:checked").length == 0 || 
+                            document.getElementById("archivo_con").value.trim().length == 0){
+                                alerta("Debe seleccionar un tipo de documento y un archivo.", "FALTAN DATOS");
+                                return;
+                        }
+                        else if(document.querySelectorAll("#anade_documento_consejeria input[name=tipo_doc]:checked").value=="Otro" &&
+                                document.getElementById("den_otro_con").value.trim().length == 0){
+                                    alerta("Debe especificar qué tiupo de documento va a adjuntar.", "FALTAN DATOS");
+                                    return;
                         }
                         actualizaTablaListaDocs();
+                        document.getElementById("form_anade_documento_con").reset();
                         $("#anade_documento_consejeria").dialog("close");
                         $("#anade_documento_consejeria").dialog("destroy");
                     }
@@ -377,6 +384,7 @@ function anadeDoc(e) {
                     class: "btn btn-success textoboton",
                     text: "Cancelar",
                     click: function() {
+                        document.getElementById("form_anade_documento_con").reset();
                         $("#anade_documento_consejeria").dialog("close");
                         $("#anade_documento_consejeria").dialog("destroy");
                     }
@@ -457,9 +465,6 @@ function actualizaTablaListaDocs() {
     celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
     celda3.style.width = "5%";
     celda3.style.textAlign = "center";
-
-    document.getElementById("form_anade_documento_cenminis").reset();
-    document.getElementById("form_anade_documento_con").reset();
 }
 
 
