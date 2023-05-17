@@ -323,7 +323,7 @@
                         <label for="otro" class="custom-control-label">Otro</label>
                     </div>
                     <div class="col form-inline" style="display:none">
-                        <label FOR="den_otro">Especificar:</label>
+                        <label for="den_otro">Especificar:</label>
                         <input type="text" id="den_otro" class="form-control ml-2" maxlength="50"/>
                     </div>
                 </div>
