@@ -322,9 +322,9 @@
                         <input type="radio" id="otro" name="tipo_con" class="custom-control-input" value="Otro" />
                         <label for="otro" class="custom-control-label">Otro</label>
                     </div>
-                    <div class="col-6">
+                    <div class="col">
                         <label for="den_otro">Especificar:</label>
-                        <input type="text" id="den_otro" class="form-control" maxlength="50" readonly/>
+                        <input type="text" id="den_otro" class="form-control" maxlength="50"/>
                     </div>
                 </div>
                 <div class="row">
