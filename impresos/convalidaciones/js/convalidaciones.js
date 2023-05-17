@@ -364,14 +364,14 @@ function anadeDoc(e) {
                     class: "btn btn-success textoboton",
                     text: "Aceptar",
                     click: function() {
-                        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_doc]:checked").length == 0 || 
+                        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked").length == 0 || 
                             document.getElementById("archivo_con").value.trim().length == 0){
                                 alerta("Debe seleccionar un tipo de documento y un archivo.", "FALTAN DATOS");
                                 return;
                         }
-                        else if(document.querySelectorAll("#anade_documento_consejeria input[name=tipo_doc]:checked").value=="Otro" &&
+                        else if(document.querySelectorAll("#anade_documento_consejeria input[name=tipo_doc]:checked")[0].value=="Otro" &&
                                 document.getElementById("den_otro_con").value.trim().length == 0){
-                                    alerta("Debe especificar qué tiupo de documento va a adjuntar.", "FALTAN DATOS");
+                                    alerta("Debe especificar qué tipo de documento va a adjuntar.", "FALTAN DATOS");
                                     return;
                         }
                         actualizaTablaListaDocs();
