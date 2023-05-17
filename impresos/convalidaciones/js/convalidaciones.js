@@ -404,9 +404,9 @@ function creaInputs() {
         if (this.multiple && this.files.length!=2){
             alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS")
         }
-        if (!this.multiple) document.getElementById('archivo').value = selUltimo().files[0].name;
+        if (!this.multiple) document.getElementById('archivo').value = this.files[0].name;
         else {
-            document.getElementById('archivo').value = selUltimo().files[0].name+", "+selUltimo().files[0].name;
+            document.getElementById('archivo').value = this.files[0].name+", "+this.files[0].name;
         }
     });
 }
