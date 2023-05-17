@@ -403,8 +403,13 @@ function creaInputs() {
     divArray.appendChild(tipoHidden);
     divArray.appendChild(tipoFile);
     tipoFile.addEventListener("change", function() {
-        _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
-        document.getElementById('archivo').value = _a[_a.length - 1].files[0].name;
+        if (this.multiple && this.files.length!=2){
+            alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS")
+        }
+        if (!this.multiple) document.getElementById('archivo').value = selUltimo().files[0].name;
+        else {
+            document.getElementById('archivo').value = selUltimo().files[0].name+", "+selUltimo().files[0].name;
+        }
     });
 }
 
@@ -663,4 +668,12 @@ function selecOtraDoc(obj){
         $("#otra_desc").hide();
         document.getElementById("otra_desc").value="";
     }
+}
+
+
+function selTipoDoc(v){
+    if(v=="Documento de identificación (DNI/NIE)") selUltimoFile().multiple=true;
+    else selUltimoFile().multiple=false;
+    if (v.indexOf("Documento de identificación")>-1) selUltimoFile().accept="image/jpeg, image/jpg";
+    else selUltimoFile().accept="application/pdf";
 }
