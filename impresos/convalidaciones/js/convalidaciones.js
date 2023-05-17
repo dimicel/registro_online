@@ -364,7 +364,7 @@ function anadeDoc(e) {
                     click: function() {
                         if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo]:checked").length == 0 ||
                             document.getElementById("den_estudios_con").value.trim().length == 0 ||
-                            document.getElementById("archivo_CON").value.trim().length == 0) {
+                            document.getElementById("archivo_con").value.trim().length == 0) {
                             alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.", "FALTAN DATOS");
                             return;
                         }
@@ -404,10 +404,15 @@ function creaInputs() {
         if (this.multiple && this.files.length!=2){
             alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS")
         }
-        if (!this.multiple) document.getElementById('archivo').value = this.files[0].name;
-        else {
+        if (formulario="Centro-Ministerio"){
             document.getElementById('archivo').value = this.files[0].name+", "+this.files[0].name;
         }
+        else{
+            if (!this.multiple) document.getElementById('archivo_con').value = this.files[0].name;
+            else {
+                document.getElementById('archivo_con').value = this.files[0].name+", "+this.files[0].name;
+            }
+        }  
     });
 }
 
