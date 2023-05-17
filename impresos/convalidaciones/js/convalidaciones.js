@@ -410,7 +410,8 @@ function creaInputs() {
 
 function selUltimoFile() {
     _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
-    _a[_a.length - 1].click();
+    return _a[_a.length - 1];
+    //_a[_a.length - 1].click();
 }
 
 function actualizaTablaListaDocs() {

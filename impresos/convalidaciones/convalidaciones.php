@@ -268,7 +268,7 @@
                     </div>
                     <div class="col">
                         <label for="archivo">Documento:</label>
-                        <input type="text" id="archivo" class="form-control" maxlength="256" onclick="selUltimoFile()" readonly/>
+                        <input type="text" id="archivo" class="form-control" maxlength="256" onclick="selUltimoFile().click();" readonly/>
                     </div>
                 </div>
             </div>
@@ -295,11 +295,11 @@
                                 <label>Documento de identificación </label>
                             </div>
                             <div class="col">
-                                <input type="radio" id="dni_nie_con" name="tipo_con" class="custom-control-input" value="DNI/NIE" onchange="$('#div_den_otro_con').hide()"/>
+                                <input type="radio" id="dni_nie_con" name="tipo_con" class="custom-control-input" value="Documento de identificación (DNI/NIE)" onchange="$('#div_den_otro_con').hide()"/>
                                 <label for="dni_nie_con" class="custom-control-label">DNI/NIE</label>
                             </div>
                             <div class="col">
-                                <input type="radio" id="pasaporte_con" name="tipo_con" class="custom-control-input" value="Pasaporte" onchange="$('#div_den_otro_con').hide()"/>
+                                <input type="radio" id="pasaporte_con" name="tipo_con" class="custom-control-input" value="Documento de identificación (Pasaporte)" onchange="$('#div_den_otro_con').hide()"/>
                                 <label for="pasaporte_con" class="custom-control-label">Pasaporte</label>
                             </div>
                         </div>
@@ -331,7 +331,7 @@
                 <div class="row mt-2 justify-content-center">
                     <div class="col-10 form-inline">
                         <label for="archivo_con">Documento:</label>
-                        <input type="text"  id="archivo_con" style="width: 80%" class="form-control ml-2" maxlength="256" onclick="selUltimoFile()" placeholder="Click aquí para seleccionar documento" readonly/>
+                        <input type="text"  id="archivo_con" style="width: 80%" class="form-control ml-2" maxlength="256" onclick="selUltimoFile().click();" placeholder="Click aquí para seleccionar documento" readonly/>
                     </div>
                 </div>
             </div>
