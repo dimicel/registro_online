@@ -431,37 +431,40 @@ function selUltimoFile() {
 }
 
 function actualizaTablaListaDocs() {
-    _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
-    _arch = _a[_a.length - 1].files[0].name;
-    _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
-    _d[_d.length - 1].value = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
-    _t = document.getElementById("tab_lista_docs");
-    if (_t.rows[0].cells.length == 1) {
-        _t.deleteRow(0);
-    }
-    var nuevaFila = _t.insertRow();
-
-    // Insertar una celda en la nueva fila (primera columna)
-    var celda1 = nuevaFila.insertCell();
     if (formulario=="Centro-Ministerio"){
-        celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
-
+        _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
+        _arch = _a[_a.length - 1].files[0].name;
+        _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
+        _d[_d.length - 1].value = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
+        _t = document.getElementById("tab_lista_docs");
+        if (_t.rows[0].cells.length == 1) {
+            _t.deleteRow(0);
+        }
+        var nuevaFila = _t.insertRow();
+    
+        // Insertar una celda en la nueva fila (primera columna)
+        var celda1 = nuevaFila.insertCell();
+        if (formulario=="Centro-Ministerio"){
+            celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
+    
+        }
+        else {
+            celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios_con").value;
+    
+        }
+        celda1.style.width = "50%";
+    
+        // Insertar una celda en la nueva fila (segunda columna)
+        var celda2 = nuevaFila.insertCell();
+        celda2.textContent = _arch;
+        celda2.style.width = "45%";
+    
+        var celda3 = nuevaFila.insertCell();
+        celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
+        celda3.style.width = "5%";
+        celda3.style.textAlign = "center";
     }
-    else {
-        celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios_con").value;
 
-    }
-    celda1.style.width = "50%";
-
-    // Insertar una celda en la nueva fila (segunda columna)
-    var celda2 = nuevaFila.insertCell();
-    celda2.textContent = _arch;
-    celda2.style.width = "45%";
-
-    var celda3 = nuevaFila.insertCell();
-    celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
-    celda3.style.width = "5%";
-    celda3.style.textAlign = "center";
 }
 
 
