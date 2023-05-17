@@ -431,12 +431,12 @@ function selUltimoFile() {
 }
 
 function actualizaTablaListaDocs() {
+    _t = document.getElementById("tab_lista_docs");
     if (formulario=="Centro-Ministerio"){
-        _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
-        _arch = _a[_a.length - 1].files[0].name;
+        _arch = selUltimoFile().files[0].name;
         _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
         _d[_d.length - 1].value = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
-        _t = document.getElementById("tab_lista_docs");
+        
         if (_t.rows[0].cells.length == 1) {
             _t.deleteRow(0);
         }
@@ -444,14 +444,8 @@ function actualizaTablaListaDocs() {
     
         // Insertar una celda en la nueva fila (primera columna)
         var celda1 = nuevaFila.insertCell();
-        if (formulario=="Centro-Ministerio"){
-            celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
+        celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
     
-        }
-        else {
-            celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios_con").value;
-    
-        }
         celda1.style.width = "50%";
     
         // Insertar una celda en la nueva fila (segunda columna)
