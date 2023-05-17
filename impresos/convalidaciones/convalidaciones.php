@@ -284,7 +284,7 @@
                 </div>
                 <div class="row">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="conv_estud_solicita_con" name="tipo_con" class="custom-control-input" value="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita"/>
+                        <input type="radio" id="conv_estud_solicita_con" name="tipo_con" class="custom-control-input" value="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita" onchange="$('#div_den_otro_con').hide()"/>
                         <label for="conv_estud_solicita_con" class="custom-control-label">Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita</label>
                     </div>
                 </div>
@@ -295,11 +295,11 @@
                                 <label>Documento de identificación </label>
                             </div>
                             <div class="col">
-                                <input type="radio" id="dni_nie_con" name="tipo_con" class="custom-control-input" value="DNI/NIE"/>
+                                <input type="radio" id="dni_nie_con" name="tipo_con" class="custom-control-input" value="DNI/NIE" onchange="$('#div_den_otro_con').hide()"/>
                                 <label for="dni_nie_con" class="custom-control-label">DNI/NIE</label>
                             </div>
                             <div class="col">
-                                <input type="radio" id="pasaporte_con" name="tipo_con" class="custom-control-input" value="Pasaporte"/>
+                                <input type="radio" id="pasaporte_con" name="tipo_con" class="custom-control-input" value="Pasaporte" onchange="$('#div_den_otro_con').hide()"/>
                                 <label for="pasaporte_con" class="custom-control-label">Pasaporte</label>
                             </div>
                         </div>
@@ -307,19 +307,19 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="cert_acad_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada de la certificación académica de los estudios realizados"/>
+                        <input type="radio" id="cert_acad_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada de la certificación académica de los estudios realizados" onchange="$('#div_den_otro_con').hide()"/>
                         <label for="cert_acad_con" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="fotoc_titulo_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada del título" />
+                        <input type="radio" id="fotoc_titulo_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada del título" onchange="$('#div_den_otro_con').hide()"/>
                         <label for="fotoc_titulo_con" class="custom-control-label">Fotocopia compulsada del título</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-2 custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="otro_con" name="tipo_con" class="custom-control-input" value="Otro" onchange="(this.checked)?$('#div_den_otro_con').show():$('#div_den_otro_con').hide()"/>
+                        <input type="radio" id="otro_con" name="tipo_con" class="custom-control-input" value="Otro" onchange="$('#div_den_otro_con').show()"/>
                         <label for="otro_con" class="custom-control-label">Otro</label>
                     </div>
                     <div class="col form-inline" style="display:none" id="div_den_otro_con">
