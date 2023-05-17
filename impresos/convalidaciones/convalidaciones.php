@@ -284,33 +284,51 @@
                 </div>
                 <div class="row">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="x" name="tipo_con" class="custom-control-input" value="LOE"/>
-                        <label for="x" class="custom-control-label">LOE</label>
-                    </div>
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="y" name="tipo_con" class="custom-control-input" value="LOGSE"/>
-                        <label for="y" class="custom-control-label">LOGSE</label>
-                    </div>
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="z" name="tipo_con" class="custom-control-input" value="Universitarios"/>
-                        <label for="z" class="custom-control-label">Universitarios</label>
-                    </div>
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="a" name="tipo_con" class="custom-control-input" value="Otro" />
-                        <label for="a" class="custom-control-label">Otro</label>
-                    </div>
-                </div>
-                <div class="row" id="ayuda_doc_identificacion" style="display:none">
-                    <div class="col" style="text-align:center">
-                        <label><small>Selecciona foto de anverso y reverso del documento si es NIE o DNI, o sólo la página con datos y foto si es pasaporte.</small></label> 
+                        <input type="radio" id="conv_estud_solicita" name="tipo_con" class="custom-control-input" value="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita"/>
+                        <label for="conv_estud_solicita" class="custom-control-label">Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <label for="den_estudios_con">Tipo documento:</label>
-                        <input type="text" id="den_estudios_con" class="form-control" maxlength="40" readonly/>
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <div class="row">
+                            <div class="col-3">
+                                <label>Documento de identificación </label>
+                            </div>
+                            <div class="col">
+                                <input type="radio" id="dni_nie" name="tipo_con" class="custom-control-input" value="DNI/NIE"/>
+                                <label for="dni_nie" class="custom-control-label">DNI/NIE</label>
+                            </div>
+                            <div class="col">
+                                <input type="radio" id="pasaporte" name="tipo_con" class="custom-control-input" value="Pasaporte"/>
+                                <label for="pasaporte" class="custom-control-label">Pasaporte</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col">
+                </div>
+                <div class="row">
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="cert_acad" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada de la certificación académica de los estudios realizados"/>
+                        <label for="cert_acad" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="fotoc_titulo" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada del título" />
+                        <label for="fotoc_titulo" class="custom-control-label">Fotocopia compulsada del título</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="otro" name="tipo_con" class="custom-control-input" value="Otro" />
+                        <label for="otro" class="custom-control-label">Otro</label>
+                    </div>
+                    <div class="col-4">
+                        <label for="den_otro">Especificar:</label>
+                        <input type="text" id="den_otro" class="form-control" maxlength="50" readonly/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 offset-2">
                         <label for="archivo_con">Documento:</label>
                         <input type="text" id="archivo_con" class="form-control" maxlength="256" onclick="selUltimoFile()" readonly/>
                     </div>
