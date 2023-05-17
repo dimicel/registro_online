@@ -291,7 +291,7 @@
                 <div class="row">
                     <div class="col custom-control custom-switch mi-checkbox">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <label>Documento de identificación </label>
                             </div>
                             <div class="col">
@@ -318,7 +318,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-1 custom-control custom-switch mi-checkbox">
+                    <div class="col-2 custom-control custom-switch mi-checkbox">
                         <input type="radio" id="otro" name="tipo_con" class="custom-control-input" value="Otro" />
                         <label for="otro" class="custom-control-label">Otro</label>
                     </div>
