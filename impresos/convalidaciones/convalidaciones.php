@@ -318,12 +318,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-1 custom-control custom-switch mi-checkbox">
+                    <div class="col-2 custom-control custom-switch mi-checkbox">
                         <input type="radio" id="otro" name="tipo_con" class="custom-control-input" value="Otro" />
                         <label for="otro" class="custom-control-label">Otro</label>
                     </div>
-                    <div class="col">
-                        <label>Especificar:</label>
+                    <div class="col form-inline">
+                        <label FOR="den_otro">Especificar:</label>
                         <input type="text" id="den_otro" class="form-control" maxlength="50"/>
                     </div>
                 </div>
