@@ -362,9 +362,9 @@ function anadeDoc(e) {
                     class: "btn btn-success textoboton",
                     text: "Aceptar",
                     click: function() {
-                        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo]:checked").length == 0 ||
+                        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_doc]:checked").length == 0 ||
                             document.getElementById("den_estudios_con").value.trim().length == 0 ||
-                            document.getElementById("archivo_con").value.trim().length == 0) {
+                            document.getElementById("den_otro_con").value.trim().length == 0) {
                             alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.", "FALTAN DATOS");
                             return;
                         }
