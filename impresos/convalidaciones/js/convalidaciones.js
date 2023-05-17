@@ -401,6 +401,9 @@ function creaInputs() {
     divArray.appendChild(tipoFile);
     tipoFile.accept="application/pdf"
     tipoFile.addEventListener("change", function() {
+        if (formulario=="Consejería" && document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked".length==0)){
+            alerta("Debe seleccioanr antes un tipo de documento.","FALTA SELECCIÓN TIPO");
+        }
         if (this.multiple && this.files.length!=2){
             alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS")
         }
