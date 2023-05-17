@@ -324,7 +324,7 @@
                     </div>
                     <div class="col form-inline">
                         <label FOR="den_otro">Especificar:</label>
-                        <input type="text" id="den_otro" class="form-control" maxlength="50"/>
+                        <input type="text" style="margin-left:10px" id="den_otro" class="form-control" maxlength="50"/>
                     </div>
                 </div>
                 <div class="row mt-2">
