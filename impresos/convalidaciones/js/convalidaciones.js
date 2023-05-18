@@ -408,7 +408,7 @@ function creaInputs() {
     divArray.appendChild(tipoHidden);
     divArray.appendChild(tipoFile);
     tipoFile.accept="application/pdf"
-    tipoFile.addEventListener("change", function() {
+    tipoFile.addEventListener("change", function(event) {
         if (this.multiple && this.files.length!=2){
             alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS");
             return;
@@ -423,7 +423,7 @@ function creaInputs() {
             }
         }  
         if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1){
-            muestraEditor();
+            muestraEditor(event);
         }
     });
 }
@@ -732,15 +732,23 @@ function selArchConsej(){
 }
 
 
-function muestraEditor(){
+function muestraEditor(_ev){
     _tipoSelecc=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value;
-    document.getElementById("imagen_anverso").src=selUltimoFile().files[0];
+    _img1=new FileReader();
+    _img1.onload = function(e) {
+        document.getElementById("imagen_anverso").src = e.target.result;
+    };
+    _img1.readAsDataURL(selUltimoFile().files[0]);
     if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
         __ancho=500;
     } 
     else{
         __ancho=1000;
-        document.getElementById("imagen_reverso").src=selUltimoFile().files[1];
+        _img2=new FileReader();
+        _img2.onload = function(e) {
+            document.getElementById("imagen_anverso").src = e.target.result;
+        };
+        _img2.readAsDataURL(selUltimoFile().files[1]);
     } 
 
     $("#div_edita_imagen").dialog({
@@ -759,6 +767,7 @@ function muestraEditor(){
                     
                     $("#div_edita_imagen").dialog("close");
                     $("#div_edita_imagen").dialog("destroy");
+
                 }
             }
         ]
@@ -769,5 +778,6 @@ function muestraEditor(){
     else if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
         $("#doc_ident_reverso").show();
     }
-
+    $("#anade_documento_consejeria").dialog("close");
+    $("#anade_documento_consejeria").dialog("destroy");
 }
