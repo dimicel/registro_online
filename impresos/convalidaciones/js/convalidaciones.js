@@ -5,7 +5,7 @@ var drawing = false;
 var mouseX, mouseY;
 
 var canvas, context, tool, canvas_upload;
-
+var formData = new FormData();
 
 $(document).ready(function() {
 
@@ -516,7 +516,6 @@ function borraFila(obj, e) {
 function registraForm() {
     if (formulario == "Centro-Ministerio") {
         if ($("#form_convalidaciones").valid()) {
-            var formData = new FormData();
             formData.append("id_nie", encodeURIComponent(id_nie));
             formData.append("curso", encodeURIComponent(curso));
             formData.append("formulario", encodeURIComponent(formulario));
@@ -770,10 +769,17 @@ function muestraEditor(_ev){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
+                    var imagenSrc = $('#miImagen').attr('src');
+
+                    // Crea un objeto Blob a partir de la imagen
+                    fetch(imagenSrc)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        formData.append('file', blob, 'imagen.jpg');
+                    });
                     
                     $("#div_edita_imagen").dialog("close");
                     $("#div_edita_imagen").dialog("destroy");
-
                 }
             }
         ]
