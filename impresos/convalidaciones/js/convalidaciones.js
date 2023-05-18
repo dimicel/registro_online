@@ -410,7 +410,8 @@ function creaInputs() {
     tipoFile.accept="application/pdf"
     tipoFile.addEventListener("change", function() {
         if (this.multiple && this.files.length!=2){
-            alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS")
+            alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS");
+            return;
         }
         if (formulario=="Centro-Ministerio"){
             document.getElementById('archivo').value = this.files[0].name;
@@ -421,6 +422,9 @@ function creaInputs() {
                 document.getElementById('archivo_con').value = this.files[0].name+", "+this.files[1].name;
             }
         }  
+        if (document.querySelectorAll("input[name=tipo_con")[0].value.indexOf("Documento de identificación")>-1){
+            muestraEditor();
+        }
     });
 }
 
@@ -721,11 +725,9 @@ function selArchConsej(){
     else selUltimoFile().click();
     if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
         $("#doc_ident_reverso").show();
-        muestraEditor();
     }
     else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
         $("#doc_ident_reverso").hide();
-        muestraEditor();
     }
 }
 
