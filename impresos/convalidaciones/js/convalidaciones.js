@@ -461,7 +461,7 @@ function actualizaTablaListaDocs() {
             _d[_d.length - 1].value = document.getElementById("den_otro_con").value;
         }
         else {
-            _d[_d.length - 1].value = _tioSel.value;
+            _d[_d.length - 1].value = _tipoSel.value;
         }
             
         if (_t.rows[0].cells.length == 1) {
