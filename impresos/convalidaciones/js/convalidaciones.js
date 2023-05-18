@@ -807,7 +807,7 @@ function muestraEditor(_ev){
                         formData.append(_fname_ajax, blob, _f_ajax);
                     });
                    _crop1.destroy();
-                   if(typeof _crop2 !== 'undefined' && _crop2 !== null){alert(0);
+                   if(__ancho==1000){
                         _crop2.result({
                             type: 'blob'
                         }).then(function (blob) {
