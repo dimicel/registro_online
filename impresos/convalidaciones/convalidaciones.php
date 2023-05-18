@@ -288,9 +288,9 @@
                         <label for="conv_estud_solicita_con" class="custom-control-label">Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita</label>
                     </div>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-2" id="div_doc_identificacion">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <div class="row">
+                        <div class="row" >
                             <div class="col-5">
                                 <label>Documento de identificación </label>
                             </div>
