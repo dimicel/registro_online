@@ -456,6 +456,7 @@ function actualizaTablaListaDocs() {
     else {
         _tipoSel=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked");
         _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
+        alert(_d.length)
         if (_tipoSel.value=="Otro"){
             //_arch = selUltimoFile().files[0].name;
             _d[_d.length - 1].value = document.getElementById("den_otro_con").value;
