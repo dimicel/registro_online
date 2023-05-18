@@ -422,9 +422,7 @@ function creaInputs() {
                 document.getElementById('archivo_con').value = this.files[0].name+", "+this.files[1].name;
             }
         }  
-        alert(document.querySelectorAll("input[name=tipo_con")[0].value);
-        if (document.querySelectorAll("input[name=tipo_con")[0].value.indexOf("Documento de identificación")>-1){
-            alert(0);
+        if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1){
             muestraEditor();
         }
     });
