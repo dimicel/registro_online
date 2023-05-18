@@ -807,7 +807,7 @@ function muestraEditor(_ev){
                     });
                     */
                    _crop1.destroy();
-                   if(typeof _crop2 !== 'undefined' && crop2 !== null)_crop2.destroy();
+                   if(typeof _crop2 !== 'undefined' && _crop2 !== null)_crop2.destroy();
                     $("#div_edita_imagen").dialog("close");
                     $("#div_edita_imagen").dialog("destroy");
                 }
