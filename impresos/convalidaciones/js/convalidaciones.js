@@ -788,16 +788,7 @@ function muestraEditor(_ev){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
-                    /*
-                    var imagenSrc = $('#miImagen').attr('src');
-
-                    // Crea un objeto Blob a partir de la imagen
-                    fetch(imagenSrc)
-                    .then(response => response.blob())
-                    .then(blob => {
-                        formData.append('file', blob, 'imagen.jpg');
-                    });
-                    */
+                    
                    if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
                         _fname_ajax="dni_anverso";
                         _f_ajax="dni_anverso.jpg";
