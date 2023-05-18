@@ -796,8 +796,8 @@ function muestraEditor(_ev){
                         formData.append('file', blob, 'imagen.jpg');
                     });
                     */
-                   _crop1.destroy(),
-                   _crop2.destroy();
+                   if(_crop1)_crop1.destroy();
+                   if(_crop2)_crop2.destroy();
                     $("#div_edita_imagen").dialog("close");
                     $("#div_edita_imagen").dialog("destroy");
                 }
