@@ -752,7 +752,7 @@ function muestraEditor(_ev){
         _crop1=new Croppie(document.getElementById("div_imagen_anverso"), {
             viewport: { width: 300, height: 170 },
             boundary: { width: 450, height: 255 },
-            showZoomer: false,
+            showZoomer: true,
             enableOrientation: true
         });
         _crop1.bind({

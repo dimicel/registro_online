@@ -357,11 +357,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <input type="button" class="btn btn-success textoboton" value="-90º" onclick="_crop1.rotate(-90);"/>
+                        <div class="col-1">
+                            <input type="button" class="btn btn-success textoboton" value="-90º" onclick="_crop1.rotate(90);"/>
                         </div>
-                        <div class="col">
-                            <input type="button" class="btn btn-success textoboton" value="+90º" onclick="_crop1.rotate(+90);"/>
+                        <div class="col-1">
+                            <input type="button" class="btn btn-success textoboton" value="+90º" onclick="_crop1.rotate(-90);"/>
                         </div>
                     </div>
                 </div>
