@@ -795,6 +795,4 @@ function muestraEditor(_ev){
     else if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
         $("#doc_ident_reverso").show();
     }
-    $("#anade_documento_consejeria").dialog("close");
-    $("#anade_documento_consejeria").dialog("destroy");
 }
