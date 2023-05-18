@@ -796,8 +796,8 @@ function muestraEditor(_ev){
                         formData.append('file', blob, 'imagen.jpg');
                     });
                     */
-                   if(_crop1)_crop1.destroy();
-                   if(_crop2)_crop2.destroy();
+                   _crop1.destroy();
+                   if(typeof _crop2 !== 'undefined' && crop2 !== null)_crop2.destroy();
                     $("#div_edita_imagen").dialog("close");
                     $("#div_edita_imagen").dialog("destroy");
                 }
