@@ -372,8 +372,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            
+                        <div class="col-3">
+                                <input type="button" class="btn btn-success textoboton" value="-90º" onclick="_crop2.rotate(90);"/>
+                            </div>
+                            <div class="col-3">
+                                <input type="button" class="btn btn-success textoboton" value="+90º" onclick="_crop2.rotate(-90);"/>
+                            </div>
                         </div>
                     </div>
                 </div>
