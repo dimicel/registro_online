@@ -357,10 +357,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col-2">
                             <input type="button" class="btn btn-success textoboton" value="-90º" onclick="_crop1.rotate(90);"/>
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             <input type="button" class="btn btn-success textoboton" value="+90º" onclick="_crop1.rotate(-90);"/>
                         </div>
                     </div>
