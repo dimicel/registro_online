@@ -743,10 +743,22 @@ function muestraEditor(_ev){
         document.getElementById("imagen_anverso").src = e.target.result;
     };
     _img1.readAsDataURL(selUltimoFile().files[0]);
+
+   
     if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
         __ancho=500;
         document.getElementById("imagen_anverso").style.width="450px";
         document.getElementById("imagen_anverso").style.height="255px";
+        _crop1=new Croppie(document.getElementById("div_imagen_anverso"), {
+            viewport: { width: 300, height: 170 },
+            boundary: { width: 450, height: 255 },
+            showZoomer: false,
+            enableOrientation: true
+        });
+        _crop1.bind({
+            url: document.getElementById("imagen_anverso").src,
+            orientation: 4
+        });
     } 
     else{
         __ancho=1000;
@@ -774,6 +786,7 @@ function muestraEditor(_ev){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
+                    /*
                     var imagenSrc = $('#miImagen').attr('src');
 
                     // Crea un objeto Blob a partir de la imagen
@@ -782,7 +795,7 @@ function muestraEditor(_ev){
                     .then(blob => {
                         formData.append('file', blob, 'imagen.jpg');
                     });
-                    
+                    */
                     $("#div_edita_imagen").dialog("close");
                     $("#div_edita_imagen").dialog("destroy");
                 }
