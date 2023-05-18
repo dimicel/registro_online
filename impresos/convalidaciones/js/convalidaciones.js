@@ -741,6 +741,7 @@ function muestraEditor(_ev){
     _img1.readAsDataURL(selUltimoFile().files[0]);
     if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
         __ancho=500;
+        document.getElementById("imagen_anverso").style.width="90%";
     } 
     else{
         __ancho=1000;
@@ -749,6 +750,8 @@ function muestraEditor(_ev){
             document.getElementById("imagen_anverso").src = e.target.result;
         };
         _img2.readAsDataURL(selUltimoFile().files[1]);
+        document.getElementById("imagen_anverso").style.width="45%";
+        document.getElementById("imagen_reverso").style.width="45%";
     } 
 
     $("#div_edita_imagen").dialog({
