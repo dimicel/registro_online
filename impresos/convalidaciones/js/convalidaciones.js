@@ -352,6 +352,8 @@ function anadeDoc(e) {
         });
     }
     else if(formulario=="Consejería"){
+        if (subidoDocIdent) $("#div_doc_identificacion").hide();
+        else $("#div_doc_identificacion").show();
         $("#anade_documento_consejeria").dialog({
             autoOpen: true,
             dialogClass: "alert no-close",
@@ -376,6 +378,7 @@ function anadeDoc(e) {
                                     return;
                         }
                         actualizaTablaListaDocs();
+                        if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1)subidoDocIdent=true;
                         document.getElementById("form_anade_documento_con").reset();
                         $("#anade_documento_consejeria").dialog("close");
                         $("#anade_documento_consejeria").dialog("destroy");
@@ -500,7 +503,7 @@ function borraFila(obj, e) {
     e.preventDefault();
     _t = document.getElementById("tab_lista_docs");
     num_fila = obj.parentNode.parentNode.rowIndex;
-    alert(obj.parentNode.parentNode.cells[0].innerText)
+    if(obj.parentNode.parentNode.cells[0].innerText.indexOf("Documento de identificación")>-1) subidoDocIdent=false;
     if (_t.rows.length == 1) {
         _t.innerHTML = "<tr><td style='text-align:center'>LISTA DE DOCUMENTOS VACÍA</td></tr>";
     } else {
