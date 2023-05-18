@@ -353,7 +353,7 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col" id="div_imagen_anverso">
-                            <img id="imagen_anverso" style="display:none">
+                            <!--<img id="imagen_anverso" style="display:none">-->
                         </div>
                     </div>
                     <div class="row">
@@ -368,7 +368,7 @@
                 <div class="col-6" id="doc_ident_reverso">
                     <div class="row">
                         <div class="col"  id="div_imagen_reverso">
-                            <img id="imagen_reverso" style="display:none">
+                            <!--<img id="imagen_reverso" style="display:none">-->
                         </div>
                     </div>
                     <div class="row">
