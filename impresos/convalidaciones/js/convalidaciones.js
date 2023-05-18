@@ -445,7 +445,7 @@ function actualizaTablaListaDocs() {
     
         // Insertar una celda en la nueva fila (primera columna)
         var celda1 = nuevaFila.insertCell();
-        celda1.textContent = "(" + _tio_sel[0].value + ") " + document.getElementById("den_estudios").value;
+        celda1.textContent = "(" + _tipo_sel[0].value + ") " + document.getElementById("den_estudios").value;
         celda1.style.width = "50%";
     
         // Insertar una celda en la nueva fila (segunda columna)
