@@ -347,7 +347,7 @@
         </div>
     </div>
     <div id="div_edita_imagen" style="display:none; text-align:center">
-        <label><small id="texto_editor_imagen">Rota, haz zoom y mueve las imágenes para ajustar el documento al recuadro</small></label>
+        <label><small id="texto_editor_imagen">Rota, haz zoom (con la rueda del ratón) y mueve las imágenes para ajustar el documento al recuadro</small></label>
         <div class="container">
             <div class="row">
                 <div class="col-6">
@@ -358,7 +358,10 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                                
+                            <input type="button" class="btn btn-success textoboton" value="-90º" onclick="_crop1.rotate(-90);"/>
+                        </div>
+                        <div class="col">
+                            <input type="button" class="btn btn-success textoboton" value="+90º" onclick="_crop1.rotate(+90);"/>
                         </div>
                     </div>
                 </div>
