@@ -798,7 +798,7 @@ function muestraEditor(_ev){
                         formData.append('file', blob, 'imagen.jpg');
                     });
                     */
-                   if (document.getElementById("Documento de identificación (DNI/NIE)").checked){
+                   if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
                         _fname_ajax="dni_anverso";
                         _f_ajax="dni_anverso.jpg";
                    }
