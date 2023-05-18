@@ -476,8 +476,8 @@ function actualizaTablaListaDocs() {
 
         // Insertar una celda en la nueva fila (segunda columna)
         var celda2 = nuevaFila.insertCell();
-        celda2.textContent = selUltimoFile()[0].name;
-        if(_tipoSel.value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile()[1].name;
+        celda2.textContent = selUltimoFile().files[0].name;
+        if(_tipoSel.value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile().files[1].name;
         celda2.style.width = "45%";
     }
 
