@@ -757,7 +757,7 @@ function muestraEditor(_ev){
         });
         _crop1.bind({
             url: document.getElementById("imagen_anverso").src,
-            orientation: 4
+            orientation: 1
         });
     } 
     else{
