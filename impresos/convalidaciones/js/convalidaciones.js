@@ -738,17 +738,17 @@ function selArchConsej(){
 
 function muestraEditor(_ev){
     _tipoSelecc=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value;
-    _img1=new FileReader();
-    _img1.onload = function(e) {
-        document.getElementById("imagen_anverso").src = e.target.result;
-    };
-    _img1.readAsDataURL(selUltimoFile().files[0]);
+    //_img1=new FileReader();
+    //_img1.onload = function(e) {
+    //    document.getElementById("imagen_anverso").src = e.target.result;
+    //};
+    //_img1.readAsDataURL(selUltimoFile().files[0]);
 
    
     if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
         __ancho=500;
-        document.getElementById("imagen_anverso").style.width="450px";
-        document.getElementById("imagen_anverso").style.height="255px";
+        //document.getElementById("imagen_anverso").style.width="450px";
+        //document.getElementById("imagen_anverso").style.height="255px";
         _crop1=new Croppie(document.getElementById("div_imagen_anverso"), {
             viewport: { width: 300, height: 170 },
             boundary: { width: 450, height: 255 },
@@ -756,7 +756,7 @@ function muestraEditor(_ev){
             enableOrientation: true
         });
         _crop1.bind({
-            url: document.getElementById("imagen_anverso").src,
+            url: URL.createObjectURL(_ev.target.files[0]),
             orientation: 1
         });
     } 
