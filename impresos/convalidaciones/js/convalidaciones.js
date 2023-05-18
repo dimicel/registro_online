@@ -741,17 +741,20 @@ function muestraEditor(_ev){
     _img1.readAsDataURL(selUltimoFile().files[0]);
     if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
         __ancho=500;
-        document.getElementById("imagen_anverso").style.width="90%";
+        document.getElementById("imagen_anverso").style.width="450px";
+        document.getElementById("imagen_anverso").style.height="255px";
     } 
     else{
         __ancho=1000;
         _img2=new FileReader();
         _img2.onload = function(e) {
-            document.getElementById("imagen_anverso").src = e.target.result;
+            document.getElementById("imagen_reverso").src = e.target.result;
         };
         _img2.readAsDataURL(selUltimoFile().files[1]);
-        document.getElementById("imagen_anverso").style.width="45%";
-        document.getElementById("imagen_reverso").style.width="45%";
+        document.getElementById("imagen_anverso").style.width="450px";
+        document.getElementById("imagen_reverso").style.width="450px";
+        document.getElementById("imagen_anverso").style.height="255px";
+        document.getElementById("imagen_reverso").style.height="255px";
     } 
 
     $("#div_edita_imagen").dialog({
