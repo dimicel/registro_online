@@ -6,6 +6,7 @@ var mouseX, mouseY;
 
 var canvas, context, tool, canvas_upload;
 var formData = new FormData();
+var subidoDocIdent=false;
 
 $(document).ready(function() {
 
@@ -499,6 +500,7 @@ function borraFila(obj, e) {
     e.preventDefault();
     _t = document.getElementById("tab_lista_docs");
     num_fila = obj.parentNode.parentNode.rowIndex;
+    alert(obj.parentNode.parentNode.cells[0].innerText)
     if (_t.rows.length == 1) {
         _t.innerHTML = "<tr><td style='text-align:center'>LISTA DE DOCUMENTOS VACÍA</td></tr>";
     } else {
