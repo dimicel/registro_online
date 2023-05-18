@@ -719,4 +719,53 @@ function selArchConsej(){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
     }
     else selUltimoFile().click();
+    if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+        $("#doc_ident_reverso").show();
+        muestraEditor();
+    }
+    else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+        $("#doc_ident_reverso").hide();
+        muestraEditor();
+    }
+}
+
+
+function muestraEditor(){
+    _tipoSelecc=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value;
+    document.getElementById("imagen_anverso").src=selUltimoFile().files[0];
+    if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
+        __ancho=500;
+    } 
+    else{
+        __ancho=1000;
+        document.getElementById("imagen_reverso").src=selUltimoFile().files[1];
+    } 
+
+    $("#div_edita_imagen").dialog({
+        autoOpen: true,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "EDICIÓN IMAGEN",
+        width: __ancho,
+        buttons: [{
+                class: "btn btn-success textoboton",
+                text: "Aceptar",
+                click: function() {
+                    
+                    $("#div_edita_imagen").dialog("close");
+                    $("#div_edita_imagen").dialog("destroy");
+                }
+            }
+        ]
+    });
+    if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
+        $("#doc_ident_reverso").hide();
+    }
+    else if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
+        $("#doc_ident_reverso").show();
+    }
+
 }

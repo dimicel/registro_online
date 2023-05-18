@@ -345,6 +345,37 @@
             <canvas id="firmaCanvas" width="400" height="200" style="background-color:white; border: 1px solid black;"></canvas>
         </div>
     </div>
+    <div id="div_edita_imagen" style="display:none; text-align:center">
+        <label><small id="texto_editor_imagen">Rota, haz zoom y mueve las imágenes para ajustar el documento al recuadro</small></label>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col">
+                            <img id="imagen_anverso">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" id="doc_ident_reverso">
+                    <div class="row">
+                        <div class="col">
+                            <img id="imagen_reverso">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
 
     <div id="array_input_type_file" style="display:none"></div>
     <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('../../recursos/espera.gif') no-repeat center center; opacity: .7;"></div>
