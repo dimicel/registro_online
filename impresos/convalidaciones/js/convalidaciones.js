@@ -503,7 +503,16 @@ function borraFila(obj, e) {
     e.preventDefault();
     _t = document.getElementById("tab_lista_docs");
     num_fila = obj.parentNode.parentNode.rowIndex;
-    if(obj.parentNode.parentNode.cells[0].innerText.indexOf("Documento de identificación")>-1) subidoDocIdent=false;
+    if(obj.parentNode.parentNode.cells[0].innerText.indexOf("Documento de identificación")>-1){
+        subidoDocIdent=false;
+        if (obj.parentNode.parentNode.cells[0].innerText.indexOf("(Pasaporte)")>-1){
+            formData.delete('pasaporte');
+        }
+        else{
+            formData.delete('dni_anverso');
+            formData.delete('dni_reverso');
+        }
+    } 
     if (_t.rows.length == 1) {
         _t.innerHTML = "<tr><td style='text-align:center'>LISTA DE DOCUMENTOS VACÍA</td></tr>";
     } else {
@@ -738,11 +747,6 @@ function selArchConsej(){
 
 function muestraEditor(_ev){
     _tipoSelecc=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value;
-    //_img1=new FileReader();
-    //_img1.onload = function(e) {
-    //    document.getElementById("imagen_anverso").src = e.target.result;
-    //};
-    //_img1.readAsDataURL(selUltimoFile().files[0]);
     _crop1=new Croppie(document.getElementById("div_imagen_anverso"), {
         viewport: { width: 300, height: 190 },
         boundary: { width: 450, height: 255 },
@@ -756,21 +760,9 @@ function muestraEditor(_ev){
    
     if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
         __ancho=500;
-        //document.getElementById("imagen_anverso").style.width="450px";
-        //document.getElementById("imagen_anverso").style.height="255px";
-        
     } 
     else{
         __ancho=1000;
-        //_img2=new FileReader();
-        //_img2.onload = function(e) {
-            //document.getElementById("imagen_reverso").src = e.target.result;
-        //};
-        //_img2.readAsDataURL(selUltimoFile().files[1]);
-        //document.getElementById("imagen_anverso").style.width="450px";
-        //document.getElementById("imagen_reverso").style.width="450px";
-        //document.getElementById("imagen_anverso").style.height="255px";
-        //document.getElementById("imagen_reverso").style.height="255px";
         _crop2=new Croppie(document.getElementById("div_imagen_reverso"), {
             viewport: { width: 300, height: 190 },
             boundary: { width: 450, height: 255 },
@@ -806,8 +798,36 @@ function muestraEditor(_ev){
                         formData.append('file', blob, 'imagen.jpg');
                     });
                     */
+                   if (document.getElementById("Documento de identificación (DNI/NIE)").checked){
+                        _fname_ajax="dni_anverso";
+                        _f_ajax="dni_anverso.jpg";
+                   }
+                   else {
+                        _fname_ajax="pasaporte";
+                        _f_ajax="pasaporte.jpg";
+                   }
+                    _crop1.result({
+                        type: 'blob'
+                    }).then(function (blob) {
+                        return fetch(window.URL.createObjectURL(blob))
+                    }).then(function (response) {
+                        return response.blob();
+                    }).then(function (blob) {
+                        formData.append(_fname_ajax, blob, _f_ajax);
+                    });
                    _crop1.destroy();
-                   if(typeof _crop2 !== 'undefined' && _crop2 !== null)_crop2.destroy();
+                   if(typeof _crop2 !== 'undefined' && _crop2 !== null){
+                        _crop2.result({
+                            type: 'blob'
+                        }).then(function (blob) {
+                            return fetch(window.URL.createObjectURL(blob))
+                        }).then(function (response) {
+                            return response.blob();
+                        }).then(function (blob) {
+                            formData.append('dni_reverso', blob,'dni_anverso.jpg');
+                        });
+                        _crop2.destroy();
+                   }
                     $("#div_edita_imagen").dialog("close");
                     $("#div_edita_imagen").dialog("destroy");
                 }
