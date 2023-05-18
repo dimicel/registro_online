@@ -433,9 +433,10 @@ function selUltimoFile() {
 function actualizaTablaListaDocs() {
     _t = document.getElementById("tab_lista_docs");
     if (formulario=="Centro-Ministerio"){
+        _tipo_sel=document.querySelectorAll("#anade_documento_centroministerio input[name=tipo]:checked");
         _arch = selUltimoFile().files[0].name;
         _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
-        _d[_d.length - 1].value = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
+        _d[_d.length - 1].value = "(" + _tipo_sel[0].value + ") " + document.getElementById("den_estudios").value;
         
         if (_t.rows[0].cells.length == 1) {
             _t.deleteRow(0);
@@ -444,20 +445,46 @@ function actualizaTablaListaDocs() {
     
         // Insertar una celda en la nueva fila (primera columna)
         var celda1 = nuevaFila.insertCell();
-        celda1.textContent = "(" + document.querySelectorAll("input[name=tipo]:checked")[0].value + ") " + document.getElementById("den_estudios").value;
-    
+        celda1.textContent = "(" + _tio_sel[0].value + ") " + document.getElementById("den_estudios").value;
         celda1.style.width = "50%";
     
         // Insertar una celda en la nueva fila (segunda columna)
         var celda2 = nuevaFila.insertCell();
         celda2.textContent = _arch;
         celda2.style.width = "45%";
+    }
+    else {
+        _tipoSel=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked");
+        _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
+        if (_tipoSel.value=="Otro"){
+            //_arch = selUltimoFile().files[0].name;
+            _d[_d.length - 1].value = document.getElementById("den_otro_con").value;
+        }
+        else {
+            _d[_d.length - 1].value = _tioSel.value;
+        }
+            
+        if (_t.rows[0].cells.length == 1) {
+            _t.deleteRow(0);
+        }
+        var nuevaFila = _t.insertRow();
     
-        var celda3 = nuevaFila.insertCell();
+        // Insertar una celda en la nueva fila (primera columna)
+        var celda1 = nuevaFila.insertCell();
+        celda1.textContent =  _d[_d.length - 1].value;
+        celda1.style.width = "50%";
+
+        // Insertar una celda en la nueva fila (segunda columna)
+        var celda2 = nuevaFila.insertCell();
+        celda2.textContent = selUltimoFile()[0].name;
+        if(_tipoSel.value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile()[1].name;
+        celda2.style.width = "45%";
+    }
+
+    var celda3 = nuevaFila.insertCell();
         celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
         celda3.style.width = "5%";
         celda3.style.textAlign = "center";
-    }
 
 }
 
