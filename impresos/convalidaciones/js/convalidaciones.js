@@ -456,13 +456,12 @@ function actualizaTablaListaDocs() {
     else {
         _tipoSel=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked");
         _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
-        alert(_d.length+"  "+_d[_d.length - 1].value)
-        if (_tipoSel.value=="Otro"){
+        if (_tipoSel[0].value=="Otro"){
             //_arch = selUltimoFile().files[0].name;
             _d[_d.length - 1].value = document.getElementById("den_otro_con").value;
         }
         else {
-            _d[_d.length - 1].value = _tipoSel.value;
+            _d[_d.length - 1].value = _tipoSel[0].value;
         }
             
         if (_t.rows[0].cells.length == 1) {
@@ -478,7 +477,7 @@ function actualizaTablaListaDocs() {
         // Insertar una celda en la nueva fila (segunda columna)
         var celda2 = nuevaFila.insertCell();
         celda2.textContent = selUltimoFile().files[0].name;
-        if(_tipoSel.value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile().files[1].name;
+        if(_tipoSel[0].value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile().files[1].name;
         celda2.style.width = "45%";
     }
 
