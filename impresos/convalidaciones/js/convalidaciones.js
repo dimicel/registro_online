@@ -528,7 +528,6 @@ function borraFila(obj, e) {
 
 
 function registraForm() {
-    
     if ($("#form_convalidaciones").valid()) {
         formData.append("id_nie", encodeURIComponent(id_nie));
         formData.append("curso", encodeURIComponent(curso));
