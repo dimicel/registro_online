@@ -528,59 +528,59 @@ function borraFila(obj, e) {
 
 
 function registraForm() {
-    if (formulario == "Centro-Ministerio") {
-        if ($("#form_convalidaciones").valid()) {
-            formData.append("id_nie", encodeURIComponent(id_nie));
-            formData.append("curso", encodeURIComponent(curso));
-            formData.append("formulario", encodeURIComponent(formulario));
-            formData.append("nombre", encodeURIComponent(document.getElementById("nombre").value));
-            formData.append("apellidos", encodeURIComponent(document.getElementById("apellidos").value));
-            formData.append("id_nif", encodeURIComponent(document.getElementById("nif_nie").value));
-            formData.append("direccion", encodeURIComponent(document.getElementById("direccion").value));
-            formData.append("cp", encodeURIComponent(document.getElementById("cp").value));
-            formData.append("localidad", encodeURIComponent(document.getElementById("localidad").value));
-            formData.append("provincia", encodeURIComponent(document.getElementById("provincia").value));
-            formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
-            formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
-            formData.append("email", encodeURIComponent(document.getElementById("email").value));
-            formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
-            formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
-            formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
-            //formData.append("firma",document.getElementById("firma").files[0]);
-            formData.append("firma", encodeURIComponent(canvas_upload));
-            datosHidden = document.querySelectorAll('input[name="desc[]"]');
-            for (var i = 0; i < datosHidden.length; i++) {
+    
+    if ($("#form_convalidaciones").valid()) {
+        formData.append("id_nie", encodeURIComponent(id_nie));
+        formData.append("curso", encodeURIComponent(curso));
+        formData.append("formulario", encodeURIComponent(formulario));
+        formData.append("nombre", encodeURIComponent(document.getElementById("nombre").value));
+        formData.append("apellidos", encodeURIComponent(document.getElementById("apellidos").value));
+        formData.append("id_nif", encodeURIComponent(document.getElementById("nif_nie").value));
+        formData.append("direccion", encodeURIComponent(document.getElementById("direccion").value));
+        formData.append("cp", encodeURIComponent(document.getElementById("cp").value));
+        formData.append("localidad", encodeURIComponent(document.getElementById("localidad").value));
+        formData.append("provincia", encodeURIComponent(document.getElementById("provincia").value));
+        formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
+        formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
+        formData.append("email", encodeURIComponent(document.getElementById("email").value));
+        formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
+        formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
+        formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
+        formData.append("firma", encodeURIComponent(canvas_upload));
+        
+        datosHidden = document.querySelectorAll('input[name="desc[]"]');
+        for (var i = 0; i < datosHidden.length; i++) {
+            if (datosHidden[i].value!="Documento de identificación (DNI/NIE)" && datosHidden[i].value!="Documento de identificación (Pasaporte)"){
                 formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
-            }
-            datosFiles = document.querySelectorAll('input[name="docs[]"]');
-            for (var i = 0; i < datosFiles.length; i++) {
                 formData.append("docs[]", datosFiles[i].files[0]);
             }
-            document.getElementById("cargando").style.display = 'inherit';
-            $.post({
-                url: "php/registracentroministerio.php",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(resp) {
-                    document.getElementById("cargando").style.display = 'none';
-                    if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
-                    else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
-                    else if (resp == "error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.", "ERROR UPLOAD");
-                    else if (resp == "ok") {
-                        alerta("Solicitud de convalidación registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", true, 500);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                }
-            });
-        } else {
-            alerta("Revisa los campos que se han marcado en rojo. Revisa que hayas seleccionado al menos un módulo a convalidar.", "DATOS INVÁLIDOS O AUSENTES");
         }
-    }
-    else{
-        alerta("En desarrollo", "PACIENCIA...");
+        
+
+        if (formulario == "Centro-Ministerio") urlPHP="php/registracentroministerio.php";
+        else urlPHP="php/registraconsejeria.php";
+
+        document.getElementById("cargando").style.display = 'inherit';
+        $.post({
+            url:urlPHP ,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(resp) {
+                document.getElementById("cargando").style.display = 'none';
+                if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+                else if (resp == "error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.", "ERROR UPLOAD");
+                else if (resp == "ok") {
+                    alerta("Solicitud de convalidación registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", true, 500);
+                }
+            },
+            error: function(xhr, status, error) {
+                alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+            }
+        });
+    } else {
+        alerta("Revisa los campos que se han marcado en rojo. Revisa que hayas seleccionado al menos un módulo a convalidar.", "DATOS INVÁLIDOS O AUSENTES");
     }
 }
 
