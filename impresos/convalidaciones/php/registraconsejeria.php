@@ -152,6 +152,11 @@ try {
     
                 // Mostrar mensaje de error o realizar otras acciones necesarias
                 unlink($tempFile);
+                if (isset($_POST["pasaporte"])) unlink($tempPass);
+                elseif(isset($_POST["dni_anverso"])){
+                    unlink($dniAnverso);
+                    unlink($dniReverso);
+                } 
                 exit("error_subida");
             }
         }
@@ -163,6 +168,12 @@ try {
     // En caso de error, revertir la transacción
     $mysqli->rollback();
     unlink($tempFile);
+    if (isset($_POST["pasaporte"])) unlink($tempPass);
+    elseif(isset($_POST["dni_anverso"])){
+        unlink($dniAnverso);
+        unlink($dniReverso);
+    } 
+    exit("error_subida");
     exit("database");
 }
 ////////////////////////////////////////////////////////////
