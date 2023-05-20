@@ -130,8 +130,10 @@ try {
     if (!is_dir($rutaCompleta)) {
         mkdir($rutaCompleta, 0777, true);
     }
+    $contador_docs=1;
     if (isset($_FILES["docs"])){
         for ($i=0;$i<count($_FILES["docs"]["tmp_name"]);$i++){
+            $contador_docs=$i+1;
             $indice=sprintf("%02d", $i+1)."_";
             $nombreDoc=$indice.$_FILES["docs"]["name"][$i];
             try {
@@ -160,6 +162,22 @@ try {
                 exit("error_subida");
             }
         }
+    }
+    if (isset($FILES["pasaporte"])){
+        $pdf_docIdent = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        $pdf_docIdent->AddPage();
+        $pdf_docIdent->Image($tempPass, 20, 20, 90, 0);
+        $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs)."_"."documento_identificacion.pdf", 'F');
+    }
+    elseif(isset($FILES["dni_anverso"])){
+        $pdf_docIdent = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        $pdf_docIdent->AddPage();
+        $pdf_docIdent->Image($tempDNIAnv, 20, 20, 90, 0);
+        $pdf_docIdent->Image($tempDNIRev, 20, 80, 90, 0);
+        $pdf_docIdent->Output($rutaCompleta, 'F');
+        $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs)."_"."documento_identificacion.pdf", 'F');
     }
 
     // Confirmar la transacción
@@ -331,4 +349,9 @@ $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 unlink($tempFile);
+if (isset($_POST["pasaporte"])) unlink($tempPass);
+elseif(isset($_POST["dni_anverso"])){
+    unlink($dniAnverso);
+    unlink($dniReverso);
+}
 exit("ok");
