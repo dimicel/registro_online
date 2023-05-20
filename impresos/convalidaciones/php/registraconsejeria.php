@@ -119,12 +119,20 @@ try {
     
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
+    $contador_docs=1;
     for($i=0;$i<count($desc);$i++) {
+        $contador_docs=$i+1;
         $indice=sprintf("%02d", $i+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$docs[$i]["name"];
         $stmt2->bind_param("sss", $registro, $desc[$i], $rutaTb);
-        $stmt2->execute();
+        
     }
+    if (isset($_POST["pasaporte"]) || isset($_POST["dni_anverso"])){
+        $indice=sprintf("%02d", $contador_docs+1)."_";
+        $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
+        $stmt2->bind_param("sss", $registro, $desc[$i], $rutaTb);
+    }
+    $stmt2->execute();
     $stmt2->close();
     $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
     if (!is_dir($rutaCompleta)) {
@@ -168,7 +176,7 @@ try {
         $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf_docIdent->AddPage();
         $pdf_docIdent->Image($tempPass, 20, 20, 90, 0);
-        $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs)."_"."documento_identificacion.pdf", 'F');
+        $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
     elseif(isset($FILES["dni_anverso"])){
         $pdf_docIdent = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
@@ -177,7 +185,7 @@ try {
         $pdf_docIdent->Image($tempDNIAnv, 20, 20, 90, 0);
         $pdf_docIdent->Image($tempDNIRev, 20, 80, 90, 0);
         $pdf_docIdent->Output($rutaCompleta, 'F');
-        $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs)."_"."documento_identificacion.pdf", 'F');
+        $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
 
     // Confirmar la transacción
