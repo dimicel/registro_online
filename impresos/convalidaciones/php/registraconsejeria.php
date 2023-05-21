@@ -307,28 +307,28 @@ $pdf->Cell(125,0,$estudios_superados,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(147,134);
 $pdf->Cell(0,0,"X",0,0,'L',0,'',1,true,'T','T');
 
-$pdf->setCellHeightRatio(1.3);
-$pdf->SetXY(35,146);
-$pdf->MultiCell(150,0,$estudios_aportados,0,'L',0,1,'','',true,0,false,false,0);
-
 $pdf->setCellHeightRatio(1.4);
-$pdf->SetXY(35,189);
+$pdf->SetXY(30,124);
 $pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 
 /////Tratamiento de la imagen
-$pdf->Image($firma, 100, 235, 50, 0, '', '', '', false, 300);
-$pdf->SetFont('dejavusans', '', 9, '', true);
-$pdf->SetXY(101,227);
-$pdf->Cell(0,0,"FIRMA DEL SOLICITANTE y FECHA",0,0,'L',0,'',1,true,'T','T');
+$pdf->Image($firma, 120, 183, 20, 0, '', '', '', false, 300);
+
 
 $pdf->setCellHeightRatio(1.4);
-$pdf->SetXY(110,270);
-$pdf->Cell(0,0,$dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(60,177);
+$pdf->Cell(0,0,"Toledo",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(96,177);
+$pdf->Cell(0,0,$dia,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(115,177);
+$pdf->Cell(0,0,$mes,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(153,177);
+$pdf->Cell(0,0,$anno,0,0,'L',0,'',1,true,'T','T');
 
 
 $pdf->SetFont('dejavusans', '', 5, '', true);
-$pdf->SetXY(90,275);
+$pdf->SetXY(30,195);
 $pdf->Cell(0,0,$registro,0,0,'L',0,'',1,true,'T','T');
 
 
