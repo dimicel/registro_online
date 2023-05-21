@@ -76,7 +76,7 @@ function seleccion(obj) {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
         $('[data-formulario="centro_ministerio"]').each(function() {
-            this.hide();
+            $(this).hide();
         });
         formulario = "Consejería";
         creaValidador();
@@ -86,7 +86,7 @@ function seleccion(obj) {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
         $('[data-formulario="centro_ministerio"]').each(function() {
-            this.show();
+            $(this).show();
         });
         formulario = "Centro-Ministerio";
         creaValidador();
