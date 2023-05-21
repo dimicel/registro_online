@@ -545,9 +545,11 @@ function registraForm() {
         formData.append("cp", encodeURIComponent(document.getElementById("cp").value));
         formData.append("localidad", encodeURIComponent(document.getElementById("localidad").value));
         formData.append("provincia", encodeURIComponent(document.getElementById("provincia").value));
-        formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
-        formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
-        formData.append("email", encodeURIComponent(document.getElementById("email").value));
+        if (formulario=="Centro-Ministerio"){
+            formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
+            formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
+            formData.append("email", encodeURIComponent(document.getElementById("email").value));
+        }
         formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
         formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
         formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
