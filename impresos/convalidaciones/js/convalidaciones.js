@@ -78,6 +78,9 @@ function seleccion(obj) {
         $('[data-formulario="centro_ministerio"]').each(function() {
             $(this).hide();
         });
+        $('[data-formulario="consejería"]').each(function() {
+            $(this).show();
+        });
         formulario = "Consejería";
         creaValidador();
         document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
@@ -87,6 +90,9 @@ function seleccion(obj) {
         $("#seccion-formulario").show();
         $('[data-formulario="centro_ministerio"]').each(function() {
             $(this).show();
+        });
+        $('[data-formulario="consejería"]').each(function() {
+            $(this).hide();
         });
         formulario = "Centro-Ministerio";
         creaValidador();
@@ -549,6 +555,9 @@ function registraForm() {
             formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
             formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
             formData.append("email", encodeURIComponent(document.getElementById("email").value));
+        }
+        if (formulario=="Consejería"){
+            formData.append("estudios_superados", encodeURIComponent(document.getElementById("estudios_superados").value));
         }
         formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
         formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));

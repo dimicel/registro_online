@@ -187,6 +187,16 @@
                                         <h6 style="color:brown; font-weight:bold">MÓDULOS QUE SOLICITA CONVALIDAR</h6>
                                     </div>
                                 </div>
+                                <div class="row" data-formulario="consejería">
+                                    <div class="col">
+                                        <label for="grado">Ha cursado y superado los siguientes estudios</label>
+                                    </div>
+                                </div>
+                                <div class="row" data-formulario="consejería">
+                                    <div class="col">
+                                        <textarea class="form-control"  name="estudios_superados" rows="2" id="estudios_superados" maxlength="300"></textarea>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="grado">Está matriculado en Ciclo Formativo de Grado</label>
