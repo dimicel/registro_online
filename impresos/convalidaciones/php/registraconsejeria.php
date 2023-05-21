@@ -45,6 +45,7 @@ $ley="LOE";
 $grado = urldecode($_POST['grado']);
 $ciclo = urldecode($_POST['ciclo']);
 $modulos = urldecode($_POST['modulos']);
+$estudios_superados=urldecode($_POST['estudios_superados']);
 $desc= array();
 $estudios_aportados="";
 if (isset($_POST["desc"])){
@@ -288,27 +289,21 @@ $pdf->Cell(0,0,$cp,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(85,62);
 $pdf->Cell(40,0,$provincia,0,0,'L',0,'',1,true,'T','T');
 
-$pdf->SetXY(60,98);
+$pdf->SetXY(90,79);
 $pdf->Cell(0,0,"IES UNIVERSIDAD LABORAL",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(50,102);
+$pdf->SetXY(65,83);
 $pdf->Cell(0,0,"AVDA. EUROPA, 28",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(55,106);
+$pdf->SetXY(56,87);
 $pdf->Cell(0,0,"45003",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(85,106);
+$pdf->SetXY(116,87);
 $pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(48,110);
-$pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(76,110);
-$pdf->Cell(0,0,"925223400",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetFont('dejavusans', '', 6, '', true);
-$pdf->SetXY(97,110);
-$pdf->Cell(0,0,"925222454",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetFont('dejavusans', '', 7, '', true);
-$pdf->SetXY(135,110);
-$pdf->Cell(0,0,"45003796.ies@edu.jccm.es",0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(40,91);
+$pdf->Cell(0,0,$grado,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(83,91);
+$pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,true,'T','T');
 
-$pdf->SetXY(35,127);
-$pdf->Cell(125,0,"Grado " . $grado . " de " . $ciclo,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(45,103);
+$pdf->Cell(125,0,$estudios_superados,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(147,134);
 $pdf->Cell(0,0,"X",0,0,'L',0,'',1,true,'T','T');
 
