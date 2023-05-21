@@ -147,10 +147,10 @@
                                     </div>
                                 </div>
                                 <div class="row mt-2">
-                                    <div class="col-1" data-formulario="centro_ministerio">
+                                    <div class="col-3" data-formulario="centro_ministerio">
                                         <label for="tlf_fijo">Tlf. Fijo</label>
                                     </div>
-                                    <div class="col-1 offset-2" data-formulario="centro_ministerio">
+                                    <div class="col-3" data-formulario="centro_ministerio">
                                         <label for="tlf_movil">Tlf. Móvil</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
@@ -158,7 +158,7 @@
                                         <label for="email">Email</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-3">
                                         <label for="t_firm">Firma</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
