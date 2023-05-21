@@ -271,33 +271,25 @@ $auto_page_break = $pdf->getAutoPageBreak();
 // disable auto-page-break
 $pdf->SetAutoPageBreak(false, 0);
 // set background image
-$pdf->Image("../recursos/centroministerio.jpg", 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+$pdf->Image("../recursos/consejeria.jpg", 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 // restore auto-page-break status
 $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 // set the starting point for the page content
 $pdf->setPageMark();
 
 
-$pdf->SetXY(61,62);
+$pdf->SetXY(33,50);
+$pdf->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(122,54);
 $pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(104,62);
-$pdf->Cell(0,0,$nombre,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(48,66);
-$pdf->Cell(0,0,$apellidos,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(48,69.5);
+$pdf->SetXY(35,58);
 $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(55,73);
-$pdf->Cell(0,0,$cp,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(81,73);
+$pdf->SetXY(125,58);
 $pdf->Cell(54,0,$localidad,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(131,73);
+$pdf->SetXY(35,62);
+$pdf->Cell(0,0,$cp,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(85,62);
 $pdf->Cell(40,0,$provincia,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(46,77);
-$pdf->Cell(0,0,$tlf_fijo,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(81.5,77);
-$pdf->Cell(0,0,$tlf_movil,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(130,77);
-$pdf->Cell(52,0,$email,0,0,'L',0,'',1,true,'T','T');
 
 $pdf->SetXY(60,98);
 $pdf->Cell(0,0,"IES UNIVERSIDAD LABORAL",0,0,'L',0,'',1,true,'T','T');

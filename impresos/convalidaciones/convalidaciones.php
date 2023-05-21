@@ -147,14 +147,14 @@
                                     </div>
                                 </div>
                                 <div class="row mt-2">
-                                    <div class="col-1">
+                                    <div class="col-1" data-formulario="centro_ministerio">
                                         <label for="tlf_fijo">Tlf. Fijo</label>
                                     </div>
-                                    <div class="col-1 offset-2">
+                                    <div class="col-1 offset-2" data-formulario="centro_ministerio">
                                         <label for="tlf_movil">Tlf. Móvil</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
-                                    <div class="col-1 offset-2">
+                                    <div class="col-1 offset-2" data-formulario="centro_ministerio">
                                         <label for="email">Email</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
@@ -165,13 +165,13 @@
 
                                 </div>
                                 <div class="row ">
-                                    <div class="col-3">
+                                    <div class="col-3" data-formulario="centro_ministerio">
                                         <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo"  maxlength="12" />
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-3" data-formulario="centro_ministerio">
                                         <input type="text" class="form-control" name="tlf_movil" id="tlf_movil"  maxlength="12" />
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-3" data-formulario="centro_ministerio">
                                         <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
                                     </div>
                                     <div class="col-3">

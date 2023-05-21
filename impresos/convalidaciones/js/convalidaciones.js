@@ -75,6 +75,9 @@ function seleccion(obj) {
     } else if (obj.id == "consejeria") {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
+        $('[data-formulario="centro_ministerio"]').each(function() {
+            this.hide();
+        });
         formulario = "Consejería";
         creaValidador();
         document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
@@ -82,6 +85,9 @@ function seleccion(obj) {
     } else if (obj.id == "centro_ministerio") {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
+        $('[data-formulario="centro_ministerio"]').each(function() {
+            this.show();
+        });
         formulario = "Centro-Ministerio";
         creaValidador();
         document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO";
