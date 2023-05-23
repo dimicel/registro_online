@@ -71,7 +71,6 @@ if (isset($_POST["desc"])){
     }
     $docs=$_FILES['docs'];
 }
-exit(session_id());
 $imageData = urldecode($_POST['firma']);
 if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
 $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.png');
@@ -80,7 +79,7 @@ $firma = $tempFile;
 
 if (isset($_FILES["pasaporte"])){
     $imagePass = file_get_contents($_FILES['pasaporte']['tmp_name']);
-    $tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.jpg');
+    $tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
     file_put_contents($tempPass, base64_decode(str_replace('data:image/png;base64,', '', $imagePass)));
     $pasaporte = $tempPass;
 
@@ -97,12 +96,12 @@ if (isset($_FILES["pasaporte"])){
 }
 elseif($_FILES["dni_anverso"]){
     $imageDNIAnv = file_get_contents($_FILES['dni_anverso']['tmp_name']);
-    $tempDNIAnv = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
+    $tempDNIAnv = tempnam(__DIR__."/../../../docs/tmp", 'dni_anverso_'. session_id() . '.png');
     file_put_contents($tempDNIAnv, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIAnv)));
     $dniAnverso = $tempDNIAnv;
 
     $imageDNIRev = file_get_contents($_FILES['dni_reverso']['tmp_name']);
-    $tempDNIRev = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
+    $tempDNIRev = tempnam(__DIR__."/../../../docs/tmp", 'dni_reverso'. session_id() . '.png');
     file_put_contents($tempDNIRev, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIRev)));
     $dniReverso = $tempDNIRev;
 }

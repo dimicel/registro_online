@@ -143,6 +143,9 @@ function creaValidador() {
             },
             modulos: {
                 required: true
+            },
+            estudios_superados:{
+                required: true
             }
         },
         messages: {
@@ -185,6 +188,9 @@ function creaValidador() {
             },
             modulos: {
                 required: "Seleccione módulos"
+            },
+            estudios_superados:{
+                required: "Vacío"
             }
         },
         errorPlacement: function(error, element) {
@@ -809,11 +815,11 @@ function muestraEditor(_ev){
                     
                    if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
                         _fname_ajax="dni_anverso";
-                        _f_ajax="dni_anverso.jpg";
+                        _f_ajax="dni_anverso.png";
                    }
                    else {
                         _fname_ajax="pasaporte";
-                        _f_ajax="pasaporte.jpg";
+                        _f_ajax="pasaporte.png";
                    }
                     _crop1.result({
                         type: 'blob'
@@ -833,7 +839,7 @@ function muestraEditor(_ev){
                         }).then(function (response) {
                             return response.blob();
                         }).then(function (blob) {
-                            formData.append('dni_reverso', blob,'dni_anverso.jpg');
+                            formData.append('dni_reverso', blob,'dni_anverso.png');
                         });
                         _crop2.destroy();
                    }
