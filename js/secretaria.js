@@ -19,7 +19,7 @@ $(function() {
     
     document.getElementById("cargando").style.display = 'inherit';
     prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "secretaria" }));
-    prom2=prom1.then((resp)=> {
+    prom2=prom1.then((resp)=> {alert(resp["error"])
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
             anno_ini_curso = resp["anno_ini_curso"];
