@@ -71,7 +71,7 @@ if (isset($_POST["desc"])){
     }
     $docs=$_FILES['docs'];
 }
-
+exit(session_id());
 $imageData = urldecode($_POST['firma']);
 if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
 $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.png');
