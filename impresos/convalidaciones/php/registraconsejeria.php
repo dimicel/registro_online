@@ -54,8 +54,7 @@ $check2=false;
 $check3=false;
 $check4=false;
 $check5=false;
-if(isset($_FILES["dni_anverso"]) && isset($_FILES["dni_reverso"]))exit ("dni");
-else exit("no_dni");
+
 if (isset($_POST["desc"])){
     foreach($_POST["desc"] as $value) {
         $desc[]=urldecode($value);
@@ -116,6 +115,7 @@ try {
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
     $contador_docs=1;
+    exit("3333333");
     for($i=0;$i<count($desc);$i++) {
         $contador_docs=$i+1;
         $indice=sprintf("%02d", $i+1)."_";
