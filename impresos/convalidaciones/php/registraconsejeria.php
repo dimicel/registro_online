@@ -119,14 +119,15 @@ try {
         $indice=sprintf("%02d", $i+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$docs[$i]["name"];
         $stmt2->bind_param("sss", $registro, $desc[$i], $rutaTb);
+        $stmt2->execute();
         
     }
     if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
         $indice=sprintf("%02d", $contador_docs+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
         $stmt2->bind_param("sss", $registro, $desc[$i], $rutaTb);
+        $stmt2->execute();
     }
-    $stmt2->execute();
     $stmt2->close();
     $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
     if (!is_dir($rutaCompleta)) {
