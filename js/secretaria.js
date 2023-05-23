@@ -11,7 +11,6 @@ var sesion_id;
 
 
 $(function() {
-    generaSelectTipo_form();
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
     generaSelectMat_ciclos();
@@ -51,7 +50,14 @@ $(function() {
         document.getElementById("check_mat_bach").checked = (resp["bach"] == 0 ? false : true);
         document.getElementById("check_mat_ciclos").checked = (resp["ciclos"] == 0 ? false : true);
         document.getElementById("check_mat_fpb").checked = (resp["fpb"] == 0 ? false : true);
-        document.getElementById("cargando").style.display = 'none';
+        return ($.post("php/secret_num_reg_sinrevisar.php", {},()=>{},"json"));
+        
+    });
+    prom5=prom4.then((resp)=>{
+        if (resp["error"=="ok"]){
+            generaSelectTipo_form(resp["datos"]);
+            document.getElementById("cargando").style.display = 'none';
+        }
     });
 
     $("#div_nie_registrado").dialog({
@@ -111,7 +117,7 @@ function generaSelectCurso(){
     }
 }
 
-function generaSelectTipo_form(){
+function generaSelectTipo_form(matriz){
     // Obtener el elemento select
     const miSelect = document.getElementById("tipo_form");
 
@@ -124,13 +130,13 @@ function generaSelectTipo_form(){
 
     // Crear las opciones restantes
     const opciones = [
-        { value: "convalidaciones", text: "Convalidaciones" },
+        { value: "convalidaciones", text: "Convalidaciones ("+matriz.convalidaciones+")" },
         { value: "matricula_ciclos", text: "Matrícula CICLOS" },
         { value: "matricula", text: "Matrícula ESO y BACH" },
         { value: "matricula_fpb", text: "Matrícula FPB" },
         { value: "prematricula", text: "Prematrícula" },
-        { value: "revision_calificacion", text: "Revisión de calificación" },
-        { value: "revision_examen", text: "Revisión de examen" }
+        { value: "revision_calificacion", text: "Revisión de calificación ("+matriz.revision_calificacion+")" },
+        { value: "revision_examen", text: "Revisión de examen ("+matriz.revision_examen+")" }
     ];
 
     // Recorrer el array de opciones y crear las opciones
