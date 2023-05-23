@@ -80,7 +80,7 @@ $firma = $tempFile;
 
 if (isset($_FILES["pasaporte"])){
     $imagePass = file_get_contents($_FILES['pasaporte']['tmp_name']);
-    $tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
+    $tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.jpg');
     file_put_contents($tempPass, base64_decode(str_replace('data:image/png;base64,', '', $imagePass)));
     $pasaporte = $tempPass;
 
