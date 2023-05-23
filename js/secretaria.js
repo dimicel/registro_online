@@ -54,8 +54,8 @@ $(function() {
         
     });
     prom5=prom4.then((resp)=>{
-        if (resp["error"]=="ok"){
-            generaSelectTipo_form(resp["datos"]);
+        if (resp.error=="ok"){alert(333333333);
+            generaSelectTipo_form(resp.datos);
             document.getElementById("cargando").style.display = 'none';
         }
     });

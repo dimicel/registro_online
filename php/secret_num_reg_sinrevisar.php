@@ -19,11 +19,10 @@ $resultado = $mysqli->query($sql);
 // Creación del array asociativo
 $registros_no_revisados = array();
 while($fila = $resultado->fetch_assoc()) {
-    $registros_no_revisados[$fila['table_name']] = $fila['num_registros'];
+    $data["datos"][$fila['table_name']] = $fila['num_registros'];
 }
 
 // Cierre de la conexión
 $mysqli->close();
 $data["error"]="ok";
-$data["datos"]=$registros_no_revisados;
 exit(json_encode($data));
