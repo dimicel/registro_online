@@ -267,57 +267,56 @@ $pdf->SetXY(35,47);
 $pdf->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(122,51);
 $pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(35,55);
+$pdf->SetXY(35,56);
 $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(125,55);
+$pdf->SetXY(125,56);
 $pdf->Cell(54,0,$localidad,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(35,59);
+$pdf->SetXY(35,60);
 $pdf->Cell(0,0,$cp,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(85,59);
+$pdf->SetXY(85,60);
 $pdf->Cell(40,0,$provincia,0,0,'L',0,'',1,true,'T','T');
 
-$pdf->SetXY(90,76);
+$pdf->SetXY(90,77);
 $pdf->Cell(0,0,"IES UNIVERSIDAD LABORAL",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(65,80);
+$pdf->SetXY(65,81);
 $pdf->Cell(0,0,"AVDA. EUROPA, 28",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(56,84);
+$pdf->SetXY(56,85);
 $pdf->Cell(0,0,"45003",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(116,84);
+$pdf->SetXY(116,85);
 $pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(40,88);
+$pdf->SetXY(40,89);
 $pdf->Cell(0,0,$grado,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(83,88);
+$pdf->SetXY(83,89);
 $pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,true,'T','T');
 
-$pdf->SetXY(45,100);
+$pdf->SetXY(45,101);
 $pdf->MultiCell(150,0,$estudios_superados,0,'L',0,1,'','',true,0,false,false,0);
-$pdf->SetXY(147,134);
-$pdf->Cell(0,0,"X",0,0,'L',0,'',1,true,'T','T');
+
 
 //$pdf->setCellHeightRatio(1.4);
-$pdf->SetXY(30,124);
+$pdf->SetXY(30,122);
 $pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 if($check1){
-    $pdf->SetXY(41.5,144);
+    $pdf->SetXY(41,143);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check2){
-    $pdf->SetXY(41.5,152);
+    $pdf->SetXY(41,152);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check3){
-    $pdf->SetXY(41.5,156);
+    $pdf->SetXY(41,156);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check4){
-    $pdf->SetXY(41.5,161.5);
+    $pdf->SetXY(41,160);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check5){
-    $pdf->SetXY(41.5,165.5);
+    $pdf->SetXY(41,164);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
-    $pdf->SetXY(40,170);
+    $pdf->SetXY(40,168);
     $pdf->MultiCell(150,0,$otra_doc,0,'L',0,1,'','',true,0,false,false,0);
 }
 
