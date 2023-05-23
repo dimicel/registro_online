@@ -1,5 +1,3 @@
-/////////////// DEVUELVE EL NÚMERO DE REGISTROS NO REVISADOS DE CADA TABLA
-
 <?php
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
