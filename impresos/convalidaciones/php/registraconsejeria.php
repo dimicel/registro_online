@@ -95,7 +95,7 @@ elseif($_FILES["dni_anverso"]){
     file_put_contents($tempDNIRev, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIRev)));
     $dniReverso = $tempDNIRev;
 }
-exit("sssssssssssssssss");
+
 
 $repite_registro=true;
 while($repite_registro){
@@ -112,7 +112,7 @@ while($repite_registro){
 }
 $dirRegistro=substr($registro, 17);
 
-
+exit("uuuuuuuuuuuu");
 //ver esto que es la hostia made in chatGPT////////////////////////////////////////////////////////////
 ///Parametro de bind sss por la siguiente tabla
 //"i": Entero (integer)
