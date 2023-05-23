@@ -84,7 +84,7 @@ if (isset($_FILES["pasaporte"])){
     file_put_contents($tempPass, base64_decode(str_replace('data:image/png;base64,', '', $imagePass)));
     $pasaporte = $tempPass;
 }
-elseif($_FILES["dni_anverso"]){exit("dni");
+elseif($_FILES["dni_anverso"]){
     $imageDNIAnv = file_get_contents($_FILES['dni_anverso']['tmp_name']);
     $tempDNIAnv = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
     file_put_contents($tempDNIAnv, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIAnv)));
@@ -186,14 +186,14 @@ try {
         }
     }
     if (isset($FILES["pasaporte"])){
-        $pdf_docIdent = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf_docIdent = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf_docIdent->AddPage();
         $pdf_docIdent->Image($pasaporte, 20, 20, 90, 0);
         $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
     elseif(isset($FILES["dni_anverso"])){
-        $pdf_docIdent = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf_docIdent = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf_docIdent->AddPage();
         $pdf_docIdent->Image($dniAnverso, 20, 20, 90, 0);
