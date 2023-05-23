@@ -77,7 +77,7 @@ $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.pn
 file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 $firma = $tempFile;
 
-if (isset($_FILES["pasaporte"])){
+if (isset($_POST["pasaporte"])){
     //$imagePass = file_get_contents($_FILES['pasaporte']['tmp_name']);
     $imagePass=$_POST['pasaporte'];
     $tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.jpg');
@@ -106,6 +106,7 @@ elseif($_FILES["dni_anverso"]){
     file_put_contents($tempDNIRev, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIRev)));
     $dniReverso = $tempDNIRev;
 }
+exit(0);
 
 
 $repite_registro=true;
