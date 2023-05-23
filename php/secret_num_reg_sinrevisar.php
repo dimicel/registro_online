@@ -14,7 +14,7 @@ if ($mysqli->errno>0) {
 // Consulta SQL para obtener el número de registros de cada tabla con revisado=false
 $sql = "SELECT COUNT(*) AS num_registros, table_name FROM information_schema.columns WHERE table_schema = '$dbname' AND column_name = 'procesado' AND column_default = '0' GROUP BY table_name";
 
-$resultado = $conn->query($sql);
+$resultado = $mysqli->query($sql);
 
 // Creación del array asociativo
 $registros_no_revisados = array();
@@ -23,7 +23,7 @@ while($fila = $resultado->fetch_assoc()) {
 }
 
 // Cierre de la conexión
-$conn->close();
+$mysqli->close();
 
 $data["datos"]=$registros_no_revisados;
 exit(json_encode($data));
