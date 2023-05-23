@@ -190,11 +190,11 @@ function creaValidador() {
                 required: "Seleccione módulos"
             },
             estudios_superados:{
-                required: "Vacío"
+                required: "Especifique unos estudios superados"
             }
         },
         errorPlacement: function(error, element) {
-            if ($(element).attr('name') == "modulos") $("label[for='" + $(element).attr('name') + "']").next($('.errorTxt')).html(error);
+            if ($(element).attr('name') == "modulos" || $(element).attr('name') == "estudios_superados") $("label[for='" + $(element).attr('name') + "']").next($('.errorTxt')).html(error);
             //$("label[for='"+$(element).attr('name')+"']").next($('.errorTxt')).html(error);
         }
     });

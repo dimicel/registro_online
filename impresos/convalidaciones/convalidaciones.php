@@ -190,6 +190,7 @@
                                 <div class="row" data-formulario="consejería">
                                     <div class="col">
                                         <label for="grado">Ha cursado y superado los siguientes estudios</label>
+                                        <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
                                 </div>
                                 <div class="row" data-formulario="consejería">
