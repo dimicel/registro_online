@@ -18,8 +18,8 @@ $(function() {
     generaSelectMat_fpb();
     
     document.getElementById("cargando").style.display = 'inherit';
-    prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "secretaria" }));
-    prom2=prom1.then((resp)=> {alert(resp["error"])
+    prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "secretaria" }),()=>{},"json");
+    prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
             anno_ini_curso = resp["anno_ini_curso"];
@@ -36,15 +36,15 @@ $(function() {
             if (document.getElementById("curso").value != "2020-2021") $("#curso_pre_mat option[value='3esopmar']").hide();
             else $("#curso_pre_mat option[value='3esopmar']").show();
             ocultaCursosDesplegable();
-            return($.post("php/secret_prematricula.php", { peticion: "read" }));
+            return($.post("php/secret_prematricula.php", { peticion: "read" },()=>{},"json"));
         }
-    }, "json");
+    });
 
     prom3=prom2.then((resp)=> {
         document.getElementById("premat_eso").checked = (resp["eso"] == 0 ? false : true);
         document.getElementById("premat_bach").checked = (resp["bach"] == 0 ? false : true);
-        return ($.post("php/secret_matricula.php", { peticion: "read" }));
-    }, "json");
+        return ($.post("php/secret_matricula.php", { peticion: "read" },()=>{},"json"));
+    });
 
     prom4=prom3.then((resp)=>{
         document.getElementById("check_mat_eso").checked = (resp["eso"] == 0 ? false : true);
@@ -52,7 +52,7 @@ $(function() {
         document.getElementById("check_mat_ciclos").checked = (resp["ciclos"] == 0 ? false : true);
         document.getElementById("check_mat_fpb").checked = (resp["fpb"] == 0 ? false : true);
         if (t1 && t2) document.getElementById("cargando").style.display = 'none';
-    }, "json");
+    });
 
     $("#div_nie_registrado").dialog({
         autoOpen: false,
