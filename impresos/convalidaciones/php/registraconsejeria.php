@@ -125,7 +125,7 @@ try {
     if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
         $indice=sprintf("%02d", $contador_docs+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
-        $stmt2->bind_param("sss", $registro, $desc[$i], $rutaTb);
+        $stmt2->bind_param("sss", $registro, "Documento de identificación", $rutaTb);
         $stmt2->execute();
     }
     $stmt2->close();
@@ -157,11 +157,6 @@ try {
     
                 // Mostrar mensaje de error o realizar otras acciones necesarias
                 unlink($tempFile);
-                if (isset($_POST["pasaporte"])) unlink($tempPass);
-                elseif(isset($_POST["dni_anverso"])){
-                    unlink($dniAnverso);
-                    unlink($dniReverso);
-                } 
                 exit("error_subida");
             }
         }
@@ -189,12 +184,6 @@ try {
     // En caso de error, revertir la transacción
     $mysqli->rollback();
     unlink($tempFile);
-    if (isset($_POST["pasaporte"])) unlink($tempPass);
-    elseif(isset($_POST["dni_anverso"])){
-        unlink($dniAnverso);
-        unlink($dniReverso);
-    } 
-    exit("error_subida");
     exit("database");
 }
 ////////////////////////////////////////////////////////////
@@ -362,9 +351,4 @@ $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 unlink($tempFile);
-if (isset($_POST["pasaporte"])) unlink($tempPass);
-elseif(isset($_POST["dni_anverso"])){
-    unlink($dniAnverso);
-    unlink($dniReverso);
-}
 exit("ok");
