@@ -324,7 +324,7 @@ if($check5){
 
 
 /////Tratamiento de la imagen
-$pdf->Image($firma, 120, 183, 20, 0, '', '', '', false, 300);
+$pdf->Image($firma, 120, 183, 30, 0, '', '', '', false, 300);
 
 
 $pdf->setCellHeightRatio(1.4);
