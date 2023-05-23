@@ -125,9 +125,9 @@ $mysqli->begin_transaction();
 try {
     // Insertar registro en la primera tabla
     $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,organismo_destino,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,
-                                                            ,grado,ciclo,ley,estudios_superados,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                                            grado,ciclo,ley,estudios_superados,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt1->bind_param("sssssssssssssssss", $id_nie,$formulario,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
-                                                $localidad,$provincia,$cp,$grado,$ciclo,$ley,$estudios_superados,$modulos);exit("ooooooooooooooo");
+                                                $localidad,$provincia,$cp,$grado,$ciclo,$ley,$estudios_superados,$modulos);
     $stmt1->execute();
     $stmt1->close();
     
