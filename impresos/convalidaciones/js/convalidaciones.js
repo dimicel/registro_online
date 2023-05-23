@@ -398,6 +398,7 @@ function anadeDoc(e) {
                         actualizaTablaListaDocs();
                         if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1)subidoDocIdent=true;
                         document.getElementById("form_anade_documento_con").reset();
+                        $('#div_den_otro_con').hide();
                         $("#anade_documento_consejeria").dialog("close");
                         $("#anade_documento_consejeria").dialog("destroy");
                     }
@@ -407,6 +408,7 @@ function anadeDoc(e) {
                     text: "Cancelar",
                     click: function() {
                         document.getElementById("form_anade_documento_con").reset();
+                        $('#div_den_otro_con').hide();
                         $("#anade_documento_consejeria").dialog("close");
                         $("#anade_documento_consejeria").dialog("destroy");
                     }
