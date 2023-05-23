@@ -123,13 +123,13 @@ try {
         $stmt2->execute();
         
     }
-    exit("555555555555");
     if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
         $indice=sprintf("%02d", $contador_docs+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
         $stmt2->bind_param("sss", $registro, "Documento de identificación", $rutaTb);
         $stmt2->execute();
     }
+    exit("6666666666666");
     $stmt2->close();
     $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
     if (!is_dir($rutaCompleta)) {
