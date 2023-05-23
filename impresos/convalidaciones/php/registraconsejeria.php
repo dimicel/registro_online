@@ -71,7 +71,6 @@ if (isset($_POST["desc"])){
     }
     $docs=$_FILES['docs'];
 }
-exit("aaaaaaaaaaa");
 
 $imageData = urldecode($_POST['firma']);
 if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
@@ -96,7 +95,7 @@ elseif($_FILES["dni_anverso"]){
     file_put_contents($tempDNIRev, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIRev)));
     $dniReverso = $tempDNIRev;
 }
-
+exit("sssssssssssssssss");
 
 $repite_registro=true;
 while($repite_registro){
