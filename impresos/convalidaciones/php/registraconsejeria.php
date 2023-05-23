@@ -106,7 +106,7 @@ elseif($_FILES["dni_anverso"]){
     file_put_contents($tempDNIRev, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIRev)));
     $dniReverso = $tempDNIRev;
 }
-exit(0);
+exit("no");
 
 
 $repite_registro=true;
