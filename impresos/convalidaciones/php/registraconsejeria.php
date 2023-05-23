@@ -78,55 +78,12 @@ file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,',
 $firma = $tempFile;
 
 if (isset($_FILES["pasaporte"])){
-    //$imagePass = file_get_contents($_FILES['pasaporte']['tmp_name']);
-    //$tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.jpg');
-    //file_put_contents($tempPass, base64_decode(str_replace('data:image/jpg;base64,', '', $imagePass)));
-    //$pasaporte = $tempPass;
-    $repite_registro=true;
-    while($repite_registro){
-        $registro=generaRegistro();
-        $vReg=$mysqli->query("select * from convalidaciones where registro='$registro'");
-        if ($mysqli->errno>0){
-            unlink($tempFile);
-            exit("database");
-        }
-        if ($vReg->num_rows==0) {
-            $repite_registro=false;
-        }
-        $vReg->free();
-    }
-    $dirRegistro=substr($registro, 17);
-
-
     $pasaporte=$_FILES['pasaporte']['tmp_name'];
-    
-    ///prueba
-    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
-    if (!is_dir($rutaCompleta)) {
-        mkdir($rutaCompleta, 0777, true);
-    }
-    $pdf_docIdent = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-    $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
-    $pdf_docIdent->AddPage();
-    $pdf_docIdent->Image($pasaporte, 20, 20, 90, 0);
-    $contador_docs=10;
-    $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
-    exit("passport_ok");
-    /////////////
 }
 elseif($_FILES["dni_anverso"]){
-    $imageDNIAnv = file_get_contents($_FILES['dni_anverso']['tmp_name']);
-    $tempDNIAnv = tempnam(__DIR__."/../../../docs/tmp", 'dni_anverso_'. session_id() . '.png');
-    file_put_contents($tempDNIAnv, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIAnv)));
-    $dniAnverso = $tempDNIAnv;
-
-    $imageDNIRev = file_get_contents($_FILES['dni_reverso']['tmp_name']);
-    $tempDNIRev = tempnam(__DIR__."/../../../docs/tmp", 'dni_reverso'. session_id() . '.png');
-    file_put_contents($tempDNIRev, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIRev)));
-    $dniReverso = $tempDNIRev;
+    $dniAnverso = $_FILES['dni_anverso']['tmp_name'];
+    $dniReverso = $_FILES['dni_reverso']['tmp_name'];
 }
-exit("no");
-
 
 $repite_registro=true;
 while($repite_registro){
