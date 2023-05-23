@@ -135,7 +135,7 @@ try {
     if (!is_dir($rutaCompleta)) {
         mkdir($rutaCompleta, 0777, true);
     }
-    $contador_docs=1;
+    $contador_docs=0;
     if (isset($_FILES["docs"])){
         for ($i=0;$i<count($_FILES["docs"]["tmp_name"]);$i++){
             $contador_docs=$i+1;
