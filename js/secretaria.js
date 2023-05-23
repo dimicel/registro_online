@@ -18,7 +18,7 @@ $(function() {
     generaSelectMat_fpb();
     
     document.getElementById("cargando").style.display = 'inherit';
-    prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "secretaria" }),()=>{},"json");
+    prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "secretaria" },()=>{},"json"));
     prom2=prom1.then((resp)=> {alert(resp["error"])
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
