@@ -77,12 +77,12 @@ $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.pn
 file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 $firma = $tempFile;
 
-if (isset($_POST["pasaporte"])){
+if (isset($_FILES["pasaporte"])){
     //$imagePass = file_get_contents($_FILES['pasaporte']['tmp_name']);
-    $imagePass=$_POST['pasaporte'];
-    $tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.jpg');
-    file_put_contents($tempPass, base64_decode(str_replace('data:image/jpg;base64,', '', $imagePass)));
-    $pasaporte = $tempPass;
+    //$tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.jpg');
+    //file_put_contents($tempPass, base64_decode(str_replace('data:image/jpg;base64,', '', $imagePass)));
+    //$pasaporte = $tempPass;
+    $pasaporte=$_FILES['pasaporte']['tmp_name'];
 
     ///prueba
     $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
