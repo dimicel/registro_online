@@ -53,7 +53,7 @@ $check1=false;
 $check2=false;
 $check3=false;
 $check4=false;
-$check5=false;exit("wwwwwwwww");
+$check5=false;
 if (isset($_POST["desc"])){
     foreach($_POST["desc"] as $value) {
         $desc[]=urldecode($value);
@@ -71,7 +71,7 @@ if (isset($_POST["desc"])){
     }
     $docs=$_FILES['docs'];
 }
-
+exit("aaaaaaaaaaa");
 
 $imageData = urldecode($_POST['firma']);
 if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
