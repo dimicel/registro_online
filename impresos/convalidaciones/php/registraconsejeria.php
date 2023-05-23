@@ -176,7 +176,6 @@ try {
         $pdf_docIdent->AddPage();
         $pdf_docIdent->Image($_FILES["dni_anverso"]["tmp_name"], 20, 20, 90, 0);
         $pdf_docIdent->Image($_FILES["dni_reverso"]["tmp_name"], 20, 80, 90, 0);
-        $pdf_docIdent->Output($rutaCompleta, 'F');
         $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
 
