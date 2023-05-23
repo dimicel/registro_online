@@ -240,7 +240,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 $pdf->setFontSubsetting(true);
 
-$pdf->SetFont('dejavusans', '', 7, '', true);
+$pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->setFillColor(200);  //Relleno en gris
 //Padding dentro de la celda del texto
 $pdf->setCellPaddings(0,0,0,0);
@@ -290,7 +290,7 @@ $pdf->SetXY(83,91);
 $pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,true,'T','T');
 
 $pdf->SetXY(45,103);
-$pdf->Cell(125,0,$estudios_superados,0,0,'L',0,'',1,true,'T','T');
+$pdf->MultiCell(150,0,$estudios_superados,0,'L',0,1,'','',true,0,false,false,0);
 $pdf->SetXY(147,134);
 $pdf->Cell(0,0,"X",0,0,'L',0,'',1,true,'T','T');
 
@@ -300,23 +300,23 @@ $pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 if($check1){
     $pdf->SetXY(41.5,144);
-    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check2){
     $pdf->SetXY(41.5,152);
-    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check3){
     $pdf->SetXY(41.5,156);
-    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check4){
     $pdf->SetXY(41.5,161.5);
-    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check5){
     $pdf->SetXY(41.5,165.5);
-    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
     $pdf->SetXY(40,170);
     $pdf->MultiCell(150,0,$otra_doc,0,'L',0,1,'','',true,0,false,false,0);
 }
