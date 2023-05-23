@@ -24,6 +24,6 @@ while($fila = $resultado->fetch_assoc()) {
 
 // Cierre de la conexión
 $mysqli->close();
-
+$data["error"]="ok";
 $data["datos"]=$registros_no_revisados;
 exit(json_encode($data));
