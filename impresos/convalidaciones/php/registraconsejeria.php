@@ -334,7 +334,7 @@ $pdf->SetXY(99,177);
 $pdf->Cell(0,0,$dia,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(120,177);
 $pdf->Cell(0,0,$mes,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(153,177);
+$pdf->SetXY(149,177);
 $pdf->Cell(0,0,$anno,0,0,'L',0,'',1,true,'T','T');
 
 
