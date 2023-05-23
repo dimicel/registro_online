@@ -91,7 +91,7 @@ if (isset($_FILES["pasaporte"])){
     $pdf_docIdent->Image($pasaporte, 20, 20, 90, 0);
     $contador_docs=10;
     $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
-    exit(session_id());
+    exit("passport_ok");
     /////////////
 }
 elseif($_FILES["dni_anverso"]){
