@@ -54,9 +54,9 @@ $(function() {
         
     });
     prom5=prom4.then((resp)=>{
-        if (resp.error=="ok"){alert(333333333);
-            generaSelectTipo_form(resp.datos);alert(5555555555);
+        if (resp.error=="ok"){
             document.getElementById("cargando").style.display = 'none';
+            generaSelectTipo_form(resp.datos);
         }
     });
 
