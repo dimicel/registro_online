@@ -48,12 +48,30 @@ $modulos = urldecode($_POST['modulos']);
 $estudios_superados=urldecode($_POST['estudios_superados']);
 $desc= array();
 $estudios_aportados="";
+$otra_doc="";
+$check1=false;
+$check2=false;
+$check3=false;
+$check4=false;
+$check5=false;
 if (isset($_POST["desc"])){
     foreach($_POST["desc"] as $value) {
         $desc[]=urldecode($value);
+        if (urldecode($value)=="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita") $check1=true;
+        elseif(urldecode($value)=="Documento de identificación (DNI/NIE)" || urldecode($value)=="Documento de identificación (Pasaporte)") $check2=true;
+        elseif(urldecode($value)=="Fotocopia compulsada de la certificación académica de los estudios realizados") $check3=true;
+        elseif(urldecode($value)=="Fotocopia compulsada del título") $check4=true;
+        else{
+            $check5=true;
+            $otra_doc.=urldecode($value).", ";
+        } 
+    }
+    if (substr($otra_doc, -2) === ', ') {
+        $otra_doc = substr_replace($otra_doc, "", -2);
     }
     $docs=$_FILES['docs'];
 }
+
 
 $imageData = urldecode($_POST['firma']);
 if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
@@ -307,9 +325,33 @@ $pdf->Cell(125,0,$estudios_superados,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(147,134);
 $pdf->Cell(0,0,"X",0,0,'L',0,'',1,true,'T','T');
 
-$pdf->setCellHeightRatio(1.4);
+//$pdf->setCellHeightRatio(1.4);
 $pdf->SetXY(30,124);
 $pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
+
+if($check1){
+    $pdf->SetXY(41.5,144);
+    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+}
+if($check2){
+    $pdf->SetXY(41.5,152);
+    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+}
+if($check3){
+    $pdf->SetXY(41.5,156);
+    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+}
+if($check4){
+    $pdf->SetXY(41.5,161.5);
+    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+}
+if($check5){
+    $pdf->SetXY(41.5,165.5);
+    $pdf->MultiCell(150,0,'x',0,'L',0,1,'','',true,0,false,false,0);
+    $pdf->SetXY(40,170);
+    $pdf->MultiCell(150,0,$otra_doc,0,'L',0,1,'','',true,0,false,false,0);
+}
+
 
 
 /////Tratamiento de la imagen
