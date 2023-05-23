@@ -380,7 +380,6 @@ $pdf->Cell(0,0,"SELECCIÓN DE MATERIAS",0,0,'L',0,'',1,false,'','');
     - Matemáticas
     - Educación Plástica y Visual
     - Música
-    - Tecnología
     - $religion
     - $p_idioma
 MAT;
@@ -392,8 +391,7 @@ MAT;
     4
     2
     2
-    2
-    2
+    1
     4
 MAT;
 	$h_mat_optativas=<<<MAT
