@@ -61,19 +61,19 @@ $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.pn
 file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 $firma = $tempFile;
 
-if (isset($_POST["pasaporte"])){
-    $imagePass = urldecode($_POST['pasaporte']);
+if (isset($_FILES["pasaporte"])){
+    $imagePass = file_get_contents($_FILES['pasaporte']['tmp_name']);
     $tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
     file_put_contents($tempPass, base64_decode(str_replace('data:image/png;base64,', '', $imagePass)));
     $pasaporte = $tempPass;
 }
-elseif($_POST["dni_anverso"]){
-    $imageDNIAnv = urldecode($_POST['dni_anverso']);
+elseif($_FILES["dni_anverso"]){
+    $imageDNIAnv = file_get_contents($_FILES['dni_anverso']['tmp_name']);
     $tempDNIAnv = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
     file_put_contents($tempDNIAnv, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIAnv)));
     $dniAnverso = $tempDNIAnv;
 
-    $imageDNIRev = urldecode($_POST['dni_reverso']);
+    $imageDNIRev = file_get_contents($_FILES['dni_reverso']['tmp_name']);
     $tempDNIRev = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
     file_put_contents($tempDNIRev, base64_decode(str_replace('data:image/png;base64,', '', $imageDNIRev)));
     $dniReverso = $tempDNIRev;
@@ -125,7 +125,7 @@ try {
         $stmt2->bind_param("sss", $registro, $desc[$i], $rutaTb);
         
     }
-    if (isset($_POST["pasaporte"]) || isset($_POST["dni_anverso"])){
+    if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
         $indice=sprintf("%02d", $contador_docs+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
         $stmt2->bind_param("sss", $registro, $desc[$i], $rutaTb);
@@ -173,15 +173,15 @@ try {
         $pdf_docIdent = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf_docIdent->AddPage();
-        $pdf_docIdent->Image($tempPass, 20, 20, 90, 0);
+        $pdf_docIdent->Image($imagePass, 20, 20, 90, 0);
         $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
     elseif(isset($FILES["dni_anverso"])){
         $pdf_docIdent = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf_docIdent->AddPage();
-        $pdf_docIdent->Image($tempDNIAnv, 20, 20, 90, 0);
-        $pdf_docIdent->Image($tempDNIRev, 20, 80, 90, 0);
+        $pdf_docIdent->Image($imageDNIAnv, 20, 20, 90, 0);
+        $pdf_docIdent->Image($imageDNIRev, 20, 80, 90, 0);
         $pdf_docIdent->Output($rutaCompleta, 'F');
         $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
