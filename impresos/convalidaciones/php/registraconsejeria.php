@@ -264,7 +264,7 @@ $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 $pdf->setPageMark();
 
 
-$pdf->SetXY(35,47);
+$pdf->SetXY(38,47);
 $pdf->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(122,51);
 $pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
@@ -295,8 +295,8 @@ $pdf->MultiCell(150,0,$estudios_superados,0,'L',0,1,'','',true,0,false,false,0);
 
 
 //$pdf->setCellHeightRatio(1.4);
-$pdf->SetXY(30,122);
-$pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->SetXY(20,122);
+$pdf->MultiCell(170,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 if($check1){
     $pdf->SetXY(40,143);
@@ -317,8 +317,8 @@ if($check4){
 if($check5){
     $pdf->SetXY(40,164);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
-    $pdf->SetXY(40,168);
-    $pdf->MultiCell(150,0,$otra_doc,0,'L',0,1,'','',true,0,false,false,0);
+    $pdf->SetXY(20,168);
+    $pdf->MultiCell(170,0,$otra_doc,0,'L',0,1,'','',true,0,false,false,0);
 }
 
 
