@@ -583,7 +583,7 @@ function registraForm() {
             contentType: false,
             processData: false,
             success: function(resp) {
-                alerta(resp,"sss");
+                alerta(resp,"sss", false, 800);
                 document.getElementById("cargando").style.display = 'none';
                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                 else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
