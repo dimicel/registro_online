@@ -85,7 +85,7 @@ if (isset($_FILES["pasaporte"])){
     $pasaporte=$_FILES['pasaporte']['tmp_name'];
 
     ///prueba
-    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
+    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/"."pppppppppppppp"."/docs"."/";
     $pdf_docIdent = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
     $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
     $pdf_docIdent->AddPage();
