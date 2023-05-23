@@ -51,7 +51,7 @@ $(function() {
         document.getElementById("check_mat_bach").checked = (resp["bach"] == 0 ? false : true);
         document.getElementById("check_mat_ciclos").checked = (resp["ciclos"] == 0 ? false : true);
         document.getElementById("check_mat_fpb").checked = (resp["fpb"] == 0 ? false : true);
-        if (t1 && t2) document.getElementById("cargando").style.display = 'none';
+        document.getElementById("cargando").style.display = 'none';
     });
 
     $("#div_nie_registrado").dialog({
