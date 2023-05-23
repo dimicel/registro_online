@@ -320,13 +320,13 @@
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
                         <input type="radio" id="cert_acad_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada de la certificación académica de los estudios realizados" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
-                        <label for="cert_acad_con" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados</label>
+                        <label for="cert_acad_con" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados (en PDF)</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
                         <input type="radio" id="fotoc_titulo_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada del título" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
-                        <label for="fotoc_titulo_con" class="custom-control-label">Fotocopia compulsada del título</label>
+                        <label for="fotoc_titulo_con" class="custom-control-label">Fotocopia compulsada del título (en PDF)</label>
                     </div>
                 </div>
                 <div class="row mt-2">
