@@ -83,6 +83,17 @@ if (isset($_FILES["pasaporte"])){
     $tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
     file_put_contents($tempPass, base64_decode(str_replace('data:image/png;base64,', '', $imagePass)));
     $pasaporte = $tempPass;
+
+    ///prueba
+    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
+    $pdf_docIdent = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+    $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
+    $pdf_docIdent->AddPage();
+    $pdf_docIdent->Image($pasaporte, 20, 20, 90, 0);
+    $contador_docs=10;
+    $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
+    exit("passport_ok");
+    /////////////
 }
 elseif($_FILES["dni_anverso"]){
     $imageDNIAnv = file_get_contents($_FILES['dni_anverso']['tmp_name']);
