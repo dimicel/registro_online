@@ -82,10 +82,29 @@ if (isset($_FILES["pasaporte"])){
     //$tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.jpg');
     //file_put_contents($tempPass, base64_decode(str_replace('data:image/jpg;base64,', '', $imagePass)));
     //$pasaporte = $tempPass;
-    $pasaporte=$_FILES['pasaporte']['tmp_name'];
+    $repite_registro=true;
+    while($repite_registro){
+        $registro=generaRegistro();
+        $vReg=$mysqli->query("select * from convalidaciones where registro='$registro'");
+        if ($mysqli->errno>0){
+            unlink($tempFile);
+            exit("database");
+        }
+        if ($vReg->num_rows==0) {
+            $repite_registro=false;
+        }
+        $vReg->free();
+    }
+    $dirRegistro=substr($registro, 17);
 
+
+    $pasaporte=$_FILES['pasaporte']['tmp_name'];
+    
     ///prueba
-    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/"."pppppppppppppp"."/docs"."/";
+    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
+    if (!is_dir($rutaCompleta)) {
+        mkdir($rutaCompleta, 0777, true);
+    }
     $pdf_docIdent = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
     $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
     $pdf_docIdent->AddPage();
