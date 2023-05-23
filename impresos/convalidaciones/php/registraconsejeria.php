@@ -59,7 +59,7 @@ if (isset($_POST["desc"])){
     foreach($_POST["desc"] as $value) {
         $desc[]=urldecode($value);
         if (urldecode($value)=="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita") $check1=true;
-        elseif(urldecode($value)=="Documento de identificación (DNI/NIE)" || urldecode($value)=="Documento de identificación (Pasaporte)") $check2=true;
+        elseif(urldecode($value)=="Documento de identificación") $check2=true;
         elseif(urldecode($value)=="Fotocopia compulsada de la certificación académica de los estudios realizados") $check3=true;
         elseif(urldecode($value)=="Fotocopia compulsada del título") $check4=true;
         else{
@@ -334,7 +334,7 @@ $pdf->SetXY(99,177);
 $pdf->Cell(0,0,$dia,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(120,177);
 $pdf->Cell(0,0,$mes,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(149,177);
+$pdf->SetXY(151,177);
 $pdf->Cell(0,0,$anno,0,0,'L',0,'',1,true,'T','T');
 
 
