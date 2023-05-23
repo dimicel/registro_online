@@ -59,7 +59,6 @@ if (isset($_POST["desc"])){
     foreach($_POST["desc"] as $value) {
         $desc[]=urldecode($value);
         if (urldecode($value)=="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita") $check1=true;
-        elseif(urldecode($value)=="Documento de identificación") $check2=true;
         elseif(urldecode($value)=="Fotocopia compulsada de la certificación académica de los estudios realizados") $check3=true;
         elseif(urldecode($value)=="Fotocopia compulsada del título") $check4=true;
         else{
@@ -124,6 +123,7 @@ try {
         
     }
     if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
+        $check2=true;
         $indice=sprintf("%02d", $contador_docs+1)."_";
         $descDoc="Documento de identificación";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
