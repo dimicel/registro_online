@@ -18,10 +18,8 @@ $(function() {
     generaSelectMat_fpb();
     
     document.getElementById("cargando").style.display = 'inherit';
-    t1 = false;
-    t2 = false;
-    t3 = false;
-    $.post("php/sesion.php", { tipo_usu: "secretaria" }, function(resp) {
+    prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "secretaria" }));
+    prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
             anno_ini_curso = resp["anno_ini_curso"];
@@ -38,24 +36,21 @@ $(function() {
             if (document.getElementById("curso").value != "2020-2021") $("#curso_pre_mat option[value='3esopmar']").hide();
             else $("#curso_pre_mat option[value='3esopmar']").show();
             ocultaCursosDesplegable();
-            t1 = true;
-            if (t2 && t3) document.getElementById("cargando").style.display = 'none';
+            return($.post("php/secret_prematricula.php", { peticion: "read" }));
         }
     }, "json");
 
-    $.post("php/secret_prematricula.php", { peticion: "read" }, function(resp) {
+    prom3=prom2.then((resp)=> {
         document.getElementById("premat_eso").checked = (resp["eso"] == 0 ? false : true);
         document.getElementById("premat_bach").checked = (resp["bach"] == 0 ? false : true);
-        t2 = true;
-        if (t1 && t3) document.getElementById("cargando").style.display = 'none';
+        return ($.post("php/secret_matricula.php", { peticion: "read" }));
     }, "json");
 
-    $.post("php/secret_matricula.php", { peticion: "read" }, function(resp) {
+    prom4=prom3.then((resp)=>{
         document.getElementById("check_mat_eso").checked = (resp["eso"] == 0 ? false : true);
         document.getElementById("check_mat_bach").checked = (resp["bach"] == 0 ? false : true);
         document.getElementById("check_mat_ciclos").checked = (resp["ciclos"] == 0 ? false : true);
         document.getElementById("check_mat_fpb").checked = (resp["fpb"] == 0 ? false : true);
-        t3 = true;
         if (t1 && t2) document.getElementById("cargando").style.display = 'none';
     }, "json");
 
@@ -129,12 +124,13 @@ function generaSelectTipo_form(){
 
     // Crear las opciones restantes
     const opciones = [
-        { value: "revision_examen", text: "Revisión de examen" },
-        { value: "revision_calificacion", text: "Revisión de calificación" },
-        { value: "prematricula", text: "Prematrícula" },
-        { value: "matricula", text: "Matrícula ESO y BACH" },
+        { value: "convalidaciones", text: "Convalidaciones" },
         { value: "matricula_ciclos", text: "Matrícula CICLOS" },
-        { value: "matricula_fpb", text: "Matrícula FPB" }
+        { value: "matricula", text: "Matrícula ESO y BACH" },
+        { value: "matricula_fpb", text: "Matrícula FPB" },
+        { value: "prematricula", text: "Prematrícula" },
+        { value: "revision_calificacion", text: "Revisión de calificación" },
+        { value: "revision_examen", text: "Revisión de examen" }
     ];
 
     // Recorrer el array de opciones y crear las opciones
