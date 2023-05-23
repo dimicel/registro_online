@@ -77,14 +77,6 @@ $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.pn
 file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 $firma = $tempFile;
 
-if (isset($_FILES["pasaporte"])){
-    $pasaporte=$_FILES['pasaporte']['tmp_name'];
-}
-elseif($_FILES["dni_anverso"]){
-    $dniAnverso = $_FILES['dni_anverso']['tmp_name'];
-    $dniReverso = $_FILES['dni_reverso']['tmp_name'];
-}
-
 $repite_registro=true;
 while($repite_registro){
     $registro=generaRegistro();
@@ -173,19 +165,19 @@ try {
             }
         }
     }
-    if (isset($FILES["pasaporte"])){
+    if (isset($_FILES["pasaporte"])){
         $pdf_docIdent = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf_docIdent->AddPage();
-        $pdf_docIdent->Image($pasaporte, 20, 20, 90, 0);
+        $pdf_docIdent->Image($_FILES["pasaporte"]["tmp_name"], 20, 20, 90, 0);
         $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
-    elseif(isset($FILES["dni_anverso"])){
+    elseif(isset($_FILES["dni_anverso"])){
         $pdf_docIdent = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf_docIdent->AddPage();
-        $pdf_docIdent->Image($dniAnverso, 20, 20, 90, 0);
-        $pdf_docIdent->Image($dniReverso, 20, 80, 90, 0);
+        $pdf_docIdent->Image($_FILES["dni_anverso"]["tmp_name"], 20, 20, 90, 0);
+        $pdf_docIdent->Image($_FILES["dni_reverso"]["tmp_name"], 20, 80, 90, 0);
         $pdf_docIdent->Output($rutaCompleta, 'F');
         $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
