@@ -53,7 +53,7 @@ $check1=false;
 $check2=false;
 $check3=false;
 $check4=false;
-$check5=false;
+$check5=false;exit("wwwwwwwww");
 if (isset($_POST["desc"])){
     foreach($_POST["desc"] as $value) {
         $desc[]=urldecode($value);
