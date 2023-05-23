@@ -78,7 +78,7 @@ $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.pn
 file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 $firma = $tempFile;
 
-if (isset($_FILES["pasaporte"])){
+if (isset($_FILES["pasaporte"])){exit("pasaporte");
     $imagePass = file_get_contents($_FILES['pasaporte']['tmp_name']);
     $tempPass = tempnam(__DIR__."/../../../docs/tmp", 'pasaporte_'. session_id() . '.png');
     file_put_contents($tempPass, base64_decode(str_replace('data:image/png;base64,', '', $imagePass)));
