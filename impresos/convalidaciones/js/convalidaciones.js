@@ -815,11 +815,11 @@ function muestraEditor(_ev){
                     
                    if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
                         _fname_ajax="dni_anverso";
-                        _f_ajax="dni_anverso.png";
+                        _f_ajax="dni_anverso.jpg";
                    }
                    else {
                         _fname_ajax="pasaporte";
-                        _f_ajax="pasaporte.png";
+                        _f_ajax="pasaporte.jpg";
                    }
                     _crop1.result({
                         type: 'blob'
@@ -839,7 +839,7 @@ function muestraEditor(_ev){
                         }).then(function (response) {
                             return response.blob();
                         }).then(function (blob) {
-                            formData.append('dni_reverso', blob,'dni_anverso.png');
+                            formData.append('dni_reverso', blob,'dni_anverso.jpg');
                         });
                         _crop2.destroy();
                    }
