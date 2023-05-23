@@ -115,7 +115,6 @@ try {
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
     $contador_docs=1;
-    exit("3333333");
     for($i=0;$i<count($desc);$i++) {
         $contador_docs=$i+1;
         $indice=sprintf("%02d", $i+1)."_";
@@ -124,6 +123,7 @@ try {
         $stmt2->execute();
         
     }
+    exit("555555555555");
     if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
         $indice=sprintf("%02d", $contador_docs+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
