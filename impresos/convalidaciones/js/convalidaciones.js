@@ -592,6 +592,7 @@ function registraForm() {
                 }
             },
             error: function(xhr, status, error) {
+                document.getElementById("cargando").style.display = 'none';
                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
             }
         });
