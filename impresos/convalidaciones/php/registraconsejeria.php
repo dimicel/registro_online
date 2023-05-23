@@ -173,15 +173,15 @@ try {
         $pdf_docIdent = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf_docIdent->AddPage();
-        $pdf_docIdent->Image($imagePass, 20, 20, 90, 0);
+        $pdf_docIdent->Image($pasaporte, 20, 20, 90, 0);
         $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
     elseif(isset($FILES["dni_anverso"])){
         $pdf_docIdent = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf_docIdent->setImageScale(PDF_IMAGE_SCALE_RATIO);
         $pdf_docIdent->AddPage();
-        $pdf_docIdent->Image($imageDNIAnv, 20, 20, 90, 0);
-        $pdf_docIdent->Image($imageDNIRev, 20, 80, 90, 0);
+        $pdf_docIdent->Image($dniAnverso, 20, 20, 90, 0);
+        $pdf_docIdent->Image($dniReverso, 20, 80, 90, 0);
         $pdf_docIdent->Output($rutaCompleta, 'F');
         $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
