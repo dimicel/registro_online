@@ -263,33 +263,33 @@ $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 $pdf->setPageMark();
 
 
-$pdf->SetXY(33,47);
+$pdf->SetXY(35,47);
 $pdf->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(122,51);
 $pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(35,58);
+$pdf->SetXY(35,55);
 $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(125,58);
+$pdf->SetXY(125,55);
 $pdf->Cell(54,0,$localidad,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(35,62);
+$pdf->SetXY(35,59);
 $pdf->Cell(0,0,$cp,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(85,62);
+$pdf->SetXY(85,59);
 $pdf->Cell(40,0,$provincia,0,0,'L',0,'',1,true,'T','T');
 
-$pdf->SetXY(90,79);
+$pdf->SetXY(90,76);
 $pdf->Cell(0,0,"IES UNIVERSIDAD LABORAL",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(65,83);
+$pdf->SetXY(65,80);
 $pdf->Cell(0,0,"AVDA. EUROPA, 28",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(56,87);
+$pdf->SetXY(56,84);
 $pdf->Cell(0,0,"45003",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(116,87);
+$pdf->SetXY(116,84);
 $pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(40,91);
+$pdf->SetXY(40,88);
 $pdf->Cell(0,0,$grado,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(83,91);
+$pdf->SetXY(83,88);
 $pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,true,'T','T');
 
-$pdf->SetXY(45,103);
+$pdf->SetXY(45,100);
 $pdf->MultiCell(150,0,$estudios_superados,0,'L',0,1,'','',true,0,false,false,0);
 $pdf->SetXY(147,134);
 $pdf->Cell(0,0,"X",0,0,'L',0,'',1,true,'T','T');
