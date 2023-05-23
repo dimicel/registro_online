@@ -263,9 +263,9 @@ $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 $pdf->setPageMark();
 
 
-$pdf->SetXY(33,50);
+$pdf->SetXY(33,47);
 $pdf->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(122,54);
+$pdf->SetXY(122,51);
 $pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(35,58);
 $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
