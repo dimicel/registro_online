@@ -565,6 +565,7 @@ function registraForm() {
         formData.append("firma", encodeURIComponent(canvas_upload));
 
         datosHidden = document.querySelectorAll('input[name="desc[]"]');
+        datosFiles = document.querySelectorAll('input[name="docs[]"]');
         for (var i = 0; i < datosHidden.length; i++) {
             if (datosHidden[i].value!="Documento de identificación (DNI/NIE)" && datosHidden[i].value!="Documento de identificación (Pasaporte)"){
                 formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
