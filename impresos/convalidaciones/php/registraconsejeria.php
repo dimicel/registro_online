@@ -203,6 +203,7 @@ $fecha_actual=getdate();
 $dia=$fecha_actual["mday"];
 $mes=$meses[$fecha_actual["mon"]-1];
 $anno=$fecha_actual["year"];
+$anno = substr($anno, -2);
 
 class MYPDF extends TCPDF {
     // Constructor
@@ -298,23 +299,23 @@ $pdf->SetXY(30,122);
 $pdf->MultiCell(150,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 if($check1){
-    $pdf->SetXY(41,143);
+    $pdf->SetXY(40,143);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check2){
-    $pdf->SetXY(41,152);
+    $pdf->SetXY(40,152);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check3){
-    $pdf->SetXY(41,156);
+    $pdf->SetXY(40,156);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check4){
-    $pdf->SetXY(41,160);
+    $pdf->SetXY(40,160);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
 }
 if($check5){
-    $pdf->SetXY(41,164);
+    $pdf->SetXY(40,164);
     $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
     $pdf->SetXY(40,168);
     $pdf->MultiCell(150,0,$otra_doc,0,'L',0,1,'','',true,0,false,false,0);
@@ -327,11 +328,11 @@ $pdf->Image($firma, 120, 183, 20, 0, '', '', '', false, 300);
 
 
 $pdf->setCellHeightRatio(1.4);
-$pdf->SetXY(60,177);
+$pdf->SetXY(65,177);
 $pdf->Cell(0,0,"Toledo",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(96,177);
+$pdf->SetXY(99,177);
 $pdf->Cell(0,0,$dia,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(115,177);
+$pdf->SetXY(120,177);
 $pdf->Cell(0,0,$mes,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(153,177);
 $pdf->Cell(0,0,$anno,0,0,'L',0,'',1,true,'T','T');
