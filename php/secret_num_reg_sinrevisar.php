@@ -9,7 +9,7 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-$sql = "SHOW TABLES";
+$sql = "SELECT DISTINCT TABLE_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'ulaboral_imp_sec_online' AND COLUMN_NAME = 'procesado'";
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
