@@ -240,7 +240,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 $pdf->setFontSubsetting(true);
 
-$pdf->SetFont('dejavusans', '', 10, '', true);
+$pdf->SetFont('dejavusans', '', 7, '', true);
 $pdf->setFillColor(200);  //Relleno en gris
 //Padding dentro de la celda del texto
 $pdf->setCellPaddings(0,0,0,0);
@@ -338,7 +338,7 @@ $pdf->SetXY(153,177);
 $pdf->Cell(0,0,$anno,0,0,'L',0,'',1,true,'T','T');
 
 
-$pdf->SetFont('dejavusans', '', 7, '', true);
+$pdf->SetFont('dejavusans', '', 5, '', true);
 $pdf->SetXY(30,195);
 $pdf->Cell(0,0,$registro,0,0,'L',0,'',1,true,'T','T');
 
