@@ -133,7 +133,7 @@ function obtenRegSinProcesar(){
 function generaSelectTipo_form(matriz){
     // Obtener el elemento select
     const miSelect = document.getElementById("tipo_form");
-
+    miSelect.innerHTML="";
     // Crear la opción "Seleccione uno..." con el valor vacío y seleccionada por defecto
     const opcion0 = document.createElement("option");
     opcion0.value = "";
