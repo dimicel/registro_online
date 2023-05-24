@@ -466,12 +466,8 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
 
     if (typeof(orden_campo) != "string") {
-        orden_campo = "apellidos";
+        orden_campo = "apellidos,nombre";
         _orden_campo = orden_campo;
-        if (tipo_formulario == "prematricula" ||
-            tipo_formulario == "matricula" ||
-            tipo_formulario == "matricula_ciclos" ||
-            tipo_formulario == "matricula_fpb") orden_campo = "apellidos,nombre";
     }
     if (typeof(orden_direccion) != "string") {
         orden_direccion = "🡅";
