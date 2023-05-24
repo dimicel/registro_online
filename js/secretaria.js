@@ -50,7 +50,7 @@ $(function() {
         document.getElementById("check_mat_bach").checked = (resp["bach"] == 0 ? false : true);
         document.getElementById("check_mat_ciclos").checked = (resp["ciclos"] == 0 ? false : true);
         document.getElementById("check_mat_fpb").checked = (resp["fpb"] == 0 ? false : true);
-        return ($.post("php/secret_num_reg_sinrevisar.php", {},()=>{},"json"));
+        return ($.post("php/secret_num_reg_sinrevisar.php", {curso:curso_actual},()=>{},"json"));
         
     });
     prom5=prom4.then((resp)=>{
