@@ -56,10 +56,13 @@ elseif($tabla=="mat_fpb"){
 else {
     $proceso=$tabla;
     if ($proceso=="revision_examen"){
-        $campos="id_nif,nombre,del_alumno,registro,listado,incidencias";
+        $campos="id_nif,nombre,apellidos,del_alumno,registro,listado,incidencias,procesado";
     }
     elseif ($proceso=="revision_calificacion"){
-        $campos="id_nif,nombre,registro,listado,incidencias";
+        $campos="id_nif,nombre,apellidos,registro,listado,incidencias,procesado";
+    }
+    elseif ($proceso="convalidaciones"){
+        $campos="id_nif,nombre,apellidos,registro,procesado,incidencias";
     }
 }
 
@@ -108,27 +111,42 @@ $data["registros"]=array();
 if ($proceso=="revision_examen"){
     while ($reg=$res->fetch_assoc()){
         $data["registros"][$contador]["id_nif"]= $reg["id_nif"];
-        $data["registros"][$contador]["nombre"]=$reg["nombre"];
+        $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         if ($reg["en_calidad_de"]!="ALUMNO")$data["registros"][$contador]["del_alumno"]=$reg["del_alumno"];
         else $data["registros"][$contador]["del_alumno"]="-";
         $data["registros"][$contador]["registro"]=$reg["registro"];
         $data["registros"][$contador]["listado"]=$reg["listado"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
+        $data["registros"][$contador]["procesado"];
         $contador++;
     }
 }
 elseif ($proceso=="revision_calificacion"){
     while ($reg=$res->fetch_assoc()){
         $data["registros"][$contador]["id_nif"]= $reg["id_nif"];
-        $data["registros"][$contador]["nombre"]=$reg["nombre"];
+        $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         $data["registros"][$contador]["registro"]=$reg["registro"];
         $data["registros"][$contador]["listado"]=$reg["listado"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
+        $data["registros"][$contador]["procesado"];
         $contador++;
     }
 } 
+elseif($proceso=="convalidaciones"){
+    while ($reg=$res->fetch_assoc()){
+        $data["registros"][$contador]["id_nif"]= $reg["id_nif"];
+        $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
+        $data["registros"][$contador]["registro"]=$reg["registro"];
+        $data["registros"][$contador]["listado"]=$reg["listado"];
+        if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
+        else $data["registros"][$contador]["incidencias"]=1;
+        $data["registros"][$contador]["procesado"];
+        $contador++;
+    }
+}
+
 elseif ($proceso=="prematricula"){
     while ($reg=$res->fetch_assoc()){
         $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
