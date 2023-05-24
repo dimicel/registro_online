@@ -125,7 +125,7 @@
                     <div class="form-group row">
                         <label class="col-form-label col-lg-2" style="margin-left: 20px;">Año Acad.: </label>
                         <div class="col-lg-2" style="margin-left:-85px">
-                            <select id="curso" size="1" onchange="listaRegistros();" class="form-control"></select>
+                            <select id="curso" size="1" onchange="obtenRegSinProcesar();listaRegistros();" class="form-control"></select>
                         </div>
                         <label class="col-form-label col-lg-2">Tipo de formulario: </label>
                         <div class="col-lg-3" style="margin-left:-40px">

@@ -120,6 +120,16 @@ function generaSelectCurso(){
     }
 }
 
+function obtenRegSinProcesar(){
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post("php/secret_num_reg_sinrevisar.php", {curso:document.getElementById("curso").value},(resp)=>{
+        if (resp.error=="ok"){
+            generaSelectTipo_form(resp.datos);
+        }
+        document.getElementById("cargando").style.display = 'none';
+    },"json")
+}
+
 function generaSelectTipo_form(matriz){
     // Obtener el elemento select
     const miSelect = document.getElementById("tipo_form");
