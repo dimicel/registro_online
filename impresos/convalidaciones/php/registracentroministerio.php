@@ -105,11 +105,11 @@ try {
     $stmt1->close();
     
     // Insertar registros en la segunda tabla
-    $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (registro, descripcion, ruta) VALUES (?, ?, ?)");
+    $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta) VALUES (?, ?, ?, ?)");
     for($i=0;$i<count($desc);$i++) {
         $indice=sprintf("%02d", $i+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$docs[$i]["name"];
-        $stmt2->bind_param("sss", $registro, $desc[$i], $rutaTb);
+        $stmt2->bind_param("ssss", $id_nie,$registro, $desc[$i], $rutaTb);
         $stmt2->execute();
     }
     $stmt2->close();

@@ -385,6 +385,12 @@ function listaRegistros(orden_campo, orden_direccion) {
         campos = ["id_nif", "nombre", "registro"];
         estilo = ["width:70px", "width:330px", "width:270px"];
         encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
+    } else if(tipo_formulario=="convalidaciones"){
+        tabla = tipo_formulario;
+        campos = ["id_nif", "nombre", "registro"];
+        estilo = ["width:70px", "width:330px", "width:270px"];
+        encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
+
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
         else if (document.getElementById("curso_pre_mat").value == "3eso") {tabla = "premat_eso"; grupo="3º ESO";}
