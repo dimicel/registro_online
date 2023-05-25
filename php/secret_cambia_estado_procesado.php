@@ -8,7 +8,7 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 $tabla=$_POST["tabla"];
-$estado=$_POST["estado"];
+$estado = isset($_POST['estado']) ? $_POST['estado'] : 0;
 $registro=$_POST["registro"];
 
 exit($tabla."   ".$estado."   ".$registro);
