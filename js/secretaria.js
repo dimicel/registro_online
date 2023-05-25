@@ -488,6 +488,7 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
     encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
     if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td></tr>";
+    if (tipo_formulario.indexOf("matricula")==-1)encab += "<td style='width:110px; text-align: center'>Procesado</td></tr>";
     ///////////////////////////////////////////////
 
     buscar = document.getElementById("busqueda").value;
@@ -618,6 +619,11 @@ function listaRegistros(orden_campo, orden_direccion) {
                     if (data_array[i].listado == 1) data += "<td style='width:90px'><center><input type='checkbox' checked onclick='javascript: return false;'/></center></td></tr>";
                     else data += "<td style='width:90px'><center><input type='checkbox' onclick='javascript: return false;'/></center></td></tr>";
                 }
+                //Ckeck de procesado. Si es matrícula o prematrícula no aparece
+                if (tipo_formulario.indexOf("matricula")==-1){
+                    if (data.array[i].procesado==1) data += "<td style='width:110px'><center><input type='checkbox' checked onclick='javascript: formularioPrecesado(this);'/></center></td></tr>";
+                    else  data += "<td style='width:110px'><center><input type='checkbox' onclick='javascript: formularioPrecesado(this);'/></center></td></tr>";
+                }
             }
             document.getElementById("encabezado_docs").innerHTML = encab;
             document.getElementById("registros_docs").innerHTML = data;
@@ -642,6 +648,11 @@ function ordenListado(obj) {
     _orden_campo = campo;
     _orden_direccion = sim_dir;
     listaRegistros(campo, sim_dir);
+}
+
+
+function formularioPrecesado(obj){
+alert(obj.parentNode.children[1].innerHTML);
 }
 
 
