@@ -663,7 +663,7 @@ function formularioProcesado(obj){
         }
         else if(resp=="errordb"){
             document.getElementById("cargando").style.display = 'none';
-            alerta("Hay un problema en la bse de datos. Vuelva a intentarlo en otro momento.","ERROR DB");
+            alerta("Hay un problema en la base de datos. Vuelva a intentarlo en otro momento.","ERROR DB");
             obj.checked=!obj.checked;
         }
         else if(resp=="ok"){
