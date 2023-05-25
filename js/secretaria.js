@@ -621,8 +621,8 @@ function listaRegistros(orden_campo, orden_direccion) {
                 }
                 //Ckeck de procesado. Si es matrícula o prematrícula no aparece
                 if (tipo_formulario.indexOf("matricula")==-1){
-                    if (data_array[i].procesado==1) data += "<td style='width:110px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this.parentNode.parentNode.parentNode.parentNode.children[0].children[0].innerHTML);'/></center></td></tr>";
-                    else  data += "<td style='width:110px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this.parentNode.parentNode.parentNode.parentNode.children[0].children[0].innerHTML);'/></center></td></tr>";
+                    if (data_array[i].procesado==1) data += "<td style='width:110px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this.parentNode.parentNode.parentNode.parentNode.children[0].children[3].innerHTML);'/></center></td></tr>";
+                    else  data += "<td style='width:110px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this.parentNode.parentNode.parentNode.parentNode.children[0].children[3].innerHTML);'/></center></td></tr>";
                 }
             }
             document.getElementById("encabezado_docs").innerHTML = encab;
