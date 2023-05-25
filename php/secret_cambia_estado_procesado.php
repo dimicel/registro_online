@@ -17,10 +17,10 @@ $sql = "UPDATE $tabla SET procesado=$estado WHERE registro='$registro'";
 $result = $mysqli->query($sql);
 
 if ($mysqli->affected_rows > 0) {
+    $mysqli->close();
+    exit("ok");
+}
+else{
+    $mysqli->close();
     exit("errordb");
 }
-
-
-// Cierre de la conexión
-$mysqli->close();
-exit("ok");
