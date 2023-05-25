@@ -62,7 +62,7 @@ else {
         $campos="id_nif,nombre,apellidos,registro,listado,incidencias,procesado";
     }
     elseif ($proceso="convalidaciones"){
-        $campos="id_nif,nombre,apellidos,registro,procesado,incidencias";
+        $campos="id_nif,nombre,apellidos,registro,listado,incidencias,procesado";
     }
 }
 
