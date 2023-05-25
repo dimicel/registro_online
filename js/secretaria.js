@@ -627,6 +627,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             }
             document.getElementById("encabezado_docs").innerHTML = encab;
             document.getElementById("registros_docs").innerHTML = data;
+            alert(encab);alert(data);
         }
     }, "json");
 }
