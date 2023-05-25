@@ -11,7 +11,6 @@ $tabla=$_POST["tabla"];
 $estado = isset($_POST['estado']) ? $_POST['estado'] : 0;
 $registro=$_POST["registro"];
 
-exit($tabla."   ".$estado."   ".$registro);
 
 $sql = "UPDATE $tabla SET procesado='$estado' WHERE registro='$registro'";
 $result = $mysqli->query($sql);
