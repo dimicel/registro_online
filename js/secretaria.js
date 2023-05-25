@@ -654,7 +654,7 @@ function ordenListado(obj) {
 function formularioProcesado(obj){
     num_reg=obj.parentNode.parentNode.parentNode.parentNode.children[0].children[3].innerHTML;
     document.getElementById("cargando").style.display = 'inherit';
-    p1=new Promise.resolve($.post("php/secret_cambia_estado_procesado.php",{registro:num_reg,tabla:tipo_formulario,estado:this.checked}));
+    p1=Promise.resolve($.post("php/secret_cambia_estado_procesado.php",{registro:num_reg,tabla:tipo_formulario,estado:this.checked}));
     p2=p1.then((resp)=>{alert("1 "+resp);
         if (resp=="server"){
             document.getElementById("cargando").style.display = 'none';
