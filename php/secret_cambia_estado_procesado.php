@@ -12,7 +12,7 @@ $estado = isset($_POST['estado']) ? $_POST['estado'] : 0;
 $registro=$_POST["registro"];
 
 
-$sql = "UPDATE $tabla SET procesado='$estado' WHERE registro='$registro'";
+$sql = "UPDATE $tabla SET procesado=$estado WHERE registro='$registro'";
 $result = $mysqli->query($sql);
 
 if ($mysqli->affected_rows > 0) {
