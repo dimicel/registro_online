@@ -118,7 +118,7 @@ if ($proceso=="revision_examen"){
         $data["registros"][$contador]["listado"]=$reg["listado"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
-        $data["registros"][$contador]["procesado"];
+        $data["registros"][$contador]["procesado"]=$reg["procesado"];
         $contador++;
     }
 }
@@ -130,7 +130,7 @@ elseif ($proceso=="revision_calificacion"){
         $data["registros"][$contador]["listado"]=$reg["listado"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
-        $data["registros"][$contador]["procesado"];
+        $data["registros"][$contador]["procesado"]=$reg["procesado"];
         $contador++;
     }
 } 
@@ -142,7 +142,7 @@ elseif($proceso=="convalidaciones"){
         $data["registros"][$contador]["listado"]=$reg["listado"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
-        $data["registros"][$contador]["procesado"];
+        $data["registros"][$contador]["procesado"]=$reg["procesado"];
         $contador++;
     }
 }
