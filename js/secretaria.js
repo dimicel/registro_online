@@ -652,7 +652,7 @@ function ordenListado(obj) {
 
 
 function formularioProcesado(obj){
-    num_reg=obj.parentNode.parentNode.parentNode.children[0].children[3].innerHTML;
+    num_reg=obj.parentNode.parentNode.parentNode.children[3].innerHTML;
     alert(num_reg);return;
     document.getElementById("cargando").style.display = 'inherit';
     p1=Promise.resolve($.post("php/secret_cambia_estado_procesado.php",{registro:num_reg,tabla:tipo_formulario,estado:(obj.checked)?1:0}));
