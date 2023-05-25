@@ -621,7 +621,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                 }
                 //Ckeck de procesado. Si es matrícula o prematrícula no aparece
                 if (tipo_formulario.indexOf("matricula")==-1){
-                    if (data.array[i].procesado==1) data += "<td style='width:110px'><center><input type='checkbox' checked onclick='javascript: formularioPrecesado(this);'/></center></td></tr>";
+                    if (data_array[i].procesado==1) data += "<td style='width:110px'><center><input type='checkbox' checked onclick='javascript: formularioPrecesado(this);'/></center></td></tr>";
                     else  data += "<td style='width:110px'><center><input type='checkbox' onclick='javascript: formularioPrecesado(this);'/></center></td></tr>";
                 }
             }
