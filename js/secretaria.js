@@ -487,7 +487,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         encab += "<td style='" + estilo[i] + "'onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
     }
     encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
-    if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td></tr>";
+    if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td>";
     if (tipo_formulario.indexOf("matricula")==-1)encab += "<td style='width:110px; text-align: center'>Procesado</td></tr>";
     ///////////////////////////////////////////////
 
