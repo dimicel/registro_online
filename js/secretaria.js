@@ -54,8 +54,8 @@ $(function() {
         
     });
     prom5=prom4.then((resp)=>{
+        document.getElementById("cargando").style.display = 'none';
         if (resp.error=="ok"){
-            document.getElementById("cargando").style.display = 'none';
             generaSelectTipo_form(resp.datos);
         }
         else if(resp.error="server"){
@@ -652,7 +652,33 @@ function ordenListado(obj) {
 
 
 function formularioProcesado(obj){
-alert(obj.parentNode.parentNode.parentNode.parentNode.children[0].children[3].innerHTML);
+    num_reg=obj.parentNode.parentNode.parentNode.parentNode.children[0].children[3].innerHTML;
+    document.getElementById("cargando").style.display = 'inherit';
+    p1=new Promise.resolve($.post("php/secret_cambia_estado_procesado.php",{registro:num_reg,tabla:tipo_formulario,estado:this.checked}));
+    p2=p1.then((resp)=>{
+        if (resp=="server"){
+            document.getElementById("cargando").style.display = 'none';
+            alerta("Error de servidor. Vuelva a intentarlo en otro momento.","ERROR SERVIDOR");
+            obj.checked=!obj.checked;
+        }
+        else if(resp=="errordb"){
+            document.getElementById("cargando").style.display = 'none';
+            alerta("Hay un problema en la bse de datos. Vuelva a intentarlo en otro momento.","ERROR DB");
+            obj.checked=!obj.checked;
+        }
+        else if(resp=="ok"){
+            return ($.post("php/secret_num_reg_sinrevisar.php", {curso:curso_actual},()=>{},"json"));
+        }
+    });
+    p3=p2.then((resp)=>{
+        document.getElementById("cargando").style.display = 'none';
+        if (resp.error=="ok"){
+            generaSelectTipo_form(resp.datos);
+        }
+        else if(resp.error="server"){
+            alerta("Error en base de datos. La aplicación no funcionará correctamente.","ERROR DB");
+        }
+    });
 
 }
 
