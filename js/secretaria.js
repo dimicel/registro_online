@@ -712,9 +712,6 @@ function verRegistro(obj) {
     }
     formulario = form; //esta asignación es necesaria para que funcione en botones, botón Guardar
     botones = "<div style='text-align:right'>";
-    if (tipo_formulario=="convalidaciones"){
-        botones += "<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='adjuntaResolucion(_id_nie,registro)'/>";
-    }
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(registro,formulario,document.getElementById(\"incidencias_text\").value)'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\")'/>";
@@ -796,6 +793,7 @@ function verRegistro(obj) {
                 contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
                 contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
                 contenido+="<option value='DESFAVORABLE'>DESFAVORABLE</option></select>";
+                contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='adjuntaResolucion("+resp.datos.id_nie+","+registro.datos.registro+")'/>";
                 contenido += "</center><br>";
                 contenido += botones;
                 document.getElementById("verRegistro_div").innerHTML = contenido;
