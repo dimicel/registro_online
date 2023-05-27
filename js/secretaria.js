@@ -795,6 +795,8 @@ function verRegistro(obj) {
                 contenido+="<option value='DESFAVORABLE'>DESFAVORABLE</option></select>";
                 contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='adjuntaResolucion("+resp.datos.id_nie+","+registro.datos.registro+")'/>";
                 contenido += "</center><br>";
+                contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
+                contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
                 document.getElementById("verRegistro_div").innerHTML = contenido;
                 document.getElementById("ver_docs_resol").value=resp.registro.resolucion;

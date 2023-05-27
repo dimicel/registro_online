@@ -35,9 +35,9 @@ while ($reg=$res->fetch_assoc()){
     if ($tabla=="revision_examen"){
         $data["registro"]["id_nif"]= $reg["id_nif"];
         $data["registro"]["nombre"]=$reg["nombre"];
+        $data["registro"]["apellidos"]=$reg["apellidos"];
         $data["registro"]["fecha_registro"]=$reg["fecha_registro"];
         $data["registro"]["curso"]=$reg["curso"];
-        $data["registro"]["nombre"]=$reg["nombre"];
         $data["registro"]["tipo_doc"]=$reg["tipo_doc"];
         $data["registro"]["numero_doc"]=$reg["numero_doc"];
         $data["registro"]["en_calidad_de"]=$reg["en_calidad_de"];
@@ -53,6 +53,26 @@ while ($reg=$res->fetch_assoc()){
     elseif ($tabla=="revision_calificacion"){
         $data["registro"]["id_nif"]= $reg["id_nif"];
         $data["registro"]["nombre"]=$reg["nombre"];
+        $data["registro"]["fecha_registro"]=$reg["fecha_registro"];
+        $data["registro"]["curso"]=$reg["curso"];
+        $data["registro"]["tipo_doc"]=$reg["tipo_doc"];
+        $data["registro"]["numero_doc"]=$reg["numero_doc"];
+        $data["registro"]["domicilio"]=$reg["domicilio"];
+        $data["registro"]["telefono"]=$reg["telefono"];
+        $data["registro"]["poblacion"]=$reg["poblacion"];
+        $data["registro"]["cp"]=$reg["cp"];
+        $data["registro"]["provincia"]=$reg["provincia"];
+        $data["registro"]["ciclo_grado"]=$reg["ciclo_grado"];
+        $data["registro"]["ciclo_nombre"]=$reg["ciclo_nombre"];
+        $data["registro"]["modulo"]=$reg["modulo"];
+        $data["registro"]["nota"]=$reg["nota"];
+        $data["registro"]["motivos"]=$reg["motivos"];
+        $data["registro"]["incidencias"]=$reg["incidencias"];
+    } 
+    elseif ($tabla=="convalidaciones"){
+        $data["registro"]["id_nif"]= $reg["id_nif"];
+        $data["registro"]["nombre"]=$reg["nombre"];
+        $data["registro"]["apellidos"]=$reg["apellidos"];
         $data["registro"]["fecha_registro"]=$reg["fecha_registro"];
         $data["registro"]["curso"]=$reg["curso"];
         $data["registro"]["tipo_doc"]=$reg["tipo_doc"];
