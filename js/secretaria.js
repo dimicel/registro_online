@@ -705,11 +705,16 @@ function verRegistro(obj) {
     for (i = 0; i < _enc.length; i++) {
         if (_enc[i].innerHTML == "Nº Registro") {
             registro = obj.children[i].innerHTML;
-            break;
+        }
+        else if (_enc[i].innerHTML == "NIE") {
+            _id_nie = obj.children[i].innerHTML;
         }
     }
     formulario = form; //esta asignación es necesaria para que funcione en botones, botón Guardar
-    botones = "<div style='text-align:right'>"
+    botones = "<div style='text-align:right'>";
+    if (tipo_formulario=="convalidaciones"){
+        botones += "<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='adjuntaResolucion(_id_nie,registro)'/>";
+    }
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(registro,formulario,document.getElementById(\"incidencias_text\").value)'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\")'/>";
@@ -763,6 +768,15 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
+            } else if(form1=="convalidaciones"){
+                contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
+                contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
+                contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
+                contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
+                contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
+                contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
+                contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.modulos + "</span><br>";
+                contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
             } else if (form1 == "prematricula" || form1 == "matricula") {
 
                 if (form1 == "matricula") {
@@ -1532,4 +1546,9 @@ function subirMatDelphos(){
             });
         }
     });
+}
+
+
+function adjuntaResolucion(_id_nie,registro){
+    //Para convalidaciones
 }
