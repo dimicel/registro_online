@@ -18,7 +18,7 @@ if(strpos($tabla_db,"premat_")>=0){
     if (strpos($tabla_db,"eso")) $tabla_db="premat_eso";
     else $tabla_db="premat_bach";
 }
-
+$exit($tabla_db);
 
 $consulta="select * from $tabla_db where registro='$registro'";
 exit($consulta);
