@@ -789,7 +789,7 @@ function verRegistro(obj) {
                     }
                 },"json");
                 contenido += "<br><center><label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
-                contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control'>";
+                contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones("+resp.datos.registro+",this)'>";
                 contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
                 contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
                 contenido+="<option value='DESFAVORABLE'>DESFAVORABLE</option></select>";
@@ -1574,4 +1574,12 @@ function subirMatDelphos(){
 
 function adjuntaResolucion(_id_nie,registro){
     //Para convalidaciones
+}
+
+function cambiaEstadoResolucionConvalidaciones(_rr,obj){
+    $.post("pfp/secret_convalid_estado_resol.php",{registro:_rr,estado:obj.value},(resp)=>{
+        if(resp=="server") alerta("Estado convalidación nop cambiado. Hay un problema en el servidor.","ERROR SERVIDOR");
+        else if(resp=="no_registro")alerta("Estado convalidación no cambiado. No se ha encontrado el registro.","ERROR DB");
+        else if(resp=="ok") alerta("El estado de la convalidación se ha cambiado a RESOLUCIÓN "+obj.value,"ESTADO RESOLUCIÓN CAMBIADA");
+    })
 }
