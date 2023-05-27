@@ -788,14 +788,14 @@ function verRegistro(obj) {
                     }
                 },"json");
                 contenido += "<br><center><label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
-                contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control form-inline' onchange='cambiaEstadoResolucionConvalidaciones("+resp.registro.registro+",this)'>";
+                contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones("+resp.registro.registro+",this)'>";
                 contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
                 contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
                 contenido+="<option value='DESFAVORABLE'>DESFAVORABLE</option></select>";
                 contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='adjuntaResolucion("+resp.registro.id_nie+","+registro+")'/>";
                 contenido += "</center><br>";
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
-                contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea>";
+                contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
                 contenido += botones;
                 document.getElementById("verRegistro_div").innerHTML = contenido;
                 document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
