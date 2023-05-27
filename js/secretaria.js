@@ -776,6 +776,9 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
                 contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
                 contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.modulos + "</span><br>";
+                if(resp.registro.organismo_destino=="Consejería"){
+                    contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
+                }
                 contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
             } else if (form1 == "prematricula" || form1 == "matricula") {
 
