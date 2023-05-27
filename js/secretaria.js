@@ -782,9 +782,11 @@ function verRegistro(obj) {
                     if(resp2.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
                     else if(resp2.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
                     else {
+                        contenido+="<ul>";
                         for(i=0;i<resp2.datos.length;i++){
-                            contenido += "<span class='verReg_label'><a target_'_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></span>";
+                            contenido += "<il class='verReg_label'><a target_'_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></il>";
                         }
+                        contenido+="</ul>";
                     }
                     contenido+="<div class='container'><div class='row'>";
                     contenido+="<div class='col-2 offset-2'>";
