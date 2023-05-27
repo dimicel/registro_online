@@ -778,7 +778,7 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
                 }
                 contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
-                $.post("php/secret_convalid_adjuntos.php",{registro:resp.registro.registro},(resp2)=>{alert(resp2.error);
+                $.post("php/secret_convalid_adjuntos.php",{registro:registro},(resp2)=>{alert(resp2.error);
                     if(resp2.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
                     else if(resp2.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
                     else {
