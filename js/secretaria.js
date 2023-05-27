@@ -783,7 +783,7 @@ function verRegistro(obj) {
                     else if(resp2.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
                     else {
                         for(i=0;i<resp2.datos;i++){
-                            contenido += "<span class='verReg_label'><a target_'_blank' href='"+resp2.datos.ruta+"'"+resp2.datos.descripcion+"</span>";
+                            contenido += "<span class='verReg_label'><a target_'_blank' href='"+resp2.datos[i].ruta+"'"+resp2.datos[i].descripcion+"</span>";
                         }
                     }
                 },"json");
