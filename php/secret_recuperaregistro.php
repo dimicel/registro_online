@@ -76,6 +76,7 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["ley"]=$reg["ley"];
         $data["registro"]["ciclo"]=$reg["ciclo"];
         $data["registro"]["grado"]=$reg["grado"];
+        $data["registro"]["organismo_destino"]=$reg["organismo_destino"];
         $data["registro"]["modulos"]=$reg["modulos"];
         $data["registro"]["tlf_fijo"]=$reg["tlf_fijo"];
         $data["registro"]["tlf_movil"]=$reg["tlf_movil"];
