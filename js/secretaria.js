@@ -747,6 +747,7 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
+                document.getElementById("verRegistro_div").innerHTML = contenido;
             } else if (form == "revision_calificacion") {
                 contenido += "<span class='verReg_label'>ID de Usuario: </span><span class='verReg_campo'>" + resp.registro.id_nif + "</span><br>";
                 contenido += "<span class='verReg_label'>Teléfono: </span><span class='verReg_campo'>" + resp.registro.telefono + "</span><br>";
@@ -768,6 +769,7 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
+                document.getElementById("verRegistro_div").innerHTML = contenido;
             } else if(form1=="convalidaciones"){
                 contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
                 contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
@@ -789,10 +791,16 @@ function verRegistro(obj) {
                         }
                     }
                 },"json");
-                contenido += "<br><center><span class='verReg_label'>RESOLUCION:";
-                contenido += "</span></center>";
+                contenido += "<br><center><label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
+                contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control'>";
+                contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
+                contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
+                contenido+="<option value='DESFAVORABLE'>DESFAVORABLE</option></select>";
+                contenido += "</center><br>";
+                contenido += botones;
+                document.getElementById("verRegistro_div").innerHTML = contenido;
+                document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
             } else if (form1 == "prematricula" || form1 == "matricula") {
-
                 if (form1 == "matricula") {
                     if (resp.registro.consolida_premat == "Si") {
                         contenido += "<div style='text-align:center>";
@@ -971,6 +979,7 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
+                document.getElementById("verRegistro_div").innerHTML = contenido;
             } else if (form1 == "matricula_ciclos") {
                 contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie + "</span><br>";
                 if(resp.registro.al_nuevo_otracomunidad.length>0)contenido += "<span class='verReg_label'>Nuevo de otra comunidad: </span><span class='verReg_campo'>" + resp.registro.al_nuevo_otracomunidad + "</span>";
@@ -993,6 +1002,7 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
+                document.getElementById("verRegistro_div").innerHTML = contenido;
             } else if (form1 == "matricula_fpb") {
                 contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie + "</span><br>";
                 if(resp.registro.al_nuevo_otracomunidad.length>0) contenido += "<span class='verReg_label'>Nuevo de otra comunidad: </span><span class='verReg_campo'>" + resp.registro.al_nuevo_otracomunidad + "</span>";
@@ -1008,8 +1018,9 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
+                document.getElementById("verRegistro_div").innerHTML = contenido;
             }
-            document.getElementById("verRegistro_div").innerHTML = contenido;
+            //document.getElementById("verRegistro_div").innerHTML = contenido;
             $("#verRegistro_div").dialog({
                 autoOpen: false,
                 dialogClass: "no-close",
