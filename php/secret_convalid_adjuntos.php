@@ -19,12 +19,13 @@ if ($result->num_rows > 0) {
         $data["datos"][$contador]["ruta"]=$row["ruta"];
         $contador++;
     }
+    $mysqli->close();
+    $data["error"]="ok";
+    exit(json_encode($data));
 }
 else {
     $data["error"]="sin_adjuntos";
+    $mysqli->close();
+    exit(json_encode($data));
 }
 
-// Cierre de la conexión
-$mysqli->close();
-$data["error"]="ok";
-exit(json_encode($data));
