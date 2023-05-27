@@ -14,11 +14,10 @@ $tabla=$_POST["formulario"];
 $tabla_db=$tabla;
 $registro=$_POST["registro"];
 
-if(strpos($tabla_db,"premat_")!=-1){
+if(strpos($tabla_db, "premat_") !== false){
     if (strpos($tabla_db,"eso")) $tabla_db="premat_eso";
     else $tabla_db="premat_bach";
 }
-exit($tabla."   ".$tabla_db);
 
 $consulta="select * from $tabla_db where registro='$registro'";
 exit($consulta);
