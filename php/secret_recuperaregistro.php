@@ -21,7 +21,7 @@ if(strpos($tabla_db,"premat_")>=0){
 
 
 $consulta="select * from $tabla_db where registro='$registro'";
-
+exit($consulta);
 $res=$mysqli->query($consulta);
 
 if ($res->num_rows==0){
