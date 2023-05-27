@@ -784,7 +784,7 @@ function verRegistro(obj) {
                     else {
                         contenido+="<ul>";
                         for(i=0;i<resp2.datos.length;i++){
-                            contenido += "<il><a class='color:GREEN' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></il>";
+                            contenido += "<li><a class='color:GREEN' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></li>";
                         }
                         contenido+="</ul>";
                     }
