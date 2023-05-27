@@ -788,9 +788,9 @@ function verRegistro(obj) {
                     }
                 },"json");
                 contenido+="<div class='container'><div class='row'>";
-                contenido+="<div class='col-1 offset-4'>";
+                contenido+="<div class='col-2 offset-2'>";
                 contenido += "<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
-                contenido +="</div><div class='col-4'>";
+                contenido +="</div><div class='col-3'>";
                 contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones("+resp.registro.registro+",this)'>";
                 contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
                 contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
