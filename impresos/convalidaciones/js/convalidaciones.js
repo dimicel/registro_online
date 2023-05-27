@@ -75,9 +75,9 @@ function seleccion(obj) {
     } else if (obj.id == "consejeria") {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
-        $('[data-formulario="centro_ministerio"]').each(function() {
-            $(this).hide();
-        });
+        //$('[data-formulario="centro_ministerio"]').each(function() {
+        //    $(this).hide();
+        //});
         $('[data-formulario="consejería"]').each(function() {
             $(this).show();
         });
@@ -88,9 +88,9 @@ function seleccion(obj) {
     } else if (obj.id == "centro_ministerio") {
         $("#seccion-intro").hide();
         $("#seccion-formulario").show();
-        $('[data-formulario="centro_ministerio"]').each(function() {
-            $(this).show();
-        });
+        //$('[data-formulario="centro_ministerio"]').each(function() {
+        //    $(this).show();
+        //});
         $('[data-formulario="consejería"]').each(function() {
             $(this).hide();
         });
@@ -559,11 +559,9 @@ function registraForm() {
         formData.append("cp", encodeURIComponent(document.getElementById("cp").value));
         formData.append("localidad", encodeURIComponent(document.getElementById("localidad").value));
         formData.append("provincia", encodeURIComponent(document.getElementById("provincia").value));
-        if (formulario=="Centro-Ministerio"){
-            formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
-            formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
-            formData.append("email", encodeURIComponent(document.getElementById("email").value));
-        }
+        formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
+        formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
+        formData.append("email", encodeURIComponent(document.getElementById("email").value));
         if (formulario=="Consejería"){
             formData.append("estudios_superados", encodeURIComponent(document.getElementById("estudios_superados").value));
         }
