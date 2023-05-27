@@ -1037,7 +1037,7 @@ function verRegistro(obj) {
                 show: { effect: "fade", duration: 0 },
                 title: "VISTA DEL REGISTRO",
                 width: ancho,
-                position: { my: "left top", at: "left bottom", of: window }
+                position: { my: "center", at: "center top", of: window }
             });
             $("#verRegistro_div").dialog("open");
         }
