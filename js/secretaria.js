@@ -780,6 +780,9 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
                 }
                 contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
+                $.post("php/secret_convalid_adjuntos.php",{registro:resp.registro.registro},(resp2)=>{
+
+                },"json");
             } else if (form1 == "prematricula" || form1 == "matricula") {
 
                 if (form1 == "matricula") {
