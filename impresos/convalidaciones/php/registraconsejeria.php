@@ -105,11 +105,10 @@ $dirRegistro=substr($registro, 17);
 
 // Iniciar una transacción para asegurar la integridad de los datos
 $mysqli->begin_transaction();
-exit("AAAAAAAAAAAA");
 try {
     // Insertar registro en la primera tabla
     $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,organismo_destino,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,tlf_fijo,tlf_movil,email,
-                                                            grado,ciclo,ley,estudios_superados,modulos,subidopor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                                            grado,ciclo,ley,estudios_superados,modulos,subidopor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt1->bind_param("sssssssssssssssssssss", $id_nie,$formulario,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
                                                 $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$ley,$estudios_superados,$modulos,$subidopor);
     $stmt1->execute();
