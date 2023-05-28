@@ -137,7 +137,7 @@ function generaSelectTipo_form(matriz){
     // Crear la opción "Seleccione uno..." con el valor vacío y seleccionada por defecto
     const opcion0 = document.createElement("option");
     opcion0.value = "";
-    opcion0.selected = true;
+    opcion0.selected = false;
     opcion0.textContent = "Seleccione uno...";
     miSelect.appendChild(opcion0);
 
