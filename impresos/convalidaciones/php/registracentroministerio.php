@@ -99,18 +99,18 @@ $mysqli->begin_transaction();
 try {
     // Insertar registro en la primera tabla
     $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,organismo_destino,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,
-                                                            tlf_fijo,tlf_movil,email,grado,ciclo,ley,modulos,subidopor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt1->bind_param("ssssssssssssssssssss", $id_nie,$formulario,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
-                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$ley,$modulos,$subidopor);
+                                                            tlf_fijo,tlf_movil,email,grado,ciclo,ley,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt1->bind_param("sssssssssssssssssss", $id_nie,$formulario,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
+                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$ley,$modulos);
     $stmt1->execute();
     $stmt1->close();
     
     // Insertar registros en la segunda tabla
-    $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta) VALUES (?, ?, ?, ?)");
+    $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
     for($i=0;$i<count($desc);$i++) {
         $indice=sprintf("%02d", $i+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$docs[$i]["name"];
-        $stmt2->bind_param("ssss", $id_nie,$registro, $desc[$i], $rutaTb);
+        $stmt2->bind_param("sssss", $id_nie,$registro, $desc[$i], $rutaTb, $subidopor);
         $stmt2->execute();
     }
     $stmt2->close();
