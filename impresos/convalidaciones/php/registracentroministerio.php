@@ -48,6 +48,7 @@ $ley="LOE";
 $grado = urldecode($_POST['grado']);
 $ciclo = urldecode($_POST['ciclo']);
 $modulos = urldecode($_POST['modulos']);
+$subidopor="usuario";
 $desc= array();
 $estudios_aportados="";
 if (isset($_POST["desc"])){
@@ -98,9 +99,9 @@ $mysqli->begin_transaction();
 try {
     // Insertar registro en la primera tabla
     $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,organismo_destino,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,
-                                                            tlf_fijo,tlf_movil,email,grado,ciclo,ley,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt1->bind_param("sssssssssssssssssss", $id_nie,$formulario,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
-                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$ley,$modulos);
+                                                            tlf_fijo,tlf_movil,email,grado,ciclo,ley,modulos,subidopor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt1->bind_param("ssssssssssssssssssss", $id_nie,$formulario,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
+                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$ley,$modulos,$subidopor);
     $stmt1->execute();
     $stmt1->close();
     
