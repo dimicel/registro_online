@@ -717,7 +717,7 @@ function verRegistro(obj) {
     botones = "<div style='text-align:right'>";
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(registro,formulario,document.getElementById(\"incidencias_text\").value)'/>";
-    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\")'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").destroy()'/>";
     botones += "</div>";
     $.post("php/secret_recuperaregistro.php", { formulario: form, registro: registro }, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
@@ -1031,7 +1031,7 @@ function verRegistro(obj) {
             }
             //document.getElementById("verRegistro_div").innerHTML = contenido;
             $("#verRegistro_div").dialog({
-                autoOpen: false,
+                autoOpen: true,
                 dialogClass: "no-close",
                 modal: true,
                 draggable: false,
@@ -1040,9 +1040,9 @@ function verRegistro(obj) {
                 show: { effect: "fade", duration: 0 },
                 title: "VISTA DEL REGISTRO",
                 width: ancho,
-                position: { my: "center top", at: "center top", of: window }
+                position: { my: "center", at: "center top", of: window }
             });
-            $("#verRegistro_div").dialog("open");
+            //$("#verRegistro_div").dialog("open");
         }
     }, "json");
 
