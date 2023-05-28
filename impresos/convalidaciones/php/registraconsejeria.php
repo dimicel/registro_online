@@ -120,7 +120,7 @@ try {
     for($i=0;$i<count($desc);$i++) {
         $contador_docs=$i+1;
         $indice=sprintf("%02d", $i+1)."_";
-        $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$docs[$i]["name"];
+        $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$_FILES["docs"]["name"][$i];
         $stmt2->bind_param("sssss", $id_nie, $registro, $desc[$i], $rutaTb, $subidopor);
         $stmt2->execute();
         
