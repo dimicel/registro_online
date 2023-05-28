@@ -113,7 +113,7 @@ try {
                                                 $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$ley,$estudios_superados,$modulos,$subidopor);
     $stmt1->execute();
     $stmt1->close();
-    
+    exit("AAAAAAAAAA");
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta) VALUES (?, ?, ?, ?)");
     $contador_docs=1;
