@@ -8,6 +8,7 @@ var _orden_direccion;
 var incidencia_si = 0;
 var curso_actual,curso_premat,curso_mat;
 var sesion_id;
+var tipo_formulario;
 
 
 $(function() {
@@ -159,6 +160,8 @@ function generaSelectTipo_form(matriz){
         elemento.textContent = opcion.text;
         miSelect.appendChild(elemento);
     }
+
+    document.getElementById("tipo_form").value=tipo_formulario;
 }
 
 
