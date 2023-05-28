@@ -105,6 +105,7 @@ $dirRegistro=substr($registro, 17);
 
 // Iniciar una transacción para asegurar la integridad de los datos
 $mysqli->begin_transaction();
+exit("AAAAAAAAAA");
 try {
     // Insertar registro en la primera tabla
     $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,organismo_destino,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,tlf_fijo,tlf_movil,email,
@@ -113,7 +114,7 @@ try {
                                                 $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$ley,$estudios_superados,$modulos,$subidopor);
     $stmt1->execute();
     $stmt1->close();
-    exit("AAAAAAAAAA");
+    
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta) VALUES (?, ?, ?, ?)");
     $contador_docs=1;
