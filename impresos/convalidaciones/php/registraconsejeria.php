@@ -116,7 +116,7 @@ try {
     $stmt1->close();
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
-    $contador_docs=1;
+    $contador_docs=0;
     for($i=0;$i<count($desc);$i++) {
         $contador_docs=$i+1;
         $indice=sprintf("%02d", $i+1)."_";
