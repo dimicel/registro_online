@@ -109,7 +109,7 @@ try {
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
     for($i=0;$i<count($desc);$i++) {
         $indice=sprintf("%02d", $i+1)."_";
-        $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$docs[$i]["name"];
+        $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$_FILES["docs"]["name"][$i];
         $stmt2->bind_param("sssss", $id_nie,$registro, $desc[$i], $rutaTb, $subidopor);
         $stmt2->execute();
     }

@@ -130,7 +130,7 @@ try {
         $indice=sprintf("%02d", $contador_docs+1)."_";
         $descDoc="Documento de identificación";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
-        $stmt2->bind_param("sss", $registro,$descDoc , $rutaTb);
+        $stmt2->bind_param("sssss", $id_nie,$registro,$descDoc , $rutaTb, $subidopor);
         $stmt2->execute();
     }
     $stmt2->close();
