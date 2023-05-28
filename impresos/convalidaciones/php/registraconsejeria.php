@@ -145,9 +145,8 @@ try {
             $contador_docs=$i+1;
             $indice=sprintf("%02d", $i+1)."_";
             $nombreDoc=$indice.$_FILES["docs"]["name"][$i];
-            try {
-                move_uploaded_file($_FILES["docs"]["tmp_name"][$i], $rutaCompleta.$nombreDoc);
-            } catch (Exception $ex) {
+            if(!move_uploaded_file($_FILES["docs"]["tmp_name"][$i], $rutaCompleta.$nombreDoc))
+            {
                 // Si hay un error al mover el archivo, eliminar los archivos ya movidos
                 $archivosEliminados = glob($rutaCompleta . "*");
                 foreach ($archivosEliminados as $archivoEliminado) {
