@@ -296,8 +296,8 @@
                 </div>
                 <div class="row">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="conv_estud_solicita_con" name="tipo_con" class="custom-control-input" value="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
-                        <label for="conv_estud_solicita_con" class="custom-control-label">Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita</label>
+                        <input type="radio" id="conv_estud_solicita_con" name="tipo_con" class="custom-control-input" value="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <label for="conv_estud_solicita_con" class="custom-control-label">Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita</label>
                     </div>
                 </div>
                 <div class="row mt-2" id="div_doc_identificacion">

@@ -62,7 +62,7 @@ $check5=false;
 if (isset($_POST["desc"])){
     foreach($_POST["desc"] as $value) {
         $desc[]=urldecode($value);
-        if (urldecode($value)=="Certificación de estar matriculado en los estudios de Foprmación Profesional cuya convalidación solicita") $check1=true;
+        if (urldecode($value)=="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita") $check1=true;
         elseif(urldecode($value)=="Fotocopia compulsada de la certificación académica de los estudios realizados") $check3=true;
         elseif(urldecode($value)=="Fotocopia compulsada del título") $check4=true;
         else{
