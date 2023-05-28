@@ -144,7 +144,6 @@ try {
             $contador_docs=$i+1;
             $indice=sprintf("%02d", $i+1)."_";
             $nombreDoc=$indice.$_FILES["docs"]["name"][$i];
-            exit($nombreDoc);
             if(!move_uploaded_file($_FILES["docs"]["tmp_name"][$i], $rutaCompleta.$nombreDoc))
             {
                 // Si hay un error al mover el archivo, eliminar los archivos ya movidos
