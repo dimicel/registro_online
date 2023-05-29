@@ -1594,7 +1594,7 @@ function adjuntaResolucion(_id_nie,registro,doc_res){
     document.getElementById("cargando").style.display = 'inherit';
     $.post({
         url:"php/secret_convalid_suberes.php" ,
-        data: formData,
+        data: datos,
         contentType: false,
         processData: false,
         success: function(resp) {
