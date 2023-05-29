@@ -1613,7 +1613,7 @@ function adjuntaResolucion(_id_nie,registro,doc_res){
 
 function cambiaEstadoResolucionConvalidaciones(_rr,obj){
     document.getElementById("cargando").style.display = 'inherit';
-    $.post("pfp/secret_convalid_estado_resol.php",{registro:_rr,estado:obj.value},(resp)=>{
+    $.post("php/secret_convalid_estado_resol.php",{registro:_rr,estado:obj.value},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
         if(resp=="server") alerta("Estado convalidación nop cambiado. Hay un problema en el servidor.","ERROR SERVIDOR");
         else if(resp=="no_registro")alerta("Estado convalidación no cambiado. No se ha encontrado el registro.","ERROR DB");
