@@ -382,17 +382,17 @@ function listaRegistros(orden_campo, orden_direccion) {
     $("#div_nuevos_otra_comunidad").hide();
     if (tipo_formulario == "revision_examen") {
         tabla = document.getElementById('tipo_form').value;
-        campos = ["id_nif", "nombre", "del_alumno", "registro"];
+        campos = ["id_nie", "nombre", "del_alumno", "registro"];
         estilo = ["width:70px", "width:210px", "width:200px", "width:270px"];
         encabezamiento = ["NIE", "Solicitante", "Alumno", "Nº Registro"];
     } else if (tipo_formulario == "revision_calificacion") {
         tabla = document.getElementById('tipo_form').value;
-        campos = ["id_nif", "nombre", "registro"];
+        campos = ["id_nie", "nombre", "registro"];
         estilo = ["width:70px", "width:220px", "width:270px"];
         encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
     } else if(tipo_formulario=="convalidaciones"){
         tabla = tipo_formulario;
-        campos = ["id_nif", "nombre", "registro"];
+        campos = ["id_nie", "nombre", "registro"];
         estilo = ["width:70px", "width:220px", "width:270px"];
         encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
 
