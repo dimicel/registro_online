@@ -477,10 +477,10 @@ function listaSolicitudes() {
                     if (proc=="Convalidaciones"){
                         tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a>";
                         if (item["resolucion"]=="FAVORABLE"){
-                            tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución FAVORABLE)</a>"
+                            tabla += "<a style='margin-left:10px;color:GREEN' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución FAVORABLE)</a>"
                         }
                         else if(item["resolucion"]=="NO FAVORABLE"){
-                            tabla += "<a style='margin-left:10px' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución NO FAVORABLE)</a>"
+                            tabla += "<a style='margin-left:10px;color:BROWN' href=''docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+item["registro"].substring(17)+"/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución NO FAVORABLE)</a>"
                         }
                         else{
                             tabla += " (Resolución EN ESPERA)"
