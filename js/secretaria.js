@@ -800,8 +800,9 @@ function verRegistro(obj) {
                     contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
                     contenido+="<option value='DESFAVORABLE'>DESFAVORABLE</option></select>";
                     contenido+="</div><div class='col-2'>"
-                    contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='adjuntaResolucion("+resp.registro.id_nie+","+registro+")'/>";
+                    contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
                     contenido += "</div></div>";
+                    contenido+="<input type='file' id='ver_reg_resolucion' multiple='false' style='position:abolute;left:-9999' onchange='adjuntaResolucion("+resp.registro.id_nie+","+registro+",this)'/>";
                     contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                     contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
                     contenido += botones;
@@ -1583,8 +1584,32 @@ function subirMatDelphos(){
 }
 
 
-function adjuntaResolucion(_id_nie,registro){
+function adjuntaResolucion(_id_nie,registro,doc_res){
     //Para convalidaciones
+    datos = new FormData();
+    datos.append("id_nie",encodeURIComponent(_id_nie));
+    datos.append("registro",encodeURIComponent(registro));
+    datos.append("resolucion",doc_res.files[0]);
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post({
+        url:"php/secret_convalid_suberes.php" ,
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(resp) {
+            document.getElementById("cargando").style.display = 'none';
+            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+            else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+            else if (resp == "error_subida") alerta("No se ha podido subir correctamente la resolución. Debe intentarlo en otro momento o revisar el formato del documento.", "ERROR SUBIDA");
+            else if (resp == "ok") {
+                alerta("Resolución adjuntada correctamente.","SUBIDA CORRECTA");
+            }
+        },
+        error: function(xhr, status, error) {
+            document.getElementById("cargando").style.display = 'none';
+            alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+        }
+    });
 }
 
 function cambiaEstadoResolucionConvalidaciones(_rr,obj){
