@@ -1590,6 +1590,7 @@ function adjuntaResolucion(_id_nie,registro,doc_res){
     datos.append("id_nie",encodeURIComponent(_id_nie));
     datos.append("registro",encodeURIComponent(registro));
     datos.append("resolucion",doc_res.files[0]);
+    datos.append("curso",encodeURIComponent(curso_actual));
     document.getElementById("cargando").style.display = 'inherit';
     $.post({
         url:"php/secret_convalid_suberes.php" ,
@@ -1601,9 +1602,7 @@ function adjuntaResolucion(_id_nie,registro,doc_res){
             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
             else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
             else if (resp == "error_subida") alerta("No se ha podido subir correctamente la resolución. Debe intentarlo en otro momento o revisar el formato del documento.", "ERROR SUBIDA");
-            else if (resp == "ok") {
-                alerta("Resolución adjuntada correctamente.","SUBIDA CORRECTA");
-            }
+            else if (resp == "ok") alerta("Resolución adjuntada correctamente.","SUBIDA CORRECTA");
         },
         error: function(xhr, status, error) {
             document.getElementById("cargando").style.display = 'none';
