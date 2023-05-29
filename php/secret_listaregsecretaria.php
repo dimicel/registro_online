@@ -56,13 +56,13 @@ elseif($tabla=="mat_fpb"){
 else {
     $proceso=$tabla;
     if ($proceso=="revision_examen"){
-        $campos="id_nif,nombre,apellidos,del_alumno,registro,listado,incidencias,procesado";
+        $campos="id_nie,nombre,apellidos,del_alumno,registro,listado,incidencias,procesado";
     }
     elseif ($proceso=="revision_calificacion"){
-        $campos="id_nif,nombre,apellidos,registro,listado,incidencias,procesado";
+        $campos="id_nie,nombre,apellidos,registro,listado,incidencias,procesado";
     }
     elseif ($proceso="convalidaciones"){
-        $campos="id_nif,nombre,apellidos,registro,listado,incidencias,procesado";
+        $campos="id_nie,nombre,apellidos,registro,listado,incidencias,procesado";
     }
 }
 
