@@ -1,5 +1,4 @@
 <?php
-exit("wwwwwww");
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("conexion.php");
