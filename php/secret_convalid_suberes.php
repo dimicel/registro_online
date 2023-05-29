@@ -21,11 +21,11 @@ try{
     $stmt2->bind_param("sssss", $id_nie,$registro, $descDoc, $rutaTb, $subidopor);
     $stmt2->execute();
     $stmt2->close();
-    $rutaCompleta=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/resolucion"."/";
+    $rutaCompleta=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs/resolucion"."/";
     if (!is_dir($rutaCompleta)) {
         mkdir($rutaCompleta, 0777, true);
     }
-    if(!move_uploaded_file($_FILES["resolucion"]["tmp_name"], $rutaTb)){
+    if(!move_uploaded_file($_FILES["resolucion"]["tmp_name"], $rutaCompleta."/resolucion.pdf")){
         $mysqli->rollback();
         exit("error_subida");
     }
