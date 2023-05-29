@@ -11,7 +11,7 @@ $registro=urldecode($_POST["registro"]);
 $id_nie=urldecode($_POST["id_nie"]);
 $anno_curso=urldecode($_POST["curso"]);
 $dirRegistro=substr($registro, 17);
-
+exit("wwwwwww");
 $mysqli->begin_transaction();
 
 try{
