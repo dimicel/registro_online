@@ -1585,6 +1585,8 @@ function subirMatDelphos(){
 
 
 function adjuntaResolucion(_id_nie,registro,doc_res){
+    alert(_id_nie+"  "+registro+"  "+curso_actual+"  "+doc_res.files[0].name);
+    return;
     //Para convalidaciones
     datos = new FormData();
     datos.append("id_nie",encodeURIComponent(_id_nie));
