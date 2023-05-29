@@ -110,7 +110,7 @@ $data["registros"]=array();
 
 if ($proceso=="revision_examen"){
     while ($reg=$res->fetch_assoc()){
-        $data["registros"][$contador]["id_nif"]= $reg["id_nif"];
+        $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
         $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         if ($reg["en_calidad_de"]!="ALUMNO")$data["registros"][$contador]["del_alumno"]=$reg["del_alumno"];
         else $data["registros"][$contador]["del_alumno"]="-";
@@ -124,7 +124,7 @@ if ($proceso=="revision_examen"){
 }
 elseif ($proceso=="revision_calificacion"){
     while ($reg=$res->fetch_assoc()){
-        $data["registros"][$contador]["id_nif"]= $reg["id_nif"];
+        $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
         $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         $data["registros"][$contador]["registro"]=$reg["registro"];
         $data["registros"][$contador]["listado"]=$reg["listado"];
@@ -136,7 +136,7 @@ elseif ($proceso=="revision_calificacion"){
 } 
 elseif($proceso=="convalidaciones"){
     while ($reg=$res->fetch_assoc()){
-        $data["registros"][$contador]["id_nif"]= $reg["id_nif"];
+        $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
         $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         $data["registros"][$contador]["registro"]=$reg["registro"];
         $data["registros"][$contador]["listado"]=$reg["listado"];
