@@ -787,7 +787,7 @@ function verRegistro(obj) {
                     if(resp2.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
                     else if(resp2.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
                     else {
-                        contenido+="<ul>";
+                        contenido+="<ul id='ul_docs_convalid'>";
                         for(i=0;i<resp2.datos.length;i++){
                             contenido += "<li><a style='color:GREEN' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></li>";
                         }
@@ -1605,7 +1605,10 @@ function adjuntaResolucion(_id_nie,registro,doc_res){
             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
             else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
             else if (resp == "error_subida") alerta("No se ha podido subir correctamente la resolución. Debe intentarlo en otro momento o revisar el formato del documento.", "ERROR SUBIDA");
-            else if (resp == "ok") alerta("Resolución adjuntada correctamente.","SUBIDA CORRECTA");
+            else if (resp == "ok"){
+                document.getElementById("ul_docs_convalid").innerHTML+="<li><a style='color:GREEN' target='_blank' href='docs/"+_id_nie+"/convalidaciones/"+curso_actual+"/"+registro.slice(17)+"/docs/resolucion/resolucion.pdf'>Resolución</a></li>";
+                alerta("Resolución adjuntada correctamente.","SUBIDA CORRECTA");
+            } 
         },
         error: function(xhr, status, error) {
             document.getElementById("cargando").style.display = 'none';
