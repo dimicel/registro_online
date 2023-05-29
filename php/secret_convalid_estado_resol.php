@@ -12,7 +12,7 @@ $estado=$_POST["estado"];
 
 $sql = "UPDATE convalidaciones SET resolucion='$estado' WHERE registro='$registro'";
 $result = $mysqli->query($sql);
-if ($result->num_rows > 0) {
+if ($mysqli->affected_rows > 0) {
     $mysqli->close();
     exit("ok");
 }
