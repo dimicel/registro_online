@@ -366,6 +366,8 @@ function listaRegistros(orden_campo, orden_direccion) {
         habilitaMenu(true, true);
         document.getElementById("div_curso_premat").style.display = "none";
         document.getElementById("div_curso_mat").style.display = "none";
+        document.getElementById("div_curso_mat_ciclos").style.display = "none";
+        document.getElementById("div_curso_mat_fpb").style.display = "none";
         $("#CSV_premat").addClass("disabled");
         //$("#menu_csv_mat").addClass("disabled");
         //$("#menu_listado_mat_pdf").addClass("disabled");
