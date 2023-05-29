@@ -13,7 +13,6 @@ $anno_curso=urldecode($_POST["curso"]);
 $dirRegistro=substr($registro, 17);
 
 $mysqli->begin_transaction();
-
 try{
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
     $descDoc="Resolucion";
