@@ -794,7 +794,7 @@ function verRegistro(obj) {
                         contenido+="</ul>";
                     }
                     contenido+="<div class='container'><div class='row'>";
-                    contenido+="<div class='col-2 offset-2'>";
+                    contenido+="<div class='col-2 offset-1'>";
                     contenido += "<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
                     contenido +="</div><div class='col-3'>";
                     contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones(\""+registro+"\",this)'>";
@@ -804,8 +804,10 @@ function verRegistro(obj) {
                     contenido+="<option value='PARCIAL'>PARCIAL</option></select>";
                     contenido+="</div><div class='col-2'>"
                     contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
-                    contenido += "</div></div>";
+                    contenido+="</div><div class='col-2'>"
+                    contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/>";                    contenido += "</div></div>";
                     contenido+="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+_id_nie+"\",\""+registro+"\",this)'/>";
+                    contenido+="<input type='file' id='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaDocAdicional(\""+_id_nie+"\",\""+registro+"\",this)'/>";
                     contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                     contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
                     contenido += botones;
@@ -1625,4 +1627,35 @@ function cambiaEstadoResolucionConvalidaciones(_rr,obj){
         else if(resp=="no_registro")alerta("Estado convalidación no cambiado. No se ha encontrado el registro.","ERROR DB");
         else if(resp=="ok") alerta("El estado de la convalidación se ha cambiado a RESOLUCIÓN "+obj.value,"ESTADO RESOLUCIÓN CAMBIADA");
     })
+}
+
+
+function adjuntaDocAdicional(_id_nie,registro,doc_adic){
+    //Para convalidaciones
+    datos = new FormData();
+    datos.append("id_nie",encodeURIComponent(_id_nie));
+    datos.append("registro",encodeURIComponent(registro));
+    datos.append("documento",doc_adic.files[0]);
+    datos.append("curso",encodeURIComponent(curso_actual));
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post({
+        url:"php/secret_convalid_subedocadic.php" ,
+        data: datos,
+        contentType: false,
+        processData: false,
+        success: function(resp) {
+            document.getElementById("cargando").style.display = 'none';
+            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+            else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+            else if (resp == "error_subida") alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
+            else if (resp == "ok"){
+                document.getElementById("ul_docs_convalid").innerHTML+="<li><a style='color:GREEN' target='_blank' href='docs/"+_id_nie+"/convalidaciones/"+curso_actual+"/"+registro.slice(17)+"/docs/resolucion/resolucion.pdf'>Resolución</a></li>";
+                alerta("Resolución adjuntada correctamente.","SUBIDA CORRECTA");
+            } 
+        },
+        error: function(xhr, status, error) {
+            document.getElementById("cargando").style.display = 'none';
+            alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+        }
+    });
 }
