@@ -34,7 +34,6 @@ try{
 catch (Exception $e) {
     // En caso de error, revertir la transacción
     $mysqli->rollback();
-    unlink($tempFile);
     exit("database");
 }
 
