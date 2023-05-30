@@ -231,7 +231,7 @@ function obtieneDocsExpediente() {
                 if (resp["docs"][td].length > 0) {
                     contenido_div += "<tr style='font-size:bolder'><td colspan=4 width='475px'>" + docs_exp[td] + "</td></tr>";
                     for (j = 0; j < resp["docs"][td].length; j++) {
-                        if(docs_exp[td] == "CONVALIDACIONES"){
+                        if(docs_exp[td] == "CONVALIDACIONES"){alert(000);
                             contenido_div += "<tr><td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
                             contenido_div += "<td><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"
                             contenido_div += resp["docs"][td][j]["doc"] + "</a><a onclick='adjuntosConvalid(\""+resp['docs'][td][j]['doc']+"\")>Adjuntos</a></td>";
