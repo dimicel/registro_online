@@ -988,7 +988,7 @@ function adjuntosConvalid(registro){
         else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
             contenido+="<ul id='ul_docs_convalid'>";
-            for(i=0;i<resp2.datos.length;i++){
+            for(i=0;i<resp.datos.length;i++){
                 contenido += "<li><a style='color:GREEN' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a></li>";
             }
             contenido+="</ul>";
