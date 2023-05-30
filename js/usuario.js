@@ -483,7 +483,7 @@ function listaSolicitudes() {
                             tabla += "<a style='margin-left:10px;color:BROWN' href='docs/"+id_nie+"/convalidaciones/"+ item["curso"] + "/"+item["registro"].slice(17)+"/docs/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución NO FAVORABLE)</a>"
                         }
                         else if(item["resolucion"]=="PARCIAL"){
-                            tabla += "<a style='margin-left:10px;color:ORANGE' href='docs/"+id_nie+"/convalidaciones/"+ item["curso"] + "/"+item["registro"].slice(17)+"/docs/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución NO FAVORABLE)</a>"
+                            tabla += "<a style='margin-left:10px;color:ORANGE' href='docs/"+id_nie+"/convalidaciones/"+ item["curso"] + "/"+item["registro"].slice(17)+"/docs/resolucion/resolucion.pdf' target='_blank' title='Ver resolución'>(Resolución PARCIAL)</a>"
                         }
                         else{
                             tabla += " (Resolución EN ESPERA)"
