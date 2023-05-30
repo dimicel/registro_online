@@ -86,7 +86,7 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 							if ($doc != "." && $doc != ".."){
 								$subConv=opendir("docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
 								while(false!=($docConv=readdir($subConv))){
-									if ($docConv != "." && $docConv != ".."  && ($dir==$filtro || $filtro=="todos") && !is_dir($docConv)){
+									if ($docConv != "." && $docConv != ".."  && !is_dir($docConv)){
 										$data["error"]="ok";
 										$data["docs"][$tipodoc][$contador]["curso"]=$dir;
 										$data["docs"][$tipodoc][$contador]["doc"]=$docConv;
