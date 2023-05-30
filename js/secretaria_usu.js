@@ -220,7 +220,7 @@ function verExpediente(id_nie, nom) {
 function obtieneDocsExpediente() {
     filtro_curso = document.getElementById("curso_exp").value;
     $.post("php/secret_usu_expedienteusu.php", { id_nie: document.getElementById("nie_exp").innerHTML, filtro: filtro_curso }, function(resp) {
-        alert(resp)
+        alert(resp.error)
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "sin_registros") {
             contenido_div = "<center>NO EXISTEN DOCUMENTOS ASOCIADOS A ESTE NIE</center>";
