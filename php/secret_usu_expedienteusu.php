@@ -85,10 +85,12 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 						if($tipodoc=="convalidaciones"){
 							if ($doc != "." && $doc != ".."){
 								$subConv=opendir("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
-								$data["error"]=$subConv . "  " . "../docs/".$id_nie."/".$ruta."/".$dir."/".$doc;
+								$data["error"]=$doc;
 										exit(json_encode($data));
 								while(false!=($docConv=readdir($subConv))){
-									if (is_file($docConv)){
+									$data["error"].=$docConv."---";
+									
+									/*if (is_file($docConv)){
 										$data["error"]=$docConv;
 										exit(json_encode($data));
 										$data["error"]="ok";
@@ -96,8 +98,9 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 										$data["docs"][$tipodoc][$contador]["doc"]=$docConv;
 										$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/".$docConv;
 										$contador++;
-									}
+									}*/
 								}
+								exit(json_encode($data));
 							}
 						}
 						else{
