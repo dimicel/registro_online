@@ -83,7 +83,7 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 					$anHand=opendir("../docs/".$id_nie."/".$ruta."/".$dir);
 					while(false !== ($doc = readdir($anHand))){
 						if($tipodoc=="convalidaciones"){
-							$subConv=opendir("docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
+							if ($doc != "." && $doc != "..") $subConv=opendir("docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
 							$data["error"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc;
 							exit(json_encode($data));
 							while(false!=($docConv=readdir($subConv))){
