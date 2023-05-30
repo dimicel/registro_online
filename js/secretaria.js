@@ -800,7 +800,8 @@ function verRegistro(obj) {
                     contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones(\""+registro+"\",this)'>";
                     contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
                     contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
-                    contenido+="<option value='DESFAVORABLE'>DESFAVORABLE</option></select>";
+                    contenido+="<option value='NO FAVORABLE'>NO FAVORABLE</option></select>";
+                    contenido+="<option value='PARCIAL'>PARCIAL</option></select>";
                     contenido+="</div><div class='col-2'>"
                     contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
                     contenido += "</div></div>";
