@@ -13,7 +13,6 @@ if(isset($_POST["parte"])) $parte=$_POST["parte"];//Para el DNI Anverso A   Reve
 //$data="";
 
 $rutdocs=[
-    "Convalidaciones"=>["ruta"=>"convalidaciones","n_archivo"=>"conval_"],
     "Anulación matrícula"=>["ruta"=>"anulacion_matricula","n_archivo"=>"anulmat_"],
     "Anulación módulos (modular)"=>["ruta"=>"anul_mod_modular","n_archivo"=>"anulmodmodular_"],
     "Renuncia a convocatoria"=>["ruta"=>"renuncia_conv","n_archivo"=>"rc_"],
