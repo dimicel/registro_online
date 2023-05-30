@@ -82,12 +82,26 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 					$contador=0;
 					$anHand=opendir("../docs/".$id_nie."/".$ruta."/".$dir);
 					while(false !== ($doc = readdir($anHand))){
-						if ($doc != "." && $doc != ".."  && ($dir==$filtro || $filtro=="todos")){
-							$data["error"]="ok";
-							$data["docs"][$tipodoc][$contador]["curso"]=$dir;
-							$data["docs"][$tipodoc][$contador]["doc"]=$doc;
-							$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc;
-							$contador++;
+						if($tipodoc=="convalidaciones"){
+							$subConv=opendir("docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
+							while(false!=($docConv=readdir($subConv))){
+								if ($docConv != "." && $docConv != ".."  && ($dir==$filtro || $filtro=="todos") && !is_dir($docConv)){
+									$data["error"]="ok";
+									$data["docs"][$tipodoc][$contador]["curso"]=$dir;
+									$data["docs"][$tipodoc][$contador]["doc"]=$docConv;
+									$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/".$docConv;
+									$contador++;
+								}
+							}
+						}
+						else{
+							if ($doc != "." && $doc != ".."  && ($dir==$filtro || $filtro=="todos")){
+								$data["error"]="ok";
+								$data["docs"][$tipodoc][$contador]["curso"]=$dir;
+								$data["docs"][$tipodoc][$contador]["doc"]=$doc;
+								$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc;
+								$contador++;
+							}
 						}
 					}
 					closedir($anHand);
