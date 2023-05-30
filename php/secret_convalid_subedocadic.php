@@ -25,7 +25,7 @@ try{
     if (!is_dir($rutaCompleta)) {
         mkdir($rutaCompleta, 0777, true);
     }
-    if(!move_uploaded_file($_FILES["resolucion"]["tmp_name"], $rutaCompleta."/resolucion.pdf")){
+    if(!move_uploaded_file($_FILES["documento"]["tmp_name"], $rutaCompleta."/resolucion.pdf")){
         $mysqli->rollback();
         exit("error_subida");
     }
