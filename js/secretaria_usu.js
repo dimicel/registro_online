@@ -979,5 +979,19 @@ function bloqueaNomArch(){
 
 
 function adjuntosConvalid(registro){
-    alert("Adjuntos");
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post("php/secret_convalid_adjuntos.php",{registro:registro},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
+        contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de "+registro+": </span><br>";
+        if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
+        else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
+        else {
+            contenido+="<ul id='ul_docs_convalid'>";
+            for(i=0;i<resp2.datos.length;i++){
+                contenido += "<li><a style='color:GREEN' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a></li>";
+            }
+            contenido+="</ul>";
+        }
+        alerta(contenido,"ADJUNTOS DE CONVALIDACIÓN",false,600);
+    },"json");
 }
