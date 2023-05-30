@@ -88,7 +88,7 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 								//$data["error"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc;
 								//		exit(json_encode($data));
 								while(false!=($docConv=readdir($subConv))){
-									if ($docConv != "." && $docConv != ".."  && !is_dir($docConv)){
+									if (is_file($docConv)){
 										$data["error"]=$docConv;
 										exit(json_encode($data));
 										$data["error"]="ok";
