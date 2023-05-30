@@ -86,8 +86,7 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 							if ($doc != "." && $doc != ".." && ($dir==$filtro || $filtro=="todos")){
 								$subConv=opendir("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
 								while(false!=($docConv=readdir($subConv))){
-									if($docConv!="." && $docConv!=".." && $docConv!="docs") $data["error"]=$docConv;
-									/*if (is_file($docConv)){
+									if ($docConv!="." && $docConv!=".." && $docConv!="docs"){
 										$data["error"]=$docConv;
 										exit(json_encode($data));
 										$data["error"]="ok";
@@ -95,9 +94,8 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 										$data["docs"][$tipodoc][$contador]["doc"]=$docConv;
 										$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/".$docConv;
 										$contador++;
-									}*/
+									}
 								}
-								exit(json_encode($data));
 							}
 						}
 						else{
