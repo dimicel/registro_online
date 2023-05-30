@@ -85,8 +85,6 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 						if($tipodoc=="convalidaciones"){
 							if ($doc != "." && $doc != ".."){
 								$subConv=opendir("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
-								//$data["error"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc;
-								//		exit(json_encode($data));
 								while(false!=($docConv=readdir($subConv))){
 									if (is_file($docConv)){
 										$data["error"]=$docConv;
