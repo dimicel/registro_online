@@ -85,17 +85,14 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 						if($tipodoc=="convalidaciones"){
 							if ($doc != "." && $doc != ".."){
 								$subConv=opendir("docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
-								$data["error"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc;
-							exit(json_encode($data));
-							}
-							
-							while(false!=($docConv=readdir($subConv))){
-								if ($docConv != "." && $docConv != ".."  && ($dir==$filtro || $filtro=="todos") && !is_dir($docConv)){
-									$data["error"]="ok";
-									$data["docs"][$tipodoc][$contador]["curso"]=$dir;
-									$data["docs"][$tipodoc][$contador]["doc"]=$docConv;
-									$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/".$docConv;
-									$contador++;
+								while(false!=($docConv=readdir($subConv))){
+									if ($docConv != "." && $docConv != ".."  && ($dir==$filtro || $filtro=="todos") && !is_dir($docConv)){
+										$data["error"]="ok";
+										$data["docs"][$tipodoc][$contador]["curso"]=$dir;
+										$data["docs"][$tipodoc][$contador]["doc"]=$docConv;
+										$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/".$docConv;
+										$contador++;
+									}
 								}
 							}
 						}
