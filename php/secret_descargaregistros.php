@@ -263,7 +263,7 @@ else{
 		}
 		elseif($formulario=="convalidaciones"){
 			$texto=convalidaciones($registro);
-			$reg_por_pag=25;
+			$reg_por_pag=15;
 		}
 		if($contador%$reg_por_pag==0) {
 			$pdf->AddPage();
@@ -526,7 +526,7 @@ function convalidaciones($r){
 	$organismoDestino=$r['organismo_destino'];
 $t=<<<EOD
 <b>NIE:</b> $id_nie <b>  Nº registro:</b> $registro<b>  Convalidación para:</b> $organismoDestino<br>
-<b>Alumno:</b>$usuario<br>
+<b>Alumno:</b>$usuario
 <br>#######################################################<br>
 EOD;
 	
