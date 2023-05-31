@@ -26,7 +26,7 @@ $(function() {
         items: {
             "edit": { name: "Ver/Modificar Datos" },
             "upload": { name: "Subir un documento a Expediente" },
-            "donload":{name: "Descargar Expediente"},
+            "download":{name: "Descargar Expediente"},
             "delete": { name: "Eliminar" }
         }
     });
