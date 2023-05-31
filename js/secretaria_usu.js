@@ -1003,6 +1003,7 @@ function adjuntosConvalid(registro){
 
 
 function descargarExpediente(id,nom){
+    nom = nom.replace(/,/g, '_');
     document.getElementById("cargando").style.display = 'inherit';
     formDownload=document.createElement("form");
     formDownload.id="form_downloadExp";
