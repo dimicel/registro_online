@@ -10,7 +10,7 @@ if ($mysqli->errno>0) {
 }
 $registro=$_POST["registro"];
 
-$sql = "SELECT *  FROM convalidaciones_docs WHERE registro = '$registro' ORDER BY descripcion";
+$sql = "SELECT *  FROM convalidaciones_docs WHERE registro = '$registro' ORDER BY ruta";
 $result = $mysqli->query($sql);
 $contador=0;
 if ($result->num_rows > 0) {
