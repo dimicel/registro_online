@@ -1022,4 +1022,5 @@ function descargarExpediente(id,nom){
     document.body.appendChild(formDownload);
     formDownload.submit();
     document.body.removeChild(formDownload);
+    document.getElementById("cargando").style.display = 'none';
 }

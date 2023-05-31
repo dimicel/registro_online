@@ -9,7 +9,7 @@ $nombre=$_POST["nombre_down"];
 $directorio = '../docs/'.$id_nie;
 
 // Ruta y nombre del archivo ZIP de salida
-$archivoZip = '../docs/'.$id_nie.'_'.$nombre.'.zip';
+$archivoZip = '../docs/tmp/'.$id_nie.'_'.$nombre.'.zip';
 
 // Crear una instancia de ZipArchive
 $zip = new ZipArchive();
