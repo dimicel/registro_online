@@ -801,7 +801,7 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
                 contenido+="<div id='ver_reg_ajuntosConvalid'></div>"
                 contenido+="<div class='container'><div class='row'>";
-                contenido+="<div class='col-2 offset-1'>";
+                contenido+="<div class='col-2'>";
                 contenido += "<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
                 contenido +="</div><div class='col-3'>";
                 contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones(\""+registro+"\",this)'>";
@@ -809,7 +809,7 @@ function verRegistro(obj) {
                 contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
                 contenido+="<option value='NO FAVORABLE'>NO FAVORABLE</option>";
                 contenido+="<option value='PARCIAL'>PARCIAL</option></select>";
-                contenido+="</div><div class='col-2'>"
+                contenido+="</div><div class='col-3'>"
                 contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
                 contenido+="</div><div class='col-2'>"
                 contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/>";                    contenido += "</div></div>";
@@ -1615,7 +1615,7 @@ function adjuntaResolucion(_id_nie,registro,doc_res){
             else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
             else if (resp == "error_subida") alerta("No se ha podido subir correctamente la resolución. Debe intentarlo en otro momento o revisar el formato del documento.", "ERROR SUBIDA");
             else if (resp == "ok"){
-                document.getElementById("ul_docs_convalid").innerHTML+="<li><a style='color:GREEN' target='_blank' href='docs/"+_id_nie+"/convalidaciones/"+curso_actual+"/"+registro.slice(17)+"/docs/resolucion/resolucion.pdf'>Resolución</a></li>";
+                verRegAdjuntosConvalid(registro);
                 alerta("Resolución adjuntada correctamente.","SUBIDA CORRECTA");
             } 
         },
