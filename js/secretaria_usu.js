@@ -19,10 +19,14 @@ $(function() {
             } else if (key == "upload") {
                 subeDocExpediente(id, nom);
             }
+            else if(key=="download"){
+                descargarExpediente(id,nom);
+            }
         },
         items: {
             "edit": { name: "Ver/Modificar Datos" },
             "upload": { name: "Subir un documento a Expediente" },
+            "donload":{name: "Descargar Expediente"},
             "delete": { name: "Eliminar" }
         }
     });
@@ -995,4 +999,27 @@ function adjuntosConvalid(registro){
         }
         alerta(contenido,"ADJUNTOS DE CONVALIDACIÓN",false,600);
     },"json");
+}
+
+
+function descargarExpediente(id,nom){
+    document.getElementById("cargando").style.display = 'inherit';
+    formDownload=document.createElement("form");
+    formDownload.id="form_downloadExp";
+    formDownload.method="POST";
+    formDownload.action="php/secret_usu_download_expediente.php";
+
+    input_id=document.createElement("input");
+    input_id.type="hidden";
+    input_id.name="id_down";
+    input_id.value=id;
+    formDownload.appendChild(input_id);
+    input_nom=document.createElement("input");
+    input_nom.type="hidden";
+    input_nom.name="nombre_down";
+    input_nom.value=nom;
+    formDownload.appendChild(input_nom);
+    document.body.appendChild(formDownload);
+    formDownload.submit();
+    document.body.removeChild(formDownload);
 }
