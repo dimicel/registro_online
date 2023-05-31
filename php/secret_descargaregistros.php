@@ -151,6 +151,19 @@ elseif($formulario=='matricula_ciclos'){
 	}	
 
 }
+elseif($formulario=="convalidaciones"){
+	if($tipo_listado=="todas") $consulta="select * from convalidaciones where curso='$curso' order by apellidos,nombre";
+	else if($tipo_listado=="listadas") $consulta="select * from convalidaciones where listado=true and curso='$curso' order by apellidos,nombre";
+	else if($tipo_listado=="no listadas") $consulta="select * from convalidaciones where listado=false and  curso='$curso' order by apellidos,nombre";
+	else if ($tipo_listado=="seleccionadas"){
+		$consulta="select * from convalidaciones where ";
+		for ($i=0;$i<count($registros);$i++){
+			if ($i==0) $consulta .= "registro='$registros[$i]'";
+			else $consulta .= " or registro='$registros[$i]'";
+		}
+		$consulta .= " order by apellidos,nombre";
+	}
+}
 else {
 	if($tipo_listado=="todas") $consulta="select * from $formulario where curso='$curso' order by $orden_campo $orden_direccion";
 	else if($tipo_listado=="listadas") $consulta="select * from $formulario where listado=true and curso='$curso' order by $orden_campo $orden_direccion";
