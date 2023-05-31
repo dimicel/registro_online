@@ -104,6 +104,9 @@ class MYPDF extends TCPDF {
 		elseif($_POST["formulario"]=="matricula_fpb"){
 			$encab = "LISTADO DE SOLICITUDES - CURSO " . $_POST["curso_listado"] . "<br>" . $encab_formulario[$_POST["formulario"]];
 		}
+		elseif($_POST["formulario"]=="convalidaciones"){
+			$encab = "LISTADO DE SOLICITUDES DE CONVALIDACIÓN - CURSO " . $_POST["curso_listado"] . "<br>" . $encab_formulario[$_POST["formulario"]] . "<br>Ordenado por: APELLIDOS Y NOMBRE";
+		}
 		else{
 			$encab = "LISTADO DE SOLICITUDES - CURSO " . $_POST["curso_listado"] . "<br>" . $encab_formulario[$_POST["formulario"]] . "<br>Ordenado por: " . $_POST["orden_texto"];
 		} 
