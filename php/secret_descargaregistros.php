@@ -245,6 +245,10 @@ else{
 		elseif($formulario=="matricula_fpb"){
 			$texto=matriculaFpb($registro);
 		}
+		elseif($formulario=="convalidaciones"){
+			$texto=convalidaciones($registro);
+			$reg_por_pag=25;
+		}
 		if($contador%$reg_por_pag==0) {
 			$pdf->AddPage();
 			//Padding dentro de la celda del texto
@@ -493,6 +497,26 @@ EOD;
 	
 	return $t;
 }
+
+
+#///////////////////////////////////////////////////////////////
+#//////CUERPO CONVALIDACIONES
+#///////////////////////////////////////////////////////////////
+
+function convalidaciones($r){
+	$id_nie=$r['id_nie'];
+	$registro=$r["registro"];
+	$usuario=$r['apellidos'].", ".$r['nombre'];
+	$organismoDestino=$r['organismo_destino'];
+$t=<<<EOD
+<b>NIE:</b> $id_nie <b>  Nº registro:</b> $registro<b>  Convalidación para:</b> $organismoDestino<br>
+<b>Alumno:</b>$usuario<br>
+<br>#######################################################<br>
+EOD;
+	
+	return $t;
+}
+
 
 
 #///////////////////////////////////////////////////////////////
