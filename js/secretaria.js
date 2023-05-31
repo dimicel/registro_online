@@ -1641,11 +1641,11 @@ function adjuntaDocAdicional(_id_nie,registro){
     //Para convalidaciones
     c="<div class='row'>";
     c+="<div class='col-1'><label for='desc_adic_conval' class='col-form-label'>Descripción: </label></div>";
-    c+="<div class='col-2'><input type='text' class='form-control' id='desc_adic_conval' name='desc_adic_conval' maxlength='40' /></div>";
+    c+="<div class='col-4'><input type='text' class='form-control' id='desc_adic_conval' name='desc_adic_conval' maxlength='40' /></div>";
     c+="<div class='col-1'><label for='doc_adic_conval' class='col-form-label'>Documento: </label></div>";
-    c+="<div class='col-2'><input type='text' class='form-control' id='doc_adic_conval' readonly placeholder='Seleccionar documento' onclick='document.getElementById('conval_doc_adicional').click()'/></div>";
+    c+="<div class='col-4'><input type='text' class='form-control' id='doc_adic_conval' readonly placeholder='Seleccionar documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/></div>";
     c+="</div>";
-    c+="<input type='file' id='conval_doc_adicional' name='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById('doc_adic_conval').value=this.files[0].name'/>";
+    c+="<input type='file' id='conval_doc_adicional' name='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById(\"doc_adic_conval\").value=this.files[0].name'/>";
     document.getElementById("div_dialogs2").innerHTML=c;
     $("#div_dialogs2").dialog({
         autoOpen: true,
@@ -1656,7 +1656,7 @@ function adjuntaDocAdicional(_id_nie,registro){
         resizable: false,
         show: { effect: "fade", duration: 0 },
         title: "VISTA DEL REGISTRO",
-        width: 500,
+        width: 700,
         position: { my: "center", at: "center", of: window },
         buttons: [
             {
