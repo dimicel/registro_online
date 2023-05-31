@@ -689,17 +689,18 @@ function formularioProcesado(obj){
 
 
 function verRegAdjuntosConvalid(reg){
+    _div="";
     $.post("php/secret_convalid_adjuntos.php",{registro:reg},(resp2)=>{
-        if(resp2.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
-        else if(resp2.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
+        if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
+        else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
-            contenido+="<ul id='ul_docs_convalid'>";
+            _div+="<ul id='ul_docs_convalid'>";
             for(i=0;i<resp2.datos.length;i++){
-                contenido += "<li><a style='color:GREEN' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></li>";
+                _div += "<li><a style='color:GREEN' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></li>";
             }
-            contenido+="</ul>";
+            _div+="</ul>";
         }
-        document.getElementById("ver_reg_ajuntosConvalid").innerHTML=contenido;
+        document.getElementById("ver_reg_ajuntosConvalid").innerHTML=_div;
     },"json");
 }
 
