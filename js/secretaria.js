@@ -688,6 +688,21 @@ function formularioProcesado(obj){
 }
 
 
+function verRegAdjuntosConvalid(reg){
+    $.post("php/secret_convalid_adjuntos.php",{registro:reg},(resp2)=>{
+        if(resp2.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
+        else if(resp2.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
+        else {
+            contenido+="<ul id='ul_docs_convalid'>";
+            for(i=0;i<resp2.datos.length;i++){
+                contenido += "<li><a style='color:GREEN' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></li>";
+            }
+            contenido+="</ul>";
+        }
+        document.getElementById("ver_reg_ajuntosConvalid").innerHTML=contenido;
+    },"json");
+}
+
 function verRegistro(obj) {
     ancho = 700;
     form1 = document.getElementById("tipo_form").value;
@@ -772,48 +787,39 @@ function verRegistro(obj) {
                 contenido += botones;
                 document.getElementById("verRegistro_div").innerHTML = contenido;
             } else if(form1=="convalidaciones"){
-                $.post("php/secret_convalid_adjuntos.php",{registro:registro},(resp2)=>{
-                    contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
-                    contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
-                    contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
-                    contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
-                    contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
-                    contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
-                    contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.modulos + "</span><br>";
-                    if(resp.registro.organismo_destino=="Consejería"){
-                        contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
-                    }
-                    contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
-                    if(resp2.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
-                    else if(resp2.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
-                    else {
-                        contenido+="<ul id='ul_docs_convalid'>";
-                        for(i=0;i<resp2.datos.length;i++){
-                            contenido += "<li><a style='color:GREEN' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></li>";
-                        }
-                        contenido+="</ul>";
-                    }
-                    contenido+="<div class='container'><div class='row'>";
-                    contenido+="<div class='col-2 offset-1'>";
-                    contenido += "<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
-                    contenido +="</div><div class='col-3'>";
-                    contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones(\""+registro+"\",this)'>";
-                    contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
-                    contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
-                    contenido+="<option value='NO FAVORABLE'>NO FAVORABLE</option>";
-                    contenido+="<option value='PARCIAL'>PARCIAL</option></select>";
-                    contenido+="</div><div class='col-2'>"
-                    contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
-                    contenido+="</div><div class='col-2'>"
-                    contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/>";                    contenido += "</div></div>";
-                    contenido+="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+_id_nie+"\",\""+registro+"\",this)'/>";
-                    contenido+="<input type='file' id='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaDocAdicional(\""+_id_nie+"\",\""+registro+"\",this)'/>";
-                    contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
-                    contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
-                    contenido += botones;
-                    document.getElementById("verRegistro_div").innerHTML = contenido;
-                    document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
-                },"json");
+                contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
+                contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
+                contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
+                contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
+                contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
+                contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
+                contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.modulos + "</span><br>";
+                if(resp.registro.organismo_destino=="Consejería"){
+                    contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
+                }
+                contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
+                contaenido+="<div id='ver_reg_ajuntosConvalid'></div>"
+                contenido+="<div class='container'><div class='row'>";
+                contenido+="<div class='col-2 offset-1'>";
+                contenido += "<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
+                contenido +="</div><div class='col-3'>";
+                contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones(\""+registro+"\",this)'>";
+                contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
+                contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
+                contenido+="<option value='NO FAVORABLE'>NO FAVORABLE</option>";
+                contenido+="<option value='PARCIAL'>PARCIAL</option></select>";
+                contenido+="</div><div class='col-2'>"
+                contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
+                contenido+="</div><div class='col-2'>"
+                contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/>";                    contenido += "</div></div>";
+                contenido+="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+_id_nie+"\",\""+registro+"\",this)'/>";
+                contenido+="<input type='file' id='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaDocAdicional(\""+_id_nie+"\",\""+registro+"\",this)'/>";
+                contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
+                contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
+                contenido += botones;
+                document.getElementById("verRegistro_div").innerHTML = contenido;
+                document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
+                verRegAdjuntosConvalid(registro);
                 
             } else if (form1 == "prematricula" || form1 == "matricula") {
                 if (form1 == "matricula") {
