@@ -798,7 +798,7 @@ function verRegistro(obj) {
                     contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
                 }
                 contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
-                contaenido+="<div id='ver_reg_ajuntosConvalid'></div>"
+                contenido+="<div id='ver_reg_ajuntosConvalid'></div>"
                 contenido+="<div class='container'><div class='row'>";
                 contenido+="<div class='col-2 offset-1'>";
                 contenido += "<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
