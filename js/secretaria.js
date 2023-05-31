@@ -1655,7 +1655,7 @@ function adjuntaDocAdicional(_id_nie,registro){
         hide: { effect: "fade", duration: 0 },
         resizable: false,
         show: { effect: "fade", duration: 0 },
-        title: "VISTA DEL REGISTRO",
+        title: "ADJUNTAR DOCUMENTO ADICIONAL A CONVALIDACIÓN",
         width: 700,
         position: { my: "center", at: "center", of: window },
         buttons: [
