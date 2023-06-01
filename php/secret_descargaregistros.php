@@ -254,6 +254,7 @@ else{
 		}
 		elseif($formulario=="matricula"){
 			$texto=matricula($registro);
+			$reg_por_pag=3;
 		}
 		elseif($formulario=="matricula_ciclos"){
 			$texto=matriculaCiclos($registro);
@@ -563,33 +564,10 @@ function matricula($r){
 		$curso_anterior=$r["curso_anterior"];
 		$grupo_curso_anterior=$r["grupo_curso_anterior"];
 		$prog_ling=$r["prog_ling"];
-		$rel_valores_et=$r["rel_valores_et"];
-		$primer_idioma=$r["1_lengua_extr"];
-		$optativa1=$r["optativa1"];
-		$optativa2=$r["optativa2"];
-		$optativa3=$r["optativa3"];
-		$optativa4=$r["optativa4"];
 
 		$t2=<<<EOD
 Curso Anterior: <b>$curso_anterior</b>  Grupo: <b>$grupo_curso_anterior</b><br>
-Programa Lingüístico: <b>$prog_ling</b><br>
-<b>MATERIAS</b><br>
-- Religión/Valores Éticos: <b>$rel_valores_et</b><br>
-- 1ª Lengua Extranjera:<b>$primer_idioma</b><br>
-<table>
-<tr>
-	<td width="60px">OPTATIVAS:</td>
-	<td>
-		<ol>
-			<li value="1"><b>$optativa1</b></li>
-			<li><b>$optativa2</b></li>
-			<li><b>$optativa3</b></li>
-			<li><b>$optativa4</b></li>
-		</ol>
-	</td>
-</tr>
-</table>
-
+Programa Lingüístico: <b>$prog_ling</b>
 <br>########################################################################<br>
 EOD;
 
@@ -601,34 +579,10 @@ EOD;
 		$curso_anterior=$r["curso_anterior"];
 		$grupo_curso_anterior=$r["grupo_curso_anterior"];
 		$prog_ling=$r["prog_ling"];
-		$rel_valores_et=$r["rel_valores_et"];
-		$primer_idioma=$r["1_lengua_extr"];
-		$optativa1=$r["optativa1"];
-		$optativa2=$r["optativa2"];
-		$optativa3=$r["optativa3"];
-		$optativa4=$r["optativa4"];
-		$optativa5=$r["optativa5"];
+		
 		$t2=<<<EOD
 Curso Anterior: <b>$curso_anterior</b>  Grupo: <b>$grupo_curso_anterior</b><br>
-Programa Lingüístico: <b>$prog_ling</b><br>
-<b>MATERIAS</b><br>
-- Religión/Valores Éticos: <b>$rel_valores_et</b><br>
-- 1ª Lengua Extranjera:<b>$primer_idioma</b><br>
-<table>
-	<tr>
-		<td width="60px">OPTATIVAS:</td>
-		<td>
-			<ol>
-				<li value="1"><b>$optativa1</b></li>
-				<li><b>$optativa2</b></li>
-				<li><b>$optativa3</b></li>
-				<li><b>$optativa4</b></li>
-				<li><b>$optativa5</b></li>
-			</ol>
-		</td>
-	</tr>
-</table>
-
+Programa Lingüístico: <b>$prog_ling</b>
 <br>########################################################################<br>
 EOD;
 	}
@@ -639,35 +593,11 @@ EOD;
 		$curso_anterior=$r["curso_anterior"];
 		$grupo_curso_anterior=$r["grupo_curso_anterior"];
 		$prog_ling=$r["prog_ling"];
-		$rel_valores_et=$r["rel_valores_et"];
-		$primer_idioma=$r["1_lengua_extr"];
-		$matematicas=$r["matematicas"];
-		$optativa1=$r["optativa1"];
-		$optativa2=$r["optativa2"];
-		$optativa3=$r["optativa3"];
-		$optativa4=$r["optativa4"];
 
 		$t2=<<<EOD
 Curso Anterior: <b>$curso_anterior</b>  Grupo: <b>$grupo_curso_anterior</b><br>
-Programa Lingüístico: <b>$prog_ling</b><br>
-<b>MATERIAS</b><br>
-- Religión/Valores Éticos: <b>$rel_valores_et</b><br>
-- 1ª Lengua Extranjera:<b>$primer_idioma</b><br>
-- Matemáticas <b>$matematicas</b><br>
-<table>
-<tr>
-	<td width="60px">OPTATIVAS:</td>
-	<td>
-		<ol>
-			<li value="1"><b>$optativa1</b></li>
-			<li><b>$optativa2</b></li>
-			<li><b>$optativa3</b></li>
-			<li><b>$optativa4</b></li>
-		</ol>
-	</td>
-</tr>
-</table>
-
+Programa Lingüístico: <b>$prog_ling</b>
+<br>########################################################################<br>
 EOD;
 	}
 	//////////////////////////////////////////////////////////////////////////////////
@@ -677,255 +607,53 @@ EOD;
 		$curso_anterior=$r["curso_anterior"];
 		$grupo_curso_anterior=$r["grupo_curso_anterior"];
 		$prog_ling=$r["prog_ling"];
-		$rel_valores_et=$r["rel_valores_et"];
-		$primer_idioma=$r["1_lengua_extr"];
-		$modalidad=$r["modalidad"];
-		$espec_oblig=$r["espec_oblig"];
-		$troncales_opcion1=$r["troncales_opcion1"];
-		$troncales_opcion2=$r["troncales_opcion2"];
-		$espec_opcion1=$r["espec_opcion1"];
-		$espec_opcion2=$r["espec_opcion2"];
-		$espec_opcion3=$r["espec_opcion3"];
-		$espec_opcion4=$r["espec_opcion4"];
-		$espec_opcion5=$r["espec_opcion5"];
-		$espec_opcion6=$r["espec_opcion6"];
-		$espec_opcion7=$r["espec_opcion7"];
-		$espec_opcion8=$r["espec_opcion8"];
-		$espec_opcion9=$r["espec_opcion9"];
 
 		$t2=<<<EOD
 Curso Anterior: <b>$curso_anterior</b>  Grupo: <b>$grupo_curso_anterior</b><br>
-Programa Lingüístico: <b>$prog_ling</b><br>
-<b>MATERIAS</b><br>
-- Modalidad: <b>$modalidad</b> <br>
-- 1ª Lengua Extranjera:<b>$primer_idioma</b><br>
-- Espec.Obligat.: <b>$rel_valores_et</b> y <b>$espec_oblig</b><br>
-- Troncales de Opción: <b>$troncales_opcion1</b> y <b>$troncales_opcion2</b><br>
-<table>
-<tr><td colspan="2">Espec.Opción y Libre Conf.</td></tr>
-<tr>
-	<td>
-		<ol>
-			<li value="1"><b>$espec_opcion1</b></li>
-			<li><b>$espec_opcion2</b></li>
-			<li><b>$espec_opcion3</b></li>
-			<li><b>$espec_opcion4</b></li>
-			<li><b>$espec_opcion5</b></li>
-		</ol>
-	</td>
-	<td>
-		<ol>
-			<li value="6"><b>$espec_opcion6</b></li>
-			<li><b>$espec_opcion7</b></li>
-			<li><b>$espec_opcion8</b></li>
+Programa Lingüístico: <b>$prog_ling</b>
+<br>########################################################################<br>
 EOD;
-		if ($modalidad!="Aplicadas") $t2.="<li><b>$espec_opcion9</b></li>";
-		$t2.="</ol></td></tr></table>";
+
 	}
 	//////////////////////////////////////////////////////////////////////////////////
-	////////////////////2º ESO PMAR
+	////////////////////3º ESO DIVER
 	//////////////////////////////////////////////////////////////////////////////////
-	elseif($c_mat=="2esopmar"){
+	elseif($c_mat=="3esodiver"){
 		$curso_anterior=$r["curso_anterior"];
 		$grupo_curso_anterior=$r["grupo_curso_anterior"];
-		$rel_valores_et=$r["rel_valores_et"];
-		$optativa1=$r["optativa1"];
-		$optativa2=$r["optativa2"];
-		$optativa3=$r["optativa3"];
-		$optativa4=$r["optativa4"];
 		
 		$t2=<<<EOD
-Curso Anterior: <b>$curso_anterior</b>  Grupo: <b>$grupo_curso_anterior</b><br>
-<b>MATERIAS</b><br>
-- Religión/Valores Éticos: <b>$rel_valores_et</b><br>
-<table>
-<tr>
-	<td width="60px">OPTATIVAS:</td>
-	<td>
-		<ol>
-			<li value="1"><b>$optativa1</b></li>
-			<li><b>$optativa2</b></li>
-			<li><b>$optativa3</b></li>
-			<li><b>$optativa4</b></li>
-		</ol>
-	</td>
-</tr>
-</table>
-
+Curso Anterior: <b>$curso_anterior</b>  Grupo: <b>$grupo_curso_anterior</b>
 <br>########################################################################<br>
 EOD;
 	}
 	//////////////////////////////////////////////////////////////////////////////////
-	////////////3º ESO PMAR
+	////////////4º ESO DIVER
 	//////////////////////////////////////////////////////////////////////////////////
-	elseif($c_mat=="3esopmar"){
+	elseif($c_mat=="4esodiver"){
 		$curso_anterior=$r["curso_anterior"];
 		$grupo_curso_anterior=$r["grupo_curso_anterior"];
-		$rel_valores_et=$r["rel_valores_et"];
-		$optativa1=$r["optativa1"];
-		$optativa2=$r["optativa2"];
-		$optativa3=$r["optativa3"];
-		$optativa4=$r["optativa4"];
 
 		$t2=<<<EOD
-Curso Anterior: <b>$curso_anterior</b>  Grupo: <b>$grupo_curso_anterior</b><br>
-<b>MATERIAS</b><br>
-- Religión/Valores Éticos: <b>$rel_valores_et</b><br>
-<table>
-<tr>
-	<td width="60px">OPTATIVAS:</td>
-	<td>
-		<ol>
-			<li value="1"><b>$optativa1</b></li>
-			<li><b>$optativa2</b></li>
-			<li><b>$optativa3</b></li>
-			<li><b>$optativa4</b></li>
-		</ol>
-	</td>
-</tr>
-</table>
+Curso Anterior: <b>$curso_anterior</b>  Grupo: <b>$grupo_curso_anterior</b>
+<br>########################################################################<br>
 EOD;
 	}
 	//////////////////////////////////////////////////////////////////////////////////
 	///////////1º BACH CIENCIAS
 	//////////////////////////////////////////////////////////////////////////////////
 	elseif($c_mat=="1bach_c"){
-		$itinerario=$r["itinerario"];
-		$primer_idioma=$r["primer_idioma"];
-		$tronc_gen1=$r["tronc_gen1"];
-		$tronc_gen2=$r["tronc_gen2"];
-		$espec_itin1=$r["espec_itin1"];
-		$espec_itin2=$r["espec_itin2"];
-		$espec_itin3=$r["espec_itin3"];
-		$espec_itin4=$r["espec_itin4"];
-		$espec_itin5=$r["espec_itin5"];
-		$espec_itin6=$r["espec_itin6"];
-		$espec_itin7=$r["espec_itin7"];
-		$espec_itin8=$r["espec_itin8"];
-		$espec_itin9=$r["espec_itin9"];
-		$espec_itin10=$r["espec_itin10"];
-		$espec_itin11=$r["espec_itin11"];
-		$espec_com1=$r["espec_com1"];
-		$espec_com2=$r["espec_com2"];
-		$espec_com3=$r["espec_com3"];
-		$espec_com4=$r["espec_com4"];
-		$espec_com5=$r["espec_com5"];
-		$espec_com6=$r["espec_com6"];
-		$espec_com7=$r["espec_com7"];
 
 		$t2=<<<EOD
-<b>MATERIAS</b><br>
-- Primer Idioma:<b>$primer_idioma</b><br>
-- Itinerario: <b>$itinerario</b><br>
-- Tronc.Gen.y de Opción: <b>$tronc_gen1</b> y <b>$tronc_gen2</b><br>
-<table>
-<tr>
-	<td>
-		Específicas de Itinerario
-	</td>
-	<td>
-		Específicas Comunes
-	</td>
-</tr>
-<tr>
-	<td>
-		<ol>
-			<li value="1"><b>$espec_itin1</b></li>
-			<li><b>$espec_itin2</b></li>
-			<li><b>$espec_itin3</b></li>
-			<li><b>$espec_itin4</b></li>
-			<li><b>$espec_itin5</b></li>
-			<li><b>$espec_itin6</b></li>
-			<li><b>$espec_itin7</b></li>
-			<li><b>$espec_itin8</b></li>
-			<li><b>$espec_itin9</b></li>
-			<li><b>$espec_itin10</b></li>
-			<li><b>$espec_itin11</b></li>
-		</ol>
-	</td>
-	<td>
-		<ol>
-			<li value="1"><b>$espec_com1</b></li>
-			<li><b>$espec_com2</b></li>
-			<li><b>$espec_com3</b></li>
-			<li><b>$espec_com4</b></li>
-			<li><b>$espec_com5</b></li>
-			<li><b>$espec_com6</b></li>
-			<li><b>$espec_com7</b></li>
-		</ol>
-	</td>
-</tr>
-</table>
-
+<br>########################################################################<br>
 EOD;
 	}
 	//////////////////////////////////////////////////////////////////////////////////
 	////////////1º BACH HH.CC.SS.
 	//////////////////////////////////////////////////////////////////////////////////
 	elseif($c_mat=="1bach_hcs"){
-		$itinerario=$r["itinerario"];
-		$primer_idioma=$r["primer_idioma"];
-		$tronc_gen1=$r["tronc_gen1"];
-		$tronc_gen2=$r["tronc_gen2"];
-		$tronc_opcion=$r["tronc_opcion"];
-		$espec_itin1=$r["espec_itin1"];
-		$espec_itin2=$r["espec_itin2"];
-		$espec_itin3=$r["espec_itin3"];
-		$espec_itin4=$r["espec_itin4"];
-		$espec_itin5=$r["espec_itin5"];
-		$espec_itin6=$r["espec_itin6"];
-		$espec_itin7=$r["espec_itin7"];
-		$espec_itin8=$r["espec_itin8"];
-		$espec_com1=$r["espec_com1"];
-		$espec_com2=$r["espec_com2"];
-		$espec_com3=$r["espec_com3"];
-		$espec_com4=$r["espec_com4"];
-		$espec_com5=$r["espec_com5"];
-		$espec_com6=$r["espec_com6"];
-		$espec_com7=$r["espec_com7"];
-
 		$t2=<<<EOD
-<b>MATERIAS</b><br>
-- Primer Idioma: <b>$primer_idioma</b><br> 
-- Itinerario: <b>$itinerario</b><br>
-- Troncales Generales: <b>$tronc_gen1</b> y <b>$tronc_gen2</b><br>
-- Troncal de Opción: <b>$tronc_opcion</b><br>
-<table>
-<tr>
-	<td>
-		Específicas de Itinerario
-	</td>
-	<td>
-		Específicas Comunes
-	</td>
-</tr>
-<tr>
-	<td>
-		<ol>
-			<li value="1"><b>$espec_itin1</b></li>
-			<li><b>$espec_itin2</b></li>
-			<li><b>$espec_itin3</b></li>
-			<li><b>$espec_itin4</b></li>
-			<li><b>$espec_itin5</b></li>
-			<li><b>$espec_itin6</b></li>
-			<li><b>$espec_itin7</b></li>
-			<li><b>$espec_itin8</b></li>
-		</ol>
-	</td>
-	<td>
-		<ol>
-			<li value="1"><b>$espec_com1</b></li>
-			<li><b>$espec_com2</b></li>
-			<li><b>$espec_com3</b></li>
-			<li><b>$espec_com4</b></li>
-			<li><b>$espec_com5</b></li>
-			<li><b>$espec_com6</b></li>
-			<li><b>$espec_com7</b></li>
-		</ol>
-	</td>
-</tr>
-</table>
-					 
+<br>########################################################################<br>
 EOD;
 
 	}
@@ -933,146 +661,16 @@ EOD;
 	///////////2º BACH CIENCIAS
 	//////////////////////////////////////////////////////////////////////////////////
 	elseif($c_mat=="2bach_c"){
-		$itinerario=$r["itinerario"];
-		$primer_idioma=$r["primer_idioma"];
-		$tronc_opc1=$r["tronc_opc1"];
-		$tronc_opc2=$r["tronc_opc2"];
-		$espec_itin_com1=$r["espec_itin_com1"];
-		$espec_itin_com2=$r["espec_itin_com2"];
-		$espec_itin_com3=$r["espec_itin_com3"];
-		$espec_itin_com4=$r["espec_itin_com4"];
-		$espec_itin_com5=$r["espec_itin_com5"];
-		$espec_itin_com6=$r["espec_itin_com6"];
-		$espec_itin_com7=$r["espec_itin_com7"];
-		$espec_itin_com8=$r["espec_itin_com8"];
-		$espec_itin_com9=$r["espec_itin_com9"];
-		$espec_itin_com10=$r["espec_itin_com10"];
-		$espec_itin_com11=$r["espec_itin_com11"];
-		$espec_itin_com12=$r["espec_itin_com12"];
-		$espec_itin_com13=$r["espec_itin_com13"];
-		$espec_itin_com14=$r["espec_itin_com14"];
-		$espec_itin_com15=$r["espec_itin_com15"];
-		$espec_itin_com16=$r["espec_itin_com16"];
-		$espec_itin_com17=$r["espec_itin_com17"];
-		$espec_itin_com18=$r["espec_itin_com18"];
-
 		$t2=<<<EOD
-<b>MATERIAS</b><br>
-- Primer Idioma II: <b>$primer_idioma</b><br> 
-- Itinerario: <b>$itinerario</b><br>
-- Troncales de Opción: <b>$tronc_opc1</b> y <b>$tronc_opc2</b><br>
-<table>
-<tr>
-	<td colspan="2">
-		Específicas de Itinerario y Comunes
-	</td>
-</tr>
-<tr>
-	<td>
-		<ol>
-			<li value="1"><b>$espec_itin_com1</b></li>
-			<li><b>$espec_itin_com2</b></li>
-			<li><b>$espec_itin_com3</b></li>
-			<li><b>$espec_itin_com4</b></li>
-			<li><b>$espec_itin_com5</b></li>
-			<li><b>$espec_itin_com6</b></li>
-			<li><b>$espec_itin_com7</b></li>
-			<li><b>$espec_itin_com8</b></li>
-			<li><b>$espec_itin_com9</b></li>
-		</ol>
-	</td>
-	<td>
-		<ol>
-			<li value="10"><b>$espec_itin_com10</b></li>
-			<li><b>$espec_itin_com11</b></li>
-			<li><b>$espec_itin_com12</b></li>
-			<li><b>$espec_itin_com13</b></li>
-			<li><b>$espec_itin_com14</b></li>
-			<li><b>$espec_itin_com15</b></li>
-			<li><b>$espec_itin_com16</b></li>
-			<li><b>$espec_itin_com17</b></li>
-			<li><b>$espec_itin_com18</b></li>
-		</ol>
-	</td>
-</tr>
-</table>
-					 
+<br>########################################################################<br>
 EOD;
 	}
 	//////////////////////////////////////////////////////////////////////////////////
 	////////////2º BACH HH.CC.SS.
 	//////////////////////////////////////////////////////////////////////////////////
 	elseif($c_mat=="2bach_hcs"){
-		$itinerario=$r["itinerario"];
-		$primer_idioma=$r["primer_idioma"];
-		$tronc_gen=$r["tronc_gen"];
-		$tronc_opc1=$r["tronc_opc1"];
-		$tronc_opc2=$r["tronc_opc2"];
-		$espec_itin_com1=$r["espec_itin_com1"];
-		$espec_itin_com2=$r["espec_itin_com2"];
-		$espec_itin_com3=$r["espec_itin_com3"];
-		$espec_itin_com4=$r["espec_itin_com4"];
-		$espec_itin_com5=$r["espec_itin_com5"];
-		$espec_itin_com6=$r["espec_itin_com6"];
-		$espec_itin_com7=$r["espec_itin_com7"];
-		$espec_itin_com8=$r["espec_itin_com8"];
-		$espec_itin_com9=$r["espec_itin_com9"];
-		$espec_itin_com10=$r["espec_itin_com10"];
-		$espec_itin_com11=$r["espec_itin_com11"];
-		$espec_itin_com12=$r["espec_itin_com12"];
-		$espec_itin_com13=$r["espec_itin_com13"];
-		$espec_itin_com14=$r["espec_itin_com14"];
-		$espec_itin_com15=$r["espec_itin_com15"];
-		$espec_itin_com16=$r["espec_itin_com16"];
-		$espec_itin_com17=$r["espec_itin_com17"];
-
 		$t2=<<<EOD
-<b>MATERIAS</b><br>
-<table>
-<tr>
-	<td width="20%">Troncales Generales:</td>
-	<td>- Primer Idioma II: <b>$primer_idioma</b></td>
-</tr>
-<tr>
-	<td></td>
-	<td>- Itinerario: <b>$itinerario - $tronc_gen</b></td>
-</tr>
-</table><br>
-Troncales de Opción: <b>$tronc_opc1</b> y <b>$tronc_opc2</b><br>
-<table>
-<tr>
-<td colspan="2">
-	Específicas de Itinerario y Comunes
-</td>
-</tr>
-<tr>
-<td>
-	<ol>
-		<li value="1"><b>$espec_itin_com1</b></li>
-		<li><b>$espec_itin_com2</b></li>
-		<li><b>$espec_itin_com3</b></li>
-		<li><b>$espec_itin_com4</b></li>
-		<li><b>$espec_itin_com5</b></li>
-		<li><b>$espec_itin_com6</b></li>
-		<li><b>$espec_itin_com7</b></li>
-		<li><b>$espec_itin_com8</b></li>
-		<li><b>$espec_itin_com9</b></li>
-	</ol>
-</td>
-<td>
-	<ol>
-		<li value="10"><b>$espec_itin_com10</b></li>
-		<li><b>$espec_itin_com11</b></li>
-		<li><b>$espec_itin_com12</b></li>
-		<li><b>$espec_itin_com13</b></li>
-		<li><b>$espec_itin_com14</b></li>
-		<li><b>$espec_itin_com15</b></li>
-		<li><b>$espec_itin_com16</b></li>
-		<li><b>$espec_itin_com17</b></li>
-	</ol>
-</td>
-</tr>
-</table>
+<br>########################################################################<br>
 EOD;
 	}
 	return $t1 . $t2;
