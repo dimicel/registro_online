@@ -62,16 +62,15 @@ $(function() {
 });
 
 function inhabilitaUsuario(_ID,obj){
-    alert(obj.html());return
-    if (obj.style.backgroundColor=="red")habilitar=1;
+    if (obj.css("background-color")=="red")habilitar=1;
     else habilitar=0;
     $.post("php/secret_usu_inhabilitar.php",{id_nie:_ID,habilitar:habilitar},(resp)=>{
-        if (resp=="habilitado"){
-            obj.style.backgroundColor="red";
+        if (resp=="inhabilitado"){
+            obj.css("background-color","red");
             alerta("Usuario HABILITADO","CAMBIO ESTADO USUARIO");
         } 
-        else if(resp=="inhabilitado"){
-            obj.style.backgroundColor=document.getElementById("registros_usus").style.backgroundColor;
+        else if(resp=="habilitado"){
+            obj.css("background-color",document.getElementById("registros_usus").style.backgroundColor);
             alerta("Usuario INHABILITADO","CAMBIO ESTADO USUARIO");
         } 
         else {
