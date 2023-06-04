@@ -164,7 +164,7 @@ function entra() {
             if (resp.error == "server") alerta("Fallo de conexión al servidor", "Error Servidor");
             else if (resp.error == "password") alerta("Contraseña inválida", "Error Password");
             else if (resp.error == "nousu") alerta("El usuario no existe. Consulte en la Secretaría del Centro.", "Error Usuario");
-            else if(resp.error=="inhabilitado") alerta("El usuario está inhabilitado por decisión del mismo. No podráoperar ni recibirá notificaciones.", "USUARIO INHABILITADO");
+            else if(resp.error=="inhabilitado") alerta("El usuario se ha inhabilitado por decisión del mismo. No podrá operar ni recibirá notificaciones.", "USUARIO INHABILITADO");
             else if (resp.error == "primera_vez") {
                 document.getElementById("nu_nie").value = document.getElementById("usuario").value;
                 document.getElementById("nu_apellidos").value=resp.datos.apellidos;
