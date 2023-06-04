@@ -42,7 +42,7 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
     $Datos.=utf8_decode($r["cp"].";");
     $Datos.=utf8_decode($r["localidad"].";");
     $Datos.=utf8_decode($r["provincia"].";");
-    $Datos.=utf8_decode($r["ruta"]);
+    $Datos.=utf8_decode($r["ruta"].";");
     if($r["sillaruedas"]==1)$Datos.="SI".PHP_EOL;
     else $Datos.="NO".PHP_EOL;	
 }
