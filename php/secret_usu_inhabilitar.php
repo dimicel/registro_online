@@ -14,6 +14,7 @@ $habilitar=$_POST["habilitar"];
 $consulta="UPDATE usuarios SET habilitar=$habilitar where id_nie='$id_nie'";
 $mysqli->query($consulta);
 if ($mysqli->errno>0) {
+    exit ($mysqli->errno);
     exit("fallo");
 }
 
