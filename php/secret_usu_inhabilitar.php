@@ -17,7 +17,6 @@ if ($mysqli->errno>0) {
     exit("fallo");
 }
 
-exit("ok");
-
-
+if ($habilitar==1)exit ("habilitado");
+else exit("inhabilitado");
 
