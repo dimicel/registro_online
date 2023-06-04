@@ -12,7 +12,6 @@ $(function() {
         callback: function(key, options) {
             id = $(this).children("td:first").html();
             nom = $(this).children("td:nth-child(2)").html();
-            alert($(this).html());
             if (key == "edit") {
                 panelModUsu(id);
             } else if (key == "delete") {
@@ -21,7 +20,7 @@ $(function() {
                 subeDocExpediente(id, nom);
             }
             else if(key=="inhabilitar"){
-                inhabilitaUsuario(id,this);
+                inhabilitaUsuario(id,$(this));
             }
             else if(key=="download"){
                 descargarExpediente(id,nom);
