@@ -403,7 +403,7 @@ $pdf->Cell(0,0,$texto_modalidad,0,0,'L',0,'',1,false,'','');
 
 //DECLARACIONES RESPONSABLES
 
-$YInicio+=7;
+$YInicio+=11;
 $pdf->RoundedRect($XInicio-2,$YInicio,185,38,2,'1111','','','');
 $pdf->SetXY($XInicioRotulo,$YInicio+1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
