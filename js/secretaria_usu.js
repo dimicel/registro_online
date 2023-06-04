@@ -62,6 +62,7 @@ $(function() {
 });
 
 function inhabilitaUsuario(_ID,obj){
+    alert(obj.css("background-color"))
     if (obj.css("background-color")=="rgb(255,0,0)")habilitar=1;  //rojo
     else habilitar=0;
     $.post("php/secret_usu_inhabilitar.php",{id_nie:_ID,habilitar:habilitar},(resp)=>{
