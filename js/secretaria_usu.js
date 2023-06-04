@@ -62,7 +62,7 @@ $(function() {
 });
 
 function inhabilitaUsuario(_ID,obj){
-    alert(obj.innerHTML);return
+    alert(obj.html());return
     if (obj.style.backgroundColor=="red")habilitar=1;
     else habilitar=0;
     $.post("php/secret_usu_inhabilitar.php",{id_nie:_ID,habilitar:habilitar},(resp)=>{
