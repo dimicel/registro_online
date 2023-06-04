@@ -12,42 +12,50 @@ $registro=$_POST["registro"];
 $incidencias=$_POST["incidencias"];
 $aviso_incidencia_solventada=$_POST["aviso_incidencia_solventada"];
 $email="";
+$habilitado=0;
+
 
 $c1=$mysqli->query("select id_nie,registro from $tabla  where registro='$registro'");
 if ($c1->num_rows==1){
     $i=$c1->fetch_array(MYSQLI_ASSOC);
     $id_nie=$i["id_nie"];
-    $c2=$mysqli->query("select id_nie,email from usuarios  where id_nie='$id_nie'");
+    $c2=$mysqli->query("select * from usuarios  where id_nie='$id_nie'");
     if ($c2->num_rows==1){
         $j=$c2->fetch_array(MYSQLI_ASSOC);
         $email=$j["email"];
+        $habilitado=$j["habilitado"];
     }
 }
+
 
 $consulta="update $tabla set incidencias='$incidencias' where registro='$registro'";
 
 if($mysqli->query($consulta)){
-    if($email!=""){
-        $mail->addAddress($email, '');
-        $mail->Subject = 'Registro Online';
-
-        $cuerpo = 'Registro online del IES Universidad Laboral<br>';
-        if (trim($incidencias)=="" && $aviso_incidencia_solventada==1){
-            $cuerpo .= 'El formulario con número de registro: '.$registro.' ya no tiene incidencias.';
-            $mail->Body =$cuerpo;
-            $mail->send();
+    if($habilitado==1){
+        if($email!=""){
+            $mail->addAddress($email, '');
+            $mail->Subject = 'Registro Online';
+    
+            $cuerpo = 'Registro online del IES Universidad Laboral<br>';
+            if (trim($incidencias)=="" && $aviso_incidencia_solventada==1){
+                $cuerpo .= 'El formulario con número de registro: '.$registro.' ya no tiene incidencias.';
+                $mail->Body =$cuerpo;
+                $mail->send();
+            }
+            elseif (trim($incidencias)!="") {
+                $cuerpo .= 'Se ha registrado una incidencia en el formulario con número de registro: '.$registro.'<br>';
+                $cuerpo .= 'La incidencia es:<br>';
+                $cuerpo .= $incidencias.'<br><br>';
+                $cuerpo .= 'Acceda al panel de control de usuario del Registro Online para visualizarla cuando quiera.';
+                $mail->Body =$cuerpo;
+                $mail->send();
+            } 
         }
-        elseif (trim($incidencias)!="") {
-            $cuerpo .= 'Se ha registrado una incidencia en el formulario con número de registro: '.$registro.'<br>';
-            $cuerpo .= 'La incidencia es:<br>';
-            $cuerpo .= $incidencias.'<br><br>';
-            $cuerpo .= 'Acceda al panel de control de usuario del Registro Online para visualizarla cuando quiera.';
-            $mail->Body =$cuerpo;
-            $mail->send();
-        }
-        
+        exit("ok");
     }
-    exit("ok");
+    else exit("inhabilitado");
+    
+    
 } 
 else exit("Fallo: " . $mysqli->error);
 

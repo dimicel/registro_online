@@ -1065,6 +1065,7 @@ function verRegistro(obj) {
 function actualizaIncidencias(registro, form, incidencias) {
     $.post("php/secret_actualizaIncidencias.php", { registro: registro, formulario: form, incidencias: incidencias, aviso_incidencia_solventada: incidencia_si }, function(resp) {
         if (resp == "ok") alerta("Registro actualizado", "OK");
+        else if (resp == "inhabilitado") alerta("El usuario está INHABILITADO y no se le enviará ,ninguna notificación.", "INHABILITADO - SIN NOTIFICACIÓN");
         else if (resp == "server") alerta("Ha habido un error en el servidor. Inténtalo más tarde.<br>" + resp, "ERROR EN SERVIDOR");
         else alerta("No se ha podido actualizar el registro.<br>" + resp, "ERROR");
     });
