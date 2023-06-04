@@ -357,7 +357,7 @@ $YInicio+=8;
 $pdf->SetXY($XInicioRotulo,$YInicio+1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"TIPO DE TRANSPORTE QUE SOLICITA Y MODALIDAD",0,0,'L',0,'',1,false,'','');
-$pdf->RoundedRect($XInicio-2,$YInicio,185,30,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,38,2,'1111','','','');
 
 if ($_t_apartado=="Art. 3 pto. 2 aptdo. c)"){
     $texto_trans_solic="Artículo 3, punto 2, apartado c) del decreto 119/2012, por el que se regula la organización y funcionamiento del transporte escolar: ";
