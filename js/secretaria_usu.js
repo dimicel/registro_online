@@ -113,7 +113,7 @@ function listaUsus() {
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
                 if (data_array[i]["id_nie"] == "S4500175G") continue;
-                if (data_array[i]["habilitado"]==0)data += "<tr style='background-color:red>";
+                if (data_array[i]["habilitado"]==0)data += "<tr style='background-color:red'>";
                 else data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
