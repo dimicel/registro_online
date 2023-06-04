@@ -62,11 +62,11 @@ $(function() {
 });
 
 function inhabilitaUsuario(_ID,obj){
-    if (obj.style.backgroundColor=="RED")habilitar=1;
+    if (obj.style.backgroundColor=="red")habilitar=1;
     else habilitar=0;
     $.post("php/secret_usu_inhabilitar.php",{id_nie:_ID,habilitar:habilitar},(resp)=>{
         if (resp=="habilitado"){
-            obj.style.backgroundColor="RED";
+            obj.style.backgroundColor="red";
             alerta("Usuario HABILITADO","CAMBIO ESTADO USUARIO");
         } 
         else if(resp=="inhabilitado"){
@@ -113,7 +113,7 @@ function listaUsus() {
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
                 if (data_array[i]["id_nie"] == "S4500175G") continue;
-                if (data_array[i]["habilitado"]==0)data += "<tr style='background-color:RED>";
+                if (data_array[i]["habilitado"]==0)data += "<tr style='background-color:red>";
                 else data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
