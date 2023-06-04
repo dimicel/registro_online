@@ -62,6 +62,7 @@ while ($reg=$res->fetch_assoc()){
     $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
     $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["apellidos"])).", ".ucwords(strtolower($reg["nombre"]));
     $data["registros"][$contador]["email"]= $reg["email"];
+    $data["registros"][$contador]["habilitado"]= $reg["habilitado"];
     if ($reg["no_ha_entrado"]==1) $data["registros"][$contador]["no_ha_entrado"]= "NO";
     else $data["registros"][$contador]["no_ha_entrado"]= "SI";
     $contador++;

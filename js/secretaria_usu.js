@@ -19,6 +19,9 @@ $(function() {
             } else if (key == "upload") {
                 subeDocExpediente(id, nom);
             }
+            else if(key=="inhabilitar"){
+                inhabilitaUsuario(id,this.style.backgroundColor);
+            }
             else if(key=="download"){
                 descargarExpediente(id,nom);
             }
@@ -27,6 +30,7 @@ $(function() {
             "edit": { name: "Ver/Modificar Datos" },
             "upload": { name: "Subir un documento a Expediente" },
             "download":{name: "Descargar Expediente"},
+            "inhabilitar":{name: "Inhabilitar/Habilitar usuario"},
             "delete": { name: "Eliminar" }
         }
     });
@@ -56,6 +60,18 @@ $(function() {
     $('#navegacion_usus_bottom a').addClass('page-link');
     listaUsus();    
 });
+
+function inhabilitaUsuario(_ID,color){
+    if (color=="RED")habilitar=1;
+    else habilitar=0;
+    $.post("php/secret_usu_inhabilitar.php",{id_nie:_ID,habilitar:habilitar},(resp)=>{
+        if (resp=="habilitado") alerta("Usuario HABILITADO","CAMBIO ESTADO USUARIO");
+        else if(resp=="inhabilitado") alerta("Usuario INHABILITADO","CAMBIO ESTADO USUARIO");
+        else {
+            alerta("No se ha podido cambiar el estado del usuario por un problema en el servidor.","ERROR SERVIDOR");
+        }
+    })
+}
 
 function listaUsus() {
     direccion = new Array();
@@ -91,10 +107,11 @@ function listaUsus() {
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
                 if (data_array[i]["id_nie"] == "S4500175G") continue;
-                data += "<tr>";
+                if (data_array[i]["habilitado"]==0)data += "<tr style='background-color:RED>";
+                else data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
-                if (String(data_array[i]["nombre"]).trim() != "") {
+                if (String(data_array[i]["nombre"]).trim() != "" && data_array[i]["habilitado"]==1) {
                     data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
                 } else {
                     data += "<td style='" + estilo_usu[2] + "'></td>";

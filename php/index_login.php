@@ -25,12 +25,16 @@ else {
 
 	$mysqli->set_charset("utf8");
 
-	$consulta=$mysqli->query("select password,id_nif,id_nie,nombre,apellidos,email,no_ha_entrado from usuarios where id_nie='$usuario'");
+	$consulta=$mysqli->query("select * from usuarios where id_nie='$usuario'");
 	if ($consulta->num_rows>0){
 		$pass=$consulta->fetch_array(MYSQLI_ASSOC);
 		$consulta->free();
 		if (password_verify($contrasena,$pass['password'])){
 			$_SESSION['acceso_logueado']="correcto";
+			if($pass['habilitado']==0){
+				$dat["error"]="inhabilitado";
+				exit(json_encode($dat));
+			}
 			if ($pass['no_ha_entrado']){
 				$dat["error"]="primera_vez";
 				$dat["datos"]["id_nif"]=$pass['id_nif'];
