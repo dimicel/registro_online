@@ -217,6 +217,7 @@ function registraSolicitud() {
     
     f._t_apartado.value = retornaValRadioButton(f4.apartado);
     f._t_modalidad.value = retornaValRadioButton(f4.modalidad);
+    f.appendChild(f4.sillaruedas);
     f._t_aut_acred_iden.value = retornaValRadioButton(f5.acred_iden);
     f._t_aut_acred_domic.value = retornaValRadioButton(f5.acred_domic);
 

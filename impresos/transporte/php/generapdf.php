@@ -58,6 +58,11 @@ $te_email=$_POST["te_email"];
 $te_ruta=$_POST["_t_ruta"];
 $_t_apartado=$_POST["_t_apartado"];
 $_t_modalidad=$_POST["_t_modalidad"];
+if (isset($_POST['sillaruedas']) && $_POST['sillaruedas'] == '1') {
+    $sillaruedas=1;
+  } else {
+    $sillaruedas=0;
+  }
 $_t_aut_acred_iden=$_POST["_t_aut_acred_iden"];
 $_t_aut_acred_domic=$_POST["_t_aut_acred_domic"];
 $fecha_registro=date('Y-m-d');
@@ -106,6 +111,7 @@ distancia,
 ruta,
 apartado,
 modalidad,
+sillaruedas,
 autoriz_identidad,
 autoriz_domicilio) 
 values ('$id_nie',
@@ -135,6 +141,7 @@ values ('$id_nie',
 '$te_ruta',
 '$_t_apartado',
 '$_t_modalidad',
+ $sillaruedas,
 '$_t_aut_acred_iden',
 '$_t_aut_acred_domic')");
 
@@ -367,6 +374,13 @@ elseif ($_t_apartado=="Art. 3 pto. 2 aptdo. e)"){
 
 if ($_t_modalidad=="diario")$texto_modalidad="Transporte diario";
 elseif ($_t_modalidad=="semana")$texto_modalidad="Transporte de fin de semana";
+
+$YInicio+=6;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans','U', 8, '', true);
+if($sillaruedas==1) $pdf->Cell(0,0,"Persona usuaria de silla de ruedas: SI",0,0,'L',0,'',1,false,'','');
+else  $pdf->Cell(0,0,"Persona usuaria de silla de ruedas: NO",0,0,'L',0,'',1,false,'','');
+
 
 $YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);
