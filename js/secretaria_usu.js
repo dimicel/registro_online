@@ -12,6 +12,7 @@ $(function() {
         callback: function(key, options) {
             id = $(this).children("td:first").html();
             nom = $(this).children("td:nth-child(2)").html();
+            alert(this.style.backgroundColor);
             if (key == "edit") {
                 panelModUsu(id);
             } else if (key == "delete") {
