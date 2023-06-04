@@ -66,14 +66,12 @@ function inhabilitaUsuario(_ID,obj){
     else habilitar=0;
     $.post("php/secret_usu_inhabilitar.php",{id_nie:_ID,habilitar:habilitar},(resp)=>{
         if (resp=="inhabilitado"){
-            //obj.css("background-color","red");
-            listaUsus();
-            alerta("Usuario HABILITADO","CAMBIO ESTADO USUARIO");
-        } 
-        else if(resp=="habilitado"){
-            //obj.css("background-color",document.getElementById("registros_usus").style.backgroundColor);
             listaUsus();
             alerta("Usuario INHABILITADO","CAMBIO ESTADO USUARIO");
+        } 
+        else if(resp=="habilitado"){
+            listaUsus();
+            alerta("Usuario HABILITADO","CAMBIO ESTADO USUARIO");
         } 
         else {
             alerta("No se ha podido cambiar el estado del usuario por un problema en el servidor.","ERROR SERVIDOR");
