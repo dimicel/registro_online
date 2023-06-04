@@ -20,7 +20,7 @@ $(function() {
                 subeDocExpediente(id, nom);
             }
             else if(key=="inhabilitar"){
-                inhabilitaUsuario(id,this.style.backgroundColor);
+                inhabilitaUsuario(id,this);
             }
             else if(key=="download"){
                 descargarExpediente(id,nom);
@@ -61,12 +61,18 @@ $(function() {
     listaUsus();    
 });
 
-function inhabilitaUsuario(_ID,color){
-    if (color=="RED")habilitar=1;
+function inhabilitaUsuario(_ID,obj){
+    if (obj.style.backgroundColor=="RED")habilitar=1;
     else habilitar=0;
     $.post("php/secret_usu_inhabilitar.php",{id_nie:_ID,habilitar:habilitar},(resp)=>{
-        if (resp=="habilitado") alerta("Usuario HABILITADO","CAMBIO ESTADO USUARIO");
-        else if(resp=="inhabilitado") alerta("Usuario INHABILITADO","CAMBIO ESTADO USUARIO");
+        if (resp=="habilitado"){
+            obj.style.backgroundColor="RED";
+            alerta("Usuario HABILITADO","CAMBIO ESTADO USUARIO");
+        } 
+        else if(resp=="inhabilitado"){
+            obj.style.backgroundColor=document.getElementById("registros_usus").style.backgroundColor;
+            alerta("Usuario INHABILITADO","CAMBIO ESTADO USUARIO");
+        } 
         else {
             alerta("No se ha podido cambiar el estado del usuario por un problema en el servidor.","ERROR SERVIDOR");
         }
