@@ -56,9 +56,6 @@ function creaValidatorPagina2() {
                 required: true,
                 miFecha: true
             },
-            nif_nie: {
-                numero_nif: true
-            },
             email_alumno: {
                 email: true
             }
@@ -76,9 +73,6 @@ function creaValidatorPagina2() {
             fecha_nac: {
                 required: "Seleccione una fecha",
                 miFecha: "Formato incorrecto"
-            },
-            nif_nie: {
-                numero_nif: "Incorrecto"
             },
             email_alumno: {
                 email: "Dirección no válida"
