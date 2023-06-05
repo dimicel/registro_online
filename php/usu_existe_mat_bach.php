@@ -13,7 +13,7 @@ $curso=$_POST["curso"];
 $resp=Array();
 
 
-$consulta.="(select * from mat_bach where id_nie='$id_nie' and curso='$curso')";
+$consulta="select * from mat_bach where id_nie='$id_nie' and curso='$curso'";
 
 $res=$mysqli->query($consulta);
 

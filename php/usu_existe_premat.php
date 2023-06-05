@@ -40,7 +40,7 @@ $cursos2=array(
 
 
 $campos="apellidos,nombre";
-$consulta.="(select $campos from premat_eso where id_nie='$id_nie' and curso='$curso') union all";
+$consulta="(select $campos from premat_eso where id_nie='$id_nie' and curso='$curso') union all";
 $consulta.="(select $campos from premat_bach where id_nie='$id_nie' and curso='$curso')";
 
 $res=$mysqli->query($consulta);

@@ -30,7 +30,7 @@ $cursos2=array(
 
 $campos="sexo,apellidos,nombre,telef_alumno,email,registro,tutor1,";
 $campos.="email_tutor1,tlf_tutor1,tutor2,email_tutor2,tlf_tutor2";
-$consulta="(select $campos from premat_bach where id_nie='$id_nie' and curso='$curso')";
+$consulta="select * from premat_bach where id_nie='$id_nie' and curso='$curso'";
 
 $res=$mysqli->query($consulta);
 
