@@ -13,8 +13,9 @@
             <a href="#" style="color:red" onclick="muestraAyudaDocs()">Ayuda sobre el formato de los documentos</a>
             <div class="row" id="div_fotografia">
                 <div id="div_foto" class="col">
-                    <label for="foto_alumno">*Fotografía del alumno en JPEG (formato DNI):</label>
-                    <input name="foto_alumno" id="foto_alumno" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="subeFoto(this)" />
+                    <label for="_foto_alumno">*Fotografía del alumno en JPEG (formato DNI):</label>
+                    <input type="text" id="_foto_alumno"  class="btn btn-success form-control" readonly onclick="document.getElementById('foto_alumno').click()" placeholder="Click para seleccionar fotografía">
+                    <input name="foto_alumno" id="foto_alumno" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="subeFoto(this)" />
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
