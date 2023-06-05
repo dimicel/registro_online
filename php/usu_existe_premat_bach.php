@@ -21,11 +21,11 @@ $cursos=array(
 );
 
 $cursos2=array(
-    "pm1bac"=>"1º Bach. Ciencias",
-    "pm1bah"=>"1º Bach. HH.CC.SS.",
-    "pm1bag"=>"1º Bach. General",
-    "pm2bac"=>"2º Bach. Ciencias y Tecnología",
-    "pm2bah"=>"2º Bach. HH.CC.SS."
+    "pm1bac"=>"1º Bachillerato Ciencias y Tecnología",
+    "pm1bah"=>"1º Bachillerato Humanidades y Ciencias Sociales",
+    "pm1bag"=>"1º Bachillerato General",
+    "pm2bac"=>"2º Bachillerato Ciencias y Tecnología",
+    "pm2bah"=>"2º Bachillerato Humanidades y Ciencias Sociales"
 );
 
 $campos="sexo,apellidos,nombre,telef_alumno,email,registro,tutor1,";
