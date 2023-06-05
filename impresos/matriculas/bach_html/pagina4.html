@@ -15,7 +15,7 @@
                 <div id="div_foto" class="col">
                     <label for="_foto_alumno">*Fotografía del alumno en JPEG (formato DNI):</label>
                     <input type="text" id="_foto_alumno"  class="btn btn-success form-control" readonly onclick="document.getElementById('foto_alumno').click()" placeholder="Click para seleccionar fotografía">
-                    <input name="foto_alumno" id="foto_alumno" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="subeFoto(this)" />
+                    <input name="foto_alumno" id="foto_alumno" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
