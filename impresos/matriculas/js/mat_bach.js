@@ -609,3 +609,57 @@ function muestraAyudaDocs(){
     document.getElementById("div_ayuda_docs").innerHTML = mensaje_docs;
     $('#div_ayuda_docs').dialog('open');
 }
+
+
+
+function muestraEditor(_file){
+    _crop1=new Croppie(document.getElementById("div_imagen"), {
+        viewport: { width: 300, height: 190 },
+        boundary: { width: 450, height: 255 },
+        showZoomer: false,
+        enableOrientation: true
+    });
+    _crop1.bind({
+        url: URL.createObjectURL(_file),
+        orientation: 1
+    });
+    __ancho=500;
+    
+
+
+    $("#div_edita_imagen").dialog({
+        autoOpen: true,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "EDICIÓN IMAGEN",
+        width: __ancho,
+        buttons: [{
+                class: "btn btn-success textoboton",
+                text: "Aceptar",
+                click: function() {
+                    _crop1.result({
+                        type: 'blob'
+                    }).then(function (blob) {
+                        return fetch(window.URL.createObjectURL(blob))
+                    }).then(function (response) {
+                        return response.blob();
+                    }).then(function (blob) {
+                        formData.append(_fname_ajax, blob, _f_ajax);
+                    });
+                   _crop1.destroy();
+                    $("#div_edita_imagen").dialog("close");
+                    $("#div_edita_imagen").dialog("destroy");
+                }
+            }
+        ]
+    });
+    if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
+        $("#doc_ident_reverso").hide();
+    }
+    else if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
+        $("#doc_ident_reverso").show();
+    }
+}
