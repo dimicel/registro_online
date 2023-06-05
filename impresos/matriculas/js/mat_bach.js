@@ -612,13 +612,30 @@ function muestraAyudaDocs(){
 
 
 
-function muestraEditor(_file){
-    _crop1=new Croppie(document.getElementById("div_imagen"), {
-        viewport: { width: 300, height: 190 },
-        boundary: { width: 450, height: 255 },
-        showZoomer: false,
-        enableOrientation: true
-    });
+function muestraEditor(_file,tipo){
+    if (tipo=="dni_anverso" || tipo=="dni_reverso"){
+        _crop1=new Croppie(document.getElementById("div_imagen"), {
+            viewport: { width: 300, height: 190 },
+            boundary: { width: 450, height: 255 },
+            showZoomer: false,
+            enableOrientation: true
+        });
+        if(tipo=="dni_anverso")_fname_ajax=id_nie+"-A";
+        else _fname_ajax=id_nie+"-R";
+        _f_ajax=_fname_ajax+".jpeg";
+        url="php/sube_dni.php";
+    }
+    else if(tipo="foto"){
+        _crop1=new Croppie(document.getElementById("div_imagen"), {
+            viewport: { width: 190, height: 255 },
+            boundary: { width: 255, height: 450 },
+            showZoomer: false,
+            enableOrientation: true
+        });
+        _fname_ajax=id_nie;
+        _f_ajax=_fname_ajax+".jpeg";
+        url="php/sube_foto.php";
+    }
     _crop1.bind({
         url: URL.createObjectURL(_file),
         orientation: 1
@@ -647,7 +664,34 @@ function muestraEditor(_file){
                     }).then(function (response) {
                         return response.blob();
                     }).then(function (blob) {
+                        formData= new FormData();
                         formData.append(_fname_ajax, blob, _f_ajax);
+                        formData.append("id_nie",id_nie);
+                        if (tipo=="dni_anverso")formData.append("parte","A");
+                        else if(tipo=="dni_reverso")formData.append("parte","R");
+                        $.ajax({
+                            url: url,
+                            type: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            cache: false
+                        })
+                        .done(function(resp) {
+                            document.getElementById("cargando").style.display = 'none';
+                            if (resp == "archivo") {
+                                alerta("Ha habido un error al subir el archivo.", "Error carga");
+                                obj.value = null;
+                            } else if (resp == "almacenar") {
+                                alerta("Ha habido un error al copiar el archivo.", "Error copia");
+                                obj.value = null;
+                            } else if (resp == "ok") {
+                                if (tipo == "dni_anverso") mm = "Anverso de documento subido.";
+                                else if (tipo == "dni_reverso")mm = "Reverso de documento subido.";
+                                else if (tipo == "foto")mm = "Fotografía subida.";
+                                alerta(mm, "OK");
+                            }
+                        });
                     });
                    _crop1.destroy();
                     $("#div_edita_imagen").dialog("close");
