@@ -621,9 +621,9 @@ function muestraEditor(_file,tipo){
             showZoomer: false,
             enableOrientation: true
         });
-        if(tipo=="dni_anverso")_fname_ajax=id_nie+"-A";
-        else _fname_ajax=id_nie+"-R";
-        _f_ajax=_fname_ajax+".jpeg";
+        _fname_ajax="dni";
+        if(tipo=="dni_anverso")_f_ajax=id_nie+"-A.jpeg";
+        else _f_ajax=id_nie+"-R.jpeg";
         url="php/sube_dni.php";
     }
     else if(tipo=="foto"){
@@ -634,8 +634,8 @@ function muestraEditor(_file,tipo){
             showZoomer: false,
             enableOrientation: true
         });
-        _fname_ajax=id_nie;
-        _f_ajax=_fname_ajax+".jpeg";
+        _fname_ajax="foto";
+        _f_ajax=id_nie+".jpeg";
         url="php/sube_foto.php";
     }
     else if(tipo=="seguro"){
@@ -647,8 +647,8 @@ function muestraEditor(_file,tipo){
             enableResize: true,
             enableOrientation: true
         });
-        _fname_ajax=id_nie;
-        _f_ajax=_fname_ajax+".jpeg";
+        _fname_ajax="seguro";
+        _f_ajax=id_nie+".jpeg";
         url="php/sube_seguro.php";
     }
     _crop1.bind({
@@ -685,6 +685,7 @@ function muestraEditor(_file,tipo){
                         if (tipo=="dni_anverso")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
                         if(tipo=="seguro") formData.append("anno_curso", anno_curso);
+                        document.getElementById("cargando").style.display = 'inherit';
                         $.ajax({
                             url: url,
                             type: 'POST',
