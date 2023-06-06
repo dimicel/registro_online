@@ -614,6 +614,7 @@ function muestraAyudaDocs(){
 
 function muestraEditor(_file,tipo){
     if (tipo=="dni_anverso" || tipo=="dni_reverso"){
+        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) y mueve la imagen para ajustarla al recuadro";
         _crop1=new Croppie(document.getElementById("div_imagen"), {
             viewport: { width: 300, height: 190 },
             boundary: { width: 450, height: 255 },
@@ -625,7 +626,8 @@ function muestraEditor(_file,tipo){
         _f_ajax=_fname_ajax+".jpeg";
         url="php/sube_dni.php";
     }
-    else if(tipo="foto"){
+    else if(tipo=="foto"){
+        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) y mueve la imagen para ajustarla al recuadro";
         _crop1=new Croppie(document.getElementById("div_imagen"), {
             viewport: { width: 190, height: 255 },
             boundary: { width: 255, height: 450 },
@@ -635,6 +637,19 @@ function muestraEditor(_file,tipo){
         _fname_ajax=id_nie;
         _f_ajax=_fname_ajax+".jpeg";
         url="php/sube_foto.php";
+    }
+    else if(tipo=="seguro"){
+        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón), mueve la imagen y ajusta el tamaño del recuadro para que sólo abarque la imagen del resguardo de pago del seguro escolar";
+        _crop1=new Croppie(document.getElementById("div_imagen"), {
+            viewport: { width: 200, height: 200 },
+            boundary: { width: 450, height: 255 },
+            showZoomer: false,
+            enableResize: true,
+            enableOrientation: true
+        });
+        _fname_ajax=id_nie;
+        _f_ajax=_fname_ajax+".jpeg";
+        url="php/sube_seguro.php";
     }
     _crop1.bind({
         url: URL.createObjectURL(_file),
@@ -669,6 +684,7 @@ function muestraEditor(_file,tipo){
                         formData.append("id_nie",id_nie);
                         if (tipo=="dni_anverso")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
+                        if(tipo=="seguro") formData.append("anno_curso", anno_curso);
                         $.ajax({
                             url: url,
                             type: 'POST',
