@@ -22,7 +22,7 @@
         <hgroup style="text-align:center; color: #000080;">
             <center>
                 <h2><img src="recursos/escudo.jpg" class="img-responsive" width="229" height="211" alt="Escudo_Uni"></h2>
-                <h1 style="color:red" id="servidor_pruebas"><strong>¡¡¡SERVIDOR DE PRUEBAS!!!</strong></h1>
+                <h1 style="color:red;display:none" id="servidor_pruebas" ><strong>¡¡¡SERVIDOR DE PRUEBAS!!!</strong></h1>
                 <h1><strong>IES UNIVERSIDAD LABORAL</strong></h1>
                 <h2><strong>TRAMITACIÓN ONLINE DE DOCUMENTACIÓN</strong></h2>
                 <br>
