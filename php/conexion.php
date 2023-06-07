@@ -20,7 +20,7 @@ else {
 }
 
 if (!isset($mysqli)){		
-	$mysqli = new MySQLi($servidor, $usuarior, $password, $db);
+	$mysqli = new MySQLi($servidor, $usuario, $password, $db);
 	if ($mysqli==false) {
 		return false;
 	}
