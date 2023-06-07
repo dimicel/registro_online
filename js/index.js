@@ -8,6 +8,8 @@ $(function() {
     */
 
     document.getElementById("usuario").focus();
+    if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
+    else document.getElementById("servidor_pruebas").style.display="inherit";
 
     $("#nuevaPass_div").dialog({
         autoOpen: false,
