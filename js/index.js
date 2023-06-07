@@ -10,7 +10,7 @@ $(function() {
     document.getElementById("usuario").focus();
     alert(document.location.hostname)
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
-    else document.getElementById("servidor_pruebas").style.display="inherit";
+    else document.getElementById("servidor_pruebas").style.display="none";
 
     $("#nuevaPass_div").dialog({
         autoOpen: false,
