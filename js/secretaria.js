@@ -12,6 +12,8 @@ var tipo_formulario="";
 
 
 $(function() {
+    if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
+    else document.getElementById("servidor_pruebas").style.display="none";
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
     generaSelectMat_ciclos();

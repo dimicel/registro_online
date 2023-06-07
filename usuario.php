@@ -23,6 +23,7 @@
             <img src="recursos/escudo2.jpg" width="115" height="105" alt="Escudo_Uni">
         </div>
         <div style="display:table-cell; height: 105px; vertical-align: middle; padding-left: 20px">
+            <h1 style="color:red;display:none" id="servidor_pruebas" ><strong>¡¡¡SERVIDOR DE PRUEBAS!!!</strong></h1>
             <h3>IES UNIVERSIDAD LABORAL</h3>
             <h4>TRAMITACIÓN ONLINE DE SOLICITUDES</h4>
             <h5 style="color:brown">PANEL DE CONTROL DEL USUARIO</h5>

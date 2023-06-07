@@ -21,6 +21,8 @@ var primera_carga=true;
 
 $(function() {
     document.getElementById("cargando").style.display = "inherit";
+    if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
+    else document.getElementById("servidor_pruebas").style.display="none";
     $("#dat_fecha_nac").datepicker({
         changeMonth: true,
         changeYear: true,
