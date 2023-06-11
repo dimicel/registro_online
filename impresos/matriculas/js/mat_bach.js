@@ -647,14 +647,13 @@ function muestraEditor(_file,tipo){
         _crop1=new Croppie(document.getElementById("div_imagen"), {
             viewport: { width: 300, height: 450 },
             boundary: { width: 675, height: 675 },
-            enableResize:true,
             showZoomer: false,
             enableOrientation: true
         });
         _fname_ajax="seguro";
         _f_ajax=id_nie+".jpeg";
         url="php/sube_seguro.php";
-        __ancho=750;
+        __ancho=500;
     }
     _crop1.bind({
         url: URL.createObjectURL(_file),
