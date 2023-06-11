@@ -732,6 +732,11 @@ function muestraEditor(_file,tipo){
                                     document.getElementById("div_existe_fotografia").style.display="inherit";
                                     document.getElementById("div_fotografia").style.display="none";
                                 }
+                                else if (tipo == "seguro"){
+                                    mm = "Resguardo del pago del seguro escolar subido.";
+                                    document.getElementById("div_existe_resguardo_seguro_escolar").style.display="inherit";
+                                    document.getElementById("div_resguardo_seguro_escolar").style.display="none";
+                                }
                                 alerta(mm, "OK");
                             }
                         });
