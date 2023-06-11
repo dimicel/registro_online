@@ -641,13 +641,11 @@ function muestraEditor(_file,tipo){
         url="php/sube_foto.php";
     }
     else if(tipo=="seguro"){
-        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón), mueve la imagen y ajusta el tamaño del recuadro para que sólo abarque la imagen del resguardo de pago del seguro escolar";
+        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón), y mueve la imagen del seguro escolar para ajustarla al recuadro";
         _crop1=new Croppie(document.getElementById("div_imagen"), {
-            viewport: { width: 200, height: 200 },
-            boundary: { width: 450, height: 255 },
-            enforceBoundary:true,
+            viewport: { width: 200, height: 300 },
+            boundary: { width: 450, height: 450 },
             showZoomer: false,
-            enableResize: true,
             enableOrientation: true
         });
         _fname_ajax="seguro";
