@@ -538,6 +538,8 @@ function subeCertificado(obj) {
                 obj.value = null;
             } else if (resp == "ok") {
                 alerta("Certificado subido.", "OK");
+                document.getElementById("div_existe_resguardo_seguro_escolar").style.display="inherit";
+                document.getElementById("div_resguardo_seguro_escolar").style.display="none";
             }
         });
 }
@@ -703,8 +705,16 @@ function muestraEditor(_file,tipo){
                                 alerta("Ha habido un error al copiar el archivo.", "Error copia");
                                 obj.value = null;
                             } else if (resp == "ok") {
-                                if (tipo == "dni_anverso") mm = "Anverso de documento subido.";
-                                else if (tipo == "dni_reverso")mm = "Reverso de documento subido.";
+                                if (tipo == "dni_anverso"){
+                                    mm = "Anverso de documento subido.";
+                                    document.getElementById("div_existe_anverso_dni").style.display="inherit";
+                                    document.getElementById("div_anverso_dni").style.display="none";
+                                }
+                                else if (tipo == "dni_reverso"){
+                                    mm = "Reverso de documento subido.";
+                                    document.getElementById("div_existe_reverso_dni").style.display="inherit";
+                                    document.getElementById("div_reverso_dni").style.display="none";
+                                }
                                 else if (tipo == "foto"){
                                     mm = "Fotografía subida.";
                                     document.getElementById("div_existe_fotografia").style.display="inherit";
