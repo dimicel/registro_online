@@ -85,7 +85,7 @@
         <label><small id="texto_editor_imagen">Rota, haz zoom (con la rueda del ratón) y mueve la imagen para ajustarla al recuadro</small></label>
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col">
                     <div class="row">
                         <div class="col d-flex justify-content-center align-items-center" id="div_imagen">
                         </div>
