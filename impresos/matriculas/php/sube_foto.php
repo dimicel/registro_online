@@ -4,7 +4,7 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="corr
 $id_nie=$_POST["id_nie"];
 $anno_curso=$_POST["anno_curso"];
 
-/*if(is_uploaded_file($_FILES['foto']['tmp_name'])){
+if(is_uploaded_file($_FILES['foto']['tmp_name'])){
     $ruta="../../../docs/fotos/" . $id_nie.".jpeg";
     //if (file_exists("../../../fotos/" . $id_nie.".jpeg")) unlink("../../../fotos/" . $id_nie.".jpeg");
     //if (file_exists("../../../fotos/" . $id_nie.".jpg")) unlink("../../../fotos/" . $id_nie.".jpg");
@@ -12,13 +12,11 @@ $anno_curso=$_POST["anno_curso"];
     exit("ok");
 }
 else exit("archivo");
-*/
 
+/*
 if ($_FILES["foto"]["error"] == UPLOAD_ERR_OK) {
     $target_dir = "../../../docs/fotos/";
-    //$target_file = $target_dir . basename($_FILES["file"]["name"]);
-    //$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    $new_file_name = $id_nie.".jpeg";// . $imageFileType;
+    $new_file_name = $id_nie.".jpeg";
     $target_file = $target_dir . $new_file_name;
     // Verificar si el archivo es una imagen
     $check = getimagesize($_FILES["foto"]["tmp_name"]);
@@ -26,12 +24,7 @@ if ($_FILES["foto"]["error"] == UPLOAD_ERR_OK) {
     $width = imagesx($img);
     $height = imagesy($img);
     //rota imagen en vertical
-    /*if ($width > $height) {
-        $img = imagerotate($img, 90, 0);
-        $width = imagesx($img);
-        $height = imagesy($img);
-    }*/
-    //if($check !== false) {
+    
         // Verificar tamaño del archivo
         if ($_FILES["foto"]["size"] > 65536) {
             // Redimensionar la imagen manteniendo la relación de aspecto
@@ -50,10 +43,7 @@ if ($_FILES["foto"]["error"] == UPLOAD_ERR_OK) {
             move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
             exit("ok");
         }
-    //} else {
-    //    exit("noimagen");
-    //}
 } else {
     exit("archivo");
 }
-
+*/

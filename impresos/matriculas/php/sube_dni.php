@@ -3,16 +3,16 @@ session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 $id_nie=$_POST["id_nie"];
 $parte=$_POST["parte"];
-/*if(is_uploaded_file($_FILES['dni']['tmp_name'])){
+if(is_uploaded_file($_FILES['dni']['tmp_name'])){
     if (!is_dir("../../../docs/".$id_nie))mkdir("../../../docs/".$id_nie,0777);
     if(!is_dir("../../../docs/".$id_nie."/dni"))mkdir("../../../docs/".$id_nie."/dni",0777);
     $ruta="../../../docs/".$id_nie."/"."dni/". $id_nie."-".$parte.".jpeg";
     if(!move_uploaded_file($_FILES['dni']['tmp_name'], $ruta)) exit("almacenar");
     exit("ok");
 }
-else exit("archivo");*/
+else exit("archivo");
 
-
+/*
 if ($_FILES["dni"]["error"] == UPLOAD_ERR_OK) {
     if (!is_dir("../../../docs/".$id_nie))mkdir("../../../docs/".$id_nie,0777);
     if(!is_dir("../../../docs/".$id_nie."/dni"))mkdir("../../../docs/".$id_nie."/dni",0777);
@@ -23,11 +23,7 @@ if ($_FILES["dni"]["error"] == UPLOAD_ERR_OK) {
     $width = imagesx($img);
     $height = imagesy($img);
     //rota imagen en vertical
-    /*if ($width < $height) {
-        $img = imagerotate($img, 90, 0);
-        $width = imagesx($img);
-        $height = imagesy($img);
-    }*/
+    
     //if($check !== false) {
         // Verificar tamaño del archivo
         if ($_FILES["dni"]["size"] > 150*1024) {
@@ -53,7 +49,7 @@ if ($_FILES["dni"]["error"] == UPLOAD_ERR_OK) {
 } else {
     exit("archivo");
 }
-
+*/
 
 
 
