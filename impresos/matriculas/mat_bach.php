@@ -87,7 +87,7 @@
             <div class="row">
                 <div class="col">
                     <div class="row">
-                        <div class="col-12 d-flex justify-content-center align-items-center" id="div_imagen">
+                        <div class="col-12 justify-content-center align-items-center" id="div_imagen">
                         </div>
                     </div>
                     <div class="row mt-2">
