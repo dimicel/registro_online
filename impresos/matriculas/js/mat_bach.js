@@ -670,7 +670,17 @@ function muestraEditor(_file,tipo){
         show: { effect: "fade", duration: 0 },
         title: "EDICIÓN IMAGEN",
         width: __ancho,
-        buttons: [{
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    _crop1.destroy();
+                    $("#div_edita_imagen").dialog("close");
+                    $("#div_edita_imagen").dialog("destroy");
+                }
+            },
+            {
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
