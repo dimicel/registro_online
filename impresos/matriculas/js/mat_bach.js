@@ -705,7 +705,11 @@ function muestraEditor(_file,tipo){
                             } else if (resp == "ok") {
                                 if (tipo == "dni_anverso") mm = "Anverso de documento subido.";
                                 else if (tipo == "dni_reverso")mm = "Reverso de documento subido.";
-                                else if (tipo == "foto")mm = "Fotografía subida.";
+                                else if (tipo == "foto"){
+                                    mm = "Fotografía subida.";
+                                    document.getElementById("div_existe_fotografia").style.display="inherit";
+                                    document.getElementById("div_fotografia").style.display="none";
+                                }
                                 alerta(mm, "OK");
                             }
                         });
