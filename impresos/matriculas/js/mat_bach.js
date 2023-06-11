@@ -653,7 +653,7 @@ function muestraEditor(_file,tipo){
         _fname_ajax="seguro";
         _f_ajax=id_nie+".jpeg";
         url="php/sube_seguro.php";
-        __ancho=500;
+        __ancho=1000;
     }
     _crop1.bind({
         url: URL.createObjectURL(_file),
