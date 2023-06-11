@@ -14,7 +14,7 @@
             <div class="row" id="div_fotografia">
                 <div id="div_foto" class="col">
                     <label for="_foto_alumno">*Fotografía del alumno en JPEG (formato DNI):</label>
-                    <input type="button" class="btn btn-success form-control"  onclick="document.getElementById('foto_alumno').click()" value="Click para seleccionar fotografía">
+                    <input type="button" class="btn btn-success form-control"  onclick="document.getElementById('foto_alumno').value='';document.getElementById('foto_alumno').click()" value="Click para seleccionar fotografía">
                     <input name="foto_alumno" id="foto_alumno" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
@@ -30,14 +30,14 @@
                         <a href='#' class='previsualizar' onmouseenter="cargaImagen('prev_foto')">Ver foto existente
                             <img id="prev_foto" style='width:150px !important;height:200px !important;top:25px; left:50%'/>
                         </a>  
-                        <a href="#"  onclick="document.getElementById('foto_alumno').click()" style="margin-left:10px">Subir Nueva Foto </a>
+                        <a href="#"  onclick="document.getElementById('foto_alumno').value='';document.getElementById('foto_alumno').click()" style="margin-left:10px">Subir Nueva Foto </a>
                     </center>
                 </div>
             </div>
             <div class="row" id="div_anverso_dni" >
                 <div class="col">
                     <label for="anverso_dni">*Anverso de documento identificativo en JPEG (DNI/NIE).<br> <small>(Si sólo tiene pasaporte, JPEG de la página que contenga la foto y nombre del alumno)</small>:</label>
-                    <input type="button" class="btn btn-success form-control"  onclick="document.getElementById('anverso_dni').click()" value="Click para seleccionar archivo">
+                    <input type="button" class="btn btn-success form-control"  onclick="document.getElementById('anverso_dni').value='';document.getElementById('anverso_dni').click()" value="Click para seleccionar archivo">
                     <input name="anverso_dni" id="anverso_dni" type="file" style="position: absolute;left:-9999px"  accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_anverso')" />
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
@@ -53,14 +53,14 @@
                         <a href='#' class='previsualizar'  onmouseenter="cargaImagen('prev_anverso_dni')">Ver imagen existente
                             <img id="prev_anverso_dni" style='width:600px !important;height:400px !important;top:50%; left:50%'/>
                         </a>  
-                        <a href="#"  onclick="document.getElementById('anverso_dni').click()" style="margin-left:10px">Subir Nuevo </a>
+                        <a href="#"  onclick="document.getElementById('anverso_dni').value='';document.getElementById('anverso_dni').click()" style="margin-left:10px">Subir Nuevo </a>
                     </center>
                 </div>
             </div>
             <div class="row" id="div_reverso_dni" >
                 <div class="col">
                     <label for="reverso_dni">*Reverso de documento identificativo en JPEG (DNI/NIE) <small>(si sólo tiene pasaporte, JPEG de imagen en blanco [foto de folio, pared...])</small>:</label>
-                    <input type="button" class="btn btn-success form-control"  onclick="document.getElementById('foto_alumno').click()" value="Click para seleccionar archivo">
+                    <input type="button" class="btn btn-success form-control"  onclick="document.getElementById('reverso_dni').value='';document.getElementById('reverso_dni').click()" value="Click para seleccionar archivo">
                     <input name="reverso_dni" id="reverso_dni" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
@@ -76,7 +76,7 @@
                         <a href='#' class='previsualizar' onmouseenter="cargaImagen('prev_reverso_dni')">Ver imagen existente
                             <img id="prev_reverso_dni" style='width:600px !important;height:400px !important;top:50%; left:50%'/>
                         </a>  
-                        <a href="#"  onclick="document.getElementById('reverso_dni').click()" style="margin-left:10px">Subir Nuevo </a>
+                        <a href="#"  onclick="document.getElementById('reverso_dni').value='';document.getElementById('reverso_dni').click()" style="margin-left:10px">Subir Nuevo </a>
                     </center>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                     <label for="_resguardo_seguro_escolar">*Justificante de pago del seguro escolar en JPEG:</label>
                 </div>
                 <div class="col-5">
-                    <input type="button" id="_resguardo_seguro_escolar"  class="btn btn-success form-control"  onclick="document.getElementById('resguardo_seguro_escolar').click()" value="Click para seleccionar archivo.">
+                    <input type="button" id="_resguardo_seguro_escolar"  class="btn btn-success form-control"  onclick="document.getElementById('resguardo_seguro_escolar').value='';document.getElementById('resguardo_seguro_escolar').click()" value="Click para seleccionar archivo.">
                     <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')" />
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
@@ -101,14 +101,15 @@
                         <a href='#' class='previsualizar'  onmouseenter="cargaImagen('prev_resguardo_seguro')">Ver imagen existente
                             <img id="prev_resguardo_seguro" style='width:400px !important;height:600px !important;top:50%; left:50%'/>
                         </a>  
-                        <a href="#"  onclick="document.getElementById('resguardo_seguro_escolar').click()" style="margin-left:10px">Subir Nuevo </a>
+                        <a href="#"  onclick="document.getElementById('resguardo_seguro_escolar').value='';document.getElementById('resguardo_seguro_escolar').click()" style="margin-left:10px">Subir Nuevo </a>
                     </center>
                 </div>
             </div>
             <div class="row" id="div_certificado">
                 <div class="col">
                     <label for="certificado">*Certificado notas en PDF:</label>
-                    <input name="certificado" id="certificado" type="file" class="btn btn-success form-control" accept="application/pdf" onchange="subeCertificado(this)" />
+                    <input type="button" class="btn btn-success form-control"  onclick="document.getElementById('certificado').value='';document.getElementById('certificado').click()" value="Click para seleccionar archivo">
+                    <input name="certificado" id="certificado" type="file" style="position: absolute;left:-9999px" class="btn btn-success form-control" accept="application/pdf" onchange="subeCertificado(this)" />
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
@@ -117,11 +118,11 @@
             <div class="row border-bottom border-success" id="div_existe_certificado" style="display:none">
                 <div class="col">
                     <label for='certificado_e'>Ya existe un certificado de notas. Si es válido y no tiene que cambiarlo no suba nada.</label>
-                    <input name='certificado_e' id='certificado_e' type='file'  accept='application/pdf' onchange="subeCertificado(this)" style="display:none" />
+                    <!--<input name='certificado_e' id='certificado_e' type='file'  accept='application/pdf' onchange="subeCertificado(this)" style="display:none" />-->
                     <div style="clear:both"></div>
                     <center>
                         <a href='#' id="prev_certificado" class='previsualizar' target="_blank">Ver certificado existente</a>  
-                        <a href="#"  onclick="document.getElementById('certificado_e').click()" style="margin-left:10px">Subir Nuevo </a>
+                        <a href="#"  onclick="document.getElementById('certificado').value='';document.getElementById('certificado').click()" style="margin-left:10px">Subir Nuevo </a>
                     </center>
                 </div>
             </div>
