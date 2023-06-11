@@ -641,10 +641,11 @@ function muestraEditor(_file,tipo){
         url="php/sube_foto.php";
     }
     else if(tipo=="seguro"){
-        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón), y mueve la imagen del seguro escolar para ajustarla al recuadro";
+        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) en la imagen, y ajusta el recuadro al resguardo del seguro escolar.";
         _crop1=new Croppie(document.getElementById("div_imagen"), {
             viewport: { width: 200, height: 300 },
             boundary: { width: 450, height: 450 },
+            enableResize:true,
             showZoomer: false,
             enableOrientation: true
         });

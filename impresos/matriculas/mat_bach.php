@@ -87,7 +87,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="row">
-                        <div class="col" id="div_imagen">
+                        <div class="col d-flex justify-content-center align-items-center" id="div_imagen">
                         </div>
                     </div>
                     <div class="row">
