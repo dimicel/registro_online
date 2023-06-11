@@ -81,10 +81,8 @@
                 </div>
             </div>
             <div class="row" id="div_resguardo_seguro_escolar" style="margin-top:5px">
-                <div class="col-5">
+                <div class="col">
                     <label for="_resguardo_seguro_escolar">*Justificante de pago del seguro escolar en JPEG:</label>
-                </div>
-                <div class="col-5">
                     <input type="button" id="_resguardo_seguro_escolar"  class="btn btn-success form-control"  onclick="document.getElementById('resguardo_seguro_escolar').value='';document.getElementById('resguardo_seguro_escolar').click()" value="Click para seleccionar archivo.">
                     <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')" />
                 </div>
