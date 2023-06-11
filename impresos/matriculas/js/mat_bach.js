@@ -632,7 +632,7 @@ function muestraEditor(_file,tipo){
         document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) y mueve la imagen para ajustarla al recuadro";
         _crop1=new Croppie(document.getElementById("div_imagen"), {
             viewport: { width: 190, height: 255 },
-            boundary: { width: 255, height: 450 },
+            boundary: { width: 300, height: 450 },
             showZoomer: false,
             enableOrientation: true
         });
