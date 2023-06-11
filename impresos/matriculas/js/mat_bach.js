@@ -644,8 +644,8 @@ function muestraEditor(_file,tipo){
         document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón), mueve la imagen y ajusta el tamaño del recuadro para que sólo abarque la imagen del resguardo de pago del seguro escolar";
         _crop1=new Croppie(document.getElementById("div_imagen"), {
             viewport: { width: 200, height: 200 },
-            //boundary: { width: 450, height: 255 },
-            boundary:false,
+            boundary: { width: 450, height: 255 },
+            enforceBoundary:true,
             showZoomer: false,
             enableResize: true,
             enableOrientation: true
