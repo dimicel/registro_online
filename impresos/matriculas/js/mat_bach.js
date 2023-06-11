@@ -627,6 +627,7 @@ function muestraEditor(_file,tipo){
         if(tipo=="dni_anverso")_f_ajax=id_nie+"-A.jpeg";
         else _f_ajax=id_nie+"-R.jpeg";
         url="php/sube_dni.php";
+        __ancho=500;
     }
     else if(tipo=="foto"){
         document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) y mueve la imagen para ajustarla al recuadro";
@@ -639,6 +640,7 @@ function muestraEditor(_file,tipo){
         _fname_ajax="foto";
         _f_ajax=id_nie+".jpeg";
         url="php/sube_foto.php";
+        __ancho=500;
     }
     else if(tipo=="seguro"){
         document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) en la imagen, y ajusta el recuadro al resguardo del seguro escolar.";
@@ -652,12 +654,13 @@ function muestraEditor(_file,tipo){
         _fname_ajax="seguro";
         _f_ajax=id_nie+".jpeg";
         url="php/sube_seguro.php";
+        __ancho=750;
     }
     _crop1.bind({
         url: URL.createObjectURL(_file),
         orientation: 1
     });
-    __ancho=500;
+    
     
 
 
