@@ -511,8 +511,9 @@ function subeCertificado(obj) {
                 obj.value = null;
             } else if (resp == "ok") {
                 alerta("Certificado subido.", "OK");
-                document.getElementById("div_existe_resguardo_seguro_escolar").style.display="inherit";
-                document.getElementById("div_resguardo_seguro_escolar").style.display="none";
+                document.getElementById("div_existe_certificado").style.display="inherit";
+                document.getElementById("div_certificado").style.display="none";
+                document.getElementById("prev_certificado").href="../../docs/"+id_nie+"/certificado_notas/"+anno_curso+"/"+id_nie+".pdf?q="+Date();
             }
         });
 }

@@ -539,6 +539,7 @@ function subeCertificado(obj) {
             } else if (resp == "ok") {
                 document.getElementById("div_existe_certificado").style.display="inherit";
                 document.getElementById("div_certificado").style.display="none";
+                document.getElementById("prev_certificado").href="../../docs/"+id_nie+"/certificado_notas/"+anno_curso+"/"+id_nie+".pdf?q="+Date();
                 alerta("Certificado subido.", "OK");
             }
         });
