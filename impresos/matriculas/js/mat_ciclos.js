@@ -604,6 +604,7 @@ function creaSelCiclos(g) {
             sel += "<option value='Asistencia a la Dirección'>Asistencia a la Dirección</option>";
             sel += "<option value='Automatización y Robótica Industrial'>Automatización y Robótica Industrial</option>";
             sel += "<option value='Dirección de Cocina'>Dirección de Cocina</option>";
+            sel += "<option value='Dirección de Servicios de Restauración'>Dirección de Servicios de Restauración</option>";
             sel += "<option value='Gestión de Alojamientos Turísticos'>Gestión de Alojamientos Turísticos</option>";
             sel += "<option value='Guía, Información y Asistencias Turísticas'>Guía, Información y Asistencias Turísticas</option>";
             sel += "<option value='Mantenimiento de Instalaciones Térmicas y de Fluidos'>Mantenimiento de Instalaciones Térmicas y de Fluidos</option>";
@@ -646,7 +647,7 @@ function CreaSelTurno(t) {
             document.getElementById("sel_turno").innerHTML = tu;
         } 
         else if (c == "Panadería, Repostería y Confitería" || c == "Gestión de Alojamientos Turísticos" ||
-            c == "Mantenimiento de Instalaciones Térmicas y de Fluidos") {
+            c == "Mantenimiento de Instalaciones Térmicas y de Fluidos" || c=="Dirección de Servicios de Restauración") {
             document.getElementById("sel_turno").innerHTML = "<option value='Vespertino'>Vespertino</option>";
         } else if (c == "Administración y Finanzas") {
             tu = "<option value=''>Seleccione uno...</option>";
