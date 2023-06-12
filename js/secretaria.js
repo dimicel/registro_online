@@ -254,6 +254,7 @@ function generaSelectMat_ciclos(){
         "Asistencia a la Dirección": "GS Asistencia a la Dirección",
         "Automatización y Robótica Industrial": "GS Automatización y Robótica Industrial",
         "Dirección de Cocina": "GS Dirección de Cocina",
+        "Dirección de Servicios de Restauración": "GS Dirección de Servicios de Restauración",
         "Gestión de Alojamientos Turísticos": "GS Gestión de Alojamientos Turísticos",
         "Guía, Información y Asistencias Turísticas": "GS Guía, Información y Asistencias Turísticas",
         "Mantenimiento de Instalaciones Térmicas y de Fluidos": "GS Mantenimiento de Instalaciones Térmicas y de Fluidos",
