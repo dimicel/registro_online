@@ -537,9 +537,9 @@ function subeCertificado(obj) {
                 alerta("Ha habido un error al copiar el archivo.", "Error copia");
                 obj.value = null;
             } else if (resp == "ok") {
+                document.getElementById("div_existe_certificado").style.display="inherit";
+                document.getElementById("div_certificado").style.display="none";
                 alerta("Certificado subido.", "OK");
-                document.getElementById("div_existe_resguardo_seguro_escolar").style.display="inherit";
-                document.getElementById("div_resguardo_seguro_escolar").style.display="none";
             }
         });
 }
