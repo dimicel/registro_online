@@ -50,7 +50,7 @@
                         
                         <!--<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle " style="color:white;font-size: 0.8em;" id="menu3" href="#" data-toggle="dropdown">
-                                    Subir Documentos
+                                    Adjuntos de la Matrícula
                                 </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('foto');$('#div_subida_archivos').dialog('open');">Fotografía Alumno</a>
