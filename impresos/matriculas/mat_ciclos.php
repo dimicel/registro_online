@@ -83,14 +83,6 @@
                         <div class="col-12 justify-content-center align-items-center" id="div_imagen">
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-2">
-                            <input type="button" class="btn btn-success textoboton" value="-90º" onclick="_crop1.rotate(90);"/>
-                        </div>
-                        <div class="col-2">
-                            <input type="button" class="btn btn-success textoboton" value="+90º" onclick="_crop1.rotate(-90);"/>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div> 
