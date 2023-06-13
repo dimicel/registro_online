@@ -43,9 +43,6 @@ function muestraEditor(_file,tipo){
         url: URL.createObjectURL(_file),
         orientation: 1
     });
-    
-    
-
 
     $("#div_edita_imagen").dialog({
         autoOpen: true,
@@ -57,6 +54,20 @@ function muestraEditor(_file,tipo){
         title: "EDICIÓN IMAGEN",
         width: __ancho,
         buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Girar +90º",
+                click: function() {
+                    _crop1.rotate(-90);
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Girar -90º",
+                click: function() {
+                    _crop1.rotate(90);
+                }
+            },
             {
                 class: "btn btn-success textoboton",
                 text: "Cancelar",
