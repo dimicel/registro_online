@@ -129,6 +129,7 @@
     <script src=<?php echo "js/mat_eso.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/validadores_eso.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "../../js/croppie/croppie.min.js?q=".time();?> type="text/javascript"></script>
+    <script src=<?php echo "js/subedocs.js?q=".time();?> type="text/javascript"></script>
 
 </body>
 

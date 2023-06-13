@@ -106,6 +106,7 @@
     <script src=<?php echo "js/mat_ciclos.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/validadores_ciclos.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "../../js/croppie/croppie.min.js?q=".time();?> type="text/javascript"></script>
+    <script src=<?php echo "js/subedocs.js?q=".time();?> type="text/javascript"></script>
 
     <script type="text/javascript">
         $("#generar").button();
