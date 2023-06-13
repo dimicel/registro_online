@@ -1,6 +1,6 @@
 function muestraEditor(_file,tipo){
     if (tipo=="dni_anverso" || tipo=="dni_reverso"){
-        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) y mueve la imagen para ajustarla al recuadro";
+        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) y mueve la imagen para ajustar la CARA y CUELLO al recuadro";
         _crop1=new Croppie(document.getElementById("div_imagen"), {
             viewport: { width: 450, height: 285 },
             boundary: { width: 675, height: 383 },
@@ -27,7 +27,7 @@ function muestraEditor(_file,tipo){
         __ancho=500;
     }
     else if(tipo=="seguro"){
-        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) en la imagen, y ajusta el recuadro al resguardo del seguro escolar.";
+        document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) en la imagen, y ajusta el recuadro al resguardo del seguro escolar. NO IMPORTA QUE EL RESGUARDO SE VEA EN HORIZONTAL, si es el caso";
         _crop1=new Croppie(document.getElementById("div_imagen"), {
             viewport: { width: 630, height: 350 },
             boundary: { width: 675, height: 500 },
