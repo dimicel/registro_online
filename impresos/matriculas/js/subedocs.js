@@ -29,8 +29,8 @@ function muestraEditor(_file,tipo){
     else if(tipo=="seguro"){
         document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) en la imagen, y ajusta el recuadro al resguardo del seguro escolar.";
         _crop1=new Croppie(document.getElementById("div_imagen"), {
-            viewport: { width: 350, height: 630 },
-            boundary: { width: 675, height: 675 },
+            viewport: { width: 630, height: 350 },
+            boundary: { width: 675, height: 500 },
             showZoomer: false,
             enableOrientation: true
         });
