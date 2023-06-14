@@ -393,7 +393,7 @@ function registraMatricula() {
     var f5 = document.getElementById("form_pagina_5");
     f._autor_fotos.value=f5.autor_fotos.checked?"Si":"No";
     f.appendChild(f5.tutor);
-    f._prog_ling.value=(document.getElementById("prog_ling").checked)?"Si":"No";
+    f._prog_ling.value=(document.getElementById("prog_ling").checked)?"Sí":"No";
     
     if (existe_premat && f._prog_ling.value==premat_prog_ling && $("input:radio[name=consolida_prem]:checked").val()=="Si"){
         document.getElementById("consolida_premat").value="Si";
