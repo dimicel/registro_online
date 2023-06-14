@@ -15,14 +15,19 @@ require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 
 $desc_reg = Array(
     "1º Bach. HH.CC.SS."=>"ma1bah",
-    "1º Bach. Ciencias"=>"ma1bac",
+    "1º Bach. Ciencias y Tecnología"=>"ma1bac",
     "1º Bach. General"=>"ma1bag",
     "2º Bach. HH.CC.SS."=>"ma2bah",
-    "2º Bach. Ciencias"=>"ma2bac"
+    "2º Bach. Ciencias y Tecnología"=>"ma2bac"
 );
 
 
 $curso=$_POST["curso"];
+if ($curso=="1º Bachillerato Humanidades y Ciencias Sociales") $curso="1º Bach. HH.CC.SS.";
+elseif($curso=="2º Bachillerato Humanidades y Ciencias Sociales") $curso="2º Bach. HH.CC.SS.";
+elseif($curso=="1º Bachillerato Ciencias y Tecnología") $curso="1º Bach. Ciencias y Tecnología";
+elseif($curso=="2º Bachillerato Ciencias y Tecnología") $curso="2º Bach. Ciencias y Tecnología";
+elseif($curso=="1º Bachillerato General") $curso="1º Bach. General";
 $anno_curso=$_POST['anno_curso'];
 
 $tutor=$_POST['tutor'];
@@ -234,7 +239,7 @@ if($consolida_premat=="Si"){
     $pdf->Cell(0,0,"(PREMAT. CONSOLIDADA)",0,0,'C',0,'',1,false,'T','T');
 }
 $YInicio=45;
-$pdf->RoundedRect(55,$YInicio,80,18,2,'1111','','','');
+$pdf->RoundedRect(75,$YInicio,60,18,2,'1111','','','');
 $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $html1, 0, 1, false, true, 'C', true);
 
 //Padding dentro de la celda del texto
