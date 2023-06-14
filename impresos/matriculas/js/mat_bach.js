@@ -66,6 +66,7 @@ $(document).ready(function() {
     });
     dat3 = dat2.then((res2) => {
         if (res2["error"] == "ok") {
+            alert(res2["localidad"])
             existe_premat = true;
             curso_prematricula = res2["curso_prematricula"];
             (typeof(res2["sexo"]) != "undefined" || res2["sexo"]==null) ? sexo = res2["sexo"]: sexo = "";
@@ -91,7 +92,6 @@ $(document).ready(function() {
     });
     dat4 = dat3.then((resp) => {
         if (resp.error=="ok"){
-            alert(localidad)
             for (e in resp.datos){
                 if(typeof(resp.datos[e])=="undefined" || resp.datos[e]==null) resp.datos[e]="";
             }
@@ -111,7 +111,6 @@ $(document).ready(function() {
             if(tutor2=="")tutor2=resp.datos.tutor2;
             if(tlf_tutor2=="")tlf_tutor2=resp.datos.tlf_tutor2;
             if(email_tutor2=="")email_tutor2=resp.datos.email_tutor2;
-            alert(resp.datos.localidad);
         }
 
         return $.post("php/comprueba_docs_matricula.php", { id_nie: id_nie, curso:anno_curso });
