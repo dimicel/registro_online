@@ -91,9 +91,9 @@ $(document).ready(function() {
     });
     dat4 = dat3.then((resp) => {
         if (resp.error=="ok"){
+            alert(localidad)
             for (e in resp.datos){
                 if(typeof(resp.datos[e])=="undefined" || resp.datos[e]==null) resp.datos[e]="";
-                alert(e);
             }
             f_nac=resp.datos.fecha_nac;
             if (f_nac!="")f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
