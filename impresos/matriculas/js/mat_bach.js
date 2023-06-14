@@ -110,6 +110,7 @@ $(document).ready(function() {
             if(tutor2=="")tutor2=resp.datos.tutor2;
             if(tlf_tutor2=="")tlf_tutor2=resp.datos.tlf_tutor2;
             if(email_tutor2=="")email_tutor2=resp.datos.email_tutor2;
+            alert(resp.datos.localidad);
         }
 
         return $.post("php/comprueba_docs_matricula.php", { id_nie: id_nie, curso:anno_curso });
