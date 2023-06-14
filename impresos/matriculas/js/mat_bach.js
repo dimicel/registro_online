@@ -68,7 +68,6 @@ $(document).ready(function() {
         if (res2["error"] == "ok") {
             existe_premat = true;
             curso_prematricula = res2["curso_prematricula"];
-            premat_prog_ling=res2["prog_ling"];
             (typeof(res2["sexo"]) != "undefined" || res2["sexo"]==null) ? sexo = res2["sexo"]: sexo = "";
             (typeof(res2["tutor1"]) != "undefined" || res2["tutor1"]==null) ? tutor1 = res2["tutor1"]: tutor1 = "";
             (typeof(res2["tutor2"]) != "undefined" || res2["tutor2"]==null) ? tutor2 = res2["tutor2"]: tutor2 = "";
