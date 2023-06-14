@@ -239,7 +239,7 @@ if($consolida_premat=="Si"){
     $pdf->Cell(0,0,"(PREMAT. CONSOLIDADA)",0,0,'C',0,'',1,false,'T','T');
 }
 $YInicio=45;
-$pdf->RoundedRect(75,$YInicio,60,18,2,'1111','','','');
+$pdf->RoundedRect(70,$YInicio,65,18,2,'1111','','','');
 $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $html1, 0, 1, false, true, 'C', true);
 
 //Padding dentro de la celda del texto
