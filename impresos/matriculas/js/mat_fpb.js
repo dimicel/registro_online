@@ -58,7 +58,7 @@ $(document).ready(function() {
     dat3 = dat2.then((resp) => {
         if (resp.error=="ok"){
             for (e in resp.datos){
-                if(typeof(resp.datos[e])=="undefined" || resp.datos[e]==null) resp.datos[e]="";
+                if(typeof(resp.datos[e])==="undefined" || resp.datos[e]===null) resp.datos[e]="";
             }
             f_nac=resp.datos.fecha_nac;
             if (f_nac!="")f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
