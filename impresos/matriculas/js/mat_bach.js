@@ -66,7 +66,6 @@ $(document).ready(function() {
     });
     dat3 = dat2.then((res2) => {
         if (res2["error"] == "ok") {
-            alert("www");
             existe_premat = true;
             curso_prematricula = res2["curso_prematricula"];
             (typeof(res2["sexo"]) != "undefined" || res2["sexo"]==null) ? sexo = res2["sexo"]: sexo = "";
@@ -247,7 +246,7 @@ function pasaPagina(p) {
             if (id_nif != '') {
                 document.getElementById("nif_nie").value = id_nif;
             }
-            if (primera_vez_pag_2 && !existe_premat){
+            if (primera_vez_pag_2){
                 form_pagina_2.sexo.value=sexo;
                 form_pagina_2.fecha_nac.value=fecha_nac;
                 form_pagina_2.telef_alumno.value=telef_alumno;
@@ -256,7 +255,7 @@ function pasaPagina(p) {
             }
         }
         else if (pagina==3){
-            if (primera_vez_pag_3 && !existe_premat){
+            if (primera_vez_pag_3){
                 form_pagina_3.direccion.value=domicilio;
                 form_pagina_3.cp.value=cp;
                 form_pagina_3.localidad.value=localidad;
