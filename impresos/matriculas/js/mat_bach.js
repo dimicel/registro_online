@@ -69,19 +69,19 @@ $(document).ready(function() {
             alert(res2["localidad"])
             existe_premat = true;
             curso_prematricula = res2["curso_prematricula"];
-            (typeof(res2["sexo"]) != "undefined" || res2["sexo"]==null) ? sexo = res2["sexo"]: sexo = "";
-            (typeof(res2["tutor1"]) != "undefined" || res2["tutor1"]==null) ? tutor1 = res2["tutor1"]: tutor1 = "";
-            (typeof(res2["tutor2"]) != "undefined" || res2["tutor2"]==null) ? tutor2 = res2["tutor2"]: tutor2 = "";
-            (typeof(res2["tlf_tutor1"]) != "undefined" || res2["tlf_tutor1"]==null) ? tlf_tutor1 = res2["tlf_tutor1"]: tlf_tutor1 = "";
-            (typeof(res2["tlf_tutor2"]) != "undefined" || res2["tlf_tutor2"]==null) ? tlf_tutor2 = res2["tlf_tutor2"]: tlf_tutor2 = "";
-            (typeof(res2["email_tutor1"]) != "undefined" || res2["email_tutor1"]==null) ? email_tutor1 = res2["email_tutor1"]: email_tutor1 = "";
-            (typeof(res2["email_tutor2"]) != "undefined" || res2["email_tutor2"]==null) ? email_tutor2 = res2["email_tutor2"]: email_tutor2 = "";
-            (typeof(res2["direccion"]) != "undefined" || res2["direccion"]==null) ? domicilio = res2["direccion"]: domicilio = "";
-            (typeof(res2["cp"]) != "undefined" || res2["cp"]==null) ? cp = res2["cp"]: cp = "";
-            (typeof(res2["localidad"]) != "undefined" || res2["localidad"]==null) ? localidad = res2["localidad"]: localidad = "";
-            (typeof(res2["provincia"]) != "undefined" || res2["provincia"]==null) ? provincia = res2["provincia"]: provincia = "";
-            (typeof(res2["email_alumno"]) != "undefined" || res2["email_alumno"]==null) ? email_alumno = res2["email_alumno"]: email_alumno = "";
-            (typeof(res2["telef_alumno"]) != "undefined" || res2["telef_alumno"]==null) ? telef_alumno = res2["telef_alumno"]: telef_alumno = "";
+            (typeof(res2["sexo"]) !== "undefined" || res2["sexo"]===null) ? sexo = res2["sexo"]: sexo = "";
+            (typeof(res2["tutor1"]) !== "undefined" || res2["tutor1"]===null) ? tutor1 = res2["tutor1"]: tutor1 = "";
+            (typeof(res2["tutor2"]) !== "undefined" || res2["tutor2"]===null) ? tutor2 = res2["tutor2"]: tutor2 = "";
+            (typeof(res2["tlf_tutor1"]) !== "undefined" || res2["tlf_tutor1"]===null) ? tlf_tutor1 = res2["tlf_tutor1"]: tlf_tutor1 = "";
+            (typeof(res2["tlf_tutor2"]) !== "undefined" || res2["tlf_tutor2"]===null) ? tlf_tutor2 = res2["tlf_tutor2"]: tlf_tutor2 = "";
+            (typeof(res2["email_tutor1"]) !== "undefined" || res2["email_tutor1"]===null) ? email_tutor1 = res2["email_tutor1"]: email_tutor1 = "";
+            (typeof(res2["email_tutor2"]) !== "undefined" || res2["email_tutor2"]===null) ? email_tutor2 = res2["email_tutor2"]: email_tutor2 = "";
+            (typeof(res2["direccion"]) !== "undefined" || res2["direccion"]===null) ? domicilio = res2["direccion"]: domicilio = "";
+            (typeof(res2["cp"]) != "undefined" || res2["cp"]===null) ? cp = res2["cp"]: cp = "";
+            (typeof(res2["localidad"]) !== "undefined" || res2["localidad"]===null) ? localidad = res2["localidad"]: localidad = "";
+            (typeof(res2["provincia"]) !== "undefined" || res2["provincia"]===null) ? provincia = res2["provincia"]: provincia = "";
+            (typeof(res2["email_alumno"]) !== "undefined" || res2["email_alumno"]===null) ? email_alumno = res2["email_alumno"]: email_alumno = "";
+            (typeof(res2["telef_alumno"]) !== "undefined" || res2["telef_alumno"]===null) ? telef_alumno = res2["telef_alumno"]: telef_alumno = "";
             
         } else if (res2["error"] == "server") {
             alerta("Problemas en el servidor. Inténtelo más tarde.", "ERROR SERVIDOR", true);
@@ -93,7 +93,7 @@ $(document).ready(function() {
     dat4 = dat3.then((resp) => {
         if (resp.error=="ok"){
             for (e in resp.datos){
-                if(typeof(resp.datos[e])=="undefined" || resp.datos[e]==null) resp.datos[e]="";
+                if(typeof(resp.datos[e])==="undefined" || resp.datos[e]===null) resp.datos[e]="";
             }
             f_nac=resp.datos.fecha_nac;
             if (f_nac!="")f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
