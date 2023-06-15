@@ -9,8 +9,9 @@ if ($mysqli->errno>0) $error="Error en servidor.";
 
 
 $curso=$_POST["curso_csv_elearning_fctproyecto"];
+$turno="E-Learning_f";
 
-$consulta="select * from mat_ciclos where turno='E-Learning_f' and curso='$curso' order by apellidos,nombre";
+$consulta="select * from mat_ciclos where turno='$turno' and curso='$curso' order by apellidos,nombre";
 $res=$mysqli->query($consulta);
 
 if ($res->num_rows==0){
