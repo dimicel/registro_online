@@ -237,6 +237,7 @@ $(function() {
             class: "btn btn-success textoboton",
             text: "Continuar",
             click: function() {
+                alert(tipo_matricula)
                 $("#div_aviso_inicio_mat").dialog("close");
                 if (tipo_matricula == "eso") {
                     window.open("impresos/matriculas/mat_eso.php?q=" + Date.now().toString(), "_self");
