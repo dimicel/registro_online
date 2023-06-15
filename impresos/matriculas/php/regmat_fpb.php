@@ -304,7 +304,7 @@ $pdf->Cell(64,0,$provincia,0,0,'L',0,'',1,false,'','');
 //-------AUTORIZACIONES MATRÍCULA
 $YInicio+=7;
 $YInicioAutorizaciones=$YInicio;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,55,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,75,2,'1111','','','');
 $pdf->SetXY($XInicioRotulo,$YInicio+1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"AUTORIZACIONES",0,0,'L',0,'',1,false,'','');
@@ -338,7 +338,7 @@ $fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon
 $texto=<<<EOD
 <p style="text-align:center">$fecha_firma<br>Nº de registro: $registro</p>
 EOD;
-$YInicio+=68;
+$YInicio+=88;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->writeHTMLCell(180,0,$XInicio,$YInicio,$texto,0,0,false,true,'',true);

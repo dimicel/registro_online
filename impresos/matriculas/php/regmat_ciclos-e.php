@@ -338,7 +338,7 @@ $pdf->Cell(64,0,$provincia,0,0,'L',0,'',1,false,'','');
 //-------AUTORIZACIONES MATRÍCULA
 $YInicio+=7;
 $YInicioAutorizaciones=$YInicio;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,55,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,70,2,'1111','','','');
 $pdf->SetXY($XInicioRotulo,$YInicio+1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"AUTORIZACIONES",0,0,'L',0,'',1,false,'','');
@@ -352,15 +352,15 @@ $nombre $apellidos, como alumno/a del Centro <strong>$aut_fotos</strong> autoriz
 Autorización en  conformidad a lo establecido en el artículo 5.1 de la Ley Orgánica 15/1999 de protección de datos de carácter personal y Art. 6.1.a) Reglamento (UE) 2016/679  general de protección de datos.
 Esta autorización podrá ser anulada en cualquier instante siempre que se comunique por escrito este aspecto a la Dirección del Centro.
 <br><br>           
-        INFORMACIÓN BÁSICA DE PROTECCIÓN DE DATOS
-        <ul>
-        <li>Responsable: Viceconsejería de Educación.</li>
-        <li>Finalidad: Gestión administrativa y educativa del alumnado de centros docentes de Castilla-La Mancha.</li>
-        <li>Legitimación: Cumplimiento de una obligación legal / Ejercicio de poderes públicos – Ley Orgánica 2/2006, de 3 de mayo, de Educación / Ley 7/2010, de 20 de julio, de Educación de Castilla-La Mancha.</li>
-        <li>Destinatarios: Existe cesión de datos.</li>
-        <li>Derechos: Puede ejercer los derechos de acceso, rectificación o supresión de sus datos, así como otros derechos, tal y como se explica en la información adicional.</li>
-        <li>Información adicional: Disponible en la dirección electrónica: https://rat.castillalamancha.es/info/0372</li>
-        </ul>
+INFORMACIÓN BÁSICA DE PROTECCIÓN DE DATOS
+-Responsable: Viceconsejería de Educación.
+-Finalidad: Gestión administrativa y educativa del alumnado de centros docentes de Castilla-La Manchaa, así como el uso de los recursos educativos digitales por parte de la comunidad educativa.
+-Legitimación: 6.1.c) Cumplimiento de una obligación legal del Reglamento General de Protección de Datos; 6.1.e) Misión en interés público o ejercicio de poderes públicos del Reglamento General de Protección de Datos. Datos de categoría especial: 9.2.g) el tratamiento es necesario por razones de un interés público esencial del Reglamento General de Protección de Datos. Ley Orgánica 2/2006, de 3 de mayo, de Educación / Ley 7/2010, de 20 de julio, de Educación de Castilla-La Mancha
+-Origen de los datos: El propio interesado o su representante legal, administraciones públicas.
+-Categoría de los datos: Datos de carácter identificativo: NIF/DNI, nombre y apellidos, dirección, teléfono, firma, firma electrónica, correo electrónico; imagen/voz. Datos especialmente protegidos: Salud. Datos de infracciones administrativas. Otros datos tipificados: Características personales; académicos y profesionales; detalles del empleo; económicos, financieros y de seguros.
+-Destinatarios: Existe cesión de datos.
+-Derechos: Puede ejercer los derechos de acceso, rectificación o supresión de sus datos, así como otros derechos, tal y como se explica en la información adicional.
+-Información adicional: Disponible en la dirección electrónica: https://rat.castillalamancha.es/info/0372
 EOT;
 }
 else {
@@ -390,7 +390,7 @@ $fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon
 $texto=<<<EOD
 <p style="text-align:center">$fecha_firma<br>Nº de registro: $registro</p>
 EOD;
-$YInicio+=68;
+$YInicio+=88;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->writeHTMLCell(180,0,$XInicio,$YInicio,$texto,0,0,false,true,'',true);
