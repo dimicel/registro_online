@@ -117,7 +117,7 @@ $(document).ready(function() {
 
 function seleccionCurso() {
     if (document.getElementById("sel_ciclos").value != '' && document.getElementById("sel_curso").value != '') {
-        _curso = document.getElementById("sel_curso").value + "-FPB " + document.getElementById("sel_ciclos").value;
+        _curso = document.getElementById("sel_curso").value + "-GRADO BÁSICO " + document.getElementById("sel_ciclos").value;
         if (mes_mat != 6) $("h7").text("MATRÍCULA para el curso " + (anno_ini_curso) + "/" + (anno_ini_curso + 1) + " - " + _curso);
         else $("h7").text("MATRÍCULA para el curso " + (anno_ini_curso + 1) + "/" + (anno_ini_curso + 2) + " - " + _curso);
     }
