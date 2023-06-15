@@ -95,6 +95,10 @@
                 </div>
 
                 <div style="display:list-item; margin-left:50px">
+                    <a id="docs_mat_ciclos-e" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(ciclos);">Matrícula de Ciclos E-Learning (Sólo FCT y Proyecto)</a>
+                </div>
+
+                <div style="display:list-item; margin-left:50px">
                     <a id="docs_mat_fpb" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(fpb);">Matrícula de FPB</a>
                 </div>
 

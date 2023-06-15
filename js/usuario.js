@@ -113,6 +113,16 @@ $(function() {
             document.getElementById("docs_mat_ciclos").className = "enlaceDisabled";
         }
 
+        if (resp["ciclos-e"] == 1) {
+            mat_ciclos = true;
+            document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "lanzaAvisoMatricula('ciclos')");
+            document.getElementById("docs_mat_ciclos-e").className = "enlaceEnabled";
+        } else {
+            mat_ciclos = false;
+            document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "");
+            document.getElementById("docs_mat_ciclos-e").className = "enlaceDisabled";
+        }
+
         if (resp["fpb"] == 1) {
             mat_ciclos = true;
             document.getElementById("docs_mat_fpb").setAttribute('onclick', "lanzaAvisoMatricula('fpb')");
