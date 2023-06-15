@@ -115,7 +115,7 @@ $(function() {
 
         if (resp["ciclos-e"] == 1) {
             mat_ciclos = true;
-            document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "lanzaAvisoMatricula('ciclos')");
+            document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "lanzaAvisoMatricula('ciclos-e')");
             document.getElementById("docs_mat_ciclos-e").className = "enlaceEnabled";
         } else {
             mat_ciclos = false;
@@ -246,7 +246,9 @@ $(function() {
                     window.open("impresos/matriculas/mat_ciclos.php?q=" + Date.now().toString(), "_self");
                 } else if (tipo_matricula == "fpb") {
                     window.open("impresos/matriculas/mat_fpb.php?q=" + Date.now().toString(), "_self");
-                }
+                }else if (tipo_matricula == "ciclos-e") {
+                    window.open("impresos/matriculas/mat_ciclos-e.php?q=" + Date.now().toString(), "_self");
+                } 
             }
         }]
     });
@@ -690,8 +692,8 @@ function ocultaDivsSubeDocs(panel) {
 
 
 function lanzaAvisoMatricula(nivel_educ) {
+    tipo_matricula=nivel_educ;
     if(nivel_educ=="eso"){
-        tipo_matricula="eso";
         mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul>";
         mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
@@ -702,7 +704,6 @@ function lanzaAvisoMatricula(nivel_educ) {
         mensaje += "</p>";
     }
     else if(nivel_educ=="bach"){
-        tipo_matricula="bach";
         mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul>";
         mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
@@ -712,8 +713,7 @@ function lanzaAvisoMatricula(nivel_educ) {
         mensaje += "</ul>";
         mensaje += "</p>";            
     }
-    else if(nivel_educ=="ciclos"){
-        tipo_matricula="ciclos";
+    else if(nivel_educ=="ciclos" || nivel_educ=="ciclos-e"){
         anno_seguro = anno_ini_curso - 27;
         mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul>";
@@ -725,7 +725,6 @@ function lanzaAvisoMatricula(nivel_educ) {
         mensaje += "</p>";            
     }
     else if(nivel_educ=="fpb"){
-        tipo_matricula="fpb";
         mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul>";
         mensaje += "    <li>Una fotografía del alummno en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg'  style='width:128px;'></center></li>";

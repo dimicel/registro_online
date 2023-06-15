@@ -95,8 +95,8 @@
     <script src=<?php echo "../../js/jquery_validate/jquery.validate.min.js?q=".time();?>></script>
     <script src=<?php echo "../../js/jquery_validate/additional-methods.min.js?q=".time();?>></script>
     <script src=<?php echo "../../js/comun.js?q=".time();?> type="text/javascript"></script>
-    <script src=<?php echo "js/mat_ciclos.js?q=".time();?> type="text/javascript"></script>
-    <script src=<?php echo "js/validadores_ciclos.js?q=".time();?> type="text/javascript"></script>
+    <script src=<?php echo "js/mat_ciclos-e.js?q=".time();?> type="text/javascript"></script>
+    <script src=<?php echo "js/validadores_ciclos-e.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "../../js/croppie/croppie.min.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/subedocs.js?q=".time();?> type="text/javascript"></script>
 
