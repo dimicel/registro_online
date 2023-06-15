@@ -1286,8 +1286,9 @@ function cambiaEstadoPrematricula(obj, nivel) {
 }
 
 function cambiaEstadoMatricula(obj, nivel) {
-    alert(nivel,obj.checked)
-    $.post('php/secret_matricula.php', { matricula: nivel, peticion: 'write', estado: obj.checked });
+    if (obj.checked) estado=1;
+    else estado=0;
+    $.post('php/secret_matricula.php', { matricula: nivel, peticion: 'write', estado: estado });
 }
 
 
