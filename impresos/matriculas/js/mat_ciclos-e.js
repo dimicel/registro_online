@@ -427,8 +427,6 @@ function creaSelCiclos(g) {
 
 
 function mayor28() {
-    //dia_nac = document.getElementById("fecha_nac").value.substr(0, 2);
-    //mes_nac = document.getElementById("fecha_nac").value.substr(3, 2);
     anno_nac = parseInt(document.getElementById("fecha_nac").value.substr(6, 4));
     if (mes_mat != 6) anno_limit = anno_ini_curso;
     else anno_limit = anno_ini_curso + 1;
