@@ -10,7 +10,6 @@ if ($mysqli->errno>0) $error="Error en servidor.";
 
 $curso=$_POST["curso_csv_elearning_fctproyecto"];
 $turno="E-Learning_f";
-$curso="2023-2024";
 
 $consulta="select * from mat_ciclos where turno='$turno' and curso='$curso' order by apellidos,nombre";
 $res=$mysqli->query($consulta);
