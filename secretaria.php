@@ -111,6 +111,7 @@
                             <div class="dropdown-divider"></div>
                             <!--<a id="menu_listado_mat_pdf" class="dropdown-item disabled" href="#" onclick="listaMatriculas();">Listado de Matrículas</a>-->
                             <!--<a id="menu_csv_mat" class="dropdown-item disabled" href="#" onclick="descargaCSVmatriculas();">CSV Matrículas</a>-->
+                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVelearningFctProy()">CSV Matrícula E-Learning (FCT y Proyecto)</a>  
                             <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVconsolPremat()">CSV Consolidan Prematrícula</a>  
                             <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVProgLing()">CSV Programa Lingüístico (Sólo ESO)</a>
                             <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVAlNuevos()">CSV Alumnos Nuevos (Sólo ESO y BACH)</a>                         
@@ -355,6 +356,11 @@
     <div id="formulario_descargar_csv_consolida_prematricula" style="display:none">
         <form id="descarga_csv_consolidaprematricula" action="php/secret_csv_consolidaprematricula.php" method="POST" target="_self">
             <input type="hidden" id="curso_csv_consolidaprematricula" name="curso_csv_consolidaprematricula" />
+        </form>
+    </div>
+    <div id="formulario_descargar_csv_elearning_fct_proyecto" style="display:none">
+        <form id="descarga_csv_elearning_fctproyecto" action="php/secret_csv_elearning_fctproyecto.php" method="POST" target="_self">
+            <input type="hidden" id="curso_csv_elearning_fctproyecto" name="curso_csv_elearning_fctproyecto" />
         </form>
     </div>
     <div id="formulario_descargar_csv_transporte" style="display:none">
