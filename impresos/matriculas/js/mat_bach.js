@@ -66,7 +66,6 @@ $(document).ready(function() {
     });
     dat3 = dat2.then((res2) => {
         if (res2["error"] == "ok") {
-            alert(res2["localidad"])
             existe_premat = true;
             curso_prematricula = res2["curso_prematricula"];
             (typeof(res2["sexo"]) !== "undefined" || res2["sexo"]===null) ? sexo = res2["sexo"]: sexo = "";
