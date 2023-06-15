@@ -30,8 +30,6 @@ function generaRegistro(){
 
 $grado=$_POST['sel_grado'];
 $ciclo=$_POST['sel_ciclos'];
-$curso_ciclo=$_POST['sel_curso'];
-$turno=$_POST['sel_turno'];
 $nuevo_otra_comunidad=$_POST['_nuevo_otra_comunidad'];
 
 $anno_curso=$_POST['anno_curso'];
@@ -48,7 +46,7 @@ else{
 }*/
 
 $fecha_registro=date('Y-m-d');
-
+$turno='E-Learning';
 $id_nie=$_POST['id_nie'];
 $email=$_POST['email'];
 $apellidos=$_POST['apellidos'];
@@ -96,7 +94,6 @@ $mysqli->query("insert into mat_ciclos (id_nie,
                                         curso,
                                         grado,
                                         ciclo,
-                                        curso_ciclo,
                                         turno,
                                         al_nuevo_otracomunidad,
                                         apellidos,
@@ -119,7 +116,6 @@ $mysqli->query("insert into mat_ciclos (id_nie,
                                         '$anno_curso',
                                         '$grado',
                                         '$ciclo',
-                                        '$curso_ciclo',
                                         '$turno',
                                         '$nuevo_otra_comunidad',
                                         '$apellidos',
@@ -225,15 +221,8 @@ $pdf->setFillColor(200);  //Relleno en gris
 $pdf->AddPage();
 
 //Curso y año
-if($curso_ciclo=="Modular" && $turno!="E-learning"){
-    $fila_turno="<h4>Modalidad: Modular Presencial Turno: $turno</h4><br> ";
-}
-else if($curso_ciclo=="Modular" && $turno=="E-learning"){
-    $fila_turno="<h4>Modalidad: Modular E-learning</h4><br>";
-}
-else{
-    $fila_turno="<h4>Curso: $curso_ciclo Turno: $turno</h4><br>";
-}
+$fila_turno="<h4>Curso: $curso_ciclo - E-Learning</h4><br>";
+
 
 $html1 = <<<HTML1
 <h3>Curso Académico $anno_curso</h3><br>
