@@ -332,7 +332,7 @@ $pdf->Cell(64,0,$provincia,0,0,'L',0,'',1,false,'','');
 
 //DATOS DE LA MATRÍCULA
 $YInicio+=7;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,10,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,12,2,'1111','','','');
 $YInicio+=1;
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
@@ -367,14 +367,14 @@ Autorización en  conformidad a lo establecido en el artículo 5.1 de la Ley Org
 Esta autorización podrá ser anulada en cualquier instante siempre que se comunique por escrito este aspecto a la Dirección del Centro.
 <br><br>           
 INFORMACIÓN BÁSICA DE PROTECCIÓN DE DATOS
--Responsable: Viceconsejería de Educación.
--Finalidad: Gestión administrativa y educativa del alumnado de centros docentes de Castilla-La Manchaa, así como el uso de los recursos educativos digitales por parte de la comunidad educativa.
--Legitimación: 6.1.c) Cumplimiento de una obligación legal del Reglamento General de Protección de Datos; 6.1.e) Misión en interés público o ejercicio de poderes públicos del Reglamento General de Protección de Datos. Datos de categoría especial: 9.2.g) el tratamiento es necesario por razones de un interés público esencial del Reglamento General de Protección de Datos. Ley Orgánica 2/2006, de 3 de mayo, de Educación / Ley 7/2010, de 20 de julio, de Educación de Castilla-La Mancha
--Origen de los datos: El propio interesado o su representante legal, administraciones públicas.
--Categoría de los datos: Datos de carácter identificativo: NIF/DNI, nombre y apellidos, dirección, teléfono, firma, firma electrónica, correo electrónico; imagen/voz. Datos especialmente protegidos: Salud. Datos de infracciones administrativas. Otros datos tipificados: Características personales; académicos y profesionales; detalles del empleo; económicos, financieros y de seguros.
--Destinatarios: Existe cesión de datos.
--Derechos: Puede ejercer los derechos de acceso, rectificación o supresión de sus datos, así como otros derechos, tal y como se explica en la información adicional.
--Información adicional: Disponible en la dirección electrónica: https://rat.castillalamancha.es/info/0372
+<br>-Responsable: Viceconsejería de Educación.
+<br>-Finalidad: Gestión administrativa y educativa del alumnado de centros docentes de Castilla-La Manchaa, así como el uso de los recursos educativos digitales por parte de la comunidad educativa.
+<br>-Legitimación: 6.1.c) Cumplimiento de una obligación legal del Reglamento General de Protección de Datos; 6.1.e) Misión en interés público o ejercicio de poderes públicos del Reglamento General de Protección de Datos. Datos de categoría especial: 9.2.g) el tratamiento es necesario por razones de un interés público esencial del Reglamento General de Protección de Datos. Ley Orgánica 2/2006, de 3 de mayo, de Educación / Ley 7/2010, de 20 de julio, de Educación de Castilla-La Mancha
+<br>-Origen de los datos: El propio interesado o su representante legal, administraciones públicas.
+<br>-Categoría de los datos: Datos de carácter identificativo: NIF/DNI, nombre y apellidos, dirección, teléfono, firma, firma electrónica, correo electrónico; imagen/voz. Datos especialmente protegidos: Salud. Datos de infracciones administrativas. Otros datos tipificados: Características personales; académicos y profesionales; detalles del empleo; económicos, financieros y de seguros.
+<br>-Destinatarios: Existe cesión de datos.
+<br>-Derechos: Puede ejercer los derechos de acceso, rectificación o supresión de sus datos, así como otros derechos, tal y como se explica en la información adicional.
+<br>-Información adicional: Disponible en la dirección electrónica: https://rat.castillalamancha.es/info/0372
 EOT;
 }
 else {
@@ -384,14 +384,14 @@ Autorización en  conformidad a lo establecido en el artículo 5.1 de la Ley Org
 Esta autorización podrá ser anulada en cualquier instante siempre que se comunique por escrito este aspecto a la Dirección del Centro.
 <br><br>    
 INFORMACIÓN BÁSICA DE PROTECCIÓN DE DATOS
--Responsable: Viceconsejería de Educación.
--Finalidad: Gestión administrativa y educativa del alumnado de centros docentes de Castilla-La Manchaa, así como el uso de los recursos educativos digitales por parte de la comunidad educativa.
--Legitimación: 6.1.c) Cumplimiento de una obligación legal del Reglamento General de Protección de Datos; 6.1.e) Misión en interés público o ejercicio de poderes públicos del Reglamento General de Protección de Datos. Datos de categoría especial: 9.2.g) el tratamiento es necesario por razones de un interés público esencial del Reglamento General de Protección de Datos. Ley Orgánica 2/2006, de 3 de mayo, de Educación / Ley 7/2010, de 20 de julio, de Educación de Castilla-La Mancha
--Origen de los datos: El propio interesado o su representante legal, administraciones públicas.
--Categoría de los datos: Datos de carácter identificativo: NIF/DNI, nombre y apellidos, dirección, teléfono, firma, firma electrónica, correo electrónico; imagen/voz. Datos especialmente protegidos: Salud. Datos de infracciones administrativas. Otros datos tipificados: Características personales; académicos y profesionales; detalles del empleo; económicos, financieros y de seguros.
--Destinatarios: Existe cesión de datos.
--Derechos: Puede ejercer los derechos de acceso, rectificación o supresión de sus datos, así como otros derechos, tal y como se explica en la información adicional.
--Información adicional: Disponible en la dirección electrónica: https://rat.castillalamancha.es/info/0372
+<br>-Responsable: Viceconsejería de Educación.
+<br>-Finalidad: Gestión administrativa y educativa del alumnado de centros docentes de Castilla-La Manchaa, así como el uso de los recursos educativos digitales por parte de la comunidad educativa.
+<br>-Legitimación: 6.1.c) Cumplimiento de una obligación legal del Reglamento General de Protección de Datos; 6.1.e) Misión en interés público o ejercicio de poderes públicos del Reglamento General de Protección de Datos. Datos de categoría especial: 9.2.g) el tratamiento es necesario por razones de un interés público esencial del Reglamento General de Protección de Datos. Ley Orgánica 2/2006, de 3 de mayo, de Educación / Ley 7/2010, de 20 de julio, de Educación de Castilla-La Mancha
+<br>-Origen de los datos: El propio interesado o su representante legal, administraciones públicas.
+<br>-Categoría de los datos: Datos de carácter identificativo: NIF/DNI, nombre y apellidos, dirección, teléfono, firma, firma electrónica, correo electrónico; imagen/voz. Datos especialmente protegidos: Salud. Datos de infracciones administrativas. Otros datos tipificados: Características personales; académicos y profesionales; detalles del empleo; económicos, financieros y de seguros.
+<br>-Destinatarios: Existe cesión de datos.
+<br>-Derechos: Puede ejercer los derechos de acceso, rectificación o supresión de sus datos, así como otros derechos, tal y como se explica en la información adicional.
+<br>-Información adicional: Disponible en la dirección electrónica: https://rat.castillalamancha.es/info/0372
 EOT;
 }
 
