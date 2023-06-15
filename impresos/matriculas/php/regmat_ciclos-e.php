@@ -46,7 +46,7 @@ else{
 }*/
 
 $fecha_registro=date('Y-m-d');
-$turno='E-Learning';
+$turno='E-Learning_f'; //para distinguir de los E-learning. Este turno es solo para los que han terminado y tiene que hacer fct y proyecto
 $fct=$_POST['_fct'];
 $proyecto=$_POST['_proyecto'];
 $id_nie=$_POST['id_nie'];
