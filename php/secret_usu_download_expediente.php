@@ -43,4 +43,3 @@ if ($zip->open($archivoZip, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true
     // Eliminar el archivo ZIP
     unlink($archivoZip);
 } 
-?>
