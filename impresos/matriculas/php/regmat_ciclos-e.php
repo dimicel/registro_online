@@ -340,7 +340,7 @@ $pdf->Cell(0,0,"DATOS DE LA MATRÍCULA",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
+$pdf->SetFont('dejavusans', 'B', 8, '', true);
 if ($grado=="MEDIO"){
     $pdf->Cell(0,0,"Solicita matrícula en FCT: ".$fct,0,0,'L',0,'',1,false,'','');
 }
