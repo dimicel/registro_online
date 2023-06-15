@@ -410,8 +410,6 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
 
 function creaSelCiclos(g) {
     if (g != "") {
-        document.getElementById("sel_curso").innerHTML = "<option value=''>Seleccione CICLO</option>";
-        document.getElementById("sel_turno").innerHTML = "<option value=''>Seleccione CICLO</option>";
         if (g == "MEDIO") {
             sel = "<option value='Instalaciones Eléctricas y Automáticas'>Instalaciones Eléctricas y Automáticas</option>";
         } else if (g == "SUPERIOR") {
