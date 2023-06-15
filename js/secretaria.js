@@ -1728,6 +1728,6 @@ function adjuntaDocAdicional(_id_nie,registro){
 }
 
 function descargaCSVelearningFctProy(){
-    document.getElementById("curso_csv_consolidaprematricula").value = document.getElementById("curso").value;
-    document.getElementById("descarga_csv_consolidaprematricula").submit();
+    document.getElementById("curso_csv_elearning_fctproyecto").value = document.getElementById("curso").value;
+    document.getElementById("descarga_csv_elearning_fctproyecto").submit();
 }

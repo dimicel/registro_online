@@ -8,7 +8,7 @@ include("conexion.php");
 if ($mysqli->errno>0) $error="Error en servidor.";
 
 
-$curso=$_POST["curso_csv_consolidaprematricula"];
+$curso=$_POST["curso_csv_elearning_fctproyecto"];
 
 $consulta="select * from mat_ciclos where turno='E-Learning_f' and curso='$curso' order by apellidos,nombre";
 $res=$mysqli->query($consulta);
