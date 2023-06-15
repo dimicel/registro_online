@@ -412,10 +412,12 @@ function creaSelCiclos(g) {
     if (g != "") {
         if (g == "MEDIO") {
             sel = "<option value='Instalaciones Eléctricas y Automáticas'>Instalaciones Eléctricas y Automáticas</option>";
+            document.getElementById("div_sel_proy").style.display="none";
         } else if (g == "SUPERIOR") {
             sel = "<option value=''>Seleccione uno...</option>";
             sel += "<option value='Administración y Finanzas'>Administración y Finanzas</option>";
             sel += "<option value='Guía, Información y Asistencias Turísticas'>Guía, Información y Asistencias Turísticas</option>";
+            document.getElementById("div_sel_proy").style.display="inherit";
         }
         document.getElementById("sel_ciclos").innerHTML=sel;
         seleccionCurso();
