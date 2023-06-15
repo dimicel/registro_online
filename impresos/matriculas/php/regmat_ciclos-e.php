@@ -341,7 +341,12 @@ $pdf->Cell(0,0,"DATOS DEL DOMICILIO FAMILIAR",0,0,'L',0,'',1,false,'','');
 $YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Solicita matrícula en FCT: ".$fct." y Proyecto: ".$proyecto,0,0,'L',0,'',1,false,'','');
+if ($grado=="MEDIO"){
+    $pdf->Cell(0,0,"Solicita matrícula en FCT: ".$fct,0,0,'L',0,'',1,false,'','');
+}
+else {
+    $pdf->Cell(0,0,"Solicita matrícula en FCT: ".$fct." y Proyecto: ".$proyecto,0,0,'L',0,'',1,false,'','');
+}
 $pdf->SetX(182);
 $pdf->Cell(0,0,"CP",0,0,'L',0,'',1,false,'','');
 
