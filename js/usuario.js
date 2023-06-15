@@ -246,7 +246,7 @@ $(function() {
                     window.open("impresos/matriculas/mat_ciclos.php?q=" + Date.now().toString(), "_self");
                 } else if (tipo_matricula == "fpb") {
                     window.open("impresos/matriculas/mat_fpb.php?q=" + Date.now().toString(), "_self");
-                }else if (tipo_matricula == "ciclos-e") {
+                } else if (tipo_matricula == "ciclos-e") {
                     window.open("impresos/matriculas/mat_ciclos-e.php?q=" + Date.now().toString(), "_self");
                 } 
             }
