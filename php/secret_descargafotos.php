@@ -5,7 +5,7 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="corr
 if ($_POST["usuario"]!="secretaria") exit("Acceso denegado");
 
 // Ruta del directorio raíz que deseas comprimir
-$directorio = '../docs';
+$directorio = '../docs/fotos';
 
 // Ruta y nombre del archivo ZIP de salida
 $archivoZip = '../docs/tmp/fotos_alumnos'.time().".zip";
