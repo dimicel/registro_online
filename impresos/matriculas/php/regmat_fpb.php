@@ -204,7 +204,7 @@ $pdf->AddPage();
 //Curso y año
 $html1 = <<<HTML1
 <h3>Curso Académico $anno_curso</h3><br>
-<h4>$curso_ciclo - FPB $ciclo</h4><br><br>
+<h4>$curso_ciclo - GRADO BÁSICO $ciclo</h4><br><br>
 <span>Solicita Transporte Escolar: <b>$transporte</b></span><br>
 <span>Ha iniciado los estudios en otra comunidad autónoma: <b>$al_nuevo_otra_comunidad</b></span>
 HTML1;
