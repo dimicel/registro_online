@@ -47,6 +47,8 @@ else{
 
 $fecha_registro=date('Y-m-d');
 $turno='E-Learning';
+$fct=$_POST['_fct'];
+$proyecto=$_POST['_proyecto'];
 $id_nie=$_POST['id_nie'];
 $email=$_POST['email'];
 $apellidos=$_POST['apellidos'];
@@ -109,7 +111,9 @@ $mysqli->query("insert into mat_ciclos (id_nie,
                                         provincia,
                                         mayor_edad,
                                         autoriza_fotos,
-                                        tutor_autorizaciones) 
+                                        tutor_autorizaciones,
+                                        fct,
+                                        proyecto) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
@@ -131,7 +135,9 @@ $mysqli->query("insert into mat_ciclos (id_nie,
                                         '$provincia',
                                         '$mayor_edad',
                                         '$autor_fotos',
-                                        '$tutor')");
+                                        '$tutor',
+                                        '$fct',
+                                        '$proyecto')");
   
                                         
 if ($mysqli->errno>0){
@@ -323,6 +329,21 @@ $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->Cell(61,0,$localidad,0,0,'L',0,'',1,false,'','');
 $pdf->SetX(77);
 $pdf->Cell(64,0,$provincia,0,0,'L',0,'',1,false,'','');
+
+//DATOS DE LA MATRÍCULA
+$YInicio+=7;
+$pdf->RoundedRect($XInicio-2,$YInicio,185,22,2,'1111','','','');
+$YInicio+=1;
+$pdf->SetXY($XInicioRotulo,$YInicio);
+$pdf->SetFont('dejavusans', 'B', 10, '', true);
+$pdf->Cell(0,0,"DATOS DEL DOMICILIO FAMILIAR",0,0,'L',0,'',1,false,'','');
+
+$YInicio+=6;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'U', 8, '', true);
+$pdf->Cell(0,0,"Solicita matrícula en FCT: ".$fct." y Proyecto: ".$proyecto,0,0,'L',0,'',1,false,'','');
+$pdf->SetX(182);
+$pdf->Cell(0,0,"CP",0,0,'L',0,'',1,false,'','');
 
 //-------AUTORIZACIONES MATRÍCULA
 $YInicio+=7;

@@ -27,6 +27,8 @@
                 <input type="hidden" name="email" id="email" />
                 <input type="hidden" name="mayor_edad" id="mayor_edad" />
                 <input type="hidden" name="_autor_fotos" id="_autor_fotos" />
+                <input type="hidden" name="_fct" id="_fct" />
+                <input type="hidden" name="_proyecto" id="_proyecto" />
             </form>
         </div>
         <!--CABECERA  ------------------------------------------------------------------------------------>

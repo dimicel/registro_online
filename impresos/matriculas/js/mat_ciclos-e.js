@@ -270,6 +270,8 @@ function registraMatricula() {
 
     f._autor_fotos.value=(f5.autor_fotos.checked)?"Si":"No";
     f._nuevo_otra_comunidad.value=(f1.oc_si.checked)?"Si":"No";
+    f._fct.value=(f1.fct.checked)?"Si":"No";
+    f._proyecto.value=(f1.proyecto.checked)?"Si":"No";
     f.action = "php/regmat_ciclos.php";
     f.appendChild(f1.sel_grado);
     f.appendChild(f1.sel_ciclos);
