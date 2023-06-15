@@ -10,9 +10,6 @@ function creaValidatorPagina1() {
             sel_curso: {
                 required: true
             },
-            sel_turno: {
-                required: true
-            },
             nuevo_otra_comunidad:{
                 required:true
             }
@@ -26,9 +23,6 @@ function creaValidatorPagina1() {
             },
             sel_curso: {
                 required: "Seleccione un CURSO"
-            },
-            sel_turno: {
-                required: "Seleccione TURNO"
             },
             nuevo_otra_comunidad:{
                 required:"Seleccione Sí o No"
