@@ -1093,7 +1093,7 @@ function panelNuevoUsuario() {
                 resizable: false,
                 show: { effect: "fade", duration: 0 },
                 title: "NUEVAS ALTAS",
-                maxHeight: 500,
+                //maxHeight: 500,
                 width: 550,
                 close:function(event,ui){
                     $("#div_dialogs").dialog("destroy");
