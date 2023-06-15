@@ -406,7 +406,7 @@ $pdf->Cell(0,0,$email_tutor2,0,0,'L',0,'',1,false,'','');
 //-------AUTORIZACIONES MATRÍCULA
 $YInicio+=7;
 $YInicioAutorizaciones=$YInicio;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,51,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,70,2,'1111','','','');
 $pdf->SetXY($XInicioRotulo,$YInicio+1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"AUTORIZACIONES",0,0,'L',0,'',1,false,'','');
@@ -453,7 +453,7 @@ $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
 $texto=<<<EOD
 <p style="text-align:center">$fecha_firma<br>Nº de registro: $registro</p>
 EOD;
-$YInicio+=28;
+$YInicio+=50;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 //$pdf->Cell(0,0,"Nº registro " . $texto,0,0,'C',0,'',1,false,'T','T');
