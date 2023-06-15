@@ -99,7 +99,7 @@
                                 <label for="check_mat_ciclos" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Ciclos</label>
                             </div>
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_ciclos-e" onchange="cambiaEstadoMatricula(this,'ciclos-e')">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_ciclos-e" onchange="cambiaEstadoMatricula(this,'ciclos_e')">
                                 <label for="check_mat_ciclos-e" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Ciclos Elearning (FCT/Proyecto)</label>
                             </div>
                             <div class="custom-control custom-switch">
