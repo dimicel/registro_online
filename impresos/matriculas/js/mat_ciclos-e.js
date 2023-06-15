@@ -424,11 +424,6 @@ function creaSelCiclos(g) {
     }
 }
 
-function selCiclo(cic){
-    //document.getElementById("sel_ciclos").innerHTML=cic;
-    seleccionCurso();
-}
-
 
 
 function mayor28() {
