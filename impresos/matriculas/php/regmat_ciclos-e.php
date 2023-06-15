@@ -227,7 +227,7 @@ $pdf->setFillColor(200);  //Relleno en gris
 $pdf->AddPage();
 
 //Curso y año
-$fila_turno="<h4>Curso: $curso_ciclo - E-Learning</h4><br>";
+$fila_turno="<h4>E-Learning</h4><br>";
 
 
 $html1 = <<<HTML1
@@ -332,11 +332,11 @@ $pdf->Cell(64,0,$provincia,0,0,'L',0,'',1,false,'','');
 
 //DATOS DE LA MATRÍCULA
 $YInicio+=7;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,22,2,'1111','','','');
+$pdf->RoundedRect($XInicio-2,$YInicio,185,10,2,'1111','','','');
 $YInicio+=1;
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
-$pdf->Cell(0,0,"DATOS DEL DOMICILIO FAMILIAR",0,0,'L',0,'',1,false,'','');
+$pdf->Cell(0,0,"DATOS DE LA MATRÍCULA",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);
@@ -347,8 +347,7 @@ if ($grado=="MEDIO"){
 else {
     $pdf->Cell(0,0,"Solicita matrícula en FCT: ".$fct." y Proyecto: ".$proyecto,0,0,'L',0,'',1,false,'','');
 }
-$pdf->SetX(182);
-$pdf->Cell(0,0,"CP",0,0,'L',0,'',1,false,'','');
+
 
 //-------AUTORIZACIONES MATRÍCULA
 $YInicio+=7;
