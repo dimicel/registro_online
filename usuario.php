@@ -99,7 +99,7 @@
                 </div>
 
                 <div style="display:list-item; margin-left:50px">
-                    <a id="docs_mat_fpb" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(fpb);">Matrícula de FPB</a>
+                    <a id="docs_mat_fpb" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(fpb);">Matrícula de Grado Básico (antigua FPB)</a>
                 </div>
 
                 <span>PREMATRÍCULA</span>
