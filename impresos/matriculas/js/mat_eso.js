@@ -159,7 +159,7 @@ function seleccionCurso() {
     _curso = document.getElementById("curso").value;
     if (mes_mat != 6) $("h7").text("MATRÍCULA para el curso " + (anno_ini_curso) + "/" + (anno_ini_curso + 1) + " - " + _curso);
     else $("h7").text("MATRÍCULA para el curso " + (anno_ini_curso + 1) + "/" + (anno_ini_curso + 2) + " - " + _curso);
-    if (_curso == "2º ESO PMAR" || _curso == "3º ESO PMAR") {
+    if (_curso == "4º ESO DIVERSIFICACIÓN" || _curso == "3º ESO DIVERSIFICACIÓN") {
         document.getElementById("prog_ling").checked = false;
     }
     if (_curso == "1º ESO") {
@@ -178,7 +178,7 @@ function seleccionCurso() {
 
 function progLing(obj) {
     if (pagina == 1) {
-        if (_curso == "2º ESO PMAR" || _curso == "3º ESO DIVERSIFICACIÓN") {
+        if (_curso == "4º ESO DIVERSIFICACIÓN" || _curso == "3º ESO DIVERSIFICACIÓN") {
             obj.checked = false;
         }
         return false;
@@ -332,7 +332,7 @@ function pasaPagina(p) {
                 $("#div_existe_certificado").hide();
             }
             
-            if (_curso == "1º ESO" || _curso == "2º ESO" || _curso == "2º ESO PMAR") {
+            if (_curso == "1º ESO" || _curso == "2º ESO") {
                 //$("#div_resguardo_seguro_escolar").hide();
                 //$("#div_existe_resguardo_seguro_escolar").hide();
                 document.getElementById("div_resguardo_seguro_escolar").style.display="none";
