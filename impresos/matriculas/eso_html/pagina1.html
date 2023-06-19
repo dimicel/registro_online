@@ -62,11 +62,11 @@
             <center>
                 <span>*Al realizar la matrícula en Secretaría Virtual he seleccionado las mismas materias que en la prematrícula</span><br />
                 <div class="custom-control-inline custom-switch  mi-checkbox " style="clear:both">
-                    <input name="consolida_prem" id="consolida_prem_si" type="radio" value="Si" class="custom-control-input" />
+                    <input name="consolida_prem" id="consolida_prem_si" type="radio" value="Si" class="custom-control-input" onchange="alConsolida()"/>
                     <label class="custom-control-label" for="consolida_prem_si">SÍ</label>
                 </div>
                 <div class="custom-control-inline  custom-switch  mi-checkbox ">
-                    <input name="consolida_prem" id="consolida_prem_no" type="radio" value="No" class="custom-control-input" />
+                    <input name="consolida_prem" id="consolida_prem_no" type="radio" value="No" class="custom-control-input" onchange="alConsolida()"/>
                     <label class="custom-control-label" for="consolida_prem_no">NO</label>
                 </div><br>
                 <div class="errorTxt" style="font-size: 1em;"></div>
@@ -79,11 +79,11 @@
             <center>
                 <span>*¿Repite curso?</span><br />
                 <div class="custom-control-inline  custom-switch  mi-checkbox " style="clear:both">
-                    <input name="repetidor" id="repetidor_si" type="radio" class="custom-control-input" value="Si" />
+                    <input name="repetidor" id="repetidor_si" type="radio" class="custom-control-input" value="Si" onchange="alRepite()"/>
                     <label for="repetidor_si" class="custom-control-label">SÍ</label>
                 </div>
                 <div class="custom-control-inline  custom-switch  mi-checkbox ">
-                    <input name="repetidor" id="repetidor_no" type="radio" class="custom-control-input" value="No" />
+                    <input name="repetidor" id="repetidor_no" type="radio" class="custom-control-input" value="No" onchange="alRepite()"/>
                     <label for="repetidor_no" class="custom-control-label">NO</label>
                 </div><br>
                 <div class="errorTxt" style="font-size: 1em;"></div>

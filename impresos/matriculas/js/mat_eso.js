@@ -198,6 +198,23 @@ function alNuevo(){
     } 
 }
 
+function alRepite(){
+    if (document.getElementById("repetidor_si").checked){
+        document.getElementById("div_consolida_premat").style.display="no";
+        document.getElementById("consolida_prem_no").checked = true;
+    } 
+    else{
+        $("#div_nuevo_otra_comunidad").hide();
+        document.getElementById("div_consolida_premat").style.display="inline-block";
+    } 
+}
+
+function alConsolida(){
+    if (document.getElementById("consolida_prem_si").checked){
+        document.getElementById("repetidor_si").checked = false;
+    } 
+}
+
 function confirmar() {
     document.getElementById('mensaje_div').innerHTML = "El proceso de registro será cancelado.";
     $("#mensaje_div").dialog({
