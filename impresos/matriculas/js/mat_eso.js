@@ -211,7 +211,7 @@ function alRepite(){
 
 function alConsolida(){
     if (document.getElementById("consolida_prem_si").checked){
-        document.getElementById("repetidor_si").checked = false;
+        document.getElementById("repetidor_no").checked = true;
     } 
 }
 
