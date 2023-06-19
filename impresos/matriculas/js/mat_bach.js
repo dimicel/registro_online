@@ -213,6 +213,23 @@ function alNuevo(){
     } 
 }
 
+function alRepite(){
+    if (document.getElementById("repetidor_si").checked){
+        document.getElementById("div_consolida_premat").style.display="no";
+        document.getElementById("consolida_prem_no").checked = true;
+    } 
+    else{
+        $("#div_nuevo_otra_comunidad").hide();
+        document.getElementById("div_consolida_premat").style.display="inline-block";
+    } 
+}
+
+function alConsolida(){
+    if (document.getElementById("consolida_prem_si").checked){
+        document.getElementById("repetidor_no").checked = true;
+    } 
+}
+
 
 function pasaPagina(p) {
     if (pagina == 1) creaArrayPasapagina();
