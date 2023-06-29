@@ -113,7 +113,7 @@ $(function() {
             document.getElementById("docs_mat_ciclos").className = "enlaceDisabled";
         }
 
-        if (resp["ciclos_e"] == 1) {
+        if (resp["ciclo_e"] == 1) {
             mat_ciclos = true;
             document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "lanzaAvisoMatricula('ciclos-e')");
             document.getElementById("docs_mat_ciclos-e").className = "enlaceEnabled";
