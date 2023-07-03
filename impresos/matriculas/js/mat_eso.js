@@ -193,7 +193,7 @@ function alNuevo(){
     } 
     else{
         $("#div_nuevo_otra_comunidad").hide();
-        document.getElementById("div_consolida_premat").style.display="inline-block";
+        if (_curso != "1º ESO") document.getElementById("div_consolida_premat").style.display="inline-block";
         document.getElementById("oc_no").checked=true;
     } 
 }
