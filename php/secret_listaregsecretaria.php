@@ -87,7 +87,7 @@ else{
 }
 
 if ($buscar!=""){
-    $consulta=$consulta . " and id_nie like '%$buscar%' or registro like '%$buscar%' or nombre like '%$buscar%' or apellidos like '%$buscar%'";
+    $consulta=$consulta . " and (id_nie like '%$buscar%' or registro like '%$buscar%' or nombre like '%$buscar%' or apellidos like '%$buscar%')";
     /*if ($proceso=="prematricula" || $proceso=="matriculaeso" || $proceso=="matriculabach" || $proceso=="matriculaciclos" || $proceso=="matriculafpb"){
         $consulta=$consulta . " and id_nie like '%$buscar%' or registro like '%$buscar%' or nombre like '%$buscar%' or apellidos like '%$buscar%'";
     }
