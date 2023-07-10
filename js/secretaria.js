@@ -444,6 +444,10 @@ function listaRegistros(orden_campo, orden_direccion) {
             else return;
             _c_mat=document.getElementById("curso_mat");
             curso_num=_c_mat.options[_c_mat.selectedIndex].text;
+            if (document.getElementById("curso").value!="2021-2022" && document.getElementById("curso").value!="2020-2021" && document.getElementById("curso").value!="2022-2023"){
+                if (curso_num=="1º Bach. Ciencias") curso_num="1º Bach. Ciencias y Tecnología";
+                else if(curso_num=="2º Bach. Ciencias") curso_num="2º Bach. Ciencias y Tecnología";
+            }
         }
         
         if (tabla.indexOf("eso") > -1) {
