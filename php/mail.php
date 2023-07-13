@@ -12,12 +12,12 @@ $mail->isSMTP();
 $mail->Host = 'ssl://mail.ulaboral.org';
 $mail->SMTPAuth = TRUE;
 $mail->SMTPSecure = 'tls';
-$mail->Username = 'noresponder@ulaboral.org';
-$mail->Password = 'noresponderUlab0ral';
+$mail->Username = 'noresponder@ies.ulaboral.org';
+$mail->Password = 'Uni-L@boral-23';
 
 // Set the SMTP port. 587 para TLS 
 $mail->Port = 465;
 $mail->setLanguage('es', 'PHPmailer/language/');
-$mail->setFrom('noresponder@ulaboral.org', 'Registro Online - IES Universidad Laboral');
+$mail->setFrom('noresponder@ies.ulaboral.org', 'Registro Online - IES Universidad Laboral');
 $mail->isHTML(true);
 
