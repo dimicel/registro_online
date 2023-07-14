@@ -21,8 +21,7 @@ if (file_exists($ruta)) {
 }
 else exit ("noexiste");
 
-$body_html="<h4><b>¡ATENCIÓN! Estas instrucciones pueden ser recibidas en 3 direcciones de correo diferentes: la dirección del alumno, la del tutor/a 1 y la del tutor/a 2.</b><h4><br>";
-$body_html.="Estas direcciones de email son las mismas que tiene el alumno registradas en su ficha, dentro de la plataforma Delphos de la Consejería de Educación.<br><br>";
+$body_html="<h4><b>¡ATENCIÓN! Estas instrucciones pueden ser recibidas en 3 direcciones de correo diferentes: la dirección del alumno, la del tutor/a 1 y la del tutor/a 2. Estas direcciones de email son las mismas que tiene el alumno registradas en su ficha, dentro de la plataforma Delphos de la Consejería de Educación.</b></h4><br><br>";
 $body_html.="<h3><strong>FINALIZACIÓN DEL PROCESO DE MATRÍCULA: ENTREGA DE DOCUMENTACIÓN EN EL REGISTRO ONLINE DEL IES UNIVERSIDAD LABORAL</strong></h3>";
 $body_html.="<p>La documentación a aportar para completar la matrícula, se realizará a través del Registro online del centro.</p>";
 $body_html.="<p>Acceso al Registro online en el siguiente enlace: <a href='https://registro.ulaboral.org/' target='_blank'>https://registro.ulaboral.org/</a></p>";
