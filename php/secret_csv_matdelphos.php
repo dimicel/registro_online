@@ -209,7 +209,7 @@ if ($csv != false) {
             }
             else {
                 if($no_ha_entrado=="F"){
-                    $cuerpo.="Recuerde que su usuario (NIE) es " . $id_nie . " y su contraseña puede recuperarla, si no la acuerda, en el enlace 'Recuperar contraseña' de la página de entrada.";
+                    $cuerpo.="Recuerde que su usuario (NIE) es " . $id_nie . " y su contraseña puede recuperarla, si no la recuerda, en el enlace 'Recuperar contraseña' de la página de entrada.";
                 }
                 else if($no_ha_entrado=="V") {
                     $cuerpo.="Recuerde que su usuario (NIE) es " . $id_nie . " y su contraseña ".$pass;
