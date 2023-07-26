@@ -240,7 +240,7 @@ function generaSelectCurso_mat(){
             {value: "2bach_hcs", text: "2º Bach. HH.CC.SS."}
         ];
     }
-    else {
+    else{
         var options = [
             {value: "", text: "Seleccione uno..."},
             {value: "1eso", text: "1º ESO"},
