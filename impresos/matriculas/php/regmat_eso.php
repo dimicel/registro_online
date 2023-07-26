@@ -21,6 +21,7 @@ $desc_reg = Array(
     "4º ESO"=>"ma4eso",
     "2º ESO PMAR"=>"ma2esp",
     "3º ESO DIVERSIFICACIÓN"=>"ma3esd",
+    "4º ESO DIVERSIFICACIÓN"=>"ma4esd"
 );
 
 $curso=$_POST["curso"];
