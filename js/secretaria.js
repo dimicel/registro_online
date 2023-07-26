@@ -470,6 +470,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             else if (document.getElementById("curso_mat").value == "4eso") tabla = "mat_eso";
             else if (document.getElementById("curso_mat").value == "2esopmar") tabla = "mat_eso";
             else if (document.getElementById("curso_mat").value == "3esodiv") tabla = "mat_eso";
+            else if (document.getElementById("curso_mat").value == "4esodiv") tabla = "mat_eso";
             else if (document.getElementById("curso_mat").value == "1bach_c") tabla = "mat_bach";
             else if (document.getElementById("curso_mat").value == "1bach_hcs") tabla = "mat_bach";
             else if (document.getElementById("curso_mat").value == "2bach_c") tabla = "mat_bach";
