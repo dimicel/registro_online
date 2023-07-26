@@ -79,7 +79,7 @@ $(function() {
         width: 550
     });
 
-    habilitaMenu(false, false);
+    habilitaMenu(false, false); 
 
     $('#registros_docs').contextMenu({
         selector: 'tr',
@@ -209,20 +209,53 @@ function generaSelectCurso_pre_mat(){
 }
 
 function generaSelectCurso_mat(){
-    var options = [
-        {value: "", text: "Seleccione uno..."},
-        {value: "1eso", text: "1º ESO"},
-        {value: "2eso", text: "2º ESO"},
-        {value: "2esopmar", text: "2º ESO PMAR"},
-        {value: "3eso", text: "3º ESO"},
-        {value: "3esopmar", text: "3º ESO PMAR", itemprop: "2020-2021"},
-        {value: "3esodiv", text: "3º ESO DIVERSIFICACIÓN", itemprop: "2022-2023"},
-        {value: "4eso", text: "4º ESO"},
-        {value: "1bach_c", text: "1º Bach. Ciencias"},
-        {value: "1bach_hcs", text: "1º Bach. HH.CC.SS."},
-        {value: "2bach_c", text: "2º Bach. Ciencias"},
-        {value: "2bach_hcs", text: "2º Bach. HH.CC.SS."},
-    ];
+    _sel_curso=document.getElementById("curso").value;
+    if (_sel_curso=="2020-2021" || _sel_curso=="2021-2022"){
+        var options = [
+            {value: "", text: "Seleccione uno..."},
+            {value: "1eso", text: "1º ESO"},
+            {value: "2eso", text: "2º ESO"},
+            {value: "2esopmar", text: "2º ESO PMAR"},
+            {value: "3eso", text: "3º ESO"},
+            {value: "3esopmar", text: "3º ESO PMAR"},
+            {value: "4eso", text: "4º ESO"},
+            {value: "1bach_c", text: "1º Bach. Ciencias"},
+            {value: "1bach_hcs", text: "1º Bach. HH.CC.SS."},
+            {value: "2bach_c", text: "2º Bach. Ciencias"},
+            {value: "2bach_hcs", text: "2º Bach. HH.CC.SS."}
+        ];
+    }
+    else if (_sel_curso=="2022-2023"){
+        var options = [
+            {value: "", text: "Seleccione uno..."},
+            {value: "1eso", text: "1º ESO"},
+            {value: "2eso", text: "2º ESO"},
+            {value: "2esopmar", text: "2º ESO PMAR"},
+            {value: "3eso", text: "3º ESO"},
+            {value: "3esodiv", text: "3º ESO DIVERSIFICACIÓN"},
+            {value: "4eso", text: "4º ESO"},
+            {value: "1bach_c", text: "1º Bach. Ciencias"},
+            {value: "1bach_hcs", text: "1º Bach. HH.CC.SS."},
+            {value: "2bach_c", text: "2º Bach. Ciencias"},
+            {value: "2bach_hcs", text: "2º Bach. HH.CC.SS."}
+        ];
+    }
+    else {
+        var options = [
+            {value: "", text: "Seleccione uno..."},
+            {value: "1eso", text: "1º ESO"},
+            {value: "2eso", text: "2º ESO"},
+            {value: "3eso", text: "3º ESO"},
+            {value: "3esodiv", text: "3º ESO DIVERSIFICACIÓN"},
+            {value: "4eso", text: "4º ESO"},
+            {value: "4esodiv", text: "4º ESO DIVERSIFICACIÓN"},
+            {value: "1bach_c", text: "1º Bach. Ciencias y Tecnología"},
+            {value: "1bach_hcs", text: "1º Bach. HH.CC.SS."},
+            {value: "2bach_c", text: "2º Bach. Ciencias y Tecnología"},
+            {value: "2bach_hcs", text: "2º Bach. HH.CC.SS."}
+        ];
+    }
+    
       
     var select = document.getElementById("curso_mat");
     
@@ -259,7 +292,7 @@ function generaSelectMat_ciclos(){
         "Gestión de Alojamientos Turísticos": "GS Gestión de Alojamientos Turísticos",
         "Guía, Información y Asistencias Turísticas": "GS Guía, Información y Asistencias Turísticas",
         "Mantenimiento de Instalaciones Térmicas y de Fluidos": "GS Mantenimiento de Instalaciones Térmicas y de Fluidos",
-        "Sistemas Electrotécnicos y Automatizados": "GS Sistemas Electrotécnicos y Automatizados",
+        "Sistemas Electrotécnicos y Automatizados": "GS Sistemas Electrotécnicos y Automatizados"
       };
       
       const select = document.getElementById("mat_ciclos");
@@ -281,7 +314,7 @@ function generaSelectMat_fpb(){
         { value: "Alojamiento y Lavandería", label: "Alojamiento y Lavandería" },
         { value: "Cocina y Restauración", label: "Cocina y Restauración" },
         { value: "Electricidad y Electrónica", label: "Electricidad y Electrónica" },
-        { value: "Servicios Administrativos", label: "Servicios Administrativos" },
+        { value: "Servicios Administrativos", label: "Servicios Administrativos" }
       ];
       
       const select = document.getElementById("mat_fpb");
@@ -444,10 +477,10 @@ function listaRegistros(orden_campo, orden_direccion) {
             else return;
             _c_mat=document.getElementById("curso_mat");
             curso_num=_c_mat.options[_c_mat.selectedIndex].text;
-            if (document.getElementById("curso").value!="2021-2022" && document.getElementById("curso").value!="2020-2021" && document.getElementById("curso").value!="2022-2023"){
+            /*if (document.getElementById("curso").value!="2021-2022" && document.getElementById("curso").value!="2020-2021" && document.getElementById("curso").value!="2022-2023"){
                 if (curso_num=="1º Bach. Ciencias") curso_num="1º Bach. Ciencias y Tecnología";
                 else if(curso_num=="2º Bach. Ciencias") curso_num="2º Bach. Ciencias y Tecnología";
-            }
+            }*/
         }
         
         if (tabla.indexOf("eso") > -1) {
