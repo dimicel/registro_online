@@ -18,7 +18,7 @@ if ($res->num_rows==0){
 $Name = 'transporte_'.$curso.'.csv';
 $FileName = "./$Name";
 $Datos="Fecha y hora: ".date("d/m/Y H:i:s").PHP_EOL;
-$Datos.='NIE;ALUMNO;CURSO_ACTUAL;ESTUDIOS;CP;LOCALIDAD;PROVINCIA;RUTA Y PARADA;SILLA_RUEDAS'.PHP_EOL;
+$Datos.='NIE;ALUMNO;CURSO_ACTUAL;ESTUDIOS;CP;LOCALIDAD;PROVINCIA;RUTA Y PARADA;SILLA_RUEDAS;FECHA_SOLICITUD'.PHP_EOL;
 
 header('Expires: 0');
 header('Cache-control: private');
@@ -43,8 +43,9 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
     $Datos.=utf8_decode($r["localidad"].";");
     $Datos.=utf8_decode($r["provincia"].";");
     $Datos.=utf8_decode($r["ruta"].";");
-    if($r["sillaruedas"]==1)$Datos.="SI".PHP_EOL;
-    else $Datos.="NO".PHP_EOL;	
+    if($r["sillaruedas"]==1)$Datos.="SI;";
+    else $Datos.="NO;";	
+    $Datos.=date('d/m/Y', $r["fecha_registro"]).PHP_EOL;
 }
 
 echo $Datos;
