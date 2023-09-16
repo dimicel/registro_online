@@ -45,7 +45,6 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
     $Datos.=utf8_decode($r["ruta"].";");
     if($r["sillaruedas"]==1)$Datos.="SI;";
     else $Datos.="NO;";	
-    //$Datos.=date('d/m/Y', $r["fecha_registro"]).PHP_EOL;
     $Datos.=$r["fecha_registro"].PHP_EOL;
 }
 
