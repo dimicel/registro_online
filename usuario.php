@@ -91,7 +91,7 @@
                 </div>
 
                 <div style="display:list-item; margin-left:50px">
-                    <a id="docs_mat_ciclos" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(ciclos);">Matrícula de Ciclos Formativos</a>
+                    <a id="docs_mat_ciclos" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(ciclos);">Matrícula de Ciclos Formativos (Presencial y E-Learning)</a>
                 </div>
 
                 <div style="display:list-item; margin-left:50px">
