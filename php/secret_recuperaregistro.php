@@ -69,6 +69,7 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["incidencias"]=$reg["incidencias"];
     } 
     elseif ($tabla=="convalidaciones"){
+        $data["registro"]["id_nie"]= $reg["id_nie"];
         $data["registro"]["id_nif"]= $reg["id_nif"];
         $data["registro"]["nombre"]=$reg["nombre"];
         $data["registro"]["apellidos"]=$reg["apellidos"];

@@ -830,6 +830,7 @@ function verRegistro(obj) {
                 contenido += botones;
                 document.getElementById("verRegistro_div").innerHTML = contenido;
             } else if(form1=="convalidaciones"){
+                contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label'>NIF: " + resp.registro.id_nif +"</span><br>";
                 contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
                 contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
                 contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
@@ -857,7 +858,7 @@ function verRegistro(obj) {
                 contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+_id_nie+"\",\""+registro+"\")'/>";
                 contenido += "</div></div>";
                 contenido+="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+_id_nie+"\",\""+registro+"\",this)'/>";
-                contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
+                contenido += "<span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
                 contenido += botones;
                 document.getElementById("verRegistro_div").innerHTML = contenido;

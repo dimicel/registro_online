@@ -480,7 +480,7 @@ function listaSolicitudes() {
         $("#cargando").css("display", "none");
         if (data["error"] == "noregistros") listado.innerHTML = "NO HAY REGISTRADAS SOLICITUDES";
         else if (data["error"] == "ok") {
-            tabla = "<tr><th>Curso</th><th>Fecha</th><th>Número de Registro</th><th>Incidencias</th></tr>";
+            tabla = "<tr><th>Curso</th><th>Fecha</th><th>Número de Registro</th><th>Observaciones</th></tr>";
             Object.keys(data.proceso).forEach(function(proc) {
                 tabla += "<tr><th colspan='5' style='text-align:left'><label style='font-size:1em;color:black !important'>" + proc.toUpperCase() + "</label></th></tr>";
                 for (i = 0; i < data["proceso"][proc].length; i++) {
@@ -507,7 +507,7 @@ function listaSolicitudes() {
                     else{
                         tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a></td>";
                     }
-                    if (item["incidencias"].miTrim() != "") tabla += "<td style='text-align:center;color:blue !important'><a style='color:blue' href=javascript:alerta('" + item["incidencias"] + "','INCIDENCIAS')>Ver</a></td></tr>";
+                    if (item["incidencias"].miTrim() != "") tabla += "<td style='text-align:center;color:blue !important'><a style='color:blue' href=javascript:alerta('" + item["incidencias"] + "','OBSERVACIONES')>Ver</a></td></tr>";
                     else tabla += "<td style='text-align:center;color:blue'>-</td></tr>";
                 };
             });
