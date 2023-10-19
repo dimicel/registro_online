@@ -830,7 +830,7 @@ function verRegistro(obj) {
                 contenido += botones;
                 document.getElementById("verRegistro_div").innerHTML = contenido;
             } else if(form1=="convalidaciones"){
-                contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label'>NIF: " + resp.registro.id_nif +"</span><br>";
+                contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><br>";
                 contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
                 contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
                 contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
