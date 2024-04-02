@@ -26,7 +26,7 @@ if ($res->num_rows==1){
     $res->free();
     exit(json_encode($data));
 }
-else if($res->num_row>1){
+else if($res->num_rows>1){
     $data["error"]="duplicado";
     exit(json_encode($data));
 }
