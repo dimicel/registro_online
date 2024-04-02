@@ -92,9 +92,12 @@ if ($email!=''){
 
     try{
         $check_envio=$mail->send();
+        if (!$check_envio) {
+            exit("envio " . $mail->ErrorInfo);
+        }
         exit ("email");
     } catch (Exception  $e){
-        exit ("envio ".$e->ErrorInfo);
+        exit ("envio ".$e->getMessage());
     }
     
 }
