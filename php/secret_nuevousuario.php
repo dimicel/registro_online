@@ -16,7 +16,7 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 
-$nie=$_POST["nie"];
+$nie=trim($_POST["nie"]);
 $email=$_POST["email"];
 $password=$_POST["password"];
 $nombre=$_POST["nombre"];
