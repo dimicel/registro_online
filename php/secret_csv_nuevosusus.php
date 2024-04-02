@@ -64,7 +64,8 @@ if ($csv != false) {
             if ($c==$columnaNIE){
                 $pass=password();
                 $p=password_hash($pass,PASSWORD_BCRYPT);
-                $consulta=$mysqli->query("select * from usuarios where id_nie='$datos[$c]' and no_ha_entrado=0");
+                $id_nie=trim($datos[$c]);
+                $consulta=$mysqli->query("select * from usuarios where id_nie='$id_nie' and no_ha_entrado=0");
                 if ($consulta->num_rows>0){
                     $nuevoArray[$fila][]="Duplicado";
                     $consulta->free();
