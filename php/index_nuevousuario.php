@@ -27,8 +27,8 @@ if ($consulta->num_rows>0) exit("registrado");
 $consulta->free();
 
 $conCadena="update usuarios set id_nif='$nif', password='$pass', nombre='$nombre', apellidos='$apellidos',email='$email',no_ha_entrado=0 where id_nie='$nie'";
-$comprobacion=$mysqli->query("select * from usuarios_dat where id_nie='$nie'");
-if ($comprobacion->num_rows==0)$mysqli->query("insert into usuarios_dat (id_nie) values ('$nie')");
+//$comprobacion=$mysqli->query("select * from usuarios_dat where id_nie='$nie'");
+//if ($comprobacion->num_rows==0)$mysqli->query("insert into usuarios_dat (id_nie) values ('$nie')");
 
 if ($mysqli->query($conCadena)===TRUE){
     $mysqli->close();

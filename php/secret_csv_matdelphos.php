@@ -189,7 +189,7 @@ if ($csv != false) {
             $no_ha_entrado="V";
             $nuevoArray[$fila-1]=Array($id_nie,$pass,$apellidos,$nombre,$NIF,$emailAlumno,$emailTutor1,$emailTutor2,"");
             $mysqli->query("insert into usuarios (id_nie,id_nif,nombre,apellidos,password,no_ha_entrado) values ('$id_nie','$NIF','$nombre','$apellidos','$p',1)");
-            $mysqli->query("insert into usuarios_dat (id_nie) values ('$id_nie')");
+            //$mysqli->query("insert into usuarios_dat (id_nie) values ('$id_nie')");
 
             if(!is_dir("../docs/".$id_nie)) mkdir("../docs/".$id_nie,0777);
             if (!is_dir("../docs/".$id_nie."/seguro")) mkdir("../docs/".$id_nie."/seguro",0777);
