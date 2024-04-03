@@ -100,9 +100,9 @@ if ($csv != false) {
                         $mysqli->query("insert into usuarios (".$_cam.") values (".$_val.")");
 
                         if(!is_dir("../docs/".$datos[$columnaNIE])) mkdir("../docs/".$datos[$columnaNIE],0777);
-                        if (!is_dir("../docs/".$datos[$columnaNIE]."/seguro")) mkdir("../docs/".$datos[$columnaNIE]."/seguro",0777);
-                        if (!is_dir("../docs/".$datos[$columnaNIE]."/dni")) mkdir("../docs/".$datos[$columnaNIE]."/dni",0777);
-                        if (!is_dir("../docs/".$datos[$columnaNIE]."/certificado_notas")) mkdir("../docs/".$datos[$columnaNIE]."/certificado_notas",0777);
+                        //if (!is_dir("../docs/".$datos[$columnaNIE]."/seguro")) mkdir("../docs/".$datos[$columnaNIE]."/seguro",0777);
+                        //if (!is_dir("../docs/".$datos[$columnaNIE]."/dni")) mkdir("../docs/".$datos[$columnaNIE]."/dni",0777);
+                        //if (!is_dir("../docs/".$datos[$columnaNIE]."/certificado_notas")) mkdir("../docs/".$datos[$columnaNIE]."/certificado_notas",0777);
                     
                     }
                     if ($mysqli->errno>0){

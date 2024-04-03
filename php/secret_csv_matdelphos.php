@@ -192,9 +192,9 @@ if ($csv != false) {
             //$mysqli->query("insert into usuarios_dat (id_nie) values ('$id_nie')");
 
             if(!is_dir("../docs/".$id_nie)) mkdir("../docs/".$id_nie,0777);
-            if (!is_dir("../docs/".$id_nie."/seguro")) mkdir("../docs/".$id_nie."/seguro",0777);
-            if (!is_dir("../docs/".$id_nie."/dni")) mkdir("../docs/".$id_nie."/dni",0777);
-            if (!is_dir("../docs/".$id_nie."/certificado_notas")) mkdir("../docs/".$id_nie."/certificado_notas",0777);
+            //if (!is_dir("../docs/".$id_nie."/seguro")) mkdir("../docs/".$id_nie."/seguro",0777);
+            //if (!is_dir("../docs/".$id_nie."/dni")) mkdir("../docs/".$id_nie."/dni",0777);
+            //if (!is_dir("../docs/".$id_nie."/certificado_notas")) mkdir("../docs/".$id_nie."/certificado_notas",0777);
         } 
         
         $mattricula=$mysqli->query("select * from matriculas_delphos where id_nie='$id_nie' and curso='$curso_actual'");

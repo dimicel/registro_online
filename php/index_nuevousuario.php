@@ -33,9 +33,9 @@ $conCadena="update usuarios set id_nif='$nif', password='$pass', nombre='$nombre
 if ($mysqli->query($conCadena)===TRUE){
     $mysqli->close();
     if(!is_dir("../docs/".$nie)) mkdir("../docs/".$nie,0777);
-    if (!is_dir("../docs/".$nie."/seguro")) mkdir("../docs/".$nie."/seguro",0777);
-    if (!is_dir("../docs/".$nie."/dni")) mkdir("../docs/".$nie."/dni",0777);
-    if (!is_dir("../docs/".$nie."/certificado_notas")) mkdir("../docs/".$nie."/certificado_notas",0777);
+    //if (!is_dir("../docs/".$nie."/seguro")) mkdir("../docs/".$nie."/seguro",0777);
+    //if (!is_dir("../docs/".$nie."/dni")) mkdir("../docs/".$nie."/dni",0777);
+    //if (!is_dir("../docs/".$nie."/certificado_notas")) mkdir("../docs/".$nie."/certificado_notas",0777);
     exit("ok");
 }
 else {
