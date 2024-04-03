@@ -22,6 +22,36 @@ function contarArchivos($dir) {
     return $contador;
 }
 
+function borraCarpetas($directorioBase) {
+    if (!is_dir($directorioBase)) {
+        return false;
+    }
+    
+    // Abrir el directorio
+    $dirHandle = opendir($directorioBase);
+    
+    // Recorrer los contenidos del directorio
+    while (($file = readdir($dirHandle)) !== false) {
+        if ($file != "." && $file != "..") {
+            $filePath = $directorioBase . DIRECTORY_SEPARATOR . $file;
+            
+            // Si es un directorio, llamar a la función recursivamente
+            if (is_dir($filePath)) {
+                borraCarpetas($filePath);
+            } else {
+                // Si es un archivo, eliminarlo
+                unlink($filePath);
+            }
+        }
+    }
+    
+    // Cerrar el manejador de directorio
+    closedir($dirHandle);
+    
+    // Eliminar el directorio base
+    return rmdir($directorioBase);
+}
+
 $consulta=$mysqli->query("select * from usuarios where no_ha_entrado=1 order by id_nie");
 $result = $conn->query($consulta);
 
@@ -38,7 +68,7 @@ if ($result->num_rows > 0) {
             INNER JOIN usuarios_dat ON usuarios.id_nie = usuarios_dat.id_nie
             WHERE usuarios.id_nie = $id_nie";
             if ($conn->query($sql) === TRUE) {
-                echo "Registros eliminados exitosamente.";
+                borraCarpetas($directorioBase);
             }
         }
     }
