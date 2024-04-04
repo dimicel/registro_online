@@ -31,6 +31,7 @@ function contarArchivos($dir) {
 
 function borraCarpetas($directorioBase) {
     if (!is_dir($directorioBase)) {
+        echo "pasa algo";
         return false;
     }
     
