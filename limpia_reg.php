@@ -1,5 +1,5 @@
 <?php
-include("php/conexion.php");
+include("conexion.php");
 
 $usuarios_borrados=0;
 $carpetas_borradas=0;
