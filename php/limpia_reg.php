@@ -59,9 +59,8 @@ function borraCarpetas($directorioBase) {
     
     return rmdir($directorioBase);
 }
-echo "Hasta aquí 0";
-$consulta=$mysqli->query("select * from usuarios where no_ha_entrado=1 order by id_nie");
-echo "Hasta aquí 1"; exit();
+
+$consulta="select * from usuarios where no_ha_entrado=1 order by id_nie";
 $result = $conn->query($consulta);
 
 
