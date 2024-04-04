@@ -1,5 +1,7 @@
 <?php
 include "php/conexion.php";
+$usuarios_borrados=0;
+$carpetas_borradas=0;
 
 function contarArchivos($dir) {
     $contador = 0;
@@ -49,6 +51,7 @@ function borraCarpetas($directorioBase) {
     closedir($dirHandle);
     
     // Eliminar el directorio base
+    
     return rmdir($directorioBase);
 }
 
@@ -68,10 +71,13 @@ if ($result->num_rows > 0) {
             INNER JOIN usuarios_dat ON usuarios.id_nie = usuarios_dat.id_nie
             WHERE usuarios.id_nie = $id_nie";
             if ($conn->query($sql) === TRUE) {
-                borraCarpetas($directorioBase);
+                $usuarios_borrados++;
+                if(borraCarpetas($directorioBase)) $carpetas_borradas++;;
             }
         }
     }
+    echo "Usaurios borrados: " . $usuarios_borrados . "<br>";
+    echo "Carptas borradas: " . $carpetas_borradas;
         
 }
 
