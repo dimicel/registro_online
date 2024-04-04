@@ -1,4 +1,8 @@
 <?php
+//Este script limpia los usuarios que no han tenido actividad ni tienen documentos agregados
+//El borrado se hace en las tablas usuarios y usuarios_dat
+
+
 include("conexion.php");
 
 $usuarios_borrados=0;
@@ -77,8 +81,7 @@ if ($result->num_rows > 0) {
             }
         }
     }
-    echo "Usaurios borrados: " . $usuarios_borrados . "<br>";
-    echo "Carptas borradas: " . $carpetas_borradas;
+    echo "Usaurios borrados: " . $usuarios_borrados . "<br>Carpetas borradas: " . $carpetas_borradas;
         
 }
 
