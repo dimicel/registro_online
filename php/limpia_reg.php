@@ -61,7 +61,7 @@ function borraCarpetas($directorioBase) {
 }
 
 $consulta="select * from usuarios where no_ha_entrado=1 order by id_nie";
-$result = $conn->query($consulta);
+$result = $mysqli->query($consulta);
 
 
 // Verificar si hay resultados
@@ -72,13 +72,10 @@ if ($result->num_rows > 0) {
         $directorioBase = "docs/".$id_nie;
         $totalArchivos = contarArchivos($directorioBase);
         if ($totalArchivos===0){
-            $sql = "DELETE usuarios, usuarios_dat
-            FROM usuarios
-            INNER JOIN usuarios_dat ON usuarios.id_nie = usuarios_dat.id_nie
-            WHERE usuarios.id_nie = $id_nie";
-            if ($conn->query($sql) === TRUE) {
+            if ($mysqli->query("delete from usuarios where id_nie=$id_nie") === TRUE) {
                 $usuarios_borrados++;
-                if(borraCarpetas($directorioBase)) $carpetas_borradas++;;
+                $mysqli->query("delete from usuarios_dat where id_nie=$id_nie");
+                if(borraCarpetas($directorioBase)) $carpetas_borradas++;
             }
         }
     }
