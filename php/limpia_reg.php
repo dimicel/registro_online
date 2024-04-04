@@ -60,7 +60,7 @@ function borraCarpetas($directorioBase) {
     
     return rmdir($directorioBase);
 }
-$directorioBase = "docs/2";
+$directorioBase = "../docs/2";
 if(borraCarpetas($directorioBase)) echo "Borrao";
 else echo "fallo";
 exit();
