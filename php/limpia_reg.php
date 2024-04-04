@@ -61,8 +61,9 @@ function borraCarpetas($directorioBase) {
 }
 echo "Hasta aquí 0";
 $consulta=$mysqli->query("select * from usuarios where no_ha_entrado=1 order by id_nie");
-$result = $conn->query($consulta);
 echo "Hasta aquí 1"; exit();
+$result = $conn->query($consulta);
+
 
 // Verificar si hay resultados
 if ($result->num_rows > 0) {
