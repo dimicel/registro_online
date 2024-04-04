@@ -4,6 +4,7 @@
 
 
 include("conexion.php");
+set_time_limit(3600);  //Si el script se ejecuta más del número de segundos especificado en el parámetro, casca
 
 $usuarios_borrados=0;
 $carpetas_borradas=0;
