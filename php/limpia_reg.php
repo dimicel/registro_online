@@ -75,12 +75,16 @@ if ($result->num_rows > 0) {
         if ($totalArchivos===0){
             if ($mysqli->query("delete from usuarios where id_nie=$id_nie") === TRUE) {
                 $usuarios_borrados++;
+                echo "Usuarios eliminados: " . $usuarios_borrados . "<br>";
                 $mysqli->query("delete from usuarios_dat where id_nie=$id_nie");
-                if(borraCarpetas($directorioBase)) $carpetas_borradas++;
+                if(borraCarpetas($directorioBase)){
+                    $carpetas_borradas++;
+                    echo "Carpetas borradas: " . $carpetas_borradas . "<br>";
+                } 
             }
         }
     }
-    echo "Usaurios borrados: " . $usuarios_borrados . "<br>Carpetas borradas: " . $carpetas_borradas;
+    echo "Usuarios Totales borrados: " . $usuarios_borrados . "<br>Carpetas Totales borradas: " . $carpetas_borradas;
         
 }
 
