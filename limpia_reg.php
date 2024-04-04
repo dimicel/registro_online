@@ -1,5 +1,6 @@
 <?php
 include("php/conexion.php");
+exit();
 $usuarios_borrados=0;
 $carpetas_borradas=0;
 
