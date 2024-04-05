@@ -1,4 +1,7 @@
 var id_nie = "";
+var nombre="";
+var apellidos="";
+var nif_nie="";
 var formulario = "";
 var curso = "";
 var drawing = false;
@@ -16,9 +19,12 @@ $(document).ready(function() {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
             id_nie = resp["id_nie"];
-            document.getElementById("nif_nie").value = resp["id_nif"];
-            document.getElementById("nombre").value = resp["nombre"];
-            document.getElementById("apellidos").value = resp["apellidos"];
+            nif_nie=resp["id_nif"];
+            nombre=resp["nombre"];
+            apellidos=resp["apellidos"];
+            document.getElementById("nif_nie").value = nif_nie;
+            document.getElementById("nombre").value = nombre;
+            document.getElementById("apellidos").value = apellidos;
             anno_ini_curso = resp["anno_ini_curso"];
             document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
             curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
@@ -73,6 +79,9 @@ function seleccion(obj) {
     if (obj.id == "instrucciones") {
         open("instrucciones/instrucciones.pdf", "_blank");
     } else{
+        document.getElementById("nif_nie").value = nif_nie;
+        document.getElementById("nombre").value = nombre;
+        document.getElementById("apellidos").value = apellidos;
         $.post("../../php/usu_recdatospers.php", { id_nie: id_nie }, (resp) => {
             if (resp.error == "ok") {
                 for (e in resp.datos) {
