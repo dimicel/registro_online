@@ -14,8 +14,9 @@ $tabla=$_POST["tabla"];
 $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
 $orden_campo=$_POST["orden_campo"];
-if ($orden_campo=="registro") $orden_campo="fecha_registro,registro";
 $orden_direccion=$_POST["orden_direccion"];
+if ($orden_campo=="registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion;
+else $orden_listado=$orden_campo." ".$orden_direccion;
 $solo_incidencias=$_POST["solo_incidencias"];
 if (isset($_POST["grupo"])) $grupo=$_POST["grupo"];
 if (isset($_POST["modalidad"])) $modalidad=$_POST["modalidad"];
@@ -96,7 +97,7 @@ if ($buscar!=""){
         $consulta=$consulta . " and id_nif like '%$buscar%' or registro like '%$buscar%' or nombre like '%$buscar%'";
     }*/
 } 
-$consulta=$consulta." order by $orden_campo $orden_direccion";
+$consulta=$consulta." order by $orden_listado";
 
 
 $res=$mysqli->query($consulta);
