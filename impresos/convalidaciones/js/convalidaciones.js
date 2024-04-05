@@ -442,6 +442,8 @@ function anadeDoc(e) {
                     click: function() {
                         document.getElementById("form_anade_documento_con").reset();
                         $('#div_den_otro_con').hide();
+                        selUltimoFile().remove();
+                        selUltimoHidden().remove();
                         $("#anade_documento_consejeria").dialog("close");
                         $("#anade_documento_consejeria").dialog("destroy");
                     }
