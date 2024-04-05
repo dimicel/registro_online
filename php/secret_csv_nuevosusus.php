@@ -75,7 +75,7 @@ if ($csv != false) {
                 else if ($consulta->num_rows==0){
                     $nuevoArray[$fila][]=$pass;
                     $consulta->free();
-                    $consulta=$mysqli->query("select * from usuarios where id_nie='$datos[$c]' and no_ha_entrado=1");
+                    $consulta=$mysqli->query("select * from usuarios where id_nie='$id_nie' and no_ha_entrado=1");
                     if($consulta->num_rows>0){
                         $_con="update usuarios set password='$p'";
                         if ($columnaNombre>-1){
@@ -84,11 +84,11 @@ if ($csv != false) {
                         if ($columnaNIF>-1){
                             $_con.=", id_nif='$datos[$columnaNIF]'";
                         }
-                        $mysqli->query($_con . " where id_nie='$datos[$c]'");
+                        $mysqli->query($_con . " where id_nie='$id_nie'");
                     }
                     else{
                         $_cam="id_nie,password,no_ha_entrado";
-                        $_val="'$datos[$c]','$p',1";
+                        $_val="'$id_nie','$p',1";
                         if($columnaNombre>-1){
                             $_cam.=",apellidos,nombre";
                             $_val.=",'$apellidos','$nombre'";
