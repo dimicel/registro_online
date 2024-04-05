@@ -769,6 +769,25 @@ function selArchConsej(){
 
 function selArchCentMinis(){
     selUltimoFile().click();
+    var ultimoFile=selUltimoFile();
+    if (ultimoFile.files.length > 0) {
+        var archivo = ultimoFile.files[0];
+        var extension = archivo.name.split('.').pop().toLowerCase();
+
+        // Verificar si la extensión del archivo es PDF
+        if (extension !== 'pdf') {
+            // Crear un nuevo input file y reemplazar el existente
+            var nuevoInput = document.createElement('input');
+            nuevoInput.type = 'file';
+            nuevoInput.id = ultimoFile.id;
+            nuevoInput.className = ultimoFile.className;
+            nuevoInput.onchange = ultimoFile.onchange;
+
+            ultimoFile.parentNode.replaceChild(nuevoInput, ultimoFile);
+
+            alerta("Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO");
+        }
+    }
 }
 
 
