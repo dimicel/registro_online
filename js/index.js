@@ -6,10 +6,25 @@ $(function() {
         if (resp == "modo_obras.html") document.location = resp;
     });
     */
-   alert(sessionStorage.getItem('visitado_index'))
-    if (!sessionStorage.getItem('visitado_index')) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (!token) {
         // Si no se ha visitado el index.php, redirigir al index.php
         window.location.href = 'index.php';
+    } else {
+        try {
+            // Decodificar el token y obtener la información de la sesión
+            const sessionData = JSON.parse(atob(token));
+            const visitadoIndex = sessionData.visitado_index;
+
+            if (!visitadoIndex) {
+                window.location.href = 'index.php';
+            }
+        } catch (error) {
+            console.error('Error al decodificar el token:', error);
+            window.location.href = 'index.php';
+        }
     }
 
     document.getElementById("usuario").focus();
