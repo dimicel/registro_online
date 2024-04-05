@@ -768,7 +768,7 @@ function selArchConsej(){
 }
 
 function selArchCentMinis(){
-    if (document.querySelectorAll("#anade_documento_centroministerio input[name=tipo_con]:checked").length==0){
+    if (document.querySelectorAll("#anade_documento_centroministerio input[name=tipo]:checked").length==0){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
         return;
     }
