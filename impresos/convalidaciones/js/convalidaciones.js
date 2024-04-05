@@ -767,6 +767,11 @@ function selArchConsej(){
     }
 }
 
+function selArchCentMinis(){
+    selUltimoFile().click();
+}
+
+
 
 function muestraEditor(_ev){
     _tipoSelecc=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value;

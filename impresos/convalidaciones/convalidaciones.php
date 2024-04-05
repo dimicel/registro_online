@@ -280,7 +280,7 @@
                     </div>
                     <div class="col">
                         <label for="archivo">Documento:</label>
-                        <input type="text" id="archivo" class="form-control" maxlength="256" onclick="selUltimoFile().click();" readonly/>
+                        <input type="text" id="archivo" class="form-control" maxlength="256" onclick="selArchCentMinis();" readonly/>
                     </div>
                 </div>
             </div>
