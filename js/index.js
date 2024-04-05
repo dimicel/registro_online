@@ -6,6 +6,10 @@ $(function() {
         if (resp == "modo_obras.html") document.location = resp;
     });
     */
+    if (!sessionStorage.getItem('visitado_index')) {
+        // Si no se ha visitado el index.php, redirigir al index.php
+        window.location.href = 'index.php';
+    }
 
     document.getElementById("usuario").focus();
     
