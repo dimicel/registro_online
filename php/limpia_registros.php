@@ -70,7 +70,7 @@ if ($result->num_rows > 0) {
     // Recorrer cada fila de resultados
     while($row = $result->fetch_assoc()) {
         $id_nie=$row["id_nie"];
-        $directorioBase = "../docs/".trim($id_nie);
+        $directorioBase = "../docs/".$id_nie;
         $totalArchivos = contarArchivos($directorioBase);
         if ($totalArchivos===0){
             if ($mysqli->query("delete from usuarios where id_nie=$id_nie") === TRUE) {
