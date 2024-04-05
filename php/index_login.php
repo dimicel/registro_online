@@ -1,8 +1,8 @@
 <?php
 include("conexion.php");
 header("Content-Type: text/html;charset=utf-8");
-//session_start();
-//session_regenerate_id();
+session_start();
+session_regenerate_id();
 header("Expires: Tue, 01 Jul 2001 06:00:00 GMT");
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate");
