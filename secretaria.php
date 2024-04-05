@@ -264,7 +264,7 @@
             </div>
             <div class="row justify-content-center" style="margin-top:10px">
                 <div class="col">
-                    <span style="text-align: center;">Usuario con fondo rojo = Usuario INHABILITADO. Clic en botón derecho para habilitar/inhabilitar en el menú</span>
+                    <span style="display:flex;text-align: center;">Usuario con fondo rojo = Usuario INHABILITADO. Clic en botón derecho para habilitar/inhabilitar en el menú</span>
                 </div>
             </div>
 
