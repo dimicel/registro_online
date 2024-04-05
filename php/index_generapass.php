@@ -1,7 +1,7 @@
 <?php
-/*session_start();
+session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
-*/
+
 
 header("Content-Type: text/html;charset=utf-8");
 include("mail.php");
