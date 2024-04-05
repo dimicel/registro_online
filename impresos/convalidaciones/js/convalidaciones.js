@@ -72,33 +72,55 @@ $(document).ready(function() {
 function seleccion(obj) {
     if (obj.id == "instrucciones") {
         open("instrucciones/instrucciones.pdf", "_blank");
-    } else if (obj.id == "consejeria") {
-        $("#seccion-intro").hide();
-        $("#seccion-formulario").show();
-        //$('[data-formulario="centro_ministerio"]').each(function() {
-        //    $(this).hide();
-        //});
-        $('[data-formulario="consejería"]').each(function() {
-            $(this).show();
-        });
-        formulario = "Consejería";
-        creaValidador();
-        document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
-        document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
-    } else if (obj.id == "centro_ministerio") {
-        $("#seccion-intro").hide();
-        $("#seccion-formulario").show();
-        //$('[data-formulario="centro_ministerio"]').each(function() {
-        //    $(this).show();
-        //});
-        $('[data-formulario="consejería"]').each(function() {
-            $(this).hide();
-        });
-        formulario = "Centro-Ministerio";
-        creaValidador();
-        document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO";
-        document.getElementById("label_estudios_aportados").innerHTML="Documentos que adjunta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
-    }
+    } else{
+        $.post("../../php/usu_recdatospers.php", { id_nie: id_nie }, (resp) => {
+            if (resp.error == "ok") {
+                for (e in resp.datos) {
+                    if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
+                }
+                document.getElementById("tlf_movil").value = resp.datos.telef_alumno;
+                document.getElementById("email").value = resp.datos.email;
+                document.getElementById("direccion").value = resp.datos.direccion;
+                document.getElementById("cp").value = resp.datos.cp;
+                document.getElementById("localidad").value = resp.datos.localidad;
+                document.getElementById("provincia").value = resp.datos.provincia;
+            } else {
+                document.getElementById("tlf_movil").value = '';
+                document.getElementById("email").value = '';
+                document.getElementById("direccion").value = '';
+                document.getElementById("cp").value = '';
+                document.getElementById("localidad").value = '';
+                document.getElementById("provincia").value = '';
+            }
+            if (obj.id == "consejeria") {
+                $("#seccion-intro").hide();
+                $("#seccion-formulario").show();
+                //$('[data-formulario="centro_ministerio"]').each(function() {
+                //    $(this).hide();
+                //});
+                $('[data-formulario="consejería"]').each(function() {
+                    $(this).show();
+                });
+                formulario = "Consejería";
+                creaValidador();
+                document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
+                document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
+            } else if (obj.id == "centro_ministerio") {
+                $("#seccion-intro").hide();
+                $("#seccion-formulario").show();
+                //$('[data-formulario="centro_ministerio"]').each(function() {
+                //    $(this).show();
+                //});
+                $('[data-formulario="consejería"]').each(function() {
+                    $(this).hide();
+                });
+                formulario = "Centro-Ministerio";
+                creaValidador();
+                document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO";
+                document.getElementById("label_estudios_aportados").innerHTML="Documentos que adjunta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
+            }
+        }, "json");
+    } 
 }
 
 function creaValidador() {
