@@ -773,6 +773,7 @@ function verRegistro(obj) {
             _id_nie = obj.children[i].innerHTML;
         }
     }
+    alert(registro);
     formulario = form; //esta asignación es necesaria para que funcione en botones, botón Guardar
     botones = "<div style='text-align:right'>";
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
