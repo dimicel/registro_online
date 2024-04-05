@@ -262,6 +262,12 @@
             <div class="row justify-content-center" style="margin-top:10px">
                 <ul class="pagination pagination-sm" id="navegacion_usus_top"></ul>
             </div>
+            <div class="row justify-content-center" style="margin-top:10px">
+                <div class="col">
+                    <span>Usuario con fondo rojo = Usuario INHABILITADO. Clic en botón derecho para habilitar/inhabilitar en el menú</span>
+                </div>
+            </div>
+
             <div class="row justify-content-center">
                 <table id="encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px">
                 </table><br>
