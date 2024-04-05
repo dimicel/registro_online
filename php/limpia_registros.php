@@ -3,6 +3,8 @@
 //El borrado se hace en las tablas usuarios y usuarios_dat
 
 
+exit(); //Para que no se ejecute hasta que haga falta
+
 include("conexion.php");
 set_time_limit(3600);  //Si el script se ejecuta más del número de segundos especificado en el parámetro, casca
 
