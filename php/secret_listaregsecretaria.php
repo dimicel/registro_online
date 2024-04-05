@@ -14,6 +14,7 @@ $tabla=$_POST["tabla"];
 $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
 $orden_campo=$_POST["orden_campo"];
+if ($orden_campo=="registro") $orden_campo="fecha_registro,registro";
 $orden_direccion=$_POST["orden_direccion"];
 $solo_incidencias=$_POST["solo_incidencias"];
 if (isset($_POST["grupo"])) $grupo=$_POST["grupo"];
