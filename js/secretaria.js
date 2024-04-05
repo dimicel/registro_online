@@ -694,7 +694,6 @@ function ordenListado(obj) {
     if (campo == "nombre") campo = "apellidos";
     _orden_campo = campo;
     _orden_direccion = sim_dir;
-    alert(campo);
     listaRegistros(campo, sim_dir);
 }
 
