@@ -489,7 +489,7 @@ function creaInputs() {
         }
         alert(this.files.length);
         if (this.files.length > 0) {
-            for(i=0;i<this.files.length-1;i++){
+            for(i=0;i<this.files.length;i++){
                 var extension = this.files[i].name.split('.').pop().toLowerCase();
                 alert(extension);
                 // Verificar si la extensión del archivo es _extension1 o 2
