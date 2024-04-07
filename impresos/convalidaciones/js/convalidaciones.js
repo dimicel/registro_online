@@ -472,21 +472,20 @@ function creaInputs() {
             alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS");
             return;
         }
-
-        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
-            _extension1="jpeg";
-            _extension2="jpg";
-            mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
-        }
-        else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
-            _extension1="jpeg";
-            _extension2="jpg";
-            mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
-        }
-        else {
-            _extension1="pdf";
-            _extension2="pdf";
-            mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
+        _extension1="pdf";
+        _extension2="pdf";
+        mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
+        if (formulario=="Centro-Ministerio"){
+            if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+                _extension1="jpeg";
+                _extension2="jpg";
+                mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
+            }
+            else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+                _extension1="jpeg";
+                _extension2="jpg";
+                mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
+            }
         }
     
         if (this.files.length > 0) {
