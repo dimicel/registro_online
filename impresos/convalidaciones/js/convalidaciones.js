@@ -456,7 +456,6 @@ function anadeDoc(e) {
 
 
 function creaInputs() {
-    alert(formulario);
     divArray = document.getElementById("array_input_type_file");
     tipoHidden = document.createElement("input");
     tipoHidden.type = "hidden";
@@ -476,7 +475,7 @@ function creaInputs() {
         _extension1="pdf";
         _extension2="pdf";
         mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
-        if (formulario=="Centro-Ministerio"){
+        if (formulario=="Consejería"){
             if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
                 _extension1="jpeg";
                 _extension2="jpg";
