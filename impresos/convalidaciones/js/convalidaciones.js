@@ -484,7 +484,7 @@ function creaInputs() {
             else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
                 _extension1="jpeg";
                 _extension2="jpg";
-                mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
+                mensaje_alerta="Los dos archivos de imagen correspondientes al anverso y reverso del documento de identificación deben ser del tipo JPEG.","ERROR TIPO ARCHIVO";
             }
         }
         if (this.files.length > 0) {
