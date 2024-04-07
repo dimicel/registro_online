@@ -456,6 +456,7 @@ function anadeDoc(e) {
 
 
 function creaInputs() {
+    alert(formulario);
     divArray = document.getElementById("array_input_type_file");
     tipoHidden = document.createElement("input");
     tipoHidden.type = "hidden";
