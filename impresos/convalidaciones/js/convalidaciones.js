@@ -490,8 +490,7 @@ function creaInputs() {
     
         if (this.files.length > 0) {
             for(i=0;i<this.files.length-1;i++){
-                var archivo = this.files[i];
-                var extension = archivo.name.split('.').pop().toLowerCase();
+                var extension = this.files[i].name.split('.').pop().toLowerCase();
                 // Verificar si la extensión del archivo es _extension1 o 2
                 if (extension !== _extension1 && extension!==_extension2) {
                     alerta(mensaje_alerta,"ERROR TIPO ARCHIVO");
