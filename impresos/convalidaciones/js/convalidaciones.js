@@ -815,7 +815,7 @@ function selArchConsej(){
     var ultimoFile=selUltimoFile();
     if (ultimoFile.files.length > 0) {
         for(i=0;i<ultimoFile.files.length-1;i++){
-            alert(_extension1+"  "+_extension2)
+            alert (_extension1+"  "+_extension2);
             var archivo = ultimoFile.files[i];
             var extension = archivo.name.split('.').pop().toLowerCase();
             // Verificar si la extensión del archivo es PDF
