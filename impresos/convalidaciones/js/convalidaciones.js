@@ -487,7 +487,7 @@ function creaInputs() {
                 mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
             }
         }
-    
+        alert(this.files.length);
         if (this.files.length > 0) {
             for(i=0;i<this.files.length-1;i++){
                 var extension = this.files[i].name.split('.').pop().toLowerCase();
