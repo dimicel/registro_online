@@ -796,14 +796,50 @@ function selTipoDoc(v){
 function selArchConsej(){
     if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked").length==0){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
+        return;
     }
-    else selUltimoFile().click();
+    _extension1="pdf";
+    _extension2="pdf";
+    mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
+    if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+        _extension1="jpeg";
+        _extension2="jpg";
+        mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
+    }
+    else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+        _extension1="jpeg";
+        _extension2="jpg";
+        mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
+    }
+    selUltimoFile().click();
+    var ultimoFile=selUltimoFile();
+    if (ultimoFile.files.length > 0) {
+        for(i=0;i<ultimoFile.files.length-1;i++){
+            var archivo = ultimoFile.files[i];
+            var extension = archivo.name.split('.').pop().toLowerCase();
+            // Verificar si la extensión del archivo es PDF
+            if (extension !== _extension1 && extension!==_extension2) {
+                // Crear un nuevo input file y reemplazar el existente
+                var nuevoInput = document.createElement('input');
+                nuevoInput.type = 'file';
+                nuevoInput.id = ultimoFile.id;
+                nuevoInput.className = ultimoFile.className;
+                nuevoInput.onchange = ultimoFile.onchange;
+
+                ultimoFile.parentNode.replaceChild(nuevoInput, ultimoFile);
+
+                alerta(mensaje_alerta,"ERROR TIPO ARCHIVO");
+                break;
+            }
+        }
+    }
     if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
         $("#doc_ident_reverso").show();
     }
     else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
         $("#doc_ident_reverso").hide();
     }
+
 }
 
 function selArchCentMinis(){
