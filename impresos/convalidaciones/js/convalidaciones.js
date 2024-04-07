@@ -472,6 +472,35 @@ function creaInputs() {
             alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS");
             return;
         }
+
+        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+            _extension1="jpeg";
+            _extension2="jpg";
+            mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
+        }
+        else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+            _extension1="jpeg";
+            _extension2="jpg";
+            mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
+        }
+        else {
+            _extension1="pdf";
+            _extension2="pdf";
+            mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
+        }
+    
+        if (this.files.length > 0) {
+            for(i=0;i<this.files.length-1;i++){
+                var archivo = this.files[i];
+                var extension = archivo.name.split('.').pop().toLowerCase();
+                // Verificar si la extensión del archivo es _extension1 o 2
+                if (extension !== _extension1 && extension!==_extension2) {
+                    alerta(mensaje_alerta,"ERROR TIPO ARCHIVO");
+                    return;
+                }
+            }
+        }
+
         if (formulario=="Centro-Ministerio"){
             document.getElementById('archivo').value = this.files[0].name;
         }
@@ -798,41 +827,9 @@ function selArchConsej(){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
         return;
     }
-    _extension1="pdf";
-    _extension2="pdf";
-    mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
-    if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
-        _extension1="jpeg";
-        _extension2="jpg";
-        mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
-    }
-    else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
-        _extension1="jpeg";
-        _extension2="jpg";
-        mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
-    }
+
     selUltimoFile().click();
-    var ultimoFile=selUltimoFile();
-    if (ultimoFile.files.length > 0) {
-        for(i=0;i<ultimoFile.files.length-1;i++){
-            var archivo = ultimoFile.files[i];
-            var extension = archivo.name.split('.').pop().toLowerCase();
-            // Verificar si la extensión del archivo es _extension1 o 2
-            if (extension !== _extension1 && extension!==_extension2) {
-                // Crear un nuevo input file y reemplazar el existente
-                var nuevoInput = document.createElement('input');
-                nuevoInput.type = 'file';
-                nuevoInput.id = ultimoFile.id;
-                nuevoInput.className = ultimoFile.className;
-                nuevoInput.onchange = ultimoFile.onchange;
 
-                ultimoFile.parentNode.replaceChild(nuevoInput, ultimoFile);
-
-                alerta(mensaje_alerta,"ERROR TIPO ARCHIVO");
-                break;
-            }
-        }
-    }
     if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
         $("#doc_ident_reverso").show();
     }
@@ -848,25 +845,7 @@ function selArchCentMinis(){
         return;
     }
     selUltimoFile().click();
-    var ultimoFile=selUltimoFile();
-    if (ultimoFile.files.length > 0) {
-        var archivo = ultimoFile.files[0];
-        var extension = archivo.name.split('.').pop().toLowerCase();
-
-        // Verificar si la extensión del archivo es PDF
-        if (extension !== 'pdf') {
-            // Crear un nuevo input file y reemplazar el existente
-            var nuevoInput = document.createElement('input');
-            nuevoInput.type = 'file';
-            nuevoInput.id = ultimoFile.id;
-            nuevoInput.className = ultimoFile.className;
-            nuevoInput.onchange = ultimoFile.onchange;
-
-            ultimoFile.parentNode.replaceChild(nuevoInput, ultimoFile);
-
-            alerta("Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO");
-        }
-    }
+ 
 }
 
 
