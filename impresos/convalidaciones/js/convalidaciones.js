@@ -793,7 +793,7 @@ function selTipoDoc(v){
 }
 
 
-function selArchConsej(){alert(0);
+function selArchConsej(){
     if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked").length==0){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
         return;
@@ -815,10 +815,9 @@ function selArchConsej(){alert(0);
     var ultimoFile=selUltimoFile();
     if (ultimoFile.files.length > 0) {
         for(i=0;i<ultimoFile.files.length-1;i++){
-            alert (_extension1+"  "+_extension2);
             var archivo = ultimoFile.files[i];
             var extension = archivo.name.split('.').pop().toLowerCase();
-            // Verificar si la extensión del archivo es PDF
+            // Verificar si la extensión del archivo es _extension1 o 2
             if (extension !== _extension1 && extension!==_extension2) {
                 // Crear un nuevo input file y reemplazar el existente
                 var nuevoInput = document.createElement('input');
