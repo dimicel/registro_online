@@ -479,12 +479,12 @@ function creaInputs() {
             if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
                 _extension1="jpeg";
                 _extension2="jpg";
-                mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
+                mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
             }
             else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
                 _extension1="jpeg";
                 _extension2="jpg";
-                mensaje_alerta="Por favor, seleccione un archivo de iamgen JPEG.","ERROR TIPO ARCHIVO";
+                mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
             }
         }
         alert(this.files.length);
