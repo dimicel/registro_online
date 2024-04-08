@@ -38,7 +38,7 @@
         <div id="doc_reg_tab" class="ui-widget-header ui-corner-all">
             <div style="margin-top:10px; margin-left:10px;" id="menu_div">
                 <ul class="nav bg-white">
-                    <li class="nav-item dropdown" id="menu1">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="menu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Gestión Usuarios
                         </a>
