@@ -49,12 +49,24 @@ else {
 			$_SESSION['apellidos']=$pass['apellidos'];
 			$_SESSION['email']=$pass['email'];
 			$_SESSION['anno_ini_curso']=calculaCurso_ini();
-			if ($pass['id_nif']=="S4500175G"){
+			if ($pass['id_nie']=="S4500175G"){
 				$_SESSION['tipo_usu']="secretaria";
 				$dat["error"]="ok";
 				$dat["pagina"]= "secretaria.php";
 				exit(json_encode($dat));
 			} 
+			else if ($pass['id_nie']=="S4500175GJEF"){
+				$_SESSION['tipo_usu']="jefatura estudios";
+				$dat["error"]="ok";
+				$dat["pagina"]= "secretaria.php";
+				exit(json_encode($dat));
+			} 
+			else if ($pass['id_nie']=="S4500175GRES"){
+				$_SESSION['tipo_usu']="residencia";
+				$dat["error"]="ok";
+				$dat["pagina"]= "residencia.php";
+				exit(json_encode($dat));
+			}
 			else{
 				$_SESSION['tipo_usu']="usuario";
 				$dat["error"]="ok";
