@@ -24,6 +24,7 @@ $(function() {
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
+            if (resp["tipo_usu"]=="jefatura estudios")document.getElementById("rotulo_tipo_usu").innerHTML="JEFATURA ESTUDIOS - GESTIÓN DEL REGISTRO ONLINE";
             anno_ini_curso = resp["anno_ini_curso"];
             anno_ini_curso_docs = resp["anno_ini_curso_docs"];
             mes = resp["mes"];

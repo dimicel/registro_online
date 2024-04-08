@@ -26,7 +26,7 @@
         <div style="display:table-cell; vertical-align: middle; padding-left: 20px">
             <h1 style="color:red;display:none" id="servidor_pruebas" ><strong>¡¡¡SERVIDOR DE PRUEBAS!!!</strong></h1>
             <h2>IES UNIVERSIDAD LABORAL</h2>
-            <h3>SECRETARÍA - GESTIÓN DEL REGISTRO ONLINE</h3>
+            <h3 id="rotulo_tipo_usu">SECRETARÍA - GESTIÓN DEL REGISTRO ONLINE</h3>
         </div>
         <!--
         <div style="display:table-cell; height: 105px; vertical-align: middle; padding-left: 200px">
