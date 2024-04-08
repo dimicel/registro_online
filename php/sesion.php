@@ -15,7 +15,20 @@ if (!isset($_SESSION['ID'])) $respuesta["error"]="Error_01 - Acceso restringido.
 //elseif ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) $respuesta["error"]="Error_02 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
 elseif ($_SESSION['navegador'] != $_SERVER['HTTP_USER_AGENT']) $respuesta["error"]="Error_03 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
 elseif ($_SESSION['ID'] != session_id()) $respuesta["error"]="Error_04 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
-elseif (!isset($_POST['tipo_usu']) || !isset($_SESSION['tipo_usu']) || $_POST['tipo_usu']!=$_SESSION['tipo_usu']) $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
+elseif (!isset($_POST['tipo_usu']) || !isset($_SESSION['tipo_usu']) || $_POST['tipo_usu']!=$_SESSION['tipo_usu'] ) {
+    if(isset($_POST['tipo_usu']) && isset($_SESSION['tipo_usu'])){
+        if($_POST['tipo_usu']=="secretaria" && $_SESSION['tipo_usu']=="jefatura estudios"){
+            $respuesta["error"]="ok";
+        }
+        else{
+            $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
+        }
+    }
+    else {
+        $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
+    }
+    
+}
 else $respuesta["error"]="ok";
 
 if ($respuesta["error"]=="ok"){
