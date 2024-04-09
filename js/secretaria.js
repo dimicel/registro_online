@@ -771,10 +771,10 @@ function verRegistro(obj) {
     //Buscamos la posición de Nº Registro en encabezado para usarla como índice del registro en la tabla de los datos
     var _enc = $("#encabezado_docs td");
     for (i = 0; i < _enc.length; i++) {
-        if (_enc[i].innerHTML == "Nº Registro") {
+        if (_enc[i].innerHTML.substring(0, 11) == "Nº Registro") {
             registro = obj.children[i].innerHTML;
         }
-        else if (_enc[i].innerHTML == "NIE") {
+        else if (_enc[i].innerHTML.substring(0,3) == "NIE") {
             _id_nie = obj.children[i].innerHTML;
         }
     }
