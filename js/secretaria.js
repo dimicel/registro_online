@@ -743,7 +743,7 @@ function verRegAdjuntosConvalid(reg){
         else {
             _div+="<ul id='ul_docs_convalid'>";
             for(i=0;i<resp2.datos.length;i++){
-                _div += "<li><a style='color:GREEN;font-size:12px' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></li>";
+                _div += "<li><a style='color:GREEN;font-size:1em' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a></li>";
             }
             _div+="</ul>";
         }
