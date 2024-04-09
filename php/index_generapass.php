@@ -7,7 +7,7 @@ header("Content-Type: text/html;charset=utf-8");
 include("mail.php");
 include("conexion.php");
 $nie=strtoupper($_POST['nie']);
-if ($nie=="S4500175G") exit("reservado");
+if ($nie=="S4500175G" || $nie=="S4500175GJEF" || $nie=="S4500175GRES") exit("reservado");
 $a_medias=false;
 $envio=false;
 
