@@ -6,9 +6,9 @@ var mes;
 var _orden_campo;
 var _orden_direccion;
 var incidencia_si = 0;
-var curso_actual,curso_premat,curso_mat;
+var curso_actual;
 var sesion_id;
-var tipo_formulario="";
+
 
 
 $(function() {
@@ -26,10 +26,6 @@ $(function() {
             mes = resp["mes"];
             _curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
             curso_actual=_curso;
-            if (mes<=6 && mes>=1) curso_premat=_curso;
-            else curso_premat=(anno_ini_curso-1)+"-"+(anno_ini_curso);
-            if(mes!=6)curso_mat=anno_ini_curso+"-"+(anno_ini_curso + 1);
-            else curso_mat=(anno_ini_curso+1)+"-"+(anno_ini_curso + 2);
             generaSelectCurso();
             document.getElementById("curso").value = _curso;
         }
