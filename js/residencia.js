@@ -138,9 +138,9 @@ function listaUsus() {
                 }
                 data += "<td style='" + estilo_usu[3] + ";text-align:center'>" + data_array[i]["no_ha_entrado"] + "</td>";
                 //Columna DOCS
-                data += "<td style='" + estilo_usu[4] + ";text-align:center' onclick='javascript:verDocsMatricula(this.parentNode.children[0].innerHTML)'>Ver</td>";
+                data += "<td style='" + estilo_usu[4] + ";text-align:center' ";
                 //columna EXPEDIENTE
-                data += "<td style='" + estilo_usu[5] + ";text-align:center' onclick='javascript:verExpediente(this.parentNode.children[0].innerHTML,this.parentNode.children[1].innerHTML)'>Ver</td>";
+                data += "<td style='" + estilo_usu[5] + ";text-align:center' ";
                 data += "</tr>";
             }
             document.getElementById("encabezado_usus").innerHTML = encab_usus;
