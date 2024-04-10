@@ -8,6 +8,11 @@ var _orden_direccion;
 var incidencia_si = 0;
 var curso_actual;
 var sesion_id;
+var num_registros;
+var num_reg_pagina = 25;
+var numero_paginas;
+var pagina = 1;
+var orden_direccion_usu = "🡅";
 
 
 
