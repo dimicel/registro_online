@@ -29,6 +29,7 @@ $(function() {
             generaSelectCurso();
             document.getElementById("curso").value = _curso;
         }
+        document.getElementById("cargando").style.display = 'none';
     });
     
 });
