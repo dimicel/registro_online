@@ -33,11 +33,10 @@
         <!--_______________________________________________________________________________________-->
         <div id="usu_reg_tab" class="ui-widget-header ui-corner-all" >
             <div class="row" style="margin-top:15px">
-                <div class="col-1" style="margin-left:-85px">
+                <div class="col-1" >
                     <label class="col-form-label col-lg-2" style="margin-left: 20px;">Año Acad.: </label>
                 </div>
-                <div class="col-2" style="margin-left:-85px">
-                    <label class="col-form-label col-lg-2" style="margin-left: 20px;">Año Acad.: </label>
+                <div class="col-2" >
                     <select id="curso" size="1" onchange="listaRegistros();" class="form-control"></select>
                 </div>
                 <div class="col-1">
