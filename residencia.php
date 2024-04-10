@@ -34,7 +34,7 @@
         <div id="usu_reg_tab" class="ui-widget-header ui-corner-all" >
             <div class="row" style="margin-top:15px">
                 <div class="col-2" >
-                    <label class="col-form-label" style="margin-left: 40px;">Año Académico: </label>
+                    <label class="col-form-label" style="margin-left: 30px;">Año Académico: </label>
                 </div>
                 <div class="col-2" >
                     <select id="curso" size="1" onchange="listaRegistros();" class="form-control"></select>
