@@ -28,8 +28,9 @@ $(function() {
             curso_actual=_curso;
             generaSelectCurso();
             document.getElementById("curso").value = _curso;
-        }
-        document.getElementById("cargando").style.display = 'none';
+            listaUsus();
+            document.getElementById("cargando").style.display = 'none';
+        } 
     });
     
 });
@@ -46,10 +47,6 @@ function generaSelectCurso(){
         miSelect.appendChild(elemento);
     }
 }
-
-
-
-
 
 
 function ordenListado(obj) {
@@ -85,15 +82,11 @@ function seleccionaRegistros(valor) {
 
 }
 
-
-
 function cierrasesion() {
     $.post("php/logout.php", {}, function(resp) {
         open("index.php?q=" + Date.now().toString(), "_self");
     });
 }
-
-
 
 function listaUsus() {
     direccion = new Array();
