@@ -16,6 +16,7 @@ $orden_direccion=$_POST["orden_direccion_usu"];
 $tipo_residente=$_POST["tipo_residente"];
 $buscar=$_POST["buscar"];
 
+$offset=($pagina-1)*$num_reg_pagina;
 if (trim($buscar)==""){
     if ($tipo_residente!="todos"){
         if($tipo_residente=="resnm") $consulta="SELECT * FROM usuarios where residente=1 and matriculado=0 ";
@@ -32,15 +33,6 @@ else {
     }
     else $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%' ";
 }
-$res=$mysqli->query($consulta);
-$data["num_registros"]=$res->num_rows;
-$res->free();
-
-$offset=($pagina-1)*$num_reg_pagina;
-if (trim($buscar)==""){
-    $consulta="SELECT * FROM usuarios ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
-}
-else $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%' ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
     
 
 $res=$mysqli->query($consulta);
