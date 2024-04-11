@@ -44,8 +44,9 @@
                 </div>
                 <div class="col-4" style="margin-left:-10px">
                     <select id="tipo_residente" size="1" onchange="listaUsus()" class="form-control">
-                        <option value='res'>Residente</option>
-                        <option value='resnm'>Residente NO matriculado</option>
+                        <option value='res'>Residentes</option>
+                        <option value='resnm'>SÓLO Residentes NO matriculados</option>
+                        <option value='resm'>SÓLO Residentes matriculado</option>
                         <option value='todos' selected>Todos</option>
                     </select>
                 </div>

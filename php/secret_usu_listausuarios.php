@@ -19,7 +19,7 @@ $solo_han_entrado=$_POST["solo_han_entrado"];
 $filtro_han_entrado="";
 if ($solo_han_entrado=="Si") $filtro_han_entrado="WHERE no_ha_entrado=0";
 elseif ($solo_han_entrado=="No") $filtro_han_entrado="WHERE no_ha_entrado=1";
-
+/*
 if (trim($buscar)==""){
     $consulta="SELECT * FROM usuarios $filtro_han_entrado";
 }
@@ -34,7 +34,7 @@ else {
 $res=$mysqli->query($consulta);
 $data["num_registros"]=$res->num_rows;
 $res->free();
-
+*/
 $offset=($pagina-1)*$num_reg_pagina;
 if (trim($buscar)==""){
     $consulta="SELECT * FROM usuarios $filtro_han_entrado ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";

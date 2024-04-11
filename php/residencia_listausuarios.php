@@ -17,10 +17,20 @@ $tipo_residente=$_POST["tipo_residente"];
 $buscar=$_POST["buscar"];
 
 if (trim($buscar)==""){
-    $consulta="SELECT * FROM usuarios ";
+    if ($tipo_residente!="todos"){
+        if($tipo_residente=="resnm") $consulta="SELECT * FROM usuarios where residente=1 and matriculado=0 ";
+        else if($tipo_residente=="resm") $consulta="SELECT * FROM usuarios where residente=1 and matriculado=1 ";
+        else if($tipo_residente=="res") $consulta="SELECT * FROM usuarios where residente=1 ";
+    }
+    else $consulta="SELECT * FROM usuarios ";
 }
 else {
-    $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%'";
+    if ($tipo_residente!="todos"){
+        if($tipo_residente=="resnm") $consulta="SELECT * FROM usuarios where residente=1 and matriculado=0 and (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ";
+        else if($tipo_residente=="resm") $consulta="SELECT * FROM usuarios where residente=1 and matriculado=1 and (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ";
+        else if($tipo_residente=="res") $consulta="SELECT * FROM usuarios where residente=1 and (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ";
+    }
+    else $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%' ";
 }
 $res=$mysqli->query($consulta);
 $data["num_registros"]=$res->num_rows;
@@ -30,9 +40,8 @@ $offset=($pagina-1)*$num_reg_pagina;
 if (trim($buscar)==""){
     $consulta="SELECT * FROM usuarios ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
 }
-else {
-    $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%' ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
-}
+else $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%' ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+    
 
 $res=$mysqli->query($consulta);
 
