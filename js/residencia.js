@@ -73,20 +73,6 @@ function ordenListado(obj) {
 }
 
 
-function seleccionaRegistros(valor) {
-    tabla = document.getElementById("registros_docs");
-    for (i = 0; i < tabla.children[0].children.length; i++) {
-        if (valor == "todo") {
-            tabla.children[0].children[i].children[0].children[0].checked = true;
-        } else if (valor == "ninguno") {
-            tabla.children[0].children[i].children[0].children[0].checked = false;
-        } else if (valor == "invertir") {
-            tabla.children[0].children[i].children[0].children[0].checked = !tabla.children[0].children[i].children[0].children[0].checked;
-        }
-    }
-
-}
-
 function cierrasesion() {
     $.post("php/logout.php", {}, function(resp) {
         open("index.php?q=" + Date.now().toString(), "_self");
@@ -115,7 +101,7 @@ function listaUsus() {
         num_reg_pagina: num_reg_pagina,
         solo_han_entrado: document.getElementById("sel_solo_entrado").value
     }
-    $.post("php/secret_usu_listausuarios.php", datos, function(resp) {
+    $.post("php/residencia_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "sin_registros") {
             document.getElementById("div_notabla_usus").style.display = "inline-block";
