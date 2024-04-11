@@ -85,7 +85,7 @@ function listaUsus() {
     direccion["🡇"] = "DESC";
 
     estilo_usu = ["width:80px", "width:270px", "width:270px", "width:90px", "width:40px", "width:80px"];
-    encabezamiento_usu = ["NIE", "Alumno", "Email", "¿Ha entrado?", "Imag.", "Documentos"];
+    encabezamiento_usu = ["NIE", "Alumno", "Email", "Residente", "No Matr."];
 
     //Construcción del encabezamiento de la tabla
     encab_usus = "<tr>";
@@ -99,7 +99,7 @@ function listaUsus() {
         orden_direccion_usu: direccion[orden_direccion_usu],
         pagina: pagina,
         num_reg_pagina: num_reg_pagina,
-        solo_han_entrado: document.getElementById("sel_solo_entrado").value
+        tipo_residente:document.getElementById("tipo_residente").value
     }
     $.post("php/residencia_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");

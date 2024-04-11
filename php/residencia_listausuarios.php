@@ -13,23 +13,14 @@ if ($mysqli->errno>0) {
 $pagina=$_POST["pagina"];
 $num_reg_pagina=$_POST["num_reg_pagina"];//Número de registros por página
 $orden_direccion=$_POST["orden_direccion_usu"];
+$tipo_residente=$_POST["tipo_residente"];
 $buscar=$_POST["buscar"];
-$solo_han_entrado=$_POST["solo_han_entrado"];
-
-$filtro_han_entrado="";
-if ($solo_han_entrado=="Si") $filtro_han_entrado="WHERE no_ha_entrado=0";
-elseif ($solo_han_entrado=="No") $filtro_han_entrado="WHERE no_ha_entrado=1";
 
 if (trim($buscar)==""){
-    $consulta="SELECT * FROM usuarios $filtro_han_entrado";
+    $consulta="SELECT * FROM usuarios ";
 }
 else {
-    if ($filtro_han_entrado!=""){
-        $consulta="SELECT * FROM usuarios $filtro_han_entrado AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%')";
-    }
-    else {
-        $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%'";
-    }
+    $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%'";
 }
 $res=$mysqli->query($consulta);
 $data["num_registros"]=$res->num_rows;
@@ -37,15 +28,10 @@ $res->free();
 
 $offset=($pagina-1)*$num_reg_pagina;
 if (trim($buscar)==""){
-    $consulta="SELECT * FROM usuarios $filtro_han_entrado ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+    $consulta="SELECT * FROM usuarios ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
 }
 else {
-    if ($filtro_han_entrado!=""){
-        $consulta="SELECT * FROM usuarios $filtro_han_entrado AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
-    }
-    else {
-        $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%' ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
-    }
+    $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%' ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
 }
 
 $res=$mysqli->query($consulta);
@@ -63,8 +49,6 @@ while ($reg=$res->fetch_assoc()){
     $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["apellidos"])).", ".ucwords(strtolower($reg["nombre"]));
     $data["registros"][$contador]["email"]= $reg["email"];
     $data["registros"][$contador]["habilitado"]= $reg["habilitado"];
-    if ($reg["no_ha_entrado"]==1) $data["registros"][$contador]["no_ha_entrado"]= "NO";
-    else $data["registros"][$contador]["no_ha_entrado"]= "SI";
     $contador++;
 }
 $res->free();
