@@ -99,7 +99,7 @@ function listaUsus() {
         orden_direccion_usu: direccion[orden_direccion_usu],
         pagina: pagina,
         num_reg_pagina: num_reg_pagina,
-        tipo_residente:document.getElementById("tipo_residente").value
+        curso:document.getElementById("curso").value
     }
     $.post("php/residencia_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
