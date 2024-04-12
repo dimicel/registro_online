@@ -143,6 +143,7 @@ function listaUsus() {
 }
 
 
+
 function ordenUsus() {
     if (orden_direccion_usu == "🡅") orden_direccion_usu = "🡇";
     else orden_direccion_usu = "🡅";
@@ -224,3 +225,5 @@ function panelEnvioEmail(dir_email) {
     });
 
 }
+
+
