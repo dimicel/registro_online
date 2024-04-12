@@ -17,8 +17,8 @@ $buscar=$_POST["buscar"];
 $solo_han_entrado=$_POST["solo_han_entrado"];
 
 $filtro_han_entrado="";
-if ($solo_han_entrado=="Si") $filtro_han_entrado="WHERE no_ha_entrado=0";
-elseif ($solo_han_entrado=="No") $filtro_han_entrado="WHERE no_ha_entrado=1";
+if ($solo_han_entrado=="Si") $filtro_han_entrado="WHERE no_ha_entrado=0 AND residente_no_matriculado=0";
+elseif ($solo_han_entrado=="No") $filtro_han_entrado="WHERE no_ha_entrado=1 AND residente_no_matriculado=0";
 /*
 if (trim($buscar)==""){
     $consulta="SELECT * FROM usuarios $filtro_han_entrado";
@@ -41,10 +41,10 @@ if (trim($buscar)==""){
 }
 else {
     if ($filtro_han_entrado!=""){
-        $consulta="SELECT * FROM usuarios $filtro_han_entrado AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+        $consulta="SELECT * FROM usuarios $filtro_han_entrado AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%')  ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
     }
     else {
-        $consulta="SELECT * FROM usuarios WHERE apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%' ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+        $consulta="SELECT * FROM usuarios WHERE residente_no_matriculado=0 AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
     }
 }
 
