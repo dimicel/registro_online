@@ -22,8 +22,8 @@
 
     <div class="form-group form-row">
         <div class="col">
-            <label for="centro_est">Centro de estudios:</label>
-            <input type="text" name="centro_est" id="centro_est" class="form-control" maxlength="40" />
+            <label for="centro_est">Centro de estudios <small>(doble clic para cambiar)</small>:</label>
+            <input type="text" name="centro_est" id="centro_est" class="form-control" maxlength="40" value="IES UNIVERSIDAD LABORAL" readonly ondblclick="this.removeAttribute('readonly');"/>
         </div>
         <div class="col-2">
             <label for="tlf_centro_est">Teléfono:</label>
