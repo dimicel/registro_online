@@ -1,0 +1,43 @@
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div style="text-align: center;">
+    <h6 style="color:brown; margin-top:20px; font-weight: bold;">DATOS MÉDICOS DE INTERÉS</h6>
+</div>
+<form id="form_pagina_4" novalidate>
+    <div class="form-group form-row">
+        <div class="col">
+            <label id="lab1" for="enfermedad_pasada">Si ha tenido una efermedad importante, especifique cuál:(150/150)</label>
+            <input type="text" name="enfermedad_pasada" id="enfermedad_pasada" class="form-control" maxlength="150" oninput="lab1.innerText='Si ha tenido una efermedad importante, especifique cuál:('+String(150-this.value.length)+'/150)'"/>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col">
+            <label id="lab2" for="enfermedad">Si actualmente tiene alguna enfermedad, especifique cuál:(150/150)</label>
+            <input type="text" name="enfermedad" id="enfermedad" class="form-control" maxlength="150" oninput="lab2.innerText='Si actualmente tiene alguna enfermedad, especifique cuál:('+String(150-this.value.length)+'/150)'"/>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col">
+            <label id="lab3" for="medicacion">Si tiene medicación diaria, indique cuál:(150/150)</label>
+            <input type="text" name="medicacion" id="medicacion" class="form-control" maxlength="150" oninput="lab3.innerText='Si tiene medicación diaria, especifique cuál:('+String(150-this.value.length)+'/150)'"/>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col">
+            <label id="lab4" for="alergias">Si tiene alergias a alimentos y/o medicamentos, indique a cuales:(150/150)</label>
+            <input type="text" name="alergias" id="alergias" class="form-control" maxlength="150" oninput="lab4.innerText='Si tiene alergias a alimentos o medicamentos, indique a cuales:('+String(150-this.value.length)+'/150)'"/>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col">
+            <label id="lab5" for="otros_datos">OTROS DATOS DE INTERÉS:(150/150)</label>
+            <input type="text" name="otros_datos" id="otros_datos" class="form-control" maxlength="150" oninput="lab5.innerText='OTROS DATOS DE INTERÉS:('+String(150-this.value.length)+'/150)'"/>
+        </div>
+    </div>
+</form>
+<hr>
+<div class=" justify-content-center row m-3">
+    <input type="button" value="&#x1f448;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Página anterior" onclick="pasaPagina('-')">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+')">
+</div>
