@@ -557,6 +557,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             } 
         }
         encab += "<td style='width:90px; text-align: center'>Observaciones</td></tr>";
+        alert(encab);
     }
     else{
         if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
@@ -719,6 +720,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                     else  data += "<td style='width:110px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
                 }
             }
+            
             document.getElementById("encabezado_docs").innerHTML = encab;
             document.getElementById("registros_docs").innerHTML = data;
         }
