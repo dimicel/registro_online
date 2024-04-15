@@ -677,49 +677,60 @@ function listaRegistros(orden_campo, orden_direccion) {
             //encab = "";
             data = "";
             data_array = resp["registros"];
+            array_sino=["Si","No"];
             for (i = 0; i < data_array.length; i++) {
-                data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
-                //Check de selección. si es prematrícula o convalidaciones no aparece
-                if (tipo_formulario != "prematricula" && tipo_formulario !="convalidaciones") {
-                    data += "<td style='width:50px;  text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' onclick='javascript: event.stopPropagation();'/></td>";
+                if (tipo_formulario=="convalidaciones"){
+                    data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
+                    //Datos específicos de cada formulario
+                    for (j = 0; j < campos.length; j++) {
+                        data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                    }
+                    data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td>";
                 }
-
-                //Datos específicos de cada formulario
-                for (j = 0; j < campos.length; j++) {
-                    data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
-                }
-
-                if (encabezamiento[encabezamiento.length - 1] == "Docs") {
-                    data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
-                }
-
-                if (encabezamiento[encabezamiento.length - 2] == "Docs") {
-                    if (encabezamiento[encabezamiento.length - 1] == ">28") {
-                        if (data_array[i]["mayor_28"] == "Si") {
-                            data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\">28\")'>Ver</td>";
-                        } else {
-                            data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                else{
+                    data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
+                    //Check de selección. si es prematrícula no aparece
+                    if (tipo_formulario != "prematricula") {
+                        data += "<td style='width:50px;  text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' onclick='javascript: event.stopPropagation();'/></td>";
+                    }
+    
+                    //Datos específicos de cada formulario
+                    for (j = 0; j < campos.length; j++) {
+                        data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                    }
+    
+                    if (encabezamiento[encabezamiento.length - 1] == "Docs") {
+                        data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                    }
+    
+                    if (encabezamiento[encabezamiento.length - 2] == "Docs") {
+                        if (encabezamiento[encabezamiento.length - 1] == ">28") {
+                            if (data_array[i]["mayor_28"] == "Si") {
+                                data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\">28\")'>Ver</td>";
+                            } else {
+                                data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                            }
                         }
                     }
-                }
-
-                if (encabezamiento[encabezamiento.length - 1] == ">28" && tipo_formulario == "matricula_ciclos") {
-                    data += "<td style='" + estilo[j] + "'>" + data_array[i]["mayor_28"] + "</td>";
-                }
-
-                //Si hay o no incidencias
-                if (data_array[i].incidencias) data += "<td style='width:90px'><center>Si</center></td>";
-                else data += "<td style='width:90px'><center>No</center></td>";
-
-                //Check de listado. Si es prematrículao convalidaciones no aparece
-                if (tipo_formulario != "prematricula"  && tipo_formulario !="convalidaciones") {
-                    if (data_array[i].listado == 1) data += "<td style='width:90px'><center><input type='checkbox' checked onclick='javascript: return false;'/></center></td>";
-                    else data += "<td style='width:90px'><center><input type='checkbox' onclick='javascript: return false;'/></center></td>";
-                }
-                //Ckeck de procesado. Si es matrícula o prematrícula no aparece
-                if (tipo_formulario.indexOf("matricula")==-1){
-                    if (data_array[i].procesado==1) data += "<td style='width:110px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
-                    else  data += "<td style='width:110px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
+    
+                    if (encabezamiento[encabezamiento.length - 1] == ">28" && tipo_formulario == "matricula_ciclos") {
+                        data += "<td style='" + estilo[j] + "'>" + data_array[i]["mayor_28"] + "</td>";
+                    }
+    
+                    //Si hay o no incidencias
+                    if (data_array[i].incidencias) data += "<td style='width:90px'><center>Si</center></td>";
+                    else data += "<td style='width:90px'><center>No</center></td>";
+    
+                    //Check de listado. Si es prematrícula no aparece
+                    if (tipo_formulario != "prematricula") {
+                        if (data_array[i].listado == 1) data += "<td style='width:90px'><center><input type='checkbox' checked onclick='javascript: return false;'/></center></td>";
+                        else data += "<td style='width:90px'><center><input type='checkbox' onclick='javascript: return false;'/></center></td>";
+                    }
+                    //Ckeck de procesado. Si es matrícula o prematrícula no aparece
+                    if (tipo_formulario.indexOf("matricula")==-1){
+                        if (data_array[i].procesado==1) data += "<td style='width:110px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
+                        else  data += "<td style='width:110px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
+                    }    
                 }
             }
             
