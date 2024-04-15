@@ -677,7 +677,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             //encab = "";
             data = "";
             data_array = resp["registros"];
-            array_sino=["Si","No"];
+            array_sino=["No","Si"];
             for (i = 0; i < data_array.length; i++) {
                 if (tipo_formulario=="convalidaciones"){
                     data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
