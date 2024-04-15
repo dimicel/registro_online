@@ -336,6 +336,8 @@ function generaSelectMat_fpb(){
 
 
 function listaRegistros(orden_campo, orden_direccion) {
+    document.getElementById("div_incidencias").style.display="inherit";
+    document.getElementById("div_convalidaciones").style.display="none";
     ocultaCursosDesplegable();
     tipo_formulario = document.getElementById('tipo_form').value;
     if (tipo_formulario == "prematricula") {
@@ -406,6 +408,8 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
     else if(tipo_formulario="convalidaciones"){
         habilitaMenu(false, false);
+        document.getElementById("div_incidencias").style.display="none";
+        document.getElementById("div_convalidaciones").style.display="inherit";
         document.getElementById("div_curso_premat").style.display = "none";
         document.getElementById("div_curso_mat").style.display = "none";
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
@@ -636,17 +640,16 @@ function listaRegistros(orden_campo, orden_direccion) {
         }
     }
     else if(tabla=="convalidaciones"){
+        if (document.getElementById("check_vistas").checked) _v=1
+        else _v=0;
         datos = {
             buscar: buscar,
             tabla: tabla,
             curso: document.getElementById('curso').value,
-            grupo: grupo,
-            modalidad:modalidad,
             orden_campo: orden_campo,
             orden_direccion: direccion[orden_direccion],
-            solo_incidencias: solo_incidencias,
             curso_num:curso_num,
-            vistas:vistas
+            vistas:_v
         }
     }
     else {
