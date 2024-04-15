@@ -109,7 +109,6 @@ if ($buscar!=""){
     }*/
 } 
 $consulta=$consulta." order by $orden_listado";
-$data["consulta"]=$consulta;
 
 $res=$mysqli->query($consulta);
 
