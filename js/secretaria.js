@@ -676,9 +676,9 @@ function listaRegistros(orden_campo, orden_direccion) {
             data = "";
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
-                data += "<tr onclick='verRegistro(this)'>";
-                //Check de selección. si es prematrícula no aparece
-                if (tipo_formulario != "prematricula") {
+                data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
+                //Check de selección. si es prematrícula o convalidaciones no aparece
+                if (tipo_formulario != "prematricula" && tipo_formulario !="convalidaciones") {
                     data += "<td style='width:50px;  text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' onclick='javascript: event.stopPropagation();'/></td>";
                 }
 
@@ -709,8 +709,8 @@ function listaRegistros(orden_campo, orden_direccion) {
                 if (data_array[i].incidencias) data += "<td style='width:90px'><center>Si</center></td>";
                 else data += "<td style='width:90px'><center>No</center></td>";
 
-                //Check de listado. Si es prematrícula no aparece
-                if (tipo_formulario != "prematricula") {
+                //Check de listado. Si es prematrículao convalidaciones no aparece
+                if (tipo_formulario != "prematricula"  && tipo_formulario !="convalidaciones") {
                     if (data_array[i].listado == 1) data += "<td style='width:90px'><center><input type='checkbox' checked onclick='javascript: return false;'/></center></td>";
                     else data += "<td style='width:90px'><center><input type='checkbox' onclick='javascript: return false;'/></center></td>";
                 }
