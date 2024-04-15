@@ -453,6 +453,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min"];
         estilo = ["width:70px", "width:220px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px" ];
         encabezamiento = ["NIE", "Alumno", "Fecha Registro","Centro","Proc.Centro","Cosej.","Proc.Consej.","Minist.","Proc.Minist.","Visto"];
+        alert(1);
 
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
