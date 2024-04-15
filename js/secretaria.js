@@ -685,10 +685,11 @@ function listaRegistros(orden_campo, orden_direccion) {
                     for (j = 0; j < campos.length; j++) {
                         data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                     }
-                    data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td>";
 
                     if (data_array[i].procesado==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
                     else  data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
+
+                    data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td>";
 
                 }
                 else{
