@@ -211,7 +211,7 @@
                             <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_incidencias" onchange="listaRegistros();">
                             <label for="check_incidencias" class="custom-control-label" style="margin-top:5px;margin-left:10px;">Sólo Incidencias</label>
                         </div>
-                        <div class="custom-control custom-switch col-lg-2" id="div_convalidaciones">
+                        <div class="custom-control custom-switch col-lg-2" id="div_convalidaciones" style="display:none">
                             <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_vistas" onchange="listaRegistros();">
                             <label for="check_vistas" class="custom-control-label" style="margin-top:5px;margin-left:10px;">No Vistas</label>
                         </div>
