@@ -609,6 +609,20 @@ function listaRegistros(orden_campo, orden_direccion) {
             curso_num:curso_num
         }
     }
+    else if(tabla=="convalidaciones"){
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            grupo: grupo,
+            modalidad:modalidad,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            solo_incidencias: solo_incidencias,
+            curso_num:curso_num,
+            vistas:vistas
+        }
+    }
     else {
         datos = {
             buscar: buscar,
