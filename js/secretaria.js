@@ -453,8 +453,6 @@ function listaRegistros(orden_campo, orden_direccion) {
         campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min"];
         estilo = ["width:70px", "width:220px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px" ];
         encabezamiento = ["NIE", "Alumno", "Fecha Registro","Centro","Proc.Centro","Cosej.","Proc.Consej.","Minist.","Proc.Minist.","Visto"];
-        alert(1);
-
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
         else if (document.getElementById("curso_pre_mat").value == "3eso") {tabla = "premat_eso"; grupo="3º ESO";}
@@ -554,8 +552,11 @@ function listaRegistros(orden_campo, orden_direccion) {
         encab = "<tr>";
         for (i = 0; i < encabezamiento.length; i++) {
             if(encabezamiento[i].substr(0,3)=="NIE" || encabezamiento[i].substr(0,6)=="Alumno" || encabezamiento[i].substr(0,14)=="Fecha Registro"){
-                encab += "<td style='" + estilo[i] + "'onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
-            } 
+                encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+            }
+            else{
+                encab += "<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
+            }
         }
         encab += "<td style='width:90px; text-align: center'>Observaciones</td></tr>";
         alert(encab);
@@ -566,7 +567,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         encab = "<tr>";
         if (tipo_formulario != "prematricula") encab += "<td style='width:50px; text-align:center' >Sel.</td>";
         for (i = 0; i < encabezamiento.length; i++) {
-            encab += "<td style='" + estilo[i] + "'onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+            encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
         }
         encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
         if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td>";
