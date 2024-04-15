@@ -640,7 +640,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         }
     }
     else if(tabla=="convalidaciones"){
-        if (document.getElementById("check_vistas").checked) _v=1
+        if (document.getElementById("check_vistas").checked) _v=0
         else _v=0;
         datos = {
             buscar: buscar,
