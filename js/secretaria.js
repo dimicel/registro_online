@@ -648,7 +648,6 @@ function listaRegistros(orden_campo, orden_direccion) {
             curso: document.getElementById('curso').value,
             orden_campo: orden_campo,
             orden_direccion: direccion[orden_direccion],
-            curso_num:curso_num,
             vistas:_v
         }
     }
