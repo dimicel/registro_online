@@ -18,7 +18,7 @@ $orden_direccion=$_POST["orden_direccion"];
 if ($orden_campo=="registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
 if ($orden_campo=="fecha_registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
 else $orden_listado=$orden_campo." ".$orden_direccion;
-if ($tabla=="convalidaciones") $visto=$_POST["visto"];
+if ($tabla=="convalidaciones") $visto=$_POST["vistas"];
 else $solo_incidencias=$_POST["solo_incidencias"];
 if (isset($_POST["grupo"])) $grupo=$_POST["grupo"];
 if (isset($_POST["modalidad"])) $modalidad=$_POST["modalidad"];
@@ -76,7 +76,7 @@ else {
 
 $coletilla="";
 if ($tabla=="convalidaciones"){
-    $coletilla=" procesado=$visto ";
+    $coletilla=" procesado=$visto and ";
 }
 else{
     if ($solo_incidencias==1) $coletilla="incidencias!='' and ";
@@ -109,7 +109,7 @@ if ($buscar!=""){
     }*/
 } 
 $consulta=$consulta." order by $orden_listado";
-
+$data["consulta"]=$consulta;
 
 $res=$mysqli->query($consulta);
 
