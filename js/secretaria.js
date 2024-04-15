@@ -403,7 +403,20 @@ function listaRegistros(orden_campo, orden_direccion) {
             $("#CSV_transporte").addClass("disabled");
             $("#CSV_seguro").addClass("disabled");
         }
-    } else {
+    }
+    else if(tipo_formulario="convalidaciones"){
+        habilitaMenu(false, false);
+        document.getElementById("div_curso_premat").style.display = "none";
+        document.getElementById("div_curso_mat").style.display = "none";
+        document.getElementById("div_curso_mat_ciclos").style.display = "none";
+        document.getElementById("div_curso_mat_fpb").style.display = "none";
+        $("#CSV_premat").addClass("disabled");
+        //$("#menu_csv_mat").addClass("disabled");
+        //$("#menu_listado_mat_pdf").addClass("disabled");
+        $("#CSV_transporte").addClass("disabled");
+        $("#CSV_seguro").addClass("disabled");
+    }
+    else {
         habilitaMenu(true, true);
         document.getElementById("div_curso_premat").style.display = "none";
         document.getElementById("div_curso_mat").style.display = "none";
@@ -433,9 +446,9 @@ function listaRegistros(orden_campo, orden_direccion) {
         encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
     } else if(tipo_formulario=="convalidaciones"){
         tabla = tipo_formulario;
-        campos = ["id_nie", "nombre", "registro"];
-        estilo = ["width:70px", "width:220px", "width:270px"];
-        encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
+        campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min"];
+        estilo = ["width:70px", "width:220px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px", "width:70px" ];
+        encabezamiento = ["NIE", "Alumno", "Fecha Registro","Centro","Proc.Centro","Cosej.","Proc.Consej.","Minist.","Proc.Minist.","Visto"];
 
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
@@ -530,17 +543,30 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
 
     //Construcción del encabezamiento de la tabla
-    if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
-    else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
-    encab = "<tr>";
-    if (tipo_formulario != "prematricula") encab += "<td style='width:50px; text-align:center' >Sel.</td>";
-    for (i = 0; i < encabezamiento.length; i++) {
-        encab += "<td style='" + estilo[i] + "'onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+    if(tipo_formulario=="convalidaciones"){
+        if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
+        else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
+        encab = "<tr>";
+        for (i = 0; i < encabezamiento.length; i++) {
+            if(encabezamiento[i].substr(0,3)=="NIE" || encabezamiento[i].substr(0,6)=="Alumno" || encabezamiento[i].substr(0,14)=="Fecha Registro"){
+                encab += "<td style='" + estilo[i] + "'onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+            } 
+        }
+        encab += "<td style='width:90px; text-align: center'>Observaciones</td></tr>";
     }
-    if (tipo_formulario=="convalidaciones") encab += "<td style='width:90px; text-align: center'>Observac.</td>";
-    else encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
-    if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td>";
-    if (tipo_formulario.indexOf("matricula")==-1)encab += "<td style='width:110px; text-align: center'>Procesado</td></tr>";
+    else{
+        if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
+        else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
+        encab = "<tr>";
+        if (tipo_formulario != "prematricula") encab += "<td style='width:50px; text-align:center' >Sel.</td>";
+        for (i = 0; i < encabezamiento.length; i++) {
+            encab += "<td style='" + estilo[i] + "'onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+        }
+        encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
+        if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td>";
+        if (tipo_formulario.indexOf("matricula")==-1)encab += "<td style='width:110px; text-align: center'>Procesado</td>";
+        encab += "</tr>";
+    }
     ///////////////////////////////////////////////
 
     buscar = document.getElementById("busqueda").value;
