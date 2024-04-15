@@ -683,13 +683,26 @@ function listaRegistros(orden_campo, orden_direccion) {
                     data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
                     //Datos específicos de cada formulario
                     for (j = 0; j < campos.length; j++) {
-                        data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                        if (j<3) data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                        else if (j==3 || j==5 || j==7) data += "<td style='" + estilo[j] + "'>" + array_sino[data_array[i][campos[j]]] + "</td>";
+                        else if(j==4){
+                            if(data_array[i][campos[j]]) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesado(this,centro);'/></center></td>";
+                            else data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesado(this,centro);'/></center></td>";
+                        }
+                        else if(j==6){
+                            if(data_array[i][campos[j]]) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesado(this,consejeria);'/></center></td>";
+                            else data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesado(this,consejeria);'/></center></td>";
+                        }
+                        else if(j==8){
+                            if(data_array[i][campos[j]]) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesado(this,ministerio);'/></center></td>";
+                            else data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesado(this,ministerio);'/></center></td>";
+                        }
                     }
 
-                    if (data_array[i].procesado==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
-                    else  data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
+                    if (data_array[i].procesado==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                    else  data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
 
-                    data += "<td style='width:70px'><center>"+array_sino[data_array[i].incidencias]+"</center></td>";
+                    data += "<td style='width:70px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
 
                 }
                 else{
