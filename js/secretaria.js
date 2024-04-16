@@ -1232,8 +1232,15 @@ function verPanelResolver(id_nie,registro){
     ancho=1000;
     $.post("php/secret_convalid_modulos.php",{id_nie:id_nie,registro:registro},(resp)=>{
         if (resp["error"]=="ok"){
-            
+            resp.id_nie;
+            resp.registro;
+            resp.modulo;
+            resp.resuelto_por;
+            resp.estado;
+            resp.motivo_no_favorable;
         }
+        else if(resp["error"]=="sin_modulos") alerta("No hay módulos que convalidar.","SIN MÓDULOS");
+        else alerta("Error en servidor o base de datos.","ERROR");
     },"json");
     $("#verModulosConvalidaciones_div").dialog({
         autoOpen: true,
