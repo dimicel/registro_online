@@ -713,8 +713,8 @@ function listaRegistros(orden_campo, orden_direccion) {
                         }
                     }
 
-                    if (data_array[i].procesado==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
-                    else  data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                    if (data_array[i].procesado==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                    else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
 
                     data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
 
@@ -793,7 +793,8 @@ function ordenListado(obj) {
 
 
 function formularioProcesado(obj){
-    num_reg=obj.parentNode.parentNode.parentNode.children[3].innerHTML;
+    if (tipo_formulario!="convalidaciones") num_reg=obj.parentNode.parentNode.parentNode.children[3].innerHTML;
+    else num_reg=obj.dataset.registro;
     document.getElementById("cargando").style.display = 'inherit';
     p1=Promise.resolve($.post("php/secret_cambia_estado_procesado.php",{registro:num_reg,tabla:tipo_formulario,estado:(obj.checked)?1:0}));
     p2=p1.then((resp)=>{
