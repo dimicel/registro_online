@@ -50,8 +50,7 @@
                         <div class="col">
                             <center>
                             <input type="button" id="instrucciones" class="btn btn-success textoboton" value="Instrucciones" onclick="seleccion(this)">
-                            <input type="button" id="consejeria" class="btn btn-success textoboton" value="Convalidaciones Consejería de Educación" onclick="seleccion(this)" />
-                            <input type="button" id="centro_ministerio" class="btn btn-success textoboton" value="Convalidaciones Centro Educativo y Ministerio de Educación" onclick="seleccion(this)" />
+                            <input type="button" id="formulario" class="btn btn-success textoboton" value="Formulario" onclick="seleccion(this)" />
                             </center>
                         </div>
                     </div>
@@ -147,14 +146,14 @@
                                     </div>
                                 </div>
                                 <div class="row mt-2">
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <label for="tlf_fijo">Tlf. Fijo</label>
                                     </div>
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <label for="tlf_movil">Tlf. Móvil</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <label for="email">Email</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
@@ -165,13 +164,13 @@
 
                                 </div>
                                 <div class="row ">
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo"  maxlength="12" />
                                     </div>
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <input type="text" class="form-control" name="tlf_movil" id="tlf_movil"  maxlength="12" />
                                     </div>
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
                                     </div>
                                     <div class="col-3">
@@ -249,45 +248,8 @@
             </form>
         </div> 
     </section>       
-    <div id="anade_documento_centroministerio" style="display:none">
-        <form id="form_anade_documento_cenminis">
-            <div class="container">
-                <div class="row">
-                    <div class="col-1">
-                        <label style="font-weight:bolder">Tipo:</label>
-                    </div>
-                    <div class="col offset-1 custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
-                        <label for="loe" class="custom-control-label">LOE</label>
-                    </div>
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="logse" name="tipo" class="custom-control-input" value="LOGSE"/>
-                        <label for="logse" class="custom-control-label">LOGSE</label>
-                    </div>
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="universitarios" name="tipo" class="custom-control-input" value="Universitarios"/>
-                        <label for="universitarios" class="custom-control-label">Universitarios</label>
-                    </div>
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="otro" name="tipo" class="custom-control-input" value="Otro" />
-                        <label for="otro" class="custom-control-label">Otro</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="den_estudios">Estudios que aporta:</label>
-                        <input type="text" id="den_estudios" class="form-control" maxlength="40"/>
-                    </div>
-                    <div class="col">
-                        <label for="archivo">Documento:</label>
-                        <input type="text" id="archivo" class="form-control" maxlength="256" onclick="selArchCentMinis();" readonly/>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div id="anade_documento_consejeria" style="display:none">
-        <form id="form_anade_documento_con">
+    <div id="anade_documento" style="display:none">
+        <form id="form_anade_documento">
             <div class="container">
                 <div class="row">
                     <div class="col">

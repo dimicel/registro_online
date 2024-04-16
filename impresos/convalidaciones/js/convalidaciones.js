@@ -101,33 +101,14 @@ function seleccion(obj) {
                 document.getElementById("localidad").value = '';
                 document.getElementById("provincia").value = '';
             }
-            if (obj.id == "consejeria") {
-                $("#seccion-intro").hide();
-                $("#seccion-formulario").show();
-                //$('[data-formulario="centro_ministerio"]').each(function() {
-                //    $(this).hide();
-                //});
-                $('[data-formulario="consejería"]').each(function() {
-                    $(this).show();
-                });
-                formulario = "Consejería";
-                creaValidador();
-                document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
-                document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
-            } else if (obj.id == "centro_ministerio") {
-                $("#seccion-intro").hide();
-                $("#seccion-formulario").show();
-                //$('[data-formulario="centro_ministerio"]').each(function() {
-                //    $(this).show();
-                //});
-                $('[data-formulario="consejería"]').each(function() {
-                    $(this).hide();
-                });
-                formulario = "Centro-Ministerio";
-                creaValidador();
-                document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO";
-                document.getElementById("label_estudios_aportados").innerHTML="Documentos que adjunta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
-            }
+            
+            $("#seccion-intro").hide();
+            $("#seccion-formulario").show();
+            formulario = "Consejería";
+            creaValidador();
+            document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
+            document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
+            
         }, "json");
     } 
 }
@@ -362,50 +343,10 @@ function selTablaListaMod(obj) {
 function anadeDoc(e) {
     e.preventDefault();
     creaInputs();
-    if (formulario=="Centro-Ministerio"){
-        $("#anade_documento_centroministerio").dialog({
-            autoOpen: true,
-            dialogClass: "alert no-close",
-            modal: true,
-            hide: { effect: "fade", duration: 0 },
-            resizable: false,
-            show: { effect: "fade", duration: 0 },
-            title: "AÑADIR ESTUDIO A APORTAR",
-            width: 700,
-            buttons: [{
-                    class: "btn btn-success textoboton",
-                    text: "Aceptar",
-                    click: function() {
-                        if (document.querySelectorAll("#anade_documento_centroministerio input[name=tipo]:checked").length == 0 ||
-                            document.getElementById("den_estudios").value.trim().length == 0 ||
-                            document.getElementById("archivo").value.trim().length == 0) {
-                            alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.", "FALTAN DATOS");
-                            return;
-                        }
-                        actualizaTablaListaDocs();
-                        document.getElementById("form_anade_documento_cenminis").reset();
-                        $("#anade_documento_centroministerio").dialog("close");
-                        $("#anade_documento_centroministerio").dialog("destroy");
-                    }
-                },
-                {
-                    class: "btn btn-success textoboton",
-                    text: "Cancelar",
-                    click: function() {
-                        document.getElementById("form_anade_documento_cenminis").reset();
-                        selUltimoFile().remove();
-                        selUltimoHidden().remove();
-                        $("#anade_documento_centroministerio").dialog("close");
-                        $("#anade_documento_centroministerio").dialog("destroy");
-                    }
-                }
-            ]
-        });
-    }
-    else if(formulario=="Consejería"){
+        
         if (subidoDocIdent) $("#div_doc_identificacion").hide();
         else $("#div_doc_identificacion").show();
-        $("#anade_documento_consejeria").dialog({
+        $("#anade_documento").dialog({
             autoOpen: true,
             dialogClass: "alert no-close",
             modal: true,
@@ -418,40 +359,38 @@ function anadeDoc(e) {
                     class: "btn btn-success textoboton",
                     text: "Aceptar",
                     click: function() {
-                        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked").length == 0 || 
+                        if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked").length == 0 || 
                             document.getElementById("archivo_con").value.trim().length == 0){
                                 alerta("Debe seleccionar un tipo de documento y un archivo.", "FALTAN DATOS");
                                 return;
                         }
-                        else if(document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Otro" &&
+                        else if(document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Otro" &&
                                 document.getElementById("den_otro_con").value.trim().length == 0){
                                     alerta("Debe especificar qué tipo de documento va a adjuntar.", "FALTAN DATOS");
                                     return;
                         }
                         actualizaTablaListaDocs();
                         if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1)subidoDocIdent=true;
-                        document.getElementById("form_anade_documento_con").reset();
+                        document.getElementById("form_anade_documento").reset();
                         $('#div_den_otro_con').hide();
-                        $("#anade_documento_consejeria").dialog("close");
-                        $("#anade_documento_consejeria").dialog("destroy");
+                        $("#anade_documento").dialog("close");
+                        $("#anade_documento").dialog("destroy");
                     }
                 },
                 {
                     class: "btn btn-success textoboton",
                     text: "Cancelar",
                     click: function() {
-                        document.getElementById("form_anade_documento_con").reset();
+                        document.getElementById("form_anade_documento").reset();
                         $('#div_den_otro_con').hide();
                         selUltimoFile().remove();
                         selUltimoHidden().remove();
-                        $("#anade_documento_consejeria").dialog("close");
-                        $("#anade_documento_consejeria").dialog("destroy");
+                        $("#anade_documento").dialog("close");
+                        $("#anade_documento").dialog("destroy");
                     }
                 }
             ]
         });
-    }
-
 }
 
 
@@ -476,12 +415,12 @@ function creaInputs() {
         _extension2="pdf";
         mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
         if (formulario=="Consejería"){
-            if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+            if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
                 _extension1="jpeg";
                 _extension2="jpg";
                 mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
             }
-            else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+            else if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
                 _extension1="jpeg";
                 _extension2="jpg";
                 mensaje_alerta="Los dos archivos de imagen correspondientes al anverso y reverso del documento de identificación deben ser del tipo JPEG.","ERROR TIPO ARCHIVO";
@@ -498,18 +437,13 @@ function creaInputs() {
             }
         }
 
-        if (formulario=="Centro-Ministerio"){
-            document.getElementById('archivo').value = this.files[0].name;
+        if (!this.multiple) document.getElementById('archivo_con').value = this.files[0].name;
+        else {
+            document.getElementById('archivo_con').value = this.files[0].name+", "+this.files[1].name;
         }
-        else{
-            if (!this.multiple) document.getElementById('archivo_con').value = this.files[0].name;
-            else {
-                document.getElementById('archivo_con').value = this.files[0].name+", "+this.files[1].name;
-            }
-            if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1){
-                muestraEditor(event);
-            }
-        }  
+        if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1){
+            muestraEditor(event);
+        } 
     });
 }
 
@@ -525,59 +459,36 @@ function selUltimoHidden() {
 
 function actualizaTablaListaDocs() {
     _t = document.getElementById("tab_lista_docs");
-    if (formulario=="Centro-Ministerio"){
-        _tipo_sel=document.querySelectorAll("#anade_documento_centroministerio input[name=tipo]:checked");
-        _arch = selUltimoFile().files[0].name;
-        _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
-        _d[_d.length - 1].value = "(" + _tipo_sel[0].value + ") " + document.getElementById("den_estudios").value;
-        
-        if (_t.rows[0].cells.length == 1) {
-            _t.deleteRow(0);
-        }
-        var nuevaFila = _t.insertRow();
     
-        // Insertar una celda en la nueva fila (primera columna)
-        var celda1 = nuevaFila.insertCell();
-        celda1.textContent = "(" + _tipo_sel[0].value + ") " + document.getElementById("den_estudios").value;
-        celda1.style.width = "50%";
-    
-        // Insertar una celda en la nueva fila (segunda columna)
-        var celda2 = nuevaFila.insertCell();
-        celda2.textContent = _arch;
-        celda2.style.width = "45%";
+    _tipoSel=document.querySelectorAll("#anade_documento input[name=tipo_con]:checked");
+    _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
+    if (_tipoSel[0].value=="Otro"){
+        //_arch = selUltimoFile().files[0].name;
+        _d[_d.length - 1].value = document.getElementById("den_otro_con").value;
     }
     else {
-        _tipoSel=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked");
-        _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
-        if (_tipoSel[0].value=="Otro"){
-            //_arch = selUltimoFile().files[0].name;
-            _d[_d.length - 1].value = document.getElementById("den_otro_con").value;
-        }
-        else {
-            _d[_d.length - 1].value = _tipoSel[0].value;
-        }
-            
-        if (_t.rows[0].cells.length == 1) {
-            _t.deleteRow(0);
-        }
-        var nuevaFila = _t.insertRow();
-    
-        // Insertar una celda en la nueva fila (primera columna)
-        var celda1 = nuevaFila.insertCell();
-        celda1.textContent =  _d[_d.length - 1].value;
-        celda1.style.width = "50%";
-
-        // Insertar una celda en la nueva fila (segunda columna)
-        var celda2 = nuevaFila.insertCell();
-        celda2.textContent = selUltimoFile().files[0].name;
-        if(_tipoSel[0].value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile().files[1].name;
-        celda2.style.width = "45%";
+        _d[_d.length - 1].value = _tipoSel[0].value;
     }
+        
+    if (_t.rows[0].cells.length == 1) {
+        _t.deleteRow(0);
+    }
+    var nuevaFila = _t.insertRow();
 
+    // Insertar una celda en la nueva fila (primera columna)
+    var celda1 = nuevaFila.insertCell();
+    celda1.textContent =  _d[_d.length - 1].value;
+    celda1.style.width = "50%";
+
+    // Insertar una celda en la nueva fila (segunda columna)
+    var celda2 = nuevaFila.insertCell();
+    celda2.textContent = selUltimoFile().files[0].name;
+    if(_tipoSel[0].value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile().files[1].name;
+    celda2.style.width = "45%";
     var celda3 = nuevaFila.insertCell();
-        celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
-        celda3.style.width = "5%";
-        celda3.style.textAlign = "center";
+    celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
+    celda3.style.width = "5%";
+    celda3.style.textAlign = "center";
 
 }
 
@@ -627,9 +538,7 @@ function registraForm() {
         formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
         formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
         formData.append("email", encodeURIComponent(document.getElementById("email").value));
-        if (formulario=="Consejería"){
-            formData.append("estudios_superados", encodeURIComponent(document.getElementById("estudios_superados").value));
-        }
+        formData.append("estudios_superados", encodeURIComponent(document.getElementById("estudios_superados").value));
         formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
         formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
         formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
@@ -644,9 +553,9 @@ function registraForm() {
             }
         }
         
-        if (formulario == "Centro-Ministerio") urlPHP="php/registracentroministerio.php";
-        else urlPHP="php/registraconsejeria.php";
-
+        //if (formulario == "Centro-Ministerio") urlPHP="php/registracentroministerio.php";
+        //else urlPHP="php/registraconsejeria.php";
+        urlPHP="php/registraformulario.php";
         document.getElementById("cargando").style.display = 'inherit';
         $.post({
             url:urlPHP ,
@@ -820,35 +729,27 @@ function selTipoDoc(v){
 
 
 function selArchConsej(){
-    if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked").length==0){
+    if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked").length==0){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
         return;
     }
 
     selUltimoFile().click();
 
-    if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+    if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
         $("#doc_ident_reverso").show();
     }
-    else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+    else if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
         $("#doc_ident_reverso").hide();
     }
 
 }
 
-function selArchCentMinis(){
-    if (document.querySelectorAll("#anade_documento_centroministerio input[name=tipo]:checked").length==0){
-        alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
-        return;
-    }
-    selUltimoFile().click();
- 
-}
 
 
 
 function muestraEditor(_ev){
-    _tipoSelecc=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value;
+    _tipoSelecc=document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value;
     _crop1=new Croppie(document.getElementById("div_imagen_anverso"), {
         viewport: { width: 300, height: 190 },
         boundary: { width: 450, height: 255 },
