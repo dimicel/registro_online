@@ -1230,6 +1230,11 @@ function verRegistroConvalidaciones(num_registro){
 
 function verPanelResolver(id_nie,registro){
     ancho=1000;
+    $.post("php/secret_convalid_modulos.php",{id_nie:id_nie,registro:registro},(resp)=>{
+        if (resp["error"]=="ok"){
+            
+        }
+    },"json");
     $("#verModulosConvalidaciones_div").dialog({
         autoOpen: true,
         dialogClass: "no-close",
