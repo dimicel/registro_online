@@ -1194,22 +1194,18 @@ function verRegistroConvalidaciones(num_registro){
         contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
         contenido += "<span class='verReg_label'>Estudios superados : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
         contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
-        contenido+="<div id='ver_reg_ajuntosConvalid'></div>"
-        contenido+="<div class='container'><div class='row'>";
-        contenido+="<div class='col-2'>";
-        contenido += "<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
+        contenido +="<div id='ver_reg_ajuntosConvalid'></div>"
+        contenido +="<div class='container'><div class='row'>";
+        contenido +="<div class='col-2'>";
+        contenido +="<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
         contenido +="</div><div class='col-3'>";
-        contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones(\""+registro+"\",this)'>";
-        contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
-        contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
-        contenido+="<option value='NO FAVORABLE'>NO FAVORABLE</option>";
-        contenido+="<option value='PARCIAL'>PARCIAL</option></select>";
-        contenido+="</div><div class='col-3'>"
-        contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
-        contenido+="</div><div class='col-2'>"
-        contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+_id_nie+"\",\""+registro+"\")'/>";
+        contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/>"
+        contenido +="</div><div class='col-3'>"
+        contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
+        contenido +="</div><div class='col-2'>"
+        contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+_id_nie+"\",\""+registro+"\")'/>";
         contenido += "</div></div>";
-        contenido+="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+_id_nie+"\",\""+registro+"\",this)'/>";
+        contenido +="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+_id_nie+"\",\""+registro+"\",this)'/>";
         contenido += "<span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
         contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
         contenido += botones;
@@ -1230,6 +1226,22 @@ function verRegistroConvalidaciones(num_registro){
             position: { my: "center top", at: "center top", of: window }
         });
     }, "json");
+}
+
+function verPanelResolver(id_nie,registro){
+    ancho=1000;
+    $("#verModulosConvalidaciones_div").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "VISTA DEL REGISTRO",
+        width: ancho,
+        position: { my: "center top", at: "center top", of: window }
+    });
 }
 
 
