@@ -4,6 +4,8 @@ var numero_paginas;
 var pagina = 1;
 var orden_direccion_usu = "🡅";
 var validFormSubeDoc;
+var borrado_adjunto_convalidacion=false;
+var registro_adjuntos_convalid="";
 //var alto_tabla_usus=480;
 
 $(function() {
@@ -256,7 +258,7 @@ function obtieneDocsExpediente() {
             //Obtenemos los docs desde los propios directorios del expediente
             for (var td in docs_exp) {
                 if (resp["docs"][td].length > 0) {
-                    contenido_div += "<tr style='font-size:bolder'><td colspan=4 width='475px'>" + docs_exp[td] + "</td></tr>";
+                    contenido_div += "<tr style='font-size:bolder'><td colspan=4 width='775px'>" + docs_exp[td] + "</td></tr>";
                     for (j = 0; j < resp["docs"][td].length; j++) {
                         if(docs_exp[td] == "CONVALIDACIONES"){
                             contenido_div += "<tr><td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
@@ -340,7 +342,11 @@ function confirmadoBorradoDoc() {
                 alerta("Documento borrado con éxito.", "BORRADO OK");
             }
             $('#div_dialogs2').dialog('close');
-            obtieneDocsExpediente();
+            if (borrado_adjunto_convalidacion){
+                borrado_adjunto_convalidacion=false;
+                regeneraListaAdjuntosConvalid();
+            }
+            else obtieneDocsExpediente();
         });
     } else {
         document.getElementById("t_doc_cod_seg").value = "";
@@ -1006,9 +1012,9 @@ function bloqueaNomArch(){
 
 
 function adjuntosConvalid(registro){
-    registro=registro.slice(0, -4);
+    registro_adjuntos_convalid=registro.slice(0, -4);
     document.getElementById("cargando").style.display = 'inherit';
-    $.post("php/secret_convalid_adjuntos.php",{registro:registro},(resp)=>{
+    $.post("php/secret_convalid_adjuntos.php",{registro:registro_adjuntos_convalid},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
         contenido = "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de "+registro+"</span><br>";
         if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
@@ -1031,16 +1037,10 @@ function borraAdjuntosConvalid(ruta){
             alerta(msg,"ERROR DE CARGA");
         }
         else{
-            _del_ruta_completa = ruta;
-            alert(ruta);
-            return;
-            _del_ruta = ".." + _del_ruta_completa.substr(_del_ruta_completa.indexOf("/docs/"));
-            _del_curso = obj.parentElement.children[0].innerHTML;
-            _del_documento_pos = _del_ruta.indexOf(_del_curso);
-            _del_documento = _del_ruta.substr(_del_documento_pos + 10);
+            _del_ruta = "../" + ruta;
             document.getElementById("doc_cod_seg").value = "";
             document.getElementById("del_ruta").value = _del_ruta;
-            document.getElementById("del_documento").innerHTML = "Curso: " + _del_curso + " Nombre: " + _del_documento;
+            document.getElementById("del_documento").innerHTML = "Adjunto de convalidación";
             cod_seg = Math.floor(Math.random() * 1000).toString();
             if (cod_seg.length < 4) {
                 aux = "";
@@ -1057,7 +1057,7 @@ function borraAdjuntosConvalid(ruta){
                 hide: { effect: "fade", duration: 0 },
                 resizable: false,
                 show: { effect: "fade", duration: 0 },
-                title: "BORRADO DE DOCUMENTO DEL EXPEDIENTE",
+                title: "BORRADO DE DOCUMENTO ADJUNTO DE CONVALIDACIÓN",
                 maxHeight: 500,
                 width: 550,
                 close:function(event,ui){
@@ -1066,6 +1066,25 @@ function borraAdjuntosConvalid(ruta){
             });
         }
     });
+}
+
+function regeneraListaAdjuntosConvalid(){
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post("php/secret_convalid_adjuntos.php",{registro:registro_adjuntos_convalid},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
+        contenido = "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de "+registro+"</span><br>";
+        if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
+        else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
+        else {
+            contenido+="";
+            for(i=0;i<resp.datos.length;i++){
+                contenido += "<spam><button onclick='borraAdjuntosConvalid(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button>";
+                contenido += "<a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a></spam>";
+            }
+            document.getElementById('mensaje_div').innerHTML = "<div>" + contenido + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta()'/></div>";
+
+        }
+    },"json");
 }
 
 
