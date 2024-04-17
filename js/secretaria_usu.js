@@ -1052,7 +1052,7 @@ function borraAdjuntosConvalid(ruta){
         }
         else{
             _del_ruta = "../" + ruta;
-            document.getElementById("doc_cod_seg").value = "";
+            //document.getElementById("doc_cod_seg").value = "";
             document.getElementById("del_ruta").value = _del_ruta;
             document.getElementById("del_documento").innerHTML = "Adjunto de convalidación";
             cod_seg = Math.floor(Math.random() * 1000).toString();
