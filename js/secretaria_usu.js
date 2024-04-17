@@ -1091,12 +1091,12 @@ function confirmadoBorradoAdjuntoConvalid() {
                 alerta("No se ha podido borrar el documento.", "ERROR BORRADO");
             } else if (resp == "ok") {
                 alerta("Documento borrado con éxito.", "BORRADO OK");
+                regeneraListaAdjuntosConvalid();
             }
             else if (resp == "server") {
                 alerta("Documento adjunto no eliminado, porque no se ha podido eliminar el registro asociado en la base de datos", "ERROR DB");
             }
             $('#div_dialogs2').dialog('close');
-            regeneraListaAdjuntosConvalid();
         });
     } else {
         document.getElementById("t_doc_cod_seg").value = "";
