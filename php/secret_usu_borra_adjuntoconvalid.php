@@ -16,7 +16,7 @@ try {
     $sql = "delete from convalidaciones_docs where ruta=?";
     $stmt = $mysqli->prepare($sql);
     $id = 1; // Aquí debes especificar el ID del registro que deseas borrar
-    $stmt->bind_param("ruta", $_rutadb);
+    $stmt->bind_param("s", $_rutadb);
     $stmt->execute();
 
     // Eliminar el archivo del servidor
