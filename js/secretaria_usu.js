@@ -1092,6 +1092,9 @@ function confirmadoBorradoAdjuntoConvalid() {
             } else if (resp == "ok") {
                 alerta("Documento borrado con éxito.", "BORRADO OK");
             }
+            else if (resp == "server") {
+                alerta("No se ha podido eliminar el registro asociado en la base de datos", "ERROR DB");
+            }
             $('#div_dialogs2').dialog('close');
             regeneraListaAdjuntosConvalid();
         });
