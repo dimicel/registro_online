@@ -4,7 +4,6 @@ var numero_paginas;
 var pagina = 1;
 var orden_direccion_usu = "🡅";
 var validFormSubeDoc;
-var borrado_adjunto_convalidacion=false;
 var registro_adjuntos_convalid="";
 //var alto_tabla_usus=480;
 
@@ -342,8 +341,7 @@ function confirmadoBorradoDoc() {
                 alerta("Documento borrado con éxito.", "BORRADO OK");
             }
             $('#div_dialogs2').dialog('close');
-            if (borrado_adjunto_convalidacion) regeneraListaAdjuntosConvalid();
-            else obtieneDocsExpediente();
+            obtieneDocsExpediente();
         });
     } else {
         document.getElementById("t_doc_cod_seg").value = "";
@@ -1009,7 +1007,6 @@ function bloqueaNomArch(){
 
 
 function adjuntosConvalid(registro){
-    borrado_adjunto_convalidacion=true;
     registro_adjuntos_convalid=registro.slice(0, -4);
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_adjuntos.php",{registro:registro_adjuntos_convalid},(resp)=>{
@@ -1041,7 +1038,6 @@ function adjuntosConvalid(registro){
                 click: function() {
                     $("#div_dialogs_adjuntosconvalid").dialog("close");
                     $("#div_dialogs_adjuntosconvalid").dialog("destroy");
-                    borrado_adjunto_convalidacion=false;
                 }
             }]
         });
@@ -1049,8 +1045,7 @@ function adjuntosConvalid(registro){
 }
 
 function borraAdjuntosConvalid(ruta){
-    alert(ruta);
-    $("#div_dialogs2").load("html/secretaria.txt #div_borra_doc", function(response,status, xhr){
+    $("#div_dialogs2").load("html/secretaria.txt #div_borra_adjuntoconvalid", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -1087,6 +1082,25 @@ function borraAdjuntosConvalid(ruta){
     });
 }
 
+function confirmadoBorradoAdjuntoConvalid() {
+    doc_ruta = document.getElementById("del_ruta").value;
+    if (document.getElementById("doc_cod_seg").innerHTML == document.getElementById("t_doc_cod_seg").value) {
+        $.post("php/secret_usu_borra_adjuntoconvalid.php", { ruta: doc_ruta }, function(resp) {
+            document.getElementById("t_doc_cod_seg").value="";
+            if (resp == "error") {
+                alerta("No se ha podido borrar el documento.", "ERROR BORRADO");
+            } else if (resp == "ok") {
+                alerta("Documento borrado con éxito.", "BORRADO OK");
+            }
+            $('#div_dialogs2').dialog('close');
+            regeneraListaAdjuntosConvalid();
+        });
+    } else {
+        document.getElementById("t_doc_cod_seg").value = "";
+        alerta("Código introducido incorrecto.<br>No queda confirmado el borrado del documento.<br>Cancele o vuelva a introducir el código.", "BORRADO NO CONFIRMADO");
+    }
+}
+
 function regeneraListaAdjuntosConvalid(){
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_adjuntos.php",{registro:registro_adjuntos_convalid},(resp)=>{
@@ -1104,6 +1118,8 @@ function regeneraListaAdjuntosConvalid(){
         }
     },"json");
 }
+
+
 
 
 function descargarExpediente(id,nom){
