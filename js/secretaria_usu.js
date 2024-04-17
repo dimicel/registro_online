@@ -1108,7 +1108,7 @@ function regeneraListaAdjuntosConvalid(){
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_adjuntos.php",{registro:registro_adjuntos_convalid},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
-        contenido = "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de "+registro+"</span><br>";
+        contenido = "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de iesulabto_convcm_"+registro_adjuntos_convalid+"</span><br>";
         if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
