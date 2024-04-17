@@ -21,7 +21,7 @@ try {
 
     // Eliminar el archivo del servidor
     if (!unlink($ruta)) {
-        throw new Exception("No se pudo eliminar el archivo");
+        throw new Exception("error");
     }
 
     // Confirmar la transacción
@@ -31,7 +31,7 @@ try {
     // Revertir la transacción en caso de error
     $mysqli->rollback();
     $mysqli->close();
-    exit("error");
+    exit($e->getMessage());
 }
 
 // Cerrar la conexión
