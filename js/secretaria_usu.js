@@ -1026,7 +1026,26 @@ function adjuntosConvalid(registro){
                 contenido += "<a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a></spam>";
             }
         }
-        alerta(contenido,"ADJUNTOS DE CONVALIDACIÓN",false,600);
+        document.getElementById("div_dialogs_adjuntosconvalid").innerHTML=contenido;
+        $("#div_dialogs_adjuntosconvalid").dialog({
+            autoOpen: true,
+            dialogClass: "alert no-close",
+            modal: true,
+            hide: { effect: "fade", duration: 0 },
+            resizable: false,
+            show: { effect: "fade", duration: 0 },
+            title: "ADJUNTOS DE CONVALIDACIÓN",
+            width: 600,
+            position: { my: "center top", at: "center top", of: window },
+            buttons: [{
+                class: "btn btn-success textoboton",
+                text: "Cerrar",
+                click: function() {
+                    $("#div_dialogs_adjuntosconvalid").dialog("close");
+                    $("#div_dialogs_adjuntosconvalid").dialog("destroy");
+                }
+            }]
+        });
     },"json");
 }
 
@@ -1081,8 +1100,7 @@ function regeneraListaAdjuntosConvalid(){
                 contenido += "<spam><button onclick='borraAdjuntosConvalid(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button>";
                 contenido += "<a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a></spam>";
             }
-            document.getElementById('mensaje_div').innerHTML = "<div>" + contenido + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta()'/></div>";
-
+            document.getElementById("div_dialogs_adjuntosconvalid").innerHTML=contenido;
         }
     },"json");
 }
