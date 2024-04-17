@@ -1114,8 +1114,8 @@ function regeneraListaAdjuntosConvalid(){
         else {
             contenido+="";
             for(i=0;i<resp.datos.length;i++){
-                contenido += "<spam><button onclick='borraAdjuntosConvalid(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button>";
-                contenido += "<a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a></spam>";
+                contenido += "<button onclick='borraAdjuntosConvalid(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button>";
+                contenido += "<a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a><br>";
             }
             document.getElementById("div_dialogs_adjuntosconvalid").innerHTML=contenido;
         }
