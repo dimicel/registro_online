@@ -455,7 +455,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                 resizable: false,
                 show: { effect: "fade", duration: 0 },
                 title: "EXPEDIENTE DEL USUARIO",
-                width: 500,
+                width: 800,
                 position: { my: "center top", at: "center top", of: window },
                 buttons: [{
                     class: "btn btn-success textoboton",
@@ -1014,11 +1014,11 @@ function adjuntosConvalid(registro){
         if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
-            contenido+="<ul id='ul_docs_convalid'>";
+            contenido+="";
             for(i=0;i<resp.datos.length;i++){
-                contenido += "<li><a style='color:GREEN' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a></li>";
+                contenido += "<spam><button onclick='borraDocExp(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button>";
+                contenido += "<a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a></spam>";
             }
-            contenido+="</ul>";
         }
         alerta(contenido,"ADJUNTOS DE CONVALIDACIÓN",false,600);
     },"json");
