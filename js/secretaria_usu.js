@@ -342,10 +342,7 @@ function confirmadoBorradoDoc() {
                 alerta("Documento borrado con éxito.", "BORRADO OK");
             }
             $('#div_dialogs2').dialog('close');
-            if (borrado_adjunto_convalidacion){
-                borrado_adjunto_convalidacion=false;
-                regeneraListaAdjuntosConvalid();
-            }
+            if (borrado_adjunto_convalidacion) regeneraListaAdjuntosConvalid();
             else obtieneDocsExpediente();
         });
     } else {
@@ -1012,6 +1009,7 @@ function bloqueaNomArch(){
 
 
 function adjuntosConvalid(registro){
+    borrado_adjunto_convalidacion=true;
     registro_adjuntos_convalid=registro.slice(0, -4);
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_adjuntos.php",{registro:registro_adjuntos_convalid},(resp)=>{
@@ -1043,6 +1041,7 @@ function adjuntosConvalid(registro){
                 click: function() {
                     $("#div_dialogs_adjuntosconvalid").dialog("close");
                     $("#div_dialogs_adjuntosconvalid").dialog("destroy");
+                    borrado_adjunto_convalidacion=false;
                 }
             }]
         });
