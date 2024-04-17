@@ -1093,7 +1093,7 @@ function confirmadoBorradoAdjuntoConvalid() {
                 alerta("Documento borrado con éxito.", "BORRADO OK");
             }
             else if (resp == "server") {
-                alerta("No se ha podido eliminar el registro asociado en la base de datos", "ERROR DB");
+                alerta("Documento adjunto no eliminado, porque no se ha podido eliminar el registro asociado en la base de datos", "ERROR DB");
             }
             $('#div_dialogs2').dialog('close');
             regeneraListaAdjuntosConvalid();
