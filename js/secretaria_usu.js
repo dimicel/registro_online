@@ -333,6 +333,7 @@ function borraDocExp(obj) {
 
 function confirmadoBorradoDoc() {
     doc_ruta = document.getElementById("del_ruta").value;
+    alert(doc_ruta);
     if (document.getElementById("doc_cod_seg").innerHTML == document.getElementById("t_doc_cod_seg").value) {
         $.post("php/secret_usu_borra_doc_exp.php", { ruta: doc_ruta }, function(resp) {
             document.getElementById("t_doc_cod_seg").value="";
