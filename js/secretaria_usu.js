@@ -1016,12 +1016,56 @@ function adjuntosConvalid(registro){
         else {
             contenido+="";
             for(i=0;i<resp.datos.length;i++){
-                contenido += "<spam><button onclick='borraDocExp(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button>";
+                contenido += "<spam><button onclick='borraAdjuntosConvalid(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button>";
                 contenido += "<a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a></spam>";
             }
         }
         alerta(contenido,"ADJUNTOS DE CONVALIDACIÓN",false,600);
     },"json");
+}
+
+function borraAdjuntosConvalid(ruta){
+    $("#div_dialogs2").load("html/secretaria.txt #div_borra_doc", function(response,status, xhr){
+        if ( status == "error" ) {
+            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        }
+        else{
+            _del_ruta_completa = ruta;
+            alert(ruta);
+            return;
+            _del_ruta = ".." + _del_ruta_completa.substr(_del_ruta_completa.indexOf("/docs/"));
+            _del_curso = obj.parentElement.children[0].innerHTML;
+            _del_documento_pos = _del_ruta.indexOf(_del_curso);
+            _del_documento = _del_ruta.substr(_del_documento_pos + 10);
+            document.getElementById("doc_cod_seg").value = "";
+            document.getElementById("del_ruta").value = _del_ruta;
+            document.getElementById("del_documento").innerHTML = "Curso: " + _del_curso + " Nombre: " + _del_documento;
+            cod_seg = Math.floor(Math.random() * 1000).toString();
+            if (cod_seg.length < 4) {
+                aux = "";
+                for (i = cod_seg.length; i < 4; i++) {
+                    aux += "0";
+                }
+                cod_seg = aux + cod_seg;
+            }
+            document.getElementById("doc_cod_seg").innerHTML = cod_seg;
+            $("#div_dialogs2").dialog({
+                autoOpen: true,
+                dialogClass: "alert no-close",
+                modal: true,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "BORRADO DE DOCUMENTO DEL EXPEDIENTE",
+                maxHeight: 500,
+                width: 550,
+                close:function(event,ui){
+                    $("#div_dialogs2").dialog("destroy");
+                }
+            });
+        }
+    });
 }
 
 
