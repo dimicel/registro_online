@@ -1233,15 +1233,34 @@ function verPanelResolver(id_nie,registro){
     $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
         if (resp["error"]=="ok"){
             panel=document.getElementById("verModulosConvalidaciones_div");
-            cont="<div class='container'><div class='form-group form-row'>";
-            cont+="<div class='col'>";
+            cont="<form id='form_relacion_modulos_convalid'><div class='container'><div class='form-group form-row'>";
+            cont+="<div class='col-5'><label>Módulo</label></div>";
+            cont+="<div class='col-2'><label>Estado</label></div>";
+            cont+="<div class='col-5'><label>Motivo No Fav.</label></div>";
+            cont+="</div>";
             for(i=0;i<resp.contador;i++){
-                
+                cont+="<div class='form-group form-row'>";
+                cont+="<div class='col-5'><input type='text' name='modulo_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp.contador.modulo+"'  readonly/></div>";
+                cont+="<div class='col-2'><select name='estado_convalid[]' style='font-size:0.5em' class='form-control'/>";
+                cont+="<option value=''>Seleccione uno</option>";
+                if(resp.contador.resolucion=="FAVORABLE") cont+="<option value='FAVORABLE' selected>FAVORABLE</option>";
+                else cont+="<option value='FAVORABLE'>FAVORABLE</option>";
+                if(resp.contador.resolucion=="NO FAVORABLE")cont+="<option value='NO FAVORABLE' selected>NO FAVORABLE</option>";
+                else  cont+="<option value='NO FAVORABLE'>NO FAVORABLE</option>";
+                if(resp.contador.resolucion=="CONSEJERIA")cont+="<option value='CONSEJERIA' selected>CONSEJERIA</option>";
+                else  cont+="<option value='CONSEJERIA'>CONSEJERIA</option>";   
+                if(resp.contador.resolucion=="MINISTERIO")cont+="<option value='MINISTERIO' selected>MINISTERIO</option>";
+                else  cont+="<option value='MINISTERIO'>MINISTERIO</option>";  
+                cont+="</div>";
+                cont+="<div class='col-5'><input type='text' name='motivo_no_fav_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp.contador.motivo_no_favorable+"'/></div>";
+                cont+="</div>";
             }
-            resp.modulo;
-            resp.resuelto_por;
-            resp.estado;
-            resp.motivo_no_favorable;
+            cont+="</div></form>";
+            resp.contador.resolucion;
+            resp.contador.modulo;
+            resp.contador.resuelto_por;
+            resp.contador.estado;
+            resp.contador.motivo_no_favorable;
         }
         else if(resp["error"]=="sin_modulos") alerta("No hay módulos que convalidar.","SIN MÓDULOS");
         else alerta("Error en servidor o base de datos.","ERROR");

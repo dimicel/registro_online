@@ -16,8 +16,7 @@ $contador=0;
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $data["datos"][$contador]["modulo"]=$row["modulo"];
-        $data["datos"][$contador]["resuelto_por"]=$row["resuelto_por"];
-        $data["datos"][$contador]["estado"]=$row["estado"];
+        $data["datos"][$contador]["resolucion"]=$row["resolucion"];
         $data["datos"][$contador]["motivo_no_favorable"]=$row["motivo_no_favorable"];
         $contador++;
     }
