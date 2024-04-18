@@ -1232,8 +1232,11 @@ function verPanelResolver(id_nie,registro){
     ancho=1000;
     $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
         if (resp["error"]=="ok"){
+            panel=document.getElementById("verModulosConvalidaciones_div");
+            cont="<div class='container'><div class='form-group form-row'>";
+            cont+="<div class='col'>";
             for(i=0;i<resp.contador;i++){
-
+                
             }
             resp.modulo;
             resp.resuelto_por;
