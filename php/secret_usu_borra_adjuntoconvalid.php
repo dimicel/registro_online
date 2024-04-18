@@ -20,9 +20,12 @@ try {
     $stmt->execute();
 
     // Eliminar el archivo del servidor
-    if (!unlink($ruta)) {
-        throw new Exception("error");
+    if (file_exists($ruta)){
+        if (!unlink($ruta)) {
+            throw new Exception("error");
+        }
     }
+    
 
     // Confirmar la transacción
     $mysqli->commit();
