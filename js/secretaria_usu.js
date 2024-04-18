@@ -1013,7 +1013,7 @@ function adjuntosConvalid(registro){
         document.getElementById("cargando").style.display = 'none';
         contenido = "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de "+registro+"</span><br>";
         if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
-        else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
+        else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>No hay documentos adjuntos a la solicitud.</span>";
         else {
             contenido+="";
             for(i=0;i<resp.datos.length;i++){
@@ -1110,12 +1110,11 @@ function regeneraListaAdjuntosConvalid(){
         document.getElementById("cargando").style.display = 'none';
         contenido = "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de iesulabto_convcm_"+registro_adjuntos_convalid+"</span><br>";
         if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
-        else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
+        else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>No hay documentos adjuntos a la solicitud.</span>";
         else {
-            contenido+="";
             for(i=0;i<resp.datos.length;i++){
                 contenido += "<button onclick='borraAdjuntosConvalid(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button>";
-                contenido += "<a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a><br>";
+                contenido += "<a style='color:GREEN;font-size:0.75em;margin-left:10px;' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a><br>";
             }
             document.getElementById("div_dialogs_adjuntosconvalid").innerHTML=contenido;
         }
