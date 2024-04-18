@@ -8,7 +8,9 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 $registro=$_POST["registro"];
-$estado=$_POST["estado"];
+$modulos=$_POST["modulo_convalid"];
+$estados=$_POST["estado_convalid"];
+$motivos=$_POST["motivo_no_fav_convalid"];
 
 $sql = "UPDATE convalidaciones SET resolucion='$estado' WHERE registro='$registro'";
 $result = $mysqli->query($sql);

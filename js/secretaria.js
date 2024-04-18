@@ -1234,6 +1234,7 @@ function verPanelResolver(id_nie,registro){
         if (resp["error"]=="ok"){
             panel=document.getElementById("verModulosConvalidaciones_div");
             cont="<form id='form_relacion_modulos_convalid'><div class='container'><div class='form-group form-row'>";
+            cont="<input type='hidden' name='registro' value='"+registro+"'/>";
             cont+="<div class='col-5'><label>Módulo</label></div>";
             cont+="<div class='col-2'><label>Estado</label></div>";
             cont+="<div class='col-5'><label>Motivo No Fav.</label></div>";
@@ -1256,11 +1257,6 @@ function verPanelResolver(id_nie,registro){
                 cont+="</div>";
             }
             cont+="</div></form>";
-            resp.contador.resolucion;
-            resp.contador.modulo;
-            resp.contador.resuelto_por;
-            resp.contador.estado;
-            resp.contador.motivo_no_favorable;
         }
         else if(resp["error"]=="sin_modulos") alerta("No hay módulos que convalidar.","SIN MÓDULOS");
         else alerta("Error en servidor o base de datos.","ERROR");
@@ -1273,9 +1269,19 @@ function verPanelResolver(id_nie,registro){
         hide: { effect: "fade", duration: 0 },
         resizable: false,
         show: { effect: "fade", duration: 0 },
-        title: "VISTA DEL REGISTRO",
+        title: "RESOLUCIÓN CONVALIDACIÓN MÓDULOS",
         width: ancho,
-        position: { my: "center top", at: "center top", of: window }
+        position: { my: "center top", at: "center top", of: window },
+        buttons:{
+            "Resolver":function(){
+                $.post("php/secret_convalid_estado_resol.php",$("form_relacion_modulos_convalid").serialize(),(resp)=>{
+
+                });
+            },
+            "Cancelar":function(){
+                $("#verModulosConvalidaciones_div").dialog("destroy");
+            }
+        }
     });
 }
 
