@@ -11,8 +11,41 @@ $registro=$_POST["registro"];
 $modulos=$_POST["modulo_convalid"];
 $estados=$_POST["estado_convalid"];
 $motivos=$_POST["motivo_no_fav_convalid"];
+$resuelto_por=array(
+    "FAVORABLE"=>"CENTRO",
+    "NO FAVORABLE"=>"CENTRO",
+    "CONSEJERIA"=>"CONSEJERIA",
+    "MINISTERIO"=>"MINISTERIO"
 
-$sql = "UPDATE convalidaciones SET resolucion='$estado' WHERE registro='$registro'";
+);
+
+$mysqli->begin_transaction();
+
+try {
+    // Iterar sobre los arrays y actualizar los registros en la base de datos
+    for ($i = 0; $i < count($modulos); $i++) {
+
+        $sql = "UPDATE tu_tabla SET resolucion = '" . $estados[$i] . "', motivo_no_favorable = '" . $motivos[$i] . "', RESUELTO_POR = '" . $resuelto_por[$estados[$i]] . "' WHERE registro = '$registro' AND modulo='$modulos[$i]'";
+
+        if ($mysqli->query($sql) !== TRUE) {
+            throw new Exception("error_db");
+        }
+    }
+
+    // Confirmar la transacción
+    $mysqli->commit();
+} catch (Exception $e) {
+    // Revertir la transacción en caso de error
+    $mysqli->rollback();
+    $mysqli->close();
+    exit ($e->getMessage());
+}
+
+// Cerrar conexión
+$mysqli->close();
+exit("ok");
+
+/*$sql = "UPDATE convalidaciones SET resolucion='$estado' WHERE registro='$registro'";
 $result = $mysqli->query($sql);
 if ($mysqli->affected_rows > 0) {
     $mysqli->close();
@@ -21,4 +54,4 @@ if ($mysqli->affected_rows > 0) {
 else {
     $mysqli->close();
     exit("no_registro");
-}
+}*/
