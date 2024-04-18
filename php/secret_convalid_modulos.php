@@ -9,9 +9,8 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 $registro=$_POST["registro"];
-$id_nie=$_POST["id_nie"];
 
-$sql = "SELECT *  FROM convalidaciones_modulos WHERE registro = '$registro' and id_nie='$id_nie' ORDER BY modulo";
+$sql = "SELECT *  FROM convalidaciones_modulos WHERE registro = '$registro'  ORDER BY modulo";
 $result = $mysqli->query($sql);
 $contador=0;
 if ($result->num_rows > 0) {

@@ -1230,10 +1230,11 @@ function verRegistroConvalidaciones(num_registro){
 
 function verPanelResolver(id_nie,registro){
     ancho=1000;
-    $.post("php/secret_convalid_modulos.php",{id_nie:id_nie,registro:registro},(resp)=>{
+    $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
         if (resp["error"]=="ok"){
-            resp.id_nie;
-            resp.registro;
+            for(i=0;i<resp.contador;i++){
+
+            }
             resp.modulo;
             resp.resuelto_por;
             resp.estado;
@@ -1830,7 +1831,7 @@ function cambiaEstadoResolucionConvalidaciones(_rr,obj){
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_estado_resol.php",{registro:_rr,estado:obj.value},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
-        if(resp=="server") alerta("Estado convalidación nop cambiado. Hay un problema en el servidor.","ERROR SERVIDOR");
+        if(resp=="server") alerta("Estado convalidación no cambiado. Hay un problema en el servidor.","ERROR SERVIDOR");
         else if(resp=="no_registro")alerta("Estado convalidación no cambiado. No se ha encontrado el registro.","ERROR DB");
         else if(resp=="ok") alerta("El estado de la convalidación se ha cambiado a RESOLUCIÓN "+obj.value,"ESTADO RESOLUCIÓN CAMBIADA");
     })
