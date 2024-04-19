@@ -19,6 +19,16 @@ $resuelto_por=array(
     "MINISTERIO"=>"MINISTERIO"
 
 );
+$res_cen=0;
+$res_con=0;
+$res_min=0;
+for ($i=0; $i<count($estados);$i++){
+    if($estados[$i]=="FAVORABLE" || $estados[$i]=="NO FAVORABLE") $res_cen++;
+    elseif($estados[$i]=="CONSEJERIA") $res_con++;
+    elseif($estados[$i]=="MINISTERIO") $res_min++;
+}
+
+
 
 $mysqli->begin_transaction();
 
@@ -49,6 +59,11 @@ try {
 $mysqli->close();
 
 if ($elementos_sin_resolver) exit("elementos_sin_resolver");
+if($res_cen==0){
+    if($res_con==0 && $res_min>0) exit("ok_ministerio");
+    elseif($res_con>0 && $res_min==0) exit("ok_consejeria");
+    elseif($res_con>0 && $res_min>0) exit("ok_consejeria_ministerio");
+}
 exit("ok");
 
 /*$sql = "UPDATE convalidaciones SET resolucion='$estado' WHERE registro='$registro'";

@@ -1276,13 +1276,14 @@ function verPanelResolver(id_nie,registro){
             "Resolver":function(){
                 $.post("php/secret_convalid_estado_resol.php",$("form_relacion_modulos_convalid").serialize(),(resp)=>{
                     if (resp=="server")alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
-                    else if(resp="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
+                    else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
                     else if(resp=="ok"){
                         
                     }
-                    else if(resp=="elementos_sin_resolver"){
-                        alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
-                    }
+                    else if(resp=="ok_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO.","RESUELVE MINISTERIO");
+                    else if(resp=="ok_consejeria") alerta("No se genera notificación para el alumno. Resuelve CONSEJERIA.","RESUELVE CONSEJERIA");
+                    else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
+                    else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
                 });
             },
             "Cancelar":function(){
