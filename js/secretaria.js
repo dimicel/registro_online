@@ -1280,6 +1280,7 @@ function verPanelResolver(id_nie,registro){
                     else if(resp=="ok"){
                         
                     }
+                    else if(resp=="no_datospdf") alerta("No se puede generar la notificación para el alumno. Fallo al acceder a los datos de la solicitud.","ERROR DB");
                     else if(resp=="ok_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO.","RESUELVE MINISTERIO");
                     else if(resp=="ok_consejeria") alerta("No se genera notificación para el alumno. Resuelve CONSEJERIA.","RESUELVE CONSEJERIA");
                     else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
