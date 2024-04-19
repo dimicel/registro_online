@@ -20,16 +20,15 @@ $resuelto_por=array(
 
 );
 
-for ($i=0; $i<count($estados);$i++){
-    if ($estados[$i]=="") $elementos_sin_resolver=true;
-}
-
 $mysqli->begin_transaction();
 
 try {
     // Iterar sobre los arrays y actualizar los registros en la base de datos
     for ($i = 0; $i < count($modulos); $i++) {
-
+        if ($estados[$i]==""){
+            if ($estados[$i]=="") $elementos_sin_resolver=true;
+            continue;
+        }
         $sql = "UPDATE tu_tabla SET resolucion = '" . $estados[$i] . "', motivo_no_favorable = '" . $motivos[$i] . "', RESUELTO_POR = '" . $resuelto_por[$estados[$i]] . "' WHERE registro = '$registro' AND modulo='$modulos[$i]'";
 
         if ($mysqli->query($sql) !== TRUE) {
@@ -48,6 +47,8 @@ try {
 
 // Cerrar conexión
 $mysqli->close();
+
+if ($elementos_sin_resolver) exit("elementos_sin_resolver");
 exit("ok");
 
 /*$sql = "UPDATE convalidaciones SET resolucion='$estado' WHERE registro='$registro'";

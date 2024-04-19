@@ -1280,6 +1280,9 @@ function verPanelResolver(id_nie,registro){
                     else if(resp=="ok"){
                         
                     }
+                    else if(resp=="elementos_sin_resolver"){
+                        alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
+                    }
                 });
             },
             "Cancelar":function(){
