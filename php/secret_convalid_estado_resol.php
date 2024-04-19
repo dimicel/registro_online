@@ -28,7 +28,14 @@ for ($i=0; $i<count($estados);$i++){
     elseif($estados[$i]=="MINISTERIO") $res_min++;
 }
 
+if ($res_cen>0) $act_rescen=1;
+else $act_rescen=0;
+if ($res_con>0) $act_rescon=1;
+else $act_rescon=0;
+if ($res_min>0) $act_resmin=1;
+else $act_resmin=0;
 
+$consulta_act_estado="update convalidaciones set resuelve_cen='$act_rescen', resuelve_con='$act_rescon', resuelve_min='$act_resmin' where registro='$registro'";
 
 $mysqli->begin_transaction();
 
@@ -39,11 +46,15 @@ try {
             if ($estados[$i]=="") $elementos_sin_resolver=true;
             continue;
         }
-        $sql = "UPDATE tu_tabla SET resolucion = '" . $estados[$i] . "', motivo_no_favorable = '" . $motivos[$i] . "', RESUELTO_POR = '" . $resuelto_por[$estados[$i]] . "' WHERE registro = '$registro' AND modulo='$modulos[$i]'";
+        $sql = "UPDATE convalidaciones_modulos SET resolucion = '" . $estados[$i] . "', motivo_no_favorable = '" . $motivos[$i] . "', resuelto_por = '" . $resuelto_por[$estados[$i]] . "' WHERE registro = '$registro' AND modulo='$modulos[$i]'";
 
         if ($mysqli->query($sql) !== TRUE) {
             throw new Exception("error_db");
         }
+    }
+    
+    if ($mysqli->query($consulta_act_estado) !== TRUE) {
+        throw new Exception("error_db_conval");
     }
 
     // Confirmar la transacción
