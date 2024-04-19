@@ -11,6 +11,7 @@ $registro=$_POST["registro"];
 $modulos=$_POST["modulo_convalid"];
 $estados=$_POST["estado_convalid"];
 $motivos=$_POST["motivo_no_fav_convalid"];
+$elementos_sin_resolver=false;
 $resuelto_por=array(
     "FAVORABLE"=>"CENTRO",
     "NO FAVORABLE"=>"CENTRO",
@@ -18,6 +19,10 @@ $resuelto_por=array(
     "MINISTERIO"=>"MINISTERIO"
 
 );
+
+for ($i=0; $i<count($estados);$i++){
+    if ($estados[$i]=="") $elementos_sin_resolver=true;
+}
 
 $mysqli->begin_transaction();
 
