@@ -48,7 +48,7 @@
                             <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: $('#div_mod_pass').dialog('open');">Cambiar Contraseña</a>
                         </li>
                         
-                        <li class="nav-item dropdown">
+                        <!--<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle " style="color:white;font-size: 0.8em;" id="menu3" href="#" data-toggle="dropdown">
                                     Documentos adjuntos
                                 </a>
@@ -58,7 +58,7 @@
                                 <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('seguro');$('#div_subida_archivos').dialog('open');">Resguardo Seguro Escolar</a>
                                 <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('certificado');$('#div_subida_archivos').dialog('open');">Certificado Notas</a> 
                             </div>
-                        </li>
+                        </li>-->
                                         
                         <li class="nav-item" id="menu4">
                             <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: cierraSesion();">Salir</a>
