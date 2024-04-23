@@ -69,13 +69,6 @@ try {
 // Cerrar conexión
 $mysqli->close();
 
-//Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
-
-$concov=$mysqli->query("select * from convalidaciones where registro='$registro'");
-if($concov->num_rows<1){
-    exit("no_datospdf");
-}
-
 //Salida del script
 if ($elementos_sin_resolver) exit("elementos_sin_resolver");
 if($res_cen==0){
@@ -83,9 +76,19 @@ if($res_cen==0){
     elseif($res_con>0 && $res_min==0) exit("ok_consejeria");
     elseif($res_con>0 && $res_min>0) exit("ok_consejeria_ministerio");
 }
+
+//Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
+$concov=$mysqli->query("select * from convalidaciones where registro='$registro'");
+if($concov->num_rows<1){
+    exit("no_datospdf");
+}
+
+
+//Salida OK
 exit("ok");
 
-/*$sql = "UPDATE convalidaciones SET resolucion='$estado' WHERE registro='$registro'";
+/*
+$sql = "UPDATE convalidaciones SET resolucion='$estado' WHERE registro='$registro'";
 $result = $mysqli->query($sql);
 if ($mysqli->affected_rows > 0) {
     $mysqli->close();
@@ -94,4 +97,5 @@ if ($mysqli->affected_rows > 0) {
 else {
     $mysqli->close();
     exit("no_registro");
-}*/
+}
+*/
