@@ -54,10 +54,10 @@
                                     Documentos adjuntos
                                 </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('foto');$('#div_subida_archivos').dialog('open');">Fotografía Alumno</a>
-                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('dni');$('#div_subida_archivos').dialog('open');">Documento Identificación</a>
-                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('seguro');$('#div_subida_archivos').dialog('open');">Resguardo Seguro Escolar</a>
-                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('certificado');$('#div_subida_archivos').dialog('open');">Certificado Notas</a> 
+                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('foto');$('#div_subida_archivos_usu').dialog('open');">Fotografía Alumno</a>
+                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('dni');$('#div_subida_archivos_usu').dialog('open');">Documento Identificación</a>
+                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('seguro');$('#div_subida_archivos_usu').dialog('open');">Resguardo Seguro Escolar</a>
+                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('certificado');$('#div_subida_archivos_usu').dialog('open');">Certificado Notas</a> 
                             </div>
                         </li>-->
                                         
@@ -301,12 +301,12 @@
 
     <!-- FORMULARIO AUXILIAR PARA SUBIDA DE DOCUMENTOS ________________________________________________-->
     <!--_______________________________________________________________________________________________-->
-    <div id="div_subida_archivos" style="display:none">
+    <div id="div_subida_archivos_usu" style="display:none">
         <form id="subida_doc" method="POST">
             <div class="row" id="div_fotografia">
                 <div class="col">
                     <label for="foto_alumno">Fotografía del alumno en JPEG (formato DNI) <small>(Si se hace con móvil, en posición vertical)</small>:</label>
-                    <input name="foto_alumno" id="foto_alumno" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="USUsubeFoto(this)" required/>
+                    <input name="foto_alumno" id="foto_alumno" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')//USUsubeFoto(this)" required/>
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
@@ -315,7 +315,7 @@
             <div class="row" id="div_resguardo_seguro_escolar">
                 <div class="col">
                     <label for="resguardo_seguro_escolar">Resguardo del seguro escolar en JPEG <small>(Si se hace con móvil, en posición horizontal)</small>:</label>
-                    <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="USUsubeSeguro(this)" required/>
+                    <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')//USUsubeSeguro(this)" required/>
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
@@ -326,7 +326,7 @@
                     <label for="anverso_dni">Anverso de documento identificativo (DNI/NIE) en JPEG.<br>
                     Si sólo tiene pasaporte, fotografía en JPEG de la página que contenga la foto y nombre del alumno<br>
                     <small>(Si se toma la imagen con móvil, poner éste en posición horizontal):</small></label>
-                    <input name="anverso_dni" id="anverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="USUsubeDNI(this,'A')" required/>
+                    <input name="anverso_dni" id="anverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_anverso')//USUsubeDNI(this,'A')" required/>
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
@@ -337,7 +337,7 @@
                     <label for="reverso_dni">Reverso del documento identificativo (DNI/NIE) en JPEG.<br>
                     Si sólo tiene pasaporte, fotografía en JPEG de una imagen en blanco (por ejemplo, folio).<br>
                     <small>(Si se toma la imagen con móvil, poner éste en posición horizontal):</small></label>
-                    <input name="reverso_dni" id="reverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="USUsubeDNI(this,'R')" required/>
+                    <input name="reverso_dni" id="reverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')//USUsubeDNI(this,'R')" required/>
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
@@ -356,6 +356,20 @@
     </div>
     <!--_______________________________________________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
+
+    <div id="div_edita_imagen_usu" style="display:none; text-align:center">
+        <label><small id="texto_editor_imagen">Rota, haz zoom (con la rueda del ratón) y mueve la imagen para ajustarla al recuadro</small></label>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-12 justify-content-center align-items-center" id="div_imagen">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
