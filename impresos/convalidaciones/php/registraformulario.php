@@ -223,9 +223,9 @@ $pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('IES Universidad Laboral');
-$pdf->SetTitle('Convalidaciones Centro Educativo y Ministerio');
+$pdf->SetTitle('Convalidaciones');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Convalidaciones Centro Educativo y Ministerio');
+$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Convalidaciones');
 
 // set default monospaced font
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
