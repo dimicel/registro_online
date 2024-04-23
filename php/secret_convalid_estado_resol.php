@@ -87,7 +87,8 @@ $concov=$mysqli->query("select * from convalidaciones where registro='$registro'
 if($concov->num_rows!=1){
     exit("no_datospdf");
 }
-$datosReg=$concov->fetch_assoc();
+$dr=$concov->fetch_assoc();
+$mysqli->close();
 //Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
 class MYPDF extends TCPDF {
 
