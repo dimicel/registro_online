@@ -833,7 +833,7 @@ function muestraEditor_usu(_file,tipo){
                         formData.append("id_nie",id_nie);
                         if (tipo=="dni_anverso")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
-                        if(tipo=="seguro") formData.append("anno_curso", anno_curso);
+                        if(tipo=="seguro") formData.append("anno_curso", anno_curso_usu);
                         document.getElementById("cargando").style.display = 'inherit';
                         $.ajax({
                             url: url,
