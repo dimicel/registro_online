@@ -2,6 +2,9 @@
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("conexion.php");
+$mysqli->set_charset("utf8");
+require_once('tcpdf/config/tcpdf_config_alt.php');
+require_once('tcpdf/tcpdf.php');
 header("Content-Type: text/html;charset=utf-8");
 
 if ($mysqli->errno>0) {
@@ -82,6 +85,7 @@ $concov=$mysqli->query("select * from convalidaciones where registro='$registro'
 if($concov->num_rows<1){
     exit("no_datospdf");
 }
+
 
 
 //Salida OK
