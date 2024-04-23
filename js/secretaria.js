@@ -1275,7 +1275,7 @@ function verPanelResolver(id_nie,registro){
         buttons:{
             "Resolver":function(){
                 $.post("php/secret_convalid_estado_resol.php",$("form_relacion_modulos_convalid").serialize(),(resp)=>{
-                    if (resp=="server")alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
+                    if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
                     else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
                     else if(resp=="ok"){
                         

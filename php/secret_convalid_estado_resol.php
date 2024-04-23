@@ -76,9 +76,6 @@ if($concov->num_rows<1){
     exit("no_datospdf");
 }
 
-
-
-
 //Salida del script
 if ($elementos_sin_resolver) exit("elementos_sin_resolver");
 if($res_cen==0){
