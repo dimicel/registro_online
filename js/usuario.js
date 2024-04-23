@@ -814,7 +814,6 @@ function muestraEditor_usu(_file,tipo){
                 text: "Cancelar",
                 click: function() {
                     _crop1.destroy();
-                    $("#div_edita_imagen_usu").dialog("close");
                     $("#div_edita_imagen_usu").dialog("destroy");
                 }
             },
@@ -855,30 +854,22 @@ function muestraEditor_usu(_file,tipo){
                             } else if (resp == "ok") {
                                 if (tipo == "dni_anverso"){
                                     mm = "Anverso de documento subido.";
-                                    document.getElementById("div_existe_anverso_dni").style.display="inherit";
-                                    document.getElementById("div_anverso_dni").style.display="none";
                                 }
                                 else if (tipo == "dni_reverso"){
                                     mm = "Reverso de documento subido.";
-                                    document.getElementById("div_existe_reverso_dni").style.display="inherit";
-                                    document.getElementById("div_reverso_dni").style.display="none";
                                 }
                                 else if (tipo == "foto"){
                                     mm = "Fotografía subida.";
-                                    document.getElementById("div_existe_fotografia").style.display="inherit";
-                                    document.getElementById("div_fotografia").style.display="none";
                                 }
                                 else if (tipo == "seguro"){
                                     mm = "Resguardo del pago del seguro escolar subido.";
-                                    document.getElementById("div_existe_resguardo_seguro_escolar").style.display="inherit";
-                                    document.getElementById("div_resguardo_seguro_escolar").style.display="none";
                                 }
                                 alerta(mm, "OK");
                             }
                         });
                     });
-                   _crop1.destroy();
-                    $("#div_edita_imagen_usu").dialog("close");
+                    _crop1.destroy();
+                    $("#div_subida_archivos_usu").dialog("close");
                     $("#div_edita_imagen_usu").dialog("destroy");
                 }
             }
