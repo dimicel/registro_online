@@ -49,7 +49,7 @@
                             <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: $('#div_mod_pass').dialog('open');">Cambiar Contraseña</a>
                         </li>
                         
-                        <!--<li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle " style="color:white;font-size: 0.8em;" id="menu3" href="#" data-toggle="dropdown">
                                     Documentos adjuntos
                                 </a>
@@ -57,9 +57,9 @@
                                 <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('foto');$('#div_subida_archivos_usu').dialog('open');">Fotografía Alumno</a>
                                 <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('dni');$('#div_subida_archivos_usu').dialog('open');">Documento Identificación</a>
                                 <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('seguro');$('#div_subida_archivos_usu').dialog('open');">Resguardo Seguro Escolar</a>
-                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('certificado');$('#div_subida_archivos_usu').dialog('open');">Certificado Notas</a> 
+                                <!--<a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('certificado');$('#div_subida_archivos_usu').dialog('open');">Certificado Notas</a>--> 
                             </div>
-                        </li>-->
+                        </li>
                                         
                         <li class="nav-item" id="menu4">
                             <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: cierraSesion();">Salir</a>
@@ -314,7 +314,7 @@
             </div>
             <div class="row" id="div_resguardo_seguro_escolar">
                 <div class="col">
-                    <label for="resguardo_seguro_escolar">Resguardo del seguro escolar en JPEG <small>(Si se hace con móvil, en posición horizontal)</small>:</label>
+                    <label for="resguardo_seguro_escolar">Resguardo del seguro escolar en JPEG, si no lo adjuntó o lo hizo incorrectamente al hacer la matrícula <small>(Si se hace con móvil, en posición horizontal)</small>:</label>
                     <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')//USUsubeSeguro(this)" required/>
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
