@@ -23,6 +23,7 @@ $resuelto_por=array(
     "MINISTERIO"=>"MINISTERIO"
 
 );
+
 $res_cen=0;
 $res_con=0;
 $res_min=0;
