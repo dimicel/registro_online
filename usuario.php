@@ -306,7 +306,7 @@
             <div class="row" id="div_fotografia">
                 <div class="col">
                     <label for="foto_alumno">Fotografía del alumno en JPEG (formato DNI) <small>(Si se hace con móvil, en posición vertical)</small>:</label>
-                    <input name="foto_alumno" id="foto_alumno" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')//USUsubeFoto(this)" required/>
+                    <input name="foto_alumno" id="foto_alumno" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor_usu(this.files[0],'foto')//USUsubeFoto(this)" required/>
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
@@ -315,7 +315,7 @@
             <div class="row" id="div_resguardo_seguro_escolar">
                 <div class="col">
                     <label for="resguardo_seguro_escolar">Resguardo del seguro escolar en JPEG, si no lo adjuntó o lo hizo incorrectamente al hacer la matrícula <small>(Si se hace con móvil, en posición horizontal)</small>:</label>
-                    <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')//USUsubeSeguro(this)" required/>
+                    <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor_usu(this.files[0],'seguro')//USUsubeSeguro(this)" required/>
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
@@ -326,7 +326,7 @@
                     <label for="anverso_dni">Anverso de documento identificativo (DNI/NIE) en JPEG.<br>
                     Si sólo tiene pasaporte, fotografía en JPEG de la página que contenga la foto y nombre del alumno<br>
                     <small>(Si se toma la imagen con móvil, poner éste en posición horizontal):</small></label>
-                    <input name="anverso_dni" id="anverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_anverso')//USUsubeDNI(this,'A')" required/>
+                    <input name="anverso_dni" id="anverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor_usu(this.files[0],'dni_anverso')//USUsubeDNI(this,'A')" required/>
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>
@@ -337,7 +337,7 @@
                     <label for="reverso_dni">Reverso del documento identificativo (DNI/NIE) en JPEG.<br>
                     Si sólo tiene pasaporte, fotografía en JPEG de una imagen en blanco (por ejemplo, folio).<br>
                     <small>(Si se toma la imagen con móvil, poner éste en posición horizontal):</small></label>
-                    <input name="reverso_dni" id="reverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')//USUsubeDNI(this,'R')" required/>
+                    <input name="reverso_dni" id="reverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor_usu(this.files[0],'dni_reverso')//USUsubeDNI(this,'R')" required/>
                 </div>
                 <div class="w-100" style="text-align: center;margin-top:15px">
                     <span class="errorTxt" style="font-size: 1em;"></span>

@@ -626,6 +626,7 @@ function USUsubeDNI(obj, parte) {
             }
         });
 }
+*/
 
 function USUsubeCertificado(obj) {
     if (obj.files[0].type != "application/pdf") {
@@ -660,7 +661,7 @@ function USUsubeCertificado(obj) {
             }
         });
 }
-*/
+
 
 function ocultaDivsSubeDocs(panel) {
     if (panel == "foto") {
