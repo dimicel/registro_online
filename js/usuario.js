@@ -869,7 +869,7 @@ function muestraEditor_usu(_file,tipo){
                         });
                     });
                     _crop1.destroy();
-                    $("#div_subida_archivos_usu").dialog("close");
+                    //$("#div_subida_archivos_usu").dialog("close");
                     $("#div_edita_imagen_usu").dialog("destroy");
                 }
             }
