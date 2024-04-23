@@ -110,7 +110,6 @@ class MYPDF extends TCPDF {
 		$this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
 		//$this->Ln();
 		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
-		
 	}
 }
 
