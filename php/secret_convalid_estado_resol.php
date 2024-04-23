@@ -7,6 +7,7 @@ require_once('tcpdf/config/tcpdf_config_alt.php');
 require_once('tcpdf/tcpdf.php');
 header("Content-Type: text/html;charset=utf-8");
 
+
 if ($mysqli->errno>0) {
     exit("server");
 }
@@ -80,14 +81,127 @@ if($res_cen==0){
     elseif($res_con>0 && $res_min>0) exit("ok_consejeria_ministerio");
 }
 
-//Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
+//Recuperación de datos de la tabla convalidaciones
 $concov=$mysqli->query("select * from convalidaciones where registro='$registro'");
-if($concov->num_rows<1){
+if($concov->num_rows!=1){
     exit("no_datospdf");
+}
+$datosReg=$concov->fetch_assoc();
+//Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
+class MYPDF extends TCPDF {
+
+	//Page header
+	public function Header() {
+		// Logo
+		$image_file = '../recursos/logo_ccm.jpg';
+		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		$image_file = '../recursos/mini_escudo.jpg';
+		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+
+		$this->SetFont('helvetica', 'B', 14);
+		$this->SetXY(0,10);
+		$this->Cell(0,0,"RESOLUCIÓN CONVALIDACIÓN MÓDULOS",0,0,'C',0,'',1,false,'T','T');
+			
+		$this->SetFont('helvetica', '', 8);
+		// Title
+		//$this->setCellHeightRatio(1.75);
+		$encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
+		$this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
+		//$this->Ln();
+		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
+		
+	}
 }
 
 
+// create new PDF document
+$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+// set document information
+$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('IES Universidad Laboral');
+$pdf->SetTitle('Resolución Convalidaciones');
+$pdf->SetSubject('Secretaría');
+$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Resolución Convalidaciones');
+
+// set default header data
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+//$pdf->setFooterData();
+
+// set header and footer fonts
+$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+//$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+// set default monospaced font
+$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+// set margins
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+//$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+// set auto page breaks
+$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+// set image scale factor
+$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+// set some language-dependent strings (optional)
+if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
+	require_once(dirname(__FILE__).'/lang/spa.php');
+	$pdf->setLanguageArray($l);
+}
+
+// ---------------------------------------------------------
+
+$pdf->setFontSubsetting(true);
+
+$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->setFillColor(200);  //Relleno en gris
+$pdf->AddPage();
+
+
+
+
+
+
+
+$texto_3_consent=<<<EOT
+INFORMACIÓN BÁSICA DE PROTECCIÓN DE DATOS
+-Responsable: Viceconsejería de Educación.
+-Finalidad: Gestión administrativa y educativa del alumnado de centros docentes de Castilla-La Manchaa, así como el uso de los recursos educativos digitales por parte de la comunidad educativa.
+-Legitimación: 6.1.c) Cumplimiento de una obligación legal del Reglamento General de Protección de Datos; 6.1.e) Misión en interés público o ejercicio de poderes públicos del Reglamento General de Protección de Datos. Datos de categoría especial: 9.2.g) el tratamiento es necesario por razones de un interés público esencial del Reglamento General de Protección de Datos. Ley Orgánica 2/2006, de 3 de mayo, de Educación / Ley 7/2010, de 20 de julio, de Educación de Castilla-La Mancha
+-Origen de los datos: El propio interesado o su representante legal, administraciones públicas.
+-Categoría de los datos: Datos de carácter identificativo: NIF/DNI, nombre y apellidos, dirección, teléfono, firma, firma electrónica, correo electrónico; imagen/voz. Datos especialmente protegidos: Salud. Datos de infracciones administrativas. Otros datos tipificados: Características personales; académicos y profesionales; detalles del empleo; económicos, financieros y de seguros.
+-Destinatarios: Existe cesión de datos.
+-Derechos: Puede ejercer los derechos de acceso, rectificación o supresión de sus datos, así como otros derechos, tal y como se explica en la información adicional.
+-Información adicional: Disponible en la dirección electrónica: https://rat.castillalamancha.es/info/0372
+EOT;
+
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->MultiCell(180,0,$texto_3_consent,0,'L',0,1,'','',true,0,false,false,0);
+
+//--------FINAL
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+$fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
+$texto=<<<EOD
+<p style="text-align:center">$fecha_firma<br>Nº de registro: $registro</p>
+EOD;
+$YInicio+=50;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'B', 8, '', true);
+//$pdf->Cell(0,0,"Nº registro " . $texto,0,0,'C',0,'',1,false,'T','T');
+$pdf->writeHTMLCell(180,0,$XInicio,$YInicio,$texto,0,0,false,true,'',true);
+
+
+//GENERA EL ARCHIVO NUEVO
+$nombre_fichero=$registro . '.pdf';
+if (!is_dir(__DIR__."/../../../docs/".$id_nie))mkdir(__DIR__."/../../../docs/".$id_nie,0777);
+if(!is_dir(__DIR__."/../../../docs/".$id_nie."/matriculas"))mkdir(__DIR__."/../../../docs/".$id_nie."/matriculas",0777);
+if(!is_dir(__DIR__."/../../../docs/".$id_nie."/matriculas"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/matriculas"."/".$anno_curso,0777);
+$ruta=__DIR__."/../../../docs/".$id_nie."/"."matriculas/".$anno_curso."/". $nombre_fichero;
+$pdf->Output($ruta, 'F');
 //Salida OK
 exit("ok");
 
