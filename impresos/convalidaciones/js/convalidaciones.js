@@ -547,6 +547,8 @@ function registraForm() {
         formData.append("estudios_superados", encodeURIComponent(document.getElementById("estudios_superados").value));
         formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
         formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
+        formData.append("modalidad", encodeURIComponent(document.getElementById("modalidad").value));
+        formData.append("curso", encodeURIComponent(document.getElementById("curso").value));
         formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
         formData.append("firma", encodeURIComponent(canvas_upload));
 
