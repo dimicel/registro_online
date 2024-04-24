@@ -183,7 +183,7 @@
                             <div class="col">
                                 <div class="row">
                                     <div class="col">
-                                        <h6 style="color:brown; font-weight:bold">MÓDULOS QUE SOLICITA CONVALIDAR</h6>
+                                        <h6 style="color:brown; font-weight:bold">DATOS ACADÉMICOS Y MÓDULOS QUE SOLICITA CONVALIDAR</h6>
                                     </div>
                                 </div>
                                 <div class="row" data-formulario="consejería">
