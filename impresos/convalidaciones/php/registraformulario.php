@@ -210,14 +210,30 @@ $anno=$fecha_actual["year"];
 $anno = substr($anno, -2);
 
 class MYPDF extends TCPDF {
-    // Constructor
-    public function __construct($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false) {
-        parent::__construct($orientation, $unit, $format, $unicode, $encoding, $diskcache);
-    }
 
 	//Page header
-	public function Header() {}
+	public function Header() {
+		// Logo
+		$image_file = '../../../recursos/logo_ccm.jpg';
+		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		$image_file = '../../../recursos/mini_escudo.jpg';
+		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+
+		$this->SetFont('helvetica', 'B', 14);
+		$this->SetXY(0,10);
+		$this->Cell(0,0,"CONVALIDACIÓN",0,0,'C',0,'',1,false,'T','T');
+			
+		$this->SetFont('helvetica', '', 8);
+		// Title
+		//$this->setCellHeightRatio(1.75);
+		$encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
+		$this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
+		//$this->Ln();
+		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
+		
+	}
 }
+
 
 // create new PDF document
 $pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
@@ -261,7 +277,7 @@ $auto_page_break = $pdf->getAutoPageBreak();
 // disable auto-page-break
 $pdf->SetAutoPageBreak(false, 0);
 // set background image
-$pdf->Image("../recursos/consejeria.jpg", 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+//$pdf->Image("../recursos/consejeria.jpg", 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 // restore auto-page-break status
 $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 // set the starting point for the page content
