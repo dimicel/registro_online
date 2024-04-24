@@ -289,7 +289,7 @@
                     <div class="col custom-control custom-switch mi-checkbox">
                         <div class="row" >
                             <div class="col-5">
-                                <label>Documento de identificación </label>
+                                <label>Documento de identificación</label>
                             </div>
                             <div class="col">
                                 <input type="radio" id="dni_nie_con" name="tipo_con" class="custom-control-input" value="Documento de identificación (DNI/NIE)" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
