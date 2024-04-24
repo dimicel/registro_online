@@ -203,7 +203,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <label for="grado">Grado</label>
                                         <select class="form-control" name="grado" id="grado" size="1" onchange="selGrado(this)">
                                             <option value="">Seleccione uno...</option>
