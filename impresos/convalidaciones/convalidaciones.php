@@ -71,11 +71,11 @@
             <form id="form_convalidaciones">
                 <div class="d-flex flex-row">
                     <div class="col">
-                        <div class="row d-flex w-100 justify-content-center">
+                        <!--<div class="row d-flex w-100 justify-content-center">
                             <div class="col" style="text-align: center;">
                                 <h5 id="rotulo">SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO</h5>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="row ">
                             <div class="col">
                                 <input type="button" id="volver" class="btn btn-success textoboton" value="<<< Volver" onclick="vuelve()"/>
@@ -198,12 +198,26 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
-                                        <label for="grado">Está matriculado en Ciclo Formativo de Grado</label>
+                                    <div class="col">
+                                    <label>Está matriculado en Ciclo Formativo de</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <label for="grado">Grado</label>
                                         <select class="form-control" name="grado" id="grado" size="1" onchange="selGrado(this)">
                                             <option value="">Seleccione uno...</option>
                                             <option value="Medio">Medio</option>
                                             <option value="Superior">Superior</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="grado">Modalidad</label>
+                                        <select class="form-control" name="modalidad" id="modalidad" size="1">
+                                            <option value="">Seleccione uno...</option>
+                                            <option value="Presencial">Presencial</option>
+                                            <option value="Semipresencial">Semipresencial</option>
+                                            <option value="Virtual">Virtual (E-learning)</option>
                                         </select> 
                                     </div>
                                     <div class="col">

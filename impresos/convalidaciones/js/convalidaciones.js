@@ -150,6 +150,9 @@ function creaValidador() {
             grado: {
                 required: true
             },
+            modalidad: {
+                required: true
+            },
             ciclos: {
                 required: true
             },
@@ -193,6 +196,9 @@ function creaValidador() {
                 required: "Vacío"
             },
             grado: {
+                required: "Seleccione uno"
+            },
+            modalidad: {
                 required: "Seleccione uno"
             },
             ciclos: {
