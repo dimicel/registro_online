@@ -211,6 +211,21 @@
                                             <option value="Superior">Superior</option>
                                         </select> 
                                     </div>
+                                    <div class="col">
+                                        <label for="ciclos">Denominado</label>
+                                        <select class="form-control" name="ciclos" id="ciclos" size="1">
+                                            <option value="">Seleccione grado...</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="grado">Curso</label>
+                                        <select class="form-control" name="curso" id="curso" size="1">
+                                            <option value="">Seleccione uno...</option>
+                                            <option value="1º">1º</option>
+                                            <option value="2º">2º</option>
+                                            <option value="3º">3º</option>
+                                        </select> 
+                                    </div>
                                     <div class="col-2">
                                         <label for="grado">Modalidad</label>
                                         <select class="form-control" name="modalidad" id="modalidad" size="1">
@@ -219,12 +234,6 @@
                                             <option value="Semipresencial">Semipresencial</option>
                                             <option value="Virtual">Virtual (E-learning)</option>
                                         </select> 
-                                    </div>
-                                    <div class="col">
-                                        <label for="ciclos">Denominado</label>
-                                        <select class="form-control" name="ciclos" id="ciclos" size="1">
-                                            <option value="">Seleccione grado...</option>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
