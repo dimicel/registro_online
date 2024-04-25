@@ -23,6 +23,9 @@ $(function() {
             else if(key=="inhabilitar"){
                 inhabilitaUsuario(id,$(this));
             }
+            else if(key=="pdf_evau"){
+                pdfEVAU(id,$(this));
+            }
             else if(key=="download"){
                 descargarExpediente(id,nom);
             }
@@ -32,6 +35,7 @@ $(function() {
             "upload": { name: "Subir un documento a Expediente" },
             "download":{name: "Descargar Expediente"},
             "inhabilitar":{name: "Inhabilitar/Habilitar usuario"},
+            "pdf_evau":{name: "Generar PDF NIF/NIE para EVAU"},
             "delete": { name: "Eliminar" }
         }
     });
@@ -1131,6 +1135,30 @@ function descargarExpediente(id,nom){
     formDownload.id="form_downloadExp";
     formDownload.method="POST";
     formDownload.action="php/secret_usu_download_expediente.php";
+
+    input_id=document.createElement("input");
+    input_id.type="hidden";
+    input_id.name="id_down";
+    input_id.value=id;
+    formDownload.appendChild(input_id);
+    input_nom=document.createElement("input");
+    input_nom.type="hidden";
+    input_nom.name="nombre_down";
+    input_nom.value=nom;
+    formDownload.appendChild(input_nom);
+    document.body.appendChild(formDownload);
+    formDownload.submit();
+    document.body.removeChild(formDownload);
+    document.getElementById("cargando").style.display = 'none';
+}
+
+function pdfEVAU(id,nom){
+    nom = nom.replace(/,/g, '_');
+    document.getElementById("cargando").style.display = 'inherit';
+    formDownload=document.createElement("form");
+    formDownload.id="form_downloadExp";
+    formDownload.method="POST";
+    formDownload.action="php/secret_usu_generapdf_evau.php";
 
     input_id=document.createElement("input");
     input_id.type="hidden";
