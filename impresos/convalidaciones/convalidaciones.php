@@ -227,11 +227,22 @@
                                         </select> 
                                     </div>
                                     <div class="col-2">
+                                        <label for="grado">Turno</label>
+                                        <select class="form-control" name="turno" id="turno" size="1">
+                                            <option value="">Seleccione uno...</option>
+                                            <option value="Diurno">Diurno</option>
+                                            <option value="Vespertino">Vespertino</option>
+                                            <option value="Nocturno">Nocturno</option>
+                                            <option value="Virtual">Virtual (E-learning)</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-2">
                                         <label for="grado">Modalidad</label>
                                         <select class="form-control" name="modalidad" id="modalidad" size="1">
                                             <option value="">Seleccione uno...</option>
                                             <option value="Presencial">Presencial</option>
                                             <option value="Semipresencial">Semipresencial</option>
+                                            <option value="Modular">Modular</option>
                                             <option value="Virtual">Virtual (E-learning)</option>
                                         </select> 
                                     </div>
