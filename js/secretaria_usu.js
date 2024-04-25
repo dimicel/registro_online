@@ -24,7 +24,7 @@ $(function() {
                 inhabilitaUsuario(id,$(this));
             }
             else if(key=="pdf_evau"){
-                pdfEVAU(id,$(this));
+                pdfEVAU(id,nom);
             }
             else if(key=="download"){
                 descargarExpediente(id,nom);
