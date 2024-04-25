@@ -13,35 +13,69 @@ $directorio = "../docs/".$id_nie."/dni/";
 
 
 
-// Crear una instancia de ZipArchive
+class MYPDF extends TCPDF {
+
+	//Page header
+	public function Header() {
+		
+	}
+}
 
 
-// Crear un archivo ZIP
-if ($zip->open($archivoZip, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
-    // Función recursiva para agregar archivos y directorios al ZIP
-    function agregarDirectorioAlZip($directorio, $zip, $ruta = '') {
-        $archivos = glob($directorio . '/*');
-        foreach ($archivos as $archivo) {
-            if (is_dir($archivo)) {
-                agregarDirectorioAlZip($archivo, $zip, $ruta . basename($archivo) . '/');
-            } else {
-                $zip->addFile($archivo, $ruta . basename($archivo));
-            }
-        }
-    }
+// create new PDF document
+$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-    // Agregar el contenido del directorio al ZIP
-    agregarDirectorioAlZip($directorio, $zip);
+// set document information
+$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('IES Universidad Laboral');
+$pdf->SetTitle('PDF DNI/NIF');
+$pdf->SetSubject('Secretaría');
+$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, PDF DNI/NIF');
 
-    // Cerrar el archivo ZIP
-    $zip->close();
+// set default header data
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+//$pdf->setFooterData();
 
-    // Descargar el archivo ZIP
-    header('Content-Type: application/zip');
-    header('Content-disposition: attachment; filename=' . basename($archivoZip));
-    header('Content-Length: ' . filesize($archivoZip));
-    readfile($archivoZip);
+// set header and footer fonts
+$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+//$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
-    // Eliminar el archivo ZIP
-    unlink($archivoZip);
-} 
+// set default monospaced font
+$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+// set margins
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+//$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+// set auto page breaks
+$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+// set image scale factor
+$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+// set some language-dependent strings (optional)
+if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
+	require_once(dirname(__FILE__).'/lang/spa.php');
+	$pdf->setLanguageArray($l);
+}
+
+// ---------------------------------------------------------
+
+$pdf->setFontSubsetting(true);
+
+$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->setFillColor(200);  //Relleno en gris
+$pdf->AddPage();
+
+if (file_exists($directorio.$id_nie."-A.jpg")) $anverso=$directorio.$id_nie."-A.jpg";
+elseif (file_exists($directorio.$id_nie."-A.jpeg")) $anverso=$directorio.$id_nie."-A.jpeg";
+else $anverso="no";
+
+if (file_exists($directorio.$id_nie."-R.jpg")) $reverso=$directorio.$id_nie."-R.jpg";
+elseif (file_exists($directorio.$id_nie."-A.jpeg")) $reverso=$directorio.$id_nie."-R.jpeg";
+else $reverso="no";
+
+
+
+
