@@ -78,10 +78,10 @@ else $reverso="no";
 
 
 if ($anverso!="no"){
-    $pdf->Image($anverso,15,35,300,200,'','','T');
+    $pdf->Image($anverso,15,35,100,75,'','','T');
 }
 if ($reverso!="no"){
-    $pdf->Image($reverso,350,35,300,200,'','','T');
+    $pdf->Image($reverso,150,35,100,75,'','','T');
 }
 if ($anverso=="no"  && $reverso=="no"){
     $pdf->SetXY(40,35);
