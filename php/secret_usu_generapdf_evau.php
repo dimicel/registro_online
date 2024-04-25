@@ -88,7 +88,7 @@ if ($anverso=="no"  && $reverso=="no"){
     $pdf->Cell(0,0,"No existe documento de identificación",0,0,'L',0,'',1,false,'','');
 }
 
-$pdf->Output($id_nie."_".$nombre, 'D');
+$pdf->Output($id_nie."_".$nombre.".pdf", 'D');
 
 
 
