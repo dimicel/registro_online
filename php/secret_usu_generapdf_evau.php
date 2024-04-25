@@ -60,7 +60,7 @@ if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
 	$pdf->setLanguageArray($l);
 }
 
-// ---------------------------------------------------------
+// -------------------------------------------------------------------------------------
 
 $pdf->setFontSubsetting(true);
 
@@ -73,9 +73,22 @@ elseif (file_exists($directorio.$id_nie."-A.jpeg")) $anverso=$directorio.$id_nie
 else $anverso="no";
 
 if (file_exists($directorio.$id_nie."-R.jpg")) $reverso=$directorio.$id_nie."-R.jpg";
-elseif (file_exists($directorio.$id_nie."-A.jpeg")) $reverso=$directorio.$id_nie."-R.jpeg";
+elseif (file_exists($directorio.$id_nie."-R.jpeg")) $reverso=$directorio.$id_nie."-R.jpeg";
 else $reverso="no";
 
+
+if ($anverso!="no"){
+    $pdf->Image($anverso,15,35,300,200,'','','T');
+}
+if ($reverso!="no"){
+    $pdf->Image($reverso,350,35,300,200,'','','T');
+}
+if ($anverso=="no"  && $reverso=="no"){
+    $pdf->SetXY(40,35);
+    $pdf->Cell(0,0,"No existe documento de identificación",0,0,'L',0,'',1,false,'','');
+}
+
+$pdf->Output($id_nie."_".$nombre, 'D');
 
 
 
