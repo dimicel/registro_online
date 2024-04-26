@@ -177,6 +177,13 @@ try {
         $pdf_docIdent->Output($rutaCompleta.sprintf("%02d", $contador_docs+1)."_"."documento_identificacion.pdf", 'F');
     }
 
+    //Inserta los módulos en convalidaciones_modulos
+    $stmt3 = $mysqli->prepare("INSERT INTO convalidaciones_modulos (id_nie, registro, modulo) VALUES (?, ?, ?)");
+    for($i=0;$i<count($matrizMods);$i++) {
+        $stmt3->bind_param("sss", $id_nie, $registro, $matrizMods[$i]);
+        $stmt3->execute();
+    }
+    $stmt3->close();
     // Confirmar la transacción
     $mysqli->commit();
 } catch (Exception $e) {
