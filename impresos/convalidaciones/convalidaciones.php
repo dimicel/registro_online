@@ -157,11 +157,6 @@
                                         <label for="email">Email</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
-                                    <div class="col-3">
-                                        <label for="t_firm">Firma</label>
-                                        <span class="errorTxt" style="font-size: 1em;"></span>
-                                    </div>
-
                                 </div>
                                 <div class="row ">
                                     <div class="col-3" >
