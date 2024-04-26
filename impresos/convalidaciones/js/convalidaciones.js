@@ -135,9 +135,6 @@ function creaValidador() {
                 required: true,
                 email: true
             },
-            t_firm: {
-                required: true
-            },
             grado: {
                 required: true
             },
@@ -182,9 +179,6 @@ function creaValidador() {
             email: {
                 required: "Vacío",
                 email: "Inválido"
-            },
-            t_firm: {
-                required: "Vacío"
             },
             grado: {
                 required: "Seleccione uno"
