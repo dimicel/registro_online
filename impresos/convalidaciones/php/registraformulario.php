@@ -49,6 +49,7 @@ $tlf_fijo = $_POST['tlf_fijo'];
 $tlf_movil = $_POST['tlf_movil'];
 $email = $_POST['email'];
 $modulos = $_POST['modulos'];
+$matrizMods = json_decode($matrizMods);
 $subidopor="usuario";
 $estudios_superados=$_POST['estudios_superados'];
 $desc= array();
