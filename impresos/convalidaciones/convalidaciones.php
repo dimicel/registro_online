@@ -173,9 +173,9 @@
                                     <div class="col-3" >
                                         <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
                                     </div>
-                                    <div class="col-3">
+                                    <!--<div class="col-3">
                                         <input type="text" class="form-control" name="t_firm" id="t_firm" placeholder="Clic aquí para firmar" readonly onclick="canvasFirma();" />
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -347,12 +347,12 @@
     </div>
 
 
-    <div id="div_canvas_firma" style="display:none; text-align:center;">
+    <!--<div id="div_canvas_firma" style="display:none; text-align:center;">
         <label><small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small></label><br>
         <div id="div_lienzo" >
             <canvas id="firmaCanvas" width="400" height="200" style="background-color:white; border: 1px solid black;"></canvas>
         </div>
-    </div>
+    </div>-->
     <div id="div_edita_imagen" style="display:none; text-align:center">
         <label><small id="texto_editor_imagen">Rota, haz zoom (con la rueda del ratón) y mueve las imágenes para ajustar el documento al recuadro</small></label>
         <div class="container">

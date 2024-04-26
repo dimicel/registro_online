@@ -78,11 +78,7 @@ if (isset($_POST["desc"])){
     }
     $docs=$_FILES['docs'];
 }
-$imageData = urldecode($_POST['firma']);
-if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
-$tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.png');
-file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
-$firma = $tempFile;
+
 
 $repite_registro=true;
 while($repite_registro){
@@ -342,10 +338,6 @@ if($check5){
     $pdf->MultiCell(170,0,$otra_doc,0,'L',0,1,'','',true,0,false,false,0);
 }
 
-
-
-/////Tratamiento de la imagen
-$pdf->Image($firma, 120, 183, 30, 0, '', '', '', false, 300);
 
 
 $pdf->setCellHeightRatio(1.4);
