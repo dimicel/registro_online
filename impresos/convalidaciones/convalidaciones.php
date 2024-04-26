@@ -245,7 +245,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col">
-                                    <label id="label_estudios_aportados" for="estudios">Estudios que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                                    <label id="label_estudios_aportados" for="estudios">Documentación que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
                                     </div>
                                 </div>
                                 <div class="row">
