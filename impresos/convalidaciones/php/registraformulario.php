@@ -55,22 +55,14 @@ $estudios_superados=$_POST['estudios_superados'];
 $desc= array();
 $estudios_aportados="";
 $otra_doc="";
-$check1=false;
-$check2=false;
-$check3=false;
-$check4=false;
-$check5=false;
+
 
 if (isset($_POST["desc"])){
     foreach($_POST["desc"] as $value) {
-        $desc[]=urldecode($value);
-        if (urldecode($value)=="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita") $check1=true;
-        elseif(urldecode($value)=="Fotocopia compulsada de la certificación académica de los estudios realizados") $check3=true;
-        elseif(urldecode($value)=="Fotocopia compulsada del título") $check4=true;
-        else{
-            $check5=true;
-            $otra_doc.=urldecode($value).", ";
-        } 
+        $desc[]=$value;
+        if ($value!="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita" &&
+            $value!="Fotocopia compulsada de la certificación académica de los estudios realizados" &&
+            $value!="Fotocopia compulsada del título") $otra_doc.=$value.", ";
     }
     if (substr($otra_doc, -2) === ', ') {
         $otra_doc = substr_replace($otra_doc, "", -2);
@@ -315,28 +307,7 @@ $pdf->MultiCell(150,0,$estudios_superados,0,'L',0,1,'','',true,0,false,false,0);
 $pdf->SetXY(20,122);
 $pdf->MultiCell(170,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
-if($check1){
-    $pdf->SetXY(40,143);
-    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
-}
-if($check2){
-    $pdf->SetXY(40,152);
-    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
-}
-if($check3){
-    $pdf->SetXY(40,156);
-    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
-}
-if($check4){
-    $pdf->SetXY(40,160);
-    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
-}
-if($check5){
-    $pdf->SetXY(40,164);
-    $pdf->Cell(0,0,'x',0,0,'L',0,'',1,true,'T','T');
-    $pdf->SetXY(20,168);
-    $pdf->MultiCell(170,0,$otra_doc,0,'L',0,1,'','',true,0,false,false,0);
-}
+
 
 
 
