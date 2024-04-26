@@ -51,7 +51,6 @@ $email = $_POST['email'];
 $modulos = $_POST['modulos'];
 $matrizMods = json_decode($matrizMods);
 $subidopor="usuario";
-$estudios_superados=$_POST['estudios_superados'];
 $desc= array();
 $otra_doc="";
 
@@ -97,9 +96,9 @@ $mysqli->begin_transaction();
 try {
     // Insertar registro en la primera tabla
     $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,tlf_fijo,tlf_movil,email,
-                                                            grado,ciclo,curso_ciclo,modalidad,turno,estudios_superados,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt1->bind_param("sssssssssssssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
-                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$curso,$modalidad,$turno,$estudios_superados,$modulos);
+                                                            grado,ciclo,curso_ciclo,modalidad,turno,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt1->bind_param("ssssssssssssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
+                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$curso,$modalidad,$turno,$modulos);
     $stmt1->execute();
     $stmt1->close();
     // Insertar registros en la segunda tabla
@@ -354,14 +353,6 @@ $pdf->setX(70);
 $pdf->Cell(0,0,$turno,0,0,'L',0,'',1,false,'','');
 $pdf->setX(85);
 $pdf->Cell(0,0,$modalidad,0,0,'L',0,'',1,false,'','');
-
-$YInicio+=6;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Ha cursado y superado los siguientes estudios:",0,0,'L',0,'',1,false,'','');
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$YInicio+=3;
-$pdf->Cell(0,0,$estudios_superados,0,0,'L',0,'',1,false,'','');
 
 $YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);

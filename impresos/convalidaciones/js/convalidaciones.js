@@ -145,9 +145,6 @@ function creaValidador() {
             },
             modulos: {
                 required: true
-            },
-            estudios_superados:{
-                required: true
             }
         },
         messages: {
@@ -190,9 +187,6 @@ function creaValidador() {
             },
             modulos: {
                 required: "Seleccione módulos"
-            },
-            estudios_superados:{
-                required: "Especifique unos estudios superados"
             }
         },
         errorPlacement: function(error, element) {
@@ -527,7 +521,6 @@ function registraForm() {
         formData.append("tlf_fijo", document.getElementById("tlf_fijo").value);
         formData.append("tlf_movil", document.getElementById("tlf_movil").value);
         formData.append("email", document.getElementById("email").value);
-        formData.append("estudios_superados", document.getElementById("estudios_superados").value);
         formData.append("grado", document.getElementById("grado").value);
         formData.append("ciclo", document.getElementById("ciclos").value);
         formData.append("modalidad", document.getElementById("modalidad").value);
