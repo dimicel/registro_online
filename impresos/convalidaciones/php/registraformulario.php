@@ -195,9 +195,6 @@ try {
 
 $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
 
-
-
-
 //////////////PDF///////////////////////
 
 //GENERA EL PDF Y LO GUARDA EN EL SERVIDOR
