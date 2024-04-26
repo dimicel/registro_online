@@ -254,49 +254,86 @@ $pdf->setFillColor(200);  //Relleno en gris
 //Padding dentro de la celda del texto
 $pdf->setCellPaddings(0,0,0,0);
 //Interlineado
-$pdf->setCellHeightRatio(1.5);
+$pdf->setCellHeightRatio(1);
 
 
 $pdf->AddPage();
-// get the current page break margin
-$bMargin = $pdf->getBreakMargin();
-// get current auto-page-break mode
-$auto_page_break = $pdf->getAutoPageBreak();
-// disable auto-page-break
-$pdf->SetAutoPageBreak(false, 0);
-// set background image
-//$pdf->Image("../recursos/consejeria.jpg", 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
-// restore auto-page-break status
-$pdf->SetAutoPageBreak($auto_page_break, $bMargin);
-// set the starting point for the page content
-$pdf->setPageMark();
 
 
-$pdf->SetXY(38,47);
-$pdf->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(122,51);
-$pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(35,56);
-$pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(125,56);
-$pdf->Cell(54,0,$localidad,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(35,60);
-$pdf->Cell(0,0,$cp,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(85,60);
-$pdf->Cell(40,0,$provincia,0,0,'L',0,'',1,true,'T','T');
+$YInicio+=27;
+$XInicioRotulo=17;
+$XInicio=12;
 
-$pdf->SetXY(90,77);
-$pdf->Cell(0,0,"IES UNIVERSIDAD LABORAL",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(65,81);
-$pdf->Cell(0,0,"AVDA. EUROPA, 28",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(56,85);
-$pdf->Cell(0,0,"45003",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(116,85);
-$pdf->Cell(0,0,"TOLEDO",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(40,89);
-$pdf->Cell(0,0,$grado,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(83,89);
-$pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,true,'T','T');
+//DATOS DEL ALUMNO
+$YInicio+=9;
+$pdf->RoundedRect(10,$YInicio-1,185,22,2,'1111','','','');
+$pdf->SetXY($XInicioRotulo,$YInicio);
+$pdf->SetFont('dejavusans', 'B', 10, '', true);
+$pdf->Cell(0,0,"DATOS DEL ALUMNO",0,0,'L',0,'',1,false,'','');
+
+$YInicio+=6;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'U', 8, '', true);
+$pdf->Cell(0,0,"Apellidos y Nombre",0,0,'L',0,'',1,false,'','');
+
+$YInicio+=3;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'B', 8, '', true);
+$pdf->Cell(175,0,$apellidos.", ".$nombre,0,0,'L',0,'',1,false,'T','T');
+
+$YInicio+=4;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'U', 8, '', true);
+$pdf->Cell(0,0,"NIF/NIE",0,0,'L',0,'',1,false,'','');
+$pdf->SetX(25);
+$pdf->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
+$pdf->SetX(115);
+$pdf->Cell(0,0,"Tlf. Fijo",0,0,'L',0,'',1,false,'','');
+$pdf->SetX(155);
+$pdf->Cell(0,0,"Tlf. Móvil",0,0,'L',0,'',1,false,'','');
+
+$YInicio+=3;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'B', 8, '', true);
+$pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,false,'','');
+$pdf->SetX(25);
+$pdf->Cell(0,0,$email,0,0,'L',0,'',1,false,'','');
+$pdf->SetX(117);
+$pdf->Cell(0,0,$tlf_fijo,0,0,'L',0,'',1,false,'','');
+$pdf->SetX(155);
+$pdf->Cell(0,0,$tlf_movil,0,0,'L',0,'',1,false,'','');
+
+$YInicio+=4;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'U', 8, '', true);
+$pdf->Cell(0,0,"Dirección (calle, plaza, número, escalera, puerta ...",0,0,'L',0,'',1,false,'','');
+$pdf->SetX(182);
+$pdf->Cell(0,0,"CP",0,0,'L',0,'',1,false,'','');
+
+$YInicio+=3;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'B', 8, '', true);
+$pdf->Cell(168,0,$direccion,0,0,'L',0,'',1,false,'T','T');
+$pdf->SetX(182);
+$pdf->Cell(10,0,$cp,0,0,'L',0,'',1,false,'T','T');
+
+$YInicio+=4;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'U', 8, '', true);
+$pdf->Cell(0,0,"Localidad",0,0,'L',0,'',1,false,'','');
+$pdf->SetX(77);
+$pdf->Cell(0,0,"Provincia",0,0,'L',0,'',1,false,'','');
+
+$YInicio+=3;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'B', 8, '', true);
+$pdf->Cell(61,0,$localidad,0,0,'L',0,'',1,false,'','');
+$pdf->SetX(77);
+$pdf->Cell(64,0,$provincia,0,0,'L',0,'',1,false,'','');
+
+
+
+
 
 $pdf->SetXY(45,101);
 $pdf->MultiCell(150,0,$estudios_superados,0,'L',0,1,'','',true,0,false,false,0);
