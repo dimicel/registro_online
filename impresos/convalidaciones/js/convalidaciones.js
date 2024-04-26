@@ -2,10 +2,10 @@ var id_nie = "";
 var nombre="";
 var apellidos="";
 var nif_nie="";
-var formulario = "";
 var curso = "";
 var drawing = false;
 var mouseX, mouseY;
+var matrizMods=[];
 
 var formData = new FormData();
 var subidoDocIdent=false;
@@ -95,7 +95,6 @@ function seleccion(obj) {
             
             $("#seccion-intro").hide();
             $("#seccion-formulario").show();
-            formulario = "Consejería";
             creaValidador();
             document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
             document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
@@ -291,8 +290,10 @@ function selModulos(e) {
                     click: function() {
                         elementos = document.getElementById("tab_lista_modulos").querySelectorAll("tr.selected");
                         textModulos = "";
+                        matrizMods=[];
                         for (i = 0; i < elementos.length; i++) {
                             textModulos += elementos[i].cells[0].innerHTML + "-" + elementos[i].cells[1].innerHTML + ";"
+                            matrizMods.push(elementos[i].cells[0].innerHTML + "-" + elementos[i].cells[1].innerHTML);
                         }
                         document.getElementById("modulos").value = textModulos;
                         $("#sMod").dialog("close");
@@ -405,17 +406,15 @@ function creaInputs() {
         _extension1="pdf";
         _extension2="pdf";
         mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
-        if (formulario=="Consejería"){
-            if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
-                _extension1="jpeg";
-                _extension2="jpg";
-                mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
-            }
-            else if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
-                _extension1="jpeg";
-                _extension2="jpg";
-                mensaje_alerta="Los dos archivos de imagen correspondientes al anverso y reverso del documento de identificación deben ser del tipo JPEG.","ERROR TIPO ARCHIVO";
-            }
+        if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+            _extension1="jpeg";
+            _extension2="jpg";
+            mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
+        }
+        else if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+            _extension1="jpeg";
+            _extension2="jpg";
+            mensaje_alerta="Los dos archivos de imagen correspondientes al anverso y reverso del documento de identificación deben ser del tipo JPEG.","ERROR TIPO ARCHIVO";
         }
         if (this.files.length > 0) {
             for(i=0;i<this.files.length;i++){
@@ -516,38 +515,37 @@ function borraFila(obj, e) {
 
 function registraForm() {
     if ($("#form_convalidaciones").valid()) {
-        formData.append("id_nie", encodeURIComponent(id_nie));
-        formData.append("curso", encodeURIComponent(curso));
-        formData.append("formulario", encodeURIComponent(formulario));
-        formData.append("nombre", encodeURIComponent(document.getElementById("nombre").value));
-        formData.append("apellidos", encodeURIComponent(document.getElementById("apellidos").value));
-        formData.append("id_nif", encodeURIComponent(document.getElementById("nif_nie").value));
-        formData.append("direccion", encodeURIComponent(document.getElementById("direccion").value));
-        formData.append("cp", encodeURIComponent(document.getElementById("cp").value));
-        formData.append("localidad", encodeURIComponent(document.getElementById("localidad").value));
-        formData.append("provincia", encodeURIComponent(document.getElementById("provincia").value));
-        formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
-        formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
-        formData.append("email", encodeURIComponent(document.getElementById("email").value));
-        formData.append("estudios_superados", encodeURIComponent(document.getElementById("estudios_superados").value));
-        formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
-        formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
-        formData.append("modalidad", encodeURIComponent(document.getElementById("modalidad").value));
-        formData.append("curso", encodeURIComponent(document.getElementById("curso").value));
-        formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
+        formData.append("id_nie", id_nie);
+        formData.append("curso", curso);
+        formData.append("nombre", document.getElementById("nombre").value);
+        formData.append("apellidos", document.getElementById("apellidos").value);
+        formData.append("id_nif", document.getElementById("nif_nie").value);
+        formData.append("direccion", document.getElementById("direccion").value);
+        formData.append("cp", document.getElementById("cp").value);
+        formData.append("localidad",document.getElementById("localidad").value);
+        formData.append("provincia", document.getElementById("provincia").value);
+        formData.append("tlf_fijo", document.getElementById("tlf_fijo").value);
+        formData.append("tlf_movil", document.getElementById("tlf_movil").value);
+        formData.append("email", document.getElementById("email").value);
+        formData.append("estudios_superados", document.getElementById("estudios_superados").value);
+        formData.append("grado", document.getElementById("grado").value);
+        formData.append("ciclo", document.getElementById("ciclos").value);
+        formData.append("modalidad", document.getElementById("modalidad").value);
+        formData.append("curso", document.getElementById("curso").value);
+        formData.append("modulos", document.getElementById("modulos").value);
+        formData.append("matrizMods", JSON.stringify(matrizMods));
         
 
         datosHidden = document.querySelectorAll('input[name="desc[]"]');
         datosFiles = document.querySelectorAll('input[name="docs[]"]');
         for (var i = 0; i < datosHidden.length; i++) {
             if (datosHidden[i].value!="Documento de identificación (DNI/NIE)" && datosHidden[i].value!="Documento de identificación (Pasaporte)"){
-                formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
+                formData.append("desc[]", datosHidden[i].value);
                 formData.append("docs[]", datosFiles[i].files[0]);
             }
         }
         
-        //if (formulario == "Centro-Ministerio") urlPHP="php/registracentroministerio.php";
-        //else urlPHP="php/registraconsejeria.php";
+        
         urlPHP="php/registraformulario.php";
         document.getElementById("cargando").style.display = 'inherit';
         $.post({

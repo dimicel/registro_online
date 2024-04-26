@@ -30,29 +30,27 @@ function generaRegistro(){
 
 
 
-$id_nie = urldecode($_POST['id_nie']);
-$anno_curso = urldecode($_POST['curso']);
+$id_nie = $_POST['id_nie'];
+$anno_curso = $_POST['curso'];
 $fecha_registro=date('Y-m-d');
-$formulario = urldecode($_POST['formulario']);
-$nombre = urldecode($_POST['nombre']);
-$apellidos = urldecode($_POST['apellidos']);
-$id_nif = urldecode($_POST['id_nif']);
-$direccion = urldecode($_POST['direccion']);
-$cp = urldecode($_POST['cp']);
-$localidad = urldecode($_POST['localidad']);
-$provincia = urldecode($_POST['provincia']);
-$ley="LOE";
-$grado = urldecode($_POST['grado']);
-$ciclo = urldecode($_POST['ciclo']);
-$curso = urldecode($_POST['curso']);
-$modalidad = urldecode($_POST['modalidad']);
-$turno = urldecode($_POST['turno']);
-$tlf_fijo = urldecode($_POST['tlf_fijo']);
-$tlf_movil = urldecode($_POST['tlf_movil']);
-$email = urldecode($_POST['email']);
-$modulos = urldecode($_POST['modulos']);
+$nombre = $_POST['nombre'];
+$apellidos = $_POST['apellidos'];
+$id_nif = $_POST['id_nif'];
+$direccion = $_POST['direccion'];
+$cp = $_POST['cp'];
+$localidad = $_POST['localidad'];
+$provincia = $_POST['provincia'];
+$grado = $_POST['grado'];
+$ciclo = $_POST['ciclo'];
+$curso = $_POST['curso'];
+$modalidad = $_POST['modalidad'];
+$turno = $_POST['turno'];
+$tlf_fijo = $_POST['tlf_fijo'];
+$tlf_movil = $_POST['tlf_movil'];
+$email = $_POST['email'];
+$modulos = $_POST['modulos'];
 $subidopor="usuario";
-$estudios_superados=urldecode($_POST['estudios_superados']);
+$estudios_superados=$_POST['estudios_superados'];
 $desc= array();
 $estudios_aportados="";
 $otra_doc="";
@@ -106,10 +104,10 @@ $mysqli->begin_transaction();
 
 try {
     // Insertar registro en la primera tabla
-    $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,organismo_destino,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,tlf_fijo,tlf_movil,email,
-                                                            grado,ciclo,curso_ciclo,modalidad,turno,ley,estudios_superados,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt1->bind_param("ssssssssssssssssssss", $id_nie,$formulario,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
-                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$curso,$modalidad,$turno,$ley,$estudios_superados,$modulos);
+    $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,tlf_fijo,tlf_movil,email,
+                                                            grado,ciclo,curso_ciclo,modalidad,turno,estudios_superados,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt1->bind_param("sssssssssssssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
+                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$curso,$modalidad,$turno,$estudios_superados,$modulos);
     $stmt1->execute();
     $stmt1->close();
     // Insertar registros en la segunda tabla
