@@ -386,7 +386,6 @@ if (count($desc)>0){
     $pdf->Cell(0,0,$docs_aportados,0,0,'L',0,'',1,false,'','');
 }
 
-
 $pdf->setCellHeightRatio(1.4);
 $pdf->SetXY(65,177);
 $pdf->Cell(0,0,"Toledo",0,0,'L',0,'',1,true,'T','T');
@@ -397,11 +396,9 @@ $pdf->Cell(0,0,$mes,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(151,177);
 $pdf->Cell(0,0,$anno,0,0,'L',0,'',1,true,'T','T');
 
-
 $pdf->SetFont('dejavusans', '', 5, '', true);
 $pdf->SetXY(30,195);
 $pdf->Cell(0,0,$registro,0,0,'L',0,'',1,true,'T','T');
-
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';
