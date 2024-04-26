@@ -85,7 +85,6 @@ while($repite_registro){
 }
 $dirRegistro=substr($registro, 17);
 
-//ver esto que es la hostia made in chatGPT////////////////////////////////////////////////////////////
 ///Parametro de bind sss por la siguiente tabla
 //"i": Entero (integer)
 //"d": Decimal (double)
