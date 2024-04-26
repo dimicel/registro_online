@@ -202,6 +202,7 @@
                                         <label for="grado">Grado</label>
                                         <select class="form-control" name="grado" id="grado" size="1" onchange="selGrado(this)">
                                             <option value="">Seleccione uno...</option>
+                                            <option value="Básico">Básico</option>
                                             <option value="Medio">Medio</option>
                                             <option value="Superior">Superior</option>
                                         </select> 

@@ -96,7 +96,7 @@ function seleccion(obj) {
             $("#seccion-intro").hide();
             $("#seccion-formulario").show();
             creaValidador();
-            document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
+            document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES";
             document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
             
         }, "json");
