@@ -240,10 +240,24 @@ function selGrado(obj) {
 }
 
 
+function selCiclo(obj){
+    document.getElementById('modulos').value='';
+    if (obj.value=="Administración y Finanzas (NOCTURNO)") document.getElementById("turno").value="Nocturno";
+    else document.getElementById("turno").selectedIndex=0;
+}
+
 function selModulos(e) {
     e.preventDefault();
     if (document.getElementById("ciclos").selectedIndex == 0) {
         alerta("Seleccione antes un ciclo formativo.", "CICLO SIN SELECCIÓN");
+        return;
+    }
+    else if(document.getElementById("curso").selectedIndex == 0){
+        alerta("Seleccione antes el curso.", "CURSO SIN SELECCIÓN");
+        return;
+    }
+    else if(document.getElementById("curso").selectedIndex == 0 && document.getElementById("ciclos").selectedIndex == 0){
+        alerta("Seleccione antes el ciclo formativo y el curso.", "CICLO Y CURSO SIN SELECCIÓN");
         return;
     }
     $.post("php/listamodulos.php", { ciclo: document.getElementById("ciclos").value, grado: document.getElementById("grado").value }, (resp) => {
