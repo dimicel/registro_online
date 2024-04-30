@@ -260,7 +260,7 @@ function selModulos(e) {
         alerta("Seleccione antes el ciclo formativo y el curso.", "CICLO Y CURSO SIN SELECCIÓN");
         return;
     }
-    $.post("php/listamodulos.php", { ciclo: document.getElementById("ciclos").value, grado: document.getElementById("grado").value }, (resp) => {
+    $.post("php/listamodulos.php", { ciclo: document.getElementById("ciclos").value, grado: document.getElementById("grado").value, curso: document.getElementById("curso").value}, (resp) => {
         if (resp["error"] == "servidor") {
             alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
         } else if (resp["error"].indexOf("error_consulta") > -1) {
