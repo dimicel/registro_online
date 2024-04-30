@@ -199,7 +199,7 @@
                                     </div>
                                     <div class="col">
                                         <label for="ciclos">Denominado</label>
-                                        <select class="form-control" name="ciclos" id="ciclos" size="1">
+                                        <select class="form-control" name="ciclos" id="ciclos" size="1" onchange="document.getElementById('modulos').value=''">
                                             <option value="">Seleccione grado...</option>
                                         </select>
                                     </div>
