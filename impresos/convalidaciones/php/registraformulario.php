@@ -110,7 +110,6 @@ try {
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$_FILES["docs"]["name"][$i];
         $stmt2->bind_param("sssss", $id_nie, $registro, $desc[$i], $rutaTb, $subidopor);
         $stmt2->execute();
-        
     }
     if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
         $check2=true;
