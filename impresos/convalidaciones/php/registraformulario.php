@@ -352,11 +352,11 @@ $pdf->SetXY($XInicio,$YInicio);
 $pdf->Cell(0,0,$grado,0,0,'L',0,'',1,false,'','');
 $pdf->setX(15);
 $pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,false,'','');
-$pdf->setX(63);
+$pdf->setX(65);
 $pdf->Cell(0,0,$curso,0,0,'L',0,'',1,false,'','');
-$pdf->setX(70);
+$pdf->setX(72);
 $pdf->Cell(0,0,$turno,0,0,'L',0,'',1,false,'','');
-$pdf->setX(85);
+$pdf->setX(87);
 $pdf->Cell(0,0,$modalidad,0,0,'L',0,'',1,false,'','');
 
 $YInicio+=6;
