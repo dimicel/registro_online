@@ -524,7 +524,7 @@ function borraFila(obj, e) {
 function registraForm() {
     if ($("#form_convalidaciones").valid()) {
         formData.append("id_nie", id_nie);
-        formData.append("curso", curso);
+        formData.append("anno_curso", curso);
         formData.append("nombre", document.getElementById("nombre").value);
         formData.append("apellidos", document.getElementById("apellidos").value);
         formData.append("id_nif", document.getElementById("nif_nie").value);

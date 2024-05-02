@@ -31,7 +31,7 @@ function generaRegistro(){
 
 
 $id_nie = $_POST['id_nie'];
-$anno_curso = $_POST['curso'];
+$anno_curso = $_POST['anno_curso'];
 $fecha_registro=date('Y-m-d');
 $nombre = $_POST['nombre'];
 $apellidos = $_POST['apellidos'];
@@ -265,7 +265,7 @@ $XInicio=12;
 
 //DATOS DEL ALUMNO
 $YInicio+=9;
-$pdf->RoundedRect(10,$YInicio-1,185,22,2,'1111','','','');
+$pdf->RoundedRect(10,$YInicio-1,185,44,2,'1111','','','');
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"DATOS DEL ALUMNO",0,0,'L',0,'',1,false,'','');
@@ -284,7 +284,7 @@ $YInicio+=4;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->Cell(0,0,"NIF/NIE",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(25);
+$pdf->SetX(30);
 $pdf->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
 $pdf->SetX(115);
 $pdf->Cell(0,0,"Tlf. Fijo",0,0,'L',0,'',1,false,'','');
@@ -295,7 +295,7 @@ $YInicio+=3;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->Cell(0,0,$id_nif,0,0,'L',0,'',1,false,'','');
-$pdf->SetX(25);
+$pdf->SetX(30);
 $pdf->Cell(0,0,$email,0,0,'L',0,'',1,false,'','');
 $pdf->SetX(117);
 $pdf->Cell(0,0,$tlf_fijo,0,0,'L',0,'',1,false,'','');
