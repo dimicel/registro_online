@@ -338,16 +338,19 @@ $pdf->Cell(0,0,"DATOS ACADÉMICOS Y MÓDULOS QUE SOLICITA CONVALIDAR",0,0,'L',0,
 
 $YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
+$pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->Cell(0,0,"Está matriculado en el ciclo formativo de:",0,0,'L',0,'',1,false,'','');
 $YInicio+=3;
+$pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->Cell(0,0,"Grado       Denominación                                      Curso  Turno          Modalidad     ",0,0,'L',0,'',1,false,'','');
+$pdf->Cell(0,0,"Grado          Denominación                                      Curso  Turno          Modalidad     ",0,0,'L',0,'',1,false,'','');
+$pdf->SetX(15);
+$pdf->Cell(0,0,"Denominación",0,0,'L',0,'',1,false,'','');
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $YInicio+=3;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->Cell(0,0,$grado,0,0,'L',0,'',1,false,'','');
-$pdf->setX(13);
+$pdf->setX(15);
 $pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,false,'','');
 $pdf->setX(63);
 $pdf->Cell(0,0,$curso,0,0,'L',0,'',1,false,'','');
