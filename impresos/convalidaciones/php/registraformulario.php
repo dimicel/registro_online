@@ -99,7 +99,10 @@ try {
                                                             grado,ciclo,curso_ciclo,modalidad,turno,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt1->bind_param("ssssssssssssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
                                                 $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$curso,$modalidad,$turno,$modulos);
-    $stmt1->execute();
+    
+    if ($stmt1->execute() === false) {
+        throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt1->error);
+    }
     $stmt1->close();
     // Insertar registros en la segunda tabla
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
@@ -109,7 +112,9 @@ try {
         $indice=sprintf("%02d", $i+1)."_";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$_FILES["docs"]["name"][$i];
         $stmt2->bind_param("sssss", $id_nie, $registro, $desc[$i], $rutaTb, $subidopor);
-        $stmt2->execute();
+        if ($stmt2->execute() === false) {
+            throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt2->error);
+        }
     }
     if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
         $check2=true;
@@ -117,7 +122,9 @@ try {
         $descDoc="Documento de identificación";
         $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
         $stmt2->bind_param("sssss", $id_nie,$registro,$descDoc , $rutaTb, $subidopor);
-        $stmt2->execute();
+        if ($stmt2->execute() === false) {
+            throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt2->error);
+        }
     }
     $stmt2->close();
     $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
@@ -144,6 +151,7 @@ try {
     
                 // Revertir la transacción en la base de datos
                 $mysqli->rollback();
+                $mysqli->close();
     
                 // Mostrar mensaje de error o realizar otras acciones necesarias
                 exit("error_subida");
@@ -170,7 +178,9 @@ try {
     $stmt3 = $mysqli->prepare("INSERT INTO convalidaciones_modulos (id_nie, registro, modulo) VALUES (?, ?, ?)");
     for($i=0;$i<count($matrizMods);$i++) {
         $stmt3->bind_param("sss", $id_nie, $registro, $matrizMods[$i]);
-        $stmt3->execute();
+        if ($stmt3->execute() === false) {
+            throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt3->error);
+        }
     }
     $stmt3->close();
     // Confirmar la transacción
@@ -178,6 +188,7 @@ try {
 } catch (Exception $e) {
     // En caso de error, revertir la transacción
     $mysqli->rollback();
+    $mysqli->close();
     exit("database");
 }
 ////////////////////////////////////////////////////////////
