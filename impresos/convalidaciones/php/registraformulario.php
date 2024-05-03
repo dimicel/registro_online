@@ -340,7 +340,7 @@ $pdf->SetX(77);
 $pdf->Cell(64,0,$provincia,0,0,'L',0,'',1,false,'','');
 
 $YInicio+=9;
-$pdf->RoundedRect(10,$YInicio-1,185,22,2,'1111','','','');
+$pdf->RoundedRect(10,$YInicio-1,185,19,2,'1111','','','');
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"DATOS ACADÉMICOS Y MÓDULOS QUE SOLICITA CONVALIDAR",0,0,'L',0,'',1,false,'','');
@@ -353,25 +353,25 @@ $YInicio+=3;
 $pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->Cell(0,0,"Grado",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(15);
+$pdf->SetX(20);
 $pdf->Cell(0,0,"Denominación",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(65);
+$pdf->SetX(100);
 $pdf->Cell(0,0,"Curso",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(72);
+$pdf->SetX(120);
 $pdf->Cell(0,0,"Turno",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(87);
+$pdf->SetX(150);
 $pdf->Cell(0,0,"Modalidad",0,0,'L',0,'',1,false,'','');
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $YInicio+=3;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->Cell(0,0,$grado,0,0,'L',0,'',1,false,'','');
-$pdf->setX(15);
+$pdf->setX(20);
 $pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,false,'','');
-$pdf->setX(65);
+$pdf->setX(100);
 $pdf->Cell(0,0,$curso,0,0,'L',0,'',1,false,'','');
-$pdf->setX(72);
+$pdf->setX(120);
 $pdf->Cell(0,0,$turno,0,0,'L',0,'',1,false,'','');
-$pdf->setX(87);
+$pdf->setX(150);
 $pdf->Cell(0,0,$modalidad,0,0,'L',0,'',1,false,'','');
 
 $YInicio+=6;
@@ -402,7 +402,7 @@ $pdf->SetXY(10,177);
 $pdf->Cell(0,0,"Toledo, a ".$dia." de  ".$mes." de ".$anno,0,0,'C',0,'',1,true,'T','T');
 
 $pdf->SetFont('dejavusans', '', 5, '', true);
-$pdf->SetXY(30,195);
+$pdf->SetXY(10,195);
 $pdf->Cell(0,0,"Nº registro: ".$registro,0,0,'C',0,'',1,true,'T','T');
 
 //GENERA EL ARCHIVO NUEVO
