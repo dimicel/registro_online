@@ -267,8 +267,8 @@ $pdf->setCellHeightRatio(1);
 
 $pdf->AddPage();
 
-$pdf->SetLineWidth(1);
-$YInicio+=27;
+$pdf->SetLineWidth(0.5);
+$YInicio+=37;
 $XInicioRotulo=17;
 $XInicio=12;
 
