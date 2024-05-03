@@ -267,14 +267,16 @@ $pdf->setCellHeightRatio(1);
 
 $pdf->AddPage();
 
-
+$pdf->SetLineWidth(1);
 $YInicio+=27;
 $XInicioRotulo=17;
 $XInicio=12;
 
 //DATOS DEL ALUMNO
+$pdf->SetXY(10, $YInicio);
+$pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
+
 $YInicio+=9;
-$pdf->RoundedRect(10,$YInicio-1,185,35,2,'1111','','','');
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"DATOS DEL ALUMNO",0,0,'L',0,'',1,false,'','');
@@ -339,8 +341,11 @@ $pdf->Cell(61,0,$localidad,0,0,'L',0,'',1,false,'','');
 $pdf->SetX(77);
 $pdf->Cell(64,0,$provincia,0,0,'L',0,'',1,false,'','');
 
-$YInicio+=9;
-$pdf->RoundedRect(10,$YInicio-1,185,19,2,'1111','','','');
+$YInicio+=5;
+$pdf->SetXY(10, $YInicio);
+$pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
+
+$YInicio+=5;
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"DATOS ACADÉMICOS Y MÓDULOS QUE SOLICITA CONVALIDAR",0,0,'L',0,'',1,false,'','');
@@ -374,7 +379,11 @@ $pdf->Cell(0,0,$turno,0,0,'L',0,'',1,false,'','');
 $pdf->setX(155);
 $pdf->Cell(0,0,$modalidad,0,0,'L',0,'',1,false,'','');
 
-$YInicio+=6;
+$YInicio+=5;
+$pdf->SetXY(10, $YInicio);
+$pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
+
+$YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->Cell(0,0,"Solicita la convalidación de los siguientes módulos:",0,0,'L',0,'',1,false,'','');
@@ -384,18 +393,24 @@ $pdf->SetXY($XInicio,$YInicio);
 $pdf->Cell(0,0,$modulos,0,0,'L',0,'',1,false,'','');
 
 if (count($desc)>0){
+    $YInicio+=5;
+    $pdf->SetXY(10, $YInicio);
+    $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
     $docs_aportados="";
     for ($i=0;$i<count($desc);$i++){
         $docs_aportados.=$desc[$i];
         if ($i<count($desc)-1)$docs_aportados.=", ";
     }
-    $YInicio+=6;
+    $YInicio+=5;
     $pdf->SetXY($XInicio,$YInicio);
     $pdf->SetFont('dejavusans', 'U', 8, '', true);
     $pdf->Cell(0,0,"Y aporta la siguiente documentación:",0,0,'L',0,'',1,false,'','');
     $pdf->SetFont('dejavusans', 'B', 8, '', true);
     $YInicio+=3;
     $pdf->Cell(0,0,$docs_aportados,0,0,'L',0,'',1,false,'','');
+    $YInicio+=5;
+    $pdf->SetXY(10, $YInicio);
+    $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 }
 
 $pdf->setCellHeightRatio(1.4);
