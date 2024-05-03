@@ -268,18 +268,22 @@ $pdf->setCellHeightRatio(1);
 $pdf->AddPage();
 
 $pdf->SetLineWidth(0.5);
-$YInicio+=37;
 $XInicioRotulo=17;
 $XInicio=12;
 
 //DATOS DEL ALUMNO
+$YInicio+=47;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
-$YInicio+=9;
+$YInicio+=3;
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"DATOS DEL ALUMNO",0,0,'L',0,'',1,false,'','');
+
+$YInicio+=3;
+$pdf->SetXY(10, $YInicio);
+$pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
 $YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);
@@ -345,10 +349,14 @@ $YInicio+=5;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
-$YInicio+=5;
+$YInicio+=3;
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"DATOS ACADÉMICOS Y MÓDULOS QUE SOLICITA CONVALIDAR",0,0,'L',0,'',1,false,'','');
+
+$YInicio+=3;
+$pdf->SetXY(10, $YInicio);
+$pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
 $YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);
@@ -383,7 +391,7 @@ $YInicio+=5;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
-$YInicio+=5;
+$YInicio+=7;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->Cell(0,0,"Solicita la convalidación de los siguientes módulos:",0,0,'L',0,'',1,false,'','');
