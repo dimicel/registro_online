@@ -372,7 +372,7 @@ $pdf->SetX(125);
 $pdf->Cell(0,0,"Curso",0,0,'L',0,'',1,false,'','');
 $pdf->SetX(145);
 $pdf->Cell(0,0,"Turno",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(175);
+$pdf->SetX(165);
 $pdf->Cell(0,0,"Modalidad",0,0,'L',0,'',1,false,'','');
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $YInicio+=3;
@@ -385,7 +385,7 @@ $pdf->setX(125);
 $pdf->Cell(0,0,$curso,0,0,'L',0,'',1,false,'','');
 $pdf->setX(145);
 $pdf->Cell(0,0,$turno,0,0,'L',0,'',1,false,'','');
-$pdf->setX(175);
+$pdf->setX(165);
 $pdf->Cell(0,0,$modalidad,0,0,'L',0,'',1,false,'','');
 
 $YInicio+=8;
