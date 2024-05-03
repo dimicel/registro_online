@@ -276,12 +276,12 @@ $YInicio+=47;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
-$YInicio+=3;
+$YInicio+=2;
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"DATOS DEL ALUMNO",0,0,'L',0,'',1,false,'','');
 
-$YInicio+=3;
+$YInicio+=4;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
@@ -349,12 +349,12 @@ $YInicio+=5;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
-$YInicio+=3;
+$YInicio+=2;
 $pdf->SetXY($XInicioRotulo,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"DATOS ACADÉMICOS Y MÓDULOS QUE SOLICITA CONVALIDAR",0,0,'L',0,'',1,false,'','');
 
-$YInicio+=3;
+$YInicio+=4;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
@@ -366,32 +366,32 @@ $YInicio+=3;
 $pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->Cell(0,0,"Grado",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(25);
+$pdf->SetX(35);
 $pdf->Cell(0,0,"Denominación",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(105);
+$pdf->SetX(115);
 $pdf->Cell(0,0,"Curso",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(125);
+$pdf->SetX(135);
 $pdf->Cell(0,0,"Turno",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(155);
+$pdf->SetX(165);
 $pdf->Cell(0,0,"Modalidad",0,0,'L',0,'',1,false,'','');
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $YInicio+=3;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->Cell(0,0,$grado,0,0,'L',0,'',1,false,'','');
-$pdf->setX(25);
+$pdf->setX(35);
 $pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,false,'','');
-$pdf->setX(105);
+$pdf->setX(115);
 $pdf->Cell(0,0,$curso,0,0,'L',0,'',1,false,'','');
-$pdf->setX(125);
+$pdf->setX(135);
 $pdf->Cell(0,0,$turno,0,0,'L',0,'',1,false,'','');
-$pdf->setX(155);
+$pdf->setX(165);
 $pdf->Cell(0,0,$modalidad,0,0,'L',0,'',1,false,'','');
 
-$YInicio+=5;
+$YInicio+=8;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
-$YInicio+=7;
+$YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->Cell(0,0,"Solicita la convalidación de los siguientes módulos:",0,0,'L',0,'',1,false,'','');
