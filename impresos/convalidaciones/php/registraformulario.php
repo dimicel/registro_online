@@ -189,7 +189,7 @@ try {
     // En caso de error, revertir la transacción
     $mysqli->rollback();
     $mysqli->close();
-    exit("database");
+    exit("database ".$e->getMessage());
 }
 ////////////////////////////////////////////////////////////
 
