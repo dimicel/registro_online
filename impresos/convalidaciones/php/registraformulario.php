@@ -345,7 +345,7 @@ $pdf->Cell(61,0,$localidad,0,0,'L',0,'',1,false,'','');
 $pdf->SetX(77);
 $pdf->Cell(64,0,$provincia,0,0,'L',0,'',1,false,'','');
 
-$YInicio+=5;
+$YInicio+=8;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
