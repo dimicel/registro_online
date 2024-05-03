@@ -538,6 +538,7 @@ function registraForm() {
         formData.append("grado", document.getElementById("grado").value);
         formData.append("ciclo", document.getElementById("ciclos").value);
         formData.append("modalidad", document.getElementById("modalidad").value);
+        formData.append("turno", document.getElementById("turno").value);
         formData.append("curso", document.getElementById("curso").value);
         formData.append("modulos", document.getElementById("modulos").value);
         formData.append("matrizMods", JSON.stringify(matrizMods));
