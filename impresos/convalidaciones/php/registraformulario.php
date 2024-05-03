@@ -204,7 +204,6 @@ $fecha_actual=getdate();
 $dia=$fecha_actual["mday"];
 $mes=$meses[$fecha_actual["mon"]-1];
 $anno=$fecha_actual["year"];
-$anno = substr($anno, -2);
 
 class MYPDF extends TCPDF {
 
@@ -353,7 +352,7 @@ $pdf->Cell(0,0,"Está matriculado en el ciclo formativo de:",0,0,'L',0,'',1,fals
 $YInicio+=3;
 $pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->Cell(0,0,"Grado          Denominación                                      Curso  Turno          Modalidad     ",0,0,'L',0,'',1,false,'','');
+$pdf->Cell(0,0,"Grado",0,0,'L',0,'',1,false,'','');
 $pdf->SetX(15);
 $pdf->Cell(0,0,"Denominación",0,0,'L',0,'',1,false,'','');
 $pdf->SetX(65);
@@ -399,18 +398,12 @@ if (count($desc)>0){
 }
 
 $pdf->setCellHeightRatio(1.4);
-$pdf->SetXY(65,177);
-$pdf->Cell(0,0,"Toledo",0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(99,177);
-$pdf->Cell(0,0,$dia,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(120,177);
-$pdf->Cell(0,0,$mes,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(151,177);
-$pdf->Cell(0,0,$anno,0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(10,177);
+$pdf->Cell(0,0,"Toledo, a ".$dia." de  ".$mes." de ".$anno,0,0,'C',0,'',1,true,'T','T');
 
 $pdf->SetFont('dejavusans', '', 5, '', true);
 $pdf->SetXY(30,195);
-$pdf->Cell(0,0,$registro,0,0,'L',0,'',1,true,'T','T');
+$pdf->Cell(0,0,"Nº registro: ".$registro,0,0,'C',0,'',1,true,'T','T');
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';
