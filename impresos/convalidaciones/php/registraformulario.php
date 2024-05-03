@@ -285,7 +285,7 @@ $YInicio+=4;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
-$YInicio+=6;
+$YInicio+=4;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->Cell(0,0,"Apellidos y Nombre",0,0,'L',0,'',1,false,'','');
@@ -358,7 +358,7 @@ $YInicio+=4;
 $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
-$YInicio+=6;
+$YInicio+=4;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->Cell(0,0,"Está matriculado en el ciclo formativo de:",0,0,'L',0,'',1,false,'','');
