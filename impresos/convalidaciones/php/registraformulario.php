@@ -377,6 +377,7 @@ $pdf->Cell(0,0,"Modalidad",0,0,'L',0,'',1,false,'','');
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $YInicio+=3;
 $pdf->SetXY($XInicio,$YInicio);
+if ($grado=="Curso de Especialización") $grado="Curso Especializ.";
 $pdf->Cell(0,0,$grado,0,0,'L',0,'',1,false,'','');
 $pdf->setX(45);
 $pdf->Cell(0,0,$ciclo,0,0,'L',0,'',1,false,'','');
