@@ -194,7 +194,7 @@
                                             <option value="Básico">Básico</option>
                                             <option value="Medio">Medio</option>
                                             <option value="Superior">Superior</option>
-                                            <option value="Curso de Especialización">Curso Especializ.</option>
+                                            <option value="Curso Especializ.">Curso Especializ.</option>
                                         </select> 
                                     </div>
                                     <div class="col">
