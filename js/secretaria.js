@@ -1202,7 +1202,8 @@ function verRegistroConvalidaciones(num_registro){
             contenido +="<div id='ver_reg_ajuntosConvalid'></div>"
             contenido +="<div class='container'><div class='row'>";
             contenido +="<div class='col-2'>";
-            contenido +="<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
+            //contenido +="<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
+            contenido +="<label class='verReg_label'>RESOLUCION:</label>";
             contenido +="</div><div class='col-3'>";
             contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/>"
             contenido +="</div><div class='col-3'>"
@@ -1215,8 +1216,8 @@ function verRegistroConvalidaciones(num_registro){
             contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
             contenido += botones;
             document.getElementById("verRegistro_div").innerHTML = contenido;
-            document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
-            verRegAdjuntosConvalid(registro);
+            //document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
+            verRegAdjuntosConvalid(num_registro);
 
             $("#verRegistro_div").dialog({
                 autoOpen: true,
