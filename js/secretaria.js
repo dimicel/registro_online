@@ -1263,7 +1263,7 @@ function verPanelResolver(id_nie,registro){
                 cont+="<div class='col-5'><input type='text' name='motivo_no_fav_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp.datos[i].motivo_no_favorable+"'/></div>";
                 cont+="</div>";
             }
-            cont+="</div></form>";alert(cont)
+            cont+="</div></form>";
             document.getElementById("verModulosConvalidaciones_div").innerHTML=cont;
         }
         else if(resp["error"]=="sin_modulos") alerta("No hay módulos que convalidar.","SIN MÓDULOS");
