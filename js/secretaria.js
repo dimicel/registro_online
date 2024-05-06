@@ -1246,6 +1246,7 @@ function verPanelResolver(id_nie,registro){
             cont+="<div class='col-2'><label>Estado</label></div>";
             cont+="<div class='col-5'><label>Motivo No Fav.</label></div>";
             cont+="</div>";
+            alert(resp.length);
             for(i=0;i<resp.length;i++){
                 cont+="<div class='form-group form-row'>";
                 cont+="<div class='col-5'><input type='text' name='modulo_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp[i].modulo+"'  readonly/></div>";
