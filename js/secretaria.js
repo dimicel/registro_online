@@ -670,7 +670,11 @@ function listaRegistros(orden_campo, orden_direccion) {
             document.getElementById("div_notabla").style.display = "inline-block";
             document.getElementById("div_tabla").style.display = "none";
             habilitaMenu(false, false);
-        } else {
+        }
+        else if(resp.error == "sin_registro"){
+            alerta("No se encuentra el registro asociado.", "ERROR");
+        }
+        else {
             document.getElementById("div_notabla").style.display = "none";
             document.getElementById("div_tabla").style.display = "inline-block";
             //encab = "";
