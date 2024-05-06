@@ -671,9 +671,6 @@ function listaRegistros(orden_campo, orden_direccion) {
             document.getElementById("div_tabla").style.display = "none";
             habilitaMenu(false, false);
         }
-        else if(resp.error == "sin_registro"){
-            alerta("No se encuentra el registro asociado.", "ERROR");
-        }
         else {
             document.getElementById("div_notabla").style.display = "none";
             document.getElementById("div_tabla").style.display = "inline-block";
@@ -1189,46 +1186,50 @@ function verRegistroConvalidaciones(num_registro){
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").destroy()'/>";
     botones += "</div>";
     $.post("php/secret_recuperaregistro.php", { formulario: formulario, registro: num_registro }, function(resp) {
-        contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><br>";
-        contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
-        contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
-        contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
-        contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
-        contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
-        contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
-        contenido += "<span class='verReg_label'>Estudios superados : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
-        contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
-        contenido +="<div id='ver_reg_ajuntosConvalid'></div>"
-        contenido +="<div class='container'><div class='row'>";
-        contenido +="<div class='col-2'>";
-        contenido +="<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
-        contenido +="</div><div class='col-3'>";
-        contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/>"
-        contenido +="</div><div class='col-3'>"
-        contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
-        contenido +="</div><div class='col-2'>"
-        contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+_id_nie+"\",\""+registro+"\")'/>";
-        contenido += "</div></div>";
-        contenido +="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+_id_nie+"\",\""+registro+"\",this)'/>";
-        contenido += "<span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
-        contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
-        contenido += botones;
-        document.getElementById("verRegistro_div").innerHTML = contenido;
-        document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
-        verRegAdjuntosConvalid(registro);
+        if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
+        else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
+        else if (resp.error == "ok") {
+            contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><br>";
+            contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
+            contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
+            contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
+            contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
+            contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
+            contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
+            contenido += "<span class='verReg_label'>Estudios superados : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
+            contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
+            contenido +="<div id='ver_reg_ajuntosConvalid'></div>"
+            contenido +="<div class='container'><div class='row'>";
+            contenido +="<div class='col-2'>";
+            contenido +="<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
+            contenido +="</div><div class='col-3'>";
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/>"
+            contenido +="</div><div class='col-3'>"
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
+            contenido +="</div><div class='col-2'>"
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+_id_nie+"\",\""+registro+"\")'/>";
+            contenido += "</div></div>";
+            contenido +="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+_id_nie+"\",\""+registro+"\",this)'/>";
+            contenido += "<span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
+            contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
+            contenido += botones;
+            document.getElementById("verRegistro_div").innerHTML = contenido;
+            document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
+            verRegAdjuntosConvalid(registro);
 
-        $("#verRegistro_div").dialog({
-            autoOpen: true,
-            dialogClass: "no-close",
-            modal: true,
-            draggable: false,
-            hide: { effect: "fade", duration: 0 },
-            resizable: false,
-            show: { effect: "fade", duration: 0 },
-            title: "VISTA DEL REGISTRO",
-            width: ancho,
-            position: { my: "center top", at: "center top", of: window }
-        });
+            $("#verRegistro_div").dialog({
+                autoOpen: true,
+                dialogClass: "no-close",
+                modal: true,
+                draggable: false,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "VISTA DEL REGISTRO",
+                width: ancho,
+                position: { my: "center top", at: "center top", of: window }
+            });
+        }
     }, "json");
 }
 
