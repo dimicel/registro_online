@@ -399,7 +399,7 @@ $pdf->Cell(0,0,"Solicita la convalidación de los siguientes módulos:",0,0,'L',
 $YInicio+=3;
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->Cell(0,0,$modulos,0,0,'L',0,'',1,false,'','');
+$pdf->MultiCell(170,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
 if (count($desc)>0){
     $YInicio+=5;
