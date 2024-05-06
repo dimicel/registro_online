@@ -1196,9 +1196,9 @@ function verRegistroConvalidaciones(num_registro){
             contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
             contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
             contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
-            contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>"+resp.registro.curso_ciclo+" de Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span>";
+            contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>"+resp.registro.curso_ciclo+" de Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
             contenido += "<span class='verReg_label'>Turno: </span><span class='verReg_campo'> " + resp.registro.turno + "</span>";
-            contenido += "<span class='verReg_label'>Modalidad: </span><span class='verReg_campo'> " + resp.registro.modalidad + "</span>";
+            contenido += "<span class='verReg_label'>Modalidad: </span><span class='verReg_campo'> " + resp.registro.modalidad + "</span><br>";
             contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
             contenido +="<div id='ver_reg_ajuntosConvalid'></div>"
             contenido +="<div class='container'><div class='row'>";
