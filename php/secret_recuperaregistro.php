@@ -20,7 +20,8 @@ if(strpos($tabla_db, "premat_") !== false){
 }
 
 $consulta="select * from $tabla_db where registro='$registro'";
-
+$data["error"]=$consulta;
+exit(json_encode($data));
 $res=$mysqli->query($consulta);
 
 if ($res->num_rows==0){
