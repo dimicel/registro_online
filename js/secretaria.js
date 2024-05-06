@@ -1192,7 +1192,6 @@ function verRegistroConvalidaciones(num_registro){
         else if (resp.error == "ok") {
             contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><br>";
             contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
-            contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
             contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
             contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
             contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
@@ -1202,10 +1201,11 @@ function verRegistroConvalidaciones(num_registro){
             contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
             contenido +="<div id='ver_reg_ajuntosConvalid'></div>"
             contenido +="<div class='container'><div class='row'>";
-            contenido +="<div class='col-2'>";
+            //contenido +="<div class='col-2'>";
             //contenido +="<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
-            contenido +="<label class='verReg_label'>RESOLUCION:</label>";
-            contenido +="</div><div class='col-3'>";
+            //contenido +="<label class='verReg_label'>RESOLUCION:</label>";
+            //contenido +="</div><div class='col-3'>";
+            contenido +="<div class='col-3'>";
             contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/>"
             contenido +="</div><div class='col-3'>"
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
