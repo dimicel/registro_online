@@ -1244,7 +1244,7 @@ function verPanelResolver(id_nie,registro){
             cont="<form id='form_relacion_modulos_convalid'><input type='hidden' name='registro' value='"+registro+"'/><div class='container'><div class='form-group form-row'>";
             cont+="<div class='col-5'><label>Módulo</label></div>";
             cont+="<div class='col-2'><label>Estado</label></div>";
-            cont+="<div class='col-5'><label>Motivo No Fav.</label></div>";
+            cont+="<div class='col-5'><label>Motivo No Favorable</label></div>";
             cont+="</div>";
             for(i=0;i<resp.datos.length;i++){
                 cont+="<div class='form-group form-row'>";
