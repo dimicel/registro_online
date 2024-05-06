@@ -1259,7 +1259,7 @@ function verPanelResolver(id_nie,registro){
                 else  cont+="<option value='CONSEJERIA'>CONSEJERIA</option>";   
                 if(resp.datos[i].resolucion=="MINISTERIO")cont+="<option value='MINISTERIO' selected>MINISTERIO</option>";
                 else  cont+="<option value='MINISTERIO'>MINISTERIO</option>";  
-                cont+="</div>";
+                cont+="</select></div>";
                 cont+="<div class='col-5'><input type='text' name='motivo_no_fav_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp.datos[i].motivo_no_favorable+"'/></div>";
                 cont+="</div>";
             }
