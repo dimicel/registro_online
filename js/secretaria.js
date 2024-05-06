@@ -1264,6 +1264,7 @@ function verPanelResolver(id_nie,registro){
                 cont+="</div>";
             }
             cont+="</div></form>";
+            alert(cont);
             document.getElementById("verModulosConvalidaciones_div").innerHTML=cont;
         }
         else if(resp["error"]=="sin_modulos") alerta("No hay módulos que convalidar.","SIN MÓDULOS");
