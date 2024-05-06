@@ -1241,27 +1241,26 @@ function verPanelResolver(id_nie,registro){
     $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
         if (resp["error"]=="ok"){
             panel=document.getElementById("verModulosConvalidaciones_div");
-            cont="<form id='form_relacion_modulos_convalid'><div class='container'><div class='form-group form-row'>";
-            cont="<input type='hidden' name='registro' value='"+registro+"'/>";
+            cont="<form id='form_relacion_modulos_convalid'><input type='hidden' name='registro' value='"+registro+"'/><div class='container'><div class='form-group form-row'>";
             cont+="<div class='col-5'><label>Módulo</label></div>";
             cont+="<div class='col-2'><label>Estado</label></div>";
             cont+="<div class='col-5'><label>Motivo No Fav.</label></div>";
             cont+="</div>";
-            for(i=0;i<resp.contador;i++){
+            for(i=0;i<resp.length;i++){
                 cont+="<div class='form-group form-row'>";
-                cont+="<div class='col-5'><input type='text' name='modulo_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp.contador.modulo+"'  readonly/></div>";
+                cont+="<div class='col-5'><input type='text' name='modulo_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp[i].modulo+"'  readonly/></div>";
                 cont+="<div class='col-2'><select name='estado_convalid[]' style='font-size:0.5em' class='form-control'/>";
                 cont+="<option value=''>Seleccione uno</option>";
-                if(resp.contador.resolucion=="FAVORABLE") cont+="<option value='FAVORABLE' selected>FAVORABLE</option>";
+                if(resp[i].resolucion=="FAVORABLE") cont+="<option value='FAVORABLE' selected>FAVORABLE</option>";
                 else cont+="<option value='FAVORABLE'>FAVORABLE</option>";
-                if(resp.contador.resolucion=="NO FAVORABLE")cont+="<option value='NO FAVORABLE' selected>NO FAVORABLE</option>";
+                if(resp[i].resolucion=="NO FAVORABLE")cont+="<option value='NO FAVORABLE' selected>NO FAVORABLE</option>";
                 else  cont+="<option value='NO FAVORABLE'>NO FAVORABLE</option>";
-                if(resp.contador.resolucion=="CONSEJERIA")cont+="<option value='CONSEJERIA' selected>CONSEJERIA</option>";
+                if(resp[i].resolucion=="CONSEJERIA")cont+="<option value='CONSEJERIA' selected>CONSEJERIA</option>";
                 else  cont+="<option value='CONSEJERIA'>CONSEJERIA</option>";   
-                if(resp.contador.resolucion=="MINISTERIO")cont+="<option value='MINISTERIO' selected>MINISTERIO</option>";
+                if(resp[i].resolucion=="MINISTERIO")cont+="<option value='MINISTERIO' selected>MINISTERIO</option>";
                 else  cont+="<option value='MINISTERIO'>MINISTERIO</option>";  
                 cont+="</div>";
-                cont+="<div class='col-5'><input type='text' name='motivo_no_fav_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp.contador.motivo_no_favorable+"'/></div>";
+                cont+="<div class='col-5'><input type='text' name='motivo_no_fav_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp[i].motivo_no_favorable+"'/></div>";
                 cont+="</div>";
             }
             cont+="</div></form>";
