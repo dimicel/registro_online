@@ -1296,12 +1296,12 @@ function verPanelResolver(id_nie,registro){
                     else if(resp=="ok_consejeria") alerta("No se genera notificación para el alumno. Resuelve CONSEJERIA.","RESUELVE CONSEJERIA");
                     else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
                     else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
-                    listaRegistros(campo, sim_dir);
+                    listaRegistros(_orden_campo, _orden_direccion);
                     $("#verModulosConvalidaciones_div").dialog("destroy");
                 });
             },
             "Cancelar":function(){
-                listaRegistros(campo, sim_dir);
+                listaRegistros(_orden_campo, _orden_direccion);
                 $("#verModulosConvalidaciones_div").dialog("destroy");
             }
         }
