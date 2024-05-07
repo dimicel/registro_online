@@ -80,7 +80,7 @@ if($res_cen==0){
     elseif($res_con>0 && $res_min==0) exit("ok_consejeria");
     elseif($res_con>0 && $res_min>0) exit("ok_consejeria_ministerio");
 }
-
+exit($registro);
 //Recuperación de datos de la tabla convalidaciones
 $concov=$mysqli->query("select * from convalidaciones where registro='$registro'");
 if($concov->num_rows!=1){
