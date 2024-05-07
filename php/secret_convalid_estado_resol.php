@@ -22,6 +22,7 @@ $resuelto_por=array(
     "CONSEJERIA"=>"CONSEJERIA",
     "MINISTERIO"=>"MINISTERIO"
 );
+$tipoPdfParaUsu="";
 
 $res_cen=0;
 $res_con=0;
@@ -74,9 +75,9 @@ try {
 //Salida del script
 if ($elementos_sin_resolver) exit("elementos_sin_resolver");
 if($res_cen==0){
-    if($res_con==0 && $res_min>0) exit("ok_ministerio");
-    elseif($res_con>0 && $res_min==0) exit("ok_consejeria");
-    elseif($res_con>0 && $res_min>0) exit("ok_consejeria_ministerio");
+    if($res_con==0 && $res_min>0) $tipoPdfParaUsu="ministerio";
+    elseif($res_con>0 && $res_min==0) $tipoPdfParaUsu="consejeria";
+    elseif($res_con>0 && $res_min>0) $tipoPdfParaUsu="consejeria_ministerio";
 }
 
 //Recuperación de datos de la tabla convalidaciones
