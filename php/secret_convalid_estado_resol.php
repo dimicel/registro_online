@@ -83,7 +83,7 @@ if($res_cen==0){
 
 //Recuperación de datos de la tabla convalidaciones
 $concov=$mysqli->query("select * from convalidaciones where registro='$registro'");
-exit(strval($concov->num_rows));
+exit($registro . strval($concov->num_rows));
 if($concov->num_rows!=1){
     exit("no_datospdf");
 }
