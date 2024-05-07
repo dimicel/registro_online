@@ -70,8 +70,6 @@ try {
     exit ($e->getMessage());
 }
 
-// Cerrar conexión
-$mysqli->close();
 
 //Salida del script
 if ($elementos_sin_resolver) exit("elementos_sin_resolver");
@@ -82,12 +80,14 @@ if($res_cen==0){
 }
 
 //Recuperación de datos de la tabla convalidaciones
+
 $concov=$mysqli->query("select * from convalidaciones where registro='$registro'");
-exit($registro . strval($concov->num_rows));
 if($concov->num_rows!=1){
     exit("no_datospdf");
 }
 $dr=$concov->fetch_assoc();
+
+// Cerrar conexión
 $mysqli->close();
 
 exit("ok");
