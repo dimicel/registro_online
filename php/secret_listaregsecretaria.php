@@ -59,7 +59,8 @@ elseif($tabla=="mat_fpb"){
 }
 elseif($tabla=="convalidaciones"){
     $proceso=$tabla;
-    $campos="id_nie,nombre,apellidos,registro,fecha_registro,incidencias,procesado,resuelve_cen,resuelve_con,resuelve_min,resuelto_cen,resuelto_con,resuelto_min";
+    //$campos="id_nie,nombre,apellidos,registro,fecha_registro,incidencias,procesado,resuelve_cen,resuelve_con,resuelve_min,resuelto_cen,resuelto_con,resuelto_min";
+    $campos="*";
 }
 else {
     $proceso=$tabla;
@@ -69,13 +70,10 @@ else {
     elseif ($proceso=="revision_calificacion"){
         $campos="id_nie,nombre,apellidos,registro,listado,incidencias,procesado";
     }
-    elseif ($proceso="convalidaciones"){
-        $campos="id_nie,nombre,apellidos,registro,listado,incidencias,procesado";
-    }
 }
 
 $coletilla="";
-if ($tabla=="convalidaciones"){
+if ($tabla=="convalidaciones" && $visto==0){
     $coletilla=" procesado=$visto and ";
 }
 else{

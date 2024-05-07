@@ -642,8 +642,8 @@ function listaRegistros(orden_campo, orden_direccion) {
         }
     }
     else if(tabla=="convalidaciones"){
-        if (document.getElementById("check_vistas").checked) _v=0
-        else _v=0;
+        if (document.getElementById("check_vistas").checked) _v=0;
+        else _v=1;
         datos = {
             buscar: buscar,
             tabla: tabla,
@@ -796,7 +796,9 @@ function ordenListado(obj) {
 function procesadoConvalidaciones(obj, organismo, num_registro){
     var proc=0;
     if (obj.checked)proc=1;
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_procesado_organismo.php",{registro:num_registro,organismo:organismo,estado_procesado:proc},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
         if(resp=="ok") alerta("Estado procesado cambiado correctamente.", "OK");
         else {
             alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
