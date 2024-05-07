@@ -89,6 +89,8 @@ if($concov->num_rows!=1){
 }
 $dr=$concov->fetch_assoc();
 $mysqli->close();
+
+exit("ok");
 //Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
 class MYPDF extends TCPDF {
 
