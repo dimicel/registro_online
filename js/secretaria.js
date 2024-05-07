@@ -1239,6 +1239,7 @@ function verRegistroConvalidaciones(num_registro){
 function verPanelResolver(id_nie,registro){
     ancho=1000;
     $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
+        alert(registro);
         if (resp["error"]=="ok"){
             panel=document.getElementById("verModulosConvalidaciones_div");
             cont="<form id='form_relacion_modulos_convalid'><input type='hidden' name='registro' value='"+registro+"'/><div class='container'><div class='form-group form-row'>";
