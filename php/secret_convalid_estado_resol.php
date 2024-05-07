@@ -21,9 +21,8 @@ $resuelto_por=array(
     "NO FAVORABLE"=>"CENTRO",
     "CONSEJERIA"=>"CONSEJERIA",
     "MINISTERIO"=>"MINISTERIO"
-
 );
-
+exit($registro);
 $res_cen=0;
 $res_con=0;
 $res_min=0;
