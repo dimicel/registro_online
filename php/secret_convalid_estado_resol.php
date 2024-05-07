@@ -100,7 +100,6 @@ $dr=$concov->fetch_assoc();
 // Cerrar conexión
 $mysqli->close();
 
-exit("ok" . " " . $tipoPdfParaUsu);
 //Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
 class MYPDF extends TCPDF {
 
