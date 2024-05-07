@@ -51,7 +51,7 @@ try {
     for ($i = 0; $i < count($modulos); $i++) {
         if ($estados[$i]==""){
             if ($estados[$i]=="") $elementos_sin_resolver=true;
-            continue;
+            //continue;
         }
         $sql = "UPDATE convalidaciones_modulos SET resolucion = '" . $estados[$i] . "', motivo_no_favorable = '" . $motivos[$i] . "', resuelto_por = '" . $resuelto_por[$estados[$i]] . "' WHERE registro = '$registro' AND modulo='$modulos[$i]'";
 
