@@ -713,7 +713,6 @@ function listaRegistros(orden_campo, orden_direccion) {
                             }
                         }
                     }
-                    alert(data_array[i]["visto"])
                     if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
                     else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
 
