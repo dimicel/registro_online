@@ -20,7 +20,8 @@ $resuelto_por=array(
     "FAVORABLE"=>"CENTRO",
     "NO FAVORABLE"=>"CENTRO",
     "CONSEJERIA"=>"CONSEJERIA",
-    "MINISTERIO"=>"MINISTERIO"
+    "MINISTERIO"=>"MINISTERIO",
+    ""=>""
 );
 $tipoPdfParaUsu="";
 
