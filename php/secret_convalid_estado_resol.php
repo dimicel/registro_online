@@ -40,7 +40,8 @@ else $act_rescon=0;
 if ($res_min>0) $act_resmin=1;
 else $act_resmin=0;
 
-$consulta_act_estado="update convalidaciones set resuelve_cen='$act_rescen', resuelve_con='$act_rescon', resuelve_min='$act_resmin' where registro='$registro'";
+$consulta_act_estado_procSI="update convalidaciones set resuelve_cen='$act_rescen', resuelve_con='$act_rescon', resuelve_min='$act_resmin', procesado=1 where registro='$registro'";
+$consulta_act_estado_procNO="update convalidaciones set resuelve_cen='$act_rescen', resuelve_con='$act_rescon', resuelve_min='$act_resmin', procesado=0 where registro='$registro'";
 
 $mysqli->begin_transaction();
 
@@ -57,10 +58,17 @@ try {
             throw new Exception("error_db");
         }
     }
-    
-    if ($mysqli->query($consulta_act_estado) !== TRUE) {
-        throw new Exception("error_db_conval");
+    if ($elementos_sin_resolver){
+        if ($mysqli->query($consulta_act_estado_procNO) !== TRUE) {
+            throw new Exception("error_db_conval");
+        }
     }
+    else {
+        if ($mysqli->query($consulta_act_estado_procSI) !== TRUE) {
+            throw new Exception("error_db_conval");
+        }
+    }
+    
 
     // Confirmar la transacción
     $mysqli->commit();
