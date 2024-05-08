@@ -145,6 +145,9 @@ function creaValidador() {
             },
             modulos: {
                 required: true
+            },
+            estudios_superados:{
+                required: true
             }
         },
         messages: {
@@ -187,6 +190,10 @@ function creaValidador() {
             },
             modulos: {
                 required: "Seleccione módulos"
+            },
+            ,
+            estudios_superados:{
+                required: "Vacío"
             }
         },
         errorPlacement: function(error, element) {
