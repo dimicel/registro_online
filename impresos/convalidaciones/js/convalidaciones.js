@@ -191,7 +191,6 @@ function creaValidador() {
             modulos: {
                 required: "Seleccione módulos"
             },
-            ,
             estudios_superados:{
                 required: "Vacío"
             }
