@@ -370,7 +370,7 @@ $pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->MultiCell(170,0,$estudios_superados,0,'L',0,1,'','',true,0,false,false,0);
 
-$YInicio+=9;
+$YInicio+=11;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->Cell(0,0,"Está matriculado en el ciclo formativo de:",0,0,'L',0,'',1,false,'','');
@@ -413,7 +413,7 @@ $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->MultiCell(170,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
-if ($docs_aportados!=""){
+if ($documentos_aportados!=""){
     $YInicio+=5;
     //$pdf->SetXY(10, $YInicio);
     //$pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
