@@ -105,15 +105,23 @@ class MYPDF extends TCPDF {
 
 	//Page header
 	public function Header() {
+        $this->SetFont('helvetica', '', 12);
+		$this->SetXY(0,10);
+		$this->Cell(0,0,"AÑO XXIX Núm. 166",0,0,'L',0,'',1,false,'T','T');
+		$this->Cell(0,0,"27 de agosto de 2010",0,0,'C',0,'',1,false,'T','T');
+        $this->Cell(0,0,"39635",0,0,'R',0,'',1,false,'T','T');
+        $this->Line(0, 13, $this->getPageWidth() - 10, 13);
 		// Logo
 		$image_file = '../recursos/logo_ccm.jpg';
-		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$image_file = '../recursos/mini_escudo.jpg';
-		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-
+		$this->Image($image_file, 10, 20, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		
 		$this->SetFont('helvetica', 'B', 14);
-		$this->SetXY(0,10);
-		$this->Cell(0,0,"RESOLUCIÓN CONVALIDACIÓN MÓDULOS",0,0,'C',0,'',1,false,'T','T');
+        $this->SetXY(0,25);
+        $this->Cell(0,0,"ANEXO IX",0,0,'C',0,'',1,false,'T','T');
+        $this->SetXY(0,29);
+        $this->Cell(0,0,"ENSEÑANZAS DE FORMACIÓN PROFESIONAL",0,0,'C',0,'',1,false,'T','T');
+        $this->SetXY(0,33);
+        $this->Cell(0,0,"RECONOCIMIENTO DE CONVALIDACIÓN DE ESTUDIOS",0,0,'C',0,'',1,false,'T','T');
 			
 		$this->SetFont('helvetica', '', 8);
 		// Title
@@ -172,8 +180,8 @@ $pdf->setFillColor(200);  //Relleno en gris
 $pdf->AddPage();
 
 
-
-
+$this->SetXY(0,50);
+$this->SetFont('helvetica', '', 8);
 
 
 
