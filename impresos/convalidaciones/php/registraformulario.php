@@ -40,6 +40,7 @@ $direccion = $_POST['direccion'];
 $cp = $_POST['cp'];
 $localidad = $_POST['localidad'];
 $provincia = $_POST['provincia'];
+$estudios_superados=$_POST["estudios_superados"];
 $grado = $_POST['grado'];
 $ciclo = $_POST['ciclo'];
 $curso = $_POST['curso'];
@@ -95,9 +96,9 @@ $mysqli->begin_transaction();
 
 try {
     // Insertar registro en la primera tabla
-    $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (id_nie,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,tlf_fijo,tlf_movil,email,
-                                                            grado,ciclo,curso_ciclo,modalidad,turno,modulos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt1->bind_param("ssssssssssssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
+    $stmt1 = $mysqli->prepare("INSERT INTO convalidaciones (estudios_superados,id_nie,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,tlf_fijo,tlf_movil,email,
+                                                            grado,ciclo,curso_ciclo,modalidad,turno,modulos) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt1->bind_param("sssssssssssssssssssss", $estudios_superados,$id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
                                                 $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$curso,$modalidad,$turno,$modulos);
     
     if ($stmt1->execute() === false) {
@@ -359,6 +360,15 @@ $pdf->SetXY(10, $YInicio);
 $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
 $YInicio+=4;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->Cell(0,0,"Estudios superados en base a los que solicita la convalidación:",0,0,'L',0,'',1,false,'','');
+$YInicio+=3;
+$pdf->SetFont('dejavusans', 'U', 8, '', true);
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->MultiCell(170,0,$estudios_superados,0,'L',0,1,'','',true,0,false,false,0);
+
+$YInicio+=6;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->Cell(0,0,"Está matriculado en el ciclo formativo de:",0,0,'L',0,'',1,false,'','');

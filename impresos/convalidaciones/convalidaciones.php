@@ -181,6 +181,17 @@
                                         <h6 style="color:brown; font-weight:bold">DATOS ACADÉMICOS Y MÓDULOS QUE SOLICITA CONVALIDAR</h6>
                                     </div>
                                 </div>
+                                <div class="row" >
+                                    <div class="col">
+                                        <label for="estudios_superados">Estudios cursados en base a los que solicita la convalidación:</label>
+                                        <span class="errorTxt" style="font-size: 1em;"></span>
+                                    </div>
+                                </div>
+                                <div class="row" data-formulario="consejería">
+                                    <div class="col">
+                                        <textarea class="form-control"  name="estudios_superados" rows="2" id="estudios_superados" maxlength="300"></textarea>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col">
                                     <label>Está matriculado en Ciclo Formativo de</label>
@@ -246,7 +257,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col">
-                                    <label id="label_estudios_aportados" for="estudios">Documentación que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                                        <label id="label_estudios_aportados" for="estudios">Documentación que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
                                     </div>
                                 </div>
                                 <div class="row">
