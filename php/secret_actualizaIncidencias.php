@@ -43,7 +43,8 @@ if($mysqli->query($consulta)){
                 $mail->send();
             }
             elseif (trim($incidencias)!="") {
-                $cuerpo .= 'Se ha registrado una incidencia en el formulario con número de registro: '.$registro.'<br>';
+                if ($tabla=="convalidaciones") $cuerpo .= 'Se han registrado observaciones en el formulario con número de registro: '.$registro.'<br>';
+                else $cuerpo .= 'Se ha registrado una incidencia en el formulario con número de registro: '.$registro.'<br>';
                 $cuerpo .= 'La incidencia es:<br>';
                 $cuerpo .= $incidencias.'<br><br>';
                 $cuerpo .= 'Acceda al panel de control de usuario del Registro Online para visualizarla cuando quiera.';
