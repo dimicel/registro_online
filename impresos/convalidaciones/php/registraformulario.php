@@ -54,11 +54,13 @@ $matrizMods = json_decode($_POST['matrizMods']);
 $subidopor="usuario";
 $desc= array();
 $otra_doc="";
+$documentos_aportados="";
 
 
 
 if (isset($_POST["desc"])){
     foreach($_POST["desc"] as $value) {
+        $documentos_aportados.=$value."; ";
         $desc[]=$value;
         if ($value!="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita" &&
             $value!="Fotocopia compulsada de la certificación académica de los estudios realizados" &&
@@ -361,14 +363,14 @@ $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 
 $YInicio+=4;
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->SetFont('dejavusans', 'U', 8, '', true);
 $pdf->Cell(0,0,"Estudios superados en base a los que solicita la convalidación:",0,0,'L',0,'',1,false,'','');
 $YInicio+=3;
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
+$pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->MultiCell(170,0,$estudios_superados,0,'L',0,1,'','',true,0,false,false,0);
 
-$YInicio+=6;
+$YInicio+=9;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->Cell(0,0,"Está matriculado en el ciclo formativo de:",0,0,'L',0,'',1,false,'','');
@@ -411,23 +413,23 @@ $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->MultiCell(170,0,$modulos,0,'L',0,1,'','',true,0,false,false,0);
 
-if (count($desc)>0){
+if ($docs_aportados!=""){
     $YInicio+=5;
-    $pdf->SetXY(10, $YInicio);
-    $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
-    $docs_aportados="";
-    for ($i=0;$i<count($desc);$i++){
-        $docs_aportados.=$desc[$i];
-        if ($i<count($desc)-1)$docs_aportados.=", ";
-    }
+    //$pdf->SetXY(10, $YInicio);
+    //$pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
+    //$docs_aportados="";
+    //for ($i=0;$i<count($desc);$i++){
+    //    $docs_aportados.=$desc[$i];
+    //   if ($i<count($desc)-1)$docs_aportados.=", ";
+    //}
     $YInicio+=5;
     $pdf->SetXY($XInicio,$YInicio);
     $pdf->SetFont('dejavusans', 'U', 8, '', true);
     $pdf->Cell(0,0,"Y aporta la siguiente documentación:",0,0,'L',0,'',1,false,'','');
     $pdf->SetFont('dejavusans', 'B', 8, '', true);
     $YInicio+=3;
-    $pdf->Cell(0,0,$docs_aportados,0,0,'L',0,'',1,false,'','');
-    $YInicio+=5;
+    $pdf->MultiCell(170,0,$documentos_aportados,0,'L',0,1,'','',true,0,false,false,0);
+    $YInicio+=10;
     $pdf->SetXY(10, $YInicio);
     $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 }
