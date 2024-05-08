@@ -428,10 +428,8 @@ if ($documentos_aportados!=""){
     $pdf->Cell(0,0,"Y aporta la siguiente documentación:",0,0,'L',0,'',1,false,'','');
     $pdf->SetFont('dejavusans', 'B', 8, '', true);
     $YInicio+=3;
+    $pdf->SetXY($XInicio,$YInicio);
     $pdf->MultiCell(170,0,$documentos_aportados,0,'L',0,1,'','',true,0,false,false,0);
-    $YInicio+=10;
-    $pdf->SetXY(10, $YInicio);
-    $pdf->Line(10, $YInicio, $pdf->getPageWidth() - 10, $YInicio);
 }
 
 $pdf->setCellHeightRatio(1.4);
