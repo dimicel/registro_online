@@ -180,14 +180,22 @@ $pdf->setFillColor(200);  //Relleno en gris
 $pdf->AddPage();
 
 
-$this->SetXY(0,50);
-$this->SetFont('helvetica', '', 8);
+$pdf->SetXY(0,50);
+$pdf->SetFont('helvetica', '', 8);
 
 $html="<p>D. <b>LUIS ÁNGEL CORRALES MARIBLANCA</b>, director del centro educativo <b>IES UNIVERSIDAD LABORAL (Toledo)</b>, una vez examinada la documentación presentada por ";
-$html.="<b>".strtoupper($dr["nombre"])." ".strtoupper($dr["apellidos"])."</b> solicitando la convalidación de módulos de Formación Profesional correspondientes al ciclo formativo de ";
-$html.="<b>".strtoupper($dr["ciclo"])
-
+$html.="<b>".strtoupper($dr["nombre"])." ".strtoupper($dr["apellidos"])."</b> solicitando la convalidación de módulos de Formación Profesional correspondientes al ";
+if ($dr["grado"]=="Curso de Especialización"){
+    $html.=$dr["grado"] . " " . "<b>".strtoupper($dr["ciclo"])."</b>";
+}
+else{
+    $html.="ciclo formativo de ". "<b>".strtoupper($dr["ciclo"])." de GRADO ".strtoupper($dr["grado"])."</b> ";
+}
+$html.=" con sus estudios de ".$dr["estudios_superados"]."</p>";
+$html.="</br></br><p><b><span style='font-size:14px'>RESUELVE</span></b></p></br>";
 $pdf->writeHTML($html, true, false, true, false, 'J');
+
+
 
 
 //--------FINAL
