@@ -213,32 +213,37 @@ if($res_fav>0 || $res_nofav>0){
         }
         $html.="</b></br></br>";
     }
+    if($res_nofav>0){
+        $html.="<b>No Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente: <b>";
+        for ($i=0;$i<count($estados);$i++){
+            if ($estados[$i]=="NO FAVORABLE"){
+                $html.=$modulos[$i] ." (".$motivos[$i].")";
+                if ($i<count($estados)-2) $html.="; ";
+            }
+        }
+        $html.="</b></br></br></br>";
+    }
+
+    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    $fecha_actual=getdate();
+    $dd=$fecha_actual["mday"];
+    $mm=$meses[$fecha_actual["mon"]-1];
+    $yyyy=$fecha_actual["year"];
+    $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
+    $html.="<center>".$fecha_firma."</center></br></br>";
+    $html.="<center><img src='../recursos/sello_firma.jpg' width='80' height='80'/></center></br></br>";
+    $html.="<center>Fdo.: Luis Ángel Corrales Mariblanca</center>";
+
     $pdf->writeHTML($html, true, false, true, false, 'J');
 
-
-
-
     //--------FINAL
-    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-
-    $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
-    $texto=<<<EOD
-    <p style="text-align:center">$fecha_firma<br>Nº de registro: $registro</p>
-    EOD;
-    $YInicio+=50;
-    $pdf->SetXY($XInicio,$YInicio);
-    $pdf->SetFont('dejavusans', 'B', 8, '', true);
-    //$pdf->Cell(0,0,"Nº registro " . $texto,0,0,'C',0,'',1,false,'T','T');
-    $pdf->writeHTMLCell(180,0,$XInicio,$YInicio,$texto,0,0,false,true,'',true);
-
 
     //GENERA EL ARCHIVO NUEVO
-    $nombre_fichero=$registro . '.pdf';
-    if (!is_dir(__DIR__."/../../../docs/".$id_nie))mkdir(__DIR__."/../../../docs/".$id_nie,0777);
-    if(!is_dir(__DIR__."/../../../docs/".$id_nie."/matriculas"))mkdir(__DIR__."/../../../docs/".$id_nie."/matriculas",0777);
-    if(!is_dir(__DIR__."/../../../docs/".$id_nie."/matriculas"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/matriculas"."/".$anno_curso,0777);
-    $ruta=__DIR__."/../../../docs/".$id_nie."/"."matriculas/".$anno_curso."/". $nombre_fichero;
-    $pdf->Output($ruta, 'F');
+    $dirRegistro=substr($dr["registro"], 17);
+    $nombre_fichero='resolucion.pdf';
+    $ruta=__DIR__."/../docs/".$dr["id_nie"]."/"."convalidaciones/".$dr["curso"]."/".$dirRegistro."/docs/resolucion";
+    if(!is_dir($ruta))mkdir($ruta,0777,true);
+    $pdf->Output($ruta."/". $nombre_fichero, 'F');
 }
 //Salida OK
 exit("ok");

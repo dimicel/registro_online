@@ -442,7 +442,7 @@ $pdf->Cell(0,0,"Nº registro: ".$registro,0,0,'C',0,'',1,true,'T','T');
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';
-if(!is_dir(__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro))mkdir(__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro0777);
+if(!is_dir(__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro))mkdir(__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro,0777,true);
 $ruta=__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/". $nombre_fichero;
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
