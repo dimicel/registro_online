@@ -1287,7 +1287,7 @@ function verPanelResolver(id_nie,registro){
                     if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
                     else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
                     else if(resp=="ok"){
-                        
+                        alerta("Proceso terminado","OK");
                     }
                     else if(resp=="error_db_conval") alerta("No se han grabado los datos de resolución de los módulos poruqe no se ha podido actualizar el estado en la tabla convalidaciones.","ERROR TABLA");
                     else if(resp=="no_datospdf") alerta("No se puede generar la notificación para el alumno. Fallo al acceder a los datos de la solicitud o hay un registro duplicado. Revise los datos de la tabla en este último caso.","ERROR DB");
