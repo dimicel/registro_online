@@ -11,7 +11,7 @@ header("Content-Type: text/html;charset=utf-8");
 if ($mysqli->errno>0) {
     exit("server");
 }
-$margen_derecho=10;
+
 $registro=$_POST["registro"];
 $modulos=$_POST["modulo_convalid"];
 $estados=$_POST["estado_convalid"];
@@ -111,6 +111,8 @@ $dr=$concov->fetch_assoc();
 $mysqli->close();
 
 //Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
+$Yinicio=70;
+$margen_derecho=10;
 if($res_fav>0 || $res_nofav>0){
     class MYPDF extends TCPDF {
 
@@ -186,7 +188,7 @@ if($res_fav>0 || $res_nofav>0){
     $pdf->AddPage();
 
 
-    $pdf->SetXY(0,50);
+    $pdf->SetXY(0,$Yinicio);
     $pdf->SetFont('helvetica', '', 8);
 
     $html="<p>D. <b>LUIS ÁNGEL CORRALES MARIBLANCA</b>, director del centro educativo <b>IES UNIVERSIDAD LABORAL (Toledo)</b>, una vez examinada la documentación presentada por ";
@@ -334,7 +336,7 @@ elseif($res_min>0 || $res_con>0) {
     $pdf->setFillColor(200);  //Relleno en gris
     $pdf->AddPage();
 
-    $Yinicio=70;
+    
     $pdf->SetXY(0,$Yinicio);
     $pdf->SetFont('helvetica', '', 8);
     
