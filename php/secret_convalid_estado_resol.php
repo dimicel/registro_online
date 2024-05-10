@@ -250,7 +250,7 @@ if($res_fav>0 || $res_nofav>0){
     $mm=$meses[$fecha_actual["mon"]-1];
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
-    $html.="<p><center>".$fecha_firma."</center></p><br><br>";
+    $html.="<p style='text-align:\'center\''>".$fecha_firma."</p><br><br>";
     $html.="<center><img src='../recursos/sello_firma.jpg' width='80' height='80'/></center><br><br>";
     $html.="<center>Fdo.: Luis Ángel Corrales Mariblanca</center>";
     $pdf->SetRightMargin($margen_derecho);
