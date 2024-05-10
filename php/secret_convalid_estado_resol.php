@@ -200,7 +200,7 @@ if($res_fav>0 || $res_nofav>0){
         $html.="ciclo formativo de ". "<b>".strtoupper($dr["ciclo"])." de GRADO ".strtoupper($dr["grado"])."</b> ";
     }
     $html.=" con sus estudios de ".$dr["estudios_superados"]."</p>";
-    $html.="<br><br><p><b><span style='font-size:11pt'>RESUELVE</span></b></p><br>";
+    $html.="<br><br><p style='font-size:11pt'><b>RESUELVE</b></p><br>";
     if($res_fav>0){
         $html.="<b>Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente:<br> <b>";
         for ($i=0;$i<count($estados);$i++){
@@ -250,7 +250,7 @@ if($res_fav>0 || $res_nofav>0){
     $mm=$meses[$fecha_actual["mon"]-1];
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
-    $html.="<center>".$fecha_firma."</center><br><br>";
+    $html.="<p><center>".$fecha_firma."</center></p><br><br>";
     $html.="<center><img src='../recursos/sello_firma.jpg' width='80' height='80'/></center><br><br>";
     $html.="<center>Fdo.: Luis Ángel Corrales Mariblanca</center>";
     $pdf->SetRightMargin($margen_derecho);
@@ -369,7 +369,7 @@ elseif($res_min>0 || $res_con>0) {
     $mm=$meses[$fecha_actual["mon"]-1];
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
-    $html.="<center>".$fecha_firma."</center><br><br>";
+    $html.="<p><center>".$fecha_firma."</center></p><br><br>";
     $pdf->SetRightMargin($margen_derecho);
     $pdf->writeHTML($html, true, false, true, false, '');
 
