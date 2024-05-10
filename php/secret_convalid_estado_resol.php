@@ -254,7 +254,7 @@ if($res_fav>0 || $res_nofav>0){
     $html.="<center><img src='../recursos/sello_firma.jpg' width='80' height='80'/></center><br><br>";
     $html.="<center>Fdo.: Luis Ángel Corrales Mariblanca</center>";
     $pdf->SetRightMargin($margen_derecho);
-    $pdf->writeHTML($html, true, false, true, false, 'J');
+    $pdf->writeHTML($html, true, false, true, false, '');
 
     //--------FINAL
 
@@ -371,7 +371,7 @@ elseif($res_min>0 || $res_con>0) {
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
     $html.="<center>".$fecha_firma."</center><br><br>";
     $pdf->SetRightMargin($margen_derecho);
-    $pdf->writeHTML($html, true, false, true, false, 'J');
+    $pdf->writeHTML($html, true, false, true, false, '');
 
 
     $dirRegistro=substr($dr["registro"], 17);
