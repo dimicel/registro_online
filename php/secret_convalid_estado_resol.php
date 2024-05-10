@@ -229,7 +229,7 @@ if($res_fav>0 || $res_nofav>0){
     if ($res_min>0){
         $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por el Ministerio de Educación:</br>";
         for ($i=0;$i<count($estados);$i++){
-            if ($estados[$i]=="CONSEJERIA"){
+            if ($estados[$i]=="MINISTERIO"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
@@ -349,7 +349,7 @@ elseif($res_min>0 || $res_con>0) {
     if ($res_min>0){
         $html.="La convalidación de los siguientes módulos debe ser resuelta por el Ministerio de Educación:</br>";
         for ($i=0;$i<count($estados);$i++){
-            if ($estados[$i]=="CONSEJERIA"){
+            if ($estados[$i]=="MINISTERIO"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
