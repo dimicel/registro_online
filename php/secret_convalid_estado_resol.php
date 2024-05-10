@@ -115,7 +115,7 @@ if($res_fav>0 || $res_nofav>0){
 
         //Page header
         public function Header() {
-            $this->SetFont('helvetica', '', 12);
+            $this->SetFont('helvetica', '', 8);
             $this->SetXY(0,10);
             $this->Cell(0,0,"AÑO XXIX Núm. 166",0,0,'L',0,'',1,false,'T','T');
             $this->Cell(0,0,"27 de agosto de 2010",0,0,'C',0,'',1,false,'T','T');
