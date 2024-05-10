@@ -123,7 +123,7 @@ if($res_fav>0 || $res_nofav>0){
             $this->Cell(0,0,"27 de agosto de 2010",0,0,'C',0,'',1,false,'T','T');
             $this->SetXY(10,10);
             $this->Cell(0,0,"39635",0,0,'R',0,'',1,false,'T','T');
-            $this->Line(0, 13, $this->getPageWidth() - 10, 13);
+            $this->Line(10, 13, $this->getPageWidth() - 10, 13);
             // Logo
             $image_file = '../recursos/logo_ccm.jpg';
             $this->Image($image_file, 10, 20, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
@@ -334,8 +334,8 @@ elseif($res_min>0 || $res_con>0) {
     $pdf->setFillColor(200);  //Relleno en gris
     $pdf->AddPage();
 
-
-    $pdf->SetXY(0,50);
+    $Yinicio=70;
+    $pdf->SetXY(0,$Yinicio);
     $pdf->SetFont('helvetica', '', 8);
     
     $html="";
