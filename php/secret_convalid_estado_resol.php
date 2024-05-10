@@ -116,21 +116,23 @@ if($res_fav>0 || $res_nofav>0){
         //Page header
         public function Header() {
             $this->SetFont('helvetica', '', 8);
-            $this->SetXY(0,10);
+            $this->SetXY(10,10);
             $this->Cell(0,0,"AÑO XXIX Núm. 166",0,0,'L',0,'',1,false,'T','T');
+            $this->SetXY(10,10);
             $this->Cell(0,0,"27 de agosto de 2010",0,0,'C',0,'',1,false,'T','T');
+            $this->SetXY(10,10);
             $this->Cell(0,0,"39635",0,0,'R',0,'',1,false,'T','T');
             $this->Line(0, 13, $this->getPageWidth() - 10, 13);
             // Logo
             $image_file = '../recursos/logo_ccm.jpg';
             $this->Image($image_file, 10, 20, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
             
-            $this->SetFont('helvetica', 'B', 12);
-            $this->SetXY(0,30);
+            $this->SetFont('helvetica', 'B', 11);
+            $this->SetXY(0,40);
             $this->Cell(0,0,"ANEXO IX",0,0,'C',0,'',1,false,'T','T');
-            $this->SetXY(0,34);
+            $this->SetXY(0,46);
             $this->Cell(0,0,"ENSEÑANZAS DE FORMACIÓN PROFESIONAL",0,0,'C',0,'',1,false,'T','T');
-            $this->SetXY(0,38);
+            $this->SetXY(0,52);
             $this->Cell(0,0,"RECONOCIMIENTO DE CONVALIDACIÓN DE ESTUDIOS",0,0,'C',0,'',1,false,'T','T');
                 
         }
@@ -195,7 +197,7 @@ if($res_fav>0 || $res_nofav>0){
         $html.="ciclo formativo de ". "<b>".strtoupper($dr["ciclo"])." de GRADO ".strtoupper($dr["grado"])."</b> ";
     }
     $html.=" con sus estudios de ".$dr["estudios_superados"]."</p>";
-    $html.="<br><br><p><b><span style='font-size:14px'>RESUELVE</span></b></p><br>";
+    $html.="<br><br><p><b><span style='font-size:16px'>RESUELVE</span></b></p><br>";
     if($res_fav>0){
         $html.="<b>Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente:<br> <b>";
         for ($i=0;$i<count($estados);$i++){
@@ -248,7 +250,7 @@ if($res_fav>0 || $res_nofav>0){
     $html.="<center>".$fecha_firma."</center><br><br>";
     $html.="<center><img src='../recursos/sello_firma.jpg' width='80' height='80'/></center><br><br>";
     $html.="<center>Fdo.: Luis Ángel Corrales Mariblanca</center>";
-
+    $pdf->SetRightMargin(10);
     $pdf->writeHTML($html, true, false, true, false, 'J');
 
     //--------FINAL
@@ -365,6 +367,7 @@ elseif($res_min>0 || $res_con>0) {
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
     $html.="<center>".$fecha_firma."</center><br><br>";
+    $pdf->SetRightMargin(10);
     $pdf->writeHTML($html, true, false, true, false, 'J');
 
 
