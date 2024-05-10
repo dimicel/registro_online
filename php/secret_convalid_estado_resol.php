@@ -195,7 +195,7 @@ if($res_fav>0 || $res_nofav>0){
         $html.="ciclo formativo de ". "<b>".strtoupper($dr["ciclo"])." de GRADO ".strtoupper($dr["grado"])."</b> ";
     }
     $html.=" con sus estudios de ".$dr["estudios_superados"]."</p>";
-    $html.="</br></br><p><b><span style='font-size:14px'>RESUELVE</span></b></p></br>";
+    $html.="<br><br><p><b><span style='font-size:14px'>RESUELVE</span></b></p><br>";
     if($res_fav>0){
         $html.="<b>Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente: <b>";
         for ($i=0;$i<count($estados);$i++){
@@ -204,7 +204,7 @@ if($res_fav>0 || $res_nofav>0){
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</b></br></br>";
+        $html.="</b><br><br>";
     }
     if($res_nofav>0){
         $html.="<b>No Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente: <b>";
@@ -214,30 +214,30 @@ if($res_fav>0 || $res_nofav>0){
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</b></br></br>";
+        $html.="</b><br><br>";
     }
     if($res_con>0){
-        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por la Consejería de Educación:</br>";
+        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por la Consejería de Educación:<br>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="CONSEJERIA"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.</br></br>";
+        $html.="<br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
     }
     if ($res_min>0){
-        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por el Ministerio de Educación:</br>";
+        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por el Ministerio de Educación:<br>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="MINISTERIO"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.</br></br>";
+        $html.="<br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
     }
 
-    $html.="</b></br></br></br>";
+    $html.="</b><br><br><br>";
 
     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
     $fecha_actual=getdate();
@@ -245,8 +245,8 @@ if($res_fav>0 || $res_nofav>0){
     $mm=$meses[$fecha_actual["mon"]-1];
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
-    $html.="<center>".$fecha_firma."</center></br></br>";
-    $html.="<center><img src='../recursos/sello_firma.jpg' width='80' height='80'/></center></br></br>";
+    $html.="<center>".$fecha_firma."</center><br><br>";
+    $html.="<center><img src='../recursos/sello_firma.jpg' width='80' height='80'/></center><br><br>";
     $html.="<center>Fdo.: Luis Ángel Corrales Mariblanca</center>";
 
     $pdf->writeHTML($html, true, false, true, false, 'J');
@@ -337,26 +337,26 @@ elseif($res_min>0 || $res_con>0) {
     
     $html="";
     if($res_con>0){
-        $html.="La convalidación de los siguientes módulos debe ser resuelta por la Consejería de Educación:</br>";
+        $html.="La convalidación de los siguientes módulos debe ser resuelta por la Consejería de Educación:<br>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="CONSEJERIA"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</br></br></br>";
+        $html.="<br><br><br>";
     }
     if ($res_min>0){
-        $html.="La convalidación de los siguientes módulos debe ser resuelta por el Ministerio de Educación:</br>";
+        $html.="La convalidación de los siguientes módulos debe ser resuelta por el Ministerio de Educación:<br>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="MINISTERIO"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</br></br></br>";
+        $html.="<br><br><br>";
     }
-    $html.="El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.</br></br>";
+    $html.="El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
 
     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
     $fecha_actual=getdate();
@@ -364,7 +364,7 @@ elseif($res_min>0 || $res_con>0) {
     $mm=$meses[$fecha_actual["mon"]-1];
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
-    $html.="<center>".$fecha_firma."</center></br></br>";
+    $html.="<center>".$fecha_firma."</center><br><br>";
     $pdf->writeHTML($html, true, false, true, false, 'J');
 
 
