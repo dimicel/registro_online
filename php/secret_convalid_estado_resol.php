@@ -125,12 +125,12 @@ if($res_fav>0 || $res_nofav>0){
             $image_file = '../recursos/logo_ccm.jpg';
             $this->Image($image_file, 10, 20, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
             
-            $this->SetFont('helvetica', 'B', 14);
-            $this->SetXY(0,25);
+            $this->SetFont('helvetica', 'B', 12);
+            $this->SetXY(0,30);
             $this->Cell(0,0,"ANEXO IX",0,0,'C',0,'',1,false,'T','T');
-            $this->SetXY(0,29);
+            $this->SetXY(0,34);
             $this->Cell(0,0,"ENSEÑANZAS DE FORMACIÓN PROFESIONAL",0,0,'C',0,'',1,false,'T','T');
-            $this->SetXY(0,33);
+            $this->SetXY(0,38);
             $this->Cell(0,0,"RECONOCIMIENTO DE CONVALIDACIÓN DE ESTUDIOS",0,0,'C',0,'',1,false,'T','T');
                 
         }
@@ -197,7 +197,7 @@ if($res_fav>0 || $res_nofav>0){
     $html.=" con sus estudios de ".$dr["estudios_superados"]."</p>";
     $html.="<br><br><p><b><span style='font-size:14px'>RESUELVE</span></b></p><br>";
     if($res_fav>0){
-        $html.="<b>Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente: <b>";
+        $html.="<b>Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente:<br> <b>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="FAVORABLE"){
                 $html.=$modulos[$i];
@@ -207,7 +207,7 @@ if($res_fav>0 || $res_nofav>0){
         $html.="</b><br><br>";
     }
     if($res_nofav>0){
-        $html.="<b>No Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente: <b>";
+        $html.="<b>No Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente:<br> <b>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="NO FAVORABLE"){
                 $html.=$modulos[$i] ." (".$motivos[$i].")";
