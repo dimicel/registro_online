@@ -133,13 +133,6 @@ if($res_fav>0 || $res_nofav>0){
             $this->SetXY(0,33);
             $this->Cell(0,0,"RECONOCIMIENTO DE CONVALIDACIÓN DE ESTUDIOS",0,0,'C',0,'',1,false,'T','T');
                 
-            $this->SetFont('helvetica', '', 8);
-            // Title
-            //$this->setCellHeightRatio(1.75);
-            $encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
-            $this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
-            //$this->Ln();
-            //$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
         }
     }
 
@@ -239,6 +232,120 @@ if($res_fav>0 || $res_nofav>0){
     //--------FINAL
 
     //GENERA EL ARCHIVO NUEVO
+    $dirRegistro=substr($dr["registro"], 17);
+    $nombre_fichero='resolucion.pdf';
+    $ruta=__DIR__."/../docs/".$dr["id_nie"]."/"."convalidaciones/".$dr["curso"]."/".$dirRegistro."/docs/resolucion";
+    if(!is_dir($ruta))mkdir($ruta,0777,true);
+    $pdf->Output($ruta."/". $nombre_fichero, 'F');
+}
+elseif($res_min>0 || $res_con>0) {
+    class MYPDF extends TCPDF {
+
+        //Page header
+        public function Header() {
+            // Logo
+            $image_file = '../recursos/logo_ccm.jpg';
+            $this->Image($image_file, 10, 20, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+            $image_file = '../recursos/mini_escudo.jpg';
+		    $this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+
+            $this->SetFont('helvetica', 'B', 14);
+            $this->SetXY(0,25);
+            $this->Cell(0,0,"INFORMACIÓN SOBRE LOS MÓDULOS QUE SOLICITA CONVALIDAR",0,0,'C',0,'',1,false,'T','T');
+                
+            $this->SetFont('helvetica', '', 8);
+            // Title
+            //$this->setCellHeightRatio(1.75);
+            $encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
+            $this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
+            //$this->Ln();
+            //$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
+        }
+    }
+
+    // create new PDF document
+    $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+    // set document information
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor('IES Universidad Laboral');
+    $pdf->SetTitle('Resolución Convalidaciones');
+    $pdf->SetSubject('Secretaría');
+    $pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Resolución Convalidaciones');
+
+    // set default header data
+    $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+    //$pdf->setFooterData();
+
+    // set header and footer fonts
+    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+    //$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+    // set default monospaced font
+    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+    // set margins
+    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+    //$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+    // set auto page breaks
+    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+    // set image scale factor
+    $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+    // set some language-dependent strings (optional)
+    if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
+        require_once(dirname(__FILE__).'/lang/spa.php');
+        $pdf->setLanguageArray($l);
+    }
+
+    // ---------------------------------------------------------
+
+    $pdf->setFontSubsetting(true);
+
+    $pdf->SetFont('dejavusans', '', 8, '', true);
+    $pdf->setFillColor(200);  //Relleno en gris
+    $pdf->AddPage();
+
+
+    $pdf->SetXY(0,50);
+    $pdf->SetFont('helvetica', '', 8);
+    
+    $html="";
+    if($res_con>0){
+        $html.="La convalidación de los siguientes módulos debe ser resuelta por la Consejería de Educación:</br>";
+        for ($i=0;$i<count($estados);$i++){
+            if ($estados[$i]=="CONSEJERIA"){
+                $html.=$modulos[$i];
+                if ($i<count($estados)-2) $html.="; ";
+            }
+        }
+        $html.="</br></br></br>";
+    }
+    if ($res_min>0){
+        $html.="La convalidación de los siguientes módulos debe ser resuelta por el Ministerio de Educación:</br>";
+        for ($i=0;$i<count($estados);$i++){
+            if ($estados[$i]=="CONSEJERIA"){
+                $html.=$modulos[$i];
+                if ($i<count($estados)-2) $html.="; ";
+            }
+        }
+        $html.="</br></br></br>";
+    }
+    $html.="El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.</br></br>";
+
+    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    $fecha_actual=getdate();
+    $dd=$fecha_actual["mday"];
+    $mm=$meses[$fecha_actual["mon"]-1];
+    $yyyy=$fecha_actual["year"];
+    $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
+    $html.="<center>".$fecha_firma."</center></br></br>";
+    $pdf->writeHTML($html, true, false, true, false, 'J');
+
+
     $dirRegistro=substr($dr["registro"], 17);
     $nombre_fichero='resolucion.pdf';
     $ruta=__DIR__."/../docs/".$dr["id_nie"]."/"."convalidaciones/".$dr["curso"]."/".$dirRegistro."/docs/resolucion";
