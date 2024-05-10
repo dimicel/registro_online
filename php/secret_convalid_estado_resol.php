@@ -214,8 +214,30 @@ if($res_fav>0 || $res_nofav>0){
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</b></br></br></br>";
+        $html.="</b></br></br>";
     }
+    if($res_con>0){
+        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por la Consejería de Educación:</br>";
+        for ($i=0;$i<count($estados);$i++){
+            if ($estados[$i]=="CONSEJERIA"){
+                $html.=$modulos[$i];
+                if ($i<count($estados)-2) $html.="; ";
+            }
+        }
+        $html.="</br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.</br></br>";
+    }
+    if ($res_min>0){
+        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por el Ministerio de Educación:</br>";
+        for ($i=0;$i<count($estados);$i++){
+            if ($estados[$i]=="CONSEJERIA"){
+                $html.=$modulos[$i];
+                if ($i<count($estados)-2) $html.="; ";
+            }
+        }
+        $html.="</br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.</br></br>";
+    }
+
+    $html.="</b></br></br></br>";
 
     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
     $fecha_actual=getdate();
