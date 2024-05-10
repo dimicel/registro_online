@@ -200,7 +200,7 @@ if($res_fav>0 || $res_nofav>0){
         $html.="ciclo formativo de ". "<b>".strtoupper($dr["ciclo"])." de GRADO ".strtoupper($dr["grado"])."</b> ";
     }
     $html.=" con sus estudios de ".$dr["estudios_superados"]."</p>";
-    $html.="<br><br><p><b><span style='font-size:16px'>RESUELVE</span></b></p><br>";
+    $html.="<br><br><p><b><span style='font-size:11pt'>RESUELVE</span></b></p><br>";
     if($res_fav>0){
         $html.="<b>Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente:<br> <b>";
         for ($i=0;$i<count($estados);$i++){
