@@ -11,6 +11,7 @@ header("Content-Type: text/html;charset=utf-8");
 if ($mysqli->errno>0) {
     exit("server");
 }
+$margen_derecho=10;
 $registro=$_POST["registro"];
 $modulos=$_POST["modulo_convalid"];
 $estados=$_POST["estado_convalid"];
@@ -250,7 +251,7 @@ if($res_fav>0 || $res_nofav>0){
     $html.="<center>".$fecha_firma."</center><br><br>";
     $html.="<center><img src='../recursos/sello_firma.jpg' width='80' height='80'/></center><br><br>";
     $html.="<center>Fdo.: Luis Ángel Corrales Mariblanca</center>";
-    $pdf->SetRightMargin(10);
+    $pdf->SetRightMargin($margen_derecho);
     $pdf->writeHTML($html, true, false, true, false, 'J');
 
     //--------FINAL
@@ -367,7 +368,7 @@ elseif($res_min>0 || $res_con>0) {
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
     $html.="<center>".$fecha_firma."</center><br><br>";
-    $pdf->SetRightMargin(10);
+    $pdf->SetRightMargin($margen_derecho);
     $pdf->writeHTML($html, true, false, true, false, 'J');
 
 
