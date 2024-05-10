@@ -112,7 +112,7 @@ $mysqli->close();
 
 //Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
 $Yinicio=70;
-$margen_derecho=10;
+$margen_derecho=20;
 if($res_fav>0 || $res_nofav>0){
     class MYPDF extends TCPDF {
 
@@ -222,24 +222,24 @@ if($res_fav>0 || $res_nofav>0){
         $html.="</b><br><br>";
     }
     if($res_con>0){
-        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por la Consejería de Educación:<br>";
+        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por la Consejería de Educación:<br><b>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="CONSEJERIA"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="<br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
+        $html.="</b><br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
     }
     if ($res_min>0){
-        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por el Ministerio de Educación:<br>";
+        $html.="<b>No Reconocerle</b> la convalidación de los siguientes módulos porque debe ser resuelta por el Ministerio de Educación:<br><b>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="MINISTERIO"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="<br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
+        $html.="</b><br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
     }
 
     $html.="</b><br><br><br>";
@@ -342,24 +342,24 @@ elseif($res_min>0 || $res_con>0) {
     
     $html="";
     if($res_con>0){
-        $html.="La convalidación de los siguientes módulos debe ser resuelta por la Consejería de Educación:<br>";
+        $html.="La convalidación de los siguientes módulos debe ser resuelta por la Consejería de Educación:<br><b>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="CONSEJERIA"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="<br><br><br>";
+        $html.="</b><br><br><br>";
     }
     if ($res_min>0){
-        $html.="La convalidación de los siguientes módulos debe ser resuelta por el Ministerio de Educación:<br>";
+        $html.="La convalidación de los siguientes módulos debe ser resuelta por el Ministerio de Educación:<br><b>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="MINISTERIO"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="<br><br><br>";
+        $html.="</b><br><br><br>";
     }
     $html.="El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
 
