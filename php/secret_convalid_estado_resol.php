@@ -270,7 +270,7 @@ if($res_fav>0 || $res_nofav>0){
     $pdf->Image('../recursos/sello_firma.jpg', $image_x, $Yinicio, $anchoSello, $altoSello, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
     
     $Yinicio+=$altoSello+4;
-    $pdf->SetXY(0,$Yinicio);
+    $pdf->SetY($Yinicio);
     $pdf->Cell(0,0,"Fdo.: Luis Ángel Corrales Mariblanca",0,0,'C',0,'',1,false,'T','T');
 
     
