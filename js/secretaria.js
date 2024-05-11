@@ -336,6 +336,8 @@ function generaSelectMat_fpb(){
 
 
 function listaRegistros(orden_campo, orden_direccion) {
+    document.getElementById("div_incidencias").style.display="inherit";
+    document.getElementById("div_convalidaciones").style.display="none";
     ocultaCursosDesplegable();
     tipo_formulario = document.getElementById('tipo_form').value;
     if (tipo_formulario == "prematricula") {
@@ -403,7 +405,22 @@ function listaRegistros(orden_campo, orden_direccion) {
             $("#CSV_transporte").addClass("disabled");
             $("#CSV_seguro").addClass("disabled");
         }
-    } else {
+    }
+    else if(tipo_formulario="convalidaciones"){
+        habilitaMenu(false, false);
+        document.getElementById("div_incidencias").style.display="none";
+        document.getElementById("div_convalidaciones").style.display="inherit";
+        document.getElementById("div_curso_premat").style.display = "none";
+        document.getElementById("div_curso_mat").style.display = "none";
+        document.getElementById("div_curso_mat_ciclos").style.display = "none";
+        document.getElementById("div_curso_mat_fpb").style.display = "none";
+        $("#CSV_premat").addClass("disabled");
+        //$("#menu_csv_mat").addClass("disabled");
+        //$("#menu_listado_mat_pdf").addClass("disabled");
+        $("#CSV_transporte").addClass("disabled");
+        $("#CSV_seguro").addClass("disabled");
+    }
+    else {
         habilitaMenu(true, true);
         document.getElementById("div_curso_premat").style.display = "none";
         document.getElementById("div_curso_mat").style.display = "none";
@@ -433,10 +450,9 @@ function listaRegistros(orden_campo, orden_direccion) {
         encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
     } else if(tipo_formulario=="convalidaciones"){
         tabla = tipo_formulario;
-        campos = ["id_nie", "nombre", "registro"];
-        estilo = ["width:70px", "width:220px", "width:270px"];
-        encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
-
+        campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min"];
+        estilo = ["width:70px", "width:220px", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;" ];
+        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Cosej.","Proc.Cons.","Minist.","Proc.Minist.","Visto"];
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
         else if (document.getElementById("curso_pre_mat").value == "3eso") {tabla = "premat_eso"; grupo="3º ESO";}
@@ -530,17 +546,33 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
 
     //Construcción del encabezamiento de la tabla
-    if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
-    else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
-    encab = "<tr>";
-    if (tipo_formulario != "prematricula") encab += "<td style='width:50px; text-align:center' >Sel.</td>";
-    for (i = 0; i < encabezamiento.length; i++) {
-        encab += "<td style='" + estilo[i] + "'onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+    if(tipo_formulario=="convalidaciones"){
+        if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
+        else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
+        encab = "<tr>";
+        for (i = 0; i < encabezamiento.length; i++) {
+            if(encabezamiento[i].substr(0,3)=="NIE" || encabezamiento[i].substr(0,6)=="Alumno" || encabezamiento[i].substr(0,14)=="Fecha Registro"){
+                encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+            }
+            else{
+                encab += "<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
+            }
+        }
+        encab += "<td style='width:90px; text-align: center'>Observaciones</td></tr>";
     }
-    if (tipo_formulario=="convalidaciones") encab += "<td style='width:90px; text-align: center'>Observac.</td>";
-    else encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
-    if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td>";
-    if (tipo_formulario.indexOf("matricula")==-1)encab += "<td style='width:110px; text-align: center'>Procesado</td></tr>";
+    else{
+        if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
+        else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
+        encab = "<tr>";
+        if (tipo_formulario != "prematricula") encab += "<td style='width:50px; text-align:center' >Sel.</td>";
+        for (i = 0; i < encabezamiento.length; i++) {
+            encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+        }
+        encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
+        if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td>";
+        if (tipo_formulario.indexOf("matricula")==-1)encab += "<td style='width:110px; text-align: center'>Procesado</td>";
+        encab += "</tr>";
+    }
     ///////////////////////////////////////////////
 
     buscar = document.getElementById("busqueda").value;
@@ -609,6 +641,18 @@ function listaRegistros(orden_campo, orden_direccion) {
             curso_num:curso_num
         }
     }
+    else if(tabla=="convalidaciones"){
+        if (document.getElementById("check_vistas").checked) _v=0;
+        else _v=1;
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            vistas:_v
+        }
+    }
     else {
         datos = {
             buscar: buscar,
@@ -626,57 +670,102 @@ function listaRegistros(orden_campo, orden_direccion) {
             document.getElementById("div_notabla").style.display = "inline-block";
             document.getElementById("div_tabla").style.display = "none";
             habilitaMenu(false, false);
-        } else {
+        }
+        else {
             document.getElementById("div_notabla").style.display = "none";
             document.getElementById("div_tabla").style.display = "inline-block";
             //encab = "";
             data = "";
             data_array = resp["registros"];
+            array_sino=["No","Si"];
             for (i = 0; i < data_array.length; i++) {
-                data += "<tr onclick='verRegistro(this)'>";
-                //Check de selección. si es prematrícula no aparece
-                if (tipo_formulario != "prematricula") {
-                    data += "<td style='width:50px;  text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' onclick='javascript: event.stopPropagation();'/></td>";
-                }
-
-                //Datos específicos de cada formulario
-                for (j = 0; j < campos.length; j++) {
-                    data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
-                }
-
-                if (encabezamiento[encabezamiento.length - 1] == "Docs") {
-                    data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
-                }
-
-                if (encabezamiento[encabezamiento.length - 2] == "Docs") {
-                    if (encabezamiento[encabezamiento.length - 1] == ">28") {
-                        if (data_array[i]["mayor_28"] == "Si") {
-                            data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\">28\")'>Ver</td>";
-                        } else {
-                            data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                if (tipo_formulario=="convalidaciones"){
+                    data += "<tr onclick='verRegistroConvalidaciones(\""+data_array[i]["registro"]+"\")'>";
+                    //Datos específicos de cada formulario
+                    for (j = 0; j < campos.length; j++) {
+                        if (j<3) data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                        else if (j==3 || j==5 || j==7) data += "<td style='" + estilo[j] + "'>" + array_sino[data_array[i][campos[j]]] + "</td>";
+                        else if(j==4){
+                            if (data_array[i][campos[3]]==1){
+                                if(data_array[i][campos[j]]==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"centro\",\""+data_array[i]["registro"]+"\");'/></center></td>";
+                                else data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"centro\",\""+data_array[i]["registro"]+"\");'/></center></td>";    
+                            }
+                            else{
+                                data += "<td style='width:70px'><center>-</center></td>";     
+                            }
+                        }
+                        else if(j==6){
+                            if (data_array[i][campos[5]]==1){
+                                if(data_array[i][campos[j]]==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"consejeria\",\""+data_array[i]["registro"]+"\");'/></center></td>";
+                                else data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"consejeria\",\""+data_array[i]["registro"]+"\");'/></center></td>";
+                            }
+                            else{
+                                data += "<td style='width:70px'><center>-</center></td>";     
+                            }
+                        }
+                        else if(j==8){
+                            if (data_array[i][campos[7]]==1){
+                                if(data_array[i][campos[j]]==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"ministerio\",\""+data_array[i]["registro"]+"\");'/></center></td>";
+                                else data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"ministerio\",\""+data_array[i]["registro"]+"\");'/></center></td>";
+                            }
+                            else{
+                                data += "<td style='width:70px'><center>-</center></td>";     
+                            }
                         }
                     }
-                }
+                    if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                    else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
 
-                if (encabezamiento[encabezamiento.length - 1] == ">28" && tipo_formulario == "matricula_ciclos") {
-                    data += "<td style='" + estilo[j] + "'>" + data_array[i]["mayor_28"] + "</td>";
-                }
+                    data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
 
-                //Si hay o no incidencias
-                if (data_array[i].incidencias) data += "<td style='width:90px'><center>Si</center></td>";
-                else data += "<td style='width:90px'><center>No</center></td>";
-
-                //Check de listado. Si es prematrícula no aparece
-                if (tipo_formulario != "prematricula") {
-                    if (data_array[i].listado == 1) data += "<td style='width:90px'><center><input type='checkbox' checked onclick='javascript: return false;'/></center></td>";
-                    else data += "<td style='width:90px'><center><input type='checkbox' onclick='javascript: return false;'/></center></td>";
                 }
-                //Ckeck de procesado. Si es matrícula o prematrícula no aparece
-                if (tipo_formulario.indexOf("matricula")==-1){
-                    if (data_array[i].procesado==1) data += "<td style='width:110px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
-                    else  data += "<td style='width:110px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
+                else{
+                    data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
+                    //Check de selección. si es prematrícula no aparece
+                    if (tipo_formulario != "prematricula") {
+                        data += "<td style='width:50px;  text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' onclick='javascript: event.stopPropagation();'/></td>";
+                    }
+    
+                    //Datos específicos de cada formulario
+                    for (j = 0; j < campos.length; j++) {
+                        data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                    }
+    
+                    if (encabezamiento[encabezamiento.length - 1] == "Docs") {
+                        data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                    }
+    
+                    if (encabezamiento[encabezamiento.length - 2] == "Docs") {
+                        if (encabezamiento[encabezamiento.length - 1] == ">28") {
+                            if (data_array[i]["mayor_28"] == "Si") {
+                                data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\">28\")'>Ver</td>";
+                            } else {
+                                data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                            }
+                        }
+                    }
+    
+                    if (encabezamiento[encabezamiento.length - 1] == ">28" && tipo_formulario == "matricula_ciclos") {
+                        data += "<td style='" + estilo[j] + "'>" + data_array[i]["mayor_28"] + "</td>";
+                    }
+    
+                    //Si hay o no incidencias
+                    if (data_array[i].incidencias) data += "<td style='width:90px'><center>Si</center></td>";
+                    else data += "<td style='width:90px'><center>No</center></td>";
+    
+                    //Check de listado. Si es prematrícula no aparece
+                    if (tipo_formulario != "prematricula") {
+                        if (data_array[i].listado == 1) data += "<td style='width:90px'><center><input type='checkbox' checked onclick='javascript: return false;'/></center></td>";
+                        else data += "<td style='width:90px'><center><input type='checkbox' onclick='javascript: return false;'/></center></td>";
+                    }
+                    //Ckeck de procesado. Si es matrícula o prematrícula no aparece
+                    if (tipo_formulario.indexOf("matricula")==-1){
+                        if (data_array[i].procesado==1) data += "<td style='width:110px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
+                        else  data += "<td style='width:110px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td></tr>";
+                    }    
                 }
             }
+            
             document.getElementById("encabezado_docs").innerHTML = encab;
             document.getElementById("registros_docs").innerHTML = data;
         }
@@ -703,8 +792,23 @@ function ordenListado(obj) {
 }
 
 
+function procesadoConvalidaciones(obj, organismo, num_registro){
+    var proc=0;
+    if (obj.checked)proc=1;
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post("php/secret_convalid_procesado_organismo.php",{registro:num_registro,organismo:organismo,estado_procesado:proc},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
+        if(resp=="ok") alerta("Estado procesado cambiado correctamente.", "OK");
+        else {
+            alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
+            obj.checked=!obj.checked;
+        }
+    });
+}
+
 function formularioProcesado(obj){
-    num_reg=obj.parentNode.parentNode.parentNode.children[3].innerHTML;
+    if (tipo_formulario!="convalidaciones") num_reg=obj.parentNode.parentNode.parentNode.children[3].innerHTML;
+    else num_reg=obj.dataset.registro;
     document.getElementById("cargando").style.display = 'inherit';
     p1=Promise.resolve($.post("php/secret_cambia_estado_procesado.php",{registro:num_reg,tabla:tipo_formulario,estado:(obj.checked)?1:0}));
     p2=p1.then((resp)=>{
@@ -782,7 +886,7 @@ function verRegistro(obj) {
     botones = "<div style='text-align:right'>";
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(registro,formulario,document.getElementById(\"incidencias_text\").value)'/>";
-    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").destroy()'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
     botones += "</div>";
     $.post("php/secret_recuperaregistro.php", { formulario: form, registro: registro }, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
@@ -834,43 +938,7 @@ function verRegistro(obj) {
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
                 document.getElementById("verRegistro_div").innerHTML = contenido;
-            } else if(form1=="convalidaciones"){
-                contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><br>";
-                contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
-                contenido += "<span class='verReg_label'>Convalidación para: </span><span class='verReg_campo'>" + resp.registro.organismo_destino + "</span><br>";
-                contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
-                contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
-                contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
-                contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
-                contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.modulos + "</span><br>";
-                if(resp.registro.organismo_destino=="Consejería"){
-                    contenido += "<span class='verReg_label'>Solicita convalidación de : </span><span class='verReg_campo'>" + resp.registro.estudios_superados + "</span><br>";
-                }
-                contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
-                contenido+="<div id='ver_reg_ajuntosConvalid'></div>"
-                contenido+="<div class='container'><div class='row'>";
-                contenido+="<div class='col-2'>";
-                contenido += "<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
-                contenido +="</div><div class='col-3'>";
-                contenido+="<select id='ver_docs_resol' name='ver_docs_resol' class='form-control' onchange='cambiaEstadoResolucionConvalidaciones(\""+registro+"\",this)'>";
-                contenido+="<option value='EN ESPERA'>EN ESPERA</option>";
-                contenido+="<option value='FAVORABLE'>FAVORABLE</option>";
-                contenido+="<option value='NO FAVORABLE'>NO FAVORABLE</option>";
-                contenido+="<option value='PARCIAL'>PARCIAL</option></select>";
-                contenido+="</div><div class='col-3'>"
-                contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
-                contenido+="</div><div class='col-2'>"
-                contenido+="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+_id_nie+"\",\""+registro+"\")'/>";
-                contenido += "</div></div>";
-                contenido+="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+_id_nie+"\",\""+registro+"\",this)'/>";
-                contenido += "<span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
-                contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
-                contenido += botones;
-                document.getElementById("verRegistro_div").innerHTML = contenido;
-                document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
-                verRegAdjuntosConvalid(registro);
-                
-            } else if (form1 == "prematricula" || form1 == "matricula") {
+            }  else if (form1 == "prematricula" || form1 == "matricula") {
                 if (form1 == "matricula") {
                     if (resp.registro.consolida_premat == "Si") {
                         contenido += "<div style='text-align:center>";
@@ -1107,6 +1175,136 @@ function verRegistro(obj) {
         }
     }, "json");
 
+}
+
+
+function verRegistroConvalidaciones(num_registro){
+    ancho = 700;
+    formulario="convalidaciones"
+    botones = "<div style='text-align:right'>";
+    botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(\""+num_registro+"\",\"convalidaciones\",document.getElementById(\"incidencias_text\").value)'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
+    botones += "</div>";
+    contenido="";
+    $.post("php/secret_recuperaregistro.php", { formulario: formulario, registro: num_registro }, function(resp) {
+        if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
+        else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
+        else if (resp.error == "ok") {
+            contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><br>";
+            contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
+            contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
+            contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
+            contenido += "<span class='verReg_label'>Email: </span><span class='verReg_campo'>" + resp.registro.email + "</span><br>";
+            contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>"+resp.registro.curso_ciclo+" de Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
+            contenido += "<span class='verReg_label'>Turno: </span><span class='verReg_campo'> " + resp.registro.turno + "</span>";
+            contenido += "<span class='verReg_label'>Modalidad: </span><span class='verReg_campo'> " + resp.registro.modalidad + "</span><br>";
+            contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
+            contenido +="<div id='ver_reg_ajuntosConvalid'></div>"
+            contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
+            //contenido +="<div class='col-2'>";
+            //contenido +="<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
+            //contenido +="<label class='verReg_label'>RESOLUCION:</label>";
+            //contenido +="</div><div class='col-3'>";
+            contenido +="<div class='col-3'>";
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/>"
+            contenido +="</div><div class='col-3'>"
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
+            contenido +="</div><div class='col-2'>"
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido += "</div></div>";
+            contenido +="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+resp.registro.id_nie+"\",\""+num_registro+"\",this)'/>";
+            contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
+            contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
+            contenido += botones;
+            document.getElementById("verRegistro_div").innerHTML = contenido;
+            //document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
+            verRegAdjuntosConvalid(num_registro);
+
+            $("#verRegistro_div").dialog({
+                autoOpen: true,
+                dialogClass: "no-close",
+                modal: true,
+                draggable: false,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "VISTA DEL REGISTRO",
+                width: ancho,
+                position: { my: "center top", at: "center top", of: window }
+            });
+        }
+    }, "json");
+}
+
+function verPanelResolver(id_nie,registro){
+    ancho=1000;
+    $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
+        if (resp["error"]=="ok"){
+            panel=document.getElementById("verModulosConvalidaciones_div");
+            cont="<form id='form_relacion_modulos_convalid'><input type='hidden' name='registro' value='"+registro+"'/><div class='container'><div class='form-group form-row'>";
+            cont+="<div class='col-5'><label>Módulo</label></div>";
+            cont+="<div class='col-2'><label>Estado</label></div>";
+            cont+="<div class='col-5'><label>Motivo No Favorable</label></div>";
+            cont+="</div>";
+            for(i=0;i<resp.datos.length;i++){
+                cont+="<div class='form-group form-row'>";
+                cont+="<div class='col-5'><input type='text' name='modulo_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp.datos[i].modulo+"'  readonly/></div>";
+                cont+="<div class='col-2'><select name='estado_convalid[]' style='font-size:0.5em' class='form-control'/>";
+                cont+="<option value=''>Seleccione uno</option>";
+                if(resp.datos[i].resolucion=="FAVORABLE") cont+="<option value='FAVORABLE' selected>FAVORABLE</option>";
+                else cont+="<option value='FAVORABLE'>FAVORABLE</option>";
+                if(resp.datos[i].resolucion=="NO FAVORABLE")cont+="<option value='NO FAVORABLE' selected>NO FAVORABLE</option>";
+                else  cont+="<option value='NO FAVORABLE'>NO FAVORABLE</option>";
+                if(resp.datos[i].resolucion=="CONSEJERIA")cont+="<option value='CONSEJERIA' selected>CONSEJERIA</option>";
+                else  cont+="<option value='CONSEJERIA'>CONSEJERIA</option>";   
+                if(resp.datos[i].resolucion=="MINISTERIO")cont+="<option value='MINISTERIO' selected>MINISTERIO</option>";
+                else  cont+="<option value='MINISTERIO'>MINISTERIO</option>";  
+                cont+="</select></div>";
+                cont+="<div class='col-5'><input type='text' name='motivo_no_fav_convalid[]' style='font-size:0.5em' class='form-control' value='"+resp.datos[i].motivo_no_favorable+"'/></div>";
+                cont+="</div>";
+            }
+            cont+="</div></form>";
+            document.getElementById("verModulosConvalidaciones_div").innerHTML=cont;
+        }
+        else if(resp["error"]=="sin_modulos") alerta("No hay módulos que convalidar.","SIN MÓDULOS");
+        else alerta("Error en servidor o base de datos.","ERROR");
+    },"json");
+    $("#verModulosConvalidaciones_div").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "RESOLUCIÓN CONVALIDACIÓN MÓDULOS",
+        width: ancho,
+        position: { my: "center top", at: "center top", of: window },
+        buttons:{
+            "Resolver":function(){
+                $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
+                    if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
+                    else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
+                    else if(resp=="ok"){
+                        alerta("Proceso terminado","OK");
+                    }
+                    else if(resp=="error_db_conval") alerta("No se han grabado los datos de resolución de los módulos poruqe no se ha podido actualizar el estado en la tabla convalidaciones.","ERROR TABLA");
+                    else if(resp=="no_datospdf") alerta("No se puede generar la notificación para el alumno. Fallo al acceder a los datos de la solicitud o hay un registro duplicado. Revise los datos de la tabla en este último caso.","ERROR DB");
+                    else if(resp=="ok_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO.","RESUELVE MINISTERIO");
+                    else if(resp=="ok_consejeria") alerta("No se genera notificación para el alumno. Resuelve CONSEJERIA.","RESUELVE CONSEJERIA");
+                    else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
+                    else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
+                    listaRegistros(_orden_campo, _orden_direccion);
+                    $("#verModulosConvalidaciones_div").dialog("destroy");
+                });
+            },
+            "Cancelar":function(){
+                listaRegistros(_orden_campo, _orden_direccion);
+                $("#verModulosConvalidaciones_div").dialog("destroy");
+            }
+        }
+    });
 }
 
 
@@ -1683,7 +1881,7 @@ function cambiaEstadoResolucionConvalidaciones(_rr,obj){
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_estado_resol.php",{registro:_rr,estado:obj.value},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
-        if(resp=="server") alerta("Estado convalidación nop cambiado. Hay un problema en el servidor.","ERROR SERVIDOR");
+        if(resp=="server") alerta("Estado convalidación no cambiado. Hay un problema en el servidor.","ERROR SERVIDOR");
         else if(resp=="no_registro")alerta("Estado convalidación no cambiado. No se ha encontrado el registro.","ERROR DB");
         else if(resp=="ok") alerta("El estado de la convalidación se ha cambiado a RESOLUCIÓN "+obj.value,"ESTADO RESOLUCIÓN CAMBIADA");
     })

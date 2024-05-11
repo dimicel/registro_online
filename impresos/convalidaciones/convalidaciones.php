@@ -50,8 +50,7 @@
                         <div class="col">
                             <center>
                             <input type="button" id="instrucciones" class="btn btn-success textoboton" value="Instrucciones" onclick="seleccion(this)">
-                            <input type="button" id="consejeria" class="btn btn-success textoboton" value="Convalidaciones Consejería de Educación" onclick="seleccion(this)" />
-                            <input type="button" id="centro_ministerio" class="btn btn-success textoboton" value="Convalidaciones Centro Educativo y Ministerio de Educación" onclick="seleccion(this)" />
+                            <input type="button" id="formulario" class="btn btn-success textoboton" value="Formulario" onclick="seleccion(this)" />
                             </center>
                         </div>
                     </div>
@@ -72,11 +71,11 @@
             <form id="form_convalidaciones">
                 <div class="d-flex flex-row">
                     <div class="col">
-                        <div class="row d-flex w-100 justify-content-center">
+                        <!--<div class="row d-flex w-100 justify-content-center">
                             <div class="col" style="text-align: center;">
                                 <h5 id="rotulo">SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO</h5>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="row ">
                             <div class="col">
                                 <input type="button" id="volver" class="btn btn-success textoboton" value="<<< Volver" onclick="vuelve()"/>
@@ -147,36 +146,31 @@
                                     </div>
                                 </div>
                                 <div class="row mt-2">
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <label for="tlf_fijo">Tlf. Fijo</label>
                                     </div>
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <label for="tlf_movil">Tlf. Móvil</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <label for="email">Email</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
-                                    <div class="col-3">
-                                        <label for="t_firm">Firma</label>
-                                        <span class="errorTxt" style="font-size: 1em;"></span>
-                                    </div>
-
                                 </div>
                                 <div class="row ">
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <input type="text" class="form-control" name="tlf_fijo" id="tlf_fijo"  maxlength="12" />
                                     </div>
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <input type="text" class="form-control" name="tlf_movil" id="tlf_movil"  maxlength="12" />
                                     </div>
-                                    <div class="col-3" data-formulario="centro_ministerio">
+                                    <div class="col-3" >
                                         <input type="text" class="form-control" name="email" id="email"  maxlength="40" />
                                     </div>
-                                    <div class="col-3">
+                                    <!--<div class="col-3">
                                         <input type="text" class="form-control" name="t_firm" id="t_firm" placeholder="Clic aquí para firmar" readonly onclick="canvasFirma();" />
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -184,12 +178,12 @@
                             <div class="col">
                                 <div class="row">
                                     <div class="col">
-                                        <h6 style="color:brown; font-weight:bold">MÓDULOS QUE SOLICITA CONVALIDAR</h6>
+                                        <h6 style="color:brown; font-weight:bold">DATOS ACADÉMICOS Y MÓDULOS QUE SOLICITA CONVALIDAR</h6>
                                     </div>
                                 </div>
-                                <div class="row" data-formulario="consejería">
+                                <div class="row" >
                                     <div class="col">
-                                        <label for="estudios_superados">Ha cursado y superado los siguientes estudios</label>
+                                        <label for="estudios_superados">Estudios cursados en base a los que solicita la convalidación:</label>
                                         <span class="errorTxt" style="font-size: 1em;"></span>
                                     </div>
                                 </div>
@@ -199,19 +193,55 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
-                                        <label for="grado">Está matriculado en Ciclo Formativo de Grado</label>
+                                    <div class="col">
+                                    <label>Está matriculado en Ciclo Formativo de</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <label for="grado">Grado</label>
                                         <select class="form-control" name="grado" id="grado" size="1" onchange="selGrado(this)">
                                             <option value="">Seleccione uno...</option>
+                                            <option value="Básico">Básico</option>
                                             <option value="Medio">Medio</option>
                                             <option value="Superior">Superior</option>
+                                            <option value="Curso de Especialización">Curso Especializ.</option>
                                         </select> 
                                     </div>
                                     <div class="col">
                                         <label for="ciclos">Denominado</label>
-                                        <select class="form-control" name="ciclos" id="ciclos" size="1">
+                                        <select class="form-control" name="ciclos" id="ciclos" size="1" onchange="selCiclo(this)">
                                             <option value="">Seleccione grado...</option>
                                         </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="grado">Curso</label>
+                                        <select class="form-control" name="curso" id="curso" size="1">
+                                            <option value="">Seleccione uno...</option>
+                                            <option value="1º">1º</option>
+                                            <option value="2º">2º</option>
+                                            <option value="3º">3º</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="grado">Turno</label>
+                                        <select class="form-control" name="turno" id="turno" size="1">
+                                            <option value="">Seleccione uno...</option>
+                                            <option value="Diurno">Diurno</option>
+                                            <option value="Vespertino">Vespertino</option>
+                                            <option value="Nocturno">Nocturno</option>
+                                            <option value="Virtual">Virtual (E-learning)</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="grado">Modalidad</label>
+                                        <select class="form-control" name="modalidad" id="modalidad" size="1">
+                                            <option value="">Seleccione uno...</option>
+                                            <option value="Presencial">Presencial</option>
+                                            <option value="Semipresencial">Semipresencial</option>
+                                            <option value="Modular">Modular</option>
+                                            <option value="Virtual">Virtual (E-learning)</option>
+                                        </select> 
                                     </div>
                                 </div>
                                 <div class="row mt-2">
@@ -227,7 +257,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col">
-                                    <label id="label_estudios_aportados" for="estudios">Estudios que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                                        <label id="label_estudios_aportados" for="estudios">Documentación que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -249,45 +279,8 @@
             </form>
         </div> 
     </section>       
-    <div id="anade_documento_centroministerio" style="display:none">
-        <form id="form_anade_documento_cenminis">
-            <div class="container">
-                <div class="row">
-                    <div class="col-1">
-                        <label style="font-weight:bolder">Tipo:</label>
-                    </div>
-                    <div class="col offset-1 custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="loe" name="tipo" class="custom-control-input" value="LOE"/>
-                        <label for="loe" class="custom-control-label">LOE</label>
-                    </div>
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="logse" name="tipo" class="custom-control-input" value="LOGSE"/>
-                        <label for="logse" class="custom-control-label">LOGSE</label>
-                    </div>
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="universitarios" name="tipo" class="custom-control-input" value="Universitarios"/>
-                        <label for="universitarios" class="custom-control-label">Universitarios</label>
-                    </div>
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="otro" name="tipo" class="custom-control-input" value="Otro" />
-                        <label for="otro" class="custom-control-label">Otro</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="den_estudios">Estudios que aporta:</label>
-                        <input type="text" id="den_estudios" class="form-control" maxlength="40"/>
-                    </div>
-                    <div class="col">
-                        <label for="archivo">Documento:</label>
-                        <input type="text" id="archivo" class="form-control" maxlength="256" onclick="selArchCentMinis();" readonly/>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div id="anade_documento_consejeria" style="display:none">
-        <form id="form_anade_documento_con">
+    <div id="anade_documento" style="display:none">
+        <form id="form_anade_documento">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -304,7 +297,7 @@
                     <div class="col custom-control custom-switch mi-checkbox">
                         <div class="row" >
                             <div class="col-5">
-                                <label>Documento de identificación </label>
+                                <label>Documento de identificación</label>
                             </div>
                             <div class="col">
                                 <input type="radio" id="dni_nie_con" name="tipo_con" class="custom-control-input" value="Documento de identificación (DNI/NIE)" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
@@ -351,12 +344,12 @@
     </div>
 
 
-    <div id="div_canvas_firma" style="display:none; text-align:center;">
+    <!--<div id="div_canvas_firma" style="display:none; text-align:center;">
         <label><small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small></label><br>
         <div id="div_lienzo" >
             <canvas id="firmaCanvas" width="400" height="200" style="background-color:white; border: 1px solid black;"></canvas>
         </div>
-    </div>
+    </div>-->
     <div id="div_edita_imagen" style="display:none; text-align:center">
         <label><small id="texto_editor_imagen">Rota, haz zoom (con la rueda del ratón) y mueve las imágenes para ajustar el documento al recuadro</small></label>
         <div class="container">

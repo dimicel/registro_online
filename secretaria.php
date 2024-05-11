@@ -207,9 +207,13 @@
                         <div class="col-lg-8" style="margin-left:-35px">
                             <input type="text" id="busqueda" maxlength="255" class="form-control" onkeyup="listaRegistros()">
                         </div>
-                        <div class="custom-control custom-switch col-lg-2">
+                        <div class="custom-control custom-switch col-lg-2" id="div_incidencias">
                             <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_incidencias" onchange="listaRegistros();">
                             <label for="check_incidencias" class="custom-control-label" style="margin-top:5px;margin-left:10px;">Sólo Incidencias</label>
+                        </div>
+                        <div class="custom-control custom-switch col-lg-2" id="div_convalidaciones" style="display:none">
+                            <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_vistas" onchange="listaRegistros();">
+                            <label for="check_vistas" class="custom-control-label" style="margin-top:5px;margin-left:10px;">SÓLO No Vistas</label>
                         </div>
                     </div>
                 </form>
@@ -313,6 +317,7 @@
 
 
     <div id="verRegistro_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
+    <div id="verModulosConvalidaciones_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
     <div id="verInfoUsu_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
     <div id="cargando" style="display:none; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('recursos/espera.gif') no-repeat center center; opacity: .7;z-index:9999;text-align:center;">
         <!--<label id="progreso_php" style="color:brown;vertical-align:middle;"></label>-->

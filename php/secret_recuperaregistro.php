@@ -20,7 +20,6 @@ if(strpos($tabla_db, "premat_") !== false){
 }
 
 $consulta="select * from $tabla_db where registro='$registro'";
-
 $res=$mysqli->query($consulta);
 
 if ($res->num_rows==0){
@@ -76,6 +75,9 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["ley"]=$reg["ley"];
         $data["registro"]["ciclo"]=$reg["ciclo"];
         $data["registro"]["grado"]=$reg["grado"];
+        $data["registro"]["turno"]=$reg["turno"];
+        $data["registro"]["modalidad"]=$reg["modalidad"];
+        $data["registro"]["curso_ciclo"]=$reg["curso_ciclo"];
         $data["registro"]["organismo_destino"]=$reg["organismo_destino"];
         $data["registro"]["modulos"]=$reg["modulos"];
         $data["registro"]["tlf_fijo"]=$reg["tlf_fijo"];

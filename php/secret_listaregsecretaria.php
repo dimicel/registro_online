@@ -15,9 +15,11 @@ $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
 $orden_campo=$_POST["orden_campo"];
 $orden_direccion=$_POST["orden_direccion"];
-if ($orden_campo=="registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion;
+if ($orden_campo=="registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
+if ($orden_campo=="fecha_registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
 else $orden_listado=$orden_campo." ".$orden_direccion;
-$solo_incidencias=$_POST["solo_incidencias"];
+if ($tabla=="convalidaciones") $visto=$_POST["vistas"];
+else $solo_incidencias=$_POST["solo_incidencias"];
 if (isset($_POST["grupo"])) $grupo=$_POST["grupo"];
 if (isset($_POST["modalidad"])) $modalidad=$_POST["modalidad"];
 if (isset($_POST["curso_num"])) $curso_num=$_POST["curso_num"];
@@ -55,6 +57,11 @@ elseif($tabla=="mat_fpb"){
     $proceso="matriculafpb";
     $campos="id_nie,nombre,apellidos,registro,incidencias,listado,ciclo,curso_ciclo";
 }
+elseif($tabla=="convalidaciones"){
+    $proceso=$tabla;
+    //$campos="id_nie,nombre,apellidos,registro,fecha_registro,incidencias,procesado,resuelve_cen,resuelve_con,resuelve_min,resuelto_cen,resuelto_con,resuelto_min";
+    $campos="*";
+}
 else {
     $proceso=$tabla;
     if ($proceso=="revision_examen"){
@@ -63,13 +70,15 @@ else {
     elseif ($proceso=="revision_calificacion"){
         $campos="id_nie,nombre,apellidos,registro,listado,incidencias,procesado";
     }
-    elseif ($proceso="convalidaciones"){
-        $campos="id_nie,nombre,apellidos,registro,listado,incidencias,procesado";
-    }
 }
 
 $coletilla="";
-if ($solo_incidencias==1) $coletilla="incidencias!='' and ";
+if ($tabla=="convalidaciones" && $visto==0){
+    $coletilla=" procesado=$visto and ";
+}
+else{
+    if ($solo_incidencias==1) $coletilla="incidencias!='' and ";
+}
 if ($nuevo_otra_com=="Si") $coletilla.="al_nuevo_otracomunidad='Si' and ";
 if($curso_num!="") $coletilla.="grupo='$curso_num' and ";
 
@@ -141,10 +150,16 @@ elseif($proceso=="convalidaciones"){
         $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
         $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         $data["registros"][$contador]["registro"]=$reg["registro"];
-        $data["registros"][$contador]["listado"]=$reg["listado"];
+        $data["registros"][$contador]["fecha_registro"]=$reg["fecha_registro"];
+        $data["registros"][$contador]["visto"]=$reg["procesado"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
-        $data["registros"][$contador]["procesado"]=$reg["procesado"];
+        $data["registros"][$contador]["resuelve_cen"]=$reg["resuelve_cen"];
+        $data["registros"][$contador]["resuelve_con"]=$reg["resuelve_con"];
+        $data["registros"][$contador]["resuelve_min"]=$reg["resuelve_min"];
+        $data["registros"][$contador]["resuelto_cen"]=$reg["resuelto_cen"];
+        $data["registros"][$contador]["resuelto_con"]=$reg["resuelto_con"];
+        $data["registros"][$contador]["resuelto_min"]=$reg["resuelto_min"];
         $contador++;
     }
 }

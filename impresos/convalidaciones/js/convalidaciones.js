@@ -2,12 +2,11 @@ var id_nie = "";
 var nombre="";
 var apellidos="";
 var nif_nie="";
-var formulario = "";
 var curso = "";
 var drawing = false;
 var mouseX, mouseY;
+var matrizMods=[];
 
-var canvas, context, tool, canvas_upload;
 var formData = new FormData();
 var subidoDocIdent=false;
 
@@ -61,15 +60,7 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
-    canvas = document.getElementById('firmaCanvas');
-    context = canvas.getContext('2d');
-    canvas.addEventListener('mousedown', ev_canvas, false);
-    canvas.addEventListener('mousemove', ev_canvas, false);
-    canvas.addEventListener('mouseup', ev_canvas, false);
-    canvas.addEventListener("mouseout", ev_canvas, false);
-    canvas.addEventListener('touchstart', ev_canvas, false);
-    canvas.addEventListener('touchmove', ev_canvas, false);
-    canvas.addEventListener('touchend', ev_canvas, false);
+
 
 });
 
@@ -101,33 +92,13 @@ function seleccion(obj) {
                 document.getElementById("localidad").value = '';
                 document.getElementById("provincia").value = '';
             }
-            if (obj.id == "consejeria") {
-                $("#seccion-intro").hide();
-                $("#seccion-formulario").show();
-                //$('[data-formulario="centro_ministerio"]').each(function() {
-                //    $(this).hide();
-                //});
-                $('[data-formulario="consejería"]').each(function() {
-                    $(this).show();
-                });
-                formulario = "Consejería";
-                creaValidador();
-                document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA CONSEJERÍA DE EDUCACIÓN";
-                document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
-            } else if (obj.id == "centro_ministerio") {
-                $("#seccion-intro").hide();
-                $("#seccion-formulario").show();
-                //$('[data-formulario="centro_ministerio"]').each(function() {
-                //    $(this).show();
-                //});
-                $('[data-formulario="consejería"]').each(function() {
-                    $(this).hide();
-                });
-                formulario = "Centro-Ministerio";
-                creaValidador();
-                document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES PARA EL CENTRO EDUCATIVO O EL MINISTERIO";
-                document.getElementById("label_estudios_aportados").innerHTML="Documentos que adjunta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
-            }
+            
+            $("#seccion-intro").hide();
+            $("#seccion-formulario").show();
+            creaValidador();
+            document.getElementById("rotulo").innerHTML="SOLICITUD CONVALIDACIONES";
+            document.getElementById("label_estudios_aportados").innerHTML="Estudios que aporta (<a style='color:#00C' href='#' onclick='anadeDoc(event)'>Clic AQUÍ para añadir documentos</a>)";
+            
         }, "json");
     } 
 }
@@ -163,10 +134,10 @@ function creaValidador() {
                 required: true,
                 email: true
             },
-            t_firm: {
+            grado: {
                 required: true
             },
-            grado: {
+            modalidad: {
                 required: true
             },
             ciclos: {
@@ -208,10 +179,10 @@ function creaValidador() {
                 required: "Vacío",
                 email: "Inválido"
             },
-            t_firm: {
-                required: "Vacío"
-            },
             grado: {
+                required: "Seleccione uno"
+            },
+            modalidad: {
                 required: "Seleccione uno"
             },
             ciclos: {
@@ -221,7 +192,7 @@ function creaValidador() {
                 required: "Seleccione módulos"
             },
             estudios_superados:{
-                required: "Especifique unos estudios superados"
+                required: "Vacío"
             }
         },
         errorPlacement: function(error, element) {
@@ -275,13 +246,27 @@ function selGrado(obj) {
 }
 
 
+function selCiclo(obj){
+    document.getElementById('modulos').value='';
+    if (obj.value=="Administración y Finanzas (NOCTURNO)") document.getElementById("turno").value="Nocturno";
+    else document.getElementById("turno").selectedIndex=0;
+}
+
 function selModulos(e) {
     e.preventDefault();
     if (document.getElementById("ciclos").selectedIndex == 0) {
         alerta("Seleccione antes un ciclo formativo.", "CICLO SIN SELECCIÓN");
         return;
     }
-    $.post("php/listamodulos.php", { ciclo: document.getElementById("ciclos").value, grado: document.getElementById("grado").value }, (resp) => {
+    else if(document.getElementById("curso").selectedIndex == 0){
+        alerta("Seleccione antes el curso.", "CURSO SIN SELECCIÓN");
+        return;
+    }
+    else if(document.getElementById("curso").selectedIndex == 0 && document.getElementById("ciclos").selectedIndex == 0){
+        alerta("Seleccione antes el ciclo formativo y el curso.", "CICLO Y CURSO SIN SELECCIÓN");
+        return;
+    }
+    $.post("php/listamodulos.php", { ciclo: document.getElementById("ciclos").value, grado: document.getElementById("grado").value, curso: document.getElementById("curso").value}, (resp) => {
         if (resp["error"] == "servidor") {
             alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
         } else if (resp["error"].indexOf("error_consulta") > -1) {
@@ -319,8 +304,10 @@ function selModulos(e) {
                     click: function() {
                         elementos = document.getElementById("tab_lista_modulos").querySelectorAll("tr.selected");
                         textModulos = "";
+                        matrizMods=[];
                         for (i = 0; i < elementos.length; i++) {
                             textModulos += elementos[i].cells[0].innerHTML + "-" + elementos[i].cells[1].innerHTML + ";"
+                            matrizMods.push(elementos[i].cells[0].innerHTML + "-" + elementos[i].cells[1].innerHTML);
                         }
                         document.getElementById("modulos").value = textModulos;
                         $("#sMod").dialog("close");
@@ -362,50 +349,10 @@ function selTablaListaMod(obj) {
 function anadeDoc(e) {
     e.preventDefault();
     creaInputs();
-    if (formulario=="Centro-Ministerio"){
-        $("#anade_documento_centroministerio").dialog({
-            autoOpen: true,
-            dialogClass: "alert no-close",
-            modal: true,
-            hide: { effect: "fade", duration: 0 },
-            resizable: false,
-            show: { effect: "fade", duration: 0 },
-            title: "AÑADIR ESTUDIO A APORTAR",
-            width: 700,
-            buttons: [{
-                    class: "btn btn-success textoboton",
-                    text: "Aceptar",
-                    click: function() {
-                        if (document.querySelectorAll("#anade_documento_centroministerio input[name=tipo]:checked").length == 0 ||
-                            document.getElementById("den_estudios").value.trim().length == 0 ||
-                            document.getElementById("archivo").value.trim().length == 0) {
-                            alerta("Debe seleccionar un tipo, un documento y poner una breve descripción del documento que adjunta.", "FALTAN DATOS");
-                            return;
-                        }
-                        actualizaTablaListaDocs();
-                        document.getElementById("form_anade_documento_cenminis").reset();
-                        $("#anade_documento_centroministerio").dialog("close");
-                        $("#anade_documento_centroministerio").dialog("destroy");
-                    }
-                },
-                {
-                    class: "btn btn-success textoboton",
-                    text: "Cancelar",
-                    click: function() {
-                        document.getElementById("form_anade_documento_cenminis").reset();
-                        selUltimoFile().remove();
-                        selUltimoHidden().remove();
-                        $("#anade_documento_centroministerio").dialog("close");
-                        $("#anade_documento_centroministerio").dialog("destroy");
-                    }
-                }
-            ]
-        });
-    }
-    else if(formulario=="Consejería"){
+        
         if (subidoDocIdent) $("#div_doc_identificacion").hide();
         else $("#div_doc_identificacion").show();
-        $("#anade_documento_consejeria").dialog({
+        $("#anade_documento").dialog({
             autoOpen: true,
             dialogClass: "alert no-close",
             modal: true,
@@ -418,40 +365,38 @@ function anadeDoc(e) {
                     class: "btn btn-success textoboton",
                     text: "Aceptar",
                     click: function() {
-                        if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked").length == 0 || 
+                        if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked").length == 0 || 
                             document.getElementById("archivo_con").value.trim().length == 0){
                                 alerta("Debe seleccionar un tipo de documento y un archivo.", "FALTAN DATOS");
                                 return;
                         }
-                        else if(document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Otro" &&
+                        else if(document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Otro" &&
                                 document.getElementById("den_otro_con").value.trim().length == 0){
                                     alerta("Debe especificar qué tipo de documento va a adjuntar.", "FALTAN DATOS");
                                     return;
                         }
                         actualizaTablaListaDocs();
                         if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1)subidoDocIdent=true;
-                        document.getElementById("form_anade_documento_con").reset();
+                        document.getElementById("form_anade_documento").reset();
                         $('#div_den_otro_con').hide();
-                        $("#anade_documento_consejeria").dialog("close");
-                        $("#anade_documento_consejeria").dialog("destroy");
+                        $("#anade_documento").dialog("close");
+                        $("#anade_documento").dialog("destroy");
                     }
                 },
                 {
                     class: "btn btn-success textoboton",
                     text: "Cancelar",
                     click: function() {
-                        document.getElementById("form_anade_documento_con").reset();
+                        document.getElementById("form_anade_documento").reset();
                         $('#div_den_otro_con').hide();
                         selUltimoFile().remove();
                         selUltimoHidden().remove();
-                        $("#anade_documento_consejeria").dialog("close");
-                        $("#anade_documento_consejeria").dialog("destroy");
+                        $("#anade_documento").dialog("close");
+                        $("#anade_documento").dialog("destroy");
                     }
                 }
             ]
         });
-    }
-
 }
 
 
@@ -475,17 +420,15 @@ function creaInputs() {
         _extension1="pdf";
         _extension2="pdf";
         mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
-        if (formulario=="Consejería"){
-            if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
-                _extension1="jpeg";
-                _extension2="jpg";
-                mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
-            }
-            else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
-                _extension1="jpeg";
-                _extension2="jpg";
-                mensaje_alerta="Los dos archivos de imagen correspondientes al anverso y reverso del documento de identificación deben ser del tipo JPEG.","ERROR TIPO ARCHIVO";
-            }
+        if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+            _extension1="jpeg";
+            _extension2="jpg";
+            mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
+        }
+        else if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+            _extension1="jpeg";
+            _extension2="jpg";
+            mensaje_alerta="Los dos archivos de imagen correspondientes al anverso y reverso del documento de identificación deben ser del tipo JPEG.","ERROR TIPO ARCHIVO";
         }
         if (this.files.length > 0) {
             for(i=0;i<this.files.length;i++){
@@ -498,18 +441,13 @@ function creaInputs() {
             }
         }
 
-        if (formulario=="Centro-Ministerio"){
-            document.getElementById('archivo').value = this.files[0].name;
+        if (!this.multiple) document.getElementById('archivo_con').value = this.files[0].name;
+        else {
+            document.getElementById('archivo_con').value = this.files[0].name+", "+this.files[1].name;
         }
-        else{
-            if (!this.multiple) document.getElementById('archivo_con').value = this.files[0].name;
-            else {
-                document.getElementById('archivo_con').value = this.files[0].name+", "+this.files[1].name;
-            }
-            if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1){
-                muestraEditor(event);
-            }
-        }  
+        if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1){
+            muestraEditor(event);
+        } 
     });
 }
 
@@ -525,59 +463,36 @@ function selUltimoHidden() {
 
 function actualizaTablaListaDocs() {
     _t = document.getElementById("tab_lista_docs");
-    if (formulario=="Centro-Ministerio"){
-        _tipo_sel=document.querySelectorAll("#anade_documento_centroministerio input[name=tipo]:checked");
-        _arch = selUltimoFile().files[0].name;
-        _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
-        _d[_d.length - 1].value = "(" + _tipo_sel[0].value + ") " + document.getElementById("den_estudios").value;
-        
-        if (_t.rows[0].cells.length == 1) {
-            _t.deleteRow(0);
-        }
-        var nuevaFila = _t.insertRow();
     
-        // Insertar una celda en la nueva fila (primera columna)
-        var celda1 = nuevaFila.insertCell();
-        celda1.textContent = "(" + _tipo_sel[0].value + ") " + document.getElementById("den_estudios").value;
-        celda1.style.width = "50%";
-    
-        // Insertar una celda en la nueva fila (segunda columna)
-        var celda2 = nuevaFila.insertCell();
-        celda2.textContent = _arch;
-        celda2.style.width = "45%";
+    _tipoSel=document.querySelectorAll("#anade_documento input[name=tipo_con]:checked");
+    _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
+    if (_tipoSel[0].value=="Otro"){
+        //_arch = selUltimoFile().files[0].name;
+        _d[_d.length - 1].value = document.getElementById("den_otro_con").value;
     }
     else {
-        _tipoSel=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked");
-        _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
-        if (_tipoSel[0].value=="Otro"){
-            //_arch = selUltimoFile().files[0].name;
-            _d[_d.length - 1].value = document.getElementById("den_otro_con").value;
-        }
-        else {
-            _d[_d.length - 1].value = _tipoSel[0].value;
-        }
-            
-        if (_t.rows[0].cells.length == 1) {
-            _t.deleteRow(0);
-        }
-        var nuevaFila = _t.insertRow();
-    
-        // Insertar una celda en la nueva fila (primera columna)
-        var celda1 = nuevaFila.insertCell();
-        celda1.textContent =  _d[_d.length - 1].value;
-        celda1.style.width = "50%";
-
-        // Insertar una celda en la nueva fila (segunda columna)
-        var celda2 = nuevaFila.insertCell();
-        celda2.textContent = selUltimoFile().files[0].name;
-        if(_tipoSel[0].value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile().files[1].name;
-        celda2.style.width = "45%";
+        _d[_d.length - 1].value = _tipoSel[0].value;
     }
+        
+    if (_t.rows[0].cells.length == 1) {
+        _t.deleteRow(0);
+    }
+    var nuevaFila = _t.insertRow();
 
+    // Insertar una celda en la nueva fila (primera columna)
+    var celda1 = nuevaFila.insertCell();
+    celda1.textContent =  _d[_d.length - 1].value;
+    celda1.style.width = "50%";
+
+    // Insertar una celda en la nueva fila (segunda columna)
+    var celda2 = nuevaFila.insertCell();
+    celda2.textContent = selUltimoFile().files[0].name;
+    if(_tipoSel[0].value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile().files[1].name;
+    celda2.style.width = "45%";
     var celda3 = nuevaFila.insertCell();
-        celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
-        celda3.style.width = "5%";
-        celda3.style.textAlign = "center";
+    celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
+    celda3.style.width = "5%";
+    celda3.style.textAlign = "center";
 
 }
 
@@ -614,39 +529,40 @@ function borraFila(obj, e) {
 
 function registraForm() {
     if ($("#form_convalidaciones").valid()) {
-        formData.append("id_nie", encodeURIComponent(id_nie));
-        formData.append("curso", encodeURIComponent(curso));
-        formData.append("formulario", encodeURIComponent(formulario));
-        formData.append("nombre", encodeURIComponent(document.getElementById("nombre").value));
-        formData.append("apellidos", encodeURIComponent(document.getElementById("apellidos").value));
-        formData.append("id_nif", encodeURIComponent(document.getElementById("nif_nie").value));
-        formData.append("direccion", encodeURIComponent(document.getElementById("direccion").value));
-        formData.append("cp", encodeURIComponent(document.getElementById("cp").value));
-        formData.append("localidad", encodeURIComponent(document.getElementById("localidad").value));
-        formData.append("provincia", encodeURIComponent(document.getElementById("provincia").value));
-        formData.append("tlf_fijo", encodeURIComponent(document.getElementById("tlf_fijo").value));
-        formData.append("tlf_movil", encodeURIComponent(document.getElementById("tlf_movil").value));
-        formData.append("email", encodeURIComponent(document.getElementById("email").value));
-        if (formulario=="Consejería"){
-            formData.append("estudios_superados", encodeURIComponent(document.getElementById("estudios_superados").value));
-        }
-        formData.append("grado", encodeURIComponent(document.getElementById("grado").value));
-        formData.append("ciclo", encodeURIComponent(document.getElementById("ciclos").value));
-        formData.append("modulos", encodeURIComponent(document.getElementById("modulos").value));
-        formData.append("firma", encodeURIComponent(canvas_upload));
+        formData.append("id_nie", id_nie);
+        formData.append("anno_curso", curso);
+        formData.append("nombre", document.getElementById("nombre").value);
+        formData.append("apellidos", document.getElementById("apellidos").value);
+        formData.append("id_nif", document.getElementById("nif_nie").value);
+        formData.append("direccion", document.getElementById("direccion").value);
+        formData.append("cp", document.getElementById("cp").value);
+        formData.append("localidad",document.getElementById("localidad").value);
+        formData.append("provincia", document.getElementById("provincia").value);
+        formData.append("tlf_fijo", document.getElementById("tlf_fijo").value);
+        formData.append("tlf_movil", document.getElementById("tlf_movil").value);
+        formData.append("email", document.getElementById("email").value);
+        formData.append("estudios_superados", document.getElementById("estudios_superados").value);
+        formData.append("grado", document.getElementById("grado").value);
+        formData.append("ciclo", document.getElementById("ciclos").value);
+        formData.append("modalidad", document.getElementById("modalidad").value);
+        formData.append("turno", document.getElementById("turno").value);
+        formData.append("curso", document.getElementById("curso").value);
+        formData.append("modulos", document.getElementById("modulos").value);
+        formData.append("matrizMods", JSON.stringify(matrizMods));
+
+        
 
         datosHidden = document.querySelectorAll('input[name="desc[]"]');
         datosFiles = document.querySelectorAll('input[name="docs[]"]');
         for (var i = 0; i < datosHidden.length; i++) {
             if (datosHidden[i].value!="Documento de identificación (DNI/NIE)" && datosHidden[i].value!="Documento de identificación (Pasaporte)"){
-                formData.append("desc[]", encodeURIComponent(datosHidden[i].value));
+                formData.append("desc[]", datosHidden[i].value);
                 formData.append("docs[]", datosFiles[i].files[0]);
             }
         }
         
-        if (formulario == "Centro-Ministerio") urlPHP="php/registracentroministerio.php";
-        else urlPHP="php/registraconsejeria.php";
-
+        
+        urlPHP="php/registraformulario.php";
         document.getElementById("cargando").style.display = 'inherit';
         $.post({
             url:urlPHP ,
@@ -656,7 +572,7 @@ function registraForm() {
             success: function(resp) {
                 document.getElementById("cargando").style.display = 'none';
                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
-                else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+                else if (resp.substring(0, 8) == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
                 else if (resp == "error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.", "ERROR UPLOAD");
                 else if (resp == "ok") {
                     alerta("Solicitud de convalidación registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", true, 500);
@@ -674,129 +590,6 @@ function registraForm() {
 
 
 
-function canvasFirma() {
-
-    tool = new tool_pencil();
-    $("#div_canvas_firma").dialog({
-        autoOpen: true,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "FIRMA",
-        width: 500,
-        buttons: [{
-                class: "btn btn-success textoboton",
-                text: "Aceptar",
-                click: function() {
-                    if (!isCanvasEmpty()) {
-                        document.getElementById("t_firm").value = "FORMULARIO FIRMADO";
-                        canvas_upload = canvas.toDataURL('image/png');
-                    } else {
-                        document.getElementById("t_firm").value = "";
-                    }
-                    $("#div_canvas_firma").dialog("close");
-                    $("#div_canvas_firma").dialog("destroy");
-                }
-            },
-            {
-                class: "btn btn-success textoboton",
-                text: "Borrar",
-                click: function() {
-                    context.clearRect(0, 0, canvas.width, canvas.height);
-                    document.getElementById("t_firm").value = "";
-                }
-            },
-            {
-                class: "btn btn-success textoboton",
-                text: "Cancelar",
-                click: function() {
-                    if (!isCanvasEmpty()) {
-                        document.getElementById("t_firm").value = "FORMULARIO FIRMADO";
-                        canvas_upload = canvas.toDataURL('image/png');
-                    } else {
-                        document.getElementById("t_firm").value = "";
-                    }
-                    $("#div_canvas_firma").dialog("close");
-                    $("#div_canvas_firma").dialog("destroy");
-                }
-            }
-        ]
-    });
-}
-
-function tool_pencil() {
-    var tool = this;
-    this.started = false;
-
-    // This is called when you start holding down the mouse button or touch the screen.
-    // This starts the pencil drawing.
-    this.startDrawing = function(x, y) {
-        context.beginPath();
-        context.moveTo(x, y);
-        tool.started = true;
-    };
-
-    // This function is called every time you move the mouse or touch the screen. 
-    // It draws a line if the tool.started state is set to true.
-    this.draw = function(x, y) {
-        if (!tool.started) return;
-        context.lineTo(x, y);
-        context.stroke();
-    };
-
-    // This is called when you release the mouse button or end touching the screen.
-    this.endDrawing = function() {
-        tool.started = false;
-    };
-}
-
-// The general-purpose event handler. This function determines the mouse or touch position relative to the canvas element.
-function ev_canvas(ev) {
-    var canvasRect = canvas.getBoundingClientRect();
-    var clientX, clientY;
-
-    if (ev.touches && ev.touches.length > 0) {
-        ev.preventDefault();
-        clientX = ev.touches[0].clientX;
-        clientY = ev.touches[0].clientY;
-    } else {
-        clientX = ev.clientX;
-        clientY = ev.clientY;
-    }
-
-    var x = clientX - canvasRect.left;
-    var y = clientY - canvasRect.top;
-
-    var func;
-    if (ev.type === 'mousedown' || ev.type === 'touchstart') {
-        func = tool.startDrawing;
-    } else if (ev.type === 'mousemove' || ev.type === 'touchmove') {
-        func = tool.draw;
-    } else if (ev.type === 'mouseup' || ev.type === 'touchend') {
-        func = tool.endDrawing;
-    }
-
-    if (func) {
-        func(x, y);
-    }
-}
-
-// Función para verificar si el canvas contiene algo dibujado
-function isCanvasEmpty() {
-    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    var data = imageData.data;
-
-    for (var i = 0; i < data.length; i += 4) {
-        // Comprobar si el canal alfa (transparencia) es mayor que 0
-        if (data[i + 3] !== 0) {
-            return false; // El canvas contiene algo dibujado
-        }
-    }
-
-    return true; // El canvas está vacío
-}
 
 
 ///////////////////FUNCIONES ESPECÍFICAS FORMULARIO PARA CONSEJERÍA
@@ -820,35 +613,27 @@ function selTipoDoc(v){
 
 
 function selArchConsej(){
-    if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked").length==0){
+    if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked").length==0){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
         return;
     }
 
     selUltimoFile().click();
 
-    if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+    if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
         $("#doc_ident_reverso").show();
     }
-    else if (document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+    else if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
         $("#doc_ident_reverso").hide();
     }
 
 }
 
-function selArchCentMinis(){
-    if (document.querySelectorAll("#anade_documento_centroministerio input[name=tipo]:checked").length==0){
-        alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
-        return;
-    }
-    selUltimoFile().click();
- 
-}
 
 
 
 function muestraEditor(_ev){
-    _tipoSelecc=document.querySelectorAll("#anade_documento_consejeria input[name=tipo_con]:checked")[0].value;
+    _tipoSelecc=document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value;
     _crop1=new Croppie(document.getElementById("div_imagen_anverso"), {
         viewport: { width: 300, height: 190 },
         boundary: { width: 450, height: 255 },
