@@ -362,26 +362,26 @@ elseif($res_min>0 || $res_con>0) {
     
     $html="";
     if($res_con>0){
-        $html.="La convalidación de los siguientes módulos debe ser resuelta por la Consejería de Educación:<br><b>";
+        $html.="<p>La convalidación de los siguientes módulos debe ser resuelta por la Consejería de Educación:<br><b>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="CONSEJERIA"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</b><br><br><br>";
+        $html.="</b></p><br><br><br>";
     }
     if ($res_min>0){
-        $html.="La convalidación de los siguientes módulos debe ser resuelta por el Ministerio de Educación:<br><b>";
+        $html.="<p>La convalidación de los siguientes módulos debe ser resuelta por el Ministerio de Educación:<br><b>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="MINISTERIO"){
                 $html.=$modulos[$i];
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</b><br><br><br>";
+        $html.="</b></p><br><br><br>";
     }
-    $html.="El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br><br>";
+    $html.="<p>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.</p><br><br><br>";
     $pdf->SetRightMargin($margen_derecho);
     $pdf->writeHTML($html, true, false, true, false, '');
 
