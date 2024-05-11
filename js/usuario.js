@@ -491,7 +491,7 @@ function listaSolicitudes() {
                     if (proc=="Convalidaciones"){
                         tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/convalidaciones/"+ item["curso"] + "/"+item["registro"].slice(17)+"/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a>";
                         if (item["resolucion"]=="PROCESADA"){
-                            tabla += "<a style='margin-left:10px;color:GREEN' href='docs/"+id_nie+"/convalidaciones/"+ item["curso"] + "/"+item["registro"].slice(17)+"/docs/resolucion/resolucion.pdf?q="+new Date.now()+"' target='_blank' title='Ver documento'>(Ver documento)</a>"
+                            tabla += "<a style='margin-left:10px;color:GREEN' href='docs/"+id_nie+"/convalidaciones/"+ item["curso"] + "/"+item["registro"].slice(17)+"/docs/resolucion/resolucion.pdf?q="+Date.now()+"' target='_blank' title='Ver documento'>(Ver documento)</a>"
                         }
                         else{
                             tabla += " (Resolución EN ESPERA)"
