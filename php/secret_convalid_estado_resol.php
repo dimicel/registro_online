@@ -260,15 +260,16 @@ if($res_fav>0 || $res_nofav>0){
     
     $Yinicio=$pdf->GetY()+4;
     //$Yinicio+=4;
-    list($width, $height) = getimagesize('../recursos/sello_firma.jpg');
+    $anchoSello=50;
+    $altoSello=40;
 
     // Calcular las coordenadas para centrar la imagen
-    $image_x = ($pdf->GetPageWidth() - $width) / 2;
+    $image_x = ($pdf->GetPageWidth() - $anchoSello) / 2;
 
     // Insertar la imagen centrada
-    $pdf->Image('../recursos/sello_firma.jpg', $image_x, $Yinicio, $width, $height, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+    $pdf->Image('../recursos/sello_firma.jpg', $image_x, $Yinicio, $anchoSello, $altoSello, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
     
-    $Yinicio+=$height+4;
+    $Yinicio+=$altoSello+4;
     $pdf->SetXY(0,$Yinicio);
     $pdf->Cell(0,0,"Fdo.: Luis Ángel Corrales Mariblanca",0,0,'C',0,'',1,false,'T','T');
 
