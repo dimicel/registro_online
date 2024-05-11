@@ -244,7 +244,7 @@ if($res_fav>0 || $res_nofav>0){
     $pdf->SetRightMargin($margen_derecho);
     $pdf->writeHTML($html, true, false, true, false, '');
 
-    
+
     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
     $fecha_actual=getdate();
     $dd=$fecha_actual["mday"];
@@ -252,7 +252,7 @@ if($res_fav>0 || $res_nofav>0){
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
     $pdf->SetFont('helvetica', '', 8);
-    $Yinicio=$pdf->GetY();
+    $Yinicio=$pdf->GetY()+50;
     $pdf->SetXY(0,$Yinicio);
     $pdf->Cell(0,0,$fecha_firma,0,0,'C',0,'',1,false,'T','T');
     
