@@ -294,10 +294,10 @@ elseif($res_min>0 || $res_con>0) {
             $image_file = '../recursos/logo_ccm.jpg';
             $this->Image($image_file, 10, 20, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
             $image_file = '../recursos/mini_escudo.jpg';
-		    $this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		    $this->Image($image_file, 140, 20, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 
-            $this->SetFont('helvetica', 'B', 14);
-            $this->SetXY(0,25);
+            $this->SetFont('helvetica', 'B', 12);
+            $this->SetXY(0,40);
             $this->Cell(0,0,"INFORMACIÓN SOBRE LOS MÓDULOS QUE SOLICITA CONVALIDAR",0,0,'C',0,'',1,false,'T','T');
                 
             $this->SetFont('helvetica', '', 8);
