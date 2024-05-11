@@ -252,11 +252,14 @@ if($res_fav>0 || $res_nofav>0){
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
     $pdf->SetFont('helvetica', '', 8);
-    $Yinicio=$pdf->GetY()+50;
-    $pdf->SetXY(0,$Yinicio);
+    //$Yinicio=$pdf->GetY();
+    //$pdf->SetXY(0,$Yinicio);
+    $pdf->Ln();
+    $pdf->Ln();
     $pdf->Cell(0,0,$fecha_firma,0,0,'C',0,'',1,false,'T','T');
     
-    $Yinicio+=4;
+    $Yinicio=$pdf->GetY()+4;
+    //$Yinicio+=4;
     list($width, $height) = getimagesize('../recursos/sello_firma.jpg');
 
     // Calcular las coordenadas para centrar la imagen
