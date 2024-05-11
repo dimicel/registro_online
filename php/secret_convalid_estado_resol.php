@@ -241,18 +241,36 @@ if($res_fav>0 || $res_nofav>0){
         }
         $html.="</b><br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
     }
+    $pdf->SetRightMargin($margen_derecho);
+    $pdf->writeHTML($html, true, false, true, false, '');
 
+    
     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
     $fecha_actual=getdate();
     $dd=$fecha_actual["mday"];
     $mm=$meses[$fecha_actual["mon"]-1];
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
-    $html.="<div style='text-align:center'>".$fecha_firma."</div><br><br>";
-    $html.="<center><img src='../recursos/sello_firma.jpg' width='80' height='80'/></center><br><br>";
-    $html.="<center>Fdo.: Luis Ángel Corrales Mariblanca</center>";
-    $pdf->SetRightMargin($margen_derecho);
-    $pdf->writeHTML($html, true, false, true, false, '');
+    $pdf->SetFont('helvetica', '', 8);
+    $Yinicio=$pdf->GetY();
+    $pdf->SetXY(0,$Yinicio);
+    $pdf->Cell(0,0,$fecha_firma,0,0,'C',0,'',1,false,'T','T');
+    
+    $Yinicio+=4;
+    list($width, $height) = getimagesize('../recursos/sello_firma.jpg');
+
+    // Calcular las coordenadas para centrar la imagen
+    $image_x = ($pdf->GetPageWidth() - $width) / 2;
+
+    // Insertar la imagen centrada
+    $pdf->Image('../recursos/sello_firma.jpg', $image_x, $Yinicio, $width, $height, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+    
+    $Yinicio+=$height+4;
+    $pdf->SetXY(0,$Yinicio);
+    $pdf->Cell(0,0,"Fdo.: Luis Ángel Corrales Mariblanca",0,0,'C',0,'',1,false,'T','T');
+
+    
+    
 
     //--------FINAL
 
@@ -359,7 +377,9 @@ elseif($res_min>0 || $res_con>0) {
         }
         $html.="</b><br><br><br>";
     }
-    $html.="El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
+    $html.="El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br><br>";
+    $pdf->SetRightMargin($margen_derecho);
+    $pdf->writeHTML($html, true, false, true, false, '');
 
     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
     $fecha_actual=getdate();
@@ -367,9 +387,11 @@ elseif($res_min>0 || $res_con>0) {
     $mm=$meses[$fecha_actual["mon"]-1];
     $yyyy=$fecha_actual["year"];
     $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
-    $html.="<p><center>".$fecha_firma."</center></p><br><br>";
-    $pdf->SetRightMargin($margen_derecho);
-    $pdf->writeHTML($html, true, false, true, false, '');
+    $pdf->SetFont('helvetica', '', 8);
+    $Yinicio=$pdf->GetY();
+    $pdf->SetXY(0,$Yinicio);
+    $pdf->Cell(0,0,$fecha_firma,0,0,'C',0,'',1,false,'T','T');
+    
 
 
     $dirRegistro=substr($dr["registro"], 17);
