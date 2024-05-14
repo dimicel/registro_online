@@ -452,7 +452,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min"];
         estilo = ["width:70px", "width:220px", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;" ];
-        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Cosej.","Proc.Cons.","Minist.","Proc.Minist.","Visto"];
+        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Consej.","Proc.Cons.","Minist.","Proc.Minist.","Visto"];
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
         else if (document.getElementById("curso_pre_mat").value == "3eso") {tabla = "premat_eso"; grupo="3º ESO";}
@@ -551,7 +551,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
         encab = "<tr>";
         for (i = 0; i < encabezamiento.length; i++) {
-            if(encabezamiento[i].substr(0,3)=="NIE" || encabezamiento[i].substr(0,6)=="Alumno" || encabezamiento[i].substr(0,14)=="Fecha Registro"){
+            if(encabezamiento[i].substr(0,3)=="NIE" || encabezamiento[i].substr(0,6)=="Alumno" || encabezamiento[i].substr(0,14)=="Fecha Reg."){
                 encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
             }
             else{
