@@ -723,11 +723,12 @@ function muestraEditor(_ev){
     }
 }
 
-function selTurno(obj){
- if (obj.value=="Virtual") document.getElementById("modalidad").value="Virtual";
-}
 
 
-function selModalidad(obj){
-    if (obj.value=="Virtual") document.getElementById("turno").value="Virtual";
+function selCurso(obj){
+    if (obj.value=="Virtual_Modular"){
+        document.getElementById("turno").value="Virtual";
+        document.getElementById("turno").disabled=true;  
+    }
+    else document.getElementById("turno").disabled=false;
 }

@@ -216,16 +216,17 @@
                                     </div>
                                     <div class="col-2">
                                         <label for="grado">Curso</label>
-                                        <select class="form-control" name="curso" id="curso" size="1">
+                                        <select class="form-control" name="curso" id="curso" size="1" onchange="selCurso(this)">
                                             <option value="">Seleccione uno...</option>
                                             <option value="1º">1º</option>
                                             <option value="2º">2º</option>
                                             <option value="3º">3º</option>
+                                            <option value="Virtual_Modular">Virtual (E-Learning)/Modular</option>
                                         </select> 
                                     </div>
                                     <div class="col-2">
                                         <label for="grado">Turno</label>
-                                        <select class="form-control" name="turno" id="turno" size="1" onchange="selTurno(this)">
+                                        <select class="form-control" name="turno" id="turno" size="1" >
                                             <option value="">Seleccione uno...</option>
                                             <option value="Diurno">Diurno</option>
                                             <option value="Vespertino">Vespertino</option>
@@ -235,7 +236,7 @@
                                     </div>
                                     <div class="col-2">
                                         <label for="grado">Modalidad</label>
-                                        <select class="form-control" name="modalidad" id="modalidad" size="1" onchange="selModalidad(this)">
+                                        <select class="form-control" name="modalidad" id="modalidad" size="1" >
                                             <option value="">Seleccione uno...</option>
                                             <option value="Presencial">Presencial</option>
                                             <option value="Semipresencial">Semipresencial</option>
