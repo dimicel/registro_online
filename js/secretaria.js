@@ -1207,13 +1207,13 @@ function verRegistroConvalidaciones(num_registro){
             //contenido +="<label class='verReg_label'>RESOLUCION:</label>";
             //contenido +="</div><div class='col-3'>";
             contenido +="<div class='col-3'>";
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/>"
-            contenido +="</div><div class='col-3'>"
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/>";
-            contenido +="</div><div class='col-2'>"
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/></div>"
+            //contenido +="<div class='col-3'>"
+            //contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/></div>";
+            //contenido +="<div class='col-2'>"
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
             contenido += "</div></div>";
-            contenido +="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+resp.registro.id_nie+"\",\""+num_registro+"\",this)'/>";
+            //contenido +="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+resp.registro.id_nie+"\",\""+num_registro+"\",this)'/>";
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
             contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
             contenido += botones;
