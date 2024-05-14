@@ -12,7 +12,7 @@ $id_nie=urldecode($_POST["id_nie"]);
 $anno_curso=urldecode($_POST["curso"]);
 $descripcion=urldecode($_POST["descripcion"]);
 $dirRegistro=substr($registro, 17);
-$subidopor="administracion";
+$subidopor=$_SESSION['tipo_usu'];
 
 $r=$mysqli->query("SELECT * FROM convalidaciones_docs WHERE registro='$registro' AND subidopor='$subidopor'");
 if (!$r){
