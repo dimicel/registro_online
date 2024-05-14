@@ -266,7 +266,10 @@ function selModulos(e) {
         alerta("Seleccione antes el ciclo formativo y el curso.", "CICLO Y CURSO SIN SELECCIÓN");
         return;
     }
-    $.post("php/listamodulos.php", { ciclo: document.getElementById("ciclos").value, grado: document.getElementById("grado").value, curso: document.getElementById("curso").value}, (resp) => {
+    _ciclo=document.getElementById("ciclos").value;
+    _grado=document.getElementById("grado").value;
+    _curso=document.getElementById("curso").value;
+    $.post("php/listamodulos.php", { ciclo: _ciclo, grado: _grado, curso: _curso}, (resp) => {
         if (resp["error"] == "servidor") {
             alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
         } else if (resp["error"].indexOf("error_consulta") > -1) {
@@ -718,4 +721,13 @@ function muestraEditor(_ev){
     else if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
         $("#doc_ident_reverso").show();
     }
+}
+
+function selTurno(obj){
+ if (obj.value=="Virtual") document.getElementById("modalidad").value="Virtual";
+}
+
+
+function selModalidad(obj){
+    if (obj.value=="Virtual") document.getElementById("turno").value="Virtual";
 }
