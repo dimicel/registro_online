@@ -68,7 +68,7 @@ if (isset($_POST["desc"])){
             $value!="Documento de identificación (Pasaporte)" &&
             $value!="Documento de identificación (DNI/NIE)") $otra_doc.=$value.", ";
     }
-    if (substr($otra_doc, -2) === ', ') {
+    if (substr($otra_doc, -2) === '; ') {
         $otra_doc = substr_replace($otra_doc, "", -2);
     }
     $docs=$_FILES['docs'];
@@ -122,8 +122,8 @@ try {
         }
     }
     if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
-        if (isset($_FILES["pasaporte"]))$documentos_aportados.=", documento de identificación (pasaporte)";
-        if (isset($_FILES["dni_anverso"]))$documentos_aportados.=", documento de identificación (DNI)";
+        if (isset($_FILES["pasaporte"]))$documentos_aportados.="; Documento de identificación (pasaporte)";
+        if (isset($_FILES["dni_anverso"]))$documentos_aportados.="; Documento de identificación (DNI)";
         $check2=true;
         $indice=sprintf("%02d", $contador_docs+1)."_";
         $descDoc="Documento de identificación";
