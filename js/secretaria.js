@@ -551,7 +551,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
         encab = "<tr>";
         for (i = 0; i < encabezamiento.length; i++) {
-            if(encabezamiento[i].substr(0,3)=="NIE" || encabezamiento[i].substr(0,6)=="Alumno" || encabezamiento[i].substr(0,14)=="Fecha Reg."){
+            if(encabezamiento[i].substr(0,3)=="NIE" || encabezamiento[i].substr(0,6)=="Alumno" || encabezamiento[i].substr(0,10)=="Fecha Reg."){
                 encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
             }
             else{
