@@ -2,9 +2,21 @@ var pagina = 1;
 var i = 0;
 var _paginas = new Array();
 var paginas_totales=6;
-
+existe_tarjeta_san=false;
+existe_foto=false;
+var id_nie = "";
+var id_nif = "";
+var nombre = "";
+var apellidos = "";
+var email = "";
+var anno_curso;
+var nif_nie_tutor1 = "";
+var nif_nie_tutor2 = "";
+var sexo="",fecha_nac="",telef_alumno="",email_alumno="",domicilio="",cp="",localidad="",provincia="";
+var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2="";
 
 $(document).ready(function() {
+    document.getElementById("cargando").style.display = '';
     $("#pagina_1").load("res_html/pagina1.html?q="+Date.now().toString(), function() {
         //creaValidatorPagina1();
         $("#pagina_1").show();
@@ -13,6 +25,65 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
+    dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
+    dat2 = dat1.then((res1) => {
+        id_nie = res1["id_nie"];
+        id_nif = res1["id_nif"];
+        nombre = res1["nombre"];
+        apellidos = res1["apellidos"];
+        email = res1["email"];
+        anno_ini_curso = res1["anno_ini_curso"];
+        mes_mat = res1["mes"];
+        dia_mat = res1["dia"];
+        document.getElementById("id_nie").value = id_nie;
+        //document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
+        if (mes_mat == 6) anno_ini_premat = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
+        else if (mes_mat >= 7 && mes_mat <= 9) anno_ini_premat = (anno_ini_curso - 1) + "-" + (anno_ini_curso);
+        
+        if (mes_mat != 6) {
+            anno_curso = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
+            document.getElementById("anno_curso").value = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
+        } else {
+            anno_curso = (anno_ini_curso + 1) + "-" + (anno_ini_curso + 2);
+            document.getElementById("anno_curso").value = (anno_ini_curso + 1) + "-" + (anno_ini_curso + 2);
+        }
+        document.getElementById("email").value = email;
+        if (id_nie.trim() == "" || anno_ini_curso.toString().trim() == "") {
+            document.write("Error datos. Por favor, inténtelo más tarde.");
+        }
+
+        return $.post("../../php/usu_recdatospers.php", {id_nie:id_nie }, () => {}, "json");
+    });
+    dat3 = dat2.then((resp) => {
+        if (resp.error=="ok"){
+            for (e in resp.datos){
+                if(typeof(resp.datos[e])==="undefined" || resp.datos[e]===null) resp.datos[e]="";
+            }
+            f_nac=resp.datos.fecha_nac;
+            if (f_nac!="")f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
+            fecha_nac=f_nac;
+            if(sexo=="") sexo=resp.datos.sexo;
+            if(telef_alumno=="") telef_alumno=resp.datos.telef_alumno;
+            if(email_alumno=="")email_alumno=resp.datos.email;
+            if(domicilio=="")domicilio=resp.datos.direccion;
+            if(cp=="")cp=resp.datos.cp;
+            if(localidad=="")localidad=resp.datos.localidad;
+            if(provincia=="")provincia=resp.datos.provincia;
+            if(tutor1=="")tutor1=resp.datos.tutor1;
+            if(tlf_tutor1=="")tlf_tutor1=resp.datos.tlf_tutor1;
+            if(email_tutor1=="")email_tutor1=resp.datos.email_tutor1;
+            if(tutor2=="")tutor2=resp.datos.tutor2;
+            if(tlf_tutor2=="")tlf_tutor2=resp.datos.tlf_tutor2;
+            if(email_tutor2=="")email_tutor2=resp.datos.email_tutor2;
+        }
+        return $.post("php/comprueba_docs.php", { id_nie: id_nie, curso:anno_curso });
+    });
+    dat3.then((resp)=>{
+        if (resp.indexOf('F')>-1)existe_foto=true;
+        else existe_foto=false;
+        if (resp.indexOf('T')>-1) existe_tarjeta_san=true;
+        else existe_tarjeta_san=false;
+    });
 });
 
 
@@ -35,6 +106,7 @@ function pasaPagina(p) {
         for (i = 0; i < _paginas.length; i++) $("#" + _paginas[i][1]).css('display', 'none');
         $("#" + pag_html).css('display', 'inherit').fadeIn(500);
     }
+
 }
 
 function registraSolicitud() {
