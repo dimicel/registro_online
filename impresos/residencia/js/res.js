@@ -14,6 +14,8 @@ var nif_nie_tutor1 = "";
 var nif_nie_tutor2 = "";
 var sexo="",fecha_nac="",telef_alumno="",email_alumno="",domicilio="",cp="",localidad="",provincia="";
 var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2="";
+var primera_vez_pag_2=true;
+var primera_vez_pag_3=true;
 
 $(document).ready(function() {
     document.getElementById("cargando").style.display = '';
