@@ -32,7 +32,7 @@
             <div class="col-8 justify-content-center" style="text-align: center;">
                 <h5>IES UNIVERSIDAD LABORAL DE TOLEDO</h5>
                 <h6>DATOS ALUMNO PARA RESIDENCIA</h6><br>
-                <h7>ATENCIÓN: Los datos recogidos en este formulario sólo se emplearán para generar un fichero PDF y después se destruirán. Nunca serán grabados.</h7>
+                <h7>ATENCIÓN: Los datos RELACIONADOS CON LA SALUD recogidos en este formulario sólo se emplearán para generar un fichero PDF y después se destruirán. NUNCA SERÁN GRABADOS.</h7>
                 <!--<h5 id="rotulo_curso" style="color:#900; font-weight:bold">CURSO ACTUAL:</h5>-->
                 <h7 style="color:#900; font-weight:bold">&nbsp;</h7>
             </div>
