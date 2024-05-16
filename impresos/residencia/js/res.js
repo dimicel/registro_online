@@ -86,6 +86,13 @@ $(document).ready(function() {
         if (resp.indexOf('T')>-1) existe_tarjeta_san=true;
         else existe_tarjeta_san=false;
     });
+
+    $("#pagina_1").load("res_html/pagina1.html?q="+Date.now().toString(), function() {
+        //creaValidatorPagina1();
+        $("#pagina_1").fadeIn(500);
+        $("[data-paginacion]").html("Pág. 1/6");
+        paginas_totales = 6;
+    });
 });
 
 
