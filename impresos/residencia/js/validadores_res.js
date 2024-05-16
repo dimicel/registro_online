@@ -40,9 +40,9 @@ function creaValidatorPagina1() {
             num_hermanos: {
                 required:true
             },
-             /*nif_nie: {
+             nif_nie: {
                  numero_nif: true
-             },*/
+             },
             lugar_hermanos: {
                 required:true
             },
@@ -80,10 +80,9 @@ function creaValidatorPagina1() {
             num_hermanos: {
                 required: "Falta"
             },
-            /*
              nif_nie: {
                  numero_nif: "Incorrecto"
-             },*/
+             },
             lugar_hermanos: {
                 required: "Falta"
             },
