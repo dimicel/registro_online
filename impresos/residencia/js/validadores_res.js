@@ -1,6 +1,6 @@
 
 function creaValidatorPagina1() {
-    $("#fecha_nac").datepicker({
+    /*$("#fecha_nac").datepicker({
          changeMonth: true,
          changeYear: true,
          dateFormat: "dd/mm/yy",
@@ -15,7 +15,7 @@ function creaValidatorPagina1() {
          maxDate: "-11y",
          nextText: "Siguiente",
          prevText: "Previo"
-     });
+     });*/
      
      $("#form_pagina_2").validate({
          rules: {
