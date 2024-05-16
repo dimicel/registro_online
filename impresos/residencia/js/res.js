@@ -20,7 +20,7 @@ var primera_vez_pag_3=true;
 $(document).ready(function() {
     document.getElementById("cargando").style.display = 'inherit';
     $("#pagina_1").load("res_html/pagina1.html?q="+Date.now().toString(), function() {
-        //creaValidatorPagina1();
+        creaValidatorPagina1();
         $("#pagina_1").show();
         $("[data-paginacion]").html("Pág. 1/6");
 
