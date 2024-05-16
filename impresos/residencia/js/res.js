@@ -50,6 +50,8 @@ $(document).ready(function() {
             if (id_nie.trim() == "" || anno_ini_curso.toString().trim() == "") {
                 document.write("Error datos. Por favor, inténtelo más tarde.");
             }
+            document.getElementById("nombre").value=nombre;
+            document.getElementById("apellidos").value=apellidos;
     
             return $.post("../../php/usu_recdatospers.php", {id_nie:id_nie }, () => {}, "json");
         });
@@ -59,9 +61,12 @@ $(document).ready(function() {
                     if(typeof(resp.datos[e])==="undefined" || resp.datos[e]===null) resp.datos[e]="";
                 }
                 f_nac=resp.datos.fecha_nac;
-                if (f_nac!="")f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
-                fecha_nac=f_nac;
-                if(sexo=="") sexo=resp.datos.sexo;
+                if (f_nac!=""){
+                    f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
+                    document.getElementById("fech_nac").value=f_nac;
+                }
+                //fecha_nac=f_nac;
+                //if(sexo=="") sexo=resp.datos.sexo;
                 if(telef_alumno=="") telef_alumno=resp.datos.telef_alumno;
                 if(email_alumno=="")email_alumno=resp.datos.email;
                 if(domicilio=="")domicilio=resp.datos.direccion;
@@ -74,6 +79,11 @@ $(document).ready(function() {
                 if(tutor2=="")tutor2=resp.datos.tutor2;
                 if(tlf_tutor2=="")tlf_tutor2=resp.datos.tlf_tutor2;
                 if(email_tutor2=="")email_tutor2=resp.datos.email_tutor2;
+                document.getElementById("direccion").value=domicilio;
+                document.getElementById("localidad").value=localidad;
+                document.getElementById("provincia").value=provincia;
+                document.getElementById("cp").value=cp;
+                
             }
             return $.post("php/comprueba_docs.php", { id_nie: id_nie, curso:anno_curso });
         });
