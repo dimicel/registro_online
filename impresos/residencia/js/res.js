@@ -110,9 +110,8 @@ function pasaPagina(p) {
                 });
             } else pasaPagina('0');
         } else {
-            alert(pag_html)
-            for (i = 0; i < _paginas.length; i++) $("#" + _paginas[i][1]).css('display', 'none');
-            $("#" + pag_html).css('display', 'inherit').fadeIn(500);
+            pagina--;
+            $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
         }
     } else{
         pagina--;
