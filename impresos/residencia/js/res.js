@@ -99,11 +99,14 @@ function pasaPagina(p) {
     $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
     pag = "res_html/" + _paginas[pagina - 1][0] + ".html?q="+Date.now().toString();
     pag_html = _paginas[pagina - 1][1];
+    valid = _paginas[pagina - 1][2];
+    validExec = "#" + _paginas[pagina - 1][3];
 
     if (p == "+") {
         if ($(validExec).valid()) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
+                    if (valid != "") eval(valid);
                     pasaPagina('0');
                 });
             } else pasaPagina('0');
