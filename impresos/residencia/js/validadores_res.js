@@ -17,7 +17,7 @@ function creaValidatorPagina1() {
          prevText: "Previo"
      });*/
      
-     $("#form_pagina_2").validate({
+     $("#form_pagina_1").validate({
          rules: {
              apellidos: {
                  required: true
