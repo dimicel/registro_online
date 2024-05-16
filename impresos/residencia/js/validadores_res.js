@@ -105,8 +105,8 @@ function creaValidatorPagina1() {
      });
  }
 
- function creaValidatorPagina3() {
-    $("#form_pagina_3").validate({
+ function creaValidatorPagina2() {
+    $("#form_pagina_2").validate({
         rules: {
             direccion: {
                 required: true
