@@ -37,6 +37,7 @@ $(document).ready(function() {
         anno_ini_curso = res1["anno_ini_curso"];
         mes_mat = res1["mes"];
         dia_mat = res1["dia"];
+        document.getElementById("id_nie").value=id_nie;
         //document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
         if (mes_mat == 6) anno_ini_premat = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
         else if (mes_mat >= 7 && mes_mat <= 9) anno_ini_premat = (anno_ini_curso - 1) + "-" + (anno_ini_curso);

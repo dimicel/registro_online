@@ -21,6 +21,8 @@
     <form id="residencia" method="POST">
         <input type="hidden" id="nombre_tarjeta" name="nombre_tarjeta">
         <input type="hidden" id="nombre_foto" name="nombre_foto">
+        <input type="hidden" id="id_nie" name="id_nie">
+        <input type="hidden" id="anno_curso" name="anno_curso">
     </form>
     <!-- CABECERA LOGOS ---------------------------------------------------------------------------------->
     <div class="container w-100">
