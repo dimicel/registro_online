@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href=<?php echo "css/res.css?q=".time();?> type="text/css">
     <link rel="stylesheet" href=<?php echo "../../css/est.css?q=".time();?> type="text/css">
-    <link rel="stylesheet" href=<?php echo "../../js/jqueryui/jquery-ui.min.css?q=".time();?>>
+    <link rel="stylesheet" href=<?php echo "../../jqueryui/jquery-ui.min.css?q=".time();?>>
     <link rel="stylesheet" href=<?php echo "../../js/croppie/croppie.css?q=".time();?> type="text/css">
     <title>DATOS ALUMNO PARA RESIDENCIA</title>
 </head>
