@@ -114,8 +114,8 @@ function pasaPagina(p) {
             $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
         }
     } else{
-        pagina--;
-        $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
+        for (i = 0; i < _paginas.length; i++) $("#" + _paginas[i][1]).css('display', 'none');
+        $("#" + pag_html).css('display', 'inherit').fadeIn(500);
     }
 }
 
