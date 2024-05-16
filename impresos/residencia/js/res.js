@@ -101,8 +101,6 @@ function pasaPagina(p) {
     pag_html = _paginas[pagina - 1][1];
     valid = _paginas[pagina - 1][2];
     validExec = "#" + _paginas[pagina - 1][3];
-    //alert(pag+"---"+pag_html+"---"+valid+"---"+validExec);
-    alert(p+"---"+validExec+"-----"+$(validExec).valid())
     if (p == "+") {
         if ($(validExec).valid()) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
@@ -112,6 +110,7 @@ function pasaPagina(p) {
                 });
             } else pasaPagina('0');
         } else {
+            alert(pag_html)
             for (i = 0; i < _paginas.length; i++) $("#" + _paginas[i][1]).css('display', 'none');
             $("#" + pag_html).css('display', 'inherit').fadeIn(500);
         }
