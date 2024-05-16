@@ -101,6 +101,7 @@ function pasaPagina(p) {
     pag_html = _paginas[pagina - 1][1];
     valid = _paginas[pagina - 1][2];
     validExec = "#" + _paginas[pagina - 1][3];
+    alert(pag+"---"+pag_html+"---"+valid+"---"+validExec);
 
     if (p == "+") {
         if ($(validExec).valid()) {
