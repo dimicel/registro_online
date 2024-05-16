@@ -23,7 +23,7 @@ $(document).ready(function() {
         creaValidatorPagina1();
         $("#pagina_1").show();
         $("[data-paginacion]").html("Pág. 1/6");
-        
+
         dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
         dat2 = dat1.then((res1) => {
             id_nie = res1["id_nie"];
@@ -88,8 +88,6 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
-
-    
 });
 
 
