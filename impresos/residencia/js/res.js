@@ -102,7 +102,7 @@ function pasaPagina(p) {
     valid = _paginas[pagina - 1][2];
     validExec = "#" + _paginas[pagina - 1][3];
     //alert(pag+"---"+pag_html+"---"+valid+"---"+validExec);
-    alert(validExec+"-----"+$(validExec).valid())
+    alert(p+"---"+validExec+"-----"+$(validExec).valid())
     if (p == "+") {
         if ($(validExec).valid()) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
