@@ -11,32 +11,39 @@
     <div class="form-group form-row">
         <div class="col">
             <label for="apellidos">Apellidos:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="text" name="apellidos" id="apellidos" class="form-control" maxlength="50" />
         </div>
         <div class="col">
             <label for="nombre">Nombre:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="text" name="nombre" id="nombre" class="form-control" maxlength="25" />
         </div>
     </div>
     <div class="form-group form-row">
         <div class="col-4">
             <label for="tlf_urgencias">Teléfono de URGENCIAS:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="text" name="tlf_urgencias" id="tlf_urgencias" class="form-control" maxlength="15" />
         </div>
         <div class="col-3">
             <label for="fech_nac">Fecha nacimiento <small>(dd/mm/aaaa)</small>:</label>
-            <input type="text" name="fech_nac" id="fech_nac" class="form-control" maxlength="10" size="15"  placeholder="Ej. 12/05/2000">
+            <span class="errorTxt" style="font-size: 1em;"></span>
+            <input type="text" name="fech_nac" id="fech_nac" class="form-control" maxlength="10" size="15"  placeholder="Ej. 02/05/2000">
         </div>
         <div class="col-1">
             <label for="edad">Edad:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="number" name="edad" id="edad" class="form-control" oninput="limitarDigitos(this, 2)" />
         </div>
         <div class="col-2">
             <label for="num_hermanos">Nº de hermanos:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="number" name="num_hermanos" id="num_hermanos" class="form-control" oninput="limitarDigitos(this, 2)" />
         </div>
         <div class="col-2">
             <label for="lugar_hermanos">Lugar que ocupa:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="number" name="lugar_hermanos" id="lugar_hermanos" class="form-control" oninput="limitarDigitos(this, 2)" />
         </div>
     </div>
@@ -63,18 +70,22 @@
     <div class="form-group form-row">
         <div class="col">
             <label for="direccion">Domicilio familiar:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="text" name="direccion" id="direccion" class="form-control" maxlength="60" />
         </div>
         <div class="col-3">
             <label for="localidad">Localidad:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="text" name="localidad" id="localidad" class="form-control" maxlength="35" />
         </div>
         <div class="col-2">
             <label for="te_provincia">Provincia:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="text" name="provincia" id="provincia" class="form-control" maxlength="25" >
         </div>
         <div class="col-2">
             <label for="te_cp">CP:</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
             <input type="text" name="cp" id="cp" class="form-control" maxlength="5" >
         </div>
     </div>

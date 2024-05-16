@@ -1,42 +1,5 @@
-function creaValidatorPagina1() {
-    $("#form_pagina_1").validate({
-        rules: {
-            curso: {
-                required: true
-            },
-            alumno_nuevo: {
-                required: true
-            },
-            repetidor: {
-                required: true
-            },
-            consolida_prem:{
-                required:true
-            }
-        },
-        messages: {
-            curso: {
-                required: "Seleccione un curso"
-            },
-            alumno_nuevo: {
-                required: "Seleccione uno"
-            },
-            repetidor: {
-                required: "Seleccione uno"
-            },
-            consolida_prem:{
-                required:"Seleccione uno"
-            }
-        },
-        errorPlacement: function(error, element) {
-            if ($(element).attr('name') != 'curso') {
-                $(element).parent().next().next().next($('.errorTxt')).html(error);
-            } else $(element).prev().html(error);
-        }
-    });
-}
 
-function creaValidatorPagina2() {
+function creaValidatorPagina1() {
     $("#fecha_nac").datepicker({
          changeMonth: true,
          changeYear: true,
@@ -62,7 +25,7 @@ function creaValidatorPagina2() {
              nombre: {
                  required: true
              },
-             sexo:{
+             tlf_urgencias:{
                 required: true
              },
              localidad_nac: {
@@ -71,12 +34,28 @@ function creaValidatorPagina2() {
              fecha_nac: {
                  required:true
              },
-             /*nif_nie: {
-                 numero_nif: true
-             },*/
-             email_alumno:{
-                 email:true
-             }
+             edad: {
+                required:true
+            },
+            num_hermanos: {
+                required:true
+            },
+            lugar_hermanos: {
+                required:true
+            },
+            direccion: {
+                required:true
+            },
+            localidad: {
+                required:true
+            },
+            provincia: {
+                required:true
+            },
+            cp: {
+                required:true
+            },
+    
          },
          messages: {
              apellidos: {
@@ -85,18 +64,33 @@ function creaValidatorPagina2() {
              nombre: {
                  required: "Complete el campo"
              },
-             sexo:{
-                required: "Falta"
+             tlf_urgencias:{
+                required: "Complete el campo"
              },
              fecha_nac: {
-                 required: "Seleccione una fecha"
-             },/*
-             nif_nie: {
-                 numero_nif: "Incorrecto"
-             },*/
-             email_alumno:{
-                 email:"Dirección no válida"
-             }
+                 required: "Introduzca una fecha"
+             },
+             edad: {
+                required: "Falta"
+            },
+            num_hermanos: {
+                required: "Falta"
+            },
+            lugar_hermanos: {
+                required: "Falta"
+            },
+            direccion: {
+                required: "Complete el campo"
+            },
+            localidad: {
+                required: "Complete el campo"
+            },
+            provincia: {
+                required: "Complete el campo"
+            },
+            cp: {
+                required: "Falta"
+            },
          },
          errorPlacement: function(error, element) {
              $(element).prev($('.errorTxt')).html(error);
