@@ -88,7 +88,7 @@ $(document).ready(function() {
     });
 
     $("#pagina_1").load("res_html/pagina1.html?q="+Date.now().toString(), function() {
-        //creaValidatorPagina1();
+        creaValidatorPagina1();
         $("#pagina_1").fadeIn(500);
         $("[data-paginacion]").html("Pág. 1/6");
         paginas_totales = 6;
