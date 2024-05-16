@@ -40,6 +40,9 @@ function creaValidatorPagina1() {
             num_hermanos: {
                 required:true
             },
+             /*nif_nie: {
+                 numero_nif: true
+             },*/
             lugar_hermanos: {
                 required:true
             },
@@ -55,6 +58,7 @@ function creaValidatorPagina1() {
             cp: {
                 required:true
             },
+           
     
          },
          messages: {
@@ -76,6 +80,10 @@ function creaValidatorPagina1() {
             num_hermanos: {
                 required: "Falta"
             },
+            /*
+             nif_nie: {
+                 numero_nif: "Incorrecto"
+             },*/
             lugar_hermanos: {
                 required: "Falta"
             },
@@ -90,7 +98,7 @@ function creaValidatorPagina1() {
             },
             cp: {
                 required: "Falta"
-            },
+            }
          },
          errorPlacement: function(error, element) {
              $(element).prev($('.errorTxt')).html(error);
