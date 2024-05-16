@@ -83,7 +83,7 @@ $(document).ready(function() {
             if (resp.indexOf('T')>-1) existe_tarjeta_san=true;
             else existe_tarjeta_san=false;
         });
-    
+        document.getElementById("cargando").style.display = 'none';
     });
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
