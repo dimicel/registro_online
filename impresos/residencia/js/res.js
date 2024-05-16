@@ -79,6 +79,8 @@ $(document).ready(function() {
                 if(tutor2=="")tutor2=resp.datos.tutor2;
                 if(tlf_tutor2=="")tlf_tutor2=resp.datos.tlf_tutor2;
                 if(email_tutor2=="")email_tutor2=resp.datos.email_tutor2;
+                document.getElementById("tlf_alum").value=email_alumno;
+                document.getElementById("email_alumno").value=domicilio;
                 document.getElementById("direccion").value=domicilio;
                 document.getElementById("localidad").value=localidad;
                 document.getElementById("provincia").value=provincia;
