@@ -118,9 +118,19 @@ function pasaPagina(p) {
         pagina--;
         $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
     }
-
-
 }
+
+
+function creaArrayPasapagina() {
+    _paginas = [];
+    _paginas.push(new Array("pagina1", "pagina_1", "creaValidatorPagina1()", ""));
+    _paginas.push(new Array("pagina2", "pagina_2", "creaValidatorPagina2()", "form_pagina_1"));
+    _paginas.push(new Array("pagina3", "pagina_3", "creaValidatorPagina3()", "form_pagina_2"));
+    _paginas.push(new Array("pagina4", "pagina_4", "creaValidatorPagina4()", "form_pagina_3"));
+    _paginas.push(new Array("pagina5", "pagina_5", "creaValidatorPagina5()", "form_pagina_4"));
+    _paginas.push(new Array("pagina_final", "pagina_6", "", "form_pagina_5"));
+}
+
 
 function registraSolicitud() {
     var f = document.getElementById("residencia");
@@ -182,17 +192,6 @@ function registraSolicitud() {
         }
     });
     */
-}
-
-
-function creaArrayPasapagina() {
-    _paginas = [];
-    _paginas.push(new Array("pagina1", "pagina_1", "creaValidatorPagina1()", ""));
-    _paginas.push(new Array("pagina2", "pagina_2", "creaValidatorPagina2()", "form_pagina_1"));
-    _paginas.push(new Array("pagina3", "pagina_3", "creaValidatorPagina3()", "form_pagina_2"));
-    _paginas.push(new Array("pagina4", "pagina_4", "creaValidatorPagina4()", "form_pagina_3"));
-    _paginas.push(new Array("pagina5", "pagina_5", "creaValidatorPagina5()", "form_pagina_4"));
-    _paginas.push(new Array("pagina_final", "pagina_6", "", "form_pagina_5"));
 }
 
 function cargaTarjeta(){
