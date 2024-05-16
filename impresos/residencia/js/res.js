@@ -101,15 +101,21 @@ function pasaPagina(p) {
     pag_html = _paginas[pagina - 1][1];
 
     if (p == "+") {
-        if (document.getElementById(pag_html).innerHTML.length == 0) {
-            $("#" + pag_html).load(pag, function() {
-                pasaPagina('0');
-            });
-        } else pasaPagina('0');
-    } else {
-        for (i = 0; i < _paginas.length; i++) $("#" + _paginas[i][1]).css('display', 'none');
-        $("#" + pag_html).css('display', 'inherit').fadeIn(500);
+        if ($(validExec).valid()) {
+            if (document.getElementById(pag_html).innerHTML.length == 0) {
+                $("#" + pag_html).load(pag, function() {
+                    pasaPagina('0');
+                });
+            } else pasaPagina('0');
+        } else {
+            for (i = 0; i < _paginas.length; i++) $("#" + _paginas[i][1]).css('display', 'none');
+            $("#" + pag_html).css('display', 'inherit').fadeIn(500);
+        }
+    } else{
+        pagina--;
+        $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
     }
+
 
 }
 
