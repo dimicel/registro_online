@@ -120,6 +120,9 @@
                 <div style="display:list-item; margin-left:50px">
                     <a id="docs_transporte_escolar" class="enlaceEnabled" href="impresos/transporte/transporte.php" target="_self">Transporte Escolar</a><br>
                 </div>
+                <div style="display:list-item; margin-left:50px">
+                    <a id="docs_residencia" class="enlaceEnabled" href="impresos/residencia/res.php" target="_self">Residencia (sólo para alumnos con plaza asignada para residencia)</a><br>
+                </div>
                 <!--
                 <span>SOLICITUDES DE REVISIÓN</span>
                 <div style="display:list-item; margin-left:50px">
