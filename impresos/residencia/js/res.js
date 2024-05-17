@@ -176,6 +176,7 @@ function pasaPagina(p) {
             if (primera_vez_pag_5){
                 alert(1);
                 primera_vez_pag_5=false;
+                alert(existe_foto);
                 if (existe_foto){
                     alert("../../../docs/fotos/"+$id_nie+".jpeg");
                     document.getElementById("img_foto").src="../../../docs/fotos/"+$id_nie+".jpeg";
