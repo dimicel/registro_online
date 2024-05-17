@@ -149,6 +149,7 @@ function pasaPagina(p) {
     if (p == "+") {
         if (pag_html=="pagina_1") validacion=$(validExec).valid();
         else validacion=true;
+        alert(validacion);
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
