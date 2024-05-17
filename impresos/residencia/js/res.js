@@ -174,6 +174,7 @@ function pasaPagina(p) {
             if (primera_vez_pag_5){
                 primera_vez_pag_5=false;
                 if (existe_foto){
+                    alert("../../../docs/fotos/"+$id_nie+".jpeg");
                     document.getElementById("img_foto").src="../../../docs/fotos/"+$id_nie+".jpeg";
                 }
                 if (existe_tarjeta_san){
