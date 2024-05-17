@@ -32,6 +32,7 @@ function recortarSustituirYObtener4Caracteres($cadena) {
     return $resultado;
 }
 
+$id_nie=$_POST['id_nie'];
 $nombre=$_POST['nombre'];
 $apellidos=$_POST['apellidos'];
 $nif_nie=$_POST['nif_nie'];
@@ -70,7 +71,7 @@ $enfermedad=$_POST["enfermedad"];
 $medicacion=$_POST["medicacion"];
 $alergias=$_POST["alergias"];
 $otros_datos=$_POST["otros_datos"];
-if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta="tmp/".$_POST["nombre_tarjeta"];
+if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta="../../../docs/".$_POST["nombre_tarjeta"];
 else $ruta_tarjeta="";
 if($_POST["nombre_foto"]!="") $ruta_foto="tmp/".$_POST["nombre_foto"];
 else $ruta_foto="";
