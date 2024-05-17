@@ -162,6 +162,7 @@ function pasaPagina(p) {
         if (pag_html == "pagina_3"){
             if (primera_vez_pag_3){
                 primera_vez_pag_3=false;
+                alert(tutor1);
                 document.getElementById("tut1_nom").value=tutor1;
                 document.getElementById("tut1_telef").value=tlf_tutor1;
                 document.getElementById("tut1_email").value=email_tutor1;
