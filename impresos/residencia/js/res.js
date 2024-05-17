@@ -147,7 +147,7 @@ function pasaPagina(p) {
     valid = _paginas[pagina - 1][2];
     validExec = "#" + _paginas[pagina - 1][3];
     if (p == "+") {
-        if (pag_html=="pagina_1")validacion=$(validExec).valid();
+        if (pag_html=="pagina_1") validacion=$(validExec).valid();
         else validacion=true;
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
