@@ -150,9 +150,10 @@ function pasaPagina(p) {
         if ($(validExec).valid()) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
-                    alert(valid);
-                    if (valid != "") eval(valid);
-                    pasaPagina('0');
+                    if (pag_html=="pagina_1"){
+                        if (valid != "") eval(valid);
+                        pasaPagina('0');
+                    }
                 });
             } else pasaPagina('0');
         } else {
@@ -191,11 +192,11 @@ function pasaPagina(p) {
 function creaArrayPasapagina() {
     _paginas = [];
     _paginas.push(new Array("pagina1", "pagina_1", "creaValidatorPagina1()", ""));
-    _paginas.push(new Array("pagina2", "pagina_2", "creaValidatorPagina2()", "form_pagina_1"));
-    _paginas.push(new Array("pagina3", "pagina_3", "creaValidatorPagina3()", "form_pagina_2"));
-    _paginas.push(new Array("pagina4", "pagina_4", "creaValidatorPagina4()", "form_pagina_3"));
-    _paginas.push(new Array("pagina5", "pagina_5", "creaValidatorPagina5()", "form_pagina_4"));
-    _paginas.push(new Array("pagina_final", "pagina_6", "", "form_pagina_5"));
+    _paginas.push(new Array("pagina2", "pagina_2", "", "form_pagina_1"));
+    _paginas.push(new Array("pagina3", "pagina_3", "", ""));
+    _paginas.push(new Array("pagina4", "pagina_4", "", ""));
+    _paginas.push(new Array("pagina5", "pagina_5", "", ""));
+    _paginas.push(new Array("pagina_final", "pagina_6", "", ""));
 }
 
 
