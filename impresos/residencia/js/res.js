@@ -150,6 +150,7 @@ function pasaPagina(p) {
         if ($(validExec).valid()) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
+                    alert(valid);
                     if (valid != "") eval(valid);
                     pasaPagina('0');
                 });
