@@ -144,17 +144,17 @@ function pasaPagina(p) {
     $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
     pag = "res_html/" + _paginas[pagina - 1][0] + ".html?q="+Date.now().toString();
     pag_html = _paginas[pagina - 1][1];
-    valid = _paginas[pagina - 1][2];
-    validExec = "#" + _paginas[pagina - 1][3];
+    //valid = _paginas[pagina - 1][2];
+    //validExec = "#" + _paginas[pagina - 1][3];
     if (p == "+") {
-        if (pag_html=="pagina_1") validacion=$(validExec).valid();
+        if (pag_html=="pagina_2") validacion=$("#form_pagina_1").valid();
         else validacion=true;
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
-                    alert(valid);
-                    if (valid=="creaValidatorPagina1()"){
-                        if (valid != "") eval(valid);
+                    if (pag_html=="pagina_1"){
+                        //if (valid != "") eval(valid);
+                        creaValidatorPagina1();
                         pasaPagina('0');
                     }
                 });
@@ -194,12 +194,14 @@ function pasaPagina(p) {
 
 function creaArrayPasapagina() {
     _paginas = [];
-    _paginas.push(new Array("pagina1", "pagina_1","", "creaValidatorPagina1()", ""));
-    _paginas.push(new Array("pagina2", "pagina_2", "", "form_pagina_1"));
-    _paginas.push(new Array("pagina3", "pagina_3", "", ""));
-    _paginas.push(new Array("pagina4", "pagina_4", "", ""));
-    _paginas.push(new Array("pagina5", "pagina_5", "", ""));
-    _paginas.push(new Array("pagina_final", "pagina_6", "", ""));
+    //_paginas.push(new Array("pagina1", "pagina_1","", "creaValidatorPagina1()", ""));
+    //_paginas.push(new Array("pagina2", "pagina_2", "", "form_pagina_1"));
+    _paginas.push(new Array("pagina1", "pagina_1"));
+    _paginas.push(new Array("pagina2", "pagina_2"));
+    _paginas.push(new Array("pagina3", "pagina_3"));
+    _paginas.push(new Array("pagina4", "pagina_4"));
+    _paginas.push(new Array("pagina5", "pagina_5"));
+    _paginas.push(new Array("pagina_final", "pagina_6"));
 }
 
 
