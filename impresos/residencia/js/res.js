@@ -194,7 +194,7 @@ function pasaPagina(p) {
 
 function creaArrayPasapagina() {
     _paginas = [];
-    _paginas.push(new Array("pagina1", "pagina_1", "creaValidatorPagina1()", ""));
+    _paginas.push(new Array("pagina1", "pagina_1","", "creaValidatorPagina1()", ""));
     _paginas.push(new Array("pagina2", "pagina_2", "", "form_pagina_1"));
     _paginas.push(new Array("pagina3", "pagina_3", "", ""));
     _paginas.push(new Array("pagina4", "pagina_4", "", ""));
