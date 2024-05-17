@@ -15,6 +15,7 @@ var nif_nie_tutor2 = "";
 var sexo="",fecha_nac="",telef_alumno="",email_alumno="",domicilio="",cp="",localidad="",provincia="";
 var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2="";
 var primera_vez_pag_3=true;
+var primera_vez_pag_5=true;
 
 
 $(document).ready(function() {
@@ -169,6 +170,11 @@ function pasaPagina(p) {
                 document.getElementById("tut2_nom").value=tutor2;
                 document.getElementById("tut2_telef").value=tlf_tutor2;
                 document.getElementById("tut2_email").value=email_tutor2;
+            }
+        }
+        if (pag_html=="pagina_5"){
+            if (primera_vez_pag_5){
+                primera_vez_pag_5=false;
             }
         }
     }
