@@ -172,7 +172,7 @@ function pasaPagina(p) {
                 document.getElementById("tut2_email").value=email_tutor2;
             }
         }
-        if (pag_html=="pagina_5"){
+        else if (pag_html=="pagina_5"){
             if (primera_vez_pag_5){
                 primera_vez_pag_5=false;
             }
