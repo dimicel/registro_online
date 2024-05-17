@@ -173,8 +173,6 @@ function pasaPagina(p) {
         else if (pag_html=="pagina_5"){
             if (primera_vez_pag_5){
                 primera_vez_pag_5=false;
-                alert(existe_foto);
-                alert(existe_tarjeta_san);
                 if (existe_foto){
                     document.getElementById("img_foto").src="../../../docs/fotos/"+$id_nie+".jpeg";
                 }
