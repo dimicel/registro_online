@@ -152,8 +152,8 @@ function pasaPagina(p) {
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
-                    alert(pag_html);
-                    if (pag_html=="pagina_1"){
+                    alert(valid);
+                    if (valid=="creaValidatorPagina1()"){
                         if (valid != "") eval(valid);
                         pasaPagina('0');
                     }
