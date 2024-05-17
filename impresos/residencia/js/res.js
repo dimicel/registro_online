@@ -153,15 +153,9 @@ function pasaPagina(p) {
         if (validacion) {
             alert(pag_html+"    "+pag);
             if (document.getElementById(pag_html).innerHTML.length == 0) {
-                $("#" + pag_html).load(pag, function() {
-                    alert(document.getElementById(pag_html).innerHTML);
-                    //if (pag_html=="pagina_1"){
-                        //if (valid != "") eval(valid);
-                        //creaValidatorPagina1();
-                    //}
-                    pasaPagina('0');
-                });
-            } else pasaPagina('0');
+                $("#" + pag_html).load(pag, function() {});
+            }
+            pasaPagina('0');
         } else {
             pagina--;
             $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
