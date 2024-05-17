@@ -172,6 +172,7 @@ function pasaPagina(p) {
         }
         else if (pag_html=="pagina_5"){
             alert(existe_foto);
+            alert(primera_vez_pag_5)
             if (primera_vez_pag_5){
                 primera_vez_pag_5=false;
                 if (existe_foto){
