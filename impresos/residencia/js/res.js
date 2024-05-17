@@ -149,9 +149,9 @@ function pasaPagina(p) {
         else validacion=true;
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
-                $("#" + pag_html).load(pag, function() {});
+                $("#" + pag_html).load(pag, function() {pasaPagina('0');});
             }
-            pasaPagina('0');
+            else pasaPagina('0');
         } else {
             pagina--;
             $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
