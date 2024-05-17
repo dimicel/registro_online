@@ -152,7 +152,7 @@ function pasaPagina(p) {
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
-                    alert("00");
+                    alert(pag_html);
                     if (pag_html=="pagina_1"){
                         if (valid != "") eval(valid);
                         pasaPagina('0');
