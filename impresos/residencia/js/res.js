@@ -154,12 +154,12 @@ function pasaPagina(p) {
             alert(pag_html+"    "+pag);
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
-                    if (pag_html=="pagina_1"){
+                    alert(document.getElementById(pag_html).innerHTML);
+                    //if (pag_html=="pagina_1"){
                         //if (valid != "") eval(valid);
-                        alert(document.getElementById(pag_html).innerHTML);
-                        creaValidatorPagina1();
-                        pasaPagina('0');
-                    }
+                        //creaValidatorPagina1();
+                    //}
+                    pasaPagina('0');
                 });
             } else pasaPagina('0');
         } else {
