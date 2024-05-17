@@ -175,6 +175,12 @@ function pasaPagina(p) {
         else if (pag_html=="pagina_5"){
             if (primera_vez_pag_5){
                 primera_vez_pag_5=false;
+                if (existe_foto){
+                    document.getElementById("img_foto").src="../../../docs/fotos/"+$id_nie+".jpeg";
+                }
+                if (existe_tarjeta_san){
+                    document.getElementById("img_tarjeta_sanitaria").src="../../../docs/"+$id_nie+"/tarjeta_sanitaria/ts_"+$id_nie+".jpeg";
+                }
             }
         }
     }
