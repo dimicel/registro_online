@@ -14,8 +14,8 @@ var nif_nie_tutor1 = "";
 var nif_nie_tutor2 = "";
 var sexo="",fecha_nac="",telef_alumno="",email_alumno="",domicilio="",cp="",localidad="",provincia="";
 var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2="";
-var primera_vez_pag_2=true;
 var primera_vez_pag_3=true;
+
 
 $(document).ready(function() {
     document.getElementById("cargando").style.display = 'inherit';
@@ -160,6 +160,17 @@ function pasaPagina(p) {
     } else{
         for (i = 0; i < _paginas.length; i++) $("#" + _paginas[i][1]).css('display', 'none');
         $("#" + pag_html).css('display', 'inherit').fadeIn(500);
+        if (pag_html == "pagina_3"){
+            if (primera_vez_pag_3){
+                primera_vez_pag_3=false;
+                document.getElementById("tut1_nom").value=tutor1;
+                document.getElementById("tut1_telef").value=tlf_tutor1;
+                document.getElementById("tut1_email").value=email_tutor1;
+                document.getElementById("tut2_nom").value=tutor2;
+                document.getElementById("tut2_telef").value=tlf_tutor2;
+                document.getElementById("tut2_email").value=email_tutor2;
+            }
+        }
     }
 }
 
