@@ -57,9 +57,7 @@ function creaValidatorPagina1() {
             },
             cp: {
                 required:true
-            },
-           
-    
+            }
          },
          messages: {
              apellidos: {
@@ -106,6 +104,42 @@ function creaValidatorPagina1() {
  }
 
  
+ function creaValidatorPagina6() {
+     $("#form_pagina_6").validate({
+         rules: {
+             bic: {
+                 required: true
+             },
+             iban: {
+                 required: true
+             },
+             firma:{
+                required: true
+             }
+         },
+         messages: {
+             bic: {
+                 required: "Complete el campo"
+             },
+             iban: {
+                 required: "Complete el campo"
+             },
+             firma:{
+                required: "Falta firmar la orden SEPA"
+             }
+         },
+         errorPlacement: function(error, element) {
+             $(element).prev($('.errorTxt')).html(error);
+         }
+     });
+ }
+
+ 
+
+
+
+
+
 
 
 

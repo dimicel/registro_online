@@ -1,0 +1,36 @@
+
+<div style="display:block;float:left; margin-top:10px; margin-left:10px">
+    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+</div>
+<div style="display:block;float:right; margin-top:10px;margin-right:10px">
+    <p data-paginacion></p>
+</div>
+<div style="text-align: center;">
+    <h6 style="color:brown; margin-top:20px;font-weight: bold;">ORDEN SEPA</h6>
+</div>
+<hr>
+<div class="w-100"></div>
+<form id="form_pagina_6" class="form needs-validation" style="margin-left:20px" novalidate>
+    <div class="form-group form-row">
+        <div class="col-4">
+            <label for="estudios">Código BIC (8 ó 11 caracteres):</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+            <input type="text" name="bic" id="bic" class="form-control" maxlength="11" >
+        </div>
+        <div class="col">
+            <label for="tutor">IBAN (24 caracteres):</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+            <input type="text" name="iban" id="iban" class="form-control" maxlength="24" />
+        </div>
+        <div class="col-3">
+            <label for="t_firm">Firma</label>
+            <span class="errorTxt" style="font-size: 1em;"></span>
+            <input type="text" class="form-control" name="firma" id="firma" placeholder="Clic aquí para firmar" readonly onclick="canvasFirma();" />
+        </div>
+    </div>
+</form>
+<hr>
+<div class="justify-content-center row m-3">
+    <input type="button" value="&#x1f448;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Página anterior" onclick="pasaPagina('-')">
+    <input type="button" value="&#x1f449;&#xfe0e;" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Página siguiente" style="margin-left:30px;" onclick="pasaPagina('+')">
+</div>

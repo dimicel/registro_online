@@ -1,7 +1,7 @@
 var pagina = 1;
 var i = 0;
 var _paginas = new Array();
-var paginas_totales=6;
+var paginas_totales=7;
 existe_tarjeta_san=false;
 existe_foto=false;
 var id_nie = "";
@@ -17,13 +17,17 @@ var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2
 var primera_vez_pag_3=true;
 var primera_vez_pag_5=true;
 
+var drawing = false;
+var mouseX, mouseY;
+var canvas, context, tool, canvas_upload;
+
 
 $(document).ready(function() {
     document.getElementById("cargando").style.display = 'inherit';
     $("#pagina_1").load("res_html/pagina1.html?q="+Date.now().toString(), function() {
         creaValidatorPagina1();
         $("#pagina_1").show();
-        $("[data-paginacion]").html("Pág. 1/6");
+        $("[data-paginacion]").html("Pág. 1/7");
 
         dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
         dat2 = dat1.then((res1) => {
@@ -149,7 +153,10 @@ function pasaPagina(p) {
         else validacion=true;
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
-                $("#" + pag_html).load(pag, function() {pasaPagina('0');});
+                $("#" + pag_html).load(pag, function() {
+                    if (pag_html=="pagina_6") creaValidatorPagina6();
+                    pasaPagina('0');
+                });
             }
             else pasaPagina('0');
         } else {
@@ -192,7 +199,8 @@ function creaArrayPasapagina() {
     _paginas.push(new Array("pagina3", "pagina_3"));
     _paginas.push(new Array("pagina4", "pagina_4"));
     _paginas.push(new Array("pagina5", "pagina_5"));
-    _paginas.push(new Array("pagina_final", "pagina_6"));
+    _paginas.push(new Array("pagina6", "pagina_6"));
+    _paginas.push(new Array("pagina_final", "pagina_7"));
 }
 
 
@@ -419,4 +427,129 @@ function alerta(mensaje, titulo, previo, ancho) {
         width: ancho
     });
     $("#mensaje_div").dialog('open');
+}
+
+
+
+function canvasFirma() {
+    tool = new tool_pencil();
+    $("#div_canvas_firma").dialog({
+        autoOpen: true,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "FIRMA",
+        width: 500,
+        buttons: [{
+                class: "btn btn-success textoboton",
+                text: "Aceptar",
+                click: function() {
+                    if (!isCanvasEmpty()) {
+                        document.getElementById("firma").value = "FORMULARIO FIRMADO";
+                        canvas_upload = canvas.toDataURL('image/png');
+                    } else {
+                        document.getElementById("firma").value = "";
+                    }
+                    $("#div_canvas_firma").dialog("close");
+                    $("#div_canvas_firma").dialog("destroy");
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Borrar",
+                click: function() {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    document.getElementById("firma").value = "";
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    if (!isCanvasEmpty()) {
+                        document.getElementById("firma").value = "FORMULARIO FIRMADO";
+                        canvas_upload = canvas.toDataURL('image/png');
+                    } else {
+                        document.getElementById("firma").value = "";
+                    }
+                    $("#div_canvas_firma").dialog("close");
+                    $("#div_canvas_firma").dialog("destroy");
+                }
+            }
+        ]
+    });
+}
+
+function tool_pencil() {
+    var tool = this;
+    this.started = false;
+
+    // This is called when you start holding down the mouse button or touch the screen.
+    // This starts the pencil drawing.
+    this.startDrawing = function(x, y) {
+        context.beginPath();
+        context.moveTo(x, y);
+        tool.started = true;
+    };
+
+    // This function is called every time you move the mouse or touch the screen. 
+    // It draws a line if the tool.started state is set to true.
+    this.draw = function(x, y) {
+        if (!tool.started) return;
+        context.lineTo(x, y);
+        context.stroke();
+    };
+
+    // This is called when you release the mouse button or end touching the screen.
+    this.endDrawing = function() {
+        tool.started = false;
+    };
+}
+
+// The general-purpose event handler. This function determines the mouse or touch position relative to the canvas element.
+function ev_canvas(ev) {
+    var canvasRect = canvas.getBoundingClientRect();
+    var clientX, clientY;
+
+    if (ev.touches && ev.touches.length > 0) {
+        ev.preventDefault();
+        clientX = ev.touches[0].clientX;
+        clientY = ev.touches[0].clientY;
+    } else {
+        clientX = ev.clientX;
+        clientY = ev.clientY;
+    }
+
+    var x = clientX - canvasRect.left;
+    var y = clientY - canvasRect.top;
+
+    var func;
+    if (ev.type === 'mousedown' || ev.type === 'touchstart') {
+        func = tool.startDrawing;
+    } else if (ev.type === 'mousemove' || ev.type === 'touchmove') {
+        func = tool.draw;
+    } else if (ev.type === 'mouseup' || ev.type === 'touchend') {
+        func = tool.endDrawing;
+    }
+
+    if (func) {
+        func(x, y);
+    }
+}
+
+// Función para verificar si el canvas contiene algo dibujado
+function isCanvasEmpty() {
+    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    var data = imageData.data;
+
+    for (var i = 0; i < data.length; i += 4) {
+        // Comprobar si el canal alfa (transparencia) es mayor que 0
+        if (data[i + 3] !== 0) {
+            return false; // El canvas contiene algo dibujado
+        }
+    }
+
+    return true; // El canvas está vacío
 }
