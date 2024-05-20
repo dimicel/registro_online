@@ -154,7 +154,7 @@ function pasaPagina(p) {
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
-                    if (pag_html=="pagina_6") creaValidatorPagina6();
+                    if (pag_html=="pagina_6"){ creaValidatorPagina6();alert(0);}
                     pasaPagina('0');
                 });
             }
