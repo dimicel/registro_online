@@ -34,7 +34,7 @@ $(function() {
         showButtonPanel: true,
         currentText: "Hoy",
         closeText: "Cerrar",
-        minDate: new Date(2000, 0, 1),
+        minDate: new Date(1900, 0, 1),
         maxDate: "-11y",
         nextText: "Siguiente",
         prevText: "Previo"
