@@ -71,9 +71,9 @@ $enfermedad=$_POST["enfermedad"];
 $medicacion=$_POST["medicacion"];
 $alergias=$_POST["alergias"];
 $otros_datos=$_POST["otros_datos"];
-if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta="../../../docs/fotos/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
+if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta="../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
 else $ruta_tarjeta="";
-if($_POST["nombre_foto"]!="") $ruta_foto="tmp/".$_POST["nombre_foto"];
+if($_POST["nombre_foto"]!="") $ruta_foto="../../../docs/fotos/".$id_nie.".jpg";
 else $ruta_foto="";
 
 

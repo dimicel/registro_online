@@ -337,17 +337,15 @@ function muestraEditor(_file,tipo){
                     _crop1.result('blob').then(function (blob) {
                         if (tipo=='foto')document.getElementById("img_foto").src=window.URL.createObjectURL(blob);
                         else document.getElementById("img_tarjeta_sanitaria").src=window.URL.createObjectURL(blob);
-                        tiempoUnix = new Date().getTime();
-                        numeroAleatorio = Math.floor(Math.random() * 1000);
-                        nombre_fichero=tipo+'_'+tiempoUnix+'_'+numeroAleatorio+".jpg";
+                        nombre_fichero=id_nie+".jpg";
                         formData= new FormData();
                         if(tipo=='foto'){
                             formData.append("foto_alumno", blob, nombre_fichero);
                             document.getElementById("nombre_foto").value=nombre_fichero;
                         }
                         else {
-                            formData.append("tarjeta_sanitaria", blob, nombre_fichero);
-                            document.getElementById("nombre_tarjeta").value=nombre_fichero;
+                            formData.append("tarjeta_sanitaria", blob, "ts_"+nombre_fichero);
+                            document.getElementById("nombre_tarjeta").value="ts_"+nombre_fichero;
                         }
                         document.getElementById("cargando").style.display = 'inherit';
                         $.ajax({
