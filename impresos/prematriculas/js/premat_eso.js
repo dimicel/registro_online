@@ -378,16 +378,16 @@ function registraMatricula() {
         f.eso_primer_idioma.value = retornaValRadioButton(f5.eso4_primer_idioma);
         f.opcion_bloque1.value = retornaValRadioButton(f5.eso4_bloque1);
         
-        f.appendChild(f5.eso4_opt1);
-        f.appendChild(f5.eso4_opt2);
-        f.appendChild(f5.eso4_opt3);
-        f.appendChild(f5.eso4_opt4);
+        //f.appendChild(f5.eso4_opt1);
+        //f.appendChild(f5.eso4_opt2);
+        //f.appendChild(f5.eso4_opt3);
+        //f.appendChild(f5.eso4_opt4);
         f.appendChild(f5.eso4_opt5);
         f.appendChild(f5.eso4_opt6);
         f.appendChild(f5.eso4_opt7);
         f.appendChild(f5.eso4_opt8);
         f.appendChild(f5.eso4_opt9);
-        f.appendChild(f5.eso4_opt10);
+        //f.appendChild(f5.eso4_opt10);
         f.appendChild(f5.eso4_opt11);
         f.appendChild(f5.eso4_opt12);
         f.appendChild(f5.eso4_opt13);
