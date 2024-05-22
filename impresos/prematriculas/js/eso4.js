@@ -33,9 +33,10 @@ function opcionBajaElemento(obj){
 }
 
 function optativasMate(t){
+  var longitud={"matematicasA":[8],"matematicasB":[10]};
   sel=document.getElementsByName("eso4_bloque1");
   for (i=0;i<10;i++) document.getElementById("div_opt_"+i).style.display="none";
-  for (i=0; i<sel.length;i++){
+  for (i=0; i<longitud[t][0];i++){
     document.getElementById("div_opt_"+i).style.display="";
     sel.value=optativas1[t][i];
     document.getElementById("l_eso4_bloque1"+i).innerText=optativas1[t][i];
