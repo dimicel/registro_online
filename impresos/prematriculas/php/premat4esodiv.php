@@ -65,7 +65,7 @@ $optativa1=$_POST['eso4_opt7'];
 $optativa2=$_POST['eso4_opt8'];
 $optativa3=$_POST['eso4_opt9'];
 $optativa4=$_POST['eso4_opt10'];
-$optativa5=$_POST['eso4_opt11'];
+$optativa5='';
 
 $registro=generaRegistro();
 $repite_registro=true;
@@ -415,7 +415,6 @@ $optativas=<<<MAT3
     2 $optativa2<br>
     3 $optativa3<br>
     4 $optativa4<br>
-    5 $optativa5
 MAT3;
 
 $pdf->RoundedRect($XInicio-2,$YInicio,185,55,2,'1111','','','');

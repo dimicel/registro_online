@@ -420,7 +420,7 @@ function registraMatricula() {
         f.appendChild(f5.eso4_opt8);
         f.appendChild(f5.eso4_opt9);
         f.appendChild(f5.eso4_opt10);
-        f.appendChild(f5.eso4_opt11);
+        //f.appendChild(f5.eso4_opt11);
 
     }
 
