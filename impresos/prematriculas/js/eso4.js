@@ -18,6 +18,10 @@ function opcionBajaElemento(obj){
 
 function optativasMate(t){
   sel=document.getElementsByName("eso4_bloque1");
+  for (i=0; i<sel.length;i++){
+    sel.value=optativas1.t[i];
+    document.getElementById("l_eso4_bloque1"+i+1).innerText=optativas1.t[i];
+  }
 }
 
 function eso4_seleccionIdioma(_idioma) {
