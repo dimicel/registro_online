@@ -1,8 +1,24 @@
 // JavaScript Document
 
 var optativas1 = {
-  'matematicasA': ['opa1', 'opa2', 'opa3','opa4','opa5','opa6','opa7','opa8','opa9'],
-  'matematicasB': ['opb1', 'opb2', 'opb3','opb4','opb5','opb6','opb7','opb8','opb9']
+  'matematicasA': ['Economía y emprendimiento + Latín',
+                   'Expresión artística + Latín', 
+                   'Música + Latín',
+                   'Formación y orientación personal y profesional + Latín',
+                   'Formación y orientación personal y profesional + Expresión artística',
+                   'Formación y orientación personal y profesional + Música',
+                   'Formación y orientación personal y profesional + Tecnología',
+                   'Formación y orientación personal y profesional + Economía y emprendimiento'],
+  'matematicasB': ['Física y química + Biología y geología', 
+                  'Física y química + Tecnología', 
+                  'Biología y geología + Tecnología',
+                  'Economía y emprendimiento + Latín',
+                  'Economía y emprendimiento + Música',
+                  'Economía y emprendimiento + Biología y geología',
+                  'Economía y emprendimiento + Expresión artística',
+                  'Expresión artística + Tecnología',
+                  'Formación y orientación personal y profesional + Economía y emprendimiento',
+                  'Formación y orientación personal y profesional + Tecnología']
 };
 
 
@@ -18,7 +34,9 @@ function opcionBajaElemento(obj){
 
 function optativasMate(t){
   sel=document.getElementsByName("eso4_bloque1");
+  for (i=0;i<10;i++) document.getElementById("div_opt_"+i).style.display="none";
   for (i=0; i<sel.length;i++){
+    document.getElementById("div_opt_"+i).style.display="";
     sel.value=optativas1[t][i];
     document.getElementById("l_eso4_bloque1"+i).innerText=optativas1[t][i];
   }
