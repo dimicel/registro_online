@@ -2,8 +2,8 @@ var pagina = 1;
 var i = 0;
 var _paginas = new Array();
 var paginas_totales=7;
-existe_tarjeta_san=false;
-existe_foto=false;
+var existe_tarjeta_san=false;
+var existe_foto=false;
 var id_nie = "";
 var id_nif = "";
 var nombre = "";
@@ -154,7 +154,7 @@ function pasaPagina(p) {
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
-                    if (pag_html=="pagina_6"){ creaValidatorPagina6();alert(0);}
+                    if (pag_html=="pagina_6"){ creaValidatorPagina6();}
                     pasaPagina('0');
                 });
             }
