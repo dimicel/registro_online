@@ -113,6 +113,16 @@ function creaValidatorPagina1() {
 
  
  function creaValidatorPagina6() {
+    canvas = document.getElementById('firma');
+    context = canvas.getContext('2d');
+    canvas.addEventListener('mousedown', ev_canvas, false);
+    canvas.addEventListener('mousemove', ev_canvas, false);
+    canvas.addEventListener('mouseup', ev_canvas, false);
+    canvas.addEventListener("mouseout", ev_canvas, false);
+    canvas.addEventListener('touchstart', ev_canvas, false);
+    canvas.addEventListener('touchmove', ev_canvas, false);
+    canvas.addEventListener('touchend', ev_canvas, false);
+
      $("#form_pagina_6").validate({
          rules: {
              bic: {
