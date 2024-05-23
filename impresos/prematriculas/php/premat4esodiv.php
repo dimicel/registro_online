@@ -65,7 +65,6 @@ $optativa1=$_POST['eso4_opt7'];
 $optativa2=$_POST['eso4_opt8'];
 $optativa3=$_POST['eso4_opt9'];
 $optativa4=$_POST['eso4_opt10'];
-$optativa5='';
 
 $registro=generaRegistro();
 $repite_registro=true;
@@ -113,7 +112,6 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         materia9,
                                         materia10,
                                         materia11,
-                                        materia12,
                                         sexo,
                                         curso_actual,
                                         grupo_curso_actual) 
@@ -145,7 +143,6 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         '$optativa2',
                                         '$optativa3',
                                         '$optativa4',
-                                        '$optativa5',
                                         '$sexo',
                                         '$curso_actual',
                                         '$grupo_curso_actual')");

@@ -128,12 +128,7 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
         $Datos.=utf8_decode($r["materia11"].";");
         $Datos.=utf8_decode($r["materia12"].";");
         $Datos.=utf8_decode($r["materia13"].";");
-        $Datos.=utf8_decode($r["materia14"].";");
-        $Datos.=utf8_decode($r["materia15"].";");
-        $Datos.=utf8_decode($r["materia16"].";");
-        $Datos.=utf8_decode($r["materia17"].";");
-        $Datos.=utf8_decode($r["materia18"].";");
-        $Datos.=utf8_decode($r["materia19"]).PHP_EOL;
+        $Datos.=utf8_decode($r["materia14"]).PHP_EOL;
     }
     elseif($tabla=="premat_3esodiv"){
         $Datos.=utf8_decode($r["id_nie"].";");
@@ -162,8 +157,7 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
         $Datos.=utf8_decode($r["materia8"].";");
         $Datos.=utf8_decode($r["materia9"].";");
         $Datos.=utf8_decode($r["materia10"].";");
-        $Datos.=utf8_decode($r["materia11"].";");
-        $Datos.=utf8_decode($r["materia12"]).PHP_EOL;
+        $Datos.=utf8_decode($r["materia11"]).PHP_EOL;
     }
 	elseif($tabla=="premat_1bach_h" || $tabla=="premat_1bach_c"){
         $Datos.=utf8_decode($r["id_nie"].";");
