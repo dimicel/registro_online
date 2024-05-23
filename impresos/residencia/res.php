@@ -61,8 +61,11 @@
         <!--PAGINA 5 CARGA TARJETA SANITARIA------------------------------------------------------------------------------------------>
         <div id="pagina_5" class="ui-widget-header ui-corner-all col-10 offset-1 justify-content-center flex-column" style="display:none"></div>
 
-        <!--PAGINA 6 FINAL (REGISTRO)------------------------------------------------------------------------------------------>
+        <!--PAGINA 6 DATOS BANCARIOS Y FIRMA------------------------------------------------------------------------------------------>
         <div id="pagina_6" class="ui-widget-header ui-corner-all col-10 offset-1 justify-content-center flex-column" style="display:none"></div>
+
+        <!--PAGINA 7 FINAL (REGISTRO)------------------------------------------------------------------------------------------>
+        <div id="pagina_7" class="ui-widget-header ui-corner-all col-10 offset-1 justify-content-center flex-column" style="display:none"></div>
     </div>
 
     <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('../../recursos/espera.gif') no-repeat center center; opacity: .7;"></div>
