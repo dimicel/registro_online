@@ -230,9 +230,11 @@ function creaValidatorPagina5_4eso() {
                 $(element).parent().parent().prev().children().next().next().html(error);
             else if($(element).attr('name') == "eso4_religion")
                 $(element).parent().parent().next().children().html(error);
-            else if($(element).attr('name') == "eso4_bloque1")
+            else if($(element).attr('name') == "eso4_bloque1"){
                 //$(element).parent().parent().parent().prev().prev().children().children().next().html(error);
-            document.getElementById("errBloque1").innerText=error;
+                alert(0);
+                document.getElementById("errBloque1").innerText=error;
+            } 
             else $(element).parent().parent().next($('.errorTxt')).html(error);
         }
     });
