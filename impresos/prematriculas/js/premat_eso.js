@@ -377,6 +377,7 @@ function registraMatricula() {
         f.eso_religion.value = retornaValRadioButton(f5.eso4_religion);
         f.eso_primer_idioma.value = retornaValRadioButton(f5.eso4_primer_idioma);
         f.opcion_bloque1.value = retornaValRadioButton(f5.eso4_bloque1);
+        alert(f.opcion_bloque1.value)
         
         //f.appendChild(f5.eso4_opt1);
         //f.appendChild(f5.eso4_opt2);
