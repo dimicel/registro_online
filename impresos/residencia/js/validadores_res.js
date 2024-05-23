@@ -19,9 +19,9 @@ function creaValidatorPagina1() {
      
      $("#form_pagina_1").validate({
          rules: {
-            /*res_bonif:{
-                requires:true
-            },*/
+            res_bonif:{
+                required:true
+            },
              apellidos: {
                  required: true
              },
@@ -63,9 +63,9 @@ function creaValidatorPagina1() {
             }
          },
          messages: {
-            /*res_bonif:{
-                requires:"Seleccione SÍ o NO"
-            },*/
+            res_bonif:{
+                required:"Seleccione SÍ o NO"
+            },
              apellidos: {
                  required: "Complete el campo"
              },
