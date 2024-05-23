@@ -212,6 +212,7 @@ function registraSolicitud() {
     var f4 = document.getElementById("form_pagina_4");
     var f5 = document.getElementById("form_pagina_5");
     f.action = "php/generapdf.php";
+    f.bonificado.value=document.querySelectorAll("input[name='res_bonif']:checked").value;
     f.appendChild(f1.nombre);
     f.appendChild(f1.apellidos);
     f.appendChild(f1.nif_nie);

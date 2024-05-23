@@ -31,7 +31,7 @@ function recortarSustituirYObtener4Caracteres($cadena) {
 
     return $resultado;
 }
-
+$bonificado=$_POST['bonificado'];
 $id_nie=$_POST['id_nie'];
 $nombre=$_POST['nombre'];
 $apellidos=$_POST['apellidos'];
@@ -158,7 +158,7 @@ $pdf->AddPage();
 
 $cabecera = <<<HTML1
 <h4>Residente: $apellidos, $nombre</h4>
-<h4>Teléfono de Urgencias: $tlf_urgencias</h4>
+<h4>Residente Bonificado: $bonificado   Teléfono de Urgencias: $tlf_urgencias</h4>
 HTML1;
 
 $YInicio=30;

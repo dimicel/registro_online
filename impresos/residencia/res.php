@@ -24,6 +24,7 @@
         <input type="hidden" id="id_nie" name="id_nie">
         <input type="hidden" id="anno_curso" name="anno_curso">
         <input type="hidden" id="email" name="email">
+        <input type="hidden" id="bonificado" name="bonificado">
     </form>
     <!-- CABECERA LOGOS ---------------------------------------------------------------------------------->
     <div class="container w-100">

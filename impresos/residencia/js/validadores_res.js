@@ -57,6 +57,9 @@ function creaValidatorPagina1() {
             },
             cp: {
                 required:true
+            },
+            res_bonif:{
+                requires:true
             }
          },
          messages: {
@@ -95,10 +98,15 @@ function creaValidatorPagina1() {
             },
             cp: {
                 required: "Falta"
+            },
+            res_bonif:{
+                requires:"Seleccione SÍ o NO"
             }
          },
          errorPlacement: function(error, element) {
-             $(element).prev($('.errorTxt')).html(error);
+            if ($(element).attr('name') == "res_bonif") $("#errBloque1").html(error);
+            else  $(element).prev($('.errorTxt')).html(error);
+             
          }
      });
  }
