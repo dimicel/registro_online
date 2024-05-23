@@ -407,14 +407,14 @@ $bloque=<<<MAT
     3 $bloque3
     4 $bloque4
     5 $bloque5
-    6 $bloque6
 MAT;
 
 $optativas=<<<MAT3
-    1 $optativa1<br>
-    2 $optativa2<br>
-    3 $optativa3<br>
-    4 $optativa4<br>
+    1 $bloque6
+    2 $optativa1<br>
+    3 $optativa2<br>
+    4 $optativa3<br>
+    5 $optativa4<br>
 MAT3;
 
 $pdf->RoundedRect($XInicio-2,$YInicio,185,55,2,'1111','','','');
