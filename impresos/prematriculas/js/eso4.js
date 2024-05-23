@@ -33,6 +33,7 @@ function opcionBajaElemento(obj){
 }
 
 function optativasMate(t){
+  document.getElementById("div_opt_ini").style.display="none";
   var longitud={"matematicasA":[8],"matematicasB":[10]};
   sel=document.getElementsByName("eso4_bloque1");
   for (i=0;i<10;i++) document.getElementById("div_opt_"+i).style.display="none";

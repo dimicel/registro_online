@@ -129,11 +129,6 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         materia12,
                                         materia13,
                                         materia14,
-                                        materia15,
-                                        materia16,
-                                        materia17,
-                                        materia18,
-                                        materia19,
                                         sexo,
                                         curso_actual,
                                         grupo_curso_actual) 
@@ -159,16 +154,11 @@ $mysqli->query("insert into premat_eso (id_nie,
                                         '$religion',
                                         '$matematicas',
                                         '$opcion_bloque1',
-                                        '$bloque21',
-                                        '$bloque22',
-                                        '$bloque23',
-                                        '$bloque24',
                                         '$bloque31',
                                         '$bloque32',
                                         '$bloque33',
                                         '$bloque34',
                                         '$bloque35',
-                                        '$bloque36',
                                         '$optativa1',
                                         '$optativa2',
                                         '$optativa3',
@@ -437,12 +427,7 @@ $h_bloque1=<<<MAT
     3  
 MAT;
 
-$bloque2=<<<MAT
-    1 $bloque21
-    2 $bloque22
-    3 $bloque23
-    4 $bloque24
-MAT;
+
 
 $bloque3=<<<MAT2
     1 $bloque31<br>
@@ -450,7 +435,6 @@ $bloque3=<<<MAT2
     3 $bloque33<br>
     4 $bloque34<br>
     5 $bloque35<br>
-    6 $bloque36
 MAT2;
 
 $optativas=<<<MAT3
@@ -468,7 +452,7 @@ $YInicio_seccion=$YInicio;
 $pdf->SetXY($XInicio,$YInicio);      
 $pdf->Cell(90,4,"  OBLIGATORIAS                                            Horas Semanales",1,0,'L',1,'',0,true,'T','T');
 $pdf->SetX(105);          
-$pdf->Cell(85,4,"  MATERIAS DE OPCIÓN - BLOQUE 3 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(85,4,"  MATERIAS DE OPCIÓN            (3h semanales)",1,0,'L',1,'',0,true,'T','T');
 
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
@@ -478,20 +462,13 @@ $pdf->MultiCell(15,0,$h_tronc_gen,0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=$fil_1*3+2;
 
 $pdf->SetXY($XInicio,$YInicio);      
-$pdf->Cell(90,4,"  MATERIAS DE OPCIÓN - BLOQUE 1               Horas Semanales",1,0,'L',1,'',0,true,'T','T');
+$pdf->Cell(90,4,"  MATERIAS DE OPCIÓN                          Horas Semanales",1,0,'L',1,'',0,true,'T','T');
 $YInicio+=5;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->MultiCell(75,0,$bloque1,0,'L',0,1,'','',true,0,false,false,0);
 $pdf->SetXY(87,$YInicio);
 $pdf->MultiCell(15,0,$h_bloque1,0,'L',0,1,'','',true,0,false,false,0);
 $YInicio+=7;
-
-$pdf->SetXY($XInicio,$YInicio);      
-$pdf->Cell(90,4,"  MATERIAS DE OPCIÓN - BLOQUE 2 (3h semanales)",1,0,'L',1,'',0,true,'T','T');
-
-$YInicio+=5;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->MultiCell(75,0,$bloque2,0,'L',0,1,'','',true,0,false,false,0);
 
 $YInicio=$YInicio_seccion+5;
 $pdf->SetXY(105,$YInicio);
