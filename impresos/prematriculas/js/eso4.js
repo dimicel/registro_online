@@ -39,7 +39,7 @@ function optativasMate(t){
   for (i=0;i<10;i++) document.getElementById("div_opt_"+i).style.display="none";
   for (i=0; i<longitud[t][0];i++){
     document.getElementById("div_opt_"+i).style.display="";
-    sel.value=optativas1[t][i];
+    sel[i].value=optativas1[t][i];
     document.getElementById("l_eso4_bloque1"+i).innerText=optativas1[t][i];
   }
 }
