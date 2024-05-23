@@ -1,6 +1,6 @@
 
 function creaValidatorPagina1() {
-    ("#fecha_nac").datepicker({
+    ("#fech_nac").datepicker({
          changeMonth: true,
          changeYear: true,
          dateFormat: "dd/mm/yy",
