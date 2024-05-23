@@ -113,7 +113,7 @@ function creaValidatorPagina1() {
 
  
  function creaValidatorPagina6() {
-    canvas = document.getElementById('firma');
+    canvas = document.getElementById('firmaCanvas');
     context = canvas.getContext('2d');
     canvas.addEventListener('mousedown', ev_canvas, false);
     canvas.addEventListener('mousemove', ev_canvas, false);
