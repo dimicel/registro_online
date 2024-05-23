@@ -233,7 +233,7 @@ function creaValidatorPagina5_4eso() {
             else if($(element).attr('name') == "eso4_bloque1"){
                 //$(element).parent().parent().parent().prev().prev().children().children().next().html(error);
                 alert(0);
-                document.getElementById("errBloque1").innerText=error;
+                document.getElementById("errBloque1").innerHTML=error;
             } 
             else $(element).parent().parent().next($('.errorTxt')).html(error);
         }
