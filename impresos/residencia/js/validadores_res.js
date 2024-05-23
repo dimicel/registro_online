@@ -1,6 +1,6 @@
 
 function creaValidatorPagina1() {
-    /*$("#fecha_nac").datepicker({
+    ("#fecha_nac").datepicker({
          changeMonth: true,
          changeYear: true,
          dateFormat: "dd/mm/yy",
@@ -11,11 +11,11 @@ function creaValidatorPagina1() {
          showButtonPanel: true,
          currentText: "Hoy",
          closeText: "Cerrar",
-         minDate: new Date(2000, 0, 1),
+         minDate: new Date(1990, 0, 1),
          maxDate: "-11y",
          nextText: "Siguiente",
          prevText: "Previo"
-     });*/
+     });
      
      $("#form_pagina_1").validate({
          rules: {
@@ -133,7 +133,7 @@ function creaValidatorPagina1() {
                  required: "Complete el campo"
              },
              firma:{
-                required: "Falta firmar la orden SEPA"
+                required: "Falta firma para la orden SEPA"
              }
          },
          errorPlacement: function(error, element) {
