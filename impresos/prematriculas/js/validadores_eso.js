@@ -231,8 +231,8 @@ function creaValidatorPagina5_4eso() {
             else if($(element).attr('name') == "eso4_religion")
                 $(element).parent().parent().next().children().html(error);
             else if($(element).attr('name') == "eso4_bloque1"){
-                $(element).parent().parent().parent().children().children().next().html(error);
-                //$("#errBloque1").html(error);
+                //$(element).parent().parent().parent().children().children().next().html(error);
+                $("#errBloque1").html(error);
             } 
             else $(element).parent().parent().next($('.errorTxt')).html(error);
         }
