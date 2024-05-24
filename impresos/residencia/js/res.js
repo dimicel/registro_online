@@ -109,7 +109,12 @@ $(document).ready(function() {
 
 });
 
-
+jQuery.validator.addMethod("existe_imagen", function(value, element) {
+    if ($(element).attr('name') == "tarjeta_sanitaria" && existe_tarjeta_san) return true;
+    else if ($(element).attr('name') == "tarjeta_sanitaria" && !existe_tarjeta_san) return false;
+    else if ($(element).attr('name') == "foto_alumno" && existe_foto) return true;
+    else if ($(element).attr('name') == "foto_alumno" && !existe_foto) return false;
+});
 
 function confirmar() {
     document.getElementById('mensaje_div').innerHTML = "El proceso de registro será cancelado y se borrarán los datos del formulario.";
@@ -187,11 +192,9 @@ function pasaPagina(p) {
                 primera_vez_pag_5=false;
                 if (existe_foto){
                     document.getElementById("img_foto").src="../../docs/fotos/"+id_nie+".jpeg";
-                    document.getElementById("foto_alumno").style.display="none";
                 }
                 if (existe_tarjeta_san){
                     document.getElementById("img_tarjeta_sanitaria").src="../../docs/"+id_nie+"/tarjeta_sanitaria/ts_"+id_nie+".jpeg";
-                    document.getElementById("tarjeta_sanitaria").style.display="none";
                 }
             }
         }
@@ -275,13 +278,11 @@ function registraSolicitud() {
 }
 
 function cargaTarjeta(){
-    document.getElementById("tarjeta_sanitaria").style.display="";
     document.getElementById('tarjeta_sanitaria').value='';
     document.getElementById('tarjeta_sanitaria').click();
 }
 
 function cargaFoto(){
-    document.getElementById("foto_alumno").style.display="";
     document.getElementById('foto_alumno').value='';
     document.getElementById('foto_alumno').click();
 }
@@ -346,8 +347,6 @@ function muestraEditor(_file,tipo){
                     _crop1.destroy();
                     $("#div_edita_imagen").dialog("close");
                     $("#div_edita_imagen").dialog("destroy");
-                    if (existe_foto) document.getElementById("foto_alumno").style.display="none";
-                    if (existe_tarjeta_san) document.getElementById("tarjeta_sanitaria").style.display="none";
                 }
             },
             {

@@ -115,18 +115,18 @@ function creaValidatorPagina1() {
      $("#form_pagina_5").validate({
          rules: {
             foto_alumno: {
-                 required: true
+                existe_imagen: true
              },
              tarjeta_sanitaria: {
-                 required: true
+                existe_imagen: true
              }
          },
          messages: {
             foto_alumno: {
-                 required: "Suba fotografía del residente"
+                existe_imagen: "Suba fotografía del residente"
              },
              tarjeta_sanitaria: {
-                 required: "Suba imagen de la tarjeta sanitaria",
+                existe_imagen: "Suba imagen de la tarjeta sanitaria",
              },
          },
          errorPlacement: function(error, element) {
