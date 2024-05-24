@@ -122,13 +122,19 @@ function creaValidatorPagina1() {
     canvas.addEventListener('touchstart', ev_canvas, false);
     canvas.addEventListener('touchmove', ev_canvas, false);
     canvas.addEventListener('touchend', ev_canvas, false);
+
+    jQuery.validator.addMethod("iban", function(value, element) {
+        return validateIBAN(value);
+    });
+
      $("#form_pagina_6").validate({
          rules: {
              bic: {
                  required: true
              },
              iban: {
-                 required: true
+                 required: true,
+                 iban: true
              },
              firma:{
                 required: true
@@ -139,7 +145,8 @@ function creaValidatorPagina1() {
                  required: "Complete el campo"
              },
              iban: {
-                 required: "Complete el campo"
+                 required: "Complete el campo",
+                 iban:"El IBAN no es válido"
              },
              firma:{
                 required: "Falta firma para la orden SEPA"
