@@ -111,8 +111,8 @@ function creaValidatorPagina1() {
      });
  }
 
- function creaValidatorPagina6() {
-     $("#form_pagina_6").validate({
+ function creaValidatorPagina5() {
+     $("#form_pagina_5").validate({
          rules: {
             foto_alumno: {
                  required: true

@@ -158,12 +158,14 @@ function pasaPagina(p) {
     pag_html = _paginas[pagina - 1][1];
     if (p == "+") {
         if (pag_html=="pagina_2") validacion=$("#form_pagina_1").valid();
+        else if(pag_html=="pagina_6") validacion=$("#form_pagina_5").valid();
         else if(pag_html=="pagina_7") validacion=$("#form_pagina_6").valid();
         else validacion=true;
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
                     if (pag_html=="pagina_6"){creaValidatorPagina6();}
+                    else if (pag_html=="pagina_5"){creaValidatorPagina5();}
                     pasaPagina('0');
                 });
             }
