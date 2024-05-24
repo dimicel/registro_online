@@ -90,6 +90,7 @@ $(document).ready(function() {
                 document.getElementById("localidad").value=localidad;
                 document.getElementById("provincia").value=provincia;
                 document.getElementById("cp").value=cp;
+                document.getElementById("nif_nie").value=id_nif;
                 
             }
             return $.post("php/comprueba_docs.php", { id_nie: id_nie, curso:anno_curso });
