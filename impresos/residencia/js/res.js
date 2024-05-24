@@ -151,13 +151,14 @@ function confirmar() {
 function pasaPagina(p) {
     if (pagina == 1) creaArrayPasapagina();
     if (p == '-') {
-        if(p==7 && document.getElementById("res_bonifNO").checked) pagina-=2;
+        if(p==7 && !document.getElementById("res_bonifNO").checked) pagina-=2;
         else pagina--;
     }
     else if (p == '+') {
-        if(p==5  && document.getElementById("res_bonifNO").checked) pagina+=2;
+        if(p==5  && !document.getElementById("res_bonifNO").checked) pagina+=2;
         else pagina++;
     }
+    alert(pagina);
     $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
     pag = "res_html/" + _paginas[pagina - 1][0] + ".html?q="+Date.now().toString();
     pag_html = _paginas[pagina - 1][1];
