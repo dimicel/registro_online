@@ -407,7 +407,7 @@ $bloque=<<<MAT
 MAT;
 
 $optativas=<<<MAT3
-    1 $bloque6
+    1 $bloque6<br>
     2 $optativa1<br>
     3 $optativa2<br>
     4 $optativa3<br>
