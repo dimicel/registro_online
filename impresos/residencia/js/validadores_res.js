@@ -130,7 +130,8 @@ function creaValidatorPagina1() {
              },
          },
          errorPlacement: function(error, element) {
-             $(element).prev($('.errorTxt')).html(error);
+            if ($(element).attr('name') == "foto_alumno") $("#faltafoto").html(error);
+            else if ($(element).attr('name') == "tarjeta_sanitaria") $("#faltatarjeta").html(error);
          }
      });
  }
