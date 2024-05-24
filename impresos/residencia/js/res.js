@@ -151,11 +151,11 @@ function confirmar() {
 function pasaPagina(p) {
     if (pagina == 1) creaArrayPasapagina();
     if (p == '-') {
-        if(p==7 && !document.getElementById("res_bonifNO").checked) pagina-=2;
+        if(pagina==7 && !document.getElementById("res_bonifNO").checked) pagina-=2;
         else pagina--;
     }
     else if (p == '+') {
-        if(p==5  && !document.getElementById("res_bonifNO").checked) pagina+=2;
+        if(pagina==5  && !document.getElementById("res_bonifNO").checked) pagina+=2;
         else pagina++;
     }
     alert(pagina);
