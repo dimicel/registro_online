@@ -129,6 +129,14 @@ jQuery.validator.addMethod("miFecha", function(value, element) {
     return (/^\d{2}\/\d{2}\/\d{4}$/).test(value);
 });
 
+jQuery.validator.addMethod("iban", function(value, element) {
+    return validateIBAN(value);
+});
+
+jQuery.validator.addMethod("bic", function(value, element) {
+    return validateBIC(value);
+});
+
 function revisaNIF_Pasaporte(obj){
     var aux="";
     for (i=0; i<obj.value.length;i++){
@@ -155,4 +163,82 @@ function limitCheckboxes(selector, maxCount) {
       });
     });
   }
+
+  function validateIBAN(iban) {
+    // Lista de longitudes de IBAN por país
+    const IBAN_LENGTHS = {
+        'AL': 28, 'AD': 24, 'AT': 20, 'AZ': 28, 'BH': 22, 'BY': 28, 'BE': 16, 'BA': 20,
+        'BR': 29, 'BG': 22, 'CR': 22, 'HR': 21, 'CY': 28, 'CZ': 24, 'DK': 18, 'DO': 28,
+        'EG': 27, 'EE': 20, 'FO': 18, 'FI': 18, 'FR': 27, 'GE': 22, 'DE': 22, 'GI': 23,
+        'GR': 27, 'GL': 18, 'GT': 28, 'HU': 28, 'IS': 26, 'IQ': 23, 'IE': 22, 'IL': 23,
+        'IT': 27, 'JO': 30, 'KZ': 20, 'XK': 20, 'KW': 30, 'LV': 21, 'LB': 28, 'LI': 21,
+        'LT': 20, 'LU': 20, 'MT': 31, 'MR': 27, 'MU': 30, 'MD': 24, 'MC': 27, 'ME': 22,
+        'NL': 18, 'MK': 19, 'NO': 15, 'PK': 24, 'PS': 29, 'PL': 28, 'PT': 25, 'QA': 29,
+        'RO': 24, 'LC': 32, 'SM': 27, 'SA': 24, 'RS': 22, 'SK': 24, 'SI': 19, 'ES': 24,
+        'SE': 24, 'CH': 21, 'TL': 23, 'TN': 24, 'TR': 26, 'UA': 29, 'AE': 23, 'GB': 22,
+        'VG': 24
+    };
+    // Eliminar espacios y convertir a mayúsculas
+    iban = iban.replace(/\s+/g, '').toUpperCase();
+
+    // Verificar el código del país
+    const countryCode = iban.slice(0, 2);
+    if (!IBAN_LENGTHS.hasOwnProperty(countryCode)) {
+        return false;
+    }
+
+    // Verificar longitud específica del país
+    if (iban.length !== IBAN_LENGTHS[countryCode]) {
+        return false;
+    }
+
+    // Mover los primeros cuatro caracteres al final del string
+    let rearrangedIBAN = iban.slice(4) + iban.slice(0, 4);
+
+    // Convertir las letras en números (A = 10, B = 11, ..., Z = 35)
+    let numericIBAN = '';
+    for (let char of rearrangedIBAN) {
+        if (char >= 'A' && char <= 'Z') {
+            numericIBAN += (char.charCodeAt(0) - 55).toString();
+        } else {
+            numericIBAN += char;
+        }
+    }
+
+    // Verificar si el número es divisible por 97
+    let remainder = BigInt(numericIBAN) % BigInt(97);
+    return remainder === BigInt(1);
+}
+
+function validateBIC(bic) {
+    // Eliminar espacios y convertir a mayúsculas
+    bic = bic.replace(/\s+/g, '').toUpperCase();
+
+    // Verificar la longitud del BIC (8 o 11 caracteres)
+    if (bic.length !== 8 && bic.length !== 11) {
+        return false;
+    }
+
+    // Verificar que los primeros 4 caracteres sean letras (código del banco)
+    if (!/^[A-Z]{4}/.test(bic)) {
+        return false;
+    }
+
+    // Verificar que los siguientes 2 caracteres sean letras (código del país)
+    if (!/^[A-Z]{4}[A-Z]{2}/.test(bic)) {
+        return false;
+    }
+
+    // Verificar que los siguientes 2 caracteres sean letras o números (código de localidad)
+    if (!/^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}/.test(bic)) {
+        return false;
+    }
+
+    // Si hay 3 caracteres adicionales, deben ser letras o números (código de la sucursal)
+    if (bic.length === 11 && !/^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}[A-Z0-9]{3}/.test(bic)) {
+        return false;
+    }
+
+    return true;
+}
   

@@ -123,14 +123,13 @@ function creaValidatorPagina1() {
     canvas.addEventListener('touchmove', ev_canvas, false);
     canvas.addEventListener('touchend', ev_canvas, false);
 
-    jQuery.validator.addMethod("iban", function(value, element) {
-        return validateIBAN(value);
-    });
+    
 
      $("#form_pagina_6").validate({
          rules: {
              bic: {
-                 required: true
+                 required: true,
+                 bic:true
              },
              iban: {
                  required: true,
@@ -142,7 +141,8 @@ function creaValidatorPagina1() {
          },
          messages: {
              bic: {
-                 required: "Complete el campo"
+                 required: "Complete el campo",
+                 bic:"El código BIC no es válido"
              },
              iban: {
                  required: "Complete el campo",
