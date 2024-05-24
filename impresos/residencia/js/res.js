@@ -360,7 +360,7 @@ function muestraEditor(_file,tipo){
                         formData= new FormData();
                         formData.append("id_nie", id_nie);
                         if(tipo=='foto'){
-                            formData.append("foto_alumno", blob, nombre_fichero);
+                            formData.append("foto", blob, nombre_fichero);
                             document.getElementById("nombre_foto").value=nombre_fichero;
                         }
                         else {
