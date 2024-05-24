@@ -297,7 +297,7 @@ function muestraEditor(_file,tipo){
             showZoomer: false,
             enableOrientation: true
         });
-        _url="php/subefoto.php";
+        _url="../matriculas/php/sube_foto.php";
     }
     else{
         tipo='tarjeta';
