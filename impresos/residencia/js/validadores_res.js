@@ -122,7 +122,7 @@ function creaValidatorPagina1() {
     canvas.addEventListener('touchstart', ev_canvas, false);
     canvas.addEventListener('touchmove', ev_canvas, false);
     canvas.addEventListener('touchend', ev_canvas, false);
-
+    alert(11);
      $("#form_pagina_6").validate({
          rules: {
              bic: {
