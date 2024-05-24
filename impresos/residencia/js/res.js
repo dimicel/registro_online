@@ -358,6 +358,7 @@ function muestraEditor(_file,tipo){
                         else document.getElementById("img_tarjeta_sanitaria").src=window.URL.createObjectURL(blob);
                         nombre_fichero=id_nie+".jpg";
                         formData= new FormData();
+                        formData.append("id_nie", id_nie);
                         if(tipo=='foto'){
                             formData.append("foto_alumno", blob, nombre_fichero);
                             document.getElementById("nombre_foto").value=nombre_fichero;
