@@ -111,6 +111,31 @@ function creaValidatorPagina1() {
      });
  }
 
+ function creaValidatorPagina6() {
+     $("#form_pagina_6").validate({
+         rules: {
+            foto_alumno: {
+                 required: true
+             },
+             tarjeta_sanitaria: {
+                 required: true
+             }
+         },
+         messages: {
+            foto_alumno: {
+                 required: "Suba fotografía del residente"
+             },
+             tarjeta_sanitaria: {
+                 required: "Suba imagen de la tarjeta sanitaria",
+             },
+         },
+         errorPlacement: function(error, element) {
+             $(element).prev($('.errorTxt')).html(error);
+         }
+     });
+ }
+
+
  
  function creaValidatorPagina6() {
     canvas = document.getElementById('firmaCanvas');

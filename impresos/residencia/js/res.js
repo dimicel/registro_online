@@ -97,9 +97,15 @@ $(document).ready(function() {
             return $.post("php/comprueba_docs.php", { id_nie: id_nie, curso:anno_curso });
         });
         dat3.then((resp)=>{
-            if (resp.indexOf('F')>-1)existe_foto=true;
+            if (resp.indexOf('F')>-1){
+                existe_foto=true;
+                document.getElementById("foto_alumno").style.display="none";
+            }
             else existe_foto=false;
-            if (resp.indexOf('T')>-1) existe_tarjeta_san=true;
+            if (resp.indexOf('T')>-1){
+                existe_tarjeta_san=true;
+                document.getElementById("tarjeta_sanitaria").style.display="none";
+            } 
             else existe_tarjeta_san=false;
         });
         document.getElementById("cargando").style.display = 'none';
