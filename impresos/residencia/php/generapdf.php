@@ -78,13 +78,17 @@ if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta="../../../docs/".$id_nie."/tarjet
 else $ruta_tarjeta="";
 if($_POST["nombre_foto"]!="") $ruta_foto="../../../docs/fotos/".$id_nie.".jpg";
 else $ruta_foto="";
-
+if (isset($_POST['iban']))$iban = $_POST['iban'];
+if (isset($_POST['bic']))$iban = $_POST['bic'];
 
 if (strlen(trim($enfermedad_pasada))==0)$enfermedad_pasada="No";
 if (strlen(trim($enfermedad))==0)$enfermedad="No";
 if (strlen(trim($medicacion))==0)$medicacion="No";
 if (strlen(trim($alergias))==0)$alergias="No";
 if (strlen(trim($otros_datos))==0)$otros_datos="Ninguno";
+
+if (isset($_POST['firma']))$firma = urldecode($_POST['firma']);
+
 
 //GENERA EL PDF 
 
