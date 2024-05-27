@@ -523,8 +523,6 @@ header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
 $pdf->Output($nombre_fichero, 'I');
 
-if (file_exists($ruta_tarjeta)) unlink($ruta_tarjeta);
-if (file_exists($ruta_foto)) unlink($ruta_foto);
 
 //FIN GENERA PDF
 

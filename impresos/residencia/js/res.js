@@ -102,8 +102,18 @@ $(document).ready(function() {
             if (resp.indexOf('T')>-1) existe_tarjeta_san=true;
             else existe_tarjeta_san=false;
         });
-        document.getElementById("cargando").style.display = 'none';
+        
+        return $.post("../../php/usu_existe_residente.php", { id_nie: id_nie, curso: anno_curso },()=>{});
     });
+    dat4.then((r)=>{
+        document.getElementById("cargando").style.display = 'none';
+        existe_res=(r=="ok")?true:false;
+        if (existe_res) {
+            mensajeNuevaMat = "Ya existe una inscripción de residente registrada.<br>Si continúa el proceso, se eliminará la que tenga ya creada y se sustituirá por ésta.";
+            confirmarnuevaInsc(mensajeNuevaMat, "RESIDENTE INSCRITO", "Crear Nueva");
+        }
+    });
+    
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
@@ -147,6 +157,38 @@ function confirmar() {
 
     $("#mensaje_div").dialog('open');
 }
+
+function confirmarnuevaInsc(mensaje, titulo, botonAceptar) {
+    document.getElementById('confirmarnuevaInsc_div').innerHTML = mensaje;
+    $("#confirmarnuevaInsc_div").dialog({
+        title: titulo,
+        autoOpen: false,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        buttons: [{
+                class: "btn btn-success textoboton",
+                text: botonAceptar,
+                click: function() {
+                    $(this).dialog("close");
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    $(this).dialog("close");
+                    window.history.back();
+                }
+            }
+        ]
+    });
+
+    $("#confirmarnuevaInsc_div").dialog('open');
+}
+
 
 function pasaPagina(p) {
     if (pagina == 1) creaArrayPasapagina();
