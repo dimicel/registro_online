@@ -330,6 +330,7 @@ function registraMatricula() {
         f.appendChild(f5.b2h_eitin24);
         f.appendChild(f5.b2h_eitin25);
         f.appendChild(f5.b2h_eitin26);
+        f.appendChild(f5.b2h_eitin27);
     }
 
     f.appendChild(f1.curso);

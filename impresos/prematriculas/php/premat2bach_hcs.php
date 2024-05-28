@@ -73,7 +73,7 @@ $espitin13=$_POST['b2h_eitin23'];
 $espitin14=$_POST['b2h_eitin24'];
 $espitin15=$_POST['b2h_eitin25'];
 $espitin16=$_POST['b2h_eitin26'];
-
+$espitin17=$_POST['b2h_eitin27'];
 
 
 
@@ -137,7 +137,8 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         materia17,
                                         materia18,
                                         materia19,
-                                        materia20) 
+                                        materia20,
+                                        materia21) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
@@ -177,7 +178,8 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         '$espitin13',
                                         '$espitin14',
                                         '$espitin15',
-                                        '$espitin16')");
+                                        '$espitin16',
+                                        '$espitin17')");
 if ($mysqli->errno>0){
     exit("registro_erroneo ".$mysqli->errno);
 }
@@ -455,6 +457,7 @@ $optativas_col2=<<<MAT
 14  $espitin14
 15  $espitin15
 16  $espitin16
+17  $espitin17
 MAT;
 
 $YInicio+=6;
