@@ -304,6 +304,7 @@ function registraMatricula() {
         f.appendChild(f5.b2c_eitin23);
         f.appendChild(f5.b2c_eitin24);
         f.appendChild(f5.b2c_eitin25);
+        f.appendChild(f5.b2c_eitin26);
     } 
     else if (_curso == "2º Bach. HH.CC.SS.") {
         b2h_generaDatosSerialize();
