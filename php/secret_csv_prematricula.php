@@ -56,12 +56,12 @@ elseif($tabla=="premat_1bach_h" || $tabla=="premat_1bach_c"){
 elseif($tabla=="premat_2bach_h"){
     $Datos='NIE;ALUMNO;SEXO;PRIMER_IDIOMA;MODALIDAD1;MODALIDAD2;MODALIDAD3;';
     $Datos.='OPTATIVA1;OPTATIVA2;OPTATIVA3;OPTATIVA4;OPTATIVA5;OPTATIVA6;OPTATIVA7;OPTATIVA8;';
-    $Datos.='OPTATIVA9;OPTATIVA10;OPTATIVA11;OPTATIVA12;OPTATIVA13;OPTATIVA14;OPTATIVA15;OPTATIVA16'.PHP_EOL;
+    $Datos.='OPTATIVA9;OPTATIVA10;OPTATIVA11;OPTATIVA12;OPTATIVA13;OPTATIVA14;OPTATIVA15;OPTATIVA16;OPTATIVA17'.PHP_EOL;
 } 
 elseif($tabla=="premat_2bach_c"){
     $Datos='NIE;ALUMNO;SEXO;PRIMER_IDIOMA;MODALIDAD1;MODALIDAD2;MODALIDAD3;';
     $Datos.='OPTATIVA1;OPTATIVA2;OPTATIVA3;OPTATIVA4;OPTATIVA5;OPTATIVA6;OPTATIVA7;OPTATIVA8;';
-    $Datos.='OPTATIVA9;OPTATIVA10;OPTATIVA11;OPTATIVA12;OPTATIVA13;OPTATIVA14;OPTATIVA15'.PHP_EOL;
+    $Datos.='OPTATIVA9;OPTATIVA10;OPTATIVA11;OPTATIVA12;OPTATIVA13;OPTATIVA14;OPTATIVA15;OPTATIVA16'.PHP_EOL;
 }
 
 header('Expires: 0');
@@ -209,7 +209,8 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
         $Datos.=utf8_decode($r["materia17"].";");
         $Datos.=utf8_decode($r["materia18"].";");
         $Datos.=utf8_decode($r["materia19"].";");
-        $Datos.=utf8_decode($r["materia20"]).PHP_EOL;
+        $Datos.=utf8_decode($r["materia20"].";");
+        $Datos.=utf8_decode($r["materia21"]).PHP_EOL;
 	}
 	elseif($tabla=="premat_2bach_c"){
         $Datos.=utf8_decode($r["id_nie"].";");
@@ -233,7 +234,8 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
         $Datos.=utf8_decode($r["materia16"].";");
         $Datos.=utf8_decode($r["materia17"].";");
         $Datos.=utf8_decode($r["materia18"].";");
-        $Datos.=utf8_decode($r["materia19"]).PHP_EOL;
+        $Datos.=utf8_decode($r["materia19"].";");
+        $Datos.=utf8_decode($r["materia20"]).PHP_EOL;
 	}
 			
 }
