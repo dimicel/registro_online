@@ -279,6 +279,7 @@ function registraMatricula() {
         f.optativa13.value=document.getElementById("lista_optativas").options[12].value;
         f.optativa14.value=document.getElementById("lista_optativas").options[13].value;
         f.optativa15.value=document.getElementById("lista_optativas").options[14].value;
+        f.optativa16.value=document.getElementById("lista_optativas").options[15].value;
     }  
     else if (_curso == "2º Bach. Ciencias y Tecnología") {
         b2c_generaDatosSerialize();

@@ -98,7 +98,8 @@ function compruebaSelectores(){
         'Economía',
         'Griego I',
         'Historia del Mundo Contemporáneo',
-        'Literatura Universal'
+        'Literatura Universal',
+        'Unión Europea'
     );
 
     l=new Array();

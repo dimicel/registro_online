@@ -76,6 +76,7 @@ $optativa12=$_POST['optativa12'];
 $optativa13=$_POST['optativa13'];
 $optativa14=$_POST['optativa14'];
 $optativa15=$_POST['optativa15'];
+$optativa16=$_POST['optativa16'];
 
 
 $registro=generaRegistro();
@@ -136,7 +137,8 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         materia17,
                                         materia18,
                                         materia19,
-                                        materia20) 
+                                        materia20,
+                                        materia21) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
@@ -177,7 +179,8 @@ $mysqli->query("insert into premat_bach (id_nie,
                                         '$optativa12',
                                         '$optativa13',
                                         '$optativa14',
-                                        '$optativa15')");
+                                        '$optativa15',
+                                        '$optativa16')");
 if ($mysqli->errno>0){
     exit("registro_erroneo ".$mysqli->errno);
 }
@@ -459,6 +462,7 @@ $optativas2=<<<OPT
 13 $optativa13
 14 $optativa14
 15 $optativa15
+16 $optativa16
 OPT;
 
 $YInicio+=5;
