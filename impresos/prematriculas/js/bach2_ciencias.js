@@ -98,5 +98,6 @@ function b2c_generaDatosSerialize() {
     document.getElementById("b2c_eitin23").value = document.getElementById("b2c_esp_itin1").options[12].innerHTML;
     document.getElementById("b2c_eitin24").value = document.getElementById("b2c_esp_itin1").options[13].innerHTML;
     document.getElementById("b2c_eitin25").value = document.getElementById("b2c_esp_itin1").options[14].innerHTML;
+    document.getElementById("b2c_eitin26").value = document.getElementById("b2c_esp_itin1").options[15].innerHTML;
 
 }
