@@ -321,6 +321,8 @@ function registraSolicitud() {
     document.getElementById("residencia").submit();
     document.getElementById("cargando").style.display = 'none';
     */
+
+    /*
     document.getElementById("cargando").style.display = '';
     $.post("php/generapdf.php",$("#residencia").serialize(),(r2)=>{
         document.getElementById("cargando").style.display = 'none';
@@ -332,6 +334,42 @@ function registraSolicitud() {
             alerta("No se han podido registrar los datos. Inténtelo en otro momento.", "Error DB");
         }
     });
+    */
+   
+    document.getElementById("cargando").style.display = '';
+    $.ajax({
+            url: 'php/generapdf.php',
+            method: 'POST',
+            data: data,
+            dataType: 'json', // Especifica que esperas una respuesta JSON
+            success: function(response) {
+                document.getElementById("cargando").style.display = 'none';
+                if (response.status === 'ok') {
+                    var pdfBase64 = response.pdf;
+                    var pdfData = atob(pdfBase64); // Decodificar base64
+                    var uintArray = new Uint8Array(arrayBuffer);
+                    var arrayBuffer = new ArrayBuffer(pdfData.length);
+                    
+                    for (var i = 0; i < pdfData.length; i++) {
+                        uintArray[i] = pdfData.charCodeAt(i);
+                    }
+        
+                    var blob = new Blob([uintArray], { type: 'application/pdf' });
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'documento.pdf';
+                    link.click();
+        
+                    console.log('PDF descargado correctamente.');
+                } else {
+                    console.error('Error:', response.message);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                document.getElementById("cargando").style.display = 'none';
+                console.error('Error:', textStatus, errorThrown);
+            }
+        });
     
 }
 
