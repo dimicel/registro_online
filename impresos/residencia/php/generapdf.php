@@ -235,51 +235,52 @@ class MYPDF extends TCPDF {
 	}
 }
 
-// create new PDF document
+// create new PDF document. Segeneran 2. Uno que no se guarda (datos de salud) y otro que se guarda
+$pdf_salud = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
-$pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('IES Universidad Laboral');
-$pdf->SetTitle('Impreso Residencia');
-$pdf->SetSubject('Residencia');
-$pdf->SetKeywords('ulaboral, PDF, residencia, Toledo, Impreso Residencia');
+$pdf_salud->SetCreator(PDF_CREATOR);
+$pdf_salud->SetAuthor('IES Universidad Laboral');
+$pdf_salud->SetTitle('Impreso Residencia');
+$pdf_salud->SetSubject('Residencia');
+$pdf_salud->SetKeywords('ulaboral, PDF, residencia, Toledo, Impreso Residencia');
 
 // set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-//$pdf->setFooterData();
+$pdf_salud->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+//$pdf_salud->setFooterData();
 
 // set header and footer fonts
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-//$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+$pdf_salud->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+//$pdf_salud->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
 // set default monospaced font
-$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+$pdf_salud->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-//$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+$pdf_salud->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf_salud->SetHeaderMargin(PDF_MARGIN_HEADER);
+//$pdf_salud->SetFooterMargin(PDF_MARGIN_FOOTER);
 
 // set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+$pdf_salud->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
 // set image scale factor
-$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+$pdf_salud->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language-dependent strings (optional)
 if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
 	require_once(dirname(__FILE__).'/lang/spa.php');
-	$pdf->setLanguageArray($l);
+	$pdf_salud->setLanguageArray($l);
 }
 
 // ---------------------------------------------------------
 
-$pdf->setFontSubsetting(true);
+$pdf_salud->setFontSubsetting(true);
 
-$pdf->SetFont('dejavusans', '', 8, '', true);
-$pdf->setFillColor(200);  //Relleno en gris
-$pdf->AddPage();
+$pdf_salud->SetFont('dejavusans', '', 8, '', true);
+$pdf_salud->setFillColor(200);  //Relleno en gris
+$pdf_salud->AddPage();
 
 $cabecera = <<<HTML1
 <h4>Residente: $apellidos, $nombre</h4>
@@ -288,354 +289,361 @@ HTML1;
 
 $YInicio=30;
 
-//$pdf->RoundedRect(82,$YInicio,45,15,2,'1111','','','');
-$pdf->writeHTMLCell(0, 0, 40, $YInicio+2, $cabecera, 0, 1, false, true, '', true);
+//$pdf_salud->RoundedRect(82,$YInicio,45,15,2,'1111','','','');
+$pdf_salud->writeHTMLCell(0, 0, 40, $YInicio+2, $cabecera, 0, 1, false, true, '', true);
 
 //Padding dentro de la celda del texto
-$pdf->setCellPaddings(0,0,0,0);
+$pdf_salud->setCellPaddings(0,0,0,0);
 //Interlineado
-$pdf->setCellHeightRatio(1);
+$pdf_salud->setCellHeightRatio(1);
 
 $YInicio+=10;
 $XInicio=12;
-$anchoLinea=$pdf->getPageWidth();
+$anchoLinea=$pdf_salud->getPageWidth();
 //$XInicioRotulo=17;
 
 ///////////////////////DATOS DEL INTERNO
 $YInicio+=8;
-$pdf->Line(10,$YInicio,$anchoLinea-10,$YInicio);
-//$pdf->RoundedRect(10,$YInicio-1,185,30,2,'1111','','','');
-//$pdf->SetXY($XInicioRotulo,$YInicio);
-//$pdf->SetFont('dejavusans', 'B', 10, '', true);
-//$pdf->Cell(0,0,"DATOS DEL INTERNO",0,0,'L',0,'',1,false,'','');
+$pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
+//$pdf_salud->RoundedRect(10,$YInicio-1,185,30,2,'1111','','','');
+//$pdf_salud->SetXY($XInicioRotulo,$YInicio);
+//$pdf_salud->SetFont('dejavusans', 'B', 10, '', true);
+//$pdf_salud->Cell(0,0,"DATOS DEL INTERNO",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$aChar=$pdf->GetStringWidth("Z");
-$pdf->Cell(0,0,"NIF/NIE/Pasaporte",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(35*$aChar);
-$pdf->Cell(0,0,"Fecha Nacimiento",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(52*$aChar);
-$pdf->Cell(0,0,"Edad",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(60*$aChar);
-$pdf->Cell(0,0,"Nº Hermanos",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(75*$aChar);
-$pdf->Cell(0,0,"Lugar que ocupa",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$aChar=$pdf_salud->GetStringWidth("Z");
+$pdf_salud->Cell(0,0,"NIF/NIE/Pasaporte",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(35*$aChar);
+$pdf_salud->Cell(0,0,"Fecha Nacimiento",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(52*$aChar);
+$pdf_salud->Cell(0,0,"Edad",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(60*$aChar);
+$pdf_salud->Cell(0,0,"Nº Hermanos",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(75*$aChar);
+$pdf_salud->Cell(0,0,"Lugar que ocupa",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$nif_nie,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(35*$aChar);
-$pdf->Cell(0,0,$fech_nac,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(52*$aChar+2);
-$pdf->Cell(0,0,$edad,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(60*$aChar+8);
-$pdf->Cell(0,0,$num_hermanos,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(75*$aChar+2);
-$pdf->Cell(0,0,$lugar_hermanos,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$nif_nie,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(35*$aChar);
+$pdf_salud->Cell(0,0,$fech_nac,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(52*$aChar+2);
+$pdf_salud->Cell(0,0,$edad,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(60*$aChar+8);
+$pdf_salud->Cell(0,0,$num_hermanos,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(75*$aChar+2);
+$pdf_salud->Cell(0,0,$lugar_hermanos,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Tlf.del Interno ",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(35*$aChar);
-$pdf->Cell(0,0,"Nº de la S.S.",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Tlf.del Interno ",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(35*$aChar);
+$pdf_salud->Cell(0,0,"Nº de la S.S.",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$tlf_alum,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(35*$aChar);
-$pdf->Cell(0,0,$num_ss,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$tlf_alum,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(35*$aChar);
+$pdf_salud->Cell(0,0,$num_ss,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"E-mail del Interno",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"E-mail del Interno",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$email_alumno,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$email_alumno,0,0,'L',0,'',1,false,'T','T');
 
 
 ///////////////DOMICILIO DEL INTERNO
 $YInicio+=4;
-$pdf->Line(10,$YInicio,$anchoLinea-10,$YInicio);
-/*$pdf->RoundedRect(10,$YInicio-1,185,25,2,'1111','','','');
-$pdf->SetXY($XInicioRotulo,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 10, '', true);
-$pdf->Cell(0,0,"DATOS DOMICILIO DEL INTERNO",0,0,'L',0,'',1,false,'','');*/
+$pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
+/*$pdf_salud->RoundedRect(10,$YInicio-1,185,25,2,'1111','','','');
+$pdf_salud->SetXY($XInicioRotulo,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 10, '', true);
+$pdf_salud->Cell(0,0,"DATOS DOMICILIO DEL INTERNO",0,0,'L',0,'',1,false,'','');*/
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Dirección",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(80*$aChar);
-$pdf->Cell(0,0,"CP",0,0,'L',0,'',1,false,'','');
-
-
-$YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(80*$aChar);
-$pdf->Cell(0,0,$cp,0,0,'L',0,'',1,false,'T','T');
-
-$YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Localidad",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(50*$aChar);
-$pdf->Cell(0,0,"Provincia",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Dirección",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(80*$aChar);
+$pdf_salud->Cell(0,0,"CP",0,0,'L',0,'',1,false,'','');
 
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$localidad,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(50*$aChar);
-$pdf->Cell(0,0,$provincia,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$direccion,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(80*$aChar);
+$pdf_salud->Cell(0,0,$cp,0,0,'L',0,'',1,false,'T','T');
+
+$YInicio+=3;
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Localidad",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(50*$aChar);
+$pdf_salud->Cell(0,0,"Provincia",0,0,'L',0,'',1,false,'','');
+
+
+$YInicio+=3;
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$localidad,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(50*$aChar);
+$pdf_salud->Cell(0,0,$provincia,0,0,'L',0,'',1,false,'T','T');
 
 
 
 //////////////////// DATOS RELACIONADOS CON LOS ESTUDIOS
 $YInicio+=4;
-$pdf->Line(10,$YInicio,$anchoLinea-10,$YInicio);
-/*$pdf->RoundedRect(10,$YInicio-1,185,50,2,'1111','','','');
-$pdf->SetXY($XInicioRotulo,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 10, '', true);
-$pdf->Cell(0,0,"DATOS RELACIONADOS CON LOS ESTUDIOS",0,0,'L',0,'',1,false,'','');*/
+$pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
+/*$pdf_salud->RoundedRect(10,$YInicio-1,185,50,2,'1111','','','');
+$pdf_salud->SetXY($XInicioRotulo,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 10, '', true);
+$pdf_salud->Cell(0,0,"DATOS RELACIONADOS CON LOS ESTUDIOS",0,0,'L',0,'',1,false,'','');*/
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Estudios",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(55*$aChar);
-$pdf->Cell(0,0,"Tutor",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Estudios",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(55*$aChar);
+$pdf_salud->Cell(0,0,"Tutor",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$estudios,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(55*$aChar);
-$pdf->Cell(0,0,$tutor,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$estudios,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(55*$aChar);
+$pdf_salud->Cell(0,0,$tutor,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Centro de Estudios",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Centro de Estudios",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,90,$centro_est,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,90,$centro_est,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Teléfono",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(25*$aChar);
-$pdf->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Teléfono",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(25*$aChar);
+$pdf_salud->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$tlf_centro_est,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(25*$aChar);
-$pdf->Cell(0,0,$email_centro_est,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$tlf_centro_est,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(25*$aChar);
+$pdf_salud->Cell(0,0,$email_centro_est,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Centro de Procedencia",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Centro de Procedencia",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$centro_proc,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$centro_proc,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Teléfono",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(25*$aChar);
-$pdf->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Teléfono",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(25*$aChar);
+$pdf_salud->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$tlf_centro_proc,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(25*$aChar);
-$pdf->Cell(0,0,$email_centro_proc,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$tlf_centro_proc,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(25*$aChar);
+$pdf_salud->Cell(0,0,$email_centro_proc,0,0,'L',0,'',1,false,'T','T');
 
 
 
 /////////////////////  DATOS RELACIONADOS CON LOS PADRES/TUTORES LEGALES
 $YInicio+=4;
-$pdf->Line(10,$YInicio,$anchoLinea-10,$YInicio);
-/*$pdf->RoundedRect(10,$YInicio-1,185,60,2,'1111','','','');
-$pdf->SetXY($XInicioRotulo,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 10, '', true);
-$pdf->Cell(0,0,"DATOS RELACIONADOS CON LOS PADRES/TUTORES LEGALES",0,0,'L',0,'',1,false,'','');*/
+$pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
+/*$pdf_salud->RoundedRect(10,$YInicio-1,185,60,2,'1111','','','');
+$pdf_salud->SetXY($XInicioRotulo,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 10, '', true);
+$pdf_salud->Cell(0,0,"DATOS RELACIONADOS CON LOS PADRES/TUTORES LEGALES",0,0,'L',0,'',1,false,'','');*/
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Padre/Tutor legal",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Padre/Tutor legal",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$tut1_nom,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$tut1_nom,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Profesión",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(55*$aChar);
-$pdf->Cell(0,0,"Estudios",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Profesión",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(55*$aChar);
+$pdf_salud->Cell(0,0,"Estudios",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$tut1_profesion,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(55*$aChar);
-$pdf->Cell(0,0,$tut1_estudios,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$tut1_profesion,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(55*$aChar);
+$pdf_salud->Cell(0,0,$tut1_estudios,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Teléfono",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(25*$aChar);
-$pdf->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Teléfono",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(25*$aChar);
+$pdf_salud->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$tut1_telef,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(25*$aChar);
-$pdf->Cell(0,0,$tut1_email,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$tut1_telef,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(25*$aChar);
+$pdf_salud->Cell(0,0,$tut1_email,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Madre/Tutora legal",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Madre/Tutora legal",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$tut2_nom,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$tut2_nom,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Profesión",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(55*$aChar);
-$pdf->Cell(0,0,"Estudios",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Profesión",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(55*$aChar);
+$pdf_salud->Cell(0,0,"Estudios",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$tut2_profesion,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(55*$aChar);
-$pdf->Cell(0,0,$tut2_estudios,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$tut2_profesion,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(55*$aChar);
+$pdf_salud->Cell(0,0,$tut2_estudios,0,0,'L',0,'',1,false,'T','T');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Teléfono",0,0,'L',0,'',1,false,'','');
-$pdf->SetX(25*$aChar);
-$pdf->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Teléfono",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetX(25*$aChar);
+$pdf_salud->Cell(0,0,"Email",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(0,0,$tut2_telef,0,0,'L',0,'',1,false,'T','T');
-$pdf->SetX(25*$aChar);
-$pdf->Cell(0,0,$tut2_email,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->Cell(0,0,$tut2_telef,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->SetX(25*$aChar);
+$pdf_salud->Cell(0,0,$tut2_email,0,0,'L',0,'',1,false,'T','T');
 
-
+/////////////////////////////////////////Hasta aquí son los dos iguales, por lo que se hace copia del de salud en el otro
+$pdf=$pdf_salud;
 
 //////////////// DATOS RELACIONADOS CON LA SALUD
 $YInicio+=4;
-$pdf->Line(10,$YInicio,$anchoLinea-10,$YInicio);
-/*$pdf->RoundedRect(10,$YInicio-1,185,55,2,'1111','','','');
-$pdf->SetXY($XInicioRotulo,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 10, '', true);
-$pdf->Cell(0,0,"DATOS RELACIONADOS CON LA SALUD",0,0,'L',0,'',1,false,'','');*/
+$pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
+/*$pdf_salud->RoundedRect(10,$YInicio-1,185,55,2,'1111','','','');
+$pdf_salud->SetXY($XInicioRotulo,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 10, '', true);
+$pdf_salud->Cell(0,0,"DATOS RELACIONADOS CON LA SALUD",0,0,'L',0,'',1,false,'','');*/
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Ha tenido una enfermedad importante",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Ha tenido una enfermedad importante",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-//$pdf->Cell(0,0,$enfermedad_pasada,0,0,'L',0,'',1,false,'T','T');
-$pdf->MultiCell(0, 0, $enfermedad_pasada, 0, 'L');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+//$pdf_salud->Cell(0,0,$enfermedad_pasada,0,0,'L',0,'',1,false,'T','T');
+$pdf_salud->MultiCell(0, 0, $enfermedad_pasada, 0, 'L');
 
 $YInicio+=6;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Actualmente padece una enfermedad",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Actualmente padece una enfermedad",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->MultiCell(0, 0, $enfermedad, 0, 'L');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->MultiCell(0, 0, $enfermedad, 0, 'L');
 
 $YInicio+=6;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Tiene medicación diaria",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Tiene medicación diaria",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->MultiCell(0, 0, $medicacion, 0, 'L');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->MultiCell(0, 0, $medicacion, 0, 'L');
 
 $YInicio+=6;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Alergias a medicamentos y/o alimentos",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Alergias a medicamentos y/o alimentos",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->MultiCell(0, 0, $alergias, 0, 'L');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->MultiCell(0, 0, $alergias, 0, 'L');
 
 $YInicio+=6;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'U', 8, '', true);
-$pdf->Cell(0,0,"Otros datos de interés",0,0,'L',0,'',1,false,'','');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
+$pdf_salud->Cell(0,0,"Otros datos de interés",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->MultiCell(0, 0, $otros_datos, 0, 'L');
+$pdf_salud->SetXY($XInicio,$YInicio);
+$pdf_salud->SetFont('dejavusans', 'B', 8, '', true);
+$pdf_salud->MultiCell(0, 0, $otros_datos, 0, 'L');
 
 $YInicio+=6;
-$pdf->Line(10,$YInicio,$anchoLinea-10,$YInicio);
+$pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
 $YInicio+=3;
 
+/*
 // Agregar la imagen al PDF
 if($_POST["nombre_tarjeta"]!=""){
-	//if(file_exists($ruta_tarjeta)) $pdf->Image($ruta_tarjeta, 50, $YInicio, 100, 0, 'auto'); // Ajusta las coordenadas y dimensiones según tus necesidades
-	if(file_exists($ruta_tarjeta)) $pdf->Image($ruta_tarjeta, 50, $YInicio, 100, 0, '','','T'); // Ajusta las coordenadas y dimensiones según tus necesidades
+	//if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, 'auto'); // Ajusta las coordenadas y dimensiones según tus necesidades
+	if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, '','','T'); // Ajusta las coordenadas y dimensiones según tus necesidades
 
 }
+*/
+
 if($_POST["nombre_foto"]!=""){
-	//if(file_exists($ruta_foto)) $pdf->Image($ruta_foto, 10, 10, 25, 35, 'auto');
-	if(file_exists($ruta_foto)) $pdf->Image($ruta_foto, 10, 10, 25, 35, '','','T'); 
+	//if(file_exists($ruta_foto)) $pdf_salud->Image($ruta_foto, 10, 10, 25, 35, 'auto');
+	if(file_exists($ruta_foto)){
+		$pdf_salud->Image($ruta_foto, 10, 10, 25, 35, '','','T'); 
+		$pdf->Image($ruta_foto, 10, 10, 25, 35, '','','T'); 
+	}  
 }
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
-$adjunto=$pdf->Output('', 'S');
+$adjunto=$pdf_salud->Output('', 'S');
 $mail->addAddress('jjgp46@educastillalamancha.es', 'Jefe Residencia');
 $mail->Subject="Formulario de ". $apellidos.", ".$nombre;
 $mail->Body="Envío automático generado desde la plataforma. Interno: ". $apellidos.", ".$nombre;
@@ -643,7 +651,7 @@ $mail->addStringAttachment($adjunto,$nombre_fichero,"base64","application/pdf");
 $mail->send();
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
-$pdf->Output($nombre_fichero, 'I');
+$pdf_salud->Output($nombre_fichero, 'I');
 
 
 //FIN GENERA PDF
