@@ -21,7 +21,7 @@ function generaRegistro(){
     $array[6]=substr($nums,mt_rand(0,strlen("mayus")-1),1);
     $array[7]=substr($minus,mt_rand(0,strlen("signos")-1),1);
     shuffle($array);
-    return "iesulabto_pm2bah_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];;    
+    return "iesulabto_reside_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];;    
 }
 
 
@@ -113,7 +113,7 @@ $fecha_registro=date('Y-m-d');
 $registro=generaRegistro();
 $repite_registro=true;
 while ($repite_registro){
-    $res=$mysqli->query("select * from premat_bach where registro='$registro'");
+    $res=$mysqli->query("select * from residentes where registro='$registro'");
     if ($mysqli->errno>0) exit("servidor");
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
@@ -124,7 +124,7 @@ while ($repite_registro){
     $res->free();
 }
 
-$mysqli->query("insert into premat_bach (id_nie,
+$mysqli->query("insert into residentes (id_nie,
                                         registro,
                                         fecha_registro,
 										id_nif,
@@ -652,7 +652,9 @@ $mail->send();
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
 $pdf_salud->Output($nombre_fichero, 'I');
-
+if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso,0777);
+$ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $resgistro.".pdf";
+$pdf->Output($ruta_pdf, 'F');
 
 //FIN GENERA PDF
 
