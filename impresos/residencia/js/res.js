@@ -317,19 +317,22 @@ function registraSolicitud() {
     inputFirma.value = encodeURIComponent(canvas_upload);
     f.appendChild(inputFirma);
 
-    document.getElementById("cargando").style.display = 'inherit';
+    /*document.getElementById("cargando").style.display = 'inherit';
     document.getElementById("residencia").submit();
     document.getElementById("cargando").style.display = 'none';
-    
-    /*
+    */
+    document.getElementById("cargando").style.display = '';
     $.post("php/generapdf.php",$("#residencia").serialize(),(r2)=>{
         document.getElementById("cargando").style.display = 'none';
         if (r2 == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la solicitud.<br>Por favor, vuelva a intentarlo más tarde.";
             alerta(mensaje, "Error de servidor");
         }
+        else if(r2.includes("registro_erroneo")){
+            alerta("No se han podido registrar los datos. Inténtelo en otro momento.", "Error DB");
+        }
     });
-    */
+    
 }
 
 function cargaTarjeta(){

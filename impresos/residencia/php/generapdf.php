@@ -4,7 +4,7 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="corr
 
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
-require "mail.php";
+require __DIR__."/../../../php/mail.php";
 ob_clean();
 
 function generaRegistro(){
@@ -241,9 +241,9 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('IES Universidad Laboral');
-$pdf->SetTitle('Impreso Transporte Escolar');
-$pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Impreso Transporte Escolar');
+$pdf->SetTitle('Impreso Residencia');
+$pdf->SetSubject('Residencia');
+$pdf->SetKeywords('ulaboral, PDF, residencia, Toledo, Impreso Residencia');
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -321,7 +321,7 @@ $pdf->Cell(0,0,"Edad",0,0,'L',0,'',1,false,'','');
 $pdf->SetX(60*$aChar);
 $pdf->Cell(0,0,"Nº Hermanos",0,0,'L',0,'',1,false,'','');
 $pdf->SetX(75*$aChar);
-$pdf->Cell(0,0,"Lugar",0,0,'L',0,'',1,false,'','');
+$pdf->Cell(0,0,"Lugar que ocupa",0,0,'L',0,'',1,false,'','');
 
 $YInicio+=3;
 $pdf->SetXY($XInicio,$YInicio);
