@@ -12,14 +12,6 @@ $provincia=str_repeat('X', 35);
 $iban = str_repeat('X', 24);
 $bic = str_repeat('X', 11);
 
-
-$meses = array("enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
-$fecha_actual=getdate();
-$dia=$fecha_actual["mday"];
-$mes=$meses[$fecha_actual["mon"]-1];
-$anno=$fecha_actual["year"];
-$anno = substr($anno, -2);
-
 class MYPDF extends TCPDF {
     // Constructor
     public function __construct($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false) {
@@ -95,7 +87,7 @@ for ($i=0;$i<strlen($iban);$i++){
 }
 
 $pdf->SetXY(25,225);
-$pdf->Cell(0,0,$localidad." , a " . $dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T');
+$pdf->Cell(0,0,$localidad." , a " . date('d') . " de " . date('F') . " de " . date('Y'),0,0,'L',0,'',1,true,'T','T');
 
 
 header("Content-Type: application/pdf");
