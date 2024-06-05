@@ -335,13 +335,13 @@ function registraSolicitud() {
         }
     });
     */
-   
+
     document.getElementById("cargando").style.display = '';
     $.ajax({
             url: 'php/generapdf.php',
             method: 'POST',
-            data: data,
-            dataType: 'json', // Especifica que esperas una respuesta JSON
+            data: $("#residencia").serialize(),
+            dataType: 'json',
             success: function(response) {
                 document.getElementById("cargando").style.display = 'none';
                 if (response.status === 'ok') {
