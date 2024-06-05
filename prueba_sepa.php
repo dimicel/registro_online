@@ -78,16 +78,13 @@ $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 // set the starting point for the page content
 $pdf->setPageMark();
 
-$pdf->SetXY(25,129);
+$pdf->SetXY(22,129);
 $pdf->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(25,139);
+$pdf->SetXY(22,139);
 $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(25,148);
+$pdf->SetXY(22,148);
 $pdf->Cell(0,0,$cp." -" .$localidad." - ".$provincia,0,0,'L',0,'',1,true,'T','T');
-/*$pdf->SetXY(22,169);
-$pdf->Cell(0,0,substr($bic,0,1),0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(30,169);
-$pdf->Cell(0,0,substr($bic,1,1),0,0,'L',0,'',1,true,'T','T');*/
+
 for ($i=0;$i<strlen($bic);$i++){
     $pdf->SetXY(22+$i*7.5,169);
     $pdf->Cell(0,0,substr($bic,$i,1),0,0,'L',0,'',1,true,'T','T');
