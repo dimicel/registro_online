@@ -638,14 +638,14 @@ $YInicio+=6;
 $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
 $YInicio+=3;
 
-/*
+
 // Agregar la imagen al PDF
 if($_POST["nombre_tarjeta"]!=""){
 	//if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, 'auto'); // Ajusta las coordenadas y dimensiones según tus necesidades
 	if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, '','','T'); // Ajusta las coordenadas y dimensiones según tus necesidades
 
 }
-*/
+
 
 if($_POST["nombre_foto"]!=""){
 	//if(file_exists($ruta_foto)) $pdf_salud->Image($ruta_foto, 10, 10, 25, 35, 'auto');
@@ -671,6 +671,7 @@ $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $
 $pdf->Output($ruta_pdf, 'F');
 
 if(strtoupper($bonificado)=="NO"){
+	//Genera orden SEPA si el residente es NO bonificado
 	class MYPDF_sepa extends TCPDF {
 		// Constructor
 		public function __construct($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false) {
@@ -687,9 +688,9 @@ if(strtoupper($bonificado)=="NO"){
 	// set document information
 	$pdf_sepa->SetCreator(PDF_CREATOR);
 	$pdf_sepa->SetAuthor('IES Universidad Laboral');
-	$pdf_sepa->SetTitle('Convalidaciones Centro Educativo y Ministerio');
-	$pdf_sepa->SetSubject('Secretaría');
-	$pdf_sepa->SetKeywords('ulaboral, PDF, secretaría, Toledo, Convalidaciones Centro Educativo y Ministerio');
+	$pdf_sepa->SetTitle('Inscripción a Residencia_SEPA');
+	$pdf_sepa->SetSubject('Residencia');
+	$pdf_sepa->SetKeywords('ulaboral, PDF, residencia, Toledo, Inscripción residentes_SEPA');
 	
 	// set default monospaced font
 	$pdf_sepa->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -723,7 +724,7 @@ if(strtoupper($bonificado)=="NO"){
 	// disable auto-page-break
 	$pdf_sepa->SetAutoPageBreak(false, 0);
 	// set background image
-	$pdf_sepa->Image("sepa.jpg", 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+	$pdf_sepa->Image("../recursos/sepa.jpg", 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 	// restore auto-page-break status
 	$pdf_sepa->SetAutoPageBreak($auto_page_break, $bMargin);
 	// set the starting point for the page content
