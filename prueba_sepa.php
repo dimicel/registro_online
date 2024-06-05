@@ -84,9 +84,9 @@ $pdf->SetXY(25,139);
 $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(25,148);
 $pdf->Cell(0,0,$cp." -" .$localidad." - ".$provincia,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(25,169);
+$pdf->SetXY(22,169);
 $pdf->Cell(0,0,$bic,0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(25,184);
+$pdf->SetXY(22,184);
 $pdf->Cell(0,0,$iban,0,0,'L',0,'',1,true,'T','T');
 
 
