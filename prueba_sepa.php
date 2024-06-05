@@ -33,7 +33,7 @@ class MYPDF extends TCPDF {
 
 // create new PDF document
 $pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-
+exit("jjjjjjjjjjjjjjjjjjj");
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('IES Universidad Laboral');
