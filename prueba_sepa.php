@@ -94,6 +94,9 @@ for ($i=0;$i<strlen($iban);$i++){
     $pdf->Cell(0,0,substr($iban,$i,1),0,0,'L',0,'',1,true,'T','T');
 }
 
+$pdf->SetXY(25,225);
+$pdf->Cell(0,0,$localidad." , a " . $dia . " de " . $mes . " de " . $anno,0,0,'L',0,'',1,true,'T','T');
+
 
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
