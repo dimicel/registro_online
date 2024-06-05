@@ -90,7 +90,7 @@ $pdf->SetXY(30,169);
 $pdf->Cell(0,0,substr($bic,1,1),0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(22,184);
 $pdf->Cell(0,0,substr($iban,0,1),0,0,'L',0,'',1,true,'T','T');
-$pdf->SetXY(27,184);
+$pdf->SetXY(28,184);
 $pdf->Cell(0,0,substr($iban,1,1),0,0,'L',0,'',1,true,'T','T');
 
 
