@@ -3,7 +3,7 @@
 $mysqli->set_charset("utf8");
 require_once('php/tcpdf/config/tcpdf_config_alt.php');
 require_once('php/tcpdf/tcpdf.php');
-
+exit("jjjjjjjjjjjjjjjjjjj");
 $nombre=str_repeat('X', 25);
 $apellidos=str_repeat('X', 40);
 $direccion=str_repeat('X', 90);
@@ -20,7 +20,7 @@ $dia=$fecha_actual["mday"];
 $mes=$meses[$fecha_actual["mon"]-1];
 $anno=$fecha_actual["year"];
 $anno = substr($anno, -2);
-exit("jjjjjjjjjjjjjjjjjjj");
+
 class MYPDF extends TCPDF {
     // Constructor
     public function __construct($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false) {
