@@ -93,7 +93,7 @@ $pdf->Cell(0,0,substr($iban,0,1),0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(28,184);
 $pdf->Cell(0,0,substr($iban,1,1),0,0,'L',0,'',1,true,'T','T');*/
 for ($i=0;$i<strlen($iban);$i++){
-    $pdf->SetXY(22+$i*4,184);
+    $pdf->SetXY(22+$i*6,184);
     $pdf->Cell(0,0,substr($iban,$i,1),0,0,'L',0,'',1,true,'T','T');
 }
 
