@@ -105,7 +105,7 @@ $fechaFormateada = $formateador->format($fecha);
 $pdf->SetXY(25,207);
 $pdf->Cell(0,0,$localidad." , a " . $fechaFormateada,0,0,'L',0,'',1,true,'T','T');
 
-$pdf->Image("logo_ccm.jpg", 90, 200, 40, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+$pdf->Image("logo_ccm.jpg", 90, 210, 40, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
