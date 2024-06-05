@@ -1,10 +1,17 @@
 <?php
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
-
+$respuesta= array();
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 require __DIR__."/../../../php/mail.php";
+
+include("../../../php/conexion.php");
+
+if ($mysqli->errno>0) {
+	$respuesta["status"]="servidor";
+    exit(json_encode($respuesta["status"]));
+}
 ob_clean();
 
 function generaRegistro(){
@@ -114,7 +121,10 @@ $registro=generaRegistro();
 $repite_registro=true;
 while ($repite_registro){
     $res=$mysqli->query("select * from residentes where registro='$registro'");
-    if ($mysqli->errno>0) exit("servidor");
+    if ($mysqli->errno>0){
+		$respuesta["status"]="servidor";
+    	exit(json_encode($respuesta["status"]));
+	}
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
     }
@@ -205,7 +215,8 @@ $mysqli->query("insert into residentes (id_nie,
 										'$tut2_email',
 										'$tut2_telef')");
 if ($mysqli->errno>0){
-    exit("registro_erroneo ".$mysqli->errno);
+	$respuesta["status"]="registro_erroneo ".$mysqli->errno;
+    exit(json_encode($respuesta["status"]));
 }
 
 //GENERA EL PDF 
@@ -655,6 +666,10 @@ $pdf_salud->Output($nombre_fichero, 'I');
 if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso,0777);
 $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $resgistro.".pdf";
 $pdf->Output($ruta_pdf, 'F');
+
+$respuesta["status"]="ok";
+exit(json_encode($respuesta["status"]));
+
 
 //FIN GENERA PDF
 
