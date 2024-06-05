@@ -86,8 +86,24 @@ for ($i=0;$i<strlen($iban);$i++){
     $pdf->Cell(0,0,substr($iban,$i,1),0,0,'L',0,'',1,true,'T','T');
 }
 
+
+$fecha = new DateTime();
+
+// Crear un formateador de fecha para español
+$formateador = new IntlDateFormatter(
+    'es_ES', 
+    IntlDateFormatter::FULL, 
+    IntlDateFormatter::NONE, 
+    'Europe/Madrid', 
+    IntlDateFormatter::GREGORIAN,
+    "d 'de' MMMM 'del' y"
+);
+
+// Formatear la fecha
+$fechaFormateada = $formateador->format($fecha);
+
 $pdf->SetXY(25,225);
-$pdf->Cell(0,0,$localidad." , a " . date('d') . " de " . date('F') . " de " . date('Y'),0,0,'L',0,'',1,true,'T','T');
+$pdf->Cell(0,0,$localidad." , a " . $fechaFormateada,0,0,'L',0,'',1,true,'T','T');
 
 
 header("Content-Type: application/pdf");
