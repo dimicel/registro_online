@@ -1,9 +1,8 @@
 <?php
 
-$mysqli->set_charset("utf8");
 require_once('php/tcpdf/config/tcpdf_config_alt.php');
 require_once('php/tcpdf/tcpdf.php');
-exit("jjjjjjjjjjjjjjjjjjj");
+
 $nombre=str_repeat('X', 25);
 $apellidos=str_repeat('X', 40);
 $direccion=str_repeat('X', 90);
