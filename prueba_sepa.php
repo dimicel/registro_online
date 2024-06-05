@@ -23,7 +23,7 @@ class MYPDF extends TCPDF {
 }
 
 // create new PDF document
-$pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+$pdf_sepa = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 
 // set document information
 $pdf_sepa->SetCreator(PDF_CREATOR);
