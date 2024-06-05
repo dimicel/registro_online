@@ -12,7 +12,7 @@ $provincia=str_repeat('X', 35);
 $iban = str_repeat('X', 24);
 $bic = str_repeat('X', 11);
 
-class MYPDF extends TCPDF {
+class MYPDF_sepa extends TCPDF {
     // Constructor
     public function __construct($orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false) {
         parent::__construct($orientation, $unit, $format, $unicode, $encoding, $diskcache);
@@ -23,7 +23,7 @@ class MYPDF extends TCPDF {
 }
 
 // create new PDF document
-$pdf_sepa = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+$pdf_sepa = new MYPDF_sepa('P', 'mm', 'A4', true, 'UTF-8', false);
 
 // set document information
 $pdf_sepa->SetCreator(PDF_CREATOR);

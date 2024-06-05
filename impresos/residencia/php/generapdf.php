@@ -105,8 +105,8 @@ if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta="../../../docs/".$id_nie."/tarjet
 else $ruta_tarjeta="";
 if($_POST["nombre_foto"]!="") $ruta_foto="../../../docs/fotos/".$id_nie.".jpg";
 else $ruta_foto="";
-if (isset($_POST['iban']))$iban = $_POST['iban'];
-if (isset($_POST['bic']))$bic = $_POST['bic'];
+if (isset($_POST['iban']))$iban = trim($_POST['iban']);
+if (isset($_POST['bic']))$bic = trim($_POST['bic']);
 
 if (strlen(trim($enfermedad_pasada))==0)$enfermedad_pasada="No";
 if (strlen(trim($enfermedad))==0)$enfermedad="No";
@@ -666,6 +666,12 @@ $pdf_salud->Output($nombre_fichero, 'I');
 if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso,0777);
 $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $resgistro.".pdf";
 $pdf->Output($ruta_pdf, 'F');
+
+if(strtoupper($bonificado)=="NO"){
+	
+}
+
+$ruta_sepa=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/sepa_". $id_nie_.".pdf";
 
 $respuesta["status"]="ok";
 exit(json_encode($respuesta["status"]));
