@@ -102,7 +102,7 @@ $formateador = new IntlDateFormatter(
 // Formatear la fecha
 $fechaFormateada = $formateador->format($fecha);
 
-$pdf->SetXY(25,217);
+$pdf->SetXY(25,220);
 $pdf->Cell(0,0,$localidad." , a " . $fechaFormateada,0,0,'L',0,'',1,true,'T','T');
 
 
