@@ -85,9 +85,13 @@ $pdf->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(25,148);
 $pdf->Cell(0,0,$cp." -" .$localidad." - ".$provincia,0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(22,169);
-$pdf->Cell(0,0,$bic,0,0,'L',0,'',1,true,'T','T');
+$pdf->Cell(0,0,substr($bic,0,1),0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(26,169);
+$pdf->Cell(0,0,substr($bic,1,1),0,0,'L',0,'',1,true,'T','T');
 $pdf->SetXY(22,184);
-$pdf->Cell(0,0,$iban,0,0,'L',0,'',1,true,'T','T');
+$pdf->Cell(0,0,substr($iban,0,1),0,0,'L',0,'',1,true,'T','T');
+$pdf->SetXY(26,184);
+$pdf->Cell(0,0,substr($iban,1,1),0,0,'L',0,'',1,true,'T','T');
 
 
 header("Content-Type: application/pdf");
