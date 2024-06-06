@@ -72,12 +72,12 @@ $res=$mysqli->query("select * config_centro");
 while ($reg=$res->fetch_assoc()){
 	$email_jef_res=$reg["email_jefe_residencia"];
 	$nombre_centro_edu=$reg["centro"];
-	$direccion_centro_edu=$resp["direccion_centro"];
-	$cp_centro_edu=$resp["cp_centro"];
-	$localidad_centro_edu=$resp["localidad_centro"];
-	$provincia_centro_edu=$resp["provincia_centro"];
-	$tlf_centro_edu=$resp["tlf_centro"];
-	$fax_centro_edu=$resp["fax_centro"];
+	$direccion_centro_edu=$reg["direccion_centro"];
+	$cp_centro_edu=$reg["cp_centro"];
+	$localidad_centro_edu=$reg["localidad_centro"];
+	$provincia_centro_edu=$reg["provincia_centro"];
+	$tlf_centro_edu=$reg["tlf_centro"];
+	$fax_centro_edu=$reg["fax_centro"];
 }
 $res->free();
 
@@ -252,6 +252,7 @@ class MYPDF extends TCPDF {
 
 	//Page header
 	public function Header() {
+		global $nombre_centro_edu, $direccion_centro_edu, $cp_centro_edu, $localidad_centro_edu, $tlf_centro_edu, $fax_centro_edu;
 		// Logo
 		//$image_file = '../recursos/logo_ccm.jpg';
 		//$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
