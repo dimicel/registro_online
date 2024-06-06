@@ -60,6 +60,28 @@ function recortarSustituirYObtener4Caracteres($cadena) {
     return $resultado;
 }
 
+$email_jef_res="";
+$nombre_centro_edu="";
+$direccion_centro_edu="";
+$cp_centro_edu="";
+$localidad_centro_edu="";
+$provincia_centro_edu="";
+$tlf_centro_edu="";
+$fax_centro_edu="";
+$res=$mysqli->query("select * config_centro");
+while ($reg=$res->fetch_assoc()){
+	$email_jef_res=$reg["email_jefe_residencia"];
+	$nombre_centro_edu=$reg["centro"];
+	$direccion_centro_edu=$resp["direccion_centro"];
+	$cp_centro_edu=$resp["cp_centro"];
+	$localidad_centro_edu=$resp["localidad_centro"];
+	$provincia_centro_edu=$resp["provincia_centro"];
+	$tlf_centro_edu=$resp["tlf_centro"];
+	$fax_centro_edu=$resp["fax_centro"];
+}
+$res->free();
+
+
 $anno_curso=$_POST['anno_curso'];
 $bonificado=$_POST['bonificado'];
 $id_nie=$_POST['id_nie'];
@@ -118,6 +140,8 @@ if (isset($_POST['firma'])){
 	$imageData = urldecode($_POST['firma']);
 	file_put_contents($firma, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 }
+
+
 
 $fecha_registro=date('Y-m-d');
 $registro=generaRegistro();
@@ -241,7 +265,7 @@ class MYPDF extends TCPDF {
 		$this->SetFont('helvetica', '', 8);
 		// Title
 		//$this->setCellHeightRatio(1.75);
-		$encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
+		$encab = "<label><strong>" . $nombre_centro_edu . "</strong><br>" . $direccion_centro_edu . "<br>" . $cp_centro_edu . "-" . $localidad_centro_edu . "<br>Tlf.:" . $tlf_centro_edu . "<br>Fax:" . $fax_centro_edu . "</label>";
 		$this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
 		//$this->Ln();
 		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
@@ -657,12 +681,15 @@ if($_POST["nombre_foto"]!=""){
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
-$adjunto=$pdf_salud->Output('', 'S');
-$mail->addAddress('jjgp46@educastillalamancha.es', 'Jefe Residencia');
-$mail->Subject="Formulario de ". $apellidos.", ".$nombre;
-$mail->Body="Envío automático generado desde la plataforma. Interno: ". $apellidos.", ".$nombre;
-$mail->addStringAttachment($adjunto,$nombre_fichero,"base64","application/pdf");
-$mail->send();
+if (strlen($email_jef_res)>0){
+	$adjunto=$pdf_salud->Output('', 'S');
+	$mail->addAddress($email_jef_res, 'Jefe Residencia');//jjgp46@educastillalamancha.es
+	$mail->Subject="Formulario de ". $apellidos.", ".$nombre;
+	$mail->Body="Envío automático generado desde la plataforma. Interno: ". $apellidos.", ".$nombre;
+	$mail->addStringAttachment($adjunto,$nombre_fichero,"base64","application/pdf");
+	$mail->send();
+}
+
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
 $pdf_salud->Output($nombre_fichero, 'I');
