@@ -151,10 +151,10 @@ function creaValidatorPagina1() {
 
      $("#form_pagina_6").validate({
          rules: {
-             bic: {
+             /*bic: {
                  required: true,
                  bic:true
-             },
+             },*/
              iban: {
                  required: true,
                  iban: true
@@ -164,10 +164,10 @@ function creaValidatorPagina1() {
              }
          },
          messages: {
-             bic: {
+             /*bic: {
                  required: "Complete el campo",
                  bic:"El código BIC no es válido"
-             },
+             },*/
              iban: {
                  required: "Complete el campo",
                  iban:"El IBAN no es válido"
