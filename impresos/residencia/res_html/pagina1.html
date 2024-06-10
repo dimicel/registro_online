@@ -21,11 +21,11 @@
             <label>Residente BONIFICADO:</label>
         </div>
         <div class="col-1 custom-control-inline custom-switch  mi-checkbox" >
-            <input class="custom-control-input" type="radio" name="res_bonif" id="res_bonifSI" value="SÍ" />
+            <input class="custom-control-input" type="radio" name="res_bonif" id="res_bonifSI" value="SÍ" onclick="paginas_totales=6;$('[data-paginacion]').html('Pág. ' + pagina + '/' + paginas_totales);"/>
             <label for="res_bonifSI" class="custom-control-label">SÍ</label>
         </div>
         <div class="col-1 custom-control-inline custom-switch  mi-checkbox">
-            <input class="custom-control-input" type="radio" name="res_bonif" id="res_bonifNO" value="NO" />
+            <input class="custom-control-input" type="radio" name="res_bonif" id="res_bonifNO" value="NO" onclick="paginas_totales=7;$('[data-paginacion]').html('Pág. ' + pagina + '/' + paginas_totales);"/>
             <label for="res_bonifNO" class="custom-control-label">NO</label>
         </div>
     </div>
