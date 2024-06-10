@@ -198,21 +198,27 @@ function confirmarnuevaInsc(mensaje, titulo, botonAceptar) {
 function pasaPagina(p) {
     if (pagina == 1) creaArrayPasapagina();
     if (p == '-') {
-        if(pagina==7 && document.getElementById("res_bonifSI").checked) pagina-=2;
-        else pagina--;
+        pagina--;
     }
     else if (p == '+') {
-        if(pagina==5  && document.getElementById("res_bonifSI").checked) pagina+=2;
-        else pagina++;
+        pagina++;
     }
     $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
-    /*if (document.getElementById("res_bonifSI").checked){
-        if (pagina==6 && p=='+')pagina=7;
-        else if (pagina==6 && p=='-') pagina=5;
-    }*/
+    if (document.getElementById("res_bonifSI").checked && pagina==6){
+        if (p=='+'){
+            pag = "res_html/" + _paginas[pagina][0] + ".html?q="+Date.now().toString();
+            pag_html = _paginas[pagina][1];
+        }
+        else if (p=='-') {
+            pag = "res_html/" + _paginas[pagina - 2][0] + ".html?q="+Date.now().toString();
+            pag_html = _paginas[pagina - 2][1];
+        }
+    }
+    else {
+        pag = "res_html/" + _paginas[pagina - 1][0] + ".html?q="+Date.now().toString();
+        pag_html = _paginas[pagina - 1][1];
+    }
     
-    pag = "res_html/" + _paginas[pagina - 1][0] + ".html?q="+Date.now().toString();
-    pag_html = _paginas[pagina - 1][1];
     
     if (p == "+") {
         if (pag_html=="pagina_2") validacion=$("#form_pagina_1").valid();
