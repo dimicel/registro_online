@@ -24,7 +24,7 @@ var canvas, context, tool, canvas_upload;
 
 
 $(document).ready(function() {
-    document.getElementById("cargando").style.display = 'inherit';
+    document.getElementById("cargando").style.display = '';
     $("#pagina_1").load("res_html/pagina1.html?q="+Date.now().toString(), function() {
         creaValidatorPagina1();
         $("#pagina_1").show();
@@ -96,23 +96,28 @@ $(document).ready(function() {
             }
             return $.post("php/comprueba_docs.php", { id_nie: id_nie, curso:anno_curso });
         });
-        dat3.then((resp)=>{
+        
+        dat4=dat3.then((resp)=>{
             if (resp.indexOf('F')>-1) existe_foto=true;
             else existe_foto=false;
             if (resp.indexOf('T')>-1) existe_tarjeta_san=true;
             else existe_tarjeta_san=false;
+
+            return $.post("../../php/usu_existe_residente.php", { id_nie: id_nie, curso: anno_curso },()=>{});
         });
         
-        return $.post("../../php/usu_existe_residente.php", { id_nie: id_nie, curso: anno_curso },()=>{});
+        dat4.then((r)=>{
+            document.getElementById("cargando").style.display = 'none';
+            existe_res=(r=="ok")?true:false;
+            if (existe_res) {
+                mensajeNuevaMat = "Ya existe una inscripción de residente registrada.<br>Si continúa el proceso, se eliminará la que tenga ya creada y se sustituirá por ésta.";
+                confirmarnuevaInsc(mensajeNuevaMat, "RESIDENTE INSCRITO", "Crear Nueva");
+            }
+        
+        });
+        
     });
-    dat4.then((r)=>{
-        document.getElementById("cargando").style.display = 'none';
-        existe_res=(r=="ok")?true:false;
-        if (existe_res) {
-            mensajeNuevaMat = "Ya existe una inscripción de residente registrada.<br>Si continúa el proceso, se eliminará la que tenga ya creada y se sustituirá por ésta.";
-            confirmarnuevaInsc(mensajeNuevaMat, "RESIDENTE INSCRITO", "Crear Nueva");
-        }
-    });
+    
     
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
