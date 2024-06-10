@@ -327,8 +327,10 @@ function registraSolicitud() {
     f.appendChild(f4.medicacion);
     f.appendChild(f4.alergias);
     f.appendChild(f4.otros_datos);
-    f.appendChild(f6.bic);
-    f.appendChild(f6.iban);
+    if (document.getElementById("res_bonifNO").checked){
+        f.appendChild(f6.bic);
+        f.appendChild(f6.iban);
+    }
     var inputFirma = document.createElement("input");
     inputFirma.type = "hidden";
     inputFirma.name = "firma";
