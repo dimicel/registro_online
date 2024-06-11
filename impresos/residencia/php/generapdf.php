@@ -750,6 +750,7 @@ $pdf_base64 = base64_encode($pdf_salud->Output($nombre_fichero, 'S'));
 $respuesta["pdf"] = $pdf_base64;
 
 if($bonificado==0){
+	$respuesta["sepa"]="sepa";
 	//Genera orden SEPA si el residente es NO bonificado
 	class MYPDF_sepa extends TCPDF {
 		// Constructor

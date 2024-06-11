@@ -344,7 +344,7 @@ function registraSolicitud() {
             method: 'POST',
             data: $("#residencia").serialize(),
             dataType: 'json',
-            success: function(response) {
+            success: function(response) {alert(response.sepa);
                 document.getElementById("cargando").style.display = 'none';
                 if (response.status === 'ok') {
                     var pdfBase64 = response.pdf;
