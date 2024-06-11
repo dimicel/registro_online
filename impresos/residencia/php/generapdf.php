@@ -670,8 +670,7 @@ $YInicio+=6;
 $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
 $YInicio+=3;
 
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 // Agregar la imagen al PDF
 if($_POST["nombre_tarjeta"]!=""){
 	//if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, 'auto'); // Ajusta las coordenadas y dimensiones según tus necesidades
@@ -686,7 +685,8 @@ if($_POST["nombre_foto"]!=""){
 		$pdf->Image($ruta_foto, 10, 10, 25, 35, '','','T'); 
 	}  
 }
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
 if (strlen($email_jef_res)>0){
