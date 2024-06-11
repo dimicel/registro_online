@@ -69,6 +69,9 @@ $provincia_centro_edu="";
 $tlf_centro_edu="";
 $fax_centro_edu="";
 $res=$mysqli->query("select * config_centro");
+
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta["status"]));
 while ($reg=$res->fetch_assoc()){
 	$email_jef_res=$reg["email_jefe_residencia"];
 	$nombre_centro_edu=$reg["centro"];
@@ -140,9 +143,6 @@ if (isset($_POST['firma'])){
 	$imageData = urldecode($_POST['firma']);
 	file_put_contents($firma, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 }
-
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta["status"]));
 
 $fecha_registro=date('Y-m-d');
 $registro=generaRegistro();
