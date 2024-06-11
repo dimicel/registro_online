@@ -689,7 +689,6 @@ if($_POST["nombre_foto"]!=""){
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
 
-
 if (strlen($email_jef_res)>0){
 	$adjunto=$pdf_salud->Output('', 'S');
 	$mail->addAddress($email_jef_res, 'Jefe Residencia');//jjgp46@educastillalamancha.es
@@ -706,7 +705,7 @@ if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso))mkdi
 $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $resgistro.".pdf";
 $pdf->Output($ruta_pdf, 'F');
 
-if(strtoupper($bonificado)=="NO"){
+if($bonificado==0){
 	//Genera orden SEPA si el residente es NO bonificado
 	class MYPDF_sepa extends TCPDF {
 		// Constructor
@@ -803,7 +802,7 @@ if(strtoupper($bonificado)=="NO"){
 	
 	$pdf_sepa->Image($firma, 90, 210, 35, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 	
-	$ruta_sepa=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/sepa_". $id_nie_.".pdf";
+	$ruta_sepa=__DIR__."/../../../docs/".$id_nie."/residencia/sepa_". $id_nie_.".pdf";
 	$pdf_sepa->Output($ruta_sepa, 'F');
 }
 
