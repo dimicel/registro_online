@@ -297,7 +297,7 @@ class MYPDF extends TCPDF {
 
 // create new PDF document. Segeneran 2. Uno que no se guarda (datos de salud) y otro que se guarda
 $pdf_salud = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+//$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
 $pdf_salud->SetCreator(PDF_CREATOR);

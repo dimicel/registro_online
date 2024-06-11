@@ -378,7 +378,7 @@ function registraSolicitud() {
                     var link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
                     //link.target='_blank';
-                    link.download = 'inscripcion_residencia'+id_nie+'.pdf';
+                    link.download = 'inscripcion_residencia_'+id_nie+'.pdf';
                     link.click();
         
                     console.log('PDF descargado correctamente.');
