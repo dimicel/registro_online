@@ -5,14 +5,14 @@ $respuesta= array();
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 require __DIR__."/../../../php/mail.php";
-
+ob_clean();
 include("../../../php/conexion.php");
 
 if ($mysqli->errno>0) {
 	$respuesta["status"]="servidor";
     exit(json_encode($respuesta));
 }
-ob_clean();
+
 
 function generaRegistro(){
     $minus="abcdefghijklmnopqrstuvwxyz";
@@ -69,9 +69,8 @@ $provincia_centro_edu="";
 $tlf_centro_edu="";
 $fax_centro_edu="";
 
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
-$res=$mysqli->query("select * config_centro");
+
+$res=$mysqli->query("select * from config_centro");
 while ($reg=$res->fetch_assoc()){
 	$email_jef_res=$reg["email_jefe_residencia"];
 	$nombre_centro_edu=$reg["centro"];
@@ -83,7 +82,8 @@ while ($reg=$res->fetch_assoc()){
 	$fax_centro_edu=$reg["fax_centro"];
 }
 $res->free();
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 
 
 $anno_curso=$_POST['anno_curso'];
