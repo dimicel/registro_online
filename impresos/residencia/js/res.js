@@ -356,7 +356,7 @@ function registraSolicitud() {
         }
     });
     */
-
+    alert(0);
     document.getElementById("cargando").style.display = '';
     $.ajax({
             url: 'php/generapdf.php',
@@ -386,7 +386,7 @@ function registraSolicitud() {
                     console.error('Error:', response.message);
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR, textStatus, errorThrown) {alert(1);
                 document.getElementById("cargando").style.display = 'none';
                 console.error('Error:', textStatus, errorThrown);
             }
