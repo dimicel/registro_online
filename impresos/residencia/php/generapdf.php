@@ -706,12 +706,12 @@ $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $
 //$respuesta["status"]="prueba";
 //exit(json_encode($respuesta));
 $pdf->Output($ruta_pdf, 'F');
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
 $pdf_salud->Output($nombre_fichero, 'I');
-
+//$respuesta["status"]="prueba";
+//exit(json_encode($respuesta));
 
 if($bonificado==0){
 	//Genera orden SEPA si el residente es NO bonificado
