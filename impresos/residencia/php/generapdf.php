@@ -129,8 +129,8 @@ $otros_datos=$_POST["otros_datos"];
 else $ruta_tarjeta="";
 if($_POST["nombre_foto"]!="") $ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpg";
 else $ruta_foto="";*/
-$ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
-$ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpg";
+$ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie.".jpeg";
+$ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpeg";
 if (isset($_POST['iban']))$iban = trim($_POST['iban']);
 if (isset($_POST['bic']))$bic = trim($_POST['bic']);
 
