@@ -314,6 +314,20 @@ if ($consulta->num_rows>0){
 }
 $consulta->free();
 
+$contador=0;
+$consulta=$mysqli->query("select * from residentes where id_nie='$id_nie' order by curso,fecha_registro, registro");
+if ($consulta->num_rows>0){
+    $data["error"]="ok";
+    while ($reg=$consulta->fetch_assoc()){
+        $data["proceso"]["Residencia"][$contador]["fecha_registro"]=$reg["fecha_registro"];
+        $data["proceso"]["Residencia"][$contador]["registro"]=$reg["registro"];
+        $data["proceso"]["Residencia"][$contador]["curso"]=$reg["curso"];
+        $data["proceso"]["Residencia"][$contador]["incidencias"]=$reg["incidencias"];
+        $contador++;
+    }
+}
+$consulta->free();
+
 
 $contador=0;
 $consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias from transporte where id_nie='$id_nie' order by curso,fecha_registro, registro");
