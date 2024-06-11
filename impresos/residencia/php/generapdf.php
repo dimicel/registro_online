@@ -125,10 +125,12 @@ $enfermedad=$_POST["enfermedad"];
 $medicacion=$_POST["medicacion"];
 $alergias=$_POST["alergias"];
 $otros_datos=$_POST["otros_datos"];
-if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
+/*if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
 else $ruta_tarjeta="";
 if($_POST["nombre_foto"]!="") $ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpg";
-else $ruta_foto="";
+else $ruta_foto="";*/
+$ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
+$ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpg";
 if (isset($_POST['iban']))$iban = trim($_POST['iban']);
 if (isset($_POST['bic']))$bic = trim($_POST['bic']);
 
@@ -671,21 +673,22 @@ $YInicio+=6;
 $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
 $YInicio+=3;
 
-
+$respuesta["status"]=file_exists($ruta_tarjeta);
+exit(json_encode($respuesta));
 // Agregar la imagen al PDF
-if($_POST["nombre_tarjeta"]!=""){
+//if($_POST["nombre_tarjeta"]!=""){
 	//if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, 'auto'); // Ajusta las coordenadas y dimensiones según tus necesidades
 	if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, '','','T'); // Ajusta las coordenadas y dimensiones según tus necesidades
 
-}
+//}
 
-if($_POST["nombre_foto"]!=""){
+//if($_POST["nombre_foto"]!=""){
 	//if(file_exists($ruta_foto)) $pdf_salud->Image($ruta_foto, 10, 10, 25, 35, 'auto');
 	if(file_exists($ruta_foto)){
 		$pdf_salud->Image($ruta_foto, 10, 10, 25, 35, '','','T'); 
 		$pdf->Image($ruta_foto, 10, 10, 25, 35, '','','T'); 
 	}  
-}
+//}
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
