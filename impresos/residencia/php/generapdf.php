@@ -250,7 +250,8 @@ if ($mysqli->errno>0){
     exit(json_encode($respuesta));
 }
 
-
+//$respuesta["status"]="prueba";
+//exit(json_encode($respuesta));
 //GENERA EL PDF 
 
 class MYPDF extends TCPDF {
@@ -265,8 +266,6 @@ class MYPDF extends TCPDF {
 		//$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 		$image_file = __DIR__.'/../../../recursos/mini_escudo.jpg';
 		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$respuesta["status"]="prueba";
-		exit(json_encode($respuesta));
 
 		$this->SetFont('helvetica', 'B', 14);
 		$this->SetXY(0,10);
