@@ -759,8 +759,7 @@ if($bonificado==0){
 	
 	// create new PDF document
 	$pdf_sepa = new MYPDF_sepa('P', 'mm', 'A4', true, 'UTF-8', false);
-	$respuesta["status"]="sepa";
-	exit(json_encode($respuesta));
+	
 	// set document information
 	$pdf_sepa->SetCreator(PDF_CREATOR);
 	$pdf_sepa->SetAuthor('IES Universidad Laboral');
@@ -805,7 +804,8 @@ if($bonificado==0){
 	$pdf_sepa->SetAutoPageBreak($auto_page_break, $bMargin);
 	// set the starting point for the page content
 	$pdf_sepa->setPageMark();
-	
+	$respuesta["status"]="sepa";
+	exit(json_encode($respuesta));
 	$pdf_sepa->SetXY(22,129);
 	$pdf_sepa->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
 	$pdf_sepa->SetXY(22,139);
