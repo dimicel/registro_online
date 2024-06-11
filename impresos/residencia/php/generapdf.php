@@ -160,6 +160,10 @@ while ($repite_registro){
     }
     $res->free();
 }
+ if (!$mysqli->query("delete from reseidentes where id_nie='$id_nie' and curso='$anno_curso'")){
+	$respuesta["status"]="db";
+	exit(json_encode($respuesta));
+ }
 
 $mysqli->query("insert into residentes (id_nie,
                                         registro,

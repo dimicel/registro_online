@@ -362,7 +362,7 @@ function registraSolicitud() {
             method: 'POST',
             data: $("#residencia").serialize(),
             dataType: 'json',
-            success: function(response) {alert(response.status);
+            success: function(response) {
                 document.getElementById("cargando").style.display = 'none';
                 if (response.status === 'ok') {
                     var pdfBase64 = response.pdf;
@@ -381,9 +381,20 @@ function registraSolicitud() {
                     link.click();
         
                     console.log('PDF descargado correctamente.');
-                } else {
+                }
+                else if(response.status=="server") {
+                    alerta("Hay problemas en el servidor. Inténtelo en otro momento.","ERROR EN SERVIDOR");
                     console.error('Error:', response.message);
                 }
+                else if(response.status=="db"){
+                    alerta("Hay problemas en la base de datos. Inténtelo en otro momento.","ERROR DB");
+                    console.error('Error:', response.message);
+                }
+                else if(response.status.includes(registro_erroneo)){
+                    alerta("No se ha podido hacer el registro por un problema en la base de datos.","ERROR REGISTRO");
+                    console.error('Error:', response.message);
+                }
+                
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 document.getElementById("cargando").style.display = 'none';
