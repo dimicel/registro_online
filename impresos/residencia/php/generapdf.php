@@ -692,15 +692,14 @@ $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSu
 
 if (strlen($email_jef_res)>0){
 	$adjunto=$pdf_salud->Output('', 'S');
-	$respuesta["status"]="prueba";
-	exit(json_encode($respuesta));
 	$mail->addAddress($email_jef_res, 'Jefe Residencia');//jjgp46@educastillalamancha.es
 	$mail->Subject="Formulario de ". $apellidos.", ".$nombre;
-	$mail->Body="Envío automático generado desde la plataforma. Interno: ". $apellidos.", ".$nombre;
+	$mail->Body="Envío automático generado desde la plataforma. Residente: NIE -> ". $id_nie."Apellidos y nombre: ".  $apellidos.", ".$nombre;
 	$mail->addStringAttachment($adjunto,$nombre_fichero,"base64","application/pdf");
 	$mail->send();
 }
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
 $pdf_salud->Output($nombre_fichero, 'I');
