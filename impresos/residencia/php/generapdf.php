@@ -804,8 +804,7 @@ if($bonificado==0){
 	$pdf_sepa->SetAutoPageBreak($auto_page_break, $bMargin);
 	// set the starting point for the page content
 	$pdf_sepa->setPageMark();
-	$respuesta["status"]="sepa";
-	exit(json_encode($respuesta));
+	
 	$pdf_sepa->SetXY(22,129);
 	$pdf_sepa->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
 	$pdf_sepa->SetXY(22,139);
@@ -842,7 +841,8 @@ if($bonificado==0){
 	$pdf_sepa->Cell(0,0,$localidad." , a " . $fechaFormateada,0,0,'L',0,'',1,true,'T','T');
 	
 	$pdf_sepa->Image($firma, 90, 210, 35, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-	
+	$respuesta["status"]="sepa";
+	exit(json_encode($respuesta));
 	$ruta_sepa=__DIR__."/../../../docs/".$id_nie."/residencia/sepa_". $id_nie_.".pdf";
 	$pdf_sepa->Output($ruta_sepa, 'F');
 }
