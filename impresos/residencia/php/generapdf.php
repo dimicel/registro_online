@@ -341,7 +341,6 @@ $pdf_salud->setFontSubsetting(true);
 $pdf_salud->SetFont('dejavusans', '', 8, '', true);
 $pdf_salud->setFillColor(200);  //Relleno en gris
 $pdf_salud->AddPage();
-$pageHeight = $pdf->getPageHeight();
 if ($bonificado==1)$t_bonif="SÍ";
 else $t_bonif="NO";
 $cabecera = <<<HTML1
@@ -622,7 +621,7 @@ $pdf_salud->Cell(0,0,$tut2_email,0,0,'L',0,'',1,false,'T','T');
 
 
 //Escribir el número de registro en el lateral izquierdo y en vertical
-
+$pageHeight = $pdf_salud->getPageHeight();
 // Obtener la altura del texto para centrarlo
 $textHeight = $pdf_salud->GetStringHeight(0, "Nº registro: ".$registro);
 
