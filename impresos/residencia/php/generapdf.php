@@ -716,7 +716,7 @@ $pdf_output = ob_get_clean();
 $pdf_base64 = base64_encode($pdf_output);
 
 // Crear el array de respuesta JSON
-$response["pdf"] = $pdf_base64;
+$respuesta["pdf"] = $pdf_base64;
 //$respuesta["status"]="prueba";
 //exit(json_encode($respuesta));
 
