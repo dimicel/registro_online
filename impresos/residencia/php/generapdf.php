@@ -723,22 +723,16 @@ if (strlen($email_jef_res)>0){
 
 if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso)) mkdir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso,0777,true);
 $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $registro.".pdf";
-//$respuesta["status"]="prueba";
-//exit(json_encode($respuesta));
 $pdf->Output($ruta_pdf, 'F');
 
-//header("Content-Type: application/pdf");
-//header("Content-Disposition: attachment; filename=\"" . $nombre_fichero. "\"");
-//$pdf_salud->Output($nombre_fichero, 'I');
 $pdf_salud->Output($nombre_fichero, 'S');
 $pdf_output = ob_get_clean();
 // Codificar el PDF en base64
 $pdf_base64 = base64_encode($pdf_output);
+$pdf_base64 = base64_encode($pdf_salud->Output($nombre_fichero, 'S'));
 
 // Crear el array de respuesta JSON
 $respuesta["pdf"] = $pdf_base64;
-//$respuesta["status"]="prueba";
-//exit(json_encode($respuesta));
 
 if($bonificado==0){
 	//Genera orden SEPA si el residente es NO bonificado
