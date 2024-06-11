@@ -52,25 +52,25 @@ else {
 			if ($pass['id_nie']=="S4500175G"){
 				$_SESSION['tipo_usu']="secretaria";
 				$dat["error"]="ok";
-				$dat["pagina"]= "secretaria.php";
+				$dat["pagina"]= "secretaria.php/?q=".time();
 				exit(json_encode($dat));
 			} 
 			else if ($pass['id_nie']=="S4500175GJEF"){
 				$_SESSION['tipo_usu']="jefatura estudios";
 				$dat["error"]="ok";
-				$dat["pagina"]= "secretaria.php";
+				$dat["pagina"]= "secretaria.php/?q=".time();
 				exit(json_encode($dat));
 			} 
 			else if ($pass['id_nie']=="S4500175GRES"){
 				$_SESSION['tipo_usu']="residencia";
 				$dat["error"]="ok";
-				$dat["pagina"]= "residencia.php";
+				$dat["pagina"]= "residencia.php/?q=".time();
 				exit(json_encode($dat));
 			}
 			else{
 				$_SESSION['tipo_usu']="usuario";
 				$dat["error"]="ok";
-				$dat["pagina"]= "usuario.php";
+				$dat["pagina"]= "usuario.php/?q=".time();
 				exit(json_encode($dat));
 			} 
 		}
