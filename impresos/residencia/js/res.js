@@ -338,24 +338,6 @@ function registraSolicitud() {
         f.appendChild(inputFirma);
     }
 
-    /*document.getElementById("cargando").style.display = 'inherit';
-    document.getElementById("residencia").submit();
-    document.getElementById("cargando").style.display = 'none';
-    */
-
-    /*
-    document.getElementById("cargando").style.display = '';
-    $.post("php/generapdf.php",$("#residencia").serialize(),(r2)=>{
-        document.getElementById("cargando").style.display = 'none';
-        if (r2 == "servidor") {
-            mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la solicitud.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor");
-        }
-        else if(r2.includes("registro_erroneo")){
-            alerta("No se han podido registrar los datos. Inténtelo en otro momento.", "Error DB");
-        }
-    });
-    */
     document.getElementById("cargando").style.display = '';
     $.ajax({
             url: 'php/generapdf.php',
@@ -382,7 +364,7 @@ function registraSolicitud() {
                     link.click();
         
                     console.log('PDF descargado correctamente.');
-                    alerta("Procedimiento terminado correctamente.","CORRECTO",true);
+                    alerta("Procedimiento terminado correctamente.<br>En descargas tienes el formulario con los datos de salud que no se han grabado.<br>Guárdalo por si lo solicitan desde Jefatura de Residencia.","CORRECTO",true);
                 }
                 else if(response.status=="server") {
                     alerta("Hay problemas en el servidor. Inténtelo en otro momento.","ERROR EN SERVIDOR",true);

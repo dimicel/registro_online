@@ -620,7 +620,7 @@ $pdf_salud->SetX(25*$aChar);
 $pdf_salud->Cell(0,0,$tut2_email,0,0,'L',0,'',1,false,'T','T');
 
 /////////////////////////////////////////Hasta aquí son los dos iguales, por lo que se hace copia del de salud en el otro
-$pdf=$pdf_salud;
+$pdf= clone $pdf_salud;
 
 //////////////// DATOS RELACIONADOS CON LA SALUD
 $YInicio+=4;
