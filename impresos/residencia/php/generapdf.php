@@ -839,10 +839,10 @@ if($bonificado==0){
 	
 	$pdf_sepa->SetXY(25,207);
 	$pdf_sepa->Cell(0,0,$localidad." , a " . $fechaFormateada,0,0,'L',0,'',1,true,'T','T');
-	
-	$pdf_sepa->Image($firma, 90, 210, 35, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 	$respuesta["status"]="sepa";
 	exit(json_encode($respuesta));
+	$pdf_sepa->Image($firma, 90, 210, 35, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+	
 	$ruta_sepa=__DIR__."/../../../docs/".$id_nie."/residencia/sepa_". $id_nie_.".pdf";
 	$pdf_sepa->Output($ruta_sepa, 'F');
 }
