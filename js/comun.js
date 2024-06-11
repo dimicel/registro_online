@@ -134,6 +134,7 @@ jQuery.validator.addMethod("iban", function(value, element) {
 });
 
 jQuery.validator.addMethod("bic", function(value, element) {
+    if (value.length==0) return true;
     return validateBIC(value);
 });
 
