@@ -689,6 +689,14 @@ $YInicio+=3;
 	}  
 //}
 
+//SI YA HAY ALGUNA INSCRIPCIÓN BORRA EL ARCHIVO
+$dir = __DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso.'/';     
+$handle = opendir($dir);
+while ($file = readdir($handle)) {
+	if (is_file($dir.$file)) unlink($dir.$file);
+}
+closedir($dir);
+
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
 
