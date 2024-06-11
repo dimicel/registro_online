@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <form id="residencia" method="POST">
+    <form id="residencia">
         <input type="hidden" id="nombre_tarjeta" name="nombre_tarjeta">
         <input type="hidden" id="nombre_foto" name="nombre_foto">
         <input type="hidden" id="id_nie" name="id_nie">
