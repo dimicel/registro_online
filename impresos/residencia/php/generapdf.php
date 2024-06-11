@@ -725,10 +725,6 @@ if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso)) mkd
 $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $registro.".pdf";
 $pdf->Output($ruta_pdf, 'F');
 
-$pdf_salud->Output($nombre_fichero, 'S');
-$pdf_output = ob_get_clean();
-// Codificar el PDF en base64
-$pdf_base64 = base64_encode($pdf_output);
 $pdf_base64 = base64_encode($pdf_salud->Output($nombre_fichero, 'S'));
 
 // Crear el array de respuesta JSON

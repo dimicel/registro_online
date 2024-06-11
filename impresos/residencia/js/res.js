@@ -377,8 +377,8 @@ function registraSolicitud() {
                     var blob = new Blob([uintArray], { type: 'application/pdf' });
                     var link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
-                    link.target='_blank';
-                    //link.download = 'inscripcion_residencia'+id_nie+'.pdf';
+                    //link.target='_blank';
+                    link.download = 'inscripcion_residencia'+id_nie+'.pdf';
                     link.click();
         
                     console.log('PDF descargado correctamente.');
