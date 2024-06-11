@@ -305,8 +305,7 @@ $pdf_salud->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 $pdf_salud->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $pdf_salud->SetHeaderMargin(PDF_MARGIN_HEADER);
 //$pdf_salud->SetFooterMargin(PDF_MARGIN_FOOTER);
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 // set auto page breaks
 $pdf_salud->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
@@ -326,7 +325,8 @@ $pdf_salud->setFontSubsetting(true);
 $pdf_salud->SetFont('dejavusans', '', 8, '', true);
 $pdf_salud->setFillColor(200);  //Relleno en gris
 $pdf_salud->AddPage();
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 $cabecera = <<<HTML1
 <h4>Residente: $apellidos, $nombre</h4>
 <h4>Residente Bonificado: $bonificado   Teléfono de Urgencias: $tlf_urgencias</h4>
