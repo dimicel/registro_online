@@ -250,8 +250,7 @@ if ($mysqli->errno>0){
     exit(json_encode($respuesta));
 }
 
-//$respuesta["status"]="prueba";
-//exit(json_encode($respuesta));
+
 //GENERA EL PDF 
 
 class MYPDF extends TCPDF {
@@ -328,7 +327,8 @@ $pdf_salud->setFontSubsetting(true);
 $pdf_salud->SetFont('dejavusans', '', 8, '', true);
 $pdf_salud->setFillColor(200);  //Relleno en gris
 $pdf_salud->AddPage();
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 $cabecera = <<<HTML1
 <h4>Residente: $apellidos, $nombre</h4>
 <h4>Residente Bonificado: $bonificado   Teléfono de Urgencias: $tlf_urgencias</h4>
