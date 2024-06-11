@@ -399,7 +399,7 @@ function registraSolicitud() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 document.getElementById("cargando").style.display = 'none';
-                alerta("Ha ocurrido algún problema y no se ha podido hacer el registro. Error "+textStatus,"ERROR REGISTRO",true);
+                alerta("Ha ocurrido algún problema y no se ha podido hacer el registro. Error "+textStatus+"/"+errorThrown,"ERROR REGISTRO",true);
                 console.error('Error:', textStatus, errorThrown);
             }
         });
