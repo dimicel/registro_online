@@ -323,7 +323,7 @@ if ($consulta->num_rows>0){
         $data["proceso"]["Residencia"][$contador]["registro"]=$reg["registro"];
         $data["proceso"]["Residencia"][$contador]["curso"]=$reg["curso"];
         $data["proceso"]["Residencia"][$contador]["incidencias"]=$reg["incidencias"];
-        $data["proceso"]["Tansporte Escolar"][$contador]["dir"]="residencia";
+        $data["proceso"]["Residencia"][$contador]["dir"]="residencia";
         $contador++;
     }
 }
