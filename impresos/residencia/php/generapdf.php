@@ -673,7 +673,7 @@ $YInicio+=6;
 $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
 $YInicio+=3;
 
-$respuesta["status"]=file_exists($ruta_tarjeta);
+$respuesta["status"]=file_exists($ruta_foto);
 exit(json_encode($respuesta));
 // Agregar la imagen al PDF
 //if($_POST["nombre_tarjeta"]!=""){
