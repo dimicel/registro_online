@@ -152,7 +152,10 @@ if (strlen(trim($otros_datos))==0)$otros_datos="Ninguno";
 
 if (isset($_POST['firma'])){
 	$imageData = urldecode($_POST['firma']);
-	file_put_contents($firma, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
+	if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
+	$tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.png');
+	file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
+	$firma = $tempFile;
 }
 
 $fecha_registro=date('Y-m-d');
@@ -161,6 +164,7 @@ $repite_registro=true;
 while ($repite_registro){
     $res=$mysqli->query("select * from residentes where registro='$registro'");
     if ($mysqli->errno>0){
+		unlink($tempFile);
 		$respuesta["status"]="servidor";
     	exit(json_encode($respuesta));
 	}
@@ -173,6 +177,7 @@ while ($repite_registro){
     $res->free();
 }
  if (!$mysqli->query("delete from residentes where id_nie='$id_nie' and curso='$anno_curso'")){
+	unlink($tempFile);
 	$respuesta["status"]="db";
 	exit(json_encode($respuesta));
  }
@@ -260,6 +265,7 @@ $mysqli->query("insert into residentes (id_nie,
 										'$tut2_telef',
 										'$fianza')");
 if ($mysqli->errno>0){
+	unlink($tempFile);
 	$respuesta["status"]="registro_erroneo ".$mysqli->errno;
     exit(json_encode($respuesta));
 }
@@ -842,8 +848,6 @@ if($bonificado==0){
 	
 	$pdf_sepa->SetXY(25,207);
 	$pdf_sepa->Cell(0,0,$localidad." , a " . $fechaFormateada,0,0,'L',0,'',1,true,'T','T');
-	$respuesta["status"]="sepa";
-	exit(json_encode($respuesta));
 	$pdf_sepa->Image($firma, 90, 210, 35, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 	
 	$ruta_sepa=__DIR__."/../../../docs/".$id_nie."/residencia/sepa_". $id_nie_.".pdf";
@@ -851,7 +855,7 @@ if($bonificado==0){
 }
 
 
-
+unlink($tempFile);
 $respuesta["status"]="ok";
 header('Content-Type: application/json');
 exit(json_encode($respuesta));
