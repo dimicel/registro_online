@@ -1898,6 +1898,7 @@ function tipoDocAdjuntoConvalid(obj){
         document.getElementById('desc_adic_conval').readonly=false;
         document.getElementById('desc_adic_conval').value="";
     }
+    else document.getElementById('desc_adic_conval').value="";
 }
 
 
