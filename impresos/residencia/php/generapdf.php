@@ -347,8 +347,7 @@ $YInicio+=10;
 $XInicio=12;
 $anchoLinea=$pdf_salud->getPageWidth();
 //$XInicioRotulo=17;
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 ///////////////////////DATOS DEL INTERNO
 $YInicio+=8;
 $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
@@ -356,7 +355,8 @@ $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
 //$pdf_salud->SetXY($XInicioRotulo,$YInicio);
 //$pdf_salud->SetFont('dejavusans', 'B', 10, '', true);
 //$pdf_salud->Cell(0,0,"DATOS DEL INTERNO",0,0,'L',0,'',1,false,'','');
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 $YInicio+=3;
 $pdf_salud->SetXY($XInicio,$YInicio);
 $pdf_salud->SetFont('dejavusans', 'U', 8, '', true);
