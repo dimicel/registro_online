@@ -319,12 +319,13 @@ if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
 }
 
 // ---------------------------------------------------------
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 $pdf_salud->setFontSubsetting(true);
 
 $pdf_salud->SetFont('dejavusans', '', 8, '', true);
 $pdf_salud->setFillColor(200);  //Relleno en gris
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 $pdf_salud->AddPage();
 
 $cabecera = <<<HTML1
