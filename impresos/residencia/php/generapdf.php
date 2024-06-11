@@ -621,6 +621,7 @@ $pdf_salud->Cell(0,0,$tut2_email,0,0,'L',0,'',1,false,'T','T');
 
 
 //Escribir el número de registro en el lateral izquierdo y en vertical
+$pageHeight = $pdf_salud->getPageHeight();
 // Obtener la altura del texto para centrarlo
 $textHeight = $pdf_salud->GetStringHeight(0, "Nº registro: ".$registro);
 
