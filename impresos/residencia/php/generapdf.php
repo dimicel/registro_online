@@ -282,8 +282,7 @@ class MYPDF extends TCPDF {
 // create new PDF document. Segeneran 2. Uno que no se guarda (datos de salud) y otro que se guarda
 $pdf_salud = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 // set document information
 $pdf_salud->SetCreator(PDF_CREATOR);
 $pdf_salud->SetAuthor('IES Universidad Laboral');
@@ -306,7 +305,8 @@ $pdf_salud->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 $pdf_salud->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $pdf_salud->SetHeaderMargin(PDF_MARGIN_HEADER);
 //$pdf_salud->SetFooterMargin(PDF_MARGIN_FOOTER);
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 // set auto page breaks
 $pdf_salud->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
