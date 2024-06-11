@@ -82,12 +82,10 @@ while ($reg=$res->fetch_assoc()){
 	$fax_centro_edu=$reg["fax_centro"];
 }
 $res->free();
-//$respuesta["status"]="prueba";
-//exit(json_encode($respuesta));
-
 
 $anno_curso=$_POST['anno_curso'];
-$bonificado=$_POST['bonificado'];
+if ($_POST['bonificado']=='NO') $bonificado=0;
+else $bonificado=1;
 $id_nie=$_POST['id_nie'];
 $nombre=$_POST['nombre'];
 $apellidos=$_POST['apellidos'];
@@ -248,6 +246,8 @@ if ($mysqli->errno>0){
     exit(json_encode($respuesta));
 }
 
+//$respuesta["status"]="prueba";
+//exit(json_encode($respuesta));
 //GENERA EL PDF 
 
 class MYPDF extends TCPDF {
