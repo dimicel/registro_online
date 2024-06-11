@@ -749,6 +749,11 @@ $pdf_base64 = base64_encode($pdf_salud->Output($nombre_fichero, 'S'));
 // Crear el array de respuesta JSON
 $respuesta["pdf"] = $pdf_base64;
 
+
+$respuesta["status"]="ok";
+header('Content-Type: application/json');
+exit(json_encode($respuesta));
+
 if($bonificado==0){
 	$respuesta["sepa"]="sepa";
 	//Genera orden SEPA si el residente es NO bonificado
