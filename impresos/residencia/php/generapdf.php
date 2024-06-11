@@ -621,21 +621,15 @@ $pdf_salud->Cell(0,0,$tut2_email,0,0,'L',0,'',1,false,'T','T');
 
 
 //Escribir el número de registro en el lateral izquierdo y en vertical
-//$pageHeight = $pdf_salud->getPageHeight();
-// Obtener la altura del texto para centrarlo
-//$textHeight = $pdf_salud->GetStringHeight(0, "Nº registro: ".$registro);
-
-// Calcular la posición Y para centrar el texto verticalmente
-//$YPosition = ($pageHeight - $textHeight) / 2;
 
 // Guardar el estado de transformación actual
 $pdf_salud->StartTransform();
 
 // Rotar el texto 90 grados en sentido horario
-$pdf_salud->Rotate(90, 10, 150);
+$pdf_salud->Rotate(90, 5, 150);
 
 // Establecer la posición del texto
-$pdf_salud->Text(10, 150, "Nº registro: ".$registro);
+$pdf_salud->Text(5, 150, "Nº registro: ".$registro);
 
 // Restaurar el estado de transformación anterior
 $pdf_salud->StopTransform();
