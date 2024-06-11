@@ -606,8 +606,7 @@ $pdf_salud->Cell(0,0,$tut2_email,0,0,'L',0,'',1,false,'T','T');
 
 /////////////////////////////////////////Hasta aquí son los dos iguales, por lo que se hace copia del de salud en el otro
 $pdf=$pdf_salud;
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 //////////////// DATOS RELACIONADOS CON LA SALUD
 $YInicio+=4;
 $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
@@ -671,14 +670,14 @@ $YInicio+=6;
 $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
 $YInicio+=3;
 
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 // Agregar la imagen al PDF
 if($_POST["nombre_tarjeta"]!=""){
 	//if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, 'auto'); // Ajusta las coordenadas y dimensiones según tus necesidades
 	if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, '','','T'); // Ajusta las coordenadas y dimensiones según tus necesidades
 
 }
-
 
 if($_POST["nombre_foto"]!=""){
 	//if(file_exists($ruta_foto)) $pdf_salud->Image($ruta_foto, 10, 10, 25, 35, 'auto');
