@@ -331,12 +331,12 @@ function registraSolicitud() {
     if (document.getElementById("res_bonifNO").checked){
         f.appendChild(f6.bic);
         f.appendChild(f6.iban);
+        var inputFirma = document.createElement("input");
+        inputFirma.type = "hidden";
+        inputFirma.name = "firma";
+        inputFirma.value = encodeURIComponent(canvas_upload);
+        f.appendChild(inputFirma);
     }
-    var inputFirma = document.createElement("input");
-    inputFirma.type = "hidden";
-    inputFirma.name = "firma";
-    inputFirma.value = encodeURIComponent(canvas_upload);
-    f.appendChild(inputFirma);
 
     /*document.getElementById("cargando").style.display = 'inherit';
     document.getElementById("residencia").submit();
