@@ -250,8 +250,7 @@ if ($mysqli->errno>0){
     exit(json_encode($respuesta));
 }
 
-//$respuesta["status"]="prueba";
-//exit(json_encode($respuesta));
+
 //GENERA EL PDF 
 
 class MYPDF extends TCPDF {
@@ -333,6 +332,9 @@ $cabecera = <<<HTML1
 HTML1;
 
 $YInicio=30;
+
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 
 //$pdf_salud->RoundedRect(82,$YInicio,45,15,2,'1111','','','');
 $pdf_salud->writeHTMLCell(0, 0, 40, $YInicio+2, $cabecera, 0, 1, false, true, '', true);
