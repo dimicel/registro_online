@@ -744,15 +744,6 @@ if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso)) mkd
 $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $registro.".pdf";
 $pdf->Output($ruta_pdf, 'F');
 
-$pdf_base64 = base64_encode($pdf_salud->Output($nombre_fichero, 'S'));
-
-// Crear el array de respuesta JSON
-$respuesta["pdf"] = $pdf_base64;
-
-
-$respuesta["status"]="ok";
-header('Content-Type: application/json');
-exit(json_encode($respuesta));
 
 if($bonificado==0){
 	$respuesta["sepa"]="sepa";
@@ -855,6 +846,10 @@ if($bonificado==0){
 	$ruta_sepa=__DIR__."/../../../docs/".$id_nie."/residencia/sepa_". $id_nie_.".pdf";
 	$pdf_sepa->Output($ruta_sepa, 'F');
 }
+
+$pdf_base64 = base64_encode($pdf_salud->Output($nombre_fichero, 'S'));
+// Crear el array de respuesta JSON
+$respuesta["pdf"] = $pdf_base64;
 
 $respuesta["status"]="ok";
 header('Content-Type: application/json');
