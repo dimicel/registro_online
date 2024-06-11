@@ -685,10 +685,11 @@ if($_POST["nombre_foto"]!=""){
 		$pdf->Image($ruta_foto, 10, 10, 25, 35, '','','T'); 
 	}  
 }
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 if (strlen($email_jef_res)>0){
 	$adjunto=$pdf_salud->Output('', 'S');
 	$mail->addAddress($email_jef_res, 'Jefe Residencia');//jjgp46@educastillalamancha.es
