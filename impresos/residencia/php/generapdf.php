@@ -688,8 +688,7 @@ $YInicio+=3;
 		$pdf->Image($ruta_foto, 10, 10, 25, 35, '','','T'); 
 	}  
 //}
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
 
@@ -707,7 +706,8 @@ $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $
 //$respuesta["status"]="prueba";
 //exit(json_encode($respuesta));
 $pdf->Output($ruta_pdf, 'F');
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
 $pdf_salud->Output($nombre_fichero, 'I');
