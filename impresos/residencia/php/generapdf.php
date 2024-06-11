@@ -763,7 +763,7 @@ if($bonificado==0){
 	}
 	
 	// create new PDF document
-	$pdf_sepa = new MYPDF_sepa('P', 'mm', 'A4', true, 'UTF-8', false);
+	$pdf_sepa = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 	
 	// set document information
 	$pdf_sepa->SetCreator(PDF_CREATOR);
