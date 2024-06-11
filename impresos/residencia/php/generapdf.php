@@ -261,9 +261,9 @@ class MYPDF extends TCPDF {
 		global $nombre_centro_edu, $direccion_centro_edu, $cp_centro_edu, $localidad_centro_edu, $tlf_centro_edu, $fax_centro_edu;
 		
 		// Logo
-		//$image_file = '../recursos/logo_ccm.jpg';
+		//$image_file = __DIR__.'/../../../recursos/logo_ccm.jpg';
 		//$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$image_file = '../recursos/mini_escudo.jpg';
+		$image_file = __DIR__.'/../../../recursos/mini_escudo.jpg';
 		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 		$respuesta["status"]="prueba";
 		exit(json_encode($respuesta));
