@@ -70,8 +70,6 @@ $tlf_centro_edu="";
 $fax_centro_edu="";
 $res=$mysqli->query("select * config_centro");
 
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
 while ($reg=$res->fetch_assoc()){
 	$email_jef_res=$reg["email_jefe_residencia"];
 	$nombre_centro_edu=$reg["centro"];
@@ -84,6 +82,8 @@ while ($reg=$res->fetch_assoc()){
 }
 $res->free();
 
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 
 $anno_curso=$_POST['anno_curso'];
 $bonificado=$_POST['bonificado'];
