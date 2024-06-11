@@ -1914,7 +1914,7 @@ function adjuntaDocAdicional(_id_nie,registro){
     c+="<option value='Resolución del Ministerio'>Resolución del Ministerio</option>";
     c+="<option value='Resolución de Consejería'>Resolución de Consejería</option>";
     c+="<option value='Otro'>Otro</option>";
-    c+="</div>";
+    c+="</select></div>";
     c+="<div class='col-1'><label for='desc_adic_conval' class='col-form-label'>Descripción: </label></div>";
     c+="<div class='col-3'><input type='text' class='form-control' id='desc_adic_conval' name='desc_adic_conval' maxlength='40' readonly/></div>";
     c+="<div class='col-1'><label for='doc_adic_conval' class='col-form-label'>Documento: </label></div>";
