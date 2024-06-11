@@ -10,7 +10,7 @@ include("../../../php/conexion.php");
 
 if ($mysqli->errno>0) {
 	$respuesta["status"]="servidor";
-    exit(json_encode($respuesta["status"]));
+    exit(json_encode($respuesta));
 }
 ob_clean();
 
@@ -71,7 +71,7 @@ $fax_centro_edu="";
 $res=$mysqli->query("select * config_centro");
 
 $respuesta["status"]="prueba";
-exit(json_encode($respuesta["status"]));
+exit(json_encode($respuesta));
 while ($reg=$res->fetch_assoc()){
 	$email_jef_res=$reg["email_jefe_residencia"];
 	$nombre_centro_edu=$reg["centro"];
@@ -151,7 +151,7 @@ while ($repite_registro){
     $res=$mysqli->query("select * from residentes where registro='$registro'");
     if ($mysqli->errno>0){
 		$respuesta["status"]="servidor";
-    	exit(json_encode($respuesta["status"]));
+    	exit(json_encode($respuesta));
 	}
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
@@ -244,7 +244,7 @@ $mysqli->query("insert into residentes (id_nie,
 										'$tut2_telef')");
 if ($mysqli->errno>0){
 	$respuesta["status"]="registro_erroneo ".$mysqli->errno;
-    exit(json_encode($respuesta["status"]));
+    exit(json_encode($respuesta));
 }
 
 //GENERA EL PDF 
@@ -801,7 +801,7 @@ if(strtoupper($bonificado)=="NO"){
 }
 
 $respuesta["status"]="ok";
-exit(json_encode($respuesta["status"]));
+exit(json_encode($respuesta));
 
 
 //FIN GENERA PDF
