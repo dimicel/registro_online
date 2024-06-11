@@ -688,17 +688,12 @@ if($_POST["nombre_foto"]!=""){
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
-if (strlen($email_jef_res)>0){
-	$respuesta["status"]="prueba";
-	exit(json_encode($respuesta));
-}
-else{
-	$respuesta["status"]="prueba_nojefe";
-	exit(json_encode($respuesta));
-}
+
 
 if (strlen($email_jef_res)>0){
 	$adjunto=$pdf_salud->Output('', 'S');
+	$respuesta["status"]="prueba";
+	exit(json_encode($respuesta));
 	$mail->addAddress($email_jef_res, 'Jefe Residencia');//jjgp46@educastillalamancha.es
 	$mail->Subject="Formulario de ". $apellidos.", ".$nombre;
 	$mail->Body="Envío automático generado desde la plataforma. Interno: ". $apellidos.", ".$nombre;
