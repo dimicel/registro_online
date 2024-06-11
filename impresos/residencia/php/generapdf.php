@@ -59,7 +59,7 @@ function recortarSustituirYObtener4Caracteres($cadena) {
 
     return $resultado;
 }
-
+ob_start();
 $email_jef_res="";
 $nombre_centro_edu="";
 $direccion_centro_edu="";
@@ -707,9 +707,16 @@ $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $
 //exit(json_encode($respuesta));
 $pdf->Output($ruta_pdf, 'F');
 
-header("Content-Type: application/pdf");
-header("Content-Disposition: attachment; filename=\"" . $nombre_fichero. "\"");
-$pdf_salud->Output($nombre_fichero, 'I');
+//header("Content-Type: application/pdf");
+//header("Content-Disposition: attachment; filename=\"" . $nombre_fichero. "\"");
+//$pdf_salud->Output($nombre_fichero, 'I');
+$pdf_salud->Output($nombre_fichero, 'S');
+$pdf_output = ob_get_clean();
+// Codificar el PDF en base64
+$pdf_base64 = base64_encode($pdf_output);
+
+// Crear el array de respuesta JSON
+$response["pdf"] = $pdf_base64;
 //$respuesta["status"]="prueba";
 //exit(json_encode($respuesta));
 
@@ -815,6 +822,7 @@ if($bonificado==0){
 }
 
 $respuesta["status"]="ok";
+header('Content-Type: application/json');
 exit(json_encode($respuesta));
 
 
