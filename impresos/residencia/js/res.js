@@ -356,14 +356,13 @@ function registraSolicitud() {
         }
     });
     */
-    alert(0);
     document.getElementById("cargando").style.display = '';
     $.ajax({
             url: 'php/generapdf.php',
             method: 'POST',
             data: $("#residencia").serialize(),
             dataType: 'json',
-            success: function(response) {
+            success: function(response) {alert(response.status);
                 document.getElementById("cargando").style.display = 'none';
                 if (response.status === 'ok') {
                     var pdfBase64 = response.pdf;
@@ -386,7 +385,7 @@ function registraSolicitud() {
                     console.error('Error:', response.message);
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {alert(1);
+            error: function(jqXHR, textStatus, errorThrown) {
                 document.getElementById("cargando").style.display = 'none';
                 console.error('Error:', textStatus, errorThrown);
             }

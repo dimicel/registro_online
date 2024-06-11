@@ -141,7 +141,8 @@ if (isset($_POST['firma'])){
 	file_put_contents($firma, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 }
 
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta["status"]));
 
 $fecha_registro=date('Y-m-d');
 $registro=generaRegistro();
