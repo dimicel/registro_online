@@ -697,6 +697,8 @@ if (strlen($email_jef_res)>0){
 	$mail->addStringAttachment($adjunto,$nombre_fichero,"base64","application/pdf");
 	$mail->send();
 }
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso,0777);
 $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $registro.".pdf";
 $pdf->Output($ruta_pdf, 'F');
