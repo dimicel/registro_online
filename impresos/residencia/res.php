@@ -18,14 +18,16 @@
 </head>
 
 <body>
-    <form id="residencia">
-        <input type="hidden" id="nombre_tarjeta" name="nombre_tarjeta">
-        <input type="hidden" id="nombre_foto" name="nombre_foto">
-        <input type="hidden" id="id_nie" name="id_nie">
-        <input type="hidden" id="anno_curso" name="anno_curso">
-        <input type="hidden" id="email" name="email">
-        <input type="hidden" id="bonificado" name="bonificado">
-    </form>
+    <div style="display:none">
+        <form id="residencia">
+            <input type="hidden" id="nombre_tarjeta" name="nombre_tarjeta">
+            <input type="hidden" id="nombre_foto" name="nombre_foto">
+            <input type="hidden" id="id_nie" name="id_nie">
+            <input type="hidden" id="anno_curso" name="anno_curso">
+            <input type="hidden" id="email" name="email">
+            <input type="hidden" id="bonificado" name="bonificado">
+        </form>
+    </div>
     <!-- CABECERA LOGOS ---------------------------------------------------------------------------------->
     <div class="container w-100">
         <!--CABECERA  ------------------------------------------------------------------------------------>
