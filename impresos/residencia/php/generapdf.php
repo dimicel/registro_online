@@ -619,6 +619,26 @@ $pdf_salud->Cell(0,0,$tut2_telef,0,0,'L',0,'',1,false,'T','T');
 $pdf_salud->SetX(25*$aChar);
 $pdf_salud->Cell(0,0,$tut2_email,0,0,'L',0,'',1,false,'T','T');
 
+
+//Escribir el número de registro en el lateral izquierdo y en vertical
+// Obtener la altura del texto para centrarlo
+$textHeight = $pdf_salud->GetStringHeight(0, "Nº registro: ".$registro);
+
+// Calcular la posición Y para centrar el texto verticalmente
+$YPosition = ($pageHeight - $textHeight) / 2;
+
+// Guardar el estado de transformación actual
+$pdf_salud->StartTransform();
+
+// Rotar el texto 90 grados en sentido horario
+$pdf_salud->Rotate(90, 0, $YPosition);
+
+// Establecer la posición del texto
+$pdf_salud->Text(0, $YPosition, "Nº registro: ".$registro);
+
+// Restaurar el estado de transformación anterior
+$pdf_salud->StopTransform();
+
 /////////////////////////////////////////Hasta aquí son los dos iguales, por lo que se hace copia del de salud en el otro
 $pdf= clone $pdf_salud;
 
@@ -686,10 +706,14 @@ $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
 $YInicio+=3;
 
 
+
 // Agregar la imagen al PDF
 //if($_POST["nombre_tarjeta"]!=""){
 	//if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, 'auto'); // Ajusta las coordenadas y dimensiones según tus necesidades
-	if(file_exists($ruta_tarjeta)) $pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, '','','T'); // Ajusta las coordenadas y dimensiones según tus necesidades
+	if(file_exists($ruta_tarjeta)){
+		$pdf_salud->Image($ruta_tarjeta, 50, $YInicio, 100, 0, '','','T'); // Ajusta las coordenadas y dimensiones según tus necesidades
+		$pdf->Image($ruta_tarjeta, 50, $YInicio, 100, 0, '','','T'); // Ajusta las coordenadas y dimensiones según tus necesidades
+	} 
 
 //}
 
