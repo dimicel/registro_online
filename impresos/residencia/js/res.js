@@ -289,7 +289,7 @@ function registraSolicitud() {
     var f6 = document.getElementById("form_pagina_6");
     //f.action = "php/generapdf.php";
     //f.method='POST';
-    f.bonificado.value=document.querySelectorAll("input[name='res_bonif']:checked").value;
+    f.bonificado.value=document.querySelectorAll("input[name='res_bonif']:checked").value;alert(document.querySelectorAll("input[name='res_bonif']:checked").value)
     f.appendChild(f1.nombre);
     f.appendChild(f1.apellidos);
     f.appendChild(f1.nif_nie);
