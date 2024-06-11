@@ -1908,7 +1908,7 @@ function tipoDocAdjuntoConvalid(obj){
 function adjuntaDocAdicional(_id_nie,registro){
     //Para convalidaciones
     c="<div class='row'>";
-    c+="<div class='col-1'><label for='tipo_doc_conval' class='col-form-label'>Clase Doc.: </label></div>";
+    c+="<div class='col-1'><label for='tipo_doc_conval' class='col-form-label'>Tipo: </label></div>";
     c+="<div class='col-3'><select class='form-control' id='tipo_doc_conval' name='tipo_doc_conval' size='1' onchange='tipoDocAdjuntoConvalid(this);'/>";
     c+="<option value=''>Selecciona uno...</option>";
     c+="<option value='Resolución del Ministerio'>Resolución del Ministerio</option>";
