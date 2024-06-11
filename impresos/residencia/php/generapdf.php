@@ -698,7 +698,7 @@ if (strlen($email_jef_res)>0){
 	$mail->send();
 }
 
-if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso,0777);
+if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso)) mkdir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso,0777,true);
 $ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $registro.".pdf";
 $respuesta["status"]=is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso);
 exit(json_encode($respuesta));
