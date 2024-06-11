@@ -693,17 +693,17 @@ if (strlen($email_jef_res)>0){
 	$adjunto=$pdf_salud->Output('', 'S');
 	$mail->addAddress($email_jef_res, 'Jefe Residencia');//jjgp46@educastillalamancha.es
 	$mail->Subject="Formulario de ". $apellidos.", ".$nombre;
-	$mail->Body="Envío automático generado desde la plataforma. Residente: NIE -> ". $id_nie."Apellidos y nombre: ".  $apellidos.", ".$nombre;
+	$mail->Body="Envío automático generado desde la plataforma. Residente: NIE -> ". $id_nie."  Apellidos y nombre -> ".  $apellidos.", ".$nombre;
 	$mail->addStringAttachment($adjunto,$nombre_fichero,"base64","application/pdf");
 	$mail->send();
 }
-
+if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso,0777);
+$ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $registro.".pdf";
+$pdf->Output($ruta_pdf, 'F');
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=" . $nombre_fichero);
 $pdf_salud->Output($nombre_fichero, 'I');
-if(!is_dir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso))mkdir(__DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso,0777);
-$ruta_pdf=__DIR__."/../../../docs/".$id_nie."/"."residencia/".$anno_curso."/". $resgistro.".pdf";
-$pdf->Output($ruta_pdf, 'F');
+
 
 if($bonificado==0){
 	//Genera orden SEPA si el residente es NO bonificado
