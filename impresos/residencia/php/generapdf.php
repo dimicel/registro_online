@@ -125,9 +125,9 @@ $enfermedad=$_POST["enfermedad"];
 $medicacion=$_POST["medicacion"];
 $alergias=$_POST["alergias"];
 $otros_datos=$_POST["otros_datos"];
-if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta="../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
+if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
 else $ruta_tarjeta="";
-if($_POST["nombre_foto"]!="") $ruta_foto="../../../docs/fotos/".$id_nie.".jpg";
+if($_POST["nombre_foto"]!="") $ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpg";
 else $ruta_foto="";
 if (isset($_POST['iban']))$iban = trim($_POST['iban']);
 if (isset($_POST['bic']))$bic = trim($_POST['bic']);
@@ -327,10 +327,11 @@ $pdf_salud->setFontSubsetting(true);
 $pdf_salud->SetFont('dejavusans', '', 8, '', true);
 $pdf_salud->setFillColor(200);  //Relleno en gris
 $pdf_salud->AddPage();
-
+if ($bonificado==1)$t_bonif="SÍ";
+else $t_bonif="NO";
 $cabecera = <<<HTML1
 <h4>Residente: $apellidos, $nombre</h4>
-<h4>Residente Bonificado: $bonificado   Teléfono de Urgencias: $tlf_urgencias</h4>
+<h4>Residente Bonificado: $t_bonif   Teléfono de Urgencias: $tlf_urgencias</h4>
 HTML1;
 
 $YInicio=30;
