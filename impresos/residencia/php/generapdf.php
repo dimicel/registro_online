@@ -746,7 +746,6 @@ $pdf->Output($ruta_pdf, 'F');
 
 
 if($bonificado==0){
-	$respuesta["sepa"]="sepa";
 	//Genera orden SEPA si el residente es NO bonificado
 	class MYPDF_sepa extends TCPDF {
 		// Constructor
@@ -760,7 +759,8 @@ if($bonificado==0){
 	
 	// create new PDF document
 	$pdf_sepa = new MYPDF_sepa('P', 'mm', 'A4', true, 'UTF-8', false);
-	
+	$respuesta["status"]="sepa";
+	exit(json_encode($respuesta));
 	// set document information
 	$pdf_sepa->SetCreator(PDF_CREATOR);
 	$pdf_sepa->SetAuthor('IES Universidad Laboral');
