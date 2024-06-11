@@ -1891,11 +1891,11 @@ function cambiaEstadoResolucionConvalidaciones(_rr,obj){
 
 function tipoDocAdjuntoConvalid(obj){
     if (obj.value!='' && obj.value!='Otro') {
-        document.getElementById('desc_adic_conval').readonly=true;
+        document.getElementById('desc_adic_conval').readOnly=true;
         document.getElementById('desc_adic_conval').value=obj.value;
     }
     else if (obj.value=="Otro"){
-        document.getElementById('desc_adic_conval').readonly=false;
+        document.getElementById('desc_adic_conval').readOnly=false;
         document.getElementById('desc_adic_conval').value="";
     }
     else document.getElementById('desc_adic_conval').value="";
