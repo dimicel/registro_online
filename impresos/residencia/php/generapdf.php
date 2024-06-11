@@ -68,6 +68,8 @@ $localidad_centro_edu="";
 $provincia_centro_edu="";
 $tlf_centro_edu="";
 $fax_centro_edu="";
+$fianza_bonificados=0;
+$fianza_no_bonificados=0;
 
 
 $res=$mysqli->query("select * from config_centro");
@@ -80,12 +82,20 @@ while ($reg=$res->fetch_assoc()){
 	$provincia_centro_edu=$reg["provincia_centro"];
 	$tlf_centro_edu=$reg["tlf_centro"];
 	$fax_centro_edu=$reg["fax_centro"];
+	$fianza_bonificados=$reg["residencia_fianza_bonificados"];
+	$fianza_no_bonificados=$reg["residencia_fianza_no_bonificados"];
 }
 $res->free();
 
 $anno_curso=$_POST['anno_curso'];
-if ($_POST['bonificado']=='NO') $bonificado=0;
-else $bonificado=1;
+if ($_POST['bonificado']=='NO') {
+	$bonificado=0;
+	$fianza=$fianza_no_bonificados;
+}
+else {
+	$bonificado=1;
+	$fianza=$fianza_bonificados;
+} 
 $id_nie=$_POST['id_nie'];
 $nombre=$_POST['nombre'];
 $apellidos=$_POST['apellidos'];
@@ -206,7 +216,8 @@ $mysqli->query("insert into residentes (id_nie,
 										profesion_tut2,
 										estudios_tut2,
                                         email_tutor2,
-                                        tlf_tutor2) 
+                                        tlf_tutor2,
+										fianza) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
@@ -246,7 +257,8 @@ $mysqli->query("insert into residentes (id_nie,
 										'$tut2_profesion',
 										'$tut2_estudios',
 										'$tut2_email',
-										'$tut2_telef')");
+										'$tut2_telef',
+										'$fianza')");
 if ($mysqli->errno>0){
 	$respuesta["status"]="registro_erroneo ".$mysqli->errno;
     exit(json_encode($respuesta));
