@@ -327,8 +327,7 @@ $pdf_salud->setFontSubsetting(true);
 $pdf_salud->SetFont('dejavusans', '', 8, '', true);
 $pdf_salud->setFillColor(200);  //Relleno en gris
 $pdf_salud->AddPage();
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+
 $cabecera = <<<HTML1
 <h4>Residente: $apellidos, $nombre</h4>
 <h4>Residente Bonificado: $bonificado   Teléfono de Urgencias: $tlf_urgencias</h4>
@@ -348,7 +347,8 @@ $YInicio+=10;
 $XInicio=12;
 $anchoLinea=$pdf_salud->getPageWidth();
 //$XInicioRotulo=17;
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 ///////////////////////DATOS DEL INTERNO
 $YInicio+=8;
 $pdf_salud->Line(10,$YInicio,$anchoLinea-10,$YInicio);
