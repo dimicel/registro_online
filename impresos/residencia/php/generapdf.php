@@ -278,7 +278,8 @@ class MYPDF extends TCPDF {
 		
 	}
 }
-
+$respuesta["status"]="prueba";
+exit(json_encode($respuesta));
 // create new PDF document. Segeneran 2. Uno que no se guarda (datos de salud) y otro que se guarda
 $pdf_salud = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -332,9 +333,6 @@ $cabecera = <<<HTML1
 HTML1;
 
 $YInicio=30;
-
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
 
 //$pdf_salud->RoundedRect(82,$YInicio,45,15,2,'1111','','','');
 $pdf_salud->writeHTMLCell(0, 0, 40, $YInicio+2, $cabecera, 0, 1, false, true, '', true);
