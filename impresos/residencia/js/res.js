@@ -381,23 +381,25 @@ function registraSolicitud() {
                     link.click();
         
                     console.log('PDF descargado correctamente.');
+                    alerta("Procedimiento terminado correctamente.","CORRECTO",true);
                 }
                 else if(response.status=="server") {
-                    alerta("Hay problemas en el servidor. Inténtelo en otro momento.","ERROR EN SERVIDOR");
+                    alerta("Hay problemas en el servidor. Inténtelo en otro momento.","ERROR EN SERVIDOR",true);
                     console.error('Error:', response.message);
                 }
                 else if(response.status=="db"){
-                    alerta("Hay problemas en la base de datos. Inténtelo en otro momento.","ERROR DB");
+                    alerta("Hay problemas en la base de datos. Inténtelo en otro momento.","ERROR DB",true);
                     console.error('Error:', response.message);
                 }
                 else if(response.status.includes(registro_erroneo)){
-                    alerta("No se ha podido hacer el registro por un problema en la base de datos.","ERROR REGISTRO");
+                    alerta("No se ha podido hacer el registro por un problema en la base de datos.","ERROR REGISTRO",true);
                     console.error('Error:', response.message);
                 }
                 
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 document.getElementById("cargando").style.display = 'none';
+                alerta("Ha ocurrido algún problema y no se ha podido hacer el registro. Error "+textStatus,"ERROR REGISTRO",true);
                 console.error('Error:', textStatus, errorThrown);
             }
         });
