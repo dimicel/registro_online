@@ -82,8 +82,8 @@ while ($reg=$res->fetch_assoc()){
 	$fax_centro_edu=$reg["fax_centro"];
 }
 $res->free();
-$respuesta["status"]="prueba";
-exit(json_encode($respuesta));
+//$respuesta["status"]="prueba";
+//exit(json_encode($respuesta));
 
 
 $anno_curso=$_POST['anno_curso'];
