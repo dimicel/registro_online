@@ -709,7 +709,7 @@ $pdf->Output($ruta_pdf, 'F');
 
 header("Content-Type: application/pdf");
 header("Content-Disposition: attachment; filename=\"" . $nombre_fichero. "\"");
-$pdf_salud->Output($nombre_fichero, 'D');
+$pdf_salud->Output($nombre_fichero, 'I');
 //$respuesta["status"]="prueba";
 //exit(json_encode($respuesta));
 

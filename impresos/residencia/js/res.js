@@ -367,8 +367,8 @@ function registraSolicitud() {
                 if (response.status === 'ok') {
                     var pdfBase64 = response.pdf;
                     var pdfData = atob(pdfBase64); // Decodificar base64
-                    var uintArray = new Uint8Array(arrayBuffer);
                     var arrayBuffer = new ArrayBuffer(pdfData.length);
+                    var uintArray = new Uint8Array(arrayBuffer);
                     
                     for (var i = 0; i < pdfData.length; i++) {
                         uintArray[i] = pdfData.charCodeAt(i);
