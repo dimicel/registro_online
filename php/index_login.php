@@ -70,7 +70,7 @@ else {
 			else{
 				$_SESSION['tipo_usu']="usuario";
 				$dat["error"]="ok";
-				$dat["pagina"]= "usuario.php";
+				$dat["pagina"]= "usuario.php?q=".time();
 				exit(json_encode($dat));
 			} 
 		}
