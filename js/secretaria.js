@@ -2117,7 +2117,7 @@ function parametrosCentro(){
                         $.post({
                             url:"php/secret_actualiza_param_centro.php" ,
                             data: $("#datos_centro").serialize(),
-                            success: function(resp) {alert(resp)
+                            success: function(resp) {
                                 document.getElementById("cargando").style.display = 'none';
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
