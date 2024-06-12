@@ -58,9 +58,17 @@
             </div>
                 
             <div class="row" style="margin-top:15px">
-                <label class="col-form-label col-lg-1" style="margin-left:20px">Buscar: </label>
-                <div class="col-lg-8" style="margin-left:-35px">
+                <label class="col-form-label col-1" style="margin-left:20px">Buscar: </label>
+                <div class="col-7" style="margin-left:-35px">
                     <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="listaUsus()">
+                </div>
+                <label class="col-form-label col-1" style="margin-left:20px">Filtro: </label>
+                <div class="col-3" style="margin-left:-35px">
+                    <select id="filtro_bajas" size="1" onchange="listaRegistros();">
+                        <option value=-1>Todos</option>
+                        <option value=0>Altas</option>
+                        <option value=1>Bajas</option>
+                    </select>
                 </div>
             </div>
             <div class="row justify-content-center" style="margin-top:10px">

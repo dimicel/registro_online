@@ -84,8 +84,8 @@ function listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:270px", "width:270px", "width:80px","width:120px"];
-    encabezamiento_usu = ["NIE", "Alumno", "Email", "Bonificado","Devolución Fianza(€)"];
+    estilo_usu = ["width:80px", "width:270px", "width:270px", "width:80px","width:120px","width:80px"];
+    encabezamiento_usu = ["NIE", "Alumno", "Email", "Bonificado","Devolución Fianza(€)","Baja"];
 
     //Construcción del encabezamiento de la tabla
     encab_usus = "<tr>";
@@ -99,7 +99,8 @@ function listaUsus() {
         orden_direccion_usu: direccion[orden_direccion_usu],
         pagina: pagina,
         num_reg_pagina: num_reg_pagina,
-        curso:document.getElementById("curso").value
+        curso:document.getElementById("curso").value,
+        filtro_bajas:document.getElementById("filtro_bajas").value
     }
     $.post("php/residencia_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
@@ -117,13 +118,19 @@ function listaUsus() {
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
                 data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
-                if (data_array[i]["no_ha_entrado"]==1){
+                if (data_array[i]["bonificado"]==1){
                     data += "<td style='" + estilo_usu[3] + ";text-align:center'>SÍ</td>";
                 }
                 else{
                     data += "<td style='" + estilo_usu[3] + ";text-align:center'>NO</td>";
                 }
                 data += "<td style='" + estilo_usu[4] + ";text-align:center'>" + data_array[i]["devolucion_fianza"] + "</td>";
+                if (data_array[i]["baja"]==1){
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>SÍ</td>";
+                }
+                else{
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>NO</td>";
+                }
                 data += "</tr>";
             }
             document.getElementById("encabezado_usus").innerHTML = encab_usus;
