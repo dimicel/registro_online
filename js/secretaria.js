@@ -2151,7 +2151,7 @@ function parametrosCentro(){
                 $("#formulario_datos_centro").dialog("close");
                 $("#formulario_datos_centro").dialog("destroy");
             }
-            }]
+        }]
     });
     
 }
