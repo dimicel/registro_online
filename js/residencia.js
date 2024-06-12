@@ -386,8 +386,69 @@ function estadoBonificado(__registro,celda){
 }
 
 function altaBaja(__registro,celda){
-
+    if (celda.innerHTML=="NO"){
+        mensaje="<p>El residente causa BAJA en la residencia.</p>";
+        baja=1;
+    }
+    else{
+        mensaje="<p>El residente vuelve a estar de ALTA en la residencia.</p>";
+        baja=0;
+    }
+    document.getElementById("div_dialogs").innerHTML=mensaje;
+    $("#div_dialogs").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "ALTA/BAJA DE RESIDENTE",
+        width: 700,
+        position: { my: "center", at: "center", of: window },
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Confirmar cambio",
+                click: function() {
+                    document.getElementById("cargando").style.display = 'inherit';
+                    $.post({
+                        url:"php/residencia_alta_baja.php",
+                        data: {registro:__registro,baja:baja},
+                        success: function(resp) {
+                            document.getElementById("cargando").style.display = 'none';
+                            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                            else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                            else if (resp == "ok"){
+                                alerta("Cambio de estado realizado correctamente.","ACTUALIZACIÓN CORRECTA");
+                                listaUsus();
+                            }
+                            else{
+                                alerta(resp,"ERROR");
+                            }
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
+                        },
+                        error: function(xhr, status, error) {
+                            document.getElementById("cargando").style.display = 'none';
+                            alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
+                        }
+                    });
+                }
+            },
+            {
+            class: "btn btn-success textoboton",
+            text: "Cancelar",
+            click: function() {
+                $("#div_dialogs").dialog("close");
+                $("#div_dialogs").dialog("destroy");
+            }
+        }]
+    });
 }
+
 
 function fianza(__registro,celda){
     _ff=celda.innerText;
@@ -403,7 +464,7 @@ function fianza(__registro,celda){
         hide: { effect: "fade", duration: 0 },
         resizable: false,
         show: { effect: "fade", duration: 0 },
-        title: "CAMBIO ESTADO BONIFICADO/NO BONIFICADO",
+        title: "FIANZA ASIGNADA PARA SER DEVUELTA",
         width: 300,
         position: { my: "center", at: "center", of: window },
         buttons: [
