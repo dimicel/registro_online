@@ -37,7 +37,7 @@
                     <label class="col-form-label" style="margin-left: 30px;">Año Académico: </label>
                 </div>
                 <div class="col-2" >
-                    <select id="curso" size="1" onchange="listaRegistros();" class="form-control"></select>
+                    <select id="curso" size="1" onchange="listaUsus();" class="form-control"></select>
                 </div>
                 <div class="col-3">
                     <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
@@ -64,7 +64,7 @@
                 </div>
                 <label class="col-form-label col-1" style="margin-left:20px">Filtro: </label>
                 <div class="col-2" style="margin-left:-35px">
-                    <select id="filtro_bajas" size="1"   class="form-control" onchange="listaRegistros();">
+                    <select id="filtro_bajas" size="1"   class="form-control" onchange="listaUsus();">
                         <option value=-1>Todos</option>
                         <option value=0>Altas</option>
                         <option value=1>Bajas</option>
