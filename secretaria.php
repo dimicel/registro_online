@@ -430,12 +430,12 @@
             </div>
             <div class="form-group col-5">
                 <span class="errorTxt" style="font-size: 1em;"></span>
-                <label for="localidad">CP:</label>
+                <label for="localidad">Localidad:</label>
                 <input type="text" name="localidad" id="localidad" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
             </div>
             <div class="form-group col-5">
                 <span class="errorTxt" style="font-size: 1em;"></span>
-                <label for="provincia">CP:</label>
+                <label for="provincia">Provincia:</label>
                 <input type="text" name="provincia" id="provincia" class="form-control" maxlength="5" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
             </div>
         </div>
@@ -447,7 +447,7 @@
             </div>
             <div class="form-group col-4">
                 <span class="errorTxt" style="font-size: 1em;"></span>
-                <label for="fax_centro">CP:</label>
+                <label for="fax_centro">Fax:</label>
                 <input type="text" name="fax_centro" id="fax_centro" class="form-control" maxlength="12" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
             </div>
             <div class="form-group col-4">

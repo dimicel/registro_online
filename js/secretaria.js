@@ -2002,18 +2002,18 @@ function parametrosCentro(){
     volver=false;
     $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
         if (resp.error=="ok"){
-            formulario_datos_centro.director.value=resp.registro.director;
-            formulario_datos_centro.centro.value=resp.registro.centro;
-            formulario_datos_centro.direccion.value=resp.registro.cp_centro;
-            formulario_datos_centro.cp.value=resp.registro.direccion_centro;
-            formulario_datos_centro.localidad.value=resp.registro.localidad_centro;
-            formulario_datos_centro.provincia.value=resp.registro.provincia_centro;
-            formulario_datos_centro.tlf_centro.value=resp.registro.tlf_centro;
-            formulario_datos_centro.fax_centro.value=resp.registro.fax_centro;
-            formulario_datos_centro.email_centro.value=resp.registro.email_centro;
-            formulario_datos_centro.email_jef_res.value=resp.registro.email_jefe_residencia;
-            formulario_datos_centro.finza_bonif.value=resp.registro.residencia_fianza_bonificados;
-            formulario_datos_centro.finza_nobonif.value=resp.registro.residencia_fianza_no_bonificados;
+            document.getElementById("director").value=resp.registro.director;
+            document.getElementById("centro").value=resp.registro.centro;
+            document.getElementById("direccion").value=resp.registro.cp_centro;
+            document.getElementById("cp").value=resp.registro.direccion_centro;
+            document.getElementById("localidad").value=resp.registro.localidad_centro;
+            document.getElementById("provincia").value=resp.registro.provincia_centro;
+            document.getElementById("tlf_centro").value=resp.registro.tlf_centro;
+            document.getElementById("fax_centro").value=resp.registro.fax_centro;
+            document.getElementById("email_centro").value=resp.registro.email_centro;
+            document.getElementById("email_jef_res").value=resp.registro.email_jefe_residencia;
+            document.getElementById("finza_bonif").value=resp.registro.residencia_fianza_bonificados;
+            document.getElementById("finza_nobonif").value=resp.registro.residencia_fianza_no_bonificados;
         }
         else if (resp.datos=="server"){
             alerta("Error en servidor. No se pueden editar los datos asociados al centro","ERROR SERVIDOR");
