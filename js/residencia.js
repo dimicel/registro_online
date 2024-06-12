@@ -322,7 +322,67 @@ function cambioEmailJefeRes(){
 
 
 function estadoBonificado(__registro,celda){
-
+    if (celda.innerHTML=="NO"){
+        mensaje="<p>Va a cambiar el estado del residente de No BONIFICADO a BONIFICADO.</p><p>Clic en Aceptar para confirmar el cambio.</p>";
+        bonificado=1;
+    }
+    else{
+        mensaje="<p>Va a cambiar el estado del residente de BONIFICADO a NO BONIFICADO.</p>";
+        bonificado=0;
+    }
+    document.getElementById("div_dialogs").innerHTML=mensaje;
+    $("#div_dialogs").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "CAMBIO ESTADO BONIFICADO/NO BONIFICADO",
+        width: 500,
+        position: { my: "center", at: "center", of: window },
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Confirmar cambio",
+                click: function() {
+                    document.getElementById("cargando").style.display = 'inherit';
+                    $.post({
+                        url:"php/residencia_cambio_estado_bonificado.php" ,
+                        data: {registro:__registro,bonificado:bonificado},
+                        success: function(resp) {
+                            document.getElementById("cargando").style.display = 'none';
+                            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                            else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                            else if (resp == "ok"){
+                                alerta("Cambio de estado realizado correctamente.","ACTUALIZACIÓN CORRECTA");
+                                listaUsus();
+                            }
+                            else{
+                                alerta(resp,"ERROR");
+                            }
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
+                        },
+                        error: function(xhr, status, error) {
+                            document.getElementById("cargando").style.display = 'none';
+                            alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
+                        }
+                    });
+                }
+            },
+            {
+            class: "btn btn-success textoboton",
+            text: "Cancelar",
+            click: function() {
+                $("#div_dialogs").dialog("close");
+                $("#div_dialogs").dialog("destroy");
+            }
+        }]
+    });
 }
 
 function altaBaja(__registro,celda){
