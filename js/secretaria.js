@@ -2004,8 +2004,8 @@ function parametrosCentro(){
         if (resp.error=="ok"){
             document.getElementById("director").value=resp.registro.director;
             document.getElementById("centro").value=resp.registro.centro;
-            document.getElementById("direccion").value=resp.registro.cp_centro;
-            document.getElementById("cp").value=resp.registro.direccion_centro;
+            document.getElementById("cp").value=resp.registro.cp_centro;
+            document.getElementById("direccion").value=resp.registro.direccion_centro;
             document.getElementById("localidad").value=resp.registro.localidad_centro;
             document.getElementById("provincia").value=resp.registro.provincia_centro;
             document.getElementById("tlf_centro").value=resp.registro.tlf_centro;
