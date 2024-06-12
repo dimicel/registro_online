@@ -39,6 +39,9 @@
                 <div class="col-2" >
                     <select id="curso" size="1" onchange="listaRegistros();" class="form-control"></select>
                 </div>
+                <div class="col-3">
+                    <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
+                </div>
                 <!--
                 <div class="col-1">
                     <label class="col-form-label" style="margin-left:20px; ">Mostrar: </label>
@@ -53,11 +56,7 @@
                 </div>
             -->
             </div>
-            <div class="row">
-                <div class="col">
-                    <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
-                </div>
-            </div>
+                
             <div class="row" style="margin-top:15px">
                 <label class="col-form-label col-lg-1" style="margin-left:20px">Buscar: </label>
                 <div class="col-lg-8" style="margin-left:-35px">
