@@ -15,10 +15,10 @@ $bonificado=$_POST['bonificado'];
 
 $sql = "UPDATE residentes SET 
     bonificado = ?
-    WHERE registro='$registro'";
+    WHERE registro=?";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param('s',  $bonificado);
+$stmt->bind_param('s,s',  $bonificado,$registro);
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
