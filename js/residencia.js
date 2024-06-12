@@ -265,8 +265,8 @@ function cambioEmailJefeRes(){
         hide: { effect: "fade", duration: 0 },
         resizable: false,
         show: { effect: "fade", duration: 0 },
-        title: "EDICIÓN DATOS ASOCIADOS AL CENTRO",
-        width: 700,
+        title: "CAMBIO DE DATO",
+        width: 500,
         position: { my: "center", at: "center", of: window },
         buttons: [
             {

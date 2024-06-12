@@ -103,7 +103,7 @@
             <div class="form-row">
                 <div class="form-group col">
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <label for="email_jr">Director:</label>
+                    <label for="email_jr">Email del Jefe de Residencia:</label>
                     <input type="text" name="email_jr" id="email_jr" class="form-control" maxlength="255"/>
                 </div>
             </div>
