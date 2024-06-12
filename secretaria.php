@@ -122,6 +122,14 @@
                         </div>
                     </li>
                     <li class="nav-item" id="menu6">
+                        <a class="nav-link dropdown-toggle" id="menu_matricula" href="#" data-toggle="dropdown">Configuración</a>
+                        <div class="dropdown-menu">
+                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
+                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Ciclos Formativos</a>
+                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Módulos de Ciclos Formativos</a>
+                        </div>    
+                    </li>
+                    <li class="nav-item" id="menu7">
                         <a class="nav-link" href="#" onclick="javascript: cierrasesion();">Salir</a>
                     </li>
                 </ul>
