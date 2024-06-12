@@ -323,7 +323,7 @@ function cambioEmailJefeRes(){
 
 function estadoBonificado(__registro,celda){
     if (celda.innerHTML=="NO"){
-        mensaje="<p>Va a cambiar el estado del residente de No BONIFICADO a BONIFICADO.</p><p>Clic en Aceptar para confirmar el cambio.</p>";
+        mensaje="<p>Va a cambiar el estado del residente de No BONIFICADO a BONIFICADO.</p>";
         bonificado=1;
     }
     else{
@@ -340,7 +340,7 @@ function estadoBonificado(__registro,celda){
         resizable: false,
         show: { effect: "fade", duration: 0 },
         title: "CAMBIO ESTADO BONIFICADO/NO BONIFICADO",
-        width: 500,
+        width: 700,
         position: { my: "center", at: "center", of: window },
         buttons: [
             {
