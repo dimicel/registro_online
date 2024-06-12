@@ -248,13 +248,13 @@ function cambioEmailJefeRes(){
 
     $("#cambio_email_jef_res").validate({
         rules: {
-            email_jef_res: {
+            email_jr: {
                 email:true,
                 required:true
             }
         },
         messages: {
-            email_jef_res:{
+            email_jr:{
                 email:"Dirección no válida",
                 required: "Complete el campo"
             }
