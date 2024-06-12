@@ -1997,3 +1997,158 @@ function descargaCSVelearningFctProy(){
     document.getElementById("curso_csv_elearning_fctproyecto").value = document.getElementById("curso").value;
     document.getElementById("descarga_csv_elearning_fctproyecto").submit();
 }
+
+function parametrosCentro(){
+    volver=false;
+    $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
+        if (resp.error=="ok"){
+            formulario_datos_centro.director.value=resp.registro.director;
+            formulario_datos_centro.centro.value=resp.registro.centro;
+            formulario_datos_centro.direccion.value=resp.registro.cp_centro;
+            formulario_datos_centro.cp.value=resp.registro.direccion_centro;
+            formulario_datos_centro.localidad.value=resp.registro.localidad_centro;
+            formulario_datos_centro.provincia.value=resp.registro.provincia_centro;
+            formulario_datos_centro.tlf_centro.value=resp.registro.tlf_centro;
+            formulario_datos_centro.fax_centro.value=resp.registro.fax_centro;
+            formulario_datos_centro.email_centro.value=resp.registro.email_centro;
+            formulario_datos_centro.email_jef_res.value=resp.registro.email_jefe_residencia;
+            formulario_datos_centro.finza_bonif.value=resp.registro.residencia_fianza_bonificados;
+            formulario_datos_centro.finza_nobonif.value=resp.registro.residencia_fianza_no_bonificados;
+        }
+        else if (resp.datos=="server"){
+            alerta("Error en servidor. No se pueden editar los datos asociados al centro","ERROR SERVIDOR");
+            volver=true;
+        }
+    },"json");
+    if (volver) return;
+
+    $("#datos_centro").validate({
+        rules: {
+            director: {
+                required: true
+            },
+            centro: {
+                required: true
+            },
+            direccion:{
+               required: true
+            },
+            cp: {
+                required: true
+            },
+            localidad: {
+                required:true
+            },
+            provincia: {
+                required:true
+            },
+            tlf_centro: {
+                required:true
+            },
+            email_jef_res: {
+                email:true,
+                required:true
+            },
+            finza_bonif: {
+                required:true
+            },
+            finza_nobonif: {
+                required:true
+            },
+            
+
+        },
+        messages: {
+            director: {
+                required: "Complete el campo"
+            },
+            centro: {
+                required: "Complete el campo"
+            },
+            direccion: {
+                required: "Complete el campo"
+            },
+            cp: {
+                required: "Complete el campo"
+            },
+            localidad: {
+                required: "Complete el campo"
+            },
+            provincia: {
+                required: "Complete el campo"
+            },
+            tlf_centro: {
+                required: "Complete el campo"
+            },
+            email_jef_res:{
+                email:"Dirección no válida",
+                required: "Complete el campo"
+            },
+            finza_bonif: {
+                required: "Complete el campo"
+            },
+            finza_nobonif: {
+                required: "Complete el campo"
+            }
+        },
+        errorPlacement: function(error, element) {
+            $(element).prev().prev($('.errorTxt')).html(error);
+        }
+    });
+
+    $("#formulario_datos_centro").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "EDICIÓN DATOS ASOCIADOS AL CENTRO",
+        width: 700,
+        position: { my: "center", at: "center", of: window },
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Guardar Cambios",
+                click: function() {
+                    if ($("#datos_centro").valid()){
+                        document.getElementById("cargando").style.display = 'inherit';
+                        $.post({
+                            url:"php/secret_actualiza_param_centro.php" ,
+                            data: $("#datos_centro").serialize(),
+                            contentType: false,
+                            processData: false,
+                            success: function(resp) {
+                                document.getElementById("cargando").style.display = 'none';
+                                if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                                else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+                                else if (resp == "ok"){
+                                    alerta("datos del centro actualizados correctamente.","ACTUALIZACIÓN CORRECTA");
+                                } 
+                                $("#formulario_datos_centro").dialog("close");
+                                $("#formulario_datos_centro").dialog("destroy");
+                            },
+                            error: function(xhr, status, error) {
+                                document.getElementById("cargando").style.display = 'none';
+                                alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                                document.getElementById("div_dialogs2").innerHTML="";
+                                $("#formulario_datos_centro").dialog("close");
+                                $("#formulario_datos_centro").dialog("destroy");
+                            }
+                        });
+                    }
+                    
+                }
+            },
+            {
+            class: "btn btn-success textoboton",
+            text: "Cancelar",
+            click: function() {
+                $("#formulario_datos_centro").dialog("close");
+                $("#formulario_datos_centro").dialog("destroy");
+            }
+            }]
+    });
+    
+}

@@ -398,6 +398,85 @@
             <input type="hidden" id="usuario" name="usuario" />
         </form>
     </div>
+    <div id="formulario_datos_centro" style="display:none">
+        <form id="datos_centro" >
+        <span>Doble click en un campo para editarlo.
+        <div class="form-row">
+            <div class="form-group col">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="director">Director:</label>
+                <input type="text" name="director" id="director" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="centro">Centro:</label>
+                <input type="text" name="centro" id="centro" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" id="direccion" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-2">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="cp">CP:</label>
+                <input type="text" name="cp" id="cp" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+            <div class="form-group col-5">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="localidad">CP:</label>
+                <input type="text" name="localidad" id="localidad" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+            <div class="form-group col-5">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="provincia">CP:</label>
+                <input type="text" name="provincia" id="provincia" class="form-control" maxlength="5" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-4">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="tlf_centro">Teléfono:</label>
+                <input type="text" name="tlf_centro" id="tlf_centro" class="form-control" maxlength="12" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+            <div class="form-group col-4">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="fax_centro">CP:</label>
+                <input type="text" name="fax_centro" id="fax_centro" class="form-control" maxlength="12" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+            <div class="form-group col-4">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="email_centro">CP:</label>
+                <input type="text" name="email_centro" id="email_centro" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="email_jef_res">Email Jefe Residencia:</label>
+                <input type="text" name="email_jef_res" id="email_jef_res" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-6">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="finza_bonif">Fianza Bonificados Residencia (€):</label>
+                <input type="number" name="finza_bonif" id="finza_bonif" class="form-control"  step="0.01" min="0" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+            <div class="form-group col-6">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+                <label for="finza_nobonif">Fianza NO Bonificados Residencia (€)::</label>
+                <input type="number" name="finza_nobonif" id="finza_nobonif" class="form-control"  step="0.01" min="0" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+            </div>
+        </div>
+        </form>
+    </div>
     
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
