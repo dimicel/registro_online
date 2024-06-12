@@ -426,7 +426,7 @@
             <div class="form-group col-2">
                 <span class="errorTxt" style="font-size: 1em;"></span>
                 <label for="cp">CP:</label>
-                <input type="text" name="cp" id="cp" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+                <input type="text" name="cp" id="cp" class="form-control" maxlength="5" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
             </div>
             <div class="form-group col-5">
                 <span class="errorTxt" style="font-size: 1em;"></span>
@@ -436,7 +436,7 @@
             <div class="form-group col-5">
                 <span class="errorTxt" style="font-size: 1em;"></span>
                 <label for="provincia">Provincia:</label>
-                <input type="text" name="provincia" id="provincia" class="form-control" maxlength="5" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
+                <input type="text" name="provincia" id="provincia" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
             </div>
         </div>
         <div class="form-row">
