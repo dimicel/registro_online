@@ -456,6 +456,7 @@
                 <input type="text" name="email_centro" id="email_centro" class="form-control" maxlength="255" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
             </div>
         </div>
+        <hr>
         <div class="form-row">
             <div class="form-group col">
                 <span class="errorTxt" style="font-size: 1em;"></span>
