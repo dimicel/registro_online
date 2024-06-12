@@ -22,18 +22,40 @@ $email_jef_res=$_POST['email_jef_res'];
 $fianza_bonif=$_POST['finza_bonif'];
 $fianza_nobonif=$_POST['finza_nobonif'];
 
-exit();
-$sql="update config_centro set director='$director',email_jefe_residencia='$email_jef_res',centro='$centro',cp_centro='$cp',direccion_centro='$direccion',";
-$sql.="localidad_centro='$localidad',provincia_centro='$provincia',tlf_centro='$tlf_centro',fax_centro='$fax_centro',email_centro='$email_centro',";
-$sql.="residencia_fianza_bonificados='$fianza_bonif',residencia_fianza_no_bonificados='$fianza_nobonif' where 1";
-if ($mysqli->query($sql)) {
-    if ($conn->affected_rows > 0) {
+
+$sql = "UPDATE config_centro SET 
+    director = ?, 
+    email_jefe_residencia = ?, 
+    centro = ?, 
+    cp_centro = ?, 
+    direccion_centro = ?, 
+    localidad_centro = ?, 
+    provincia_centro = ?, 
+    tlf_centro = ?, 
+    fax_centro = ?, 
+    email_centro = ?, 
+    residencia_fianza_bonificados = ?, 
+    residencia_fianza_no_bonificados = ? 
+    WHERE 1";
+
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param('ssssssssssss', $director, $email_jef_res, $centro, $cp, $direccion, $localidad, $provincia, $tlf_centro, $fax_centro, $email_centro, $fianza_bonif, $fianza_nobonif);
+
+if ($stmt->execute()) {
+    if ($stmt->affected_rows > 0) {
+        $stmt->close();
+        $mysqli->close();
         exit("ok");
     } else {
+        $stmt->close();
+        $mysqli->close();
         exit("database");
     }
 } else {
-    exit("Error al actualizar el registro: " . $conn->error);
+    $stmt->close();
+    $mysqli->close();
+    exit("Error al actualizar el registro: " . $stmt->error);
 }
+
 
 
