@@ -122,7 +122,7 @@ function listaUsus() {
                     data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+",\"this)'>NO</td>";
+                    data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>NO</td>";
                 }
                 data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='fianza(\""+data_array[i]["registro"]+"\",this)'>" + data_array[i]["devolucion_fianza"] + "</td>";
                 if (data_array[i]["baja"]==1){
@@ -321,7 +321,7 @@ function cambioEmailJefeRes(){
 }
 
 
-function estadoBonificado(__registro,celda){alert(0);
+function estadoBonificado(__registro,celda){
     if (celda.innerHTML=="NO"){
         mensaje="<p>Va a cambiar el estado del residente de No BONIFICADO a BONIFICADO.</p><p>Clic en Aceptar para confirmar el cambio.</p>";
         bonificado=1;
