@@ -472,7 +472,7 @@
             </div>
             <div class="form-group col-6">
                 <span class="errorTxt" style="font-size: 1em;"></span>
-                <label for="finza_nobonif">Fianza NO Bonificados Residencia (€)::</label>
+                <label for="finza_nobonif">Fianza NO Bonificados Residencia (€):</label>
                 <input type="number" name="finza_nobonif" id="finza_nobonif" class="form-control"  step="0.01" min="0" readonly ondblclick="this.readOnly=false" onblur="this.readOnly=true"/>
             </div>
         </div>

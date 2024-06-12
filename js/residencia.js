@@ -390,7 +390,63 @@ function altaBaja(__registro,celda){
 }
 
 function fianza(__registro,celda){
-
+    _ff=celda.innerText;
+    mensaje="<div class='row'><div class='col form-group'>";
+    mensaje+="<label for='_fianz'>Fianza (€):</label>";
+    mensaje+="<input type='number' name='_fianz' id='_fianz' class='form-control' value='"+celda.innerText+"' step='0.01' min='0' /></div></div>";
+    document.getElementById("div_dialogs").innerHTML=mensaje;
+    $("#div_dialogs").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "CAMBIO ESTADO BONIFICADO/NO BONIFICADO",
+        width: 700,
+        position: { my: "center", at: "center", of: window },
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Confirmar cambio",
+                click: function() {
+                    document.getElementById("cargando").style.display = 'inherit';
+                    $.post({
+                        url:"php/residencia_cambio_fianza.php" ,
+                        data: {registro:__registro,fianza:document.getElementById("_fianz").value},
+                        success: function(resp) {
+                            document.getElementById("cargando").style.display = 'none';
+                            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                            else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                            else if (resp == "ok"){
+                                alerta("Cambio de estado realizado correctamente.","ACTUALIZACIÓN CORRECTA");
+                                listaUsus();
+                            }
+                            else{
+                                alerta(resp,"ERROR");
+                            }
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
+                        },
+                        error: function(xhr, status, error) {
+                            document.getElementById("cargando").style.display = 'none';
+                            alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
+                        }
+                    });
+                }
+            },
+            {
+            class: "btn btn-success textoboton",
+            text: "Cancelar",
+            click: function() {
+                $("#div_dialogs").dialog("close");
+                $("#div_dialogs").dialog("destroy");
+            }
+        }]
+    });
 }
 
 
