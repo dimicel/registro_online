@@ -2117,8 +2117,6 @@ function parametrosCentro(){
                         $.post({
                             url:"php/secret_actualiza_param_centro.php" ,
                             data: $("#datos_centro").serialize(),
-                            contentType: false,
-                            processData: false,
                             success: function(resp) {alert(resp)
                                 document.getElementById("cargando").style.display = 'none';
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
@@ -2135,7 +2133,6 @@ function parametrosCentro(){
                             error: function(xhr, status, error) {
                                 document.getElementById("cargando").style.display = 'none';
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                                document.getElementById("div_dialogs2").innerHTML="";
                                 $("#formulario_datos_centro").dialog("close");
                                 $("#formulario_datos_centro").dialog("destroy");
                             }
