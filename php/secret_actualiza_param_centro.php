@@ -22,7 +22,7 @@ $email_jef_res=$_POST['email_jef_res'];
 $fianza_bonif=$_POST['finza_bonif'];
 $fianza_nobonif=$_POST['finza_nobonif'];
 
-
+exit($director);
 $sql = "UPDATE config_centro SET 
     director = ?, 
     email_jefe_residencia = ?, 
@@ -36,7 +36,7 @@ $sql = "UPDATE config_centro SET
     email_centro = ?, 
     residencia_fianza_bonificados = ?, 
     residencia_fianza_no_bonificados = ? 
-    WHERE 1";
+    WHERE id=0";
 
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param('ssssssssssss', $director, $email_jef_res, $centro, $cp, $direccion, $localidad, $provincia, $tlf_centro, $fax_centro, $email_centro, $fianza_bonif, $fianza_nobonif);

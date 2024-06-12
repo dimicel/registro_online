@@ -2119,7 +2119,7 @@ function parametrosCentro(){
                             data: $("#datos_centro").serialize(),
                             contentType: false,
                             processData: false,
-                            success: function(resp) {
+                            success: function(resp) {alert(resp)
                                 document.getElementById("cargando").style.display = 'none';
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
