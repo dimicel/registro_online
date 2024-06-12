@@ -123,7 +123,7 @@ function listaUsus() {
                 else{
                     data += "<td style='" + estilo_usu[3] + ";text-align:center'>NO</td>";
                 }
-                data += "<td style='" + estilo_usu[4] + ";text-align:center'>" + data_array[i]["fianza"] + "</td>";
+                data += "<td style='" + estilo_usu[4] + ";text-align:center'>" + data_array[i]["devolucion_fianza"] + "</td>";
                 data += "</tr>";
             }
             document.getElementById("encabezado_usus").innerHTML = encab_usus;
