@@ -229,7 +229,7 @@ function panelEnvioEmail(dir_email) {
 
 
 function cambioEmailJefeRes(){
-    $.post("php/secret_recupera_param_centro.php",{},(res)=>{
+    $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
         if (resp.error=="ok"){
             document.getElementById("email_jr").value=resp.registro.email_jefe_residencia;
         }
