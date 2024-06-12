@@ -202,7 +202,7 @@ function panelEnvioEmail(dir_email) {
                             mensaje = document.getElementById("usu_cuerpo_email").value;
                             if (validFormEmail.form()) {
                                 document.getElementById("cargando").style.display = "inherit";
-                                $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
+                                $.post("php/residencia_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
                                     document.getElementById("cargando").style.display = "none";
                                     alerta("Correo electrónico enviado.", "EMAIL");
                                     $("#div_dialogs").dialog("close");
