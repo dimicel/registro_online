@@ -138,6 +138,12 @@ jQuery.validator.addMethod("bic", function(value, element) {
     return validateBIC(value);
 });
 
+jQuery.validator.addMethod("email", function(value, element) {
+    // Expresión regular para validar un correo electrónico
+    var emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    return emailPattern.test(value);
+});
+
 function revisaNIF_Pasaporte(obj){
     var aux="";
     for (i=0; i<obj.value.length;i++){
