@@ -2054,9 +2054,7 @@ function parametrosCentro(){
             },
             finza_nobonif: {
                 required:true
-            },
-            
-
+            }
         },
         messages: {
             director: {

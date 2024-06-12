@@ -400,7 +400,7 @@
     </div>
     <div id="formulario_datos_centro" style="display:none">
         <form id="datos_centro" >
-        <span>Doble click en un campo para editarlo.
+        <span>Doble click en un campo para editarlo.</span>
         <div class="form-row">
             <div class="form-group col">
                 <span class="errorTxt" style="font-size: 1em;"></span>

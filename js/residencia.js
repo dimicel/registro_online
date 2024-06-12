@@ -228,3 +228,89 @@ function panelEnvioEmail(dir_email) {
 }
 
 
+function cambioEmailJefeRes(){
+    $.post("php/secret_recupera_param_centro.php",{},(res)=>{
+        if (resp.error=="ok"){
+            document.getElementById("email_jr").value=resp.registro.email_jefe_residencia;
+        }
+        else if (resp.datos=="server"){
+            alerta("Error en servidor. No se puede cambiar el email del Jefe de Residencia","ERROR SERVIDOR");
+            volver=true;
+        }
+    },"json");
+
+    $("#cambio_email_jef_res").validate({
+        rules: {
+            email_jef_res: {
+                email:true,
+                required:true
+            }
+        },
+        messages: {
+            email_jef_res:{
+                email:"Dirección no válida",
+                required: "Complete el campo"
+            }
+        },
+        errorPlacement: function(error, element) {
+            $(element).prev().prev($('.errorTxt')).html(error);
+        }
+    });
+
+    $("#div_cambio_email_jef_res").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "EDICIÓN DATOS ASOCIADOS AL CENTRO",
+        width: 700,
+        position: { my: "center", at: "center", of: window },
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Guardar Cambios",
+                click: function() {
+                    if ($("#cambio_email_jef_res").valid()){
+                        document.getElementById("cargando").style.display = 'inherit';
+                        $.post({
+                            url:"php/residencia_actualiza_email_jr.php" ,
+                            data: $("#cambio_email_jef_res").serialize(),
+                            success: function(resp) {
+                                document.getElementById("cargando").style.display = 'none';
+                                if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                                else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                                else if (resp == "ok"){
+                                    alerta("Email actualizado correctamente.","ACTUALIZACIÓN CORRECTA");
+                                }
+                                else{
+                                    alerta(resp,"ERROR");
+                                }
+                                $("#div_cambio_email_jef_res").dialog("close");
+                                $("#div_cambio_email_jef_res").dialog("destroy");
+                            },
+                            error: function(xhr, status, error) {
+                                document.getElementById("cargando").style.display = 'none';
+                                alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                                $("#div_cambio_email_jef_res").dialog("close");
+                                $("#div_cambio_email_jef_res").dialog("destroy");
+                            }
+                        });
+                    }
+                    
+                }
+            },
+            {
+            class: "btn btn-success textoboton",
+            text: "Cancelar",
+            click: function() {
+                $("#div_cambio_email_jef_res").dialog("close");
+                $("#div_cambio_email_jef_res").dialog("destroy");
+            }
+        }]
+    });
+}
+
+

@@ -53,6 +53,11 @@
                 </div>
             -->
             </div>
+            <div class="row">
+                <div class="col">
+                    <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
+                </div>
+            </div>
             <div class="row" style="margin-top:15px">
                 <label class="col-form-label col-lg-1" style="margin-left:20px">Buscar: </label>
                 <div class="col-lg-8" style="margin-left:-35px">
@@ -94,6 +99,17 @@
     </div>
     <div id="mensaje_div" class="alertas"></div>
     <div id="div_dialogs" class="ui-widget-header ui-corner-all alertas"></div>
+    <div id="div_cambio_email_jef_res" class="ui-widget-header ui-corner-all alertas">
+        <form id="cambio_email_jef_res">
+            <div class="form-row">
+                <div class="form-group col">
+                    <span class="errorTxt" style="font-size: 1em;"></span>
+                    <label for="email_jr">Director:</label>
+                    <input type="text" name="email_jr" id="email_jr" class="form-control" maxlength="255"/>
+                </div>
+            </div>
+        </form>
+    </div>
     
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
