@@ -113,16 +113,17 @@ function listaUsus() {
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
                 if (data_array[i]["id_nie"].substring(0,9) == "S4500175G") continue;
-                if (data_array[i]["habilitado"]==0)data += "<tr style='background-color:red'>";
-                else data += "<tr>";
+                data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
-                if (String(data_array[i]["nombre"]).trim() != "" && data_array[i]["habilitado"]==1) {
-                    data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
-                } else {
-                    data += "<td style='" + estilo_usu[2] + "'></td>";
+                data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
+                if (data_array[i]["no_ha_entrado"]==1){
+                    data += "<td style='" + estilo_usu[3] + ";text-align:center'>SÍ</td>";
                 }
-                data += "<td style='" + estilo_usu[3] + ";text-align:center'>" + data_array[i]["no_ha_entrado"] + "</td>";
+                else{
+                    data += "<td style='" + estilo_usu[3] + ";text-align:center'>NO</td>";
+                }
+                data += "<td style='" + estilo_usu[4] + ";text-align:center'>" + data_array[i]["fianza"] + "</td>";
                 data += "</tr>";
             }
             document.getElementById("encabezado_usus").innerHTML = encab_usus;
