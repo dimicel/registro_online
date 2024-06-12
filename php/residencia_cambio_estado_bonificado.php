@@ -18,7 +18,7 @@ $sql = "UPDATE residentes SET
     WHERE registro='$registro'";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param('s,s',  $bonificado);
+$stmt->bind_param('s',  $bonificado);
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
