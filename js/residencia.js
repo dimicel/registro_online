@@ -391,7 +391,7 @@ function altaBaja(__registro,celda){
 
 function fianza(__registro,celda){
     _ff=celda.innerText;
-    mensaje="<div class='row'><div class='col form-group'>";
+    mensaje="<div class='form-row'><div class='col form-group'>";
     mensaje+="<label for='_fianz'>Fianza (€):</label>";
     mensaje+="<input type='number' name='_fianz' id='_fianz' class='form-control' value='"+celda.innerText+"' step='0.01' min='0' /></div></div>";
     document.getElementById("div_dialogs").innerHTML=mensaje;
@@ -404,7 +404,7 @@ function fianza(__registro,celda){
         resizable: false,
         show: { effect: "fade", duration: 0 },
         title: "CAMBIO ESTADO BONIFICADO/NO BONIFICADO",
-        width: 700,
+        width: 300,
         position: { my: "center", at: "center", of: window },
         buttons: [
             {
