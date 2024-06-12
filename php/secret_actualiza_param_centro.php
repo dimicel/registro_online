@@ -22,7 +22,7 @@ $email_jef_res=$_POST['email_jef_res'];
 $fianza_bonif=$_POST['finza_bonif'];
 $fianza_nobonif=$_POST['finza_nobonif'];
 
-exit($director);
+exit($_POST['director']);
 $sql = "UPDATE config_centro SET 
     director = ?, 
     email_jefe_residencia = ?, 
