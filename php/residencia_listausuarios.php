@@ -18,10 +18,12 @@ $buscar=$_POST["buscar"];
 
 $offset=($pagina-1)*$num_reg_pagina;
 if (trim($buscar)==""){
-    $consulta="SELECT * FROM residentes r JOIN usuarios u where u.id_nie=r.id_nie AND r.curso=$curso ORDER BY u.apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+    //$consulta="SELECT * FROM residentes r JOIN usuarios u where u.id_nie=r.id_nie AND r.curso=$curso ORDER BY u.apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+    $consulta="SELECT * FROM residentes  where curso=$curso ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
 }
 else {
-    $consulta="SELECT * FROM residentes r JOIN usuarios u where u.id_nie=r.id_nie AND r.curso=$curso and (u.apellidos LIKE '%$buscar%' OR u.nombre  LIKE '%$buscar%' OR u.id_nie  LIKE '%$buscar%') ORDER BY u.apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+    //$consulta="SELECT * FROM residentes r JOIN usuarios u where u.id_nie=r.id_nie AND r.curso=$curso and (u.apellidos LIKE '%$buscar%' OR u.nombre  LIKE '%$buscar%' OR u.id_nie  LIKE '%$buscar%') ORDER BY u.apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+    $consulta="SELECT * FROM residentes  where curso=$curso and (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
 }
     
 
@@ -36,12 +38,12 @@ $contador=0;
 $data["registros"]=array();
 
 while ($reg=$res->fetch_assoc()){
-    $data["registros"][$contador]["id_nie"]= $reg["u.id_nie"];
-    $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["u.apellidos"])).", ".ucwords(strtolower($reg["u.nombre"]));
-    $data["registros"][$contador]["email"]= $reg["u.email"];
-    $data["registros"][$contador]["habilitado"]= $reg["u.habilitado"];
-    $data["registros"][$contador]["bonificado"]= $reg["r.bonificado"];
-    $data["registros"][$contador]["devolucion_fianza"]= $reg["r.devolucion_fianza"];
+    $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
+    $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["apellidos"])).", ".ucwords(strtolower($reg["nombre"]));
+    $data["registros"][$contador]["email"]= $reg["email"];
+    $data["registros"][$contador]["habilitado"]= $reg["habilitado"];
+    $data["registros"][$contador]["bonificado"]= $reg["bonificado"];
+    $data["registros"][$contador]["devolucion_fianza"]= $reg["fianza"];
     $contador++;
 }
 $res->free();
