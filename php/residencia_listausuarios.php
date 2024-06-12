@@ -52,6 +52,7 @@ while ($reg=$res->fetch_assoc()){
     $data["registros"][$contador]["bonificado"]= $reg["bonificado"];
     $data["registros"][$contador]["devolucion_fianza"]= $reg["fianza"];
     $data["registros"][$contador]["baja"]= $reg["baja"];
+    $data["registros"][$contador]["registro"]= $reg["registro"];
     $contador++;
 }
 $res->free();
