@@ -63,7 +63,7 @@
                     <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="listaUsus()">
                 </div>
                 <label class="col-form-label col-1" style="margin-left:20px">Filtro: </label>
-                <div class="col-3" style="margin-left:-35px">
+                <div class="col-2" style="margin-left:-35px">
                     <select id="filtro_bajas" size="1"   class="form-control" onchange="listaRegistros();">
                         <option value=-1>Todos</option>
                         <option value=0>Altas</option>
