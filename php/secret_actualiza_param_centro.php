@@ -26,7 +26,7 @@ $fianza_nobonif=$_POST['finza_nobonif'];
 $sql="update config_centro set director='$director',email_jefe_residencia='$email_jef_res',centro='$centro',cp_centro='$cp',direccion_centro='$direccion',";
 $sql.="localidad_centro='$localidad',provincia_centro='$provincia',tlf_centro='$tlf_centro',fax_centro='$fax_centro',email_centro='$email_centro',";
 $sql.="residencia_fianza_bonificados='$fianza_bonif',residencia_fianza_no_bonificados='$fianza_nobonif' where 1";
-if ($conn->query($sql) === TRUE) {
+if ($mysqli->query($sql)) {
     if ($conn->affected_rows > 0) {
         exit("ok");
     } else {
