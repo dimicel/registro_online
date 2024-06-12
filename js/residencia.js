@@ -323,7 +323,7 @@ function cambioEmailJefeRes(){
 
 function estadoBonificado(__registro,celda){
     if (celda.innerHTML=="NO"){
-        mensaje="<p>Va a cambiar el estado del residente de No BONIFICADO a BONIFICADO.</p>";
+        mensaje="<p>Va a cambiar el estado del residente de NO BONIFICADO a BONIFICADO.</p>";
         bonificado=1;
     }
     else{
