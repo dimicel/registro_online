@@ -119,17 +119,17 @@ function listaUsus() {
                 data += "<td style='" + estilo_usu[1] + "'><a href='docs/"+data_array[i]["id_nie"]+"/residencia/"+document.getElementById("curso").value+"/"+data_array[i]["registro"]+".pdf' target='_blank'>" + data_array[i]["nombre"] + "</a></td>";
                 data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
                 if (data_array[i]["bonificado"]==1){
-                    data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado("+data_array[i]["registro"]+")'>SÍ</td>";
+                    data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado("+data_array[i]["registro"]+",this)'>SÍ</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado("+data_array[i]["registro"]+")'>NO</td>";
+                    data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado("+data_array[i]["registro"]+",this)'>NO</td>";
                 }
-                data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='fianza("+data_array[i]["registro"]+")'>" + data_array[i]["devolucion_fianza"] + "</td>";
+                data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='fianza("+data_array[i]["registro"]+",this)'>" + data_array[i]["devolucion_fianza"] + "</td>";
                 if (data_array[i]["baja"]==1){
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja("+data_array[i]["registro"]+")'>SÍ</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja("+data_array[i]["registro"]+",this)'>SÍ</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja("+data_array[i]["registro"]+")'>NO</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja("+data_array[i]["registro"]+",this)'>NO</td>";
                 }
                 data += "</tr>";
             }
@@ -321,15 +321,15 @@ function cambioEmailJefeRes(){
 }
 
 
-function estadoBonificado(__registro){
+function estadoBonificado(__registro,celda){
 
 }
 
-function altaBaja(__registro){
+function altaBaja(__registro,celda){
 
 }
 
-function fianza(__registro){
+function fianza(__registro,celda){
 
 }
 
