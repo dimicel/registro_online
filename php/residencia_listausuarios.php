@@ -53,6 +53,12 @@ while ($reg=$res->fetch_assoc()){
     $data["registros"][$contador]["devolucion_fianza"]= $reg["fianza"];
     $data["registros"][$contador]["baja"]= $reg["baja"];
     $data["registros"][$contador]["registro"]= $reg["registro"];
+    if (is_file(("../docs/".$reg["id_nie"]."/residencia/sepa_".$reg["id_nie"].".pdf"))){
+        $data["registros"][$contador]["sepa"]="docs/".$reg["id_nie"]."/residencia/sepa_".$reg["id_nie"].".pdf";
+    }
+    else{
+        $data["registros"][$contador]["sepa"]="";
+    }
     $contador++;
 }
 $res->free();

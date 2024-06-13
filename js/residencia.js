@@ -84,8 +84,8 @@ function listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:270px", "width:270px", "width:80px","width:120px","width:60px"];
-    encabezamiento_usu = ["NIE", "Alumno", "Email", "Bonificado","Devolución Fianza(€)","Baja"];
+    estilo_usu = ["width:80px", "width:270px", "width:270px", "width:80px","width:120px","width:60px","width:60px"];
+    encabezamiento_usu = ["NIE", "Alumno", "Email", "Bonificado","Devolución Fianza(€)","Baja","SEPA"];
 
     //Construcción del encabezamiento de la tabla
     encab_usus = "<tr>";
@@ -130,6 +130,12 @@ function listaUsus() {
                 }
                 else{
                     data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>NO</td>";
+                }
+                if (data_array[i]["sepa"]!=""){
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'><a href='"+data_array[i]["sepa"]+"' target='_blank'>Ver</a></td>";
+                }
+                else{
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>-</td>";
                 }
                 data += "</tr>";
             }
