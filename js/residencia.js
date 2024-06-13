@@ -88,7 +88,7 @@ function listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:220px", "width:220px", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:60px;text-align:center","width:100px;text-align:center"];
+    estilo_usu = ["width:80px", "width:220px", "width:220px", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:70px;text-align:center","width:40px;text-align:center"];
     encabezamiento_usu = ["NIE", "Alumno", "Email", "Bonificado","Devolución Fianza(€)","Baja","Fecha Baja","SEPA"];
 
     //Construcción del encabezamiento de la tabla
