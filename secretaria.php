@@ -497,6 +497,17 @@
                     <a href="#" ondblclick="subeLogo('firma_sello')"><img src="recursos/sello_firma.jpg" width="240"></a>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-4 text-center">
+                    <span>Logo del Centro</span>
+                </div>
+                <div class="col-4 text-center">
+                    <span>Logo de la Junta</span>
+                </div>
+                <div class="col-4 text-center">
+                    <span>Sello y firma del director</span>
+                </div>
+            </div>
         </div>
     </div>
     
