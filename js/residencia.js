@@ -24,8 +24,8 @@ $(function() {
     prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "residencia" },()=>{},"json"));
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
-        else {alert(resp["tipo_usu"])
-            if (resp["tipo_usu"]=="secretaria"){
+        else {
+            if (resp["tipo_usu"]=="secretaria"){alert(resp["tipo_usu"])
                 document.getElementById("secretaria").style.display='';
                 document.getElementById("boton_salir").style.display='none';
             }
