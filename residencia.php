@@ -82,7 +82,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row">
                 <div class="col-12 text-center">
                     <span style="font-size: 0.75em">
                         Para cambiar la fianza, o el estado Bonificado/No bonificado o Baja, haz doble clic sobre la celda
