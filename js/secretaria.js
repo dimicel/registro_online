@@ -2162,7 +2162,7 @@ function logosFirmaSello(){
         resizable: false,
         show: { effect: "fade", duration: 0 },
         title: "CAMBIO DE LOGOS Y SELLO Y FIRMA DEL DIRECTOR",
-        width: 700,
+        width: 1000,
         position: { my: "center", at: "center", of: window },
         buttons: [
             {
