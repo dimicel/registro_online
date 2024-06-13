@@ -32,7 +32,7 @@
         <!-- LISTADO USUARIOS _____________________________________________________________________-->
         <!--_______________________________________________________________________________________-->
         <div id="usu_reg_tab" class="ui-widget-header ui-corner-all" >
-            <div class="row alertas" style="margin-top:15px;margin-left:20px" id="secretaria" style="display:'none';">
+            <div class="row alertas" style="margin-top:15px;margin-left:20px" id="secretaria">
                 <div class="col-5">
                     <input type="button" class="textoboton btn btn-success" value="Volver a Secretaría" onclick="document.location='secretaria.php?q='+Date.now()">
                 </div>
