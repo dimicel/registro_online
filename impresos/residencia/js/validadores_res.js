@@ -161,6 +161,9 @@ function creaValidatorPagina1() {
              },
              firma:{
                 required: true
+             },
+             titular_cuenta: {
+                required: true
              }
          },
          messages: {
@@ -174,6 +177,9 @@ function creaValidatorPagina1() {
              },
              firma:{
                 required: "Falta firma para la orden SEPA"
+             },
+             titular_cuenta: {
+                required: "Se necesita el titular de la cuenta asociada al IBAN."
              }
          },
          errorPlacement: function(error, element) {
