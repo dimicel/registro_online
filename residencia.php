@@ -21,7 +21,7 @@
 <body>
     <div id="panel" style="display: block;  padding: 5px; width:990px" class="ui-widget-header ui-corner-all centrado">
         <div style="display:table-cell; padding-left:10px; padding-top: 10px">
-            <img src="recursos/escudo2.jpg" width="115" height="105" alt="Escudo_Uni">
+            <img src="recursos/escudo.jpg" width="115" height="105" alt="Escudo_Uni">
         </div>
         <div style="display:table-cell; vertical-align: middle; padding-left: 20px">
             <h1 style="color:red;display:none" id="servidor_pruebas" ><strong>¡¡¡SERVIDOR DE PRUEBAS!!!</strong></h1>
