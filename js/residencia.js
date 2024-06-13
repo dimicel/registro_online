@@ -138,7 +138,7 @@ function listaUsus() {
                 let partes = data_array[i]["fecha_baja"].split('-');
                 let fechaConvertida = partes[2] + '-' + partes[1] + '-' + partes[0];
                 if (data_array[i]["baja"]==1){
-                    data += "<td style='" + estilo_usu[6] + ";text-align:center'><a href='"+fechaConvertida+"' target='_blank'>Ver</a></td>";
+                    data += "<td style='" + estilo_usu[6] + ";text-align:center'>"+fechaConvertida+"</td>";
                 }
                 else{
                     data += "<td style='" + estilo_usu[6] + ";text-align:center'>-</td>";
