@@ -27,6 +27,7 @@ $(function() {
         else {
             if (resp["tipo_usu"]=="secretaria"){
                 document.getElementById("secretaria").style.display='';
+                document.getElementById("csv_remesas").style.display='';
                 document.getElementById("boton_salir").style.display='none';
             }
             document.getElementById("rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
