@@ -534,3 +534,8 @@ function cierrasesion() {
         open("index.php?q=" + Date.now().toString(), "_self");
     });
 }
+
+function remesasBanco() {
+    document.getElementById("curso_csv_remesas").value = document.getElementById("curso").value;
+    document.getElementById("descarga_csv_remesas").submit();
+}
