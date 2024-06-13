@@ -47,6 +47,9 @@
                 <div class="col-3">
                     <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
                 </div>
+                <div class="col-2" style="display:none">
+                    <input type="button" id="csv_remesas"  class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">
+                </div>
                 <div class="col-1">
                     <input type="button" id="boton_salir"  class="textoboton btn btn-success" value="SALIR" onclick="javascript: cierrasesion();">
                 </div>
