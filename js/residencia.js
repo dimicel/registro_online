@@ -423,7 +423,7 @@ function altaBaja(__registro,celda){
         resizable: false,
         show: { effect: "fade", duration: 0 },
         title: "ALTA/BAJA DE RESIDENTE",
-        width: 700,
+        width: 400,
         position: { my: "center", at: "center", of: window },
         buttons: [
             {
@@ -484,7 +484,7 @@ function fianza(__registro,celda){
         resizable: false,
         show: { effect: "fade", duration: 0 },
         title: "FIANZA ASIGNADA PARA SER DEVUELTA",
-        width: 300,
+        width: 400,
         position: { my: "center", at: "center", of: window },
         buttons: [
             {
