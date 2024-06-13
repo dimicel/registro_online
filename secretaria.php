@@ -488,11 +488,16 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-4">
-                    <a href="#" ondblclick="subeLogo('logo_centro')"><img src="recursos/logo_centro.jpg"></a>
+                    <a href="#" ondblclick="subeLogo('logo_centro')"><img src="recursos/escudo.jpg" width="240"></a>
+                </div>
+                <div class="col-4">
+                    <a href="#" ondblclick="subeLogo('logo_junta')"><img src="recursos/logo_ccm.jpg" width="240"></a>
+                </div>
+                <div class="col-4">
+                    <a href="#" ondblclick="subeLogo('firma_sello')"><img src="recursos/sello_firma.jpg" width="240"></a>
                 </div>
             </div>
         </div>
-        
     </div>
     
 
