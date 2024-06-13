@@ -486,7 +486,7 @@
 
     <div class="row alertas" id="div_carga_logos_sellofirma">
         <div class="col-12">
-            <div class="row">
+            <div class="row text-center">
                 <span>Doble clic en una imagen para sustituirla por otra.</span>
             </div>
             <div class="row" style="height:300px;">
