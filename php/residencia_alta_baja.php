@@ -12,13 +12,16 @@ if ($mysqli->errno>0) {
 
 $registro=$_POST['registro'];
 $baja=$_POST['baja'];
+$fecha_baja=date('Y-m-d');
+if ($baja==0)$fecha_baja="0000-00-00";
 
 $sql = "UPDATE residentes SET 
-    baja = ?
+    baja = ?,
+    fecha_baja= ?
     WHERE registro='$registro'";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param('s',  $baja);
+$stmt->bind_param('s,s',  $baja,$fecha_baja);
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
