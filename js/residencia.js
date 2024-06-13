@@ -25,7 +25,7 @@ $(function() {
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
-            if (resp["tipo_usu"]=="secretaria"){alert(resp["tipo_usu"])
+            if (resp["tipo_usu"]=="secretaria"){
                 document.getElementById("secretaria").style.display='';
                 document.getElementById("boton_salir").style.display='none';
             }
