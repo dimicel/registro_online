@@ -67,7 +67,13 @@
                 </div>
             -->
             </div>
-                
+            <div class="row">
+                <div class="col">
+                    <span style="font-size: 0.75em">
+                        Para cambiar la fianza, o el estado Bonificado/No bonificado o Baja, haz doble clic sobre la celda
+                    </span>
+                </div>
+            </div>   
             <div class="row" style="margin-top:15px">
                 <label class="col-form-label col-1" style="margin-left:20px">Buscar: </label>
                 <div class="col-7" style="margin-left:-35px">
