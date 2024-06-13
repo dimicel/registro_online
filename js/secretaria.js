@@ -2207,13 +2207,13 @@ function subeLogo(obj, imagen){
             } else if (resp == "ok") {
                 var timestamp = new Date().getTime();
                 if (imagen=="logo_centro"){
-                    obj.src = 'recursos/escudo.jpg?t=' + timestamp;
+                    document.getElementById("imagen_logo_centro").src = 'recursos/escudo.jpg?t=' + timestamp;
                 }
                 else if(imagen=="logo_junta"){
-                    obj.src = 'recursos/logo_ccm.jpg?t=' + timestamp;
+                    document.getElementById("imagen_logo_junta").src = 'recursos/logo_ccm.jpg?t=' + timestamp;
                 }
                 else if(imagen=="firma_sello"){
-                    obj.src = 'recursos/sello_firma.jpg?t=' + timestamp;
+                    document.getElementById("imagen_firma_sello").src = 'recursos/sello_firma.jpg?t=' + timestamp;
                 }
                 
                 alerta("Imagen actualizada.", "OK");

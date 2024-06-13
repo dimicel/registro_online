@@ -493,15 +493,15 @@
             </div>
             <div class="row" style="height:300px;">
                 <div class="col-4" style="display: flex;justify-content: center;align-items: center;height: 100%;">
-                    <a href="#" ondblclick="document.getElementById('logo_centro').click()"><img src="recursos/escudo.jpg" width="240"></a>
+                    <a href="#" ondblclick="document.getElementById('logo_centro').click()"><img id="imagen_logo_centro" src="recursos/escudo.jpg" width="240"></a>
                     <input type="file" id="logo_centro" name="logo_centro" style="position: absolute; left:-9999px" accept="image/jpeg" onchange="subeLogo(this,'logo_centro')" />
                 </div>
                 <div class="col-4" style="display: flex;justify-content: center;align-items: center;height: 100%;">
-                    <a href="#" ondblclick="document.getElementById('logo_junta').click()"><img src="recursos/logo_ccm.jpg" width="240"></a>
+                    <a href="#" ondblclick="document.getElementById('logo_junta').click()"><img id="imagen_logo_junta" src="recursos/logo_ccm.jpg" width="240"></a>
                     <input type="file" id="logo_junta" name="logo_junta" style="position: absolute; left:-9999px" accept="image/jpeg" onchange="subeLogo(this,'logo_junta')" />
                 </div>
                 <div class="col-4" style="display: flex;justify-content: center;align-items: center;height: 100%;">
-                    <a href="#" ondblclick="document.getElementById('firma_sello').click()"><img src="recursos/sello_firma.jpg" width="240"></a>
+                    <a href="#" ondblclick="document.getElementById('firma_sello').click()"><img id="imagen_firma_sello" src="recursos/sello_firma.jpg" width="240"></a>
                     <input type="file" id="firma_sello" name="firma_sello" style="position: absolute; left:-9999px" accept="image/jpeg" onchange="subeLogo(this,'firma_sello')" />
                 </div>
             </div>
