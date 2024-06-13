@@ -495,6 +495,10 @@ function muestraEditor(_file,tipo){
                                 alerta("Ha habido un error al subir la imagen.", "Error carga");
                             } else if (resp == "almacenar") {
                                 alerta("Ha habido un error al copiar la imagen.", "Error copia");
+                            }
+                            else if(resp=="ok"){
+                                if (tipo=="foto")existe_foto=true;
+                                else existe_tarjeta_san=true;
                             } 
                         });
 
