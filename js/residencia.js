@@ -130,24 +130,24 @@ function listaUsus() {
                 }
                 data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='fianza(\""+data_array[i]["registro"]+"\",this)'>" + data_array[i]["devolucion_fianza"] + "</td>";
                 if (data_array[i]["baja"]==1){
-                    data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>NO</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>NO</td>";
                 }
                 let partes = data_array[i]["fecha_baja"].split('-');
                 let fechaConvertida = partes[2] + '-' + partes[1] + '-' + partes[0];
                 if (data_array[i]["baja"]==1){
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'><a href='"+fechaConvertida+"' target='_blank'>Ver</a></td>";
-                }
-                else{
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>-</td>";
-                }
-                if (data_array[i]["sepa"]!=""){
-                    data += "<td style='" + estilo_usu[6] + ";text-align:center'><a href='"+data_array[i]["sepa"]+"' target='_blank'>Ver</a></td>";
+                    data += "<td style='" + estilo_usu[6] + ";text-align:center'><a href='"+fechaConvertida+"' target='_blank'>Ver</a></td>";
                 }
                 else{
                     data += "<td style='" + estilo_usu[6] + ";text-align:center'>-</td>";
+                }
+                if (data_array[i]["sepa"]!=""){
+                    data += "<td style='" + estilo_usu[7] + ";text-align:center'><a href='"+data_array[i]["sepa"]+"' target='_blank'>Ver</a></td>";
+                }
+                else{
+                    data += "<td style='" + estilo_usu[7] + ";text-align:center'>-</td>";
                 }
                 data += "</tr>";
             }
