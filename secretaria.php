@@ -39,10 +39,10 @@
             <div style="margin-top:10px; margin-left:10px;" id="menu_div">
                 <ul class="nav bg-white" style="font-size:0.75em !important">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="menu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="menu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                             Gestión Usuarios
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="menu1">
+                        <div class="dropdown-menu" aria-labelledby="menu1" style="font-size:0.75em !important">
                             <a class="nav-link" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios</a>
                             <a class="nav-link" href="#" onclick="javascript: verListaUsuarios();">Usuarios</a>
                         </div>
@@ -51,7 +51,7 @@
                         <a class="nav-link dropdown-toggle" id="menu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Seleccionar
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="menu2">
+                        <div class="dropdown-menu" aria-labelledby="menu2" style="font-size:0.75em !important">
                             <a class="dropdown-item " href="#" onclick="seleccionaRegistros('todo')">Todas</a>
                             <a class="dropdown-item " href="#" onclick="seleccionaRegistros('ninguno')">Ninguna</a>
                             <a class="dropdown-item " href="#" onclick="seleccionaRegistros('invertir')">Invertir Selección</a>
@@ -61,7 +61,7 @@
                         <a class="nav-link dropdown-toggle " id="menu3" href="#" data-toggle="dropdown">
                             Listar Solicitudes
                         </a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu" style="font-size:0.75em !important">
                             <a class="dropdown-item " href="#" onclick="registrosAPdf('seleccionadas')">Seleccionadas</a>
                             <a class="dropdown-item " href="#" onclick="registrosAPdf('no listadas')">No listadas</a>
                             <a class="dropdown-item " href="#" onclick="registrosAPdf('listadas')">Listadas</a>
@@ -70,7 +70,7 @@
                     </li>
                     <li class="nav-item" id="menu4">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Prematrícula</a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu" style="font-size:0.75em !important">
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input checkbox_prematricula" id="premat_eso" onchange="cambiaEstadoPrematricula(this,'eso')">
                                 <label for="premat_eso" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">ESO</label>
@@ -85,7 +85,7 @@
                     </li>
                     <li class="nav-item" id="menu5">
                         <a class="nav-link dropdown-toggle" id="menu_matricula" href="#" data-toggle="dropdown">Matrícula</a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu" style="font-size:0.75em !important">
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_eso" onchange="cambiaEstadoMatricula(this,'eso')">
                                 <label for="check_mat_eso" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">ESO</label>
@@ -123,7 +123,7 @@
                     </li>
                     <li class="nav-item" id="menu6">
                         <a class="nav-link dropdown-toggle" id="menu_matricula" href="#" data-toggle="dropdown">Configuración</a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu" style="font-size:0.75em !important">
                             <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
                             <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Ciclos Formativos</a>
                             <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Módulos de Ciclos Formativos</a>
