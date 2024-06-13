@@ -21,6 +21,10 @@ elseif (!isset($_POST['tipo_usu']) || !isset($_SESSION['tipo_usu']) || $_POST['t
             $respuesta["error"]="ok";
             $respuesta["tipo_usu"]="jefatura estudios";
         }
+        else if($_POST['tipo_usu']=="residencia" && $_SESSION['tipo_usu']=="secretaria"){
+            $respuesta["error"]="ok";
+            $respuesta["tipo_usu"]="secretaria";
+        }
         else{
             $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
         }
