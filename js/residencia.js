@@ -88,8 +88,8 @@ function listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:270px", "width:270px", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:60px;text-align:center"];
-    encabezamiento_usu = ["NIE", "Alumno", "Email", "Bonificado","Devolución Fianza(€)","Baja","SEPA"];
+    estilo_usu = ["width:80px", "width:220px", "width:220px", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:60px;text-align:center","width:100px;text-align:center"];
+    encabezamiento_usu = ["NIE", "Alumno", "Email", "Bonificado","Devolución Fianza(€)","Baja","Fecha Baja","SEPA"];
 
     //Construcción del encabezamiento de la tabla
     encab_usus = "<tr>";
@@ -130,16 +130,24 @@ function listaUsus() {
                 }
                 data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='fianza(\""+data_array[i]["registro"]+"\",this)'>" + data_array[i]["devolucion_fianza"] + "</td>";
                 if (data_array[i]["baja"]==1){
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
+                    data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>NO</td>";
+                    data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>NO</td>";
                 }
-                if (data_array[i]["sepa"]!=""){
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'><a href='"+data_array[i]["sepa"]+"' target='_blank'>Ver</a></td>";
+                let partes = data_array[i]["fecha_baja"].split('-');
+                let fechaConvertida = partes[2] + '-' + partes[1] + '-' + partes[0];
+                if (data_array[i]["baja"]==1){
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'><a href='"+fechaConvertida+"' target='_blank'>Ver</a></td>";
                 }
                 else{
                     data += "<td style='" + estilo_usu[5] + ";text-align:center'>-</td>";
+                }
+                if (data_array[i]["sepa"]!=""){
+                    data += "<td style='" + estilo_usu[6] + ";text-align:center'><a href='"+data_array[i]["sepa"]+"' target='_blank'>Ver</a></td>";
+                }
+                else{
+                    data += "<td style='" + estilo_usu[6] + ";text-align:center'>-</td>";
                 }
                 data += "</tr>";
             }
