@@ -2150,3 +2150,8 @@ function parametrosCentro(){
     });
     
 }
+
+
+function logosFirmaSello(){
+    
+}
