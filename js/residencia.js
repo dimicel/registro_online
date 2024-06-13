@@ -25,7 +25,10 @@ $(function() {
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
-            if (resp["tipo_usu"]=="secretaria")document.getElementById("secretaria").style.display='';
+            if (resp["tipo_usu"]=="secretaria"){
+                document.getElementById("secretaria").style.display='';
+                document.getElementById("boton_salir").style.display='none';
+            }
             document.getElementById("rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
             anno_ini_curso = resp["anno_ini_curso"];
             anno_ini_curso_docs = resp["anno_ini_curso_docs"];
@@ -517,4 +520,8 @@ function fianza(__registro,celda){
     });
 }
 
-
+function cierrasesion() {
+    $.post("php/logout.php", {}, function(resp) {
+        open("index.php?q=" + Date.now().toString(), "_self");
+    });
+}

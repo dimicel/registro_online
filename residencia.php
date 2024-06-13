@@ -45,6 +45,9 @@
                 <div class="col-3">
                     <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
                 </div>
+                <div class="col-1">
+                    <input type="button" id="boton_salir"  class="textoboton btn btn-success" value="SALIR" onclick="javascript: cierrasesion();">
+                </div>
                 <!--
                 <div class="col-1">
                     <label class="col-form-label" style="margin-left:20px; ">Mostrar: </label>
