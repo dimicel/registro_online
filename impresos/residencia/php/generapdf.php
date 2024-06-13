@@ -143,6 +143,7 @@ $ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_
 $ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpeg";
 if (isset($_POST['iban']))$iban = trim($_POST['iban']);
 if (isset($_POST['bic']))$bic = trim($_POST['bic']);
+if (isset($_POST['titular_cuenta']))$titular_cuenta = trim($_POST['titular_cuenta']);
 
 if (strlen(trim($enfermedad_pasada))==0)$enfermedad_pasada="No";
 if (strlen(trim($enfermedad))==0)$enfermedad="No";
@@ -222,7 +223,8 @@ $mysqli->query("insert into residentes (id_nie,
 										estudios_tut2,
                                         email_tutor2,
                                         tlf_tutor2,
-										fianza) 
+										fianza,
+										titular_cuenta) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
@@ -263,7 +265,8 @@ $mysqli->query("insert into residentes (id_nie,
 										'$tut2_estudios',
 										'$tut2_email',
 										'$tut2_telef',
-										'$fianza')");
+										'$fianza',
+										'$titular_cuenta')");
 if ($mysqli->errno>0){
 	unlink($tempFile);
 	$respuesta["status"]="registro_erroneo ".$mysqli->errno;
@@ -815,7 +818,7 @@ if($bonificado==0){
 	$pdf_sepa->setPageMark();
 	
 	$pdf_sepa->SetXY(22,129);
-	$pdf_sepa->Cell(0,0,$nombre . " " . $apellidos,0,0,'L',0,'',1,true,'T','T');
+	$pdf_sepa->Cell(0,0,$titular_cuenta,0,0,'L',0,'',1,true,'T','T');
 	$pdf_sepa->SetXY(22,139);
 	$pdf_sepa->Cell(0,0,$direccion,0,0,'L',0,'',1,true,'T','T');
 	$pdf_sepa->SetXY(22,148);

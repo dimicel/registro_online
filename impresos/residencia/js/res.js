@@ -332,6 +332,7 @@ function registraSolicitud() {
     if (document.getElementById("res_bonifNO").checked){
         f.appendChild(f6.bic);
         f.appendChild(f6.iban);
+        f.appendChild(f6.titular_cuenta);
         var inputFirma = document.createElement("input");
         inputFirma.type = "hidden";
         inputFirma.name = "firma";
