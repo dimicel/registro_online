@@ -21,7 +21,7 @@ $sql = "UPDATE residentes SET
     WHERE registro='$registro'";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param('s,s',  $baja,$fecha_baja);
+$stmt->bind_param('ss',  $baja,$fecha_baja);
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
