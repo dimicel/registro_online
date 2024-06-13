@@ -2185,8 +2185,8 @@ function subeLogo(obj, imagen){
     }
 
     datos = new FormData();
-    datos.append(archivo, obj.files[0]);
-    datos.append(tipo,imagen);
+    datos.append("archivo", obj.files[0]);
+    datos.append("tipo",imagen);
     document.getElementById("cargando").style.display = 'inline-block';
     $.ajax({
             url: "php/secret_logo_firma.php",
