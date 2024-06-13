@@ -2175,3 +2175,48 @@ function logosFirmaSello(){
         }]
     });
 }
+
+
+function subeLogo(obj, imagen){
+    if (obj.files[0].type !== "image/jpeg" && obj.files[0].type !== "image/jpg") {
+        obj.value = null;
+        alerta("Formato de archivo no válido", "NO VÁLIDO");
+        return;
+    }
+
+    datos = new FormData();
+    datos.append(archivo, obj.files[0]);
+    datos.append(tipo,imagen);
+    document.getElementById("cargando").style.display = 'inline-block';
+    $.ajax({
+            url: "php/secret_logo_firma.php",
+            type: 'POST',
+            data: datos,
+            contentType: false,
+            processData: false,
+            cache: false
+        })
+        .done(function(resp) {
+            document.getElementById("cargando").style.display = 'none';
+            if (resp == "archivo") {
+                alerta("Ha habido un error al subir el archivo.", "Error carga");
+                obj.value = null;
+            } else if (resp == "almacenar") {
+                alerta("Ha habido un error al copiar el archivo.", "Error copia");
+                obj.value = null;
+            } else if (resp == "ok") {
+                var timestamp = new Date().getTime();
+                if (imagen=="logo_centro"){
+                    obj.src = 'recursos/escudo.jpg?t=' + timestamp;
+                }
+                else if(imagen=="logo_junta"){
+                    obj.src = 'recursos/logo_ccm.jpg?t=' + timestamp;
+                }
+                else if(imagen=="firma_sello"){
+                    obj.src = 'recursos/sello_firma.jpg?t=' + timestamp;
+                }
+                
+                alerta("Imagen actualizada.", "OK");
+            }
+        });
+}
