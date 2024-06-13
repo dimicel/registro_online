@@ -32,6 +32,9 @@
         <!-- LISTADO USUARIOS _____________________________________________________________________-->
         <!--_______________________________________________________________________________________-->
         <div id="usu_reg_tab" class="ui-widget-header ui-corner-all" >
+            <div class="row" style="margin-top:15px" id="secretaria" style="display: none;">
+                <input type="button" class="textoboton btn btn-success" value="Volver a Secretaría" onclick="document.location='secretaria.php?q='+Date.now()">
+            </div>
             <div class="row" style="margin-top:15px">
                 <div class="col-2" >
                     <label class="col-form-label" style="margin-left: 30px;">Año Académico: </label>

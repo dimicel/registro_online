@@ -130,6 +130,9 @@
                         </div>    
                     </li>
                     <li class="nav-item" id="menu7">
+                        <a class="nav-link" href="#" onclick="document.location='residencia.php?q='+Date.now()">Residencia</a>
+                    </li>
+                    <li class="nav-item" id="menu8">
                         <a class="nav-link" href="#" onclick="javascript: cierrasesion();">Salir</a>
                     </li>
                 </ul>
