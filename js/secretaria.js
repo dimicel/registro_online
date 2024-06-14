@@ -849,7 +849,7 @@ function verRegAdjuntosConvalid(reg){
             for(i=0;i<resp2.datos.length;i++){
                 _div += "<li><a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a>";
                 if (resp2.datos[i].subidopor=="secretaria"){
-                    _div+="(<a style='color:RED;font-size:0.75em' href='#' onclick='eliminaAdjuntoConvalid(\""+resp2.datos[i].ruta+"\")'>X</a>";
+                    _div+="&nbsp&nbsp(<a style='color:RED;font-size:0.75em' href='#' onclick='eliminaAdjuntoConvalid(\""+resp2.datos[i].ruta+"\")'>X</a>)";
                 }
                 _div+="</li>";
             }
