@@ -1907,88 +1907,122 @@ function tipoDocAdjuntoConvalid(obj){
 
 function adjuntaDocAdicional(_id_nie,registro){
     //Para convalidaciones
-    c="<div class='row'>";
-    c+="<div class='col-1'><label for='tipo_doc_conval' class='col-form-label'>Tipo: </label></div>";
-    c+="<div class='col-3'><select class='form-control' id='tipo_doc_conval' name='tipo_doc_conval' size='1' onchange='tipoDocAdjuntoConvalid(this);'/>";
-    c+="<option value=''>Selecciona uno...</option>";
-    c+="<option value='Resolución del Ministerio'>Resolución del Ministerio</option>";
-    c+="<option value='Resolución de Consejería'>Resolución de Consejería</option>";
-    c+="<option value='Otro'>Otro</option>";
-    c+="</select></div>";
-    c+="<div class='col-2'><label for='desc_adic_conval' class='col-form-label'>Descripción: </label></div>";
-    c+="<div class='col-5'><input type='text' class='form-control' id='desc_adic_conval' name='desc_adic_conval' maxlength='40' readonly/></div></div>";
-    c+="<div class='row' style='margin-top:10px'><div class='col-2'><label for='doc_adic_conval' class='col-form-label'>Documento: </label></div>";
-    c+="<div class='col-6'><input type='text' class='form-control' id='doc_adic_conval' readonly placeholder='Seleccionar documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/></div>";
-    c+="</div>";
-    c+="<input type='file' id='conval_doc_adicional' name='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById(\"doc_adic_conval\").value=this.files[0].name'/>";
-    document.getElementById("div_dialogs2").innerHTML=c;
-    $("#div_dialogs2").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "ADJUNTAR DOCUMENTO ADICIONAL A CONVALIDACIÓN",
-        width: 1000,
-        position: { my: "center", at: "center", of: window },
-        buttons: [
-            {
-                class: "btn btn-success textoboton",
-                text: "Subir Documento",
-                click: function() {
-                    if (document.getElementById("desc_adic_conval").value.trim().length==0 || document.getElementById("doc_adic_conval").value.trim().length==0){
-                        alerta("No has seleccionado documento o falta su descripción.", "FALTAN DATOS");
-                    }
-                    else{
-                        datos = new FormData();
-                        datos.append("id_nie",encodeURIComponent(_id_nie));
-                        datos.append("registro",encodeURIComponent(registro));
-                        datos.append("descripcion",encodeURIComponent(document.getElementById("desc_adic_conval").value));
-                        datos.append("documento",document.getElementById("conval_doc_adicional").files[0]);
-                        datos.append("curso",encodeURIComponent(curso_actual));
-                        document.getElementById("cargando").style.display = 'inherit';
-                        $.post({
-                            url:"php/secret_convalid_subedocadic.php" ,
-                            data: datos,
-                            contentType: false,
-                            processData: false,
-                            success: function(resp) {
-                                document.getElementById("cargando").style.display = 'none';
-                                if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
-                                else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
-                                else if (resp == "error_subida") alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
-                                else if (resp == "ok"){
-                                    verRegAdjuntosConvalid(registro);
-                                    alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
-                                } 
-                                document.getElementById("div_dialogs2").innerHTML="";
-                                $("#div_dialogs2").dialog("close");
-                                $("#div_dialogs2").dialog("destroy");
-                            },
-                            error: function(xhr, status, error) {
-                                document.getElementById("cargando").style.display = 'none';
-                                alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                                document.getElementById("div_dialogs2").innerHTML="";
-                                $("#div_dialogs2").dialog("close");
-                                $("#div_dialogs2").dialog("destroy");
+    __ministerio=0;
+    __consejeria=0;
+    $.post("php/secret_convalid_ver_procesado_organismo",{registro:registro},(resp)=>{
+        if(resp.error=='ok'){
+            __ministerio=resp.ministerio;
+            __consejeria=resp.consejeria;
+            c="<div class='row'>";
+            c+="<div class='col-1'><label for='tipo_doc_conval' class='col-form-label'>Tipo: </label></div>";
+            c+="<div class='col-3'><select class='form-control' id='tipo_doc_conval' name='tipo_doc_conval' size='1' onchange='tipoDocAdjuntoConvalid(this);'/>";
+            c+="<option value=''>Selecciona uno...</option>";
+            if(resp.ministerio==1)c+="<option value='Resolución del Ministerio'>Resolución del Ministerio</option>";
+            if(resp.consejeria==1)c+="<option value='Resolución de Consejería'>Resolución de Consejería</option>";
+            c+="<option value='Otro'>Otro</option>";
+            c+="</select></div>";
+            c+="<div class='col-2'><label for='desc_adic_conval' class='col-form-label'>Descripción: </label></div>";
+            c+="<div class='col-5'><input type='text' class='form-control' id='desc_adic_conval' name='desc_adic_conval' maxlength='40' readonly/></div></div>";
+            c+="<div class='row' style='margin-top:10px'><div class='col-2'><label for='doc_adic_conval' class='col-form-label'>Documento: </label></div>";
+            c+="<div class='col-6'><input type='text' class='form-control' id='doc_adic_conval' readonly placeholder='Seleccionar documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/></div>";
+            c+="</div>";
+            c+="<input type='file' id='conval_doc_adicional' name='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById(\"doc_adic_conval\").value=this.files[0].name'/>";
+            document.getElementById("div_dialogs2").innerHTML=c;   
+            
+            $("#div_dialogs2").dialog({
+                autoOpen: true,
+                dialogClass: "no-close",
+                modal: true,
+                draggable: false,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "ADJUNTAR DOCUMENTO ADICIONAL A CONVALIDACIÓN",
+                width: 1000,
+                position: { my: "center", at: "center", of: window },
+                buttons: [
+                    {
+                        class: "btn btn-success textoboton",
+                        text: "Subir Documento",
+                        click: function() {
+                            if (document.getElementById("desc_adic_conval").value.trim().length==0 || document.getElementById("doc_adic_conval").value.trim().length==0){
+                                alerta("No has seleccionado documento o falta su descripción.", "FALTAN DATOS");
                             }
-                        });
+                            else{
+                                datos = new FormData();
+                                datos.append("id_nie",encodeURIComponent(_id_nie));
+                                datos.append("registro",encodeURIComponent(registro));
+                                datos.append("descripcion",encodeURIComponent(document.getElementById("desc_adic_conval").value));
+                                datos.append("documento",document.getElementById("conval_doc_adicional").files[0]);
+                                datos.append("curso",encodeURIComponent(curso_actual));
+                                document.getElementById("cargando").style.display = 'inherit';
+                                $.post({
+                                    url:"php/secret_convalid_subedocadic.php" ,
+                                    data: datos,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function(resp) {
+                                        //document.getElementById("cargando").style.display = 'none';
+                                        if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                                        else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+                                        else if (resp == "error_subida") alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
+                                        else if (resp == "ok"){
+                                            verRegAdjuntosConvalid(registro);
+                                            alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
+                                        }
+                                        //document.getElementById("cargando").style.display = 'inherit';
+                                        if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio'){
+                                            organismo=ministerio;
+                                        }
+                                        else if(document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
+                                            organismo=consejeria;
+                                        }
+                                        $.post("php/secret_convalid_procesado_organismo.php",{registro:registro,organismo:organismo,estado_procesado:1},(resp)=>{
+                                            document.getElementById("cargando").style.display = 'none';
+                                            if(resp=="ok") alerta("Estado procesado cambiado correctamente.", "OK");
+                                            else {
+                                                alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
+                                                obj.checked=!obj.checked;
+                                            }
+                                        });
+                                        document.getElementById("div_dialogs2").innerHTML="";
+                                        $("#div_dialogs2").dialog("close");
+                                        $("#div_dialogs2").dialog("destroy");
+                                    },
+                                    error: function(xhr, status, error) {
+                                        document.getElementById("cargando").style.display = 'none';
+                                        alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                                        document.getElementById("div_dialogs2").innerHTML="";
+                                        $("#div_dialogs2").dialog("close");
+                                        $("#div_dialogs2").dialog("destroy");
+                                    }
+                                });
+                            }
+                            
+                        }
+                    },
+                    {
+                    class: "btn btn-success textoboton",
+                    text: "Cancelar",
+                    click: function() {
+                        document.getElementById("div_dialogs2").innerHTML="";
+                        $("#div_dialogs2").dialog("close");
+                        $("#div_dialogs2").dialog("destroy");
                     }
-                    
-                }
-            },
-            {
-            class: "btn btn-success textoboton",
-            text: "Cancelar",
-            click: function() {
-                document.getElementById("div_dialogs2").innerHTML="";
-                $("#div_dialogs2").dialog("close");
-                $("#div_dialogs2").dialog("destroy");
-            }
-            }]
-    });
+                    }]
+            });
+        }
+        else if(resp.error=="server"){
+            alerta("Error en el servidor. Inténtelo más tarde","ERROR SERVIDOR");
+        }
+        else if(resp.error=="no_registrado"){
+            alerta("Registro no encontrado.","NO REGISTRO");
+        }
+        else{
+            alerta("Ha ocurrido algún error. Inténtelo más tarde","ERROR NO DEFINIDO");
+        }
+    },"json");
+
 
 
 }
