@@ -14,7 +14,7 @@ $descripcion=urldecode($_POST["descripcion"]);
 $dirRegistro=substr($registro, 17);
 $subidopor=$_SESSION['tipo_usu'];
 if($descripcion=="Resolución del Ministerio" || $descripcion=="Resolución de Consejería"){
-    $nombre_doc=$descripcion;
+    $nombre_doc=$descripcion.".pdf";
 }
 else $nombre_doc=$_FILES["documento"]["name"];
 
