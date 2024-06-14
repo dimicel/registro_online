@@ -1104,7 +1104,7 @@ function confirmadoBorradoAdjuntoConvalid() {
             } else if (resp == "ok") {
                 alerta("Documento borrado con éxito.", "BORRADO OK");
                 if (refresca_docs=='0')regeneraListaAdjuntosConvalid();
-                else {alert(registro);verRegAdjuntosConvalid(registro);}
+                else verRegAdjuntosConvalid(registro);
             }
             else if (resp == "server") {
                 alerta("Documento adjunto no eliminado, porque no se ha podido eliminar el registro asociado en la base de datos", "ERROR DB");
