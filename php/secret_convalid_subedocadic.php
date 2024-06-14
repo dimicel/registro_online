@@ -34,6 +34,7 @@ else {
     $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
     $rutaCompleta=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
 }
+$ruta_dir=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs";
 
 if (!is_file($rutaCompleta)){
     $mysqli->begin_transaction();
@@ -43,8 +44,8 @@ if (!is_file($rutaCompleta)){
         $stmt2->execute();
         $stmt2->close();
         
-        if (!is_dir($rutaCompleta)) {
-            mkdir($rutaCompleta, 0777, true);
+        if (!is_dir($ruta_dir)) {
+            mkdir($ruta_dir, 0777, true);
         }
         if(!move_uploaded_file($_FILES["documento"]["tmp_name"], $rutaCompleta)){
             $mysqli->rollback();
@@ -61,8 +62,8 @@ if (!is_file($rutaCompleta)){
     $mysqli->close();
 }
 else{
-    if (!is_dir($rutaCompleta)) {
-        mkdir($rutaCompleta, 0777, true);
+    if (!is_dir($ruta_dir)) {
+        mkdir($ruta_dir, 0777, true);
     }
     if(!move_uploaded_file($_FILES["documento"]["tmp_name"], $rutaCompleta)){
         $mysqli->rollback();
