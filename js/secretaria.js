@@ -859,6 +859,11 @@ function verRegAdjuntosConvalid(reg){
     },"json");
 }
 
+
+function eliminaAdjuntoConvalid(ruta){
+    alert(111);
+}
+
 function verRegistro(obj) {
     ancho = 700;
     form1 = document.getElementById("tipo_form").value;
