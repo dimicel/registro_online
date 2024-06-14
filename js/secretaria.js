@@ -1909,7 +1909,7 @@ function adjuntaDocAdicional(_id_nie,registro){
     //Para convalidaciones
     __ministerio=0;
     __consejeria=0;
-    $.post("php/secret_convalid_ver_procesado_organismo",{registro:registro},(resp)=>{
+    $.post("php/secret_convalid_ver_procesado_organismo.php",{registro:registro},(resp)=>{
         if(resp.error=='ok'){
             __ministerio=resp.ministerio;
             __consejeria=resp.consejeria;
