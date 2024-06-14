@@ -1025,7 +1025,7 @@ function adjuntosConvalid(registro){
         else {
             contenido+="";
             for(i=0;i<resp.datos.length;i++){
-                contenido += "<button onclick='borraAdjuntosConvalid(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar adjunto de convalidación' style='color:white;font-weight:bold; font-size:0.5em !important'><i class='bi bi-trash'></i></button>";
+                contenido += "<button onclick='borraAdjuntosConvalid(\""+resp.datos[i].ruta+"\",\""+resp.datos[i].descripcion+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar adjunto de convalidación' style='color:white;font-weight:bold; font-size:0.5em !important'><i class='bi bi-trash'></i></button>";
                 contenido += "<a style='color:GREEN;font-size:0.75em; margin-left:10px;' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a><br>";
             }
         }
@@ -1052,7 +1052,7 @@ function adjuntosConvalid(registro){
     },"json");
 }
 
-function borraAdjuntosConvalid(ruta){
+function borraAdjuntosConvalid(ruta,descripcion){
     $("#div_dialogs2").load("html/secretaria.txt #div_borra_adjuntosconvalid", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
@@ -1062,7 +1062,7 @@ function borraAdjuntosConvalid(ruta){
             _del_ruta = "../" + ruta;
             document.getElementById("doc_cod_seg").value = "";
             document.getElementById("del_ruta").value = _del_ruta;
-            document.getElementById("del_documento").innerHTML = "Adjunto de convalidación";
+            document.getElementById("del_documento").innerHTML = descripcion;
             cod_seg = Math.floor(Math.random() * 1000).toString();
             if (cod_seg.length < 4) {
                 aux = "";

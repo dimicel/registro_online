@@ -849,7 +849,7 @@ function verRegAdjuntosConvalid(reg){
             for(i=0;i<resp2.datos.length;i++){
                 _div += "<li><a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a>";
                 if (resp2.datos[i].subidopor=="secretaria"){
-                    _div+="&nbsp&nbsp(<a style='color:RED;font-size:0.75em' href='#' onclick='eliminaAdjuntoConvalid(\""+resp2.datos[i].ruta+"\",\""+resp2.datos[i].descripcion+"\")'>X</a>)";
+                    _div+="&nbsp&nbsp(<a style='color:RED;font-size:0.75em' href='#' onclick='borraAdjuntosConvalid(\""+resp2.datos[i].ruta+"\",\""+resp2.datos[i].descripcion+"\")'>X</a>)";
                 }
                 _div+="</li>";
             }
@@ -857,69 +857,6 @@ function verRegAdjuntosConvalid(reg){
         }
         document.getElementById("ver_reg_ajuntosConvalid").innerHTML=_div;
     },"json");
-}
-
-
-function eliminaAdjuntoConvalid(ruta,descripcion){
-    alert(ruta+"  "+descripcion);return;
-    $("#div_dialogs").load("html/secretaria.txt #div_elimina_usuario", function(response,status,xhr){
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
-            document.getElementById("t_cod_seg").value = "";
-            cod_seg = Math.floor(Math.random() * 1000).toString();
-            document.getElementById("nie_eliminar").value = id;
-            document.getElementById("id_usu_elim").innerHTML = id + " - " + nom;
-            if (cod_seg.length < 4) {
-                aux = "";
-                for (i = cod_seg.length; i < 4; i++) {
-                    aux += "0";
-                }
-                cod_seg = aux + cod_seg;
-            }
-            document.getElementById("cod_seg").innerHTML = cod_seg;
-            $("#div_dialogs").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: "ELIMINACIÓN DE USUARIO",
-                maxHeight: 500,
-                width: 550,
-                close:function(event,ui){
-                    $("#div_dialogs").dialog("destroy");
-                }
-            });
-        }
-    });
-}
-
-function confirmadoEliminarAdjuntoConvalid(ruta) {
-    if (document.getElementById("cod_seg").innerHTML == document.getElementById("t_cod_seg").value) {
-        $.post("php/secret_usu_eliminausuario.php", { id: nie_borrar }, function(resp) {
-            if (resp == "server") {
-                alerta("Error de servidor. Inténtelo más tarde.", "ERROR EN SERVIDOR");
-            } else if (resp == "error") {
-                alerta("No se ha podido eliminar el usuario.", "ERROR PARCIAL BORRADO");
-            } else if (resp == "error_parcial") {
-                alerta("No se ha podido eliminar el usuario en alguna tabla.", "ERROR BORRADO");
-            } else if (resp == "error_imagenes") {
-                alerta("El usuario ha sido eliminado de la base de datos, pero alguna imagen asociada a él no se ha podido eliminar del servidor.", "ERROR BORRADO");
-            } else {
-                alerta("Usuario eliminado con éxito.", "BORRADO OK");
-            }
-            $('#div_dialogs').dialog('close');
-            listaUsus();
-            listaRegistros(_orden_campo, _orden_direccion);
-        });
-    } else {
-        document.getElementById("t_cod_seg").value = "";
-        alerta("Código introducido incorrecto.<br>No queda confirmada la eliminación del usuario.<br>Cancele o vuelva a introducir el código.", "ELIMINACIÓN NO CONFIRMADA");
-    }
 }
 
 function verRegistro(obj) {
