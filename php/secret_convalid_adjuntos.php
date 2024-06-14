@@ -17,6 +17,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $data["datos"][$contador]["descripcion"]=$row["descripcion"];
         $data["datos"][$contador]["ruta"]=$row["ruta"];
+        $data["datos"][$contador]["subidopor"]=$row["subidopor"];
         $contador++;
     }
     $mysqli->close();
