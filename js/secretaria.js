@@ -1967,22 +1967,28 @@ function adjuntaDocAdicional(_id_nie,registro){
                                         else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
                                         else if (resp == "error_subida") alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
                                         else if (resp == "ok"){
-                                            verRegAdjuntosConvalid(registro);
-                                            alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
-                                            if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio'){
-                                                organismo=ministerio;
-                                            }
-                                            else if(document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
-                                                organismo=consejeria;
-                                            }
-                                            $.post("php/secret_convalid_procesado_organismo.php",{registro:registro,organismo:organismo,estado_procesado:1},(resp)=>{
-                                                document.getElementById("cargando").style.display = 'none';
-                                                if(resp=="ok") alerta("Estado procesado cambiado correctamente.", "OK");
-                                                else {
-                                                    alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
-                                                    obj.checked=!obj.checked;
+                                            if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio' || document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
+                                                if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio'){
+                                                    organismo=ministerio;
                                                 }
-                                            });
+                                                else if(document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
+                                                    organismo=consejeria;
+                                                }
+                                                $.post("php/secret_convalid_procesado_organismo.php",{registro:registro,organismo:organismo,estado_procesado:1},(resp)=>{
+                                                    document.getElementById("cargando").style.display = 'none';
+                                                    if(resp=="ok"){
+                                                        alerta("Estado procesado cambiado correctamente y resolución adjuntada.", "OK");
+                                                    } 
+                                                    else {
+                                                        alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
+                                                        obj.checked=!obj.checked;
+                                                    }
+                                                });
+                                            }
+                                            else{
+                                                document.getElementById("cargando").style.display = 'none';
+                                                alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
+                                            } 
                                         }
                                         //document.getElementById("cargando").style.display = 'inherit';
                                        
