@@ -1973,9 +1973,18 @@ function adjuntaDocAdicional(_id_nie,registro){
                                     processData: false,
                                     success: function(resp) {
                                         //document.getElementById("cargando").style.display = 'none';
-                                        if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
-                                        else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
-                                        else if (resp == "error_subida") alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
+                                        if (resp == "servidor"){
+                                            document.getElementById("cargando").style.display = 'none';
+                                            alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                                        } 
+                                        else if (resp == "database") {
+                                            document.getElementById("cargando").style.display = 'none';
+                                            alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+                                        }
+                                        else if (resp == "error_subida") {
+                                            document.getElementById("cargando").style.display = 'none';
+                                            alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
+                                        }
                                         else if (resp == "ok"){
                                             if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio' || document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
                                                 if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio'){
