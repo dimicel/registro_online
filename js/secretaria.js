@@ -1191,7 +1191,7 @@ function verRegistroConvalidaciones(num_registro){
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
         else if (resp.error == "ok") {
-            contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><br>";
+            contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><span class='verReg_label' style='margin-left:5px'>Nº Registro: </span><span class='verReg_campo'>" + num_registro +"</span><br>";
             contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
             contenido += "<span class='verReg_label'>Teléfono Fijo: </span><span class='verReg_campo'>" + resp.registro.tlf_fijo + "</span><br>";
             contenido += "<span class='verReg_label'>Teléfono Móvil: </span><span class='verReg_campo'>" + resp.registro.tlf_movil + "</span><br>";
