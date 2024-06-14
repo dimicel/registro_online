@@ -26,29 +26,48 @@ else{
     $numFilas = $r->num_rows;
     $indice=sprintf("%02d", $numFilas+1)."_";
 }
-
-$mysqli->begin_transaction();
-try{
-    $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
+if($descripcion=="Resolución del Ministerio" || $descripcion=="Resolución de Consejería"){
+    $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$nombre_doc;
+    $rutaCompleta=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/".$nombre_doc;
+}
+else {
     $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
-    $stmt2->bind_param("sssss", $id_nie,$registro, $descripcion, $rutaTb, $subidopor);
-    $stmt2->execute();
-    $stmt2->close();
-    $rutaCompleta=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/";
+    $rutaCompleta=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
+}
+
+if (!is_file($rutaCompleta)){
+    $mysqli->begin_transaction();
+    try{
+        $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
+        $stmt2->bind_param("sssss", $id_nie,$registro, $descripcion, $rutaTb, $subidopor);
+        $stmt2->execute();
+        $stmt2->close();
+        
+        if (!is_dir($rutaCompleta)) {
+            mkdir($rutaCompleta, 0777, true);
+        }
+        if(!move_uploaded_file($_FILES["documento"]["tmp_name"], $rutaCompleta)){
+            $mysqli->rollback();
+            exit("error_subida");
+        }
+        $mysqli->commit();
+    }
+    catch (Exception $e) {
+        // En caso de error, revertir la transacción
+        $mysqli->rollback();
+        exit("database");
+    }
+    
+    $mysqli->close();
+}
+else{
     if (!is_dir($rutaCompleta)) {
         mkdir($rutaCompleta, 0777, true);
     }
-    if(!move_uploaded_file($_FILES["documento"]["tmp_name"], $rutaCompleta.$indice.$nombre_doc)){
+    if(!move_uploaded_file($_FILES["documento"]["tmp_name"], $rutaCompleta)){
         $mysqli->rollback();
         exit("error_subida");
     }
-    $mysqli->commit();
-}
-catch (Exception $e) {
-    // En caso de error, revertir la transacción
-    $mysqli->rollback();
-    exit("database");
 }
 
-$mysqli->close();
 exit("ok");
