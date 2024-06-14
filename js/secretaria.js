@@ -1993,10 +1993,8 @@ function adjuntaDocAdicional(_id_nie,registro){
                                                 else if(document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
                                                     organismo="consejeria";
                                                 }
-                                                alert(registro);
                                                 $.post("php/secret_convalid_procesado_organismo.php",{registro:registro,organismo:organismo,estado_procesado:1},(resp)=>{
                                                     document.getElementById("cargando").style.display = 'none';
-                                                    alert(resp);
                                                     if(resp=="ok"){
                                                         alerta("Estado procesado cambiado correctamente y resolución adjuntada.", "OK");
                                                     }

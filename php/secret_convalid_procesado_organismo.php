@@ -15,13 +15,20 @@ if ($organismo=="centro") $resuelto_por="resuelto_cen";
 elseif ($organismo=="consejeria") $resuelto_por="resuelto_con";
 elseif ($organismo=="ministerio") $resuelto_por="resuelto_min";
 
+$sql2="select * from convalidaciones where registro='$registro'";
+$cont=$mysqli->query($sql2);
+if($cont->num_rows==0){
+    $mysqli->close();
+    exit("no_registro");
+}
+
 $sql = "UPDATE convalidaciones SET $resuelto_por='$estado_procesado' WHERE registro='$registro'";
 $result = $mysqli->query($sql);
-if ($mysqli->affected_rows > 0) {
+if ($result) {
     $mysqli->close();
     exit("ok");
 }
 else {
     $mysqli->close();
-    exit("no_registro");
+    exit("db");
 }
