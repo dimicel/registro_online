@@ -1978,12 +1978,12 @@ function adjuntaDocAdicional(_id_nie,registro){
                                                     document.getElementById("cargando").style.display = 'none';
                                                     if(resp=="ok"){
                                                         alerta("Estado procesado cambiado correctamente y resolución adjuntada.", "OK");
-                                                        listaRegistros();
                                                     } 
                                                     else {
                                                         alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
                                                         obj.checked=!obj.checked;
                                                     }
+                                                    listaRegistros();
                                                 });
                                             }
                                             else{
