@@ -1995,12 +1995,16 @@ function adjuntaDocAdicional(_id_nie,registro){
                                                 }
                                                 $.post("php/secret_convalid_procesado_organismo.php",{registro:registro,organismo:organismo,estado_procesado:1},(resp)=>{
                                                     document.getElementById("cargando").style.display = 'none';
+                                                    alert(resp);
                                                     if(resp=="ok"){
                                                         alerta("Estado procesado cambiado correctamente y resolución adjuntada.", "OK");
-                                                    } 
+                                                    }
+                                                    else if(resp=="no_registro") {
+                                                        alerta("No existe el registro","ERROR");
+                                                    }
                                                     else {
                                                         alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
-                                                        obj.checked=!obj.checked;
+                                                        //obj.checked=!obj.checked;
                                                     }
                                                     listaRegistros();
                                                 });
