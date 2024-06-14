@@ -13,6 +13,10 @@ $anno_curso=urldecode($_POST["curso"]);
 $descripcion=urldecode($_POST["descripcion"]);
 $dirRegistro=substr($registro, 17);
 $subidopor=$_SESSION['tipo_usu'];
+if($descripcion=="Resolución del Ministerio" || $descripcion=="Resolución de Consejería"){
+    $nombre_doc=$descripcion;
+}
+else $nombre_doc=$_FILES["documento"]["name"];
 
 $r=$mysqli->query("SELECT * FROM convalidaciones_docs WHERE registro='$registro' AND subidopor='$subidopor'");
 if (!$r){
@@ -26,7 +30,7 @@ else{
 $mysqli->begin_transaction();
 try{
     $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
-    $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$_FILES["documento"]["name"];
+    $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
     $stmt2->bind_param("sssss", $id_nie,$registro, $descripcion, $rutaTb, $subidopor);
     $stmt2->execute();
     $stmt2->close();
@@ -34,7 +38,7 @@ try{
     if (!is_dir($rutaCompleta)) {
         mkdir($rutaCompleta, 0777, true);
     }
-    if(!move_uploaded_file($_FILES["documento"]["tmp_name"], $rutaCompleta.$indice.$_FILES["documento"]["name"])){
+    if(!move_uploaded_file($_FILES["documento"]["tmp_name"], $rutaCompleta.$indice.$nombre_doc)){
         $mysqli->rollback();
         exit("error_subida");
     }
