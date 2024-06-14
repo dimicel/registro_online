@@ -687,8 +687,10 @@ function listaRegistros(orden_campo, orden_direccion) {
                         else if (j==3 || j==5 || j==7) data += "<td style='" + estilo[j] + "'>" + array_sino[data_array[i][campos[j]]] + "</td>";
                         else if(j==4){
                             if (data_array[i][campos[3]]==1){
-                                if(data_array[i][campos[j]]==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"centro\",\""+data_array[i]["registro"]+"\");'/></center></td>";
-                                else data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"centro\",\""+data_array[i]["registro"]+"\");'/></center></td>";    
+                                //if(data_array[i][campos[j]]==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"centro\",\""+data_array[i]["registro"]+"\");'/></center></td>";
+                                //else data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"centro\",\""+data_array[i]["registro"]+"\");'/></center></td>";    
+                                if(data_array[i][campos[j]]==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); return 0;'/></center></td>";
+                                else data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); return 0;'/></center></td>";    
                             }
                             else{
                                 data += "<td style='width:70px'><center>-</center></td>";     
@@ -707,8 +709,10 @@ function listaRegistros(orden_campo, orden_direccion) {
                         }
                         else if(j==8){
                             if (data_array[i][campos[7]]==1){
-                                if(data_array[i][campos[j]]==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"ministerio\",\""+data_array[i]["registro"]+"\");'/></center></td>";
-                                else data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"ministerio\",\""+data_array[i]["registro"]+"\");'/></center></td>";
+                                //if(data_array[i][campos[j]]==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"ministerio\",\""+data_array[i]["registro"]+"\");'/></center></td>";
+                                //else data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); procesadoConvalidaciones(this,\"ministerio\",\""+data_array[i]["registro"]+"\");'/></center></td>";
+                                if(data_array[i][campos[j]]==1) data += "<td style='width:70px'><center><input type='checkbox' checked onclick='javascript:event.stopPropagation(); return 0;'/></center></td>";
+                                else data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); return 0;'/></center></td>";
                             }
                             else{
                                 data += "<td style='width:70px'><center>-</center></td>";     
