@@ -1969,10 +1969,10 @@ function adjuntaDocAdicional(_id_nie,registro){
                                         else if (resp == "ok"){
                                             if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio' || document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
                                                 if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio'){
-                                                    organismo=ministerio;
+                                                    organismo="ministerio";
                                                 }
                                                 else if(document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
-                                                    organismo=consejeria;
+                                                    organismo="consejeria";
                                                 }
                                                 $.post("php/secret_convalid_procesado_organismo.php",{registro:registro,organismo:organismo,estado_procesado:1},(resp)=>{
                                                     document.getElementById("cargando").style.display = 'none';
