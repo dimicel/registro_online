@@ -1990,6 +1990,7 @@ function adjuntaDocAdicional(_id_nie,registro){
                                                 document.getElementById("cargando").style.display = 'none';
                                                 alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
                                             } 
+                                            verRegAdjuntosConvalid(num_registro);
                                         }
                                         //document.getElementById("cargando").style.display = 'inherit';
                                        
