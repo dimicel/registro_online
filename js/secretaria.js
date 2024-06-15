@@ -533,7 +533,8 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
 
     if (typeof(orden_campo) != "string") {
-        orden_campo = "apellidos,nombre";
+        if (tipo_formulario=="convalidaciones")orden_campo="fecha_registro";
+        else orden_campo = "apellidos,nombre";
         _orden_campo = orden_campo;
     }
     if (typeof(orden_direccion) != "string") {
