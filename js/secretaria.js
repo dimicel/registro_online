@@ -1254,6 +1254,7 @@ function verRegistroConvalidaciones(num_registro){
 
 function verPanelResolver(id_nie,registro){
     ancho=1000;
+    salir=false;
     $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
         if (resp["error"]=="ok"){
             panel=document.getElementById("verModulosConvalidaciones_div");
@@ -1281,51 +1282,50 @@ function verPanelResolver(id_nie,registro){
             }
             cont+="</div></form>";
             document.getElementById("verModulosConvalidaciones_div").innerHTML=cont;
+            $("#verModulosConvalidaciones_div").dialog({
+                autoOpen: true,
+                dialogClass: "no-close",
+                modal: true,
+                draggable: false,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "RESOLUCIÓN CONVALIDACIÓN MÓDULOS",
+                width: ancho,
+                position: { my: "center top", at: "center top", of: window },
+                buttons:{
+                    "Resolver":function(){
+                        $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
+                            if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
+                            else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
+                            else if(resp=="ok"){
+                                alerta("Proceso terminado","OK");
+                            }
+                            else if(resp=="error_db_conval") alerta("No se han grabado los datos de resolución de los módulos poruqe no se ha podido actualizar el estado en la tabla convalidaciones.","ERROR TABLA");
+                            else if(resp=="no_datospdf") alerta("No se puede generar la notificación para el alumno. Fallo al acceder a los datos de la solicitud o hay un registro duplicado. Revise los datos de la tabla en este último caso.","ERROR DB");
+                            else if(resp=="ok_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO.","RESUELVE MINISTERIO");
+                            else if(resp=="ok_consejeria") alerta("No se genera notificación para el alumno. Resuelve CONSEJERIA.","RESUELVE CONSEJERIA");
+                            else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
+                            else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
+                            listaRegistros(_orden_campo, _orden_direccion);
+                            $("#verModulosConvalidaciones_div").dialog("destroy");
+                        });
+                    },
+                    "Cancelar":function(){
+                        listaRegistros(_orden_campo, _orden_direccion);
+                        $("#verModulosConvalidaciones_div").dialog("destroy");
+                    }
+                }
+            });
         }
         else if(resp["error"]=="sin_modulos"){
             alerta("No hay módulos que convalidar.","SIN MÓDULOS");
-            return;
         } 
         else{
             alerta("Error en servidor o base de datos.","ERROR");
-            return;
         } 
     },"json");
-    $("#verModulosConvalidaciones_div").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "RESOLUCIÓN CONVALIDACIÓN MÓDULOS",
-        width: ancho,
-        position: { my: "center top", at: "center top", of: window },
-        buttons:{
-            "Resolver":function(){
-                $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
-                    if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
-                    else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
-                    else if(resp=="ok"){
-                        alerta("Proceso terminado","OK");
-                    }
-                    else if(resp=="error_db_conval") alerta("No se han grabado los datos de resolución de los módulos poruqe no se ha podido actualizar el estado en la tabla convalidaciones.","ERROR TABLA");
-                    else if(resp=="no_datospdf") alerta("No se puede generar la notificación para el alumno. Fallo al acceder a los datos de la solicitud o hay un registro duplicado. Revise los datos de la tabla en este último caso.","ERROR DB");
-                    else if(resp=="ok_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO.","RESUELVE MINISTERIO");
-                    else if(resp=="ok_consejeria") alerta("No se genera notificación para el alumno. Resuelve CONSEJERIA.","RESUELVE CONSEJERIA");
-                    else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
-                    else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
-                    listaRegistros(_orden_campo, _orden_direccion);
-                    $("#verModulosConvalidaciones_div").dialog("destroy");
-                });
-            },
-            "Cancelar":function(){
-                listaRegistros(_orden_campo, _orden_direccion);
-                $("#verModulosConvalidaciones_div").dialog("destroy");
-            }
-        }
-    });
+
 }
 
 
