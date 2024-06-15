@@ -1097,7 +1097,7 @@ function confirmadoBorradoAdjuntoConvalid() {
     refresca_docs=document.getElementById("refresca_docs").value;
     doc_ruta = document.getElementById("del_ruta").value;
     if (document.getElementById("doc_cod_seg").innerHTML == document.getElementById("t_doc_cod_seg").value) {
-        $.post("php/secret_usu_borra_adjuntoconvalid.php", { ruta: doc_ruta }, function(resp) {alert(resp)
+        $.post("php/secret_usu_borra_adjuntoconvalid.php", { ruta: doc_ruta }, function(resp) {
             document.getElementById("t_doc_cod_seg").value="";
             if (resp == "error") {
                 alerta("No se ha podido borrar el documento.", "ERROR BORRADO");

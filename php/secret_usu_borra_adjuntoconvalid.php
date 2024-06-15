@@ -7,9 +7,8 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 $ruta=$_POST["ruta"];
-$_rutadb=substr($ruta,3);
+$_rutadb=substr($ruta,3);//$ruta viene con ../ delante. $_rutadb es la ruta sin eso
 exit ($ruta."      ".$_rutadb);
-$mysqli->begin_transaction();
 
 try {
     // Eliminar el registro de la base de datos
