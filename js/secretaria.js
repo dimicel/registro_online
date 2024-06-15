@@ -685,7 +685,8 @@ function listaRegistros(orden_campo, orden_direccion) {
                     data += "<tr onclick='verRegistroConvalidaciones(\""+data_array[i]["registro"]+"\")'>";
                     //Datos específicos de cada formulario
                     for (j = 0; j < campos.length; j++) {
-                        if (j<3) data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                        if (j<2) data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                        else if(j==2) data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
                         else if (j==3 || j==5 || j==7) data += "<td style='" + estilo[j] + "'>" + array_sino[data_array[i][campos[j]]] + "</td>";
                         else if(j==4){
                             if (data_array[i][campos[3]]==1){
