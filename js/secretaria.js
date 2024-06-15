@@ -538,7 +538,8 @@ function listaRegistros(orden_campo, orden_direccion) {
         _orden_campo = orden_campo;
     }
     if (typeof(orden_direccion) != "string") {
-        orden_direccion = "🡅";
+        if (tipo_formulario=="convalidaciones") orden_direccion = "🡇";
+        else orden_direccion = "🡅";
         _orden_direccion = orden_direccion;
     }
     if (document.getElementById('tipo_form').value === "") {
