@@ -8,7 +8,7 @@ if ($mysqli->errno>0) {
 }
 $ruta=$_POST["ruta"];
 $_rutadb=substr($ruta,3);
-
+exit ($ruta."      ".$_rutadb);
 $mysqli->begin_transaction();
 
 try {
@@ -36,6 +36,8 @@ try {
     $mysqli->close();
     exit($e->getMessage());
 }
+
+$res=$mysqli->query("select * from convalidaciones_docs where ruta=''");
 
 // Cerrar la conexión
 $mysqli->close();
