@@ -8,7 +8,14 @@ if ($mysqli->errno>0) {
 }
 $ruta=$_POST["ruta"];
 $_rutadb=substr($ruta,3);//$ruta viene con ../ delante. $_rutadb es la ruta sin eso
-exit ($ruta."      ".$_rutadb);
+
+$registro="";
+$res=$mysqli->query("select * from convalidaciones_docs where ruta='$_rutadb'");
+if($res->num_rows>0){
+    while($reg=$res->fetch_assoc()){
+        $registro=$reg["registro"];
+    }
+}
 
 try {
     // Eliminar el registro de la base de datos
@@ -36,7 +43,13 @@ try {
     exit($e->getMessage());
 }
 
-$res=$mysqli->query("select * from convalidaciones_docs where ruta=''");
+$res_consejeria=$mysqli->query("select * from convalidaciones_docs where registro='$registro' and descripcion='Resolución de Consejería'");
+$res_ministerio=$mysqli->query("select * from convalidaciones_docs where registro='$registro' and descripcion='Resolución del Ministerio'");
+if ($res_consejeria->num_rows>0) $resuelto_consejeria=1;
+else $resuelto_consejeria=0;
+if ($res_ministerio->num_rows>0) $resuelto_ministerio=1;
+else $resuelto_ministerio=0;
+$mysqli->query("UPDATE convalidaciones SET $resuelto_con='$resuelto_consejeria',$resuelto_min='$resuelto_ministerio' WHERE registro='$registro'");
 
 // Cerrar la conexión
 $mysqli->close();
