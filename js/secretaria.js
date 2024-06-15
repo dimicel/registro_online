@@ -1282,8 +1282,14 @@ function verPanelResolver(id_nie,registro){
             cont+="</div></form>";
             document.getElementById("verModulosConvalidaciones_div").innerHTML=cont;
         }
-        else if(resp["error"]=="sin_modulos") alerta("No hay módulos que convalidar.","SIN MÓDULOS");
-        else alerta("Error en servidor o base de datos.","ERROR");
+        else if(resp["error"]=="sin_modulos"){
+            alerta("No hay módulos que convalidar.","SIN MÓDULOS");
+            return;
+        } 
+        else{
+            alerta("Error en servidor o base de datos.","ERROR");
+            return;
+        } 
     },"json");
     $("#verModulosConvalidaciones_div").dialog({
         autoOpen: true,
