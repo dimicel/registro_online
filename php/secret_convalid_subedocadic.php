@@ -69,6 +69,14 @@ else{
         $mysqli->rollback();
         exit("error_subida");
     }
+    else{
+        if($descripcion=="Resolución del Ministerio"){
+            $mysqli->query("UPDATE convalidaciones SET $resuelto_min=1 WHERE registro='$registro'");
+        }
+        elseif($descripcion=="Resolución de Consejería"){
+            $mysqli->query("UPDATE convalidaciones SET $resuelto_con=1 WHERE registro='$registro'");
+        }
+    }
 }
 
 exit("ok");
