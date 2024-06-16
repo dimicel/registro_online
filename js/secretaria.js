@@ -686,7 +686,17 @@ function listaRegistros(orden_campo, orden_direccion) {
                     //Datos específicos de cada formulario
                     for (j = 0; j < campos.length; j++) {
                         if (j<2) data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
-                        else if(j==2) data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
+                        else if(j==2){
+                            data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
+                            // String de la fecha
+                            let fechaString = "2024-05-15";  // Ejemplo de fecha
+
+                            // Convertir el string a un objeto Date
+                            let fecha = new Date(fechaString);
+
+                            // Crear el objeto Date para la fecha límite
+                            let fechaLimite = new Date("2024-06-30");
+                        } 
                         else if (j==3 || j==5 || j==7) data += "<td style='" + estilo[j] + "'>" + array_sino[data_array[i][campos[j]]] + "</td>";
                         else if(j==4){
                             if (data_array[i][campos[3]]==1){
@@ -722,10 +732,14 @@ function listaRegistros(orden_campo, orden_direccion) {
                             }
                         }
                     }
-                    //if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
-                    //else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
-                    if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
-                    else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
+                    if (fecha < fechaLimite){
+                        if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                        else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                    }
+                    else{
+                        if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
+                        else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
+                    }
 
                     data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
 
