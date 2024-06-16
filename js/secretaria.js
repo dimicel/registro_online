@@ -695,7 +695,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                             fecha = new Date(fechaString);
 
                             // Crear el objeto Date para la fecha límite
-                            fechaLimite = new Date("2023-06-30");
+                            fechaLimite = new Date("2024-06-30");
                         } 
                         else if (j==3 || j==5 || j==7) data += "<td style='" + estilo[j] + "'>" + array_sino[data_array[i][campos[j]]] + "</td>";
                         else if(j==4){
