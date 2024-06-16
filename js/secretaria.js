@@ -689,13 +689,13 @@ function listaRegistros(orden_campo, orden_direccion) {
                         else if(j==2){
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
                             // String de la fecha
-                            let fechaString = "2024-05-15";  // Ejemplo de fecha
+                            fechaString = data_array[i][campos[j]]; 
 
                             // Convertir el string a un objeto Date
-                            let fecha = new Date(fechaString);
+                            fecha = new Date(fechaString);
 
                             // Crear el objeto Date para la fecha límite
-                            let fechaLimite = new Date("2024-06-30");
+                            fechaLimite = new Date("2024-06-30");
                         } 
                         else if (j==3 || j==5 || j==7) data += "<td style='" + estilo[j] + "'>" + array_sino[data_array[i][campos[j]]] + "</td>";
                         else if(j==4){
