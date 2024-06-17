@@ -41,37 +41,39 @@
                     <input style="width:150px; height:150px" type="image" src="../../recursos/mini_escudo.jpg" />
                 </div>
             </div>
-            <div class="row" style="display:block;float:left; margin-top:10px; margin-left:10px">
-                <div class="col-2">
-                    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+            <div class="ui-widget-header ui-corner-all justify-content-center flex-column">
+                <div class="row" style="display:block;float:left; margin-top:10px; margin-left:10px">
+                    <div class="col-2">
+                        <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group form-row">
-                <div class="col-12">
-                    <label for="titular_cuenta">Titular cuenta <small>(nombre y apellidos)</small>:</label>
-                    <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" name="titular_cuenta" id="titular_cuenta" class="form-control" maxlength="65" >
+                <div class="form-group form-row">
+                    <div class="col-12">
+                        <label for="titular_cuenta">Titular cuenta <small>(nombre y apellidos)</small>:</label>
+                        <span class="errorTxt" style="font-size: 1em;"></span>
+                        <input type="text" name="titular_cuenta" id="titular_cuenta" class="form-control" maxlength="65" >
+                    </div>
                 </div>
-            </div>
-            <div class="form-group form-row">
-                <div class="col-4">
-                    <label for="estudios">Código BIC (8 ó 11 caracteres):</label>
-                    <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" name="bic" id="bic" class="form-control" maxlength="11" >
+                <div class="form-group form-row">
+                    <div class="col-4">
+                        <label for="estudios">Código BIC (8 ó 11 caracteres):</label>
+                        <span class="errorTxt" style="font-size: 1em;"></span>
+                        <input type="text" name="bic" id="bic" class="form-control" maxlength="11" >
+                    </div>
+                    <div class="col">
+                        <label for="tutor">IBAN (24 caracteres, sin guiones ni espacios):</label>
+                        <span class="errorTxt" style="font-size: 1em;"></span>
+                        <input type="text" name="iban" id="iban" class="form-control" maxlength="24" />
+                    </div>
+                    <div class="col-3">
+                        <label for="t_firm">Firma</label>
+                        <span class="errorTxt" style="font-size: 1em;"></span>
+                        <input type="text" class="form-control" name="firma" id="firma" placeholder="Clic aquí para firmar" readonly onclick="canvasFirma();" />
+                    </div>
                 </div>
-                <div class="col">
-                    <label for="tutor">IBAN (24 caracteres, sin guiones ni espacios):</label>
-                    <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" name="iban" id="iban" class="form-control" maxlength="24" />
+                <div class="row justify-content-center align-content" style="padding:60px">
+                    <input type="button" class="btn btn-success" value="Generar orden SEPA" style="height: 3em;" onclick="registraSolicitud()" />
                 </div>
-                <div class="col-3">
-                    <label for="t_firm">Firma</label>
-                    <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" class="form-control" name="firma" id="firma" placeholder="Clic aquí para firmar" readonly onclick="canvasFirma();" />
-                </div>
-            </div>
-            <div class="row justify-content-center align-content" style="padding:60px">
-                <input type="button" class="btn btn-success" value="Generar orden SEPA" style="height: 3em;" onclick="registraSolicitud()" />
             </div>
         </div>
     </form>
