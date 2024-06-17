@@ -32,7 +32,7 @@ if (isset($_POST['firma'])){
 	$firma = $tempFile;
 }
 
-$mysqli->query("update residentes set titular_iban='$titular_cuenta', iban='$iban', bic='$bic' where registro='$registro'");
+$mysqli->query("update residentes set titular_cuenta='$titular_cuenta', iban='$iban', bic='$bic' where registro='$registro'");
 if ($mysqli->errno>0){
 	unlink($tempFile);
 	$respuesta["status"]="registro_erroneo ".$mysqli->errno;
