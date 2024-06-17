@@ -47,10 +47,7 @@ $(document).ready(function() {
             for (e in resp.datos){
                 if(typeof(resp.datos[e])==="undefined" || resp.datos[e]===null) resp.datos[e]="";
             }
-            f_nac=resp.datos.fecha_nac;
             
-            //fecha_nac=f_nac;
-            //if(sexo=="") sexo=resp.datos.sexo;
             if(titular_iban=="") titular_iban=resp.datos.titular_iban;
             if(iban=="")iban=resp.datos.iban;
             if(bic=="")bic=resp.datos.bic;
