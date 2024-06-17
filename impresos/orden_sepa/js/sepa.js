@@ -60,6 +60,11 @@ $(document).ready(function() {
             document.getElementById("titular_cuenta").value=titular_iban;
             document.getElementById("iban").value=iban;
             document.getElementById("bic").value=bic;
+            document.getElementById("registro").value=resp.datos.registro;
+            document.getElementById("direccion").value=resp.datos.direccion;
+            document.getElementById("cp").value=resp.datos.cp;
+            document.getElementById("localidad").value=resp.datos.localidad;
+            document.getElementById("provincia").value=resp.datos.provincia;
             
         }
         else if(resp="error"=="no_inscrito"){

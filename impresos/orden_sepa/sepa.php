@@ -24,6 +24,11 @@
     <form id="sepa">
         <input type="hidden" id="id_nie" name="id_nie">
         <input type="hidden" id="anno_curso" name="anno_curso"> 
+        <input type="hidden" id="registro" name="registro"> 
+        <input type="hidden" id="cp" name="cp"> 
+        <input type="hidden" id="direccion" name="direccion"> 
+        <input type="hidden" id="localidad" name="localidad"> 
+        <input type="hidden" id="provincia" name="provincia"> 
         <div class="container w-100">
             <div class="d-flex flex-row justify-content-center" style="margin-top:30px">
                 <div class="col-2 justify-content-start">
