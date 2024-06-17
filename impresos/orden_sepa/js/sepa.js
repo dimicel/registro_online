@@ -65,7 +65,6 @@ $(document).ready(function() {
             document.getElementById("cp").value=resp.datos.cp;
             document.getElementById("localidad").value=resp.datos.localidad;
             document.getElementById("provincia").value=resp.datos.provincia;
-            
         }
         else if(resp="error"=="no_inscrito"){
             alerta("El usuario no está inscriopt en la residencia (internado).","NO RESIDENTE");
