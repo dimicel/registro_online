@@ -118,24 +118,7 @@ function registraSolicitud() {
             success: function(response) {
                 document.getElementById("cargando").style.display = 'none';
                 if (response.status === 'ok') {
-                    var pdfBase64 = response.pdf;
-                    var pdfData = atob(pdfBase64); // Decodificar base64
-                    var arrayBuffer = new ArrayBuffer(pdfData.length);
-                    var uintArray = new Uint8Array(arrayBuffer);
-                    
-                    for (var i = 0; i < pdfData.length; i++) {
-                        uintArray[i] = pdfData.charCodeAt(i);
-                    }
-        
-                    var blob = new Blob([uintArray], { type: 'application/pdf' });
-                    var link = document.createElement('a');
-                    link.href = window.URL.createObjectURL(blob);
-                    //link.target='_blank';
-                    link.download = 'inscripcion_residencia_'+id_nie+'.pdf';
-                    link.click();
-        
-                    console.log('PDF descargado correctamente.');
-                    alerta("Procedimiento terminado correctamente.<br>En descargas tienes el formulario con los datos de salud que no se han grabado.<br>Guárdalo por si lo solicitan desde Jefatura de Residencia.","CORRECTO",true);
+                    alerta("Orden SEPA generada correctamente.","OK",true);
                 }
                 else if(response.status=="server") {
                     alerta("Hay problemas en el servidor. Inténtelo en otro momento.","ERROR EN SERVIDOR",true);
