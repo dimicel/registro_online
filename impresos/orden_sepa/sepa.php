@@ -25,6 +25,7 @@
         <input type="hidden" id="direccion" name="direccion"> 
         <input type="hidden" id="localidad" name="localidad"> 
         <input type="hidden" id="provincia" name="provincia"> 
+        <input type="hidden" id="firma" name="firma"> 
         <div class="container w-100">
             
             <div class="d-flex flex-row justify-content-center" style="margin-top:30px">
