@@ -71,6 +71,7 @@ $(document).ready(function() {
             alerta("El residente es BONIFICADO, y por lo tanto no necesita crear una orden SEPA.","RESIDENTE BONIFICADO");
             window.history.back();
         }
+        document.getElementById("cargando").style.display = 'none';
     });
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
