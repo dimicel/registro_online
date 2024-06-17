@@ -18,9 +18,7 @@
 </head>
 
 <body>
-    <div style="display:block;float:left; margin-top:10px; margin-left:10px">
-        <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
-    </div>        
+            
     <form id="sepa">
         <input type="hidden" id="registro" name="registro"> 
         <input type="hidden" id="cp" name="cp"> 
@@ -28,6 +26,11 @@
         <input type="hidden" id="localidad" name="localidad"> 
         <input type="hidden" id="provincia" name="provincia"> 
         <div class="container w-100">
+            <div class="row" style="display:block;float:left; margin-top:10px; margin-left:10px">
+                <div class="col-2">
+                    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+                </div>
+            </div>
             <div class="d-flex flex-row justify-content-center" style="margin-top:30px">
                 <div class="col-2 justify-content-start">
                     <input style="width:175px; height:100px" type="image" src="../../recursos/logo_ccm.jpg" />
