@@ -16,7 +16,6 @@ if ($mysqli->errno>0) {
 
 ob_start();
 $registro=$_POST['registro'];
-$anno_curso=$_POST['anno_curso'];
 $direccion=$_POST['direccion'];
 $cp=$_POST['cp'];
 $localidad=$_POST['localidad'];

@@ -26,21 +26,18 @@ $(document).ready(function() {
         anno_ini_curso = res1["anno_ini_curso"];
         mes_mat = res1["mes"];
         dia_mat = res1["dia"];
-        document.getElementById("id_nie").value=id_nie;
         //document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
         if (mes_mat == 6) anno_ini_premat = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
         else if (mes_mat >= 7 && mes_mat <= 9) anno_ini_premat = (anno_ini_curso - 1) + "-" + (anno_ini_curso);
         
         if (mes_mat != 6) {
             anno_curso = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
-            document.getElementById("anno_curso").value = (anno_ini_curso) + "-" + (anno_ini_curso + 1);
         } else {
             anno_curso = (anno_ini_curso + 1) + "-" + (anno_ini_curso + 2);
-            document.getElementById("anno_curso").value = (anno_ini_curso + 1) + "-" + (anno_ini_curso + 2);
         }
-        document.getElementById("email").value = email;
         if (id_nie.trim() == "" || anno_ini_curso.toString().trim() == "") {
-            document.write("Error datos. Por favor, inténtelo más tarde.");
+            alerta("Error datos. Por favor, inténtelo más tarde.","ERROR");
+            window.history.back();
         }
 
         return $.post("php/datos_residente.php", {id_nie:id_nie, curso:anno_curso }, () => {}, "json");

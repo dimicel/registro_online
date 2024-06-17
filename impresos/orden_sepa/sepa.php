@@ -22,8 +22,6 @@
         <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
     </div>        
     <form id="sepa">
-        <input type="hidden" id="id_nie" name="id_nie">
-        <input type="hidden" id="anno_curso" name="anno_curso"> 
         <input type="hidden" id="registro" name="registro"> 
         <input type="hidden" id="cp" name="cp"> 
         <input type="hidden" id="direccion" name="direccion"> 
