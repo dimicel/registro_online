@@ -114,23 +114,19 @@ function registraSolicitud() {
             url: 'php/generapdf.php',
             method: 'POST',
             data: $("#sepa").serialize(),
-            dataType: 'json',
             success: function(response) {
                 document.getElementById("cargando").style.display = 'none';
-                if (response.status === 'ok') {
+                if (response === 'ok') {
                     alerta("Orden SEPA generada correctamente.","OK",true);
                 }
-                else if(response.status=="server") {
+                else if(response=="server") {
                     alerta("Hay problemas en el servidor. Inténtelo en otro momento.","ERROR EN SERVIDOR",true);
-                    console.error('Error:', response.message);
                 }
-                else if(response.status=="db"){
+                else if(response=="db"){
                     alerta("Hay problemas en la base de datos. Inténtelo en otro momento.","ERROR DB",true);
-                    console.error('Error:', response.message);
                 }
-                else if(response.status.includes(registro_erroneo)){
+                else if(response.includes(registro_erroneo)){
                     alerta("No se ha podido hacer el registro por un problema en la base de datos.","ERROR REGISTRO",true);
-                    console.error('Error:', response.message);
                 }
                 
             },

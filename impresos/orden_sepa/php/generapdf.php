@@ -1,7 +1,6 @@
 <?php
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
-$respuesta= array();
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 require __DIR__."/../../../php/mail.php";
@@ -9,8 +8,7 @@ ob_clean();
 include("../../../php/conexion.php");
 
 if ($mysqli->errno>0) {
-	$respuesta["status"]="servidor";
-    exit(json_encode($respuesta));
+    exit("servidor");
 }
 
 
@@ -35,8 +33,7 @@ if (isset($_POST['firma'])){
 $mysqli->query("update residentes set titular_cuenta='$titular_cuenta', iban='$iban', bic='$bic' where registro='$registro'");
 if ($mysqli->errno>0){
 	unlink($tempFile);
-	$respuesta["status"]="registro_erroneo ".$mysqli->errno;
-    exit(json_encode($respuesta));
+    exit("registro_erroneo ".$mysqli->errno);
 }
 
 class MYPDF_sepa extends TCPDF {
@@ -137,8 +134,7 @@ $pdf_sepa->Image($firma, 90, 210, 35, 0, '', '', '', false, 300);
 $ruta_sepa=__DIR__."/../../../docs/".$id_nie."/residencia/sepa_". $id_nie.".pdf";
 $pdf_sepa->Output($ruta_sepa, 'F');
 
-$respuesta["status"]="ok";
-exit(json_encode($respuesta));
+exit("ok");
 
 
 //FIN GENERA PDF
