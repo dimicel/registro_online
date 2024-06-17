@@ -45,7 +45,7 @@ $(document).ready(function() {
     dat3 = dat2.then((resp) => {
         if (resp.error=="ok"){
             for (e in resp.datos){
-                if(typeof(resp.datos[e])==="undefined" || resp.datos[e]===null) resp.datos[e]="";
+                if(typeof(resp.datos[e])=="undefined" || resp.datos[e]==null) resp.datos[e]="";
             }
             
             if(titular_iban=="") titular_iban=resp.datos.titular_iban;
