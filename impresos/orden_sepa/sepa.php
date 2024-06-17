@@ -48,6 +48,7 @@
                             <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
                         </div>
                     </div>
+                    <hr>
                     <div class="form-group form-row">
                         <div class="col-12">
                             <label for="titular_cuenta">Titular cuenta <small>(nombre y apellidos)</small>:</label>
