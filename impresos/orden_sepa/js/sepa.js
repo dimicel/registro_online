@@ -23,6 +23,7 @@ $(document).ready(function() {
     dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
     dat2 = dat1.then((res1) => {
         id_nie = res1["id_nie"];
+        document.getElementById("id_nie").value=res1["id_nie"];
         anno_ini_curso = res1["anno_ini_curso"];
         mes_mat = res1["mes"];
         dia_mat = res1["dia"];

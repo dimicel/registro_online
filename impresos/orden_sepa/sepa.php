@@ -20,6 +20,7 @@
 <body>
             
     <form id="sepa">
+        <input type="hidden" id="id_nie" name="id_nie"> 
         <input type="hidden" id="registro" name="registro"> 
         <input type="hidden" id="cp" name="cp"> 
         <input type="hidden" id="direccion" name="direccion"> 
