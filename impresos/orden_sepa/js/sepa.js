@@ -109,7 +109,7 @@ function confirmar() {
 
 function registraSolicitud() {
     if (!$("#sepa").valid()) return;
-    document.getElementById('firma').value = encodeURIComponent(canvas_upload);
+    document.getElementById('firma_sepa').value = encodeURIComponent(canvas_upload);
     document.getElementById("cargando").style.display = '';
     $.ajax({
             url: 'php/generapdf.php',

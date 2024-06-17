@@ -22,8 +22,8 @@ $iban = trim($_POST['iban']);
 $bic = trim($_POST['bic']);
 $titular_cuenta = trim($_POST['titular_cuenta']);
 
-if (isset($_POST['firma'])){
-	$imageData = urldecode($_POST['firma']);
+if (isset($_POST['firma_sepa'])){
+	$imageData = urldecode($_POST['firma_sepa']);
 	if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
 	$tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.png');
 	file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));

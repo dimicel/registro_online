@@ -25,7 +25,7 @@
         <input type="hidden" id="direccion" name="direccion"> 
         <input type="hidden" id="localidad" name="localidad"> 
         <input type="hidden" id="provincia" name="provincia"> 
-        <input type="hidden" id="firma" name="firma"> 
+        <input type="hidden" id="firma_sepa" name="firma_sepa"> 
         <div class="container w-100">
             
             <div class="d-flex flex-row justify-content-center" style="margin-top:30px">
@@ -100,7 +100,7 @@
     <script src=<?php echo "../../js/comun.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/sepa.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "../../js/croppie/croppie.min.js?q=".time();?> type="text/javascript"></script>
-    <script src=<?php echo "js/validadores_res.js?q=".time();?> type="text/javascript"></script>
+    <script src=<?php echo "js/validadores_sepa.js?q=".time();?> type="text/javascript"></script>
 
 </body>
 
