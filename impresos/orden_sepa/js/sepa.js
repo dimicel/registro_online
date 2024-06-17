@@ -61,11 +61,11 @@ $(document).ready(function() {
             document.getElementById("localidad").value=resp.datos.localidad;
             document.getElementById("provincia").value=resp.datos.provincia;
         }
-        else if(resp="error"=="no_inscrito"){
+        else if(resp.error=="no_inscrito"){
             alerta("El usuario no está inscriopt en la residencia (internado).","NO RESIDENTE");
             window.history.back();
         }
-        else if(resp="error"=="bonificado"){
+        else if(resp.error=="bonificado"){
             alerta("El residente es BONIFICADO, y por lo tanto no necesita crear una orden SEPA.","RESIDENTE BONIFICADO");
             window.history.back();
         }
