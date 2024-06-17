@@ -376,7 +376,7 @@ function registraSolicitud() {
                     alerta("Hay problemas en la base de datos. Inténtelo en otro momento.","ERROR DB",true);
                     console.error('Error:', response.message);
                 }
-                else if(response.status.includes(registro_erroneo)){
+                else if(response.status.includes("registro_erroneo")){
                     alerta("No se ha podido hacer el registro por un problema en la base de datos.","ERROR REGISTRO",true);
                     console.error('Error:', response.message);
                 }
