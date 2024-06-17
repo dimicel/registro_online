@@ -113,7 +113,7 @@ function registraSolicitud() {
     $.ajax({
             url: 'php/generapdf.php',
             method: 'POST',
-            data: $("#residencia").serialize(),
+            data: $("#sepa").serialize(),
             dataType: 'json',
             success: function(response) {
                 document.getElementById("cargando").style.display = 'none';
