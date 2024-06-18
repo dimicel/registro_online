@@ -114,7 +114,7 @@ function registraSolicitud() {
             url: 'php/generapdf.php',
             method: 'POST',
             data: $("#sepa").serialize(),
-            success: function(response) {alert("response")
+            success: function(response) {alert(response)
                 document.getElementById("cargando").style.display = 'none';
                 if (response === 'ok') {
                     alerta("Orden SEPA generada correctamente.","OK",true);

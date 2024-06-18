@@ -5,11 +5,11 @@ require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 require __DIR__."/../../../php/mail.php";
 include("../../../php/conexion.php");
-exit("ppppp");
+
 if ($mysqli->errno>0) {
     exit("servidor");
 }
-
+exit("ppppp");
 
 $id_nie=$_POST['id_nie'];
 $registro=$_POST['registro'];
