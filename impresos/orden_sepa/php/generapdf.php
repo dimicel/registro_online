@@ -12,7 +12,6 @@ if ($mysqli->errno>0) {
 }
 
 
-ob_start();
 $id_nie=$_POST['id_nie'];
 $registro=$_POST['registro'];
 $direccion=$_POST['direccion'];
