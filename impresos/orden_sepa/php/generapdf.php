@@ -9,7 +9,6 @@ include("../../../php/conexion.php");
 if ($mysqli->errno>0) {
     exit("servidor");
 }
-exit("ppppp");
 
 $id_nie=$_POST['id_nie'];
 $registro=$_POST['registro'];
@@ -112,18 +111,27 @@ for ($i=0;$i<strlen($iban);$i++){
 
 $fecha = new DateTime();
 
-// Crear un formateador de fecha para español
-$formateador = new IntlDateFormatter(
-	'es_ES', 
-	IntlDateFormatter::FULL, 
-	IntlDateFormatter::NONE, 
-	'Europe/Madrid', 
-	IntlDateFormatter::GREGORIAN,
-	"d 'de' MMMM 'del' y"
-);
+// Array con los nombres de los meses en español
+$meses = [
+    1 => 'enero',
+    2 => 'febrero',
+    3 => 'marzo',
+    4 => 'abril',
+    5 => 'mayo',
+    6 => 'junio',
+    7 => 'julio',
+    8 => 'agosto',
+    9 => 'septiembre',
+    10 => 'octubre',
+    11 => 'noviembre',
+    12 => 'diciembre'
+];
 
-// Formatear la fecha
-$fechaFormateada = $formateador->format($fecha);
+// Obtener el día, mes y año
+$dia = $fecha->format('d');
+$mes = $meses[(int)$fecha->format('m')];
+$anio = $fecha->format('Y');
+$fechaFormateada = "$dia de $mes de $anio";
 
 $pdf_sepa->SetXY(25,207);
 $pdf_sepa->Cell(0,0,$localidad." , a " . $fechaFormateada,0,0,'L',0,'',1,true,'T','T');
