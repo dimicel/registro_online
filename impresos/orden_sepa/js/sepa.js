@@ -114,7 +114,7 @@ function registraSolicitud() {
             url: 'php/generapdf.php',
             method: 'POST',
             data: $("#sepa").serialize(),
-            success: function(response) {
+            success: function(response) {alert("response")
                 document.getElementById("cargando").style.display = 'none';
                 if (response === 'ok') {
                     alerta("Orden SEPA generada correctamente.","OK",true);
@@ -130,7 +130,7 @@ function registraSolicitud() {
                 }
                 
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR, textStatus, errorThrown) {alert("error")
                 document.getElementById("cargando").style.display = 'none';
                 alerta("Ha ocurrido algún problema y no se ha podido hacer el registro. Error "+textStatus+"/"+errorThrown,"ERROR REGISTRO",true);
                 console.error('Error:', textStatus, errorThrown);
