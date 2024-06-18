@@ -435,6 +435,22 @@ function altaBaja(__registro,celda){
                 $(element).prev($('.errorTxt')).html(error);
             }
         });
+        $("#fech_baja").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "dd/mm/yy",
+            dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+            firstDay: 1,
+            monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            monthNameShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+            showButtonPanel: true,
+            currentText: "Hoy",
+            closeText: "Cerrar",
+            minDate: new Date(2000, 0, 1),
+            maxDate: "0y",
+            nextText: "Siguiente",
+            prevText: "Previo"
+        });
     }
     
     $("#div_dialogs").dialog({
