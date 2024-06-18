@@ -12,7 +12,7 @@ $curso=$_POST["curso_csv_remesas"];
 $res=$mysqli->query("select * from residentes where curso='$curso' order by apellidos,nombre");
 
 if ($res->num_rows==0){
-    $error="No hay solicitudes de transporte.";
+    $error="No hay inscripciones en residencia.";
 }
 
 $Name = 'remesas_'.date('d-m-Y').'.csv';
