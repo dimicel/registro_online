@@ -406,14 +406,37 @@ function estadoBonificado(__registro,celda){
 
 function altaBaja(__registro,celda){
     if (celda.innerHTML=="NO"){
-        mensaje="<p>El residente causa BAJA en la residencia.</p>";
+        mensaje="<form id='form_baja'><p>El residente causa BAJA en la residencia.</p><br>";
+        mensaje+="<div calss='form-row form-group'>";
+        mensaje+="<div class='col-3'><label for='fech_baja'>Fecha baja <small>(dd/mm/aaaa)</small>:</label><span class='errorTxt' style='font-size: 1em;'></span>";
+        mensaje+="<input type='text' name='fech_baja' id='fech_baja' class='form-control' maxlength='10' size='15'  placeholder='Ej. 02/05/2000'></div></form>";
         baja=1;
+        fecha_baja=document.getElementById('fech_baja').value;
     }
     else{
         mensaje="<p>El residente vuelve a estar de ALTA en la residencia.</p>";
         baja=0;
+        fecha_baja="";
     }
     document.getElementById("div_dialogs").innerHTML=mensaje;
+    if (celda.innerHTML=="NO"){
+        $("#form_baja").validate({
+            rules: {
+                fech_baja: {
+                    required: true
+                }
+            },
+            messages: {
+                fech_baja: {
+                    required: "Complete el campo"
+                }
+            },
+            errorPlacement: function(error, element) {
+                $(element).prev($('.errorTxt')).html(error);
+            }
+        });
+    }
+    
     $("#div_dialogs").dialog({
         autoOpen: true,
         dialogClass: "no-close",
@@ -430,10 +453,11 @@ function altaBaja(__registro,celda){
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
+                    if (!$("#form_baja").valid()) return;
                     document.getElementById("cargando").style.display = 'inherit';
                     $.post({
                         url:"php/residencia_alta_baja.php",
-                        data: {registro:__registro,baja:baja},
+                        data: {registro:__registro,baja:baja,fecha_baja:fecha_baja},
                         success: function(resp) {
                             document.getElementById("cargando").style.display = 'none';
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");

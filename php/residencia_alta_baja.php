@@ -12,8 +12,9 @@ if ($mysqli->errno>0) {
 
 $registro=$_POST['registro'];
 $baja=$_POST['baja'];
-$fecha_baja=date('Y-m-d');
+//$fecha_baja=date('Y-m-d');
 if ($baja==0)$fecha_baja="0000-00-00";
+else $fecha_baja=substr($_POST['fecha_baja'],6,4).'/'.substr($_POST['fecha_baja'],3,2).'/'.substr($_POST['fecha_baja'],0,2);;
 
 $sql = "UPDATE residentes SET 
     baja = ?,
