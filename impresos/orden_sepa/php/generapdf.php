@@ -4,9 +4,8 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="corr
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 require __DIR__."/../../../php/mail.php";
-ob_clean();
 include("../../../php/conexion.php");
-
+exit("ppppp");
 if ($mysqli->errno>0) {
     exit("servidor");
 }
@@ -21,7 +20,7 @@ $provincia=$_POST['provincia'];
 $iban = trim($_POST['iban']);
 $bic = trim($_POST['bic']);
 $titular_cuenta = trim($_POST['titular_cuenta']);
-exit("ppppp");
+
 if (isset($_POST['firma_sepa'])){
 	$imageData = urldecode($_POST['firma_sepa']);
 	if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
