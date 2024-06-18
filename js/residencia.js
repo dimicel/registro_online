@@ -467,7 +467,7 @@ function altaBaja(__registro,celda){
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
-                    if (!$("#form_baja").valid()) return;
+                    if (baja==1) if (!$("#form_baja").valid()) return;
                     if (baja==1) fecha_baja=document.getElementById('fech_baja').value;
                     else fecha_baja="";
                     document.getElementById("cargando").style.display = 'inherit';
