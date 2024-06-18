@@ -407,7 +407,7 @@ function estadoBonificado(__registro,celda){
 function altaBaja(__registro,celda){
     if (celda.innerHTML=="NO"){
         mensaje="<form id='form_baja'><p>El residente causa BAJA en la residencia.</p>";
-        mensaje+="<div class='form-row'>";
+        mensaje+="<div class='form-row form-group'>";
         mensaje+="<div class='col-6'><label for='fech_baja'>Fecha baja <small>(dd/mm/aaaa)</small>:</label><span class='errorTxt' style='font-size: 1em;'></span>";
         mensaje+="<input type='text' name='fech_baja' id='fech_baja' class='form-control' maxlength='10' size='15'  placeholder='Ej. 02/05/2000'></div></form>";
         baja=1;
