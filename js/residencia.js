@@ -449,6 +449,13 @@ function altaBaja(__registro,celda){
             nextText: "Siguiente",
             prevText: "Previo"
         });
+        var today = new Date();
+        var day = String(today.getDate()).padStart(2, '0');
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0
+        var year = today.getFullYear();
+
+        var todayFormatted = day + '/' + month + '/' + year;
+        document.getElementById('fech_baja').value = todayFormatted;
     }
     
     $("#div_dialogs").dialog({
