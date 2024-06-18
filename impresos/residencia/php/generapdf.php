@@ -836,18 +836,27 @@ if($bonificado==0){
 	
 	$fecha = new DateTime();
 	
-	// Crear un formateador de fecha para español
-	$formateador = new IntlDateFormatter(
-		'es_ES', 
-		IntlDateFormatter::FULL, 
-		IntlDateFormatter::NONE, 
-		'Europe/Madrid', 
-		IntlDateFormatter::GREGORIAN,
-		"d 'de' MMMM 'del' y"
-	);
+	$meses = [
+		1 => 'enero',
+		2 => 'febrero',
+		3 => 'marzo',
+		4 => 'abril',
+		5 => 'mayo',
+		6 => 'junio',
+		7 => 'julio',
+		8 => 'agosto',
+		9 => 'septiembre',
+		10 => 'octubre',
+		11 => 'noviembre',
+		12 => 'diciembre'
+	];
 	
+	// Obtener el día, mes y año
+	$dia = $fecha->format('d');
+	$mes = $meses[(int)$fecha->format('m')];
+	$anio = $fecha->format('Y');	
 	// Formatear la fecha
-	$fechaFormateada = $formateador->format($fecha);
+	$fechaFormateada = "$dia de $mes de $anio";
 	
 	$pdf_sepa->SetXY(25,207);
 	$pdf_sepa->Cell(0,0,$localidad." , a " . $fechaFormateada,0,0,'L',0,'',1,true,'T','T');
