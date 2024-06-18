@@ -129,10 +129,11 @@ $fechaFormateada = $formateador->format($fecha);
 $pdf_sepa->SetXY(25,207);
 $pdf_sepa->Cell(0,0,$localidad." , a " . $fechaFormateada,0,0,'L',0,'',1,true,'T','T');
 //$pdf_sepa->Image($firma, 90, 210, 35, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+exit("ppppp");
 $pdf_sepa->Image($firma, 90, 210, 35, 0, '', '', '', false, 300);
 
 $ruta_sepa=__DIR__."/../../../docs/".$id_nie."/residencia/sepa_". $id_nie.".pdf";
-exit("ppppp");
+
 $pdf_sepa->Output($ruta_sepa, 'F');
 
 exit("ok");
