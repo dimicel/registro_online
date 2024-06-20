@@ -137,7 +137,7 @@ function listaUsus() {
             document.getElementById("encabezado_usus").innerHTML = encab_usus;
             document.getElementById("registros_usus").innerHTML = data;
             num_registros = resp.num_registros;
-            numero_paginas = Math.ceil(num_registros / num_reg_pagina);
+            numero_paginas = Math.ceil(num_registros / num_reg_pagina);alert(numero_paginas);
             if (pagina > numero_paginas) pagina = numero_paginas;
 
             $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
