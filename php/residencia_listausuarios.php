@@ -42,6 +42,7 @@ if ($res->num_rows==0){
     exit(json_encode($data));
 }
 $data["error"]="ok";
+$data["num_registros"]=$res->num_rows;
 $contador=0;
 $data["registros"]=array();
 
