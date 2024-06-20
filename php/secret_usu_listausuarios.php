@@ -35,6 +35,16 @@ $res=$mysqli->query($consulta);
 $data["num_registros"]=$res->num_rows;
 $res->free();
 */
+$sql = "SELECT COUNT(*) AS total FROM usuarios";
+$result = $mysqli->query($sql);
+
+if ($result->num_rows > 0) {
+    // Obtener el resultado
+    $data["num_registros"] = $result->fetch_assoc();
+} else {
+    $data["num_registros"] = 0;
+}
+
 $offset=($pagina-1)*$num_reg_pagina;
 if (trim($buscar)==""){
     $consulta="SELECT * FROM usuarios $filtro_han_entrado ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
@@ -55,7 +65,6 @@ if ($res->num_rows==0){
     exit(json_encode($data));
 }
 $data["error"]="ok";
-$data["num_registros"]=$res->num_rows;
 $contador=0;
 $data["registros"]=array();
 
