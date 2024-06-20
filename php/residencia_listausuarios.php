@@ -17,7 +17,7 @@ $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
 $baja=$_POST["filtro_bajas"];
 
-$sql = "SELECT COUNT(*) AS total FROM residentes";
+$sql = "SELECT COUNT(*) AS total FROM residentes where curso='$curso'";
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
