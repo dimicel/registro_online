@@ -40,7 +40,8 @@ $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
     // Obtener el resultado
-    $data["num_registros"] = $result->fetch_assoc();
+    $resultado=$result->fetch_assoc();
+    $data["num_registros"] = $resultado['total'];
 } else {
     $data["num_registros"] = 0;
 }
