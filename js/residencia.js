@@ -140,7 +140,8 @@ function listaUsus() {
             document.getElementById("div_notabla_usus").style.display = "inline-block";
             document.getElementById("div_tabla_usus").style.display = "none";
             $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
-                total: 0
+                total: 0,
+                page:0
             });
             $('#navegacion_usus_top li').addClass('page-item');
             $('#navegacion_usus_top a').addClass('page-link');
