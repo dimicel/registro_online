@@ -42,6 +42,30 @@ $(function() {
             document.getElementById("cargando").style.display = 'none';
         } 
     });
+
+    $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
+        total: 1,
+        page: pagina,
+        maxVisible: 10,
+        leaps: true,
+        firstLastUse: true,
+        first: '←',
+        last: '→',
+        wrapClass: 'pagination',
+        activeClass: 'active',
+        disabledClass: 'disabled',
+        nextClass: 'next',
+        prevClass: 'prev',
+        lastClass: 'last',
+        firstClass: 'first'
+    }).on("page", function(event, num) {
+        pagina = num;
+        listaUsus();
+    });
+    $('#navegacion_usus_top li').addClass('page-item');
+    $('#navegacion_usus_top a').addClass('page-link');
+    $('#navegacion_usus_bottom li').addClass('page-item');
+    $('#navegacion_usus_bottom a').addClass('page-link');
     
 });
 
