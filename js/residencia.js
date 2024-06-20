@@ -62,7 +62,7 @@ $(function() {
             $('#navegacion_usus_top a').addClass('page-link');
             $('#navegacion_usus_bottom li').addClass('page-item');
             $('#navegacion_usus_bottom a').addClass('page-link');
-            
+
             listaUsus();
             document.getElementById("cargando").style.display = 'none';
         } 
@@ -182,7 +182,7 @@ function listaUsus() {
             document.getElementById("encabezado_usus").innerHTML = encab_usus;
             document.getElementById("registros_usus").innerHTML = data;
             num_registros = resp.num_registros;
-            numero_paginas = Math.ceil(num_registros / num_reg_pagina);
+            numero_paginas = Math.ceil(num_registros / num_reg_pagina);alert(num_registros);
             if (pagina > numero_paginas) pagina = numero_paginas;
 
             $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
