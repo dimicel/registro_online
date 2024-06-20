@@ -17,6 +17,17 @@ $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
 $baja=$_POST["filtro_bajas"];
 
+$sql = "SELECT COUNT(*) AS total FROM residentes";
+$result = $mysqli->query($sql);
+
+if ($result->num_rows > 0) {
+    // Obtener el resultado
+    $resultado=$result->fetch_assoc();
+    $data["num_registros"] = $resultado['total'];
+} else {
+    $data["num_registros"] = 0;
+}
+
 $offset=($pagina-1)*$num_reg_pagina;
 if ($baja==-1){
     $consulta="SELECT * FROM residentes  where curso='$curso' ";
