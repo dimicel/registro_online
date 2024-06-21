@@ -67,7 +67,7 @@
                         <div class="col">
                             <label for="tutor">IBAN (24 caracteres, sin guiones ni espacios):</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input type="text" name="iban" id="iban" class="form-control" maxlength="24" />
+                            <input type="text" name="iban" id="iban" class="form-control" maxlength="24" placeholder="Ejemplo: ES9121000418450200051332"/>
                         </div>
                         <div class="col-3">
                             <label for="t_firm">Firma</label>
