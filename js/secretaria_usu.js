@@ -615,7 +615,7 @@ function confirmadoEliminarUsuario(nie_borrar) {
 }
 
 function panelModUsu(id) {
-    $("#div_dialogs").load("html/secretaria.txt #div_modif_datos_usu", function(response,status,xhr){
+    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_modif_datos_usu", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
