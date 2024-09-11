@@ -643,7 +643,7 @@ function panelModUsu(id) {
                     }
                     f_nac = resp.datos.fecha_nac;
                     if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
-                    form_modif_datos_usu.dat_sexo.value = resp.datos.sexo;
+                    form_modif_datos_usu.dat_sexo.value = resp.datos.sexo;alert(form_modif_datos_usu.dat_sexo.value)
                     form_modif_datos_usu.dat_fecha_nac.value = f_nac;
                     form_modif_datos_usu.dat_telefono.value = resp.datos.telef_alumno;
                     //form_modif_datos_usu.dat_nss.value = resp.datos.num_ss;
