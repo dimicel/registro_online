@@ -688,7 +688,7 @@ function panelModUsu(id) {
                         },
                         mod_email: {
                             email: true
-                        },
+                        }/*,
                         dat_email: {
                             email: true
                         },
@@ -697,7 +697,7 @@ function panelModUsu(id) {
                         },
                         dat_email_tut2: {
                             email: true
-                        }
+                        }*/
                     },
                     messages: {
                         mod_nombre: {
@@ -708,7 +708,7 @@ function panelModUsu(id) {
                         },
                         mod_email: {
                             email: "Dirección de email no válida"
-                        },
+                        }/*,
                         dat_email: {
                             email: "No es una dirección de correo electrónico."
                         },
@@ -717,7 +717,7 @@ function panelModUsu(id) {
                         },
                         dat_email_tut2: {
                             email: "No es una dirección de correo electrónico."
-                        }
+                        }*/
                     },
                     errorPlacement: function(error, element) {
                         $(element).prev($('.errorTxt')).html(error);
@@ -732,7 +732,7 @@ function panelModUsu(id) {
                     resizable: false,
                     show: { effect: "fade", duration: 0 },
                     title: "MODIFICAR DATOS DE USUARIO",
-                    maxHeight: 800,
+                    maxHeight: 900,
                     width: 1100,
                     close: function(event,ui){
                         $("#dat_fecha_nac").datepicker("destroy");
