@@ -646,8 +646,7 @@ function panelModUsu(id) {
                     form_modif_datos_usu.dat_sexo.value = resp.datos.sexo;
                     form_modif_datos_usu.dat_fecha_nac.value = f_nac;
                     form_modif_datos_usu.dat_telefono.value = resp.datos.telef_alumno;
-                    //form_modif_datos_usu.dat_nss.value = resp.datos.num_ss;
-                    //document.getElementById("dat_nss").value=resp.datos.num_ss;
+                    form_modif_datos_usu.dat_nss.value = resp.datos.num_ss;
                     form_modif_datos_usu.dat_email.value = resp.datos.email;
                     form_modif_datos_usu.dat_direccion.value = resp.datos.direccion;
                     form_modif_datos_usu.dat_cp.value = resp.datos.cp;
