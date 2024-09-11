@@ -25,6 +25,7 @@ $email_tut1=$_POST["dat_email_tut1"];
 $tutor2=$_POST["dat_tutor2"];
 $telef_tut2=$_POST["dat_telef_tut2"];
 $email_tut2=$_POST["dat_email_tut2"];
+$nss=$_POST["dat_nss"];
 
 $checkusu=$mysqli->query("select * form usuarios_dat where id_nie='$id_nie'");
 if($checkusu->num_rows==0){
@@ -36,6 +37,7 @@ $consulta="update usuarios_dat set sexo='$sexo',
                                 fecha_nac='$fecha_nac',
                                 telef_alumno='$telefono',
                                 email='$email',
+                                num_ss='$nss',
                                 direccion='$direccion',
                                 cp='$cp',
                                 localidad='$localidad',

@@ -382,6 +382,7 @@ function cambioDatosPers() {
             form_mod_datos.dat_fecha_nac.value = f_nac;
             form_mod_datos.dat_telefono.value = resp.datos.telef_alumno;
             form_mod_datos.dat_email.value = resp.datos.email;
+            form_mod_datos.dat_nss.value = resp.datos.num_ss;
             form_mod_datos.dat_direccion.value = resp.datos.direccion;
             form_mod_datos.dat_cp.value = resp.datos.cp;
             form_mod_datos.dat_localidad.value = resp.datos.localidad;
