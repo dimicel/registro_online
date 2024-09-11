@@ -641,6 +641,7 @@ function panelModUsu(id) {
                     for (e in resp.datos) {
                         if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
                     }
+                    alert(resp.datos.num_ss);
                     f_nac = resp.datos.fecha_nac;
                     if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
                     form_modif_datos_usu.dat_sexo.value = resp.datos.sexo;
