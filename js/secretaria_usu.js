@@ -688,7 +688,7 @@ function panelModUsu(id) {
                         },
                         mod_email: {
                             email: true
-                        },
+                        }/*,
                         dat_email: {
                             email: true,
                             required:false
@@ -700,7 +700,7 @@ function panelModUsu(id) {
                         dat_email_tut2: {
                             email: true,
                             required:false
-                        }
+                        }*/
                     },
                     messages: {
                         mod_nombre: {
@@ -711,7 +711,7 @@ function panelModUsu(id) {
                         },
                         mod_email: {
                             email: "Dirección de email no válida"
-                        },
+                        }/*,
                         dat_email: {
                             email: "No es una dirección de correo electrónico."
                         },
@@ -720,7 +720,7 @@ function panelModUsu(id) {
                         },
                         dat_email_tut2: {
                             email: "No es una dirección de correo electrónico."
-                        }
+                        }*/
                     },
                     errorPlacement: function(error, element) {
                         $(element).prev($('.errorTxt')).html(error);
