@@ -1355,7 +1355,7 @@ function actualizaIncidencias(registro, form, incidencias) {
 }
 
 function panelNuevoUsuario() {
-    $("#div_dialogs").load("html/secretaria.txt #div_nuevo_registro", function(response,status, xhr){
+    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_nuevo_registro", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -1472,7 +1472,7 @@ function habilitaMenu(m2, m3) {
 
 
 function registrosAPdf(tipo_listado) {
-    $("#div_dialogs2").load("html/secretaria.txt #formulario_descargar_solicitudes", function(response,status, xhr){
+    $("#div_dialogs2").load("html/secretaria.txt?q="+Date.now()+" #formulario_descargar_solicitudes", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -1610,7 +1610,7 @@ function descargaCSVpremat() {
 
 
 function verDocsMatricula(id, edad) {
-    $("#div_dialogs").load("html/secretaria.txt #div_docs_matricula", function(response,status, xhr){
+    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_docs_matricula", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -1700,7 +1700,7 @@ function descargaCSVtransporte() {
 }
 
 function listaMatriculas() {
-    $("#div_dialogs").load("html/secretaria.txt #div_listadoMatriculas", function(response,status, xhr){
+    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_listadoMatriculas", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -1858,7 +1858,7 @@ function verCertificado(id){
 
 
 function subirMatDelphos(){
-    $("#div_dialogs").load("html/secretaria.txt #formulario_subir_mat_delphos", function(response,status, xhr){
+    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #formulario_subir_mat_delphos", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");

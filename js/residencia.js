@@ -206,7 +206,7 @@ function ordenUsus() {
 
 
 function panelEnvioEmail(dir_email) {
-    $("#div_dialogs").load("html/secretaria.txt #div_email_usuario", function(response,status,xhr){
+    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
