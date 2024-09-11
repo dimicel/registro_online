@@ -641,13 +641,13 @@ function panelModUsu(id) {
                     for (e in resp.datos) {
                         if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
                     }
-                    alert(resp.datos.num_ss);
                     f_nac = resp.datos.fecha_nac;
                     if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
                     form_modif_datos_usu.dat_sexo.value = resp.datos.sexo;
                     form_modif_datos_usu.dat_fecha_nac.value = f_nac;
                     form_modif_datos_usu.dat_telefono.value = resp.datos.telef_alumno;
-                    form_modif_datos_usu.dat_nss.value = resp.datos.num_ss;
+                    //form_modif_datos_usu.dat_nss.value = resp.datos.num_ss;
+                    document.getElementById("dat_nss").value=resp.datos.num_ss;
                     form_modif_datos_usu.dat_email.value = resp.datos.email;
                     form_modif_datos_usu.dat_direccion.value = resp.datos.direccion;
                     form_modif_datos_usu.dat_cp.value = resp.datos.cp;
