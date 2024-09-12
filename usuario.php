@@ -184,7 +184,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="dat_nss" class="etiquetas">Nº Seguridad Social:<br>
+                    <label for="dat_nss" class="etiquetas">Nº Seguridad Social:
                     <small>Para FCT. Sólo alumnos de Ciclos Formativos de Grado Básico, Medio y Superior</small></label>
                     <input type="text" class="form-control" id="dat_nss" name="dat_nss" maxlength="12" size="12">
                 </div>
