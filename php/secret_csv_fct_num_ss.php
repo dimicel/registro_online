@@ -11,8 +11,7 @@ $curso=$_POST["curso_csv_seguro"];
 
 $anno_calculo=substr($curso,0,4);
 
-//$res=$mysqli->query("SELECT u.apellidos, u.nombre, ud.num_ss FROM usuarios u JOIN usuarios_dat ud ON u.id_nie = ud.id_nie WHERE ud.num_ss IS NOT NULL AND ud.num_ss<>'' ORDER BY u.apellidos ASC, u.nombre ASC");
-$res=$mysqli->query("SELECT u.apellidos, u.nombre, u.id_nie, ud.num_ss FROM usuarios u JOIN usuarios_dat ud ON u.id_nie = ud.id_nie  ORDER BY u.apellidos ASC, u.nombre ASC");
+$res=$mysqli->query("SELECT usuarios.apellidos, usuarios.nombre, usuarios.id_nie, usuarios_dat.num_ss FROM usuarios INNER JOIN usuarios_dat ON usuarios.id_nie=usuarios_dat.id_nie where usuarios_dat.num_ss is not NULL and usuarios_dat.num_ss<>''  ORDER BY usuarios.apellidos ASC, usuarios.nombre ASC");
 
 if ($res->num_rows==0){
     $error="No hay registros que listar.";
