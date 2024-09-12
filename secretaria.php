@@ -118,6 +118,7 @@
                             <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVnuevosOtraCom()">CSV Nuevos de otra comunidad (TODOS)</a>
                             <a id="CSV_transporte" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVtransporte()">CSV Transporte Escolar</a>
                             <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoSeguroEscolarCiclos()">CSV Seguro Escolar Ciclos</a>
+                            <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoNumSS()">CSV Número de la Seguridad Social</a>
                             <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="descargaFotos()">Descarga Fotos</a>
                         </div>
                     </li>
@@ -395,6 +396,10 @@
     <div id="formulario_descargar_csv_segurociclos" style="display:none">
         <form id="descarga_csv_segurociclos" action="php/secret_csv_segurociclos.php" method="POST" target="_self">
             <input type="hidden" id="curso_csv_seguro" name="curso_csv_seguro" />
+        </form>
+    </div>
+    <div id="formulario_descargar_num_ss" style="display:none">
+        <form id="descarga_csv_num_ss" action="php/secret_csv_fct_num_ss.php" method="POST" target="_self">
         </form>
     </div>
     <div id="formulario_descargar_fotos_alumnos" style="display:none">
