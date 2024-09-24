@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="col">
                             <center>
-                            <input type="button" id="instrucciones" class="btn btn-success textoboton" value="Instrucciones" onclick="seleccion(this)">
+                            <input type="button" id="instrucciones" class="btn btn-success textoboton" value="Instrucciones y Anexo I (sede electrónica ministerio)" onclick="seleccion(this)">
                             <input type="button" id="formulario" class="btn btn-success textoboton" value="Formulario" onclick="seleccion(this)" />
                             </center>
                         </div>
