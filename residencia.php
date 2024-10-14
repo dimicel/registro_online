@@ -42,23 +42,23 @@
                     <label class="col-form-label" style="margin-left: 30px;">Año Académico: </label>
                 </div>
                 <div class="col-2" >
-                    <select id="curso" size="1" onchange="listaUsus();" class="form-control"></select>
+                    <select id="curso" size="1" onchange="res_listaUsus();" class="form-control"></select>
                 </div>
                 <div class="col-3">
-                    <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
+                    <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="res_cambioEmailJefeRes()">
                 </div>
                 <div class="col-2" style="display:none" id="csv_remesas">
                     <input type="button" class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">
                 </div>
                 <div class="col-1">
-                    <input type="button" id="boton_salir"  class="textoboton btn btn-success" value="SALIR" onclick="javascript: cierrasesion();">
+                    <input type="button" id="boton_salir"  class="textoboton btn btn-success" value="SALIR" onclick="javascript: res_cierrasesion();">
                 </div>
                 <!--
                 <div class="col-1">
                     <label class="col-form-label" style="margin-left:20px; ">Mostrar: </label>
                 </div>
                 <div class="col-4" style="margin-left:-10px">
-                    <select id="tipo_residente" size="1" onchange="listaUsus()" class="form-control">
+                    <select id="tipo_residente" size="1" onchange="res_listaUsus()" class="form-control">
                         <option value='res'>Residentes</option>
                         <option value='resnm'>SÓLO Residentes NO matriculados</option>
                         <option value='resm'>SÓLO Residentes matriculado</option>
@@ -71,11 +71,11 @@
             <div class="row" style="margin-top:15px">
                 <label class="col-form-label col-1" style="margin-left:20px">Buscar: </label>
                 <div class="col-7" style="margin-left:-35px">
-                    <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="listaUsus()">
+                    <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="res_listaUsus()">
                 </div>
                 <label class="col-form-label col-1" style="margin-left:20px">Filtro: </label>
                 <div class="col-2" style="margin-left:-35px">
-                    <select id="filtro_bajas" size="1"   class="form-control" onchange="listaUsus();">
+                    <select id="filtro_bajas" size="1"   class="form-control" onchange="res_listaUsus();">
                         <option value=-1>Todos</option>
                         <option value=0>Altas</option>
                         <option value=1>Bajas</option>

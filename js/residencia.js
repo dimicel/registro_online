@@ -33,7 +33,7 @@ $(function() {
             res_mes = resp["res_mes"];
             _curso = res_anno_ini_curso + "-" + (res_anno_ini_curso + 1);
             res_curso_actual=_curso;
-            generaSelectCurso();
+            res_generaSelectCurso();
             document.getElementById("curso").value = _curso;
 
             $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
@@ -69,7 +69,7 @@ $(function() {
     
 });
 
-function generaSelectCurso(){
+function res_generaSelectCurso(){
     if (res_mes<6) a_final=res_anno_ini_curso;
     else a_final=res_anno_ini_curso+1;
 
@@ -83,7 +83,7 @@ function generaSelectCurso(){
 }
 
 
-function ordenListado(obj) {
+/*function ordenListado(obj) {
     if (obj.innerHTML == "Docs" || obj.innerHTML == "Incidencias" || obj.innerHTML == "Listado") return;
     if (obj.innerHTML.indexOf("🡅") == -1 && obj.innerHTML.indexOf("🡇") == -1) {
         enc = obj.innerHTML;
@@ -99,10 +99,10 @@ function ordenListado(obj) {
     res_orden_campo = campo;
     res_orden_direccion = sim_dir;
     res_listaUsus(campo, sim_dir);
-}
+}*/
 
 
-function cierrasesion() {
+function res_cierrasesion() {
     $.post("php/logout.php", {}, function(resp) {
         open("index.php?q=" + Date.now().toString(), "_self");
     });
@@ -119,7 +119,7 @@ function res_listaUsus() {
     //Construcción del res_encabezamiento de la tabla
     encab_usus = "<tr>";
     for (i = 0; i < encabezamiento_usu.length; i++) {
-        if (encabezamiento_usu[i] == "Alumno") encab_usus += "<td style='" + estilo_usu[i] + "'onclick='ordenUsus()'>" + encabezamiento_usu[i] + " " + res_orden_direccion_usu + "</td>";
+        if (encabezamiento_usu[i] == "Alumno") encab_usus += "<td style='" + estilo_usu[i] + "'onclick='res_ordenUsus()'>" + encabezamiento_usu[i] + " " + res_orden_direccion_usu + "</td>";
         else encab_usus += "<td style='" + estilo_usu[i] + "'>" + encabezamiento_usu[i] + "</td>";
     }
     ///////////////////////////////////////////////
@@ -146,7 +146,7 @@ function res_listaUsus() {
                 data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'><a href='docs/"+data_array[i]["id_nie"]+"/residencia/"+document.getElementById("curso").value+"/"+data_array[i]["registro"]+".pdf' target='_blank'>" + data_array[i]["nombre"] + "</a></td>";
-                data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
+                data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='res_panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
                 if (data_array[i]["bonificado"]==1){
                     data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
                 }
@@ -195,14 +195,14 @@ function res_listaUsus() {
 
 
 
-function ordenUsus() {
+function res_ordenUsus() {
     if (res_orden_direccion_usu == "🡅") res_orden_direccion_usu = "🡇";
     else res_orden_direccion_usu = "🡅";
     res_listaUsus();
 }
 
 
-function panelEnvioEmail(dir_email) {
+function res_panelEnvioEmail(dir_email) {
     $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
@@ -600,7 +600,7 @@ function fianza(__registro,celda){
     });
 }
 
-function cierrasesion() {
+function res_cierrasesion() {
     $.post("php/logout.php", {}, function(resp) {
         open("index.php?q=" + Date.now().toString(), "_self");
     });
