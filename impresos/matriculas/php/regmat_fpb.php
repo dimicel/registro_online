@@ -37,7 +37,7 @@ $anno_curso=$_POST['anno_curso'];
 if (!isset($_POST['_autor_fotos'])) $autor_fotos="No";
 else{
     if (is_null($_POST['_autor_fotos'])) $autor_fotos="No";
-    else $autor_fotos="Sí";
+    else $autor_fotos=$_POST['_autor_fotos'];
 }
 $fecha_registro=date('Y-m-d');
 
