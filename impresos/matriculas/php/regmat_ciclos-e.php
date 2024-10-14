@@ -33,12 +33,13 @@ $ciclo=$_POST['sel_ciclos'];
 $nuevo_otra_comunidad=$_POST['_nuevo_otra_comunidad'];
 
 $anno_curso=$_POST['anno_curso'];
+/*
 if (!isset($_POST['_autor_fotos'])) $autor_fotos="No";
 else{
     if (is_null($_POST['_autor_fotos'])) $autor_fotos="No";
     else $autor_fotos="Sí";
-}
-
+}*/
+$autor_fotos=$_POST['_autor_fotos'];
 /*if (!isset($_POST['_nuevo_otra_comunidad'])) $nuevo_otra_comunidad="No";
 else{
     if (is_null($_POST['_nuevo_otra_comunidad'])) $nuevo_otra_comunidad="No";
@@ -362,7 +363,7 @@ $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', '', 7, '', true);
 if($mayor_edad=="Si"){
 $texto_consent=<<<EOT
-$nombre $apellidos, como alumno/a del Centro <strong>$aut_fotos</strong> autoriza al IES Universidad Laboral a la  toma de fotografías y de vídeo para que con motivo de las actividades Docentes - y especialmente las del 50  Aniversario- puedan ser usadas  en documentos oficiales o impresos, páginas webs, blogs redes sociales (Twitter Facebook)  o en cualquier otro soporte online del centro o medio de comunicación común y siempre que se use bajo la supervisión del equipo directivo.
+$nombre $apellidos, como alumno/a del Centro <strong>$autor_fotos</strong> autoriza al IES Universidad Laboral a la  toma de fotografías y de vídeo para que con motivo de las actividades Docentes - y especialmente las del 50  Aniversario- puedan ser usadas  en documentos oficiales o impresos, páginas webs, blogs redes sociales (Twitter Facebook)  o en cualquier otro soporte online del centro o medio de comunicación común y siempre que se use bajo la supervisión del equipo directivo.
 Autorización en  conformidad a lo establecido en el artículo 5.1 de la Ley Orgánica 15/1999 de protección de datos de carácter personal y Art. 6.1.a) Reglamento (UE) 2016/679  general de protección de datos.
 Esta autorización podrá ser anulada en cualquier instante siempre que se comunique por escrito este aspecto a la Dirección del Centro.
 <br><br>           
