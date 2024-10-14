@@ -53,14 +53,14 @@ $(function() {
                 firstClass: 'first'
             }).on("page", function(event, num) {
                 res_pagina = num;
-                listaUsus();
+                res_listaUsus();
             });
             $('#navegacion_usus_top li').addClass('page-item');
             $('#navegacion_usus_top a').addClass('page-link');
             $('#navegacion_usus_bottom li').addClass('page-item');
             $('#navegacion_usus_bottom a').addClass('page-link');
 
-            listaUsus();
+            res_listaUsus();
             document.getElementById("cargando").style.display = 'none';
         } 
     });
@@ -98,7 +98,7 @@ function ordenListado(obj) {
     if (campo == "nombre") campo = "apellidos";
     res_orden_campo = campo;
     res_orden_direccion = sim_dir;
-    listaUsus(campo, sim_dir);
+    res_listaUsus(campo, sim_dir);
 }
 
 
@@ -108,7 +108,7 @@ function cierrasesion() {
     });
 }
 
-function listaUsus() {
+function res_listaUsus() {
     direccion = new Array();
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
@@ -198,7 +198,7 @@ function listaUsus() {
 function ordenUsus() {
     if (res_orden_direccion_usu == "🡅") res_orden_direccion_usu = "🡇";
     else res_orden_direccion_usu = "🡅";
-    listaUsus();
+    res_listaUsus();
 }
 
 
@@ -400,7 +400,7 @@ function estadoBonificado(__registro,celda){
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
                                 alerta("Cambio de estado realizado correctamente.","ACTUALIZACIÓN CORRECTA");
-                                listaUsus();
+                                res_listaUsus();
                             }
                             else{
                                 alerta(resp,"ERROR");
@@ -511,7 +511,7 @@ function altaBaja(__registro,celda){
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
                                 alerta("Cambio de estado realizado correctamente.","ACTUALIZACIÓN CORRECTA");
-                                listaUsus();
+                                res_listaUsus();
                             }
                             else{
                                 alerta(resp,"ERROR");
@@ -572,7 +572,7 @@ function fianza(__registro,celda){
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
                                 alerta("Cambio de estado realizado correctamente.","ACTUALIZACIÓN CORRECTA");
-                                listaUsus();
+                                res_listaUsus();
                             }
                             else{
                                 alerta(resp,"ERROR");
