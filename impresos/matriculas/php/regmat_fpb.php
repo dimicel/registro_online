@@ -34,11 +34,13 @@ $curso_ciclo=$_POST['sel_curso'];
 $al_nuevo_otra_comunidad=$_POST['_nuevo_otra_comunidad'];
 
 $anno_curso=$_POST['anno_curso'];
+/*
 if (!isset($_POST['_autor_fotos'])) $autor_fotos="No";
 else{
     if (is_null($_POST['_autor_fotos'])) $autor_fotos="No";
     else $autor_fotos=$_POST['_autor_fotos'];
-}
+}*/
+$autor_fotos=$_POST['_autor_fotos'];
 $fecha_registro=date('Y-m-d');
 
 $id_nie=$_POST['id_nie'];
