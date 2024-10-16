@@ -17,23 +17,15 @@ $curso=$_POST["res_curso"];
 $buscar=$_POST["res_buscar"];
 $baja=$_POST["filtro_bajas"];
 
-$sql = "SELECT COUNT(*) AS total FROM residentes where curso='$curso'";
-$result = $mysqli->query($sql);
-
-if ($result->num_rows > 0) {
-    // Obtener el resultado
-    $resultado=$result->fetch_assoc();
-    $data["num_registros"] = $resultado['total'];
-} else {
-    $data["num_registros"] = 0;
-}
 
 $offset=($pagina-1)*$num_reg_pagina;
 if ($baja==-1){
     $consulta="SELECT * FROM residentes  where curso='$curso' ";
+    $sql = "SELECT COUNT(*) AS total FROM residentes where curso='$curso'";
 }
 else {
     $consulta="SELECT * FROM residentes  where curso='$curso' and baja='$baja' ";
+    $sql = "SELECT COUNT(*) AS total FROM residentes where curso='$curso' and baja='$baja'";
 }
 
 if (trim($buscar)==""){
@@ -43,6 +35,17 @@ if (trim($buscar)==""){
 else {
     //$consulta="SELECT * FROM residentes r JOIN usuarios u where u.id_nie=r.id_nie AND r.curso=$curso and (u.apellidos LIKE '%$buscar%' OR u.nombre  LIKE '%$buscar%' OR u.id_nie  LIKE '%$buscar%') ORDER BY u.apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
     $consulta.=" and (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+    $sql.=" and (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%')";
+}
+
+$result = $mysqli->query($sql);
+
+if ($result->num_rows > 0) {
+    // Obtener el resultado
+    $resultado=$result->fetch_assoc();
+    $data["num_registros"] = $resultado['total'];
+} else {
+    $data["num_registros"] = 0;
 }
     
 
