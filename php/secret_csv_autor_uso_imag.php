@@ -88,14 +88,6 @@ else{
 }
 
 
-
-
-
-
-
-
-
-
 header('Expires: 0');
 header('Cache-control: private');
 header('Content-Type: application/x-octet-stream;charset=utf-8'); // Archivo de Excel
