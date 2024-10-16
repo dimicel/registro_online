@@ -26,8 +26,8 @@ $(function() {
                 document.getElementById("secretaria").style.display='';
                 document.getElementById("csv_remesas").style.display='';
                 document.getElementById("boton_salir").style.display='none';
-                document.getElementById("rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
             }
+            if (document.getElementById("rotulo_tipo_usu")) document.getElementById("rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
             document.getElementById("res_rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
             res_anno_ini_curso = resp["anno_ini_curso"];
             res_mes = resp["mes"];
