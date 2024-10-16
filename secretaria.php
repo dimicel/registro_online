@@ -37,7 +37,7 @@
         <!--_______________________________________________________________________________________-->
         <div id="doc_reg_tab" class="ui-widget-header ui-corner-all">
             <div style="margin-top:10px; margin-left:10px;" id="menu_div">
-                <ul class="nav bg-white" style="font-size:0.75em !important">
+                <ul class="nav bg-white" style="font-size:0.7em !important">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="menu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                             Gestión Usuarios
@@ -108,18 +108,6 @@
                             </div>
                             <div class="dropdown-divider"></div>
                             <a id="menu_listado_mat" class="dropdown-item" href="#" onclick="javascript:subirMatDelphos();">Subir CSV Delphos para Matrícula</a>
-                            <div class="dropdown-divider"></div>
-                            <!--<a id="menu_listado_mat_pdf" class="dropdown-item disabled" href="#" onclick="listaMatriculas();">Listado de Matrículas</a>-->
-                            <!--<a id="menu_csv_mat" class="dropdown-item disabled" href="#" onclick="descargaCSVmatriculas();">CSV Matrículas</a>-->
-                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVelearningFctProy()">CSV Matrícula E-Learning (FCT y Proyecto)</a>  
-                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVconsolPremat()">CSV Consolidan Prematrícula</a>  
-                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVProgLing()">CSV Programa Lingüístico (Sólo ESO)</a>
-                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVAlNuevos()">CSV Alumnos Nuevos (Sólo ESO y BACH)</a>                         
-                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVnuevosOtraCom()">CSV Nuevos de otra comunidad (TODOS)</a>
-                            <a id="CSV_transporte" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVtransporte()">CSV Transporte Escolar</a>
-                            <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoSeguroEscolarCiclos()">CSV Seguro Escolar Ciclos</a>
-                            <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoNumSS()">CSV Número de la Seguridad Social</a>
-                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="descargaFotos()">Descarga Fotos</a>
                         </div>
                     </li>
                     <li class="nav-item" id="menu6">
@@ -135,6 +123,22 @@
                         </div>    
                     </li>
                     <li class="nav-item" id="menu8">
+                        <a class="nav-link dropdown-toggle" id="menu_matricula" href="#" data-toggle="dropdown">Descargas</a>
+                        <div class="dropdown-menu" >
+                            <!--<a id="menu_listado_mat_pdf" class="dropdown-item disabled" href="#" onclick="listaMatriculas();">Listado de Matrículas</a>-->
+                            <!--<a id="menu_csv_mat" class="dropdown-item disabled" href="#" onclick="descargaCSVmatriculas();">CSV Matrículas</a>-->
+                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVelearningFctProy()">CSV Matrícula E-Learning (FCT y Proyecto)</a>  
+                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVconsolPremat()">CSV Consolidan Prematrícula</a>  
+                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVProgLing()">CSV Programa Lingüístico (Sólo ESO)</a>
+                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVAlNuevos()">CSV Alumnos Nuevos (Sólo ESO y BACH)</a>                         
+                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVnuevosOtraCom()">CSV Nuevos de otra comunidad (TODOS)</a>
+                            <a id="CSV_transporte" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVtransporte()">CSV Transporte Escolar</a>
+                            <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoSeguroEscolarCiclos()">CSV Seguro Escolar Ciclos</a>
+                            <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoNumSS()">CSV Número de la Seguridad Social</a>
+                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="descargaFotos()">Descarga Fotos</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" id="menu9">
                         <a class="nav-link" href="#" onclick="javascript: cierrasesion();">Salir</a>
                     </li>
                 </ul>
