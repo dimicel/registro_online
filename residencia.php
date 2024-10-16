@@ -45,7 +45,7 @@
                     <select id="res_curso" size="1" onchange="res_listaUsus();" class="form-control"></select>
                 </div>
                 <div class="col-3">
-                    <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="res_cambioEmailJefeRes()">
+                    <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
                 </div>
                 <div class="col-2" style="display:none" id="csv_remesas">
                     <input type="button" class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">
