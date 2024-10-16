@@ -28,8 +28,9 @@ $(function() {
                 document.getElementById("boton_salir").style.display='none';
             }
             document.getElementById("rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
-            res_anno_ini_curso = resp["res_anno_ini_curso"];
-            res_mes = resp["res_mes"];
+            document.getElementById("res_rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
+            res_anno_ini_curso = resp["anno_ini_curso"];
+            res_mes = resp["mes"];
             _curso = res_anno_ini_curso + "-" + (res_anno_ini_curso + 1);
             res_curso_actual=_curso;
             res_generaSelectCurso();
