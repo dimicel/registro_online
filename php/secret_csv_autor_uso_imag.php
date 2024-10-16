@@ -18,10 +18,10 @@ $Datos='CURSO;NIE;ALUMNO;AUTORIZA_USO_FOTOS'.PHP_EOL;
 
 $res=$mysqli->query("SELECT * FROM mat_eso where curso='$curso' ORDER BY grupo,apellidos,nombre");
 if ($res->num_rows==0){
-    $Datos.="'';";
+    $Datos.=";";
     $Datos."NO HAY USUARIOS QUE LISTAR;";
-    $Datos.="'';";
-    $Datos."''".PHP_EOL;	
+    $Datos.=";";
+    $Datos.=PHP_EOL;	
 }
 else{
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
@@ -37,10 +37,10 @@ else{
 
 $res=$mysqli->query("SELECT * FROM mat_bach where curso='$curso' ORDER BY grupo,apellidos,nombre");
 if ($res->num_rows==0){
-    $Datos.="'';";
+    $Datos.=";";
     $Datos."NO HAY USUARIOS QUE LISTAR;";
-    $Datos.="'';";
-    $Datos."''".PHP_EOL;	
+    $Datos.=";";
+    $Datos.=PHP_EOL;	
 }
 else{
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
@@ -55,10 +55,10 @@ else{
 
 $res=$mysqli->query("SELECT * FROM mat_ciclos where curso='$curso' ORDER BY ciclo,curso_ciclo,apellidos,nombre");
 if ($res->num_rows==0){
-    $Datos.="'';";
+    $Datos.=";";
     $Datos."NO HAY USUARIOS QUE LISTAR;";
-    $Datos.="'';";
-    $Datos."''".PHP_EOL;	
+    $Datos.=";";
+    $Datos.=PHP_EOL;	
 }
 else{
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
@@ -72,10 +72,10 @@ else{
 
 $res=$mysqli->query("SELECT * FROM mat_fpb where curso='$curso' ORDER BY ciclo,curso_ciclo,apellidos,nombre");
 if ($res->num_rows==0){
-    $Datos.="'';";
+    $Datos.=";";
     $Datos."NO HAY USUARIOS QUE LISTAR;";
-    $Datos.="'';";
-    $Datos."''".PHP_EOL;	
+    $Datos.=";";
+    $Datos.=PHP_EOL;	
 }
 else{
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
