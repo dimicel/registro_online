@@ -181,6 +181,10 @@ function res_listaUsus() {
             res_num_registros = resp.num_registros;
             res_numero_paginas = Math.ceil(res_num_registros / res_num_reg_pagina);
             if (res_pagina > res_numero_paginas) res_pagina = res_numero_paginas;
+            if (res_num_registros==0){
+                res_numero_paginas=1;
+                res_pagina=1;
+            }
 
             $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
                 total: res_numero_paginas
