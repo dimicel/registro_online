@@ -136,6 +136,15 @@ function res_listaUsus() {
         else if (resp.error == "sin_registros") {
             document.getElementById("div_res_notabla_usus").style.display = "inline-block";
             document.getElementById("div_res_tabla_usus").style.display = "none";
+            res_numero_paginas=1;
+            res_pagina=1;
+            $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
+                total: res_numero_paginas
+            });
+            $('#res_navegacion_usus_top li').addClass('page-item');
+            $('#res_navegacion_usus_top a').addClass('page-link');
+            $('#res_navegacion_usus_bottom li').addClass('page-item');
+            $('#res_navegacion_usus_bottom a').addClass('page-link');
         } else {
             document.getElementById("div_res_notabla_usus").style.display = "none";
             document.getElementById("div_res_tabla_usus").style.display = "inline-block";
@@ -181,11 +190,7 @@ function res_listaUsus() {
             res_num_registros = resp.num_registros;
             res_numero_paginas = Math.ceil(res_num_registros / res_num_reg_pagina);
             if (res_pagina > res_numero_paginas) res_pagina = res_numero_paginas;
-            if (res_num_registros==0){
-                res_numero_paginas=1;
-                res_pagina=1;
-            }
-            alert(res_numero_paginas+"   "+res_pagina)
+            
             $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
                 total: res_numero_paginas
             });
