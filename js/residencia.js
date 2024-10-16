@@ -185,7 +185,7 @@ function res_listaUsus() {
                 res_numero_paginas=1;
                 res_pagina=1;
             }
-
+            alert(res_numero_paginas+"   "+res_pagina)
             $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
                 total: res_numero_paginas
             });
