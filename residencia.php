@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div id="panel" style="display: block;  padding: 5px; width:990px" class="ui-widget-header ui-corner-all centrado">
+    <div id="res_panel" style="display: block;  padding: 5px; width:990px" class="ui-widget-header ui-corner-all centrado">
         <div style="display:table-cell; padding-left:10px; padding-top: 10px">
             <img src="recursos/escudo.jpg" width="115" height="105" alt="Escudo_Uni">
         </div>
@@ -31,7 +31,7 @@
        
         <!-- LISTADO USUARIOS _____________________________________________________________________-->
         <!--_______________________________________________________________________________________-->
-        <div id="usu_reg_tab" class="ui-widget-header ui-corner-all" >
+        <div id="res_usu_reg_tab" class="ui-widget-header ui-corner-all" >
             <div class="row" style="margin-top:15px;margin-left:20px;display:none" id="secretaria" >
                 <div class="col-5">
                     <input type="button" class="textoboton btn btn-success" value="Volver a Secretaría" onclick="document.location='secretaria.php?q='+Date.now()">
