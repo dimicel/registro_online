@@ -35,7 +35,25 @@ $res=$mysqli->query($consulta);
 $data["num_registros"]=$res->num_rows;
 $res->free();
 */
-$sql = "SELECT COUNT(*) AS total FROM usuarios";
+
+
+
+$offset=($pagina-1)*$num_reg_pagina;
+if (trim($buscar)==""){
+    $consulta="SELECT * FROM usuarios $filtro_han_entrado ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+    $sql = "SELECT COUNT(*) AS total FROM usuarios $filtro_han_entrado";
+}
+else {
+    if ($filtro_han_entrado!=""){
+        $consulta="SELECT * FROM usuarios $filtro_han_entrado AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%')  ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+        $sql = "SELECT COUNT(*) AS total FROM usuarios $filtro_han_entrado AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%')";
+    }
+    else {
+        $consulta="SELECT * FROM usuarios WHERE residente_no_matriculado=0 AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
+        $sql = "SELECT COUNT(*) AS total FROM usuarios WHERE residente_no_matriculado=0 AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%')";
+    }
+}
+
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
@@ -44,19 +62,6 @@ if ($result->num_rows > 0) {
     $data["num_registros"] = $resultado['total'];
 } else {
     $data["num_registros"] = 0;
-}
-
-$offset=($pagina-1)*$num_reg_pagina;
-if (trim($buscar)==""){
-    $consulta="SELECT * FROM usuarios $filtro_han_entrado ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
-}
-else {
-    if ($filtro_han_entrado!=""){
-        $consulta="SELECT * FROM usuarios $filtro_han_entrado AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%')  ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
-    }
-    else {
-        $consulta="SELECT * FROM usuarios WHERE residente_no_matriculado=0 AND (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%') ORDER BY apellidos $orden_direccion LIMIT $num_reg_pagina OFFSET $offset";
-    }
 }
 
 $res=$mysqli->query($consulta);
