@@ -90,7 +90,7 @@
                 </div>
             </div>   
             <div class="row justify-content-center" style="margin-top:10px">
-                <ul class="pagination pagination-sm" id="navegacion_usus_top"></ul>
+                <ul class="pagination pagination-sm" id="res_navegacion_usus_top"></ul>
             </div>
             <!--<div class="row justify-content-center" >
                 <div class="col" style="text-align: center;">

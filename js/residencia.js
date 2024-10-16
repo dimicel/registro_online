@@ -36,7 +36,7 @@ $(function() {
             res_generaSelectCurso();
             document.getElementById("res_curso").value = _curso;
 
-            $('#navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
+            $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
                 total: 1,
                 page: res_pagina,
                 maxVisible: 10,
@@ -55,8 +55,8 @@ $(function() {
                 res_pagina = num;
                 res_listaUsus();
             });
-            $('#navegacion_usus_top li').addClass('page-item');
-            $('#navegacion_usus_top a').addClass('page-link');
+            $('#res_navegacion_usus_top li').addClass('page-item');
+            $('#res_navegacion_usus_top a').addClass('page-link');
             $('#res_navegacion_usus_bottom li').addClass('page-item');
             $('#res_navegacion_usus_bottom a').addClass('page-link');
 
@@ -182,11 +182,12 @@ function res_listaUsus() {
             res_numero_paginas = Math.ceil(res_num_registros / res_num_reg_pagina);
             if (res_pagina > res_numero_paginas) res_pagina = res_numero_paginas;
 
-            $('#navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
+
+            $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
                 total: res_numero_paginas
             });
-            $('#navegacion_usus_top li').addClass('page-item');
-            $('#navegacion_usus_top a').addClass('page-link');
+            $('#res_navegacion_usus_top li').addClass('page-item');
+            $('#res_navegacion_usus_top a').addClass('page-link');
             $('#res_navegacion_usus_bottom li').addClass('page-item');
             $('#res_navegacion_usus_bottom a').addClass('page-link');
         }
