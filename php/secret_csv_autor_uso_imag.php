@@ -20,8 +20,8 @@ $res=$mysqli->query("SELECT * FROM mat_eso where curso='$curso' ORDER BY grupo,a
 if ($res->num_rows>0){
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
         if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
-        $Datos.=$r["grupo"].";";
-        $Datos.=$r["id_nie"].";";
+        $Datos.=utf8_decode($r["grupo"]).";";
+        $Datos.=utf8_decode($r["id_nie"]).";";
         $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
         $Datos.=utf8_decode($r["autoriza_fotos"].";").PHP_EOL;	
     }
@@ -34,8 +34,8 @@ $res=$mysqli->query("SELECT * FROM mat_bach where curso='$curso' ORDER BY grupo,
 if ($res->num_rows>0){
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
         if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
-        $Datos.=$r["grupo"].";";
-        $Datos.=$r["id_nie"].";";
+        $Datos.=utf8_decode($r["grupo"]).";";
+        $Datos.=utf8_decode($r["id_nie"]).";";
         $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
         $Datos.=utf8_decode($r["autoriza_fotos"].";").PHP_EOL;	
     }
@@ -47,8 +47,8 @@ $res=$mysqli->query("SELECT * FROM mat_ciclos where curso='$curso' ORDER BY cicl
 if ($res->num_rows>0){
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
         if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
-        $Datos.=$r["ciclo"]." ".$r["curso_ciclo"].";";
-        $Datos.=$r["id_nie"].";";
+        $Datos.=utf8_decode($r["ciclo"]." ".$r["curso_ciclo"]).";";
+        $Datos.=utf8_decode($r["id_nie"]).";";
         $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
         $Datos.=utf8_decode($r["autoriza_fotos"].";").PHP_EOL;	
     }
@@ -59,8 +59,8 @@ $res=$mysqli->query("SELECT * FROM mat_fpb where curso='$curso' ORDER BY ciclo,c
 if ($res->num_rows>0){
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
         if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
-        $Datos.=$r["ciclo"]." ".$r["curso_ciclo"].";";
-        $Datos.=$r["id_nie"].";";
+        $Datos.=utf8_decode($r["ciclo"]." ".$r["curso_ciclo"]).";";
+        $Datos.=utf8_decode($r["id_nie"]).";";
         $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
         $Datos.=utf8_decode($r["autoriza_fotos"].";").PHP_EOL;	
     }
