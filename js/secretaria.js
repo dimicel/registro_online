@@ -2317,5 +2317,6 @@ function subeLogo(obj, imagen){
 
 
 function listadoAutorUsoImag(){
+    document.getElementById("curso_csv_autor_uso_imagenes").value=curso_actual;
     document.getElementById("descarga_csv_autor_uso_imagenes").submit();
 }

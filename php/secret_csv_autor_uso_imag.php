@@ -7,20 +7,94 @@ $Datos="";
 include("conexion.php");
 if ($mysqli->errno>0) $error="Error en servidor.";
 
-$curso=$_POST["curso_csv_seguro"];
+$curso=$_POST["curso_csv_autor_uso_imagenes"];
 
-$anno_calculo=substr($curso,0,4);
-
-$res=$mysqli->query("SELECT usuarios.apellidos, usuarios.nombre, usuarios.id_nie, usuarios_dat.num_ss FROM usuarios INNER JOIN usuarios_dat ON usuarios.id_nie=usuarios_dat.id_nie where usuarios_dat.num_ss is not NULL and usuarios_dat.num_ss<>''  ORDER BY usuarios.apellidos ASC, usuarios.nombre ASC");
-
-if ($res->num_rows==0){
-    $error="No hay registros que listar.";
-}
-
-$Name = 'listado_num_ss.csv';
+$Name = 'listado_autorizacion_fotos.csv';
 $FileName = "./$Name";
 
-$Datos='NIE;ALUMNO;Nº SEGURIDAD SOCIAL'.PHP_EOL;
+
+$Datos='CURSO;NIE;ALUMNO;AUTORIZA_USO_FOTOS'.PHP_EOL;
+
+
+$res=$mysqli->query("SELECT * FROM mat_eso where curso='$curso' ORDER BY grupo,apellidos,nombre");
+if ($res->num_rows==0){
+    $Datos.="'';";
+    $Datos."NO HAY USUARIOS QUE LISTAR;";
+    $Datos.="'';";
+    $Datos."''".PHP_EOL;	
+}
+else{
+    while($r=$res->fetch_array(MYSQLI_ASSOC)){
+        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
+        $Datos.=$r["grupo"].";";
+        $Datos.=$r["id_nie"].";";
+        $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
+        $Datos.=utf8_decode($r["autoriza_fotos"].";").PHP_EOL;	
+    }
+}
+
+
+
+$res=$mysqli->query("SELECT * FROM mat_bach where curso='$curso' ORDER BY grupo,apellidos,nombre");
+if ($res->num_rows==0){
+    $Datos.="'';";
+    $Datos."NO HAY USUARIOS QUE LISTAR;";
+    $Datos.="'';";
+    $Datos."''".PHP_EOL;	
+}
+else{
+    while($r=$res->fetch_array(MYSQLI_ASSOC)){
+        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
+        $Datos.=$r["grupo"].";";
+        $Datos.=$r["id_nie"].";";
+        $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
+        $Datos.=utf8_decode($r["autoriza_fotos"].";").PHP_EOL;	
+    }
+}
+
+
+$res=$mysqli->query("SELECT * FROM mat_ciclos where curso='$curso' ORDER BY ciclo,curso_ciclo,apellidos,nombre");
+if ($res->num_rows==0){
+    $Datos.="'';";
+    $Datos."NO HAY USUARIOS QUE LISTAR;";
+    $Datos.="'';";
+    $Datos."''".PHP_EOL;	
+}
+else{
+    while($r=$res->fetch_array(MYSQLI_ASSOC)){
+        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
+        $Datos.=$r["ciclo"]." ".$r["curso_ciclo"].";";
+        $Datos.=$r["id_nie"].";";
+        $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
+        $Datos.=utf8_decode($r["autoriza_fotos"].";").PHP_EOL;	
+    }
+}
+
+$res=$mysqli->query("SELECT * FROM mat_fpb where curso='$curso' ORDER BY ciclo,curso_ciclo,apellidos,nombre");
+if ($res->num_rows==0){
+    $Datos.="'';";
+    $Datos."NO HAY USUARIOS QUE LISTAR;";
+    $Datos.="'';";
+    $Datos."''".PHP_EOL;	
+}
+else{
+    while($r=$res->fetch_array(MYSQLI_ASSOC)){
+        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
+        $Datos.=$r["ciclo"]." ".$r["curso_ciclo"].";";
+        $Datos.=$r["id_nie"].";";
+        $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
+        $Datos.=utf8_decode($r["autoriza_fotos"].";").PHP_EOL;	
+    }
+}
+
+
+
+
+
+
+
+
+
 
 header('Expires: 0');
 header('Cache-control: private');
@@ -31,17 +105,6 @@ header('Last-Modified: '.date('D, d M Y H:i:s'));
 header('Content-Disposition: attachment; filename="'.$Name.'"');
 header("Content-Transfer-Encoding: binary");
 
-if ($error!="") {
-    echo $error;
-    exit();
-}
-while($r=$res->fetch_array(MYSQLI_ASSOC)){
-    if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
 
-    $Datos.="'".utf8_decode($r["id_nie"])."'".";";
-    $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
-    $Datos.=utf8_decode($r["num_ss"].";");
-    $Datos.=utf8_decode($paga_seguro).PHP_EOL;		
-}
 
 echo $Datos;
