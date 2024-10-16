@@ -135,7 +135,7 @@
                             <a id="CSV_transporte" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVtransporte()">CSV Transporte Escolar</a>
                             <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoSeguroEscolarCiclos()">CSV Seguro Escolar Ciclos</a>
                             <a id="CSV_num_ss" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoNumSS()">CSV Número de la Seguridad Social</a>
-                            <a id="CSV_autor_fotos" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoNumSS()">CSV Autorización uso imágenes</a>
+                            <a id="CSV_autor_fotos" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoAutorUsoImag()">CSV Autorización uso imágenes</a>
                             <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="descargaFotos()">Descarga Fotos</a>
                         </div>
                     </li>
@@ -405,6 +405,10 @@
     </div>
     <div id="formulario_descargar_num_ss" style="display:none">
         <form id="descarga_csv_num_ss" action="php/secret_csv_fct_num_ss.php" method="POST" target="_self">
+        </form>
+    </div>
+    <div id="formulario_descargar_autor_uso_fotos" style="display:none">
+        <form id="descarga_csv_autor_uso_imagenes" action="php/secret_csv_autor_uso_imag.php" method="POST" target="_self">
         </form>
     </div>
     <div id="formulario_descargar_fotos_alumnos" style="display:none">

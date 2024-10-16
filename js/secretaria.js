@@ -2314,3 +2314,8 @@ function subeLogo(obj, imagen){
             }
         });
 }
+
+
+function listadoAutorUsoImag(){
+    document.getElementById("descarga_csv_autor_uso_imagenes").submit();
+}
