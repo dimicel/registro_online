@@ -101,16 +101,16 @@
             <div class="row justify-content-center">
                 <table id="res_encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px">
                 </table><br>
-                <div id="div_tabla_usus" style="overflow: auto; height: 480px;" class="table-hover">
+                <div id="div_res_tabla_usus" style="overflow: auto; height: 480px;" class="table-hover">
                     <table id="res_registros_usus" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:20px">
                     </table>
                 </div>
-                <div id="div_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px">
+                <div id="div_res_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px">
                     No hay usuarios que listar.
                 </div>
             </div>
             <div class="row justify-content-center">
-                <ul class="pagination pagination-sm" id="navegacion_usus_bottom"></ul>
+                <ul class="pagination pagination-sm" id="res_navegacion_usus_bottom"></ul>
             </div>
         </div>
         <!-- FIN LISTADO DE USUARIOS__________________________________________________________________-->
@@ -119,11 +119,11 @@
     <!--______________________________________________________________________________________________-->
 
 
-    <div id="verInfoUsu_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
-    <div id="cargando" style="display:none; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('recursos/espera.gif') no-repeat center center; opacity: .7;z-index:9999;text-align:center;">
+    <div id="res_verInfoUsu_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
+    <div id="res_cargando" style="display:none; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('recursos/espera.gif') no-repeat center center; opacity: .7;z-index:9999;text-align:center;">
     </div>
-    <div id="mensaje_div" class="alertas"></div>
-    <div id="div_dialogs" class="ui-widget-header ui-corner-all alertas"></div>
+    <div id="res_mensaje_div" class="alertas"></div>
+    <div id="res_div_dialogs" class="ui-widget-header ui-corner-all alertas"></div>
     <div id="div_cambio_email_jef_res" class="ui-widget-header ui-corner-all alertas">
         <form id="cambio_email_jef_res">
             <div class="form-row">

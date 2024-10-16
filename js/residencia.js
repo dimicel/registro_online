@@ -17,7 +17,7 @@ $(function() {
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
     else document.getElementById("servidor_pruebas").style.display="none";
    
-    document.getElementById("cargando").style.display = 'inherit';
+    document.getElementById("res_cargando").style.display = 'inherit';
     prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "residencia" },()=>{},"json"));
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
@@ -35,7 +35,7 @@ $(function() {
             res_generaSelectCurso();
             document.getElementById("res_curso").value = _curso;
 
-            $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
+            $('#navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
                 total: 1,
                 page: res_pagina,
                 maxVisible: 10,
@@ -56,11 +56,11 @@ $(function() {
             });
             $('#navegacion_usus_top li').addClass('page-item');
             $('#navegacion_usus_top a').addClass('page-link');
-            $('#navegacion_usus_bottom li').addClass('page-item');
-            $('#navegacion_usus_bottom a').addClass('page-link');
+            $('#res_navegacion_usus_bottom li').addClass('page-item');
+            $('#res_navegacion_usus_bottom a').addClass('page-link');
 
             res_listaUsus();
-            document.getElementById("cargando").style.display = 'none';
+            document.getElementById("res_cargando").style.display = 'none';
         } 
     });
 
@@ -133,11 +133,11 @@ function res_listaUsus() {
     $.post("php/residencia_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "sin_registros") {
-            document.getElementById("div_notabla_usus").style.display = "inline-block";
-            document.getElementById("div_tabla_usus").style.display = "none";
+            document.getElementById("div_res_notabla_usus").style.display = "inline-block";
+            document.getElementById("div_res_tabla_usus").style.display = "none";
         } else {
-            document.getElementById("div_notabla_usus").style.display = "none";
-            document.getElementById("div_tabla_usus").style.display = "inline-block";
+            document.getElementById("div_res_notabla_usus").style.display = "none";
+            document.getElementById("div_res_tabla_usus").style.display = "inline-block";
             data = "";
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
@@ -181,13 +181,13 @@ function res_listaUsus() {
             res_numero_paginas = Math.ceil(res_num_registros / res_num_reg_pagina);
             if (res_pagina > res_numero_paginas) res_pagina = res_numero_paginas;
 
-            $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
+            $('#navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
                 total: res_numero_paginas
             });
             $('#navegacion_usus_top li').addClass('page-item');
             $('#navegacion_usus_top a').addClass('page-link');
-            $('#navegacion_usus_bottom li').addClass('page-item');
-            $('#navegacion_usus_bottom a').addClass('page-link');
+            $('#res_navegacion_usus_bottom li').addClass('page-item');
+            $('#res_navegacion_usus_bottom a').addClass('page-link');
         }
     }, "json");
 }
@@ -202,7 +202,7 @@ function res_ordenUsus() {
 
 
 function res_panelEnvioEmail(dir_email) {
-    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
+    $("#res_div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -234,7 +234,7 @@ function res_panelEnvioEmail(dir_email) {
                     $(element).prev().prev().html(error);
                 }
             });
-            $("#div_dialogs").dialog({
+            $("#res_div_dialogs").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
                 modal: true,
@@ -250,11 +250,11 @@ function res_panelEnvioEmail(dir_email) {
                             asunto = document.getElementById("usu_asunto_email").value;
                             mensaje = document.getElementById("usu_cuerpo_email").value;
                             if (validFormEmail.form()) {
-                                document.getElementById("cargando").style.display = "inherit";
+                                document.getElementById("res_cargando").style.display = "inherit";
                                 $.post("php/residencia_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
-                                    document.getElementById("cargando").style.display = "none";
+                                    document.getElementById("res_cargando").style.display = "none";
                                     alerta("Correo electrónico enviado.", "EMAIL");
-                                    $("#div_dialogs").dialog("close");
+                                    $("#res_div_dialogs").dialog("close");
                                 });
                             }
                         }
@@ -263,12 +263,12 @@ function res_panelEnvioEmail(dir_email) {
                         class: "btn btn-success textoboton",
                         text: "Cancelar",
                         click: function() {
-                            $("#div_dialogs").dialog("close");
+                            $("#res_div_dialogs").dialog("close");
                         }
                     }
                 ],
                 close: function(event, ui) {
-                    $("#div_dialogs").dialog("destroy");
+                    $("#res_div_dialogs").dialog("destroy");
                 }
             });
         }
@@ -323,12 +323,12 @@ function cambioEmailJefeRes(){
                 text: "Guardar Cambios",
                 click: function() {
                     if ($("#cambio_email_jef_res").valid()){
-                        document.getElementById("cargando").style.display = 'inherit';
+                        document.getElementById("res_cargando").style.display = 'inherit';
                         $.post({
                             url:"php/residencia_actualiza_email_jr.php" ,
                             data: $("#cambio_email_jef_res").serialize(),
                             success: function(resp) {
-                                document.getElementById("cargando").style.display = 'none';
+                                document.getElementById("res_cargando").style.display = 'none';
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                                 else if (resp == "ok"){
@@ -341,7 +341,7 @@ function cambioEmailJefeRes(){
                                 $("#div_cambio_email_jef_res").dialog("destroy");
                             },
                             error: function(xhr, status, error) {
-                                document.getElementById("cargando").style.display = 'none';
+                                document.getElementById("res_cargando").style.display = 'none';
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                                 $("#div_cambio_email_jef_res").dialog("close");
                                 $("#div_cambio_email_jef_res").dialog("destroy");
@@ -372,8 +372,8 @@ function estadoBonificado(__registro,celda){
         mensaje="<p>Va a cambiar el estado del residente de BONIFICADO a NO BONIFICADO.</p>";
         bonificado=0;
     }
-    document.getElementById("div_dialogs").innerHTML=mensaje;
-    $("#div_dialogs").dialog({
+    document.getElementById("res_div_dialogs").innerHTML=mensaje;
+    $("#res_div_dialogs").dialog({
         autoOpen: true,
         dialogClass: "no-close",
         modal: true,
@@ -389,12 +389,12 @@ function estadoBonificado(__registro,celda){
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
-                    document.getElementById("cargando").style.display = 'inherit';
+                    document.getElementById("res_cargando").style.display = 'inherit';
                     $.post({
                         url:"php/residencia_cambio_estado_bonificado.php" ,
                         data: {registro:__registro,bonificado:bonificado},
                         success: function(resp) {
-                            document.getElementById("cargando").style.display = 'none';
+                            document.getElementById("res_cargando").style.display = 'none';
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
@@ -404,14 +404,14 @@ function estadoBonificado(__registro,celda){
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $("#div_dialogs").dialog("close");
-                            $("#div_dialogs").dialog("destroy");
+                            $("#res_div_dialogs").dialog("close");
+                            $("#res_div_dialogs").dialog("destroy");
                         },
                         error: function(xhr, status, error) {
-                            document.getElementById("cargando").style.display = 'none';
+                            document.getElementById("res_cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $("#div_dialogs").dialog("close");
-                            $("#div_dialogs").dialog("destroy");
+                            $("#res_div_dialogs").dialog("close");
+                            $("#res_div_dialogs").dialog("destroy");
                         }
                     });
                 }
@@ -420,8 +420,8 @@ function estadoBonificado(__registro,celda){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#div_dialogs").dialog("close");
-                $("#div_dialogs").dialog("destroy");
+                $("#res_div_dialogs").dialog("close");
+                $("#res_div_dialogs").dialog("destroy");
             }
         }]
     });
@@ -439,7 +439,7 @@ function altaBaja(__registro,celda){
         mensaje="<p>El residente vuelve a estar de ALTA en la residencia.</p>";
         baja=0;
     }
-    document.getElementById("div_dialogs").innerHTML=mensaje;
+    document.getElementById("res_div_dialogs").innerHTML=mensaje;
     if (celda.innerHTML=="NO"){
         $("#form_baja").validate({
             rules: {
@@ -481,7 +481,7 @@ function altaBaja(__registro,celda){
         document.getElementById('fech_baja').value = todayFormatted;
     }
     
-    $("#div_dialogs").dialog({
+    $("#res_div_dialogs").dialog({
         autoOpen: true,
         dialogClass: "no-close",
         modal: true,
@@ -500,12 +500,12 @@ function altaBaja(__registro,celda){
                     if (baja==1) if (!$("#form_baja").valid()) return;
                     if (baja==1) fecha_baja=document.getElementById('fech_baja').value;
                     else fecha_baja="";
-                    document.getElementById("cargando").style.display = 'inherit';
+                    document.getElementById("res_cargando").style.display = 'inherit';
                     $.post({
                         url:"php/residencia_alta_baja.php",
                         data: {registro:__registro,baja:baja,fecha_baja:fecha_baja},
                         success: function(resp) {
-                            document.getElementById("cargando").style.display = 'none';
+                            document.getElementById("res_cargando").style.display = 'none';
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
@@ -515,14 +515,14 @@ function altaBaja(__registro,celda){
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $("#div_dialogs").dialog("close");
-                            $("#div_dialogs").dialog("destroy");
+                            $("#res_div_dialogs").dialog("close");
+                            $("#res_div_dialogs").dialog("destroy");
                         },
                         error: function(xhr, status, error) {
-                            document.getElementById("cargando").style.display = 'none';
+                            document.getElementById("res_cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $("#div_dialogs").dialog("close");
-                            $("#div_dialogs").dialog("destroy");
+                            $("#res_div_dialogs").dialog("close");
+                            $("#res_div_dialogs").dialog("destroy");
                         }
                     });
                 }
@@ -531,8 +531,8 @@ function altaBaja(__registro,celda){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#div_dialogs").dialog("close");
-                $("#div_dialogs").dialog("destroy");
+                $("#res_div_dialogs").dialog("close");
+                $("#res_div_dialogs").dialog("destroy");
             }
         }]
     });
@@ -544,8 +544,8 @@ function fianza(__registro,celda){
     mensaje="<div class='form-row'><div class='col form-group'>";
     mensaje+="<label for='_fianz'>Fianza (€):</label>";
     mensaje+="<input type='number' name='_fianz' id='_fianz' class='form-control' value='"+celda.innerText+"' step='0.01' min='0' /></div></div>";
-    document.getElementById("div_dialogs").innerHTML=mensaje;
-    $("#div_dialogs").dialog({
+    document.getElementById("res_div_dialogs").innerHTML=mensaje;
+    $("#res_div_dialogs").dialog({
         autoOpen: true,
         dialogClass: "no-close",
         modal: true,
@@ -561,12 +561,12 @@ function fianza(__registro,celda){
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
-                    document.getElementById("cargando").style.display = 'inherit';
+                    document.getElementById("res_cargando").style.display = 'inherit';
                     $.post({
                         url:"php/residencia_cambio_fianza.php" ,
                         data: {registro:__registro,fianza:document.getElementById("_fianz").value},
                         success: function(resp) {
-                            document.getElementById("cargando").style.display = 'none';
+                            document.getElementById("res_cargando").style.display = 'none';
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
@@ -576,14 +576,14 @@ function fianza(__registro,celda){
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $("#div_dialogs").dialog("close");
-                            $("#div_dialogs").dialog("destroy");
+                            $("#res_div_dialogs").dialog("close");
+                            $("#res_div_dialogs").dialog("destroy");
                         },
                         error: function(xhr, status, error) {
-                            document.getElementById("cargando").style.display = 'none';
+                            document.getElementById("res_cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $("#div_dialogs").dialog("close");
-                            $("#div_dialogs").dialog("destroy");
+                            $("#res_div_dialogs").dialog("close");
+                            $("#res_div_dialogs").dialog("destroy");
                         }
                     });
                 }
@@ -592,8 +592,8 @@ function fianza(__registro,celda){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#div_dialogs").dialog("close");
-                $("#div_dialogs").dialog("destroy");
+                $("#res_div_dialogs").dialog("close");
+                $("#res_div_dialogs").dialog("destroy");
             }
         }]
     });
