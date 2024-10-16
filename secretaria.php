@@ -409,6 +409,7 @@
     </div>
     <div id="formulario_descargar_autor_uso_fotos" style="display:none">
         <form id="descarga_csv_autor_uso_imagenes" action="php/secret_csv_autor_uso_imag.php" method="POST" target="_self">
+        <input type="hidden" id="curso_csv_autor_uso_imagenes" name="curso_csv_autor_uso_imagenes" />
         </form>
     </div>
     <div id="formulario_descargar_fotos_alumnos" style="display:none">
