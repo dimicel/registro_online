@@ -29,12 +29,11 @@ $(function() {
             }
             document.getElementById("rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
             res_anno_ini_curso = resp["res_anno_ini_curso"];
-            anno_ini_curso_docs = resp["anno_ini_curso_docs"];
             res_mes = resp["res_mes"];
             _curso = res_anno_ini_curso + "-" + (res_anno_ini_curso + 1);
             res_curso_actual=_curso;
             res_generaSelectCurso();
-            document.getElementById("curso").value = _curso;
+            document.getElementById("res_curso").value = _curso;
 
             $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
                 total: 1,
@@ -73,7 +72,7 @@ function res_generaSelectCurso(){
     if (res_mes<6) a_final=res_anno_ini_curso;
     else a_final=res_anno_ini_curso+1;
 
-    const miSelect = document.getElementById("curso");
+    const miSelect = document.getElementById("res_curso");
     for (var i=2020;i<=a_final;i++){
         const elemento = document.createElement("option");
         elemento.value = i+"-"+(parseInt(i)+1);
@@ -124,11 +123,11 @@ function res_listaUsus() {
     }
     ///////////////////////////////////////////////
     datos = {
-        buscar: document.getElementById("busqueda_usus").value,
+        res_buscar: document.getElementById("res_busqueda_usus").value,
         res_orden_direccion_usu: direccion[res_orden_direccion_usu],
         res_pagina: res_pagina,
         res_num_reg_pagina: res_num_reg_pagina,
-        curso:document.getElementById("curso").value,
+        res_curso:document.getElementById("res_curso").value,
         filtro_bajas:document.getElementById("filtro_bajas").value
     }
     $.post("php/residencia_listausuarios.php", datos, function(resp) {
@@ -145,7 +144,7 @@ function res_listaUsus() {
                 if (data_array[i]["id_nie"].substring(0,9) == "S4500175G") continue;
                 data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
-                data += "<td style='" + estilo_usu[1] + "'><a href='docs/"+data_array[i]["id_nie"]+"/residencia/"+document.getElementById("curso").value+"/"+data_array[i]["registro"]+".pdf' target='_blank'>" + data_array[i]["nombre"] + "</a></td>";
+                data += "<td style='" + estilo_usu[1] + "'><a href='docs/"+data_array[i]["id_nie"]+"/residencia/"+document.getElementById("res_curso").value+"/"+data_array[i]["registro"]+".pdf' target='_blank'>" + data_array[i]["nombre"] + "</a></td>";
                 data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='res_panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
                 if (data_array[i]["bonificado"]==1){
                     data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
@@ -176,9 +175,9 @@ function res_listaUsus() {
                 }
                 data += "</tr>";
             }
-            document.getElementById("encabezado_usus").innerHTML = encab_usus;
-            document.getElementById("registros_usus").innerHTML = data;
-            res_num_registros = resp.res_num_registros;
+            document.getElementById("res_encabezado_usus").innerHTML = encab_usus;
+            document.getElementById("res_registros_usus").innerHTML = data;
+            res_num_registros = resp.num_registros;
             res_numero_paginas = Math.ceil(res_num_registros / res_num_reg_pagina);
             if (res_pagina > res_numero_paginas) res_pagina = res_numero_paginas;
 
@@ -607,6 +606,6 @@ function res_cierrasesion() {
 }
 
 function remesasBanco() {
-    document.getElementById("curso_csv_remesas").value = document.getElementById("curso").value;
+    document.getElementById("curso_csv_remesas").value = document.getElementById("res_curso").value;
     document.getElementById("descarga_csv_remesas").submit();
 }

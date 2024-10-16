@@ -42,7 +42,7 @@
                     <label class="col-form-label" style="margin-left: 30px;">Año Académico: </label>
                 </div>
                 <div class="col-2" >
-                    <select id="curso" size="1" onchange="res_listaUsus();" class="form-control"></select>
+                    <select id="res_curso" size="1" onchange="res_listaUsus();" class="form-control"></select>
                 </div>
                 <div class="col-3">
                     <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="res_cambioEmailJefeRes()">
@@ -71,7 +71,7 @@
             <div class="row" style="margin-top:15px">
                 <label class="col-form-label col-1" style="margin-left:20px">Buscar: </label>
                 <div class="col-7" style="margin-left:-35px">
-                    <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="res_listaUsus()">
+                    <input type="text" id="res_busqueda_usus" maxlength="255" class="form-control" onkeyup="res_listaUsus()">
                 </div>
                 <label class="col-form-label col-1" style="margin-left:20px">Filtro: </label>
                 <div class="col-2" style="margin-left:-35px">
@@ -99,10 +99,10 @@
             </div>-->
 
             <div class="row justify-content-center">
-                <table id="encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px">
+                <table id="res_encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px">
                 </table><br>
                 <div id="div_tabla_usus" style="overflow: auto; height: 480px;" class="table-hover">
-                    <table id="registros_usus" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:20px">
+                    <table id="res_registros_usus" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:20px">
                     </table>
                 </div>
                 <div id="div_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px">

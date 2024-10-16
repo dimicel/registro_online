@@ -10,11 +10,11 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-$pagina=$_POST["pagina"];
-$num_reg_pagina=$_POST["num_reg_pagina"];//Número de registros por página
-$orden_direccion=$_POST["orden_direccion_usu"];
-$curso=$_POST["curso"];
-$buscar=$_POST["buscar"];
+$pagina=$_POST["res_pagina"];
+$num_reg_pagina=$_POST["res_num_reg_pagina"];//Número de registros por página
+$orden_direccion=$_POST["res_orden_direccion_usu"];
+$curso=$_POST["res_curso"];
+$buscar=$_POST["res_buscar"];
 $baja=$_POST["filtro_bajas"];
 
 $sql = "SELECT COUNT(*) AS total FROM residentes where curso='$curso'";
