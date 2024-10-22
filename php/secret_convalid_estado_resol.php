@@ -192,7 +192,7 @@ if($res_fav>0 || $res_nofav>0){
     $pdf->SetFont('helvetica', '', 8);
 
     $html="<p>D. <b>LUIS ÁNGEL CORRALES MARIBLANCA</b>, director del centro educativo <b>IES UNIVERSIDAD LABORAL (Toledo)</b>, una vez examinada la documentación presentada por ";
-    $html.="<b>".strtoupper($dr["nombre"])." ".strtoupper($dr["apellidos"])."</b> solicitando la convalidación de módulos de Formación Profesional correspondientes al ";
+    $html.="<b>".strtoupper($dr["nombre"])." ".strtoupper($dr["apellidos"])."</b> en la solicitud con nº de registro " . $registro . " por la que solicita la convalidación de módulos de Formación Profesional correspondientes al ";
     if ($dr["grado"]=="Curso de Especialización"){
         $html.=$dr["grado"] . " " . "<b>".strtoupper($dr["ciclo"])."</b>";
     }
@@ -241,6 +241,7 @@ if($res_fav>0 || $res_nofav>0){
         }
         $html.="</b><br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
     }
+    $html.="<br><br> En caso de que existan dos resoluciones asociadas a solicitudes con el mismo número de registro, sólo será válida la resolución de fecha más reciente, considerándose no válidas aquellas cuya fecha sea anterior."; 
     $pdf->SetRightMargin($margen_derecho);
     $pdf->writeHTML($html, true, false, true, false, '');
 
