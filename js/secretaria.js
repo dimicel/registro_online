@@ -90,6 +90,7 @@ $(function() {
         callback: function(key, options) {
             if ($("#encabezado_docs tr td:first").html() == "NIE") {
                 id = $(this).children("td:first").html();
+                nombre = $(this).children("td:nth-child(2)").html();
             } else {
                 id = $(this).children("td:nth-child(2)").html();
             }
@@ -101,6 +102,9 @@ $(function() {
             else if(key=="cert"){
                 verCertificado(id);
             }
+            else if(key=="exp"){
+                verExpediente(id,nombre);
+            }
             else if(key=="docs"){
                 verDocsMatricula(id,0);
             }
@@ -110,6 +114,7 @@ $(function() {
             "edit": { name: "Ver/Modificar datos de usuario", icon: "edit" },
             "docs":{name:"Ver Docs. Matrícula", icon:"copy"},
             "cert":{ name:"Ver certificado", icon:"copy"},
+            "exp":{name:"Ver Expediente", icon:"copy"},
             "delete": {name: "Eliminar usuario", icon: "delete" }
         }
     });
