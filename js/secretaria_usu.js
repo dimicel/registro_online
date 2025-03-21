@@ -274,13 +274,13 @@ function obtieneDocsExpediente() {
                     for (j = 0; j < resp["docs"][td].length; j++) {
                         if(docs_exp[td] == "CONVALIDACIONES"){
                             contenido_div += "<tr><td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
-                            contenido_div += "<td><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"
-                            contenido_div += resp["docs"][td][j]["doc"] + "</a><a style='margin-left:5px' onclick='adjuntosConvalid(\""+resp['docs'][td][j]['doc']+"\")'>(Adjuntos)</a>";
+                            contenido_div += "<td><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"+resp["docs"][td][j]["doc"] + "</a>";
+                            contenido_div += "<a style='margin-left:5px' href='#' onclick='adjuntosConvalid(\""+resp['docs'][td][j]['doc']+"\")'>(Adjuntos)</a>";
                             if (resp["docs"][td][j]["resolucion"]==""){
                                 contenido_div +="</td>";
                             }
                             else{
-                                contenido_div += "<a target='_blank' style='margin-left:5px' onclick='"+resp['docs'][td][j]['resolucion']+"'>(Resolucion)</a></td>";
+                                contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion']+"'>(Resolucion)</a></td>";
                             }
                         }
                         else{
