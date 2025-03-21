@@ -90,7 +90,7 @@ function listaUsus() {
     direccion["🡇"] = "DESC";
 
     estilo_usu = ["width:80px", "width:270px", "width:270px", "width:90px", "width:40px", "width:80px"];
-    encabezamiento_usu = ["NIE", "Alumno", "Email", "¿Ha entrado?", "Imag.", "Documentos"];
+    encabezamiento_usu = ["NIE", "Alumno", "Email", "¿Ha entrado?", "Imag.", "Expediente"];
 
     //Construcción del encabezamiento de la tabla
     encab_usus = "<tr>";
