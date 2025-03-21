@@ -78,26 +78,42 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 		{
 			if ($dir != "." && $dir != "..") 
 			{
-				if (is_dir("../docs/".$id_nie."/".$ruta."/".$dir)){
+				if (is_dir("../docs/".$id_nie."/".$ruta."/".$dir))
+				{
 					$contador=0;
 					$anHand=opendir("../docs/".$id_nie."/".$ruta."/".$dir);
-					while(false !== ($doc = readdir($anHand))){
-						if($tipodoc=="convalidaciones"){
-							if ($doc != "." && $doc != ".." && ($dir==$filtro || $filtro=="todos")){
+					while(false !== ($doc = readdir($anHand)))
+					{
+						if($tipodoc=="convalidaciones")
+						{
+							if ($doc != "." && $doc != ".." && ($dir==$filtro || $filtro=="todos"))
+							{
 								$subConv=opendir("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
-								while(false!=($docConv=readdir($subConv))){
-									if ($docConv!="." && $docConv!=".." && $docConv!="docs"){
+								while(false!=($docConv=readdir($subConv)))
+								{
+									if ($docConv!="." && $docConv!=".." && $docConv!="docs")
+									{
 										$data["error"]="ok";
 										$data["docs"][$tipodoc][$contador]["curso"]=$dir;
 										$data["docs"][$tipodoc][$contador]["doc"]=$docConv;
 										$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/".$docConv;
+										if (is_file("docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/resolucion/resolucion.pdf"))
+										{
+											$data["docs"][$tipodoc][$contador]["resolucion"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/resolucion/resolucion.pdf";
+										}
+										else 
+										{
+											$data["docs"][$tipodoc][$contador]["resolucion"]="";
+										}
 										$contador++;
 									}
 								}
 							}
 						}
-						else{
-							if ($doc != "." && $doc != ".."  && ($dir==$filtro || $filtro=="todos")){
+						else
+						{
+							if ($doc != "." && $doc != ".."  && ($dir==$filtro || $filtro=="todos"))
+							{
 								$data["error"]="ok";
 								$data["docs"][$tipodoc][$contador]["curso"]=$dir;
 								$data["docs"][$tipodoc][$contador]["doc"]=$doc;
