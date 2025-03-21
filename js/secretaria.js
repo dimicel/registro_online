@@ -93,6 +93,7 @@ $(function() {
                 nombre = $(this).children("td:nth-child(2)").html();
             } else {
                 id = $(this).children("td:nth-child(2)").html();
+                nombre = $(this).children("td:nth-child(3)").html();
             }
             if (key == "edit") {
                 panelModUsu(id);
