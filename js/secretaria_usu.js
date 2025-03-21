@@ -280,7 +280,7 @@ function obtieneDocsExpediente() {
                                 contenido_div +="</td>";
                             }
                             else{
-                                contenido_div += "<a target='_blank' style='margin-left:5px' onclick='"+resp['docs'][td][j]['resolucion']+"\")'>(Resolucion)</a></td>";
+                                contenido_div += "<a target='_blank' style='margin-left:5px' onclick='"+resp['docs'][td][j]['resolucion']+"'>(Resolucion)</a></td>";
                             }
                         }
                         else{
