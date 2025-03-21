@@ -97,13 +97,13 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 										$data["docs"][$tipodoc][$contador]["curso"]=$dir;
 										$data["docs"][$tipodoc][$contador]["doc"]=$docConv;
 										$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/".$docConv;
-										if (is_file("docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf"))
+										if (is_file("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf"))
 										{
 											$data["docs"][$tipodoc][$contador]["resolucion"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf";
 										}
 										else 
 										{
-											$data["docs"][$tipodoc][$contador]["resolucion"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf";
+											$data["docs"][$tipodoc][$contador]["resolucion"]="";
 										}
 										$contador++;
 									}
