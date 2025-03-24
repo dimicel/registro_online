@@ -273,7 +273,7 @@ function obtieneDocsExpediente() {
                 if (resp["docs"][td].length > 0) {
                     contenido_div += "<tr style='font-size:bolder'><td colspan=4 width='775px'>" + docs_exp[td] + "</td></tr>";
                     for (j = 0; j < resp["docs"][td].length; j++) {
-                        if(n_reg==resp["docs"][td][j]["doc"]) contenido_div+= "<tr style='color:brown; font-size: bold'>";
+                        if(n_reg==resp["docs"][td][j]["doc"]) contenido_div+= "<tr style='color:brown !important; font-weight: bold'>";
                         else contenido_div+= "<tr>";
                         if(docs_exp[td] == "CONVALIDACIONES"){
                             contenido_div += "<td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
