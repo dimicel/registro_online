@@ -92,8 +92,13 @@ $(function() {
             if ($("#encabezado_docs tr td:first").html() == "NIE") {
                 id = $(this).children("td:first").html();
                 nombre = $(this).children("td:nth-child(2)").html();
-                n_reg=$(this).children("td:nth-child(3)").html();
-            } else {
+                if($("#encabezado_docs tr td:nth-child(4)").html() == "Centro"){
+
+                }
+                else {
+                    n_reg=$(this).children("td:nth-child(3)").html();
+                }
+            } else if ($("#encabezado_docs tr td:nth-child(2)").html() == "NIE"){
                 id = $(this).children("td:nth-child(2)").html();
                 nombre = $(this).children("td:nth-child(3)").html();
                 n_reg=$(this).children("td:nth-child(4)").html();
@@ -694,7 +699,8 @@ function listaRegistros(orden_campo, orden_direccion) {
                     data += "<tr onclick='verRegistroConvalidaciones(\""+data_array[i]["registro"]+"\")'>";
                     //Datos específicos de cada formulario
                     for (j = 0; j < campos.length; j++) {
-                        if (j<2) data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                        if (j==0) data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                        if (j==1) data += "<td tooltip='"+data_array[i]["registro"]+"' style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                         else if(j==2){
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
                             // String de la fecha
