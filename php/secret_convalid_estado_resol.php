@@ -239,7 +239,7 @@ if($res_fav>0 || $res_nofav>0){
                 if ($i<count($estados)-2) $html.="; ";
             }
         }
-        $html.="</b><br>El centro educativo se pondrá en contacto con usted para darle instrucciones de cómo proceder.<br><br>";
+        $html.="</b><br>La solicitud deberá cumplimentarla online en el siguiente enlace:<br>https://www.educacionfpydeportes.gob.es/servicios-al-ciudadano/catalogo/general/05/050210/ficha/050210-alumnos.html.<br><br>";
     }
     $html.="<br><br> En caso de que existan dos resoluciones asociadas a solicitudes con el mismo número de registro, sólo será válida la resolución de fecha más reciente, considerándose no válidas aquellas cuya fecha sea anterior."; 
     $pdf->SetRightMargin($margen_derecho);
