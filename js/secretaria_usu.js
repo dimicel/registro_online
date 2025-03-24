@@ -273,9 +273,9 @@ function obtieneDocsExpediente() {
                 if (resp["docs"][td].length > 0) {
                     contenido_div += "<tr style='font-size:bolder'><td colspan=4 width='775px'>" + docs_exp[td] + "</td></tr>";
                     for (j = 0; j < resp["docs"][td].length; j++) {
-                        nombre_doc=filename.slice(0, resp["docs"][td][j]["doc"]);
-                        alert(n_reg+"____________"+filename.slice(0, nombre_doc.lastIndexOf(".")));
-                        if(n_reg==filename.slice(0, nombre_doc.lastIndexOf("."))) contenido_div+= "<tr style='color:brown !important; font-weight: bold'>";
+                        nombre_doc=resp["docs"][td][j]["doc"];
+                        //alert(n_reg+"____________"+nombre_doc.slice(0, nombre_doc.lastIndexOf(".")));
+                        if(n_reg==nombre_doc.slice(0, nombre_doc.lastIndexOf("."))) contenido_div+= "<tr style='color:brown !important; font-weight: bold'>";
                         else contenido_div+= "<tr>";
                         if(docs_exp[td] == "CONVALIDACIONES"){
                             contenido_div += "<td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
