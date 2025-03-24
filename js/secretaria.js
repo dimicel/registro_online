@@ -881,7 +881,7 @@ function formularioProcesado(obj){
 
 function verRegAdjuntosConvalid(reg){
     _div="";
-    $.post("php/secret_convalid_adjuntos.php",{registro:reg},(resp2)=>{
+    $.post("php/secret_convalid_adjuntos.php",{registro:reg,curso: document.getElementById('curso').value},(resp2)=>{
         if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {

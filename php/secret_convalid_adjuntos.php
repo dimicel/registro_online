@@ -9,6 +9,7 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 $registro=$_POST["registro"];
+$curso=$_POST["curso"];
 
 $sql = "SELECT *  FROM convalidaciones_docs WHERE registro = '$registro' ORDER BY ruta";
 $result = $mysqli->query($sql);
@@ -21,6 +22,12 @@ if ($result->num_rows > 0) {
         $contador++;
     }
     $mysqli->close();
+    if (is_file(dirname($data["datos"][$contador]["ruta"])."/resolucion/resolucion.pdf")){
+        $contador++;
+        $data["datos"][$contador]["descripcion"]="Resolución del Centro";
+        $data["datos"][$contador]["ruta"]=dirname($data["datos"][$contador]["ruta"])."/resolucion/resolucion.pdf";
+        $data["datos"][$contador]["subidopor"]="generado_por_aplicacion";
+    }
     $data["error"]="ok";
     exit(json_encode($data));
 }
