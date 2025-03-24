@@ -88,7 +88,6 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 						{
 							if ($doc != "." && $doc != ".." && ($dir==$filtro || $filtro=="todos"))
 							{
-								$subConv=opendir("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
 								if (is_file("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf"))
 								{
 									$data["docs"][$tipodoc][$contador]["resolucion"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf";
@@ -97,6 +96,26 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 								{
 									$data["docs"][$tipodoc][$contador]["resolucion"]="";
 								}
+								$docs_conv=opendir("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs");
+								$conval_min=false;
+								$conval_con=false;
+								while (false != ($listaDocs=readdir($docs_conv))){
+									if ($listaDocs!="." && $listaDocs!=".." && $listaDocs!="resolucion"){
+										if (substr($listaDocs, -28) === "Resolución del Ministerio.pdf"){
+											$contador++;
+											$data["docs"][$tipodoc][$contador]["resolucion_min"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs"."/".$listaDocs;
+											$conval_min=true;
+										}
+										elseif (substr($listaDocs, -28) === "Resolución de Consejería.pdf"){
+											$contador++;
+											$data["docs"][$tipodoc][$contador]["resolucion_con"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs"."/".$listaDocs;
+											$conval_con=true;
+										}
+									}
+								}
+								if(!$conval_min) $data["docs"][$tipodoc][$contador]["resolucion_min"]="";
+								if(!$conval_con) $data["docs"][$tipodoc][$contador]["resolucion_con"]="";
+								$subConv=opendir("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
 								while(false!=($docConv=readdir($subConv)))
 								{
 									if ($docConv!="." && $docConv!=".." && $docConv!="docs")
