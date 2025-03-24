@@ -93,7 +93,7 @@ $(function() {
                 id = $(this).children("td:first").html();
                 nombre = $(this).children("td:nth-child(2)").html();
                 if($("#encabezado_docs tr td:nth-child(4)").html() == "Centro"){
-                    n_reg=$("#encabezado_docs tr td:nth-child(2)").attr("title");
+                    n_reg=$(this).children("td:nth-child(2)").attr("title");
                 }
                 else {
                     n_reg=$(this).children("td:nth-child(3)").html();
