@@ -9,6 +9,7 @@ var incidencia_si = 0;
 var curso_actual,curso_premat,curso_mat;
 var sesion_id;
 var tipo_formulario="";
+var n_reg="";
 
 
 $(function() {
@@ -106,7 +107,7 @@ $(function() {
                 verCertificado(id);
             }
             else if(key=="exp"){
-                verExpediente(id,nombre,n_reg);
+                verExpediente(id,nombre);
             }
             else if(key=="docs"){
                 verDocsMatricula(id,0);

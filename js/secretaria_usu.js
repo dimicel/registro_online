@@ -126,6 +126,7 @@ function listaUsus() {
             data = "";
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
+                n_reg="";
                 if (data_array[i]["id_nie"].substring(0,9) == "S4500175G") continue;
                 if (data_array[i]["habilitado"]==0)data += "<tr style='background-color:red'>";
                 else data += "<tr>";
@@ -140,7 +141,7 @@ function listaUsus() {
                 //Columna DOCS
                 data += "<td style='" + estilo_usu[4] + ";text-align:center' onclick='javascript:verDocsMatricula(this.parentNode.children[0].innerHTML)'>Ver</td>";
                 //columna EXPEDIENTE
-                data += "<td style='" + estilo_usu[5] + ";text-align:center' onclick='javascript:verExpediente(this.parentNode.children[0].innerHTML,this.parentNode.children[1].innerHTML,'')'>Ver</td>";
+                data += "<td style='" + estilo_usu[5] + ";text-align:center' onclick='javascript:verExpediente(this.parentNode.children[0].innerHTML,this.parentNode.children[1].innerHTML)'>Ver</td>";
                 data += "</tr>";
             }
             document.getElementById("encabezado_usus").innerHTML = encab_usus;
@@ -272,9 +273,11 @@ function obtieneDocsExpediente() {
                 if (resp["docs"][td].length > 0) {
                     contenido_div += "<tr style='font-size:bolder'><td colspan=4 width='775px'>" + docs_exp[td] + "</td></tr>";
                     for (j = 0; j < resp["docs"][td].length; j++) {
+                        if(n_reg==resp["docs"][td][j]["doc"]) contenido_div+= "<tr style='color:brown; font-size: bold'>";
+                        else contenido_div+= "<tr>";
                         if(docs_exp[td] == "CONVALIDACIONES"){
-                            contenido_div += "<tr><td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
-                            contenido_div += "<td colspan='3'><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"+resp["docs"][td][j]["doc"] + "</a>";
+                            contenido_div += "<td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
+                            contenido_div += "<td><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"+resp["docs"][td][j]["doc"] + "</a>";
                             contenido_div += "<a style='margin-left:15px' href='#' onclick='adjuntosConvalid(\""+resp['docs'][td][j]['doc']+"\")'>>>Ver Adjuntos<<</a>";
                             if (resp["docs"][td][j]["resolucion"]==""){
                                 contenido_div +="</td>";
@@ -284,7 +287,7 @@ function obtieneDocsExpediente() {
                             }
                         }
                         else{
-                            contenido_div += "<tr><td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
+                            contenido_div += "<td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
                             contenido_div += "<td><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"
                             contenido_div += resp["docs"][td][j]["doc"] + "</a></td>";
                         }
