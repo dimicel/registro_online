@@ -22,11 +22,11 @@ if ($result->num_rows > 0) {
         $contador++;
     }
     $mysqli->close();
-    //if (is_file(dirname($data["datos"][$contador-1]["ruta"])."/resolucion/resolucion.pdf")){
+    if (is_file("../".dirname($data["datos"][$contador-1]["ruta"])."/resolucion/resolucion.pdf")){
         $data["datos"][$contador]["descripcion"]="Resolución del Centro";
         $data["datos"][$contador]["ruta"]=dirname($data["datos"][$contador-1]["ruta"])."/resolucion/resolucion.pdf";
         $data["datos"][$contador]["subidopor"]="generado_por_aplicacion";
-    //}
+    }
     $data["error"]="ok";
     exit(json_encode($data));
 }
