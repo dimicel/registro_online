@@ -9,7 +9,6 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 $registro=$_POST["registro"];
-$curso=$_POST["curso"];
 
 $sql = "SELECT *  FROM convalidaciones_docs WHERE registro = '$registro' ORDER BY ruta";
 $result = $mysqli->query($sql);
