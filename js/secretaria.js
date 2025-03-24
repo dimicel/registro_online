@@ -91,9 +91,11 @@ $(function() {
             if ($("#encabezado_docs tr td:first").html() == "NIE") {
                 id = $(this).children("td:first").html();
                 nombre = $(this).children("td:nth-child(2)").html();
+                n_reg=$(this).children("td:nth-child(3)").html();
             } else {
                 id = $(this).children("td:nth-child(2)").html();
                 nombre = $(this).children("td:nth-child(3)").html();
+                n_reg=$(this).children("td:nth-child(4)").html();
             }
             if (key == "edit") {
                 panelModUsu(id);
@@ -104,7 +106,7 @@ $(function() {
                 verCertificado(id);
             }
             else if(key=="exp"){
-                verExpediente(id,nombre);
+                verExpediente(id,nombre,n_reg);
             }
             else if(key=="docs"){
                 verDocsMatricula(id,0);

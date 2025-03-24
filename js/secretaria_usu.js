@@ -140,7 +140,7 @@ function listaUsus() {
                 //Columna DOCS
                 data += "<td style='" + estilo_usu[4] + ";text-align:center' onclick='javascript:verDocsMatricula(this.parentNode.children[0].innerHTML)'>Ver</td>";
                 //columna EXPEDIENTE
-                data += "<td style='" + estilo_usu[5] + ";text-align:center' onclick='javascript:verExpediente(this.parentNode.children[0].innerHTML,this.parentNode.children[1].innerHTML)'>Ver</td>";
+                data += "<td style='" + estilo_usu[5] + ";text-align:center' onclick='javascript:verExpediente(this.parentNode.children[0].innerHTML,this.parentNode.children[1].innerHTML,'')'>Ver</td>";
                 data += "</tr>";
             }
             document.getElementById("encabezado_usus").innerHTML = encab_usus;
@@ -173,7 +173,7 @@ function cierraListaUsuarios() {
 }
 
 
-function verExpediente(id_nie, nom) {
+function verExpediente(id_nie, nom, n_reg) {
     tablas = ["mat_1eso",
         "mat_2eso",
         "mat_2esopmar",
@@ -254,7 +254,7 @@ function verExpediente(id_nie, nom) {
         "otros": "OTROS"
     }
     
-    panelExpedienteUsuario(id_nie,nom);
+    panelExpedienteUsuario(id_nie,nom,n_reg);
     
 }
 
