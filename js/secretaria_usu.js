@@ -293,9 +293,9 @@ function obtieneDocsExpediente() {
                             contenido_div += "<td><button onclick='borraDocExp(this.parentNode)' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button></td>";
                             contenido_div += "<td><button onclick='cambiaNomDocExp(this.parentNode)' class='textoboton btn btn-success' data-toggle='tooltip' data-placement='right' title='Cambiar nombre del documento' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-pencil-square'></i></i></button></td>";
                         } else {
-                            contenido_div += "<td colspan=3 style='color:brown; text-align:center' width='20px' data-placement='right'></tr>";
+                            contenido_div += "<td colspan=3 style='color:brown; text-align:center' width='20px' data-placement='right'></td>";
                         }
-                        contenido_div += "</td>"
+                        contenido_div += "</tr>"
                     }
                 }
             }
