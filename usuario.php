@@ -115,6 +115,9 @@
                 <div style="display:list-item; margin-left:50px">
                     <a id="docs_convalidaciones" class="enlaceEnabled" href="impresos/convalidaciones/convalidaciones.php" target="_self">Convalidaciones</a><br>
                 </div>
+                <div style="display:list-item; margin-left:50px">
+                    <a id="docs_exencion_fct" class="enlaceEnabled" href="impresos/exencion_fct/exencion_fct.php" target="_self">Convalidaciones</a><br>
+                </div>
 
                 <span>OTROS</span>
                 <div style="display:list-item; margin-left:50px">
