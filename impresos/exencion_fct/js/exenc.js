@@ -6,7 +6,6 @@ $(document).ready(function() {
 });
 
 
-
 function verificaEmail() {
     let exp_email = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (document.getElementById("email2").value != document.getElementById("email3").value) {
@@ -24,7 +23,6 @@ function verificaEmail() {
         return false;
     }
 }
-
 
 
 function validaDatos() {
