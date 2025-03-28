@@ -39,7 +39,7 @@
         <!-- FORMULARIO --------------------------------------------------------------------------------------->
         <form id="exenc">
             <div class=" row ui-widget-header ui-corner-all ancho" >
-                <div class="col"></div>
+                <div class="col">
                     <div class="row">
                         <div class="col">
                             <label for="nombre" style="margin-left:10px">*Nombre y Apellidos</label>
