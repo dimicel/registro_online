@@ -72,11 +72,11 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-4" id="div_formacion" style="display:inline-block">
-                            <label>Formación:</label>
+                            <label for="formacion">Formación:</label>
                             <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm()"></select>
                         </div>
                         <div class="col"  id="div_grado_medio">
-                            <label>Denominación:</label>
+                            <label for="ciclos_f">Denominación:</label>
                             <select name="ciclos_f" id="ciclos_f" size="1"  class="custom-select" onchange="cambiaFormGM()">
                             </select>
                         </div>
