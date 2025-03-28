@@ -101,6 +101,6 @@
 <script src=<?php echo "../../js/jquery_validate/jquery.validate.min.js?q=".time();?>></script>
 <script src=<?php echo "../../js/jquery_validate/additional-methods.min.js?q=".time();?>></script>
 <script src=<?php echo "../../js/comun.js?q=".time();?> type="text/javascript"></script>
-<script src=<?php echo "js/trans.js?q=".time();?> type="text/javascript"></script>
+<script src=<?php echo "js/exenc.js?q=".time();?> type="text/javascript"></script>
 <script src=<?php echo "js/validadores.js?q=".time();?> type="text/javascript"></script>
 </html>
