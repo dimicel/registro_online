@@ -59,12 +59,12 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col"> 
+                        <div class="col-5"> 
                             <label>*Tipo de documento:</label>   
                             <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label style="margin-left: 5px">NIF/NIE</label>
                             <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass" /><label style="margin-left: 5px">Pasaporte</label>
                         </div>
-                        <div class="col-3">
+                        <div class="col">
                             <span class="errorTxt" style="font-size: 1em;"></span>
                             <label for="nif-nie">*Nº documento:</label>
                             <input style="margin-left: 5px" class="form-control" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" />
