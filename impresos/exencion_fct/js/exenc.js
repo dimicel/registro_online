@@ -1,62 +1,14 @@
-var duracion = 0;
-var backup_nombre = "";
+let backup_nombre = "";
+
 
 $(document).ready(function() {
-    document.getElementById("autorizacion").reset();
-    $("#div_email").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "scale", duration: duracion },
-        resizable: false,
-        show: { effect: "fade", duration: duracion },
-        maxHeight: 500,
-        width: 600,
-        buttons: [{
-            class: "textoboton",
-            text: "Aceptar",
-            click: function() {
-                if (verificaEmail()) {
-                    $(this).dialog("close");
-                    generaImpreso();
-                }
-            }
-        }]
-    });
+
 });
 
 
-function validaDNI_NIE(dni) {
-    var numero, le, letra;
-    var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
-
-    dni = dni.toUpperCase();
-
-    if (expresion_regular_dni.test(dni) === true) {
-        numero = dni.substr(0, dni.length - 1);
-        numero = numero.replace('X', 0);
-        numero = numero.replace('Y', 1);
-        numero = numero.replace('Z', 2);
-        le = dni.substr(dni.length - 1, 1);
-        numero = numero % 23;
-        letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
-        letra = letra.substring(numero, numero + 1);
-        if (letra != le) {
-            //alert('Dni erroneo, la letra del NIF no se corresponde');
-            return false;
-        } else {
-            //alert('Dni correcto');
-            return true;
-        }
-    } else {
-        //alert('Dni erroneo, formato no válido');
-        return false;
-    }
-}
-
 
 function verificaEmail() {
-    var exp_email = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    let exp_email = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (document.getElementById("email2").value != document.getElementById("email3").value) {
         alerta("Los emails introducidos no son iguales.", "Error coincidencia.");
         return false;
@@ -76,15 +28,15 @@ function verificaEmail() {
 
 
 function validaDatos() {
-    var lista_errores = "";
-    var ER_cp = /[0-9]{5}/;
-    var ER_email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    var nom = document.getElementById("nombre").value.miTrim();
-    var nif = document.getElementById("nif_nie").value.miTrim();
-    var ensenanza = document.getElementById("formacion").value;
-    var fpb = document.getElementById("fpb").value;
-    var gm = document.getElementById("gmedio").value;
-    var gs = document.getElementById("gsuperior").value;
+    let lista_errores = "";
+    let ER_cp = /[0-9]{5}/;
+    let ER_email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    let nom = document.getElementById("nombre").value.miTrim();
+    let nif = document.getElementById("nif_nie").value.miTrim();
+    let ensenanza = document.getElementById("formacion").value;
+    let fpb = document.getElementById("fpb").value;
+    let gm = document.getElementById("gmedio").value;
+    let gs = document.getElementById("gsuperior").value;
     if (nom.length == 0 || nom == "Seleccione en el desplegable de la izquierda.") {
         lista_errores += "- El Nombre no puede estar vacío.<br>";
     }
@@ -105,9 +57,8 @@ function validaDatos() {
 
 
 function generaImpreso() {
-
     document.getElementById("cargando").style.display = 'inline-block';
-    var pet = $.ajax({
+    let pet = $.ajax({
         url: "php/generapdf.php",
         type: "POST",
         data: $("#exenc").serialize()
@@ -149,14 +100,6 @@ function generaImpreso() {
         document.getElementById("email2").value = "";
         document.getElementById("email3").value = "";
     });
-}
-
-
-
-function retornaValRadioButton(obj) {
-    for (i = 0; i < obj.length; i++) {
-        if (obj[i].checked) return obj[i].value;
-    }
 }
 
 
