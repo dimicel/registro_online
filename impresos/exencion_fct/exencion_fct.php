@@ -49,7 +49,7 @@
                                 <option value="D.">D.</option>
                                 <option value="Dña.">Dña.</option>
                             </select>
-                            <input type="text" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly />
+                            <input type="text" class="form-control" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly />
                         </div>
                     </div>
                     <div class="row">
@@ -61,17 +61,17 @@
                         <div class="col-3">
                             <label for="nif-nie" style="margin-left: 20px">*Nº documento:</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" />
+                            <input style="margin-left: 5px" class="form-control" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col" id="div_formacion" style="display:inline-block">
                             <label>Formación:</label>
-                            <select name="formacion" id="formacion" size="1" onchange="cambiaTipoForm()"></select>
+                            <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm()"></select>
                         </div>
                         <div class="col"  id="div_grado_medio">
                             <label>Denominación:</label>
-                            <select name="ciclos_f" id="ciclos_f" size="1"  onchange="cambiaFormGM()">
+                            <select name="ciclos_f" id="ciclos_f" size="1"  class="custom-select" onchange="cambiaFormGM()">
                             </select>
                         </div>
                     </div>
