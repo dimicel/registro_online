@@ -60,11 +60,11 @@ function verificaEmail() {
     if (document.getElementById("email2").value != document.getElementById("email3").value) {
         alerta("Los emails introducidos no son iguales.", "Error coincidencia.");
         return false;
-    } else if (miTrim(document.getElementById("email2").value) == "") {
+    } else if (document.getElementById("email2").value.miTrim() == "") {
         alerta("La dirección de correo electrónico no puede estar vacía", "Email vacío");
         return false;
     }
-    if (exp_email.test(miTrim(document.getElementById("email2").value)) == true) {
+    if (exp_email.test(document.getElementById("email2").value.miTrim())== true) {
         document.getElementById("email").value = document.getElementById("email2").value;
         return true;
     } else {
@@ -73,16 +73,14 @@ function verificaEmail() {
     }
 }
 
-function miTrim(s) {
-    return s.replace(/^\s+|\s+$/gm, '');
-}
+
 
 function validaDatos() {
     var lista_errores = "";
     var ER_cp = /[0-9]{5}/;
     var ER_email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    var nom = miTrim(document.getElementById("nombre").value);
-    var nif = miTrim(document.getElementById("nif_nie").value);
+    var nom = document.getElementById("nombre").value.miTrim();
+    var nif = document.getElementById("nif_nie").value.miTrim();
     var ensenanza = document.getElementById("formacion").value;
     var fpb = document.getElementById("fpb").value;
     var gm = document.getElementById("gmedio").value;
@@ -104,10 +102,6 @@ function validaDatos() {
     return true;
 }
 
-
-function miTrim(s) {
-    return s.replace(/^\s+|\s+$/gm, '');
-}
 
 
 function generaImpreso() {
@@ -177,27 +171,6 @@ function seleccionListaDon() {
     }
 }
 
-
-function alerta(mensaje, titulo) {
-    document.getElementById('mensaje_div').innerHTML = mensaje;
-    $("#mensaje_div").dialog({
-        title: titulo,
-        autoOpen: false,
-        draggable: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "scale", duration: duracion },
-        resizable: false,
-        show: { effect: "fade", duration: duracion },
-        width: 700,
-        buttons: [{
-            class: "textoboton",
-            text: "Ok",
-            click: function() { $(this).dialog("close"); }
-        }]
-    });
-    $("#mensaje_div").dialog('open');
-}
 
 function iniciaGeneraPdf() {
     if (validaDatos()) $("#div_email").dialog('open');
