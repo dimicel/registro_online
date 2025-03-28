@@ -41,7 +41,11 @@
             <div class=" row ui-widget-header ui-corner-all ancho" >
                 <div class="col">
                     <div class="row">
-                        <div class="col offset-2">
+                        <div class="col-2">
+                            <label for="lista_don" style="margin-left:10px">*Tratamiento</label>
+                            <span class="errorTxt" style="font-size: 1em;"></span>
+                        </div>
+                        <div class="col">
                             <label for="nombre" style="margin-left:10px">*Nombre y Apellidos</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
                         </div>
