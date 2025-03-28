@@ -70,7 +70,7 @@
                             <input style="margin-left: 5px" class="form-control" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" />
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-4" id="div_formacion" style="display:inline-block">
                             <label>Formación:</label>
                             <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm()"></select>
@@ -81,7 +81,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center mt-5">
                         <input type="button" id="generar" value="REGISTRAR SOLICITUD" onclick="iniciaGeneraPdf() " />
                     </div>
                 </div>
