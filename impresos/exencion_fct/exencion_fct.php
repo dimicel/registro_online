@@ -49,7 +49,7 @@
                                 <option value="D.">D.</option>
                                 <option value="Dña.">Dña.</option>
                             </select>
-                            <input type="text" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly="readonly" />
+                            <input type="text" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly />
                         </div>
                     </div>
                     <div class="row">
