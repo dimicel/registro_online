@@ -58,7 +58,7 @@
                             <input type="text" class="form-control" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly />
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-5">
                         <div class="col"> 
                             <label style="margin-left: 20px">*Tipo de documento:</label>   
                             <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label>NIF/NIE</label>
