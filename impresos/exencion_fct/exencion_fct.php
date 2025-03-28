@@ -60,18 +60,18 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col"> 
-                            <label style="margin-left: 20px">*Tipo de documento:</label>   
+                            <label>*Tipo de documento:</label>   
                             <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label style="margin-left: 5px">NIF/NIE</label>
                             <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass" /><label style="margin-left: 5px">Pasaporte</label>
                         </div>
                         <div class="col-3">
-                            <label for="nif-nie" style="margin-left: 20px">*Nº documento:</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
+                            <label for="nif-nie">*Nº documento:</label>
                             <input style="margin-left: 5px" class="form-control" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" />
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-3" id="div_formacion" style="display:inline-block">
+                        <div class="col-3" id="div_formacion">
                             <label for="formacion">Formación:</label>
                             <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm()"></select>
                         </div>
