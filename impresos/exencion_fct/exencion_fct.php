@@ -42,7 +42,7 @@
                 <div class="col">
                     <div class="row">
                         <div class="col-2">
-                            <label for="lista_don" style="margin-left:10px">*Tratamiento</label>
+                            <label for="lista_don">*Tratamiento</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
                         </div>
                         <div class="col">
