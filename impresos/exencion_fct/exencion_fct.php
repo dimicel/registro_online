@@ -40,7 +40,7 @@
         <form id="exenc">
             <div class=" row ui-widget-header ui-corner-all ancho" >
                 <div class="col">
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-2">
                             <label for="lista_don">*Tratamiento</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
