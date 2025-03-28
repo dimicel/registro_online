@@ -41,13 +41,13 @@
             <div class=" row ui-widget-header ui-corner-all ancho" >
                 <div class="col">
                     <div class="row">
-                        <div class="col offset-1">
+                        <div class="col offset-2">
                             <label for="nombre" style="margin-left:10px">*Nombre y Apellidos</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col-2">
                             <select name="lista_don" id="lista_don" size="1" class="custom-select" onchange="seleccionListaDon()">
                                 <option value=""></option>
                                 <option value="D.">D.</option>
