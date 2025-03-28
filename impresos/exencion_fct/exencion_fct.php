@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container w-100 d-grid gap-3">
+    <div class="container w-100">
         <!--CABECERA LOGOS ------------------------------------------------------------------------------------>
         <div class="d-flex flex-row justify-content-center" style="margin-top:30px">
             <div class="col-2 justify-content-start">
@@ -58,7 +58,7 @@
                             <input type="text" class="form-control" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly />
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-1">
                         <div class="col"> 
                             <label style="margin-left: 20px">*Tipo de documento:</label>   
                             <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label>NIF/NIE</label>
