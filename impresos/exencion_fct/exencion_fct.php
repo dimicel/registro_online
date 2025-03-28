@@ -61,8 +61,8 @@
                     <div class="row mt-3">
                         <div class="col"> 
                             <label style="margin-left: 20px">*Tipo de documento:</label>   
-                            <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label>NIF/NIE</label>
-                            <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass" /><label>Pasaporte</label>
+                            <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label style="margin-left: 5px">NIF/NIE</label>
+                            <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass" /><label style="margin-left: 5px">Pasaporte</label>
                         </div>
                         <div class="col-3">
                             <label for="nif-nie" style="margin-left: 20px">*Nº documento:</label>
