@@ -44,11 +44,17 @@
                         <div class="col">
                             <label for="nombre" style="margin-left:10px">*Nombre y Apellidos</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
                             <select name="lista_don" id="lista_don" size="1" class="custom-select" onchange="seleccionListaDon()">
                                 <option value=""></option>
                                 <option value="D.">D.</option>
                                 <option value="Dña.">Dña.</option>
                             </select>
+                        </div>
+                        <div class="col">
                             <input type="text" class="form-control" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly />
                         </div>
                     </div>
@@ -65,7 +71,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3" id="div_formacion" style="display:inline-block">
+                        <div class="col-4" id="div_formacion" style="display:inline-block">
                             <label>Formación:</label>
                             <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm()"></select>
                         </div>
