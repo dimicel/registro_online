@@ -38,7 +38,7 @@
 
         <!-- FORMULARIO --------------------------------------------------------------------------------------->
         <form id="exenc">
-            <div class=" row ui-widget-header ui-corner-all ancho" style="display:inline-block; padding:10px; ">
+            <div class=" row ui-widget-header ui-corner-all ancho" >
                 <div class="col"></div>
                     <div class="row">
                         <div class="col">
