@@ -2,111 +2,99 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href=<?php echo "css/exenc.css?q=".time();?> type="text/css">
-    <link rel="stylesheet" href=<?php echo "jqueryui/jquery-ui.min.css?q=".time();?> />
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href=<?php echo "css/trans.css?q=".time();?> type="text/css">
+    <link rel="stylesheet" href=<?php echo "../../css/est.css?q=".time();?> type="text/css">
+    <link rel="stylesheet" href=<?php echo "../../jqueryui/jquery-ui.min.css?q=".time();?>>
     <title>SOLICITUD EXENCIÓN DE FCT</title>
 </head>
 
-<body data-ng-app="exencFCT" ng-controller="ctrlFormacion">
-    <script src=<?php echo "js/jquery-1.12.1.min.js?q=".time();?> type="text/javascript"></script>
-    <script src=<?php echo "js/angular.js?q=".time();?>></script>
-    <script src=<?php echo "js/controladores.js?q=".time();?>></script>
-    <script src=<?php echo "jqueryui/jquery-ui.min.js?q=".time();?>></script>
-    <script src=<?php echo "js/exenc.js?q=".time();?> type="text/javascript"></script>
-
-    <form id="exenc" name="exenc">
-        <div style="display:table-cell; float:left">
-            <input style="width:175px; height:100px" name="" type="image" src="recursos/logo_ccm.jpg" />
-        </div>
-
-        <div style="display:table-cell; float:right">
-            <input style="width:150px; height:150px" name="" type="image" src="recursos/mini_escudo.jpg" />
-        </div>
-
-        <div style="clear:both">
-            <div class="centrado ancho">
-                <div class="ancho" style="text-align:center">
-                    <label style="font-size:large; font-weight:bold">SOLICITUD DE EXENCIÓN DEL MÓDULO DE FORMACIÓN EN CENTROS DE TRABAJO</label><br /><br />
-                </div>
-
-                <div class="ui-widget-header ui-corner-all ancho" style="display:inline-block; padding:10px; ">
-                    <div style="display:inline-block;">
-                        <label style="margin-left:10px">Nombre y Apellidos</label><br>
-                        <select name="lista_don" id="lista_don" size="1" onchange="seleccionListaDon()">
-                        <option value=""></option>
-                        <option value="D.">D.</option>
-                        <option value="Dña.">Dña.</option>
-                    </select>
-                        <input type="text" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly="readonly" /><br/><br/>
-                        <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label>NIF/NIE</label>
-                        <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass" /><label>Pasaporte</label>
-                        <label style="margin-left: 20px">Nº documento:</label>
-                        <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="10" maxlength="9" title="Sin espacios ni guiones" />
-                        <br /><br>
-                    </div>
-                    <div style="clear:both"></div>
-                    <div id="div_formacion" style="display:inline-block">
-                        <label>Formación:</label><br />
-                        <select name="formacion" id="formacion" size="1" ng-change="cambiaTipoForm()" ng-model="valTipoForm" ng-options="formac for formac in tipoForm">
-                    </select>
-                    </div>
-                    <div id="div_grado_medio" ng-show="muestraGradoMedio" style="display:inline-block">
-                        <label>Denominación:</label><br />
-                        <select name="gmedio" id="gmedio" size="1" ng-options="x for x in formGM" ng-model="valFormGM" ng-change="cambiaFormGM()">
-                    </select>
-                    </div>
-                    <div id="div_grado_superior" ng-show="muestraGradoSuperior" style="display:inline-block">
-                        <label>Denominación: </label><br />
-                        <select name="gsuperior" id="gsuperior" size="1" ng-options="x for x in formGS" ng-model="valFormGS" ng-change="cambiaFormGS()">
-                    </select>
-                    </div>
-                    <div id="div_fpb" ng-show="muestraFPB " style="display:inline-block ">
-                        <label>Denominación: </label><br />
-                        <select name="fpb " id="fpb " size="1" ng-options="x for x in formFPB" ng-model="valFormFPB" ng-change="cambiaFormFPB()">
-                    </select>
-                    </div>
-                    <div style="clear:both "></div>
-                    <br>
-                    <label>Documentación que aporta:</label><br />
-                    <textarea name="documentacion " cols="90 " rows="6 " id="documentacion "></textarea>
-                </div>
-
-                <center>
-                    <div style="display:inline-block; margin-top:10px; margin-bottom:30px ">
-                        <input type="button" id="generar" value="REGISTRAR ONLINE" onclick="iniciaGeneraPdf() " />
-                    </div>
-                </center>
-
+<body>
+    <div class="container w-100">
+        <!--CABECERA LOGOS ------------------------------------------------------------------------------------>
+        <div class="d-flex flex-row justify-content-center" style="margin-top:30px">
+            <div class="col-2 justify-content-start">
+                <input style="width:175px; height:100px" type="image" src="recursos/logo_ccm.jpg" />
+            </div>
+            <div class="col-8 justify-content-center" style="text-align: center;">
+                <h5>IES UNIVERSIDAD LABORAL DE TOLEDO</h5>
+                <h5>REGISTRO ONLINE</h5>
+                <h6>SOLICITUD: EXENCIÓN DE FCT</h6><br>
+                <!--<h5 id="rotulo_curso" style="color:#900; font-weight:bold">CURSO ACTUAL:</h5>-->
+                <h7 style="color:#900; font-weight:bold">&nbsp;</h7>
+            </div>
+            <div class="col-2 justify-content-end">
+                <input style="width:150px; height:150px" type="image" src="recursos/mini_escudo.jpg" />
             </div>
         </div>
+        <label style="color:red !important;margin-left:100px;margin-top:30px">* Campos obligatorios</label>
 
-        <div id="div_email " class="ui-widget-header ui-corner-all alertas " title="Exención de FCT - Email requerido ">
-            <p>El e-mail que se le pide debe ser válido, puesto que será al que le llegue el número de registro asignado y el impreso generado en formato pdf como fichero adjunto.</p>
-            <p>Una vez lo haya recibido, podrá entrar en el sistema por Secretaría->Impresos de Secretaría->Registro Electrónico->Estado del Registro para buscar su solicitud y verificar su estado.</p>
-            <p>OBSERVACIONES IMPORTANTES:<br> -DEBE ENVIAR EL Nº DE REGISTRO POR <strong>PAPAS 2.0</strong>, AL GRUPO <strong>'Coordinadores de mi centro'</strong>. DE LO CONTRARIO, EL FORMULARIO NO SE CONSIDERARÁ FIRMADO Y NO SERÁ VÁLIDO.<br> -SI VE QUE
-                NO RECIBE EL CORREO ELECTRÓNICO, REVISE LA CARPETA SPAM O CORREO NO DESEADO.<br> -SI EN EL PLAZO DE 24/48 HORAS EL PERSONAL DE SECRETARÍA NO HA RECIBIDO SU SOLICITUD, POR FAVOR, PÓNGASE EN CONTACTO CON ELLOS EN EL TELÉFONO 925 22 34 00
-                EXTENSIONES 272 Y 236</p>
-            <center>
-                <div style="display:inline-block; width:100px; text-align: right ">
-                    <label class="etiquetas ">E-mail:</label><br>
-                    <label class="etiquetas ">Repita E-mail:</label>
-
+        <!-- FORMULARIO --------------------------------------------------------------------------------------->
+        <form id="exenc">
+            <div class=" row ui-widget-header ui-corner-all ancho" style="display:inline-block; padding:10px; ">
+                <div class="col"></div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="nombre" style="margin-left:10px">*Nombre y Apellidos</label>
+                            <span class="errorTxt" style="font-size: 1em;"></span>
+                            <select name="lista_don" id="lista_don" size="1" class="custom-select" onchange="seleccionListaDon()">
+                                <option value=""></option>
+                                <option value="D.">D.</option>
+                                <option value="Dña.">Dña.</option>
+                            </select>
+                            <input type="text" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col"> 
+                            <label style="margin-left: 20px">*Tipo de documento:</label>   
+                            <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label>NIF/NIE</label>
+                            <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass" /><label>Pasaporte</label>
+                        </div>
+                        <div class="col-3">
+                            <label for="nif-nie" style="margin-left: 20px">*Nº documento:</label>
+                            <span class="errorTxt" style="font-size: 1em;"></span>
+                            <input style="margin-left: 5px" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col" id="div_formacion" style="display:inline-block">
+                            <label>Formación:</label>
+                            <select name="formacion" id="formacion" size="1" onchange="cambiaTipoForm()"></select>
+                        </div>
+                        <div class="col"  id="div_grado_medio">
+                            <label>Denominación:</label>
+                            <select name="ciclos_f" id="ciclos_f" size="1"  onchange="cambiaFormGM()">
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div style="display:inline-block ">
-                    <input type="text " style="margin-left: 10px; width:300px " id="email2 " name="email2 "><br>
-                    <input type="text " style="margin-left: 10px; width:300px " id="email3 " name="email3 ">
+            </div>
+            <div class="d-flex flex-row justify-content-center">
+                <div class="col">
+                    <input type="button" id="generar" value="REGISTRAR ONLINE" onclick="iniciaGeneraPdf() " />
                 </div>
-            </center>
-        </div>
-
+            </div>
+        </form>
+    </div>
 
         <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url( 'recursos/espera.gif') no-repeat center center; opacity: .7; "></div>
-
         <div id="mensaje_div" style="display:none "></div>
-        <script type="text/javascript ">
-            $("#generar").button();
-        </script>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src=<?php echo "../../jqueryui/jquery-ui.min.js?q=".time();?>></script>
+<script src=<?php echo "../../js/jquery_validate/jquery.validate.min.js?q=".time();?>></script>
+<script src=<?php echo "../../js/jquery_validate/additional-methods.min.js?q=".time();?>></script>
+<script src=<?php echo "../../js/comun.js?q=".time();?> type="text/javascript"></script>
+<script src=<?php echo "js/trans.js?q=".time();?> type="text/javascript"></script>
+<script src=<?php echo "js/validadores.js?q=".time();?> type="text/javascript"></script>
 </html>
