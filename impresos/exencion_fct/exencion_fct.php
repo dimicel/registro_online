@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-4" id="div_formacion" style="display:inline-block">
+                        <div class="col-3" id="div_formacion" style="display:inline-block">
                             <label for="formacion">Formación:</label>
                             <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm()"></select>
                         </div>
