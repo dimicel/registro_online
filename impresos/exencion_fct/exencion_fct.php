@@ -75,13 +75,13 @@
                             </select>
                         </div>
                     </div>
+                    <div class="d-flex flex-row justify-content-center">
+                        <div class="col">
+                        <input type="button" id="generar" value="REGISTRAR ONLINE" onclick="iniciaGeneraPdf() " />
+                    </div>
                 </div>
             </div>
-            <div class="d-flex flex-row justify-content-center">
-                <div class="col">
-                    <input type="button" id="generar" value="REGISTRAR ONLINE" onclick="iniciaGeneraPdf() " />
-                </div>
-            </div>
+            
         </form>
     </div>
 
