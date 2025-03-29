@@ -128,6 +128,15 @@ function creaInputs() {
     });
 }
 
+function selUltimoFile() {
+    _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=file]");
+    return _a[_a.length - 1];
+}
+
+function selUltimoHidden() {
+    _a = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
+    return _a[_a.length - 1];
+}
 
 
 function generaImpreso() {
