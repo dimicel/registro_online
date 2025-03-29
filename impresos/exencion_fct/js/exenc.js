@@ -117,41 +117,17 @@ function creaInputs() {
     divArray.appendChild(tipoFile);
     tipoFile.accept="application/pdf"
     tipoFile.addEventListener("change", function(event) {
-        if (this.multiple && this.files.length!=2){
-            alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS");
-            return;
-        }
-        _extension1="pdf";
-        _extension2="pdf";
-        mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
-        if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
-            _extension1="jpeg";
-            _extension2="jpg";
-            mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
-        }
-        else if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
-            _extension1="jpeg";
-            _extension2="jpg";
-            mensaje_alerta="Los dos archivos de imagen correspondientes al anverso y reverso del documento de identificación deben ser del tipo JPEG.","ERROR TIPO ARCHIVO";
-        }
         if (this.files.length > 0) {
             for(i=0;i<this.files.length;i++){
                 var extension = this.files[i].name.split('.').pop().toLowerCase();
-                // Verificar si la extensión del archivo es _extension1 o 2
-                if (extension !== _extension1 && extension!==_extension2) {
+                // Verificar si la extensión del archivo es pdf
+                if (extension !== "pdf") {
                     alerta(mensaje_alerta,"ERROR TIPO ARCHIVO");
                     return;
                 }
             }
         }
-
-        if (!this.multiple) document.getElementById('archivo_con').value = this.files[0].name;
-        else {
-            document.getElementById('archivo_con').value = this.files[0].name+", "+this.files[1].name;
-        }
-        if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1){
-            muestraEditor(event);
-        } 
+    document.getElementById('archivo_con').value = this.files[0].name;
     });
 }
 
