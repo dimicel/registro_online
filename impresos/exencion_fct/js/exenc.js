@@ -29,9 +29,6 @@ $(document).ready(function() {
         }
     }, "json"));
     dat2 = dat1.then(() => {
-        let ciclos_basico={};
-        let ciclos_medio={};
-        let ciclos_superior={};
         $.post("php/ciclos.php", { }, (resp) => {
             if (resp.error == "ok") {
                 let cont_bas=0;
@@ -57,7 +54,7 @@ $(document).ready(function() {
                         cont_sup++;
                     }
                 }
-                alert(Object.keys(ciclos_basico).length+"  "+ciclos_medio.length+"   "+ciclos_superior.length)
+                alert(Object.keys(ciclos_basico).length+"  "+Object.keys(ciclos_medio).length+"   "+Object.keys(ciclos_superior).length)
             } else {
                 alerta("Los datos de Ciclos Formativos no se han podido recuperar. El formulario no se podrá cumplimentar.","ERROR RECUPERACIÓN DATOS");
             }
@@ -115,7 +112,7 @@ function cambiaTipoForm(v){
     else if(v=="medio")lista_cic=ciclos_medio;
     else if(v=="superior") lista_cic=ciclos_superior;
     
-    for (i=0; i<lista_cic.length;i++){
+    for (i=0; i<Object.keys(lista_cic).length;i++){
         let option = document.createElement("option");
         option.value = lista_cic[i];
         option.textContent = lista_cic[i];
