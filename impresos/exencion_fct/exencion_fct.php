@@ -35,12 +35,12 @@
             </div>
         </div>
     </div>
-    <div class="container ml-1" style="width:38%">    
+    <div class="container" style="width:38%">    
         <label style="color:red !important; margin-top:30px">* Campos obligatorios</label>
 
         <!-- FORMULARIO --------------------------------------------------------------------------------------->
         <form id="exenc">
-        <div class="row ui-widget-header ui-corner-all">
+        <div class="row ui-widget-header ui-corner-all ml-1">
             <div  style="display:inline-block;margin-top:10px;margin-left:10px">
                 <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
             </div>
