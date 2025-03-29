@@ -138,6 +138,68 @@ function selUltimoHidden() {
     return _a[_a.length - 1];
 }
 
+function actualizaTablaListaDocs() {
+    _t = document.getElementById("tab_lista_docs");
+    
+    _tipoSel=document.querySelectorAll("#anade_documento input[name=tipo_con]:checked");
+    _d = document.getElementById("array_input_type_file").querySelectorAll("input[type=hidden]");
+    if (_tipoSel[0].value=="Otro"){
+        //_arch = selUltimoFile().files[0].name;
+        _d[_d.length - 1].value = document.getElementById("den_otro_con").value;
+    }
+    else {
+        _d[_d.length - 1].value = _tipoSel[0].value;
+    }
+        
+    if (_t.rows[0].cells.length == 1) {
+        _t.deleteRow(0);
+    }
+    var nuevaFila = _t.insertRow();
+
+    // Insertar una celda en la nueva fila (primera columna)
+    var celda1 = nuevaFila.insertCell();
+    celda1.textContent =  _d[_d.length - 1].value;
+    celda1.style.width = "50%";
+
+    // Insertar una celda en la nueva fila (segunda columna)
+    var celda2 = nuevaFila.insertCell();
+    celda2.textContent = selUltimoFile().files[0].name;
+    if(_tipoSel[0].value=="Documento de identificación (DNI/NIE)") celda2.textContent+=", "+selUltimoFile().files[1].name;
+    celda2.style.width = "45%";
+    var celda3 = nuevaFila.insertCell();
+    celda3.innerHTML = "<a href='#' style='color:brown;font-weight:bold' onclick='borraFila(this,event)' title='Elimina el documento'>X</a>";
+    celda3.style.width = "5%";
+    celda3.style.textAlign = "center";
+
+}
+
+
+function borraFila(obj, e) {
+    e.preventDefault();
+    _t = document.getElementById("tab_lista_docs");
+    num_fila = obj.parentNode.parentNode.rowIndex;
+    if(obj.parentNode.parentNode.cells[0].innerText.indexOf("Documento de identificación")>-1){
+        subidoDocIdent=false;
+        if (obj.parentNode.parentNode.cells[0].innerText.indexOf("(Pasaporte)")>-1){
+            formData.delete('pasaporte');
+        }
+        else{
+            formData.delete('dni_anverso');
+            formData.delete('dni_reverso');
+        }
+    } 
+    if (_t.rows.length == 1) {
+        _t.innerHTML = "<tr><td style='text-align:center'>LISTA DE DOCUMENTOS VACÍA</td></tr>";
+    } else {
+        _t.deleteRow(num_fila);
+    }
+
+    inputsHidden = document.getElementById("array_input_type_file").querySelectorAll('input[type="hidden"]');
+    inputsHidden[num_fila].remove();
+    inputsFiles = document.getElementById("array_input_type_file").querySelectorAll('input[type="file"]');
+    inputsFiles[num_fila].remove();
+}
+
 
 function generaImpreso() {
     document.getElementById("cargando").style.display = 'inline-block';
