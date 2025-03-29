@@ -110,7 +110,11 @@ function cambiaTipoForm(v){
     if (v=="basico") lista_cic=ciclos_basico;
     else if(v=="medio")lista_cic=ciclos_medio;
     else if(v=="superior") lista_cic=ciclos_superior;
-    
+    document.getElementById("ciclos_f").innerHTML="";
+    let option=document.createElement("option");
+    option.value="";
+    option.textContent="Seleccione un ciclo ....";
+    document.getElementById("ciclos_f").appendChild(option);
     for (i=0; i<Object.keys(lista_cic).length;i++){
         let option = document.createElement("option");
         option.value = lista_cic[i]["ciclo"];
