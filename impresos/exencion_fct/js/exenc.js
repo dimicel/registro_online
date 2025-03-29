@@ -1,9 +1,9 @@
 let backup_nombre = "";
 let anno_ini_curso="", curso="";
 let id_nie="", nombre="", nif_nie="";
-let ciclos_basico=[];
-let ciclos_medio=[];
-let ciclos_superior=[];
+let ciclos_basico={};
+let ciclos_medio={};
+let ciclos_superior={};
 
 
 $(document).ready(function() {
@@ -32,14 +32,23 @@ $(document).ready(function() {
         $.post("php/ciclos.php", { }, (resp) => {
             if (resp.error == "ok") {
                 for (i=0; i<resp.datos.length; i++){
+                    let cont_bas=0;
+                    let cont_med=0;
+                    let cont_sup=0;
                     if (resp.datos[i].grado=="BÁSICO"){
-                        
+                        ciclos_basico[cont_bas]["ciclo"]=resp[i]["denominacion"];
+                        ciclos_basico[cont_bas]["departamento"]=resp[i]["departamento"];
+                        cont_bas++;
                     }
                     else if (resp.datos[i].grado=="MEDIO"){
-                        
+                        ciclos_medio[cont_medio]["ciclo"]=resp[i]["denominacion"];
+                        ciclos_basico[cont_medio]["departamento"]=resp[i]["departamento"];
+                        cont_medio++;
                     }
                     else if (resp.datos[i].grado=="SUPERIOR"){
-                        
+                        ciclos_superior[cont_sup]["ciclo"]=resp[i]["denominacion"];
+                        ciclos_superior[cont_sup]["departamento"]=resp[i]["departamento"];
+                        cont_sup++;
                     }
                 }
             } else {
