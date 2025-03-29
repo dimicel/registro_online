@@ -32,6 +32,7 @@ $(document).ready(function() {
         $.post("php/ciclos.php", { }, (resp) => {
             if (resp.error == "ok") {
                 for (i=0; i<resp.datos.length; i++){
+                    alert(resp["datos"][i]["denominacion"]);
                     let cont_bas=0;
                     let cont_med=0;
                     let cont_sup=0;
