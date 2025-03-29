@@ -20,12 +20,8 @@ function confirmar() {
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
-                    $(this).dialog("close");
-                    if (iniciada_desde_matricula=="mat"){
-                        window.history.back();
-                        window.history.back();
-                    } 
-                    else window.history.back();
+                    $(this).dialog("close"); 
+                    window.history.back();
                 }
             },
             {
