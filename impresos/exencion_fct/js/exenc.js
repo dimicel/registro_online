@@ -29,6 +29,9 @@ $(document).ready(function() {
         }
     }, "json"));
     dat2 = dat1.then(() => {
+        let ciclos_basico={};
+        let ciclos_medio={};
+        let ciclos_superior={};
         $.post("php/ciclos.php", { }, (resp) => {
             if (resp.error == "ok") {
                 let cont_bas=0;
@@ -44,7 +47,7 @@ $(document).ready(function() {
                     else if (resp.datos[i].grado=="MEDIO"){
                         ciclos_medio[cont_med]={};
                         ciclos_medio[cont_med]["ciclo"]=resp["datos"][i]["denominacion"];
-                        ciclos_basico[cont_med]["departamento"]=resp["datos"][i]["departamento"];
+                        ciclos_medio[cont_med]["departamento"]=resp["datos"][i]["departamento"];
                         cont_med++;
                     }
                     else if (resp.datos[i].grado=="SUPERIOR"){
