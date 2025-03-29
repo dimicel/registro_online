@@ -91,15 +91,15 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-4">
                         <div class="col">
                             <label id="label_estudios_aportados" for="estudios">Documentación que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col" >
-                            <table  style="width: 70%; margin: 0 auto;background-color:lightslategrey"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
-                            <table id="tab_lista_docs"  style="width: 70%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
+                            <table  style="width: 90%; margin: 0 auto;background-color:lightslategrey"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
+                            <table id="tab_lista_docs"  style="width: 90%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-5 mb-4">
