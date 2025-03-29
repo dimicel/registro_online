@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="container" style="width:38%">    
+    <div class="container" style="width:45%">    
         <label style="color:red !important; margin-top:30px">* Campos obligatorios</label>
 
         <!-- FORMULARIO --------------------------------------------------------------------------------------->
@@ -44,7 +44,7 @@
             <div  style="display:inline-block;margin-top:10px;margin-left:10px">
                 <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
             </div>
-            <div class="row mt-5" >
+            <div class="row mt-2" >
                 <div class="col">
                     <div class="row mt-3">
                         <div class="col-2">
