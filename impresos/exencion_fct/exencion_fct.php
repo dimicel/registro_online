@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="container" style="width:35%">    
+    <div class="container" style="width:38%">    
         <label style="color:red !important; margin-top:30px">* Campos obligatorios</label>
 
         <!-- FORMULARIO --------------------------------------------------------------------------------------->
