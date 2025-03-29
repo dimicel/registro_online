@@ -91,7 +91,17 @@
                             </select>
                         </div>
                     </div>
-                    
+                    <div class="row mt-2">
+                        <div class="col">
+                            <label id="label_estudios_aportados" for="estudios">Documentación que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col" >
+                            <table  style="width: 70%; margin: 0 auto;background-color:lightslategrey"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
+                            <table id="tab_lista_docs"  style="width: 70%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-center mt-5 mb-4">
                         <input type="button" id="generar" class="btn btn-success" value="REGISTRAR SOLICITUD" onclick="iniciaGeneraPdf() " />
                     </div>
@@ -100,6 +110,72 @@
         </div>
         </form>
     </div>
+    <!---------------------------------------------------------------------------------------------------------------------------->
+    <!-- PANEL SELECCIÓN DE DOUMENTO A SUBIR ------------------------------------------------------------------------------------->
+    <div id="anade_documento" style="display:none">
+        <form id="form_anade_documento">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <label style="font-weight:bolder">TIPO DOCUMENTO:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="conv_estud_solicita_con" name="tipo_con" class="custom-control-input" value="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <label for="conv_estud_solicita_con" class="custom-control-label">Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita</label>
+                    </div>
+                </div>
+                <div class="row mt-2" id="div_doc_identificacion">
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <div class="row" >
+                            <div class="col-5">
+                                <label>Documento de identificación</label>
+                            </div>
+                            <div class="col">
+                                <input type="radio" id="dni_nie_con" name="tipo_con" class="custom-control-input" value="Documento de identificación (DNI/NIE)" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                                <label for="dni_nie_con" class="custom-control-label">DNI/NIE</label>
+                            </div>
+                            <div class="col">
+                                <input type="radio" id="pasaporte_con" name="tipo_con" class="custom-control-input" value="Documento de identificación (Pasaporte)" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                                <label for="pasaporte_con" class="custom-control-label">Pasaporte</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="cert_acad_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada de la certificación académica de los estudios realizados" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <label for="cert_acad_con" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados (en PDF)</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="fotoc_titulo_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada del título" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <label for="fotoc_titulo_con" class="custom-control-label">Fotocopia compulsada del título (en PDF)</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-2 custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="otro_con" name="tipo_con" class="custom-control-input" value="Otro" onchange="$('#div_den_otro_con').show(); selTipoDoc(this.value)"/>
+                        <label for="otro_con" class="custom-control-label">Otro</label>
+                    </div>
+                    <div class="col form-inline" style="display:none" id="div_den_otro_con">
+                        <label for="den_otro_con">Especificar:</label>
+                        <input type="text" id="den_otro_con" class="form-control ml-2" maxlength="50"/>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mt-2 justify-content-center">
+                    <div class="col-10 form-inline">
+                        <label for="archivo_con">Documento:</label>
+                        <input type="text"  id="archivo_con" style="width: 80%" class="form-control ml-2" maxlength="256" onclick="selArchConsej();" placeholder="Click aquí para seleccionar documento" readonly/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------->
     <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url( 'recursos/espera.gif') no-repeat center center; opacity: .7; "></div>
     <div id="mensaje_div" style="display:none "></div>
 </body>

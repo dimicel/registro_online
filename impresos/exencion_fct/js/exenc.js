@@ -38,50 +38,121 @@ function confirmar() {
     $("#mensaje_div").dialog('open');
 }
 
-function verificaEmail() {
-    let exp_email = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (document.getElementById("email2").value != document.getElementById("email3").value) {
-        alerta("Los emails introducidos no son iguales.", "Error coincidencia.");
-        return false;
-    } else if (document.getElementById("email2").value.miTrim() == "") {
-        alerta("La dirección de correo electrónico no puede estar vacía", "Email vacío");
-        return false;
-    }
-    if (exp_email.test(document.getElementById("email2").value.miTrim())== true) {
-        document.getElementById("email").value = document.getElementById("email2").value;
-        return true;
+function seleccionListaDon() {
+    if (document.getElementById("lista_don").value != "") {
+        document.getElementById("nombre").readOnly = false;
+        document.getElementById("nombre").value = backup_nombre;
     } else {
-        alerta("El email introducido no es válido.", "Error Email");
-        return false;
+        document.getElementById("nombre").readOnly = true;
+        backup_nombre = document.getElementById("nombre").value;
+        document.getElementById("nombre").value = "Seleccione D. o Dña. en el desplegable anterior.";
     }
 }
 
 
-function validaDatos() {
-    let lista_errores = "";
-    let ER_cp = /[0-9]{5}/;
-    let ER_email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    let nom = document.getElementById("nombre").value.miTrim();
-    let nif = document.getElementById("nif_nie").value.miTrim();
-    let ensenanza = document.getElementById("formacion").value;
-    let fpb = document.getElementById("fpb").value;
-    let gm = document.getElementById("gmedio").value;
-    let gs = document.getElementById("gsuperior").value;
-    if (nom.length == 0 || nom == "Seleccione en el desplegable de la izquierda.") {
-        lista_errores += "- El Nombre no puede estar vacío.<br>";
-    }
-    if (nif.length == 0 || (!validaDNI_NIE(nif) && document.getElementById('nif').checked)) {
-        lista_errores += "- Número de documento de identificación vacío o incorrecto.<br>";
-    }
-    if (ensenanza == "") lista_errores += "- No ha seleccionado formación.<br>";
-    if (fpb == "" && gm == "" && gs == "") lista_errores += "- No ha seleccionado denominación de la enseñanza.<br>";
+function anadeDoc(e) {
+    e.preventDefault();
+    creaInputs();
+        
+        if (subidoDocIdent) $("#div_doc_identificacion").hide();
+        else $("#div_doc_identificacion").show();
+        $("#anade_documento").dialog({
+            autoOpen: true,
+            dialogClass: "alert no-close",
+            modal: true,
+            hide: { effect: "fade", duration: 0 },
+            resizable: false,
+            show: { effect: "fade", duration: 0 },
+            title: "AÑADIR DOCUMENTO ADJUNTO",
+            width: 700,
+            buttons: [{
+                    class: "btn btn-success textoboton",
+                    text: "Aceptar",
+                    click: function() {
+                        if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked").length == 0 || 
+                            document.getElementById("archivo_con").value.trim().length == 0){
+                                alerta("Debe seleccionar un tipo de documento y un archivo.", "FALTAN DATOS");
+                                return;
+                        }
+                        else if(document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Otro" &&
+                                document.getElementById("den_otro_con").value.trim().length == 0){
+                                    alerta("Debe especificar qué tipo de documento va a adjuntar.", "FALTAN DATOS");
+                                    return;
+                        }
+                        actualizaTablaListaDocs();
+                        if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1)subidoDocIdent=true;
+                        document.getElementById("form_anade_documento").reset();
+                        $('#div_den_otro_con').hide();
+                        $("#anade_documento").dialog("close");
+                        $("#anade_documento").dialog("destroy");
+                    }
+                },
+                {
+                    class: "btn btn-success textoboton",
+                    text: "Cancelar",
+                    click: function() {
+                        document.getElementById("form_anade_documento").reset();
+                        $('#div_den_otro_con').hide();
+                        selUltimoFile().remove();
+                        selUltimoHidden().remove();
+                        $("#anade_documento").dialog("close");
+                        $("#anade_documento").dialog("destroy");
+                    }
+                }
+            ]
+        });
+}
 
-    if (lista_errores.length > 0) {
-        lista_errores = "ERRORES DETECTADOS EN EL FORMULARIO<br>" + lista_errores;
-        alerta(lista_errores, "¡FALTAN DATOS!");
-        return false;
-    }
-    return true;
+
+function creaInputs() {
+    divArray = document.getElementById("array_input_type_file");
+    tipoHidden = document.createElement("input");
+    tipoHidden.type = "hidden";
+    tipoHidden.name = "desc[]";
+    tipoFile = document.createElement("input");
+    tipoFile.type = "file";
+    tipoFile.name = "docs[]";
+    tipoFile.multiple = false;
+    divArray.appendChild(tipoHidden);
+    divArray.appendChild(tipoFile);
+    tipoFile.accept="application/pdf"
+    tipoFile.addEventListener("change", function(event) {
+        if (this.multiple && this.files.length!=2){
+            alerta("Debe seleccionar dos archivos de imagen: el anverso y reverso del documento de identificación.", "Nº INCORRECTO DE ARCHIVOS SELECCIONADOS");
+            return;
+        }
+        _extension1="pdf";
+        _extension2="pdf";
+        mensaje_alerta="Por favor, seleccione un archivo PDF.","ERROR TIPO ARCHIVO";
+        if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (Pasaporte)"){
+            _extension1="jpeg";
+            _extension2="jpg";
+            mensaje_alerta="Por favor, seleccione un archivo de imagen JPEG.","ERROR TIPO ARCHIVO";
+        }
+        else if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Documento de identificación (DNI/NIE)"){
+            _extension1="jpeg";
+            _extension2="jpg";
+            mensaje_alerta="Los dos archivos de imagen correspondientes al anverso y reverso del documento de identificación deben ser del tipo JPEG.","ERROR TIPO ARCHIVO";
+        }
+        if (this.files.length > 0) {
+            for(i=0;i<this.files.length;i++){
+                var extension = this.files[i].name.split('.').pop().toLowerCase();
+                // Verificar si la extensión del archivo es _extension1 o 2
+                if (extension !== _extension1 && extension!==_extension2) {
+                    alerta(mensaje_alerta,"ERROR TIPO ARCHIVO");
+                    return;
+                }
+            }
+        }
+
+        if (!this.multiple) document.getElementById('archivo_con').value = this.files[0].name;
+        else {
+            document.getElementById('archivo_con').value = this.files[0].name+", "+this.files[1].name;
+        }
+        if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1){
+            muestraEditor(event);
+        } 
+    });
 }
 
 
@@ -133,19 +204,10 @@ function generaImpreso() {
 }
 
 
-function seleccionListaDon() {
-    if (document.getElementById("lista_don").value != "") {
-        document.getElementById("nombre").readOnly = false;
-        document.getElementById("nombre").value = backup_nombre;
-    } else {
-        document.getElementById("nombre").readOnly = true;
-        backup_nombre = document.getElementById("nombre").value;
-        document.getElementById("nombre").value = "Seleccione D. o Dña. en el desplegable anterior.";
-    }
-}
+
 
 
 function iniciaGeneraPdf() {
-    if (validaDatos()) $("#div_email").dialog('open');
+    
 }
 // JavaScript Document
