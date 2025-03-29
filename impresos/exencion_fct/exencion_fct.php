@@ -117,42 +117,37 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <label style="font-weight:bolder">TIPO DOCUMENTO:</label>
+                        <label style="font-weight:bolder">TIPO DOCUMENTO (deben estar en formato PDF):</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="conv_estud_solicita_con" name="tipo_con" class="custom-control-input" value="Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
-                        <label for="conv_estud_solicita_con" class="custom-control-label">Certificación de estar matriculado en los estudios de Formación Profesional cuya convalidación solicita</label>
-                    </div>
-                </div>
-                <div class="row mt-2" id="div_doc_identificacion">
-                    <div class="col custom-control custom-switch mi-checkbox">
-                        <div class="row" >
-                            <div class="col-5">
-                                <label>Documento de identificación</label>
-                            </div>
-                            <div class="col">
-                                <input type="radio" id="dni_nie_con" name="tipo_con" class="custom-control-input" value="Documento de identificación (DNI/NIE)" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
-                                <label for="dni_nie_con" class="custom-control-label">DNI/NIE</label>
-                            </div>
-                            <div class="col">
-                                <input type="radio" id="pasaporte_con" name="tipo_con" class="custom-control-input" value="Documento de identificación (Pasaporte)" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
-                                <label for="pasaporte_con" class="custom-control-label">Pasaporte</label>
-                            </div>
-                        </div>
+                        <input type="radio" id="cert_empresa" name="tipo_con" class="custom-control-input" value="Certificación de la empresa" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <label for="cert_empresa" class="custom-control-label">Certificación de la empresa donde haya adquirido la experiencia laboral, en la que conste específicamente la duración del contrato, la actividad desarrollada y el periodo de tiempo en el que se ha desarrollado dicha actividad.</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="cert_acad_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada de la certificación académica de los estudios realizados" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
-                        <label for="cert_acad_con" class="custom-control-label">Fotocopia compulsada de la certificación académica de los estudios realizados (en PDF)</label>
+                        <input type="radio" id="cert_tgss" name="tipo_con" class="custom-control-input" value="Certificación de la Tesorería General de la Seguridad Social" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <label for="cert_tgss" class="custom-control-label">Certificación de la Tesorería General de la Seguridad Social o de la mutualidad laboral a la que estuviera afiliado, donde conste la empresa, la categoría laboral (grupo de cotización) y el período de contratación, o en su caso el período de cotización en el Régimen Especial de Trabajadores Autónomos.</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="fotoc_titulo_con" name="tipo_con" class="custom-control-input" value="Fotocopia compulsada del título" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
-                        <label for="fotoc_titulo_con" class="custom-control-label">Fotocopia compulsada del título (en PDF)</label>
+                        <input type="radio" id="cert_alta_ob_trib" name="tipo_con" class="custom-control-input" value="Certificación de alta en el censo de obligados tributarios" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <label for="cert_alta_ob_trib" class="custom-control-label">Certificación de alta en el censo de obligados tributarios, así como una declaración del interesado de las actividades más representativas (SÓLO TRABAJADOPRES POR CUENTA PROPIA).</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="declar_interesado" name="tipo_con" class="custom-control-input" value="Declaración del interesado" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <label for="declar_interesado" class="custom-control-label">Declaración del interesado de las actividades más representativas (SÓLO TRABAJADOPRES POR CUENTA PROPIA).</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col custom-control custom-switch mi-checkbox">
+                        <input type="radio" id="cert_vol_bec" name="tipo_con" class="custom-control-input" value="Certificación para voluntarios o becarios" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <label for="cert_vol_bec" class="custom-control-label">Para trabajadores o trabajadoras voluntarios o becarios, certificación de la organización donde se haya prestado la asistencia en la que consten, específicamente, las actividades y funciones realizadas, el año en el que se han realizado y el número total de horas dedicadas a las mismas.</label>
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -161,7 +156,7 @@
                         <label for="otro_con" class="custom-control-label">Otro</label>
                     </div>
                     <div class="col form-inline" style="display:none" id="div_den_otro_con">
-                        <label for="den_otro_con">Especificar:</label>
+                        <label for="den_otro_con">Descripción documento:</label>
                         <input type="text" id="den_otro_con" class="form-control ml-2" maxlength="50"/>
                     </div>
                 </div>
