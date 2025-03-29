@@ -99,16 +99,6 @@ function confirmar() {
     $("#mensaje_div").dialog('open');
 }
 
-function seleccionListaDon() {
-    if (document.getElementById("lista_don").value != "") {
-        document.getElementById("nombre").readOnly = false;
-        document.getElementById("nombre").value = backup_nombre;
-    } else {
-        document.getElementById("nombre").readOnly = true;
-        backup_nombre = document.getElementById("nombre").value;
-        document.getElementById("nombre").value = "Seleccione D. o Dña. en el desplegable anterior.";
-    }
-}
 
 function cambiaTipoForm(v){
     if (v=="basico") lista_cic=ciclos_basico;
