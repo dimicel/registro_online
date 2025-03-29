@@ -87,6 +87,7 @@
                             </select>
                         </div>
                     </div>
+                    <hr>
                     <div class="d-flex justify-content-center mt-5 mb-4">
                         <input type="button" id="generar" class="btn btn-success" value="REGISTRAR SOLICITUD" onclick="iniciaGeneraPdf() " />
                     </div>
