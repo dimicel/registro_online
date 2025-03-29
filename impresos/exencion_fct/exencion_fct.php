@@ -40,10 +40,11 @@
 
         <!-- FORMULARIO --------------------------------------------------------------------------------------->
         <form id="exenc">
-            <div class="row ui-widget-header ui-corner-all" >
-                <div style="display:block;float:left; margin-top:10px;margin-left:10px">
-                    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
-                </div>
+        <div class="row ui-widget-header ui-corner-all">
+            <div style="display:block;float:left; margin-top:10px;margin-left:10px">
+                <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+            </div>
+            <div class="row" >
                 <div class="col">
                     <div class="row mt-3">
                         <div class="col-2">
@@ -96,6 +97,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </form>
     </div>
     <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url( 'recursos/espera.gif') no-repeat center center; opacity: .7; "></div>
