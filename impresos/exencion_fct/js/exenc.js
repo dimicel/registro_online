@@ -1,9 +1,9 @@
 let backup_nombre = "";
 let anno_ini_curso="", curso="";
 let id_nie="", nombre="", nif_nie="";
-let ciclos_basico=[];
-let ciclos_medio=[];
-let ciclos_superior=[];
+let ciclos_basico={};
+let ciclos_medio={};
+let ciclos_superior={};
 
 
 $(document).ready(function() {
@@ -31,25 +31,24 @@ $(document).ready(function() {
     dat2 = dat1.then(() => {
         $.post("php/ciclos.php", { }, (resp) => {
             if (resp.error == "ok") {
+                let cont_bas=0;
+                let cont_med=0;
+                let cont_sup=0;
                 for (i=0; i<resp.datos.length; i++){
-                    alert(resp["datos"][i]["denominacion"]);
-                    let cont_bas=0;
-                    let cont_med=0;
-                    let cont_sup=0;
                     if (resp.datos[i].grado=="BÁSICO"){
-                        ciclos_basico[cont_bas]=[];
+                        ciclos_basico[cont_bas]={};
                         ciclos_basico[cont_bas]["ciclo"]=resp["datos"][i]["denominacion"];
                         ciclos_basico[cont_bas]["departamento"]=resp["datos"][i]["departamento"];
                         cont_bas++;
                     }
                     else if (resp.datos[i].grado=="MEDIO"){
-                        ciclos_medio[cont_med]=[];
+                        ciclos_medio[cont_med]={};
                         ciclos_medio[cont_med]["ciclo"]=resp["datos"][i]["denominacion"];
                         ciclos_basico[cont_med]["departamento"]=resp["datos"][i]["departamento"];
                         cont_med++;
                     }
                     else if (resp.datos[i].grado=="SUPERIOR"){
-                        ciclos_superior[cont_sup]=[];
+                        ciclos_superior[cont_sup]={};
                         ciclos_superior[cont_sup]["ciclo"]=resp["datos"][i]["denominacion"];
                         ciclos_superior[cont_sup]["departamento"]=resp["datos"][i]["departamento"];
                         cont_sup++;
@@ -58,7 +57,6 @@ $(document).ready(function() {
             } else {
                 alerta("Los datos de Ciclos Formativos no se han podido recuperar. El formulario no se podrá cumplimentar.","ERROR RECUPERACIÓN DATOS");
             }
-            alert(ciclos_basico.length+"    "+ciclos_medio.length+"    "+ciclos_superior.length)
         }, "json");
     });
     
