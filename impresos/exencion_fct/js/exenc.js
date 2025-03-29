@@ -31,7 +31,6 @@ $(document).ready(function() {
     dat2 = dat1.then(() => {
         $.post("php/ciclos.php", { }, (resp) => {
             if (resp.error == "ok") {
-                alert(resp.datos.length)
                 for (i=0; i<resp.datos.length; i++){
                     let cont_bas=0;
                     let cont_med=0;
@@ -58,9 +57,10 @@ $(document).ready(function() {
             } else {
                 alerta("Los datos de Ciclos Formativos no se han podido recuperar. El formulario no se podrá cumplimentar.","ERROR RECUPERACIÓN DATOS");
             }
+            alert(ciclos_basico.length+"    "+ciclos_medio.length+"    "+ciclos_superior.length)
         }, "json");
     });
-    alert(ciclos_basico.length+"    "+ciclos_medio.length+"    "+ciclos_superior.length)
+    
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 });
 
