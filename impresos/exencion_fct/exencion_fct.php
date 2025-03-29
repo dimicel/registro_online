@@ -41,6 +41,9 @@
         <!-- FORMULARIO --------------------------------------------------------------------------------------->
         <form id="exenc">
             <div class="row ui-widget-header ui-corner-all" >
+                <div style="display:block;float:left; margin-top:10px;margin-left:10px">
+                    <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+                </div>
                 <div class="col">
                     <div class="row mt-3">
                         <div class="col-2">
