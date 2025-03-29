@@ -68,7 +68,7 @@
                         </div>
                         <div class="col">
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input type="text" class="form-control" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly />
+                            <input type="text" class="form-control" name="nombre" id="nombre"  maxlength="90" />
                         </div>
                         <div class="col-3">
                             <span class="errorTxt" style="font-size: 1em;"></span>
