@@ -26,7 +26,29 @@ $(document).ready(function() {
 
         }
     }, "json"));
-    
+    dat2 = dat1.then(() => {
+        $.post("../../php/usu_recdatospers.php", { id_nie: id_nie }, (resp) => {
+            if (resp.error == "ok") {
+                for (e in resp.datos) {
+                    if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
+                }
+                document.getElementById("tlf_movil").value = resp.datos.telef_alumno;
+                document.getElementById("email").value = resp.datos.email;
+                document.getElementById("direccion").value = resp.datos.direccion;
+                document.getElementById("cp").value = resp.datos.cp;
+                document.getElementById("localidad").value = resp.datos.localidad;
+                document.getElementById("provincia").value = resp.datos.provincia;
+            } else {
+                document.getElementById("tlf_movil").value = '';
+                document.getElementById("email").value = '';
+                document.getElementById("direccion").value = '';
+                document.getElementById("cp").value = '';
+                document.getElementById("localidad").value = '';
+                document.getElementById("provincia").value = '';
+            }
+        }, "json");
+    });
+
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 });
 
