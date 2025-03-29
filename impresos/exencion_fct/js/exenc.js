@@ -104,6 +104,11 @@ function seleccionListaDon() {
     }
 }
 
+function cambiaTipoForm(v){
+    alert(v);
+
+}
+
 
 function anadeDoc(e) {
     e.preventDefault();
