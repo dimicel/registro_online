@@ -34,7 +34,7 @@
                 <input style="width:150px; height:150px" type="image" src="recursos/mini_escudo.jpg" />
             </div>
         </div>
-        <label style="color:red !important;margin-top:30px">* Campos obligatorios</label>
+        <label style="color:red !important; margin-top:30px">* Campos obligatorios</label>
 
         <!-- FORMULARIO --------------------------------------------------------------------------------------->
         <form id="exenc">
