@@ -42,10 +42,10 @@ $(document).ready(function() {
                         cont_bas++;
                     }
                     else if (resp.datos[i].grado=="MEDIO"){
-                        ciclos_medio[cont_medio]={};
-                        ciclos_medio[cont_medio]["ciclo"]=resp["datos"][i]["denominacion"];
-                        ciclos_basico[cont_medio]["departamento"]=resp["datos"][i]["departamento"];
-                        cont_medio++;
+                        ciclos_medio[cont_med]={};
+                        ciclos_medio[cont_med]["ciclo"]=resp["datos"][i]["denominacion"];
+                        ciclos_basico[cont_med]["departamento"]=resp["datos"][i]["departamento"];
+                        cont_med++;
                     }
                     else if (resp.datos[i].grado=="SUPERIOR"){
                         ciclos_superior[cont_sup]={};
