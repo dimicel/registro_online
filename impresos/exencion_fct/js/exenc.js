@@ -59,7 +59,7 @@ $(document).ready(function() {
             }
         }, "json");
     });
-
+    alert(ciclos_basico.length+"    "+ciclos_medio.length+"    "+ciclos_superior.length)
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 });
 
