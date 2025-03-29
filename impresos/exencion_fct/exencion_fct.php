@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-5">
-                        <input type="button" id="generar" value="REGISTRAR SOLICITUD" onclick="iniciaGeneraPdf() " />
+                        <input type="button" id="generar" class="btn btn-success" value="REGISTRAR SOLICITUD" onclick="iniciaGeneraPdf() " />
                     </div>
                 </div>
             </div>
