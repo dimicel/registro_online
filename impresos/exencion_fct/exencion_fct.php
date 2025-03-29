@@ -78,7 +78,12 @@
                     <div class="row mt-3">
                         <div class="col-3" id="div_formacion">
                             <label for="formacion">Formación:</label>
-                            <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm()"></select>
+                            <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm()">
+                                <option value="">Sel.uno...</option>
+                                <option value="basico">GRADO BÁSICO</option>
+                                <option value="medio">GRADO MEDIO</option>
+                                <option value="superior">GRADO SUPERIOR</option>
+                            </select>
                         </div>
                         <div class="col"  id="div_grado_medio">
                             <label for="ciclos_f">Denominación:</label>
