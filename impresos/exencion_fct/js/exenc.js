@@ -138,12 +138,6 @@ function selUltimoHidden() {
     return _a[_a.length - 1];
 }
 
-function selTipoDoc(v){
-    if(v=="Documento de identificación (DNI/NIE)") selUltimoFile().multiple=true;
-    else selUltimoFile().multiple=false;
-    if (v.indexOf("Documento de identificación")>-1) selUltimoFile().accept="image/jpeg, image/jpg";
-    else selUltimoFile().accept="application/pdf";
-}
 
 function generaImpreso() {
     document.getElementById("cargando").style.display = 'inline-block';

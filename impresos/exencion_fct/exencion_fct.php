@@ -122,37 +122,37 @@
                 </div>
                 <div class="row">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="cert_empresa" name="tipo_con" class="custom-control-input" value="Certificación de la empresa" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <input type="radio" id="cert_empresa" name="tipo_con" class="custom-control-input" value="Certificación de la empresa" onchange="$('#div_den_otro_con').hide(); "/>
                         <label for="cert_empresa" class="custom-control-label">Certificación de la empresa donde haya adquirido la experiencia laboral, en la que conste específicamente la duración del contrato, la actividad desarrollada y el periodo de tiempo en el que se ha desarrollado dicha actividad.</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="cert_tgss" name="tipo_con" class="custom-control-input" value="Certificación de la Tesorería General de la Seguridad Social" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <input type="radio" id="cert_tgss" name="tipo_con" class="custom-control-input" value="Certificación de la Tesorería General de la Seguridad Social" onchange="$('#div_den_otro_con').hide(); "/>
                         <label for="cert_tgss" class="custom-control-label">Certificación de la Tesorería General de la Seguridad Social o de la mutualidad laboral a la que estuviera afiliado, donde conste la empresa, la categoría laboral (grupo de cotización) y el período de contratación, o en su caso el período de cotización en el Régimen Especial de Trabajadores Autónomos.</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="cert_alta_ob_trib" name="tipo_con" class="custom-control-input" value="Certificación de alta en el censo de obligados tributarios" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <input type="radio" id="cert_alta_ob_trib" name="tipo_con" class="custom-control-input" value="Certificación de alta en el censo de obligados tributarios" onchange="$('#div_den_otro_con').hide(); "/>
                         <label for="cert_alta_ob_trib" class="custom-control-label">Certificación de alta en el censo de obligados tributarios, así como una declaración del interesado de las actividades más representativas (SÓLO TRABAJADOPRES POR CUENTA PROPIA).</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="declar_interesado" name="tipo_con" class="custom-control-input" value="Declaración del interesado" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <input type="radio" id="declar_interesado" name="tipo_con" class="custom-control-input" value="Declaración del interesado" onchange="$('#div_den_otro_con').hide(); "/>
                         <label for="declar_interesado" class="custom-control-label">Declaración del interesado de las actividades más representativas (SÓLO TRABAJADOPRES POR CUENTA PROPIA).</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="cert_vol_bec" name="tipo_con" class="custom-control-input" value="Certificación para voluntarios o becarios" onchange="$('#div_den_otro_con').hide(); selTipoDoc(this.value)"/>
+                        <input type="radio" id="cert_vol_bec" name="tipo_con" class="custom-control-input" value="Certificación para voluntarios o becarios" onchange="$('#div_den_otro_con').hide(); "/>
                         <label for="cert_vol_bec" class="custom-control-label">Para trabajadores o trabajadoras voluntarios o becarios, certificación de la organización donde se haya prestado la asistencia en la que consten, específicamente, las actividades y funciones realizadas, el año en el que se han realizado y el número total de horas dedicadas a las mismas.</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-2 custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="otro_con" name="tipo_con" class="custom-control-input" value="Otro" onchange="$('#div_den_otro_con').show(); selTipoDoc(this.value)"/>
+                        <input type="radio" id="otro_con" name="tipo_con" class="custom-control-input" value="Otro" onchange="$('#div_den_otro_con').show();"/>
                         <label for="otro_con" class="custom-control-label">Otro</label>
                     </div>
                     <div class="col form-inline" style="display:none" id="div_den_otro_con">
