@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-5"> 
+                        <div class="col-3"> 
                             <label>*Tipo de documento:</label><br>  
                             <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label style="margin-left: 5px">NIF/NIE</label>
                             <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass" /><label style="margin-left: 5px">Pasaporte</label>
