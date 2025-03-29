@@ -1,7 +1,7 @@
 let backup_nombre = "";
 let anno_ini_curso="", curso="";
 let id_nie="", nombre="", nif_nie="";
-
+let ciclos=[];
 
 
 $(document).ready(function() {
