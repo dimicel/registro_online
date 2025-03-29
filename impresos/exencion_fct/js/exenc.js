@@ -57,7 +57,7 @@ $(document).ready(function() {
                         cont_sup++;
                     }
                 }
-                alert(ciclos_basico.length+"  "+ciclos_medio.length+"   "+ciclos_superior.length)
+                alert(Object.keys(ciclos_basico).length+"  "+ciclos_medio.length+"   "+ciclos_superior.length)
             } else {
                 alerta("Los datos de Ciclos Formativos no se han podido recuperar. El formulario no se podrá cumplimentar.","ERROR RECUPERACIÓN DATOS");
             }
