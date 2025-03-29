@@ -61,7 +61,7 @@
                         <span class="errorTxt" style="font-size: 1em;"></span>
                         <div class="col-2">
                             <select name="lista_don" id="lista_don" size="1" class="custom-select" onchange="seleccionListaDon()">
-                                <option value=""></option>
+                                <option value="">Selecciones uno ...</option>
                                 <option value="D.">D.</option>
                                 <option value="Dña.">Dña.</option>
                             </select>
