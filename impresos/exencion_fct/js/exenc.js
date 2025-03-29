@@ -54,7 +54,6 @@ $(document).ready(function() {
                         cont_sup++;
                     }
                 }
-                alert(Object.keys(ciclos_basico).length+"  "+Object.keys(ciclos_medio).length+"   "+Object.keys(ciclos_superior).length)
             } else {
                 alerta("Los datos de Ciclos Formativos no se han podido recuperar. El formulario no se podrá cumplimentar.","ERROR RECUPERACIÓN DATOS");
             }
@@ -114,8 +113,8 @@ function cambiaTipoForm(v){
     
     for (i=0; i<Object.keys(lista_cic).length;i++){
         let option = document.createElement("option");
-        option.value = lista_cic[i];
-        option.textContent = lista_cic[i];
+        option.value = lista_cic[i][ciclo];
+        option.textContent = lista_cic[i][ciclo];
         document.getElementById("ciclos_f").appendChild(option);
     }
 
