@@ -105,7 +105,16 @@ function seleccionListaDon() {
 }
 
 function cambiaTipoForm(v){
-    alert(v);
+    if (v=="basico") lista_cic=ciclos_basico;
+    else if(v=="medio")lista_cic=ciclos_medio;
+    else if(v=="superior") lista_cic=ciclos_superior;
+    
+    lista_cic.forEach(valor => {
+        let option = document.createElement("option");
+        option.value = valor;
+        option.textContent = valor;
+        document.getElementById("ciclos_f").appendChild(option);
+    });
 
 }
 
