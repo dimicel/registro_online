@@ -27,7 +27,7 @@
                 <h5>IES UNIVERSIDAD LABORAL DE TOLEDO</h5>
                 <h5>REGISTRO ONLINE</h5>
                 <h6>SOLICITUD: EXENCIÓN DE FCT</h6><br>
-                <!--<h5 id="rotulo_curso" style="color:#900; font-weight:bold">CURSO ACTUAL:</h5>-->
+                <h5 id="rotulo_curso" style="color:#900; font-weight:bold">CURSO ACTUAL:</h5>
                 <h7 style="color:#900; font-weight:bold">&nbsp;</h7>
             </div>
             <div class="col-2 justify-content-end">
