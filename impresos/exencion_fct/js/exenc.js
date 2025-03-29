@@ -60,6 +60,10 @@ $(document).ready(function() {
         }, "json");
     });
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
+    let option=document.createElement("option");
+    option.value="";
+    option.textContent="Seleccione Formación en el desplegable anterior.";
+    document.getElementById("ciclos_f").appendChild(option);
 });
 
 
@@ -113,9 +117,9 @@ function cambiaTipoForm(v){
     document.getElementById("ciclos_f").innerHTML="";
     let option=document.createElement("option");
     option.value="";
-    option.textContent="Seleccione un ciclo ....";
-    document.getElementById("ciclos_f").appendChild(option);
     if (v!=""){
+        option.textContent="Seleccione un ciclo ....";
+        document.getElementById("ciclos_f").appendChild(option);
         for (i=0; i<Object.keys(lista_cic).length;i++){
             let option = document.createElement("option");
             option.value = lista_cic[i]["ciclo"];
@@ -123,7 +127,13 @@ function cambiaTipoForm(v){
             document.getElementById("ciclos_f").appendChild(option);
         }
     }
+    else {
+        option.textContent="Seleccione Formación en el desplegable anterior.";
+        document.getElementById("ciclos_f").appendChild(option);
+    }
 }
+
+
 
 
 function anadeDoc(e) {
