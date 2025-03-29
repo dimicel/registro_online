@@ -112,12 +112,12 @@ function cambiaTipoForm(v){
     else if(v=="medio")lista_cic=ciclos_medio;
     else if(v=="superior") lista_cic=ciclos_superior;
     
-    lista_cic.forEach(valor => {
+    for (i=0; i<lista_cic.length;i++){
         let option = document.createElement("option");
-        option.value = valor;
-        option.textContent = valor;
+        option.value = lista_cic[i];
+        option.textContent = lista_cic[i];
         document.getElementById("ciclos_f").appendChild(option);
-    });
+    }
 
 }
 
