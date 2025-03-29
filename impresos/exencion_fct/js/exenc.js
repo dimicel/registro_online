@@ -37,7 +37,7 @@ $(document).ready(function() {
                     let cont_sup=0;
                     if (resp.datos[i].grado=="BÁSICO"){
                         ciclos_basico[cont_bas]={};
-                        ciclos_basico[cont_bas]["ciclo"]=resp.datos[i].denominacion;
+                        ciclos_basico[cont_bas]["ciclo"]=resp["datos"][i]["denominacion"];
                         ciclos_basico[cont_bas]["departamento"]=resp["datos"][i]["departamento"];
                         cont_bas++;
                     }
