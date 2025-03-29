@@ -79,7 +79,7 @@
                         <div class="col-3" id="div_formacion">
                             <label for="formacion">Formación:</label>
                             <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm(this.value)">
-                                <option value="">Sel.uno...</option>
+                                <option value="">Marque uno...</option>
                                 <option value="basico">GRADO BÁSICO</option>
                                 <option value="medio">GRADO MEDIO</option>
                                 <option value="superior">GRADO SUPERIOR</option>
