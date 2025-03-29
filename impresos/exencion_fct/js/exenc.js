@@ -113,8 +113,8 @@ function cambiaTipoForm(v){
     
     for (i=0; i<Object.keys(lista_cic).length;i++){
         let option = document.createElement("option");
-        option.value = lista_cic[i][ciclo];
-        option.textContent = lista_cic[i][ciclo];
+        option.value = lista_cic[i]["ciclo"];
+        option.textContent = lista_cic[i]["ciclo"];
         document.getElementById("ciclos_f").appendChild(option);
     }
 
