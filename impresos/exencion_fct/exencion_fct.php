@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container w-75">
+    <div class="container w-50">
         <!--CABECERA LOGOS ------------------------------------------------------------------------------------>
         <div class="d-flex flex-row justify-content-center" style="margin-top:30px">
             <div class="col-2 justify-content-start">
