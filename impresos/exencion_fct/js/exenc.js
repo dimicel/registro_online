@@ -31,6 +31,7 @@ $(document).ready(function() {
     dat2 = dat1.then(() => {
         $.post("php/ciclos.php", { }, (resp) => {
             if (resp.error == "ok") {
+                alert(resp.datos.length)
                 for (i=0; i<resp.datos.length; i++){
                     let cont_bas=0;
                     let cont_med=0;
