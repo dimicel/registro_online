@@ -49,14 +49,16 @@
                     <div class="row mt-3">
                         <div class="col-2">
                             <label for="lista_don">*Tratamiento</label>
-                            <span class="errorTxt" style="font-size: 1em;"></span>
                         </div>
                         <div class="col">
                             <label for="nombre" style="margin-left:10px">*Nombre y Apellidos</label>
-                            <span class="errorTxt" style="font-size: 1em;"></span>
+                        </div>
+                        <div class="col-3">
+                            <label for="nombre" style="margin-left:10px">*NIF/NIE/Pasaporte</label>
                         </div>
                     </div>
                     <div class="row">
+                        <span class="errorTxt" style="font-size: 1em;"></span>
                         <div class="col-2">
                             <select name="lista_don" id="lista_don" size="1" class="custom-select" onchange="seleccionListaDon()">
                                 <option value=""></option>
@@ -65,17 +67,10 @@
                             </select>
                         </div>
                         <div class="col">
+                            <span class="errorTxt" style="font-size: 1em;"></span>
                             <input type="text" class="form-control" name="nombre" id="nombre" size="70" maxlength="90" value="Seleccione en el desplegable de la izquierda." readonly />
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-4"> 
-                            <label>*Tipo de documento:</label><br>  
-                            <input type="radio" name="pass_nif" id="nif" value="nif" checked/><label style="margin-left: 5px">NIF/NIE</label>
-                            <input style="margin-left: 20px" type="radio" name="pass_nif" id="pass" value="pass" /><label style="margin-left: 5px">Pasaporte</label>
-                        </div>
-                        <div class="col">
-                            <label for="nif-nie">*Nº documento:</label>
+                        <div class="col-3">
                             <span class="errorTxt" style="font-size: 1em;"></span>
                             <input style="margin-left: 5px" class="form-control" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" />
                         </div>

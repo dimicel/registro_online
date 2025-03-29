@@ -2,7 +2,53 @@ let backup_nombre = "";
 
 
 $(document).ready(function() {
+    document.body.style.overflowY = "scroll";
 
+    dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, function(resp) {
+        if (resp["error"] != "ok") document.write(resp["error"]);
+        else {
+            id_nie = resp["id_nie"];
+            nif_nie=resp["id_nif"];
+            nombre=resp["nombre"];
+            apellidos=resp["apellidos"];
+            document.getElementById("nif_nie").value = nif_nie;
+            document.getElementById("nombre").value = nombre;
+            document.getElementById("apellidos").value = apellidos;
+            anno_ini_curso = resp["anno_ini_curso"];
+            document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
+            curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
+            document.getElementById("email").value = email;
+
+            if (id_nie.trim() == "" || anno_ini_curso.toString().trim() == "") {
+                document.write("Error datos. Por favor, inténtelo más tarde.");
+            }
+
+        }
+    }, "json"));
+    dat2 = dat1.then(() => {
+        $.post("../../php/usu_recdatospers.php", { id_nie: id_nie }, (resp) => {
+            if (resp.error == "ok") {
+                for (e in resp.datos) {
+                    if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
+                }
+                document.getElementById("tlf_movil").value = resp.datos.telef_alumno;
+                document.getElementById("email").value = resp.datos.email;
+                document.getElementById("direccion").value = resp.datos.direccion;
+                document.getElementById("cp").value = resp.datos.cp;
+                document.getElementById("localidad").value = resp.datos.localidad;
+                document.getElementById("provincia").value = resp.datos.provincia;
+            } else {
+                document.getElementById("tlf_movil").value = '';
+                document.getElementById("email").value = '';
+                document.getElementById("direccion").value = '';
+                document.getElementById("cp").value = '';
+                document.getElementById("localidad").value = '';
+                document.getElementById("provincia").value = '';
+            }
+        }, "json");
+    });
+
+    $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 });
 
 
