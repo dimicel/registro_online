@@ -130,7 +130,7 @@
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
                         <input type="radio" id="cert_alta_ob_trib" name="tipo_con" class="custom-control-input" value="Certificación de alta en el censo de obligados tributarios" onchange="$('#div_den_otro_con').hide(); "/>
-                        <label for="cert_alta_ob_trib" class="custom-control-label">Certificación de alta en el censo de obligados tributarios, así como una declaración del interesado de las actividades más representativas (SÓLO TRABAJADOPRES POR CUENTA PROPIA).</label>
+                        <label for="cert_alta_ob_trib" class="custom-control-label">Certificación de alta en el censo de obligados tributarios (SÓLO TRABAJADOPRES POR CUENTA PROPIA).</label>
                     </div>
                 </div>
                 <div class="row mt-2">
