@@ -78,6 +78,7 @@
                     <div class="row mt-3">
                         <div class="col-3" id="div_formacion">
                             <label for="formacion">Formación:</label>
+                            <span class="errorTxt" style="font-size: 1em;"></span>
                             <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm(this.value)">
                                 <option value="">Marque uno...</option>
                                 <option value="basico">GRADO BÁSICO</option>
@@ -87,6 +88,7 @@
                         </div>
                         <div class="col"  id="div_grado_medio">
                             <label for="ciclos_f">Denominación:</label>
+                            <span class="errorTxt" style="font-size: 1em;"></span>
                             <select name="ciclos_f" id="ciclos_f" size="1"  class="custom-select" onchange="cambiaFormGM()">
                             </select>
                         </div>
@@ -183,5 +185,5 @@
 <script src=<?php echo "../../js/jquery_validate/additional-methods.min.js?q=".time();?>></script>
 <script src=<?php echo "../../js/comun.js?q=".time();?> type="text/javascript"></script>
 <script src=<?php echo "js/exenc.js?q=".time();?> type="text/javascript"></script>
-<script src=<?php echo "js/validadores.js?q=".time();?> type="text/javascript"></script>
+<script src=<?php echo "js/validadores_exenfct.js?q=".time();?> type="text/javascript"></script>
 </html>
