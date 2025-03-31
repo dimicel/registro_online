@@ -389,10 +389,10 @@ function ev_canvas(ev) {
 
 // Función para verificar si el canvas contiene algo dibujado
 function isCanvasEmpty() {
-    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    var data = imageData.data;
+    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    let data = imageData.data;
 
-    for (var i = 0; i < data.length; i += 4) {
+    for (let i = 0; i < data.length; i += 4) {
         // Comprobar si el canal alfa (transparencia) es mayor que 0
         if (data[i + 3] !== 0) {
             return false; // El canvas contiene algo dibujado
