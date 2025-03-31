@@ -327,6 +327,77 @@ function canvasFirma() {
     });
 }
 
+function tool_pencil() {
+    var tool = this;
+    this.started = false;
+
+    // This is called when you start holding down the mouse button or touch the screen.
+    // This starts the pencil drawing.
+    this.startDrawing = function(x, y) {
+        context.beginPath();
+        context.moveTo(x, y);
+        tool.started = true;
+    };
+
+    // This function is called every time you move the mouse or touch the screen. 
+    // It draws a line if the tool.started state is set to true.
+    this.draw = function(x, y) {
+        if (!tool.started) return;
+        context.lineTo(x, y);
+        context.stroke();
+    };
+
+    // This is called when you release the mouse button or end touching the screen.
+    this.endDrawing = function() {
+        tool.started = false;
+    };
+}
+
+// The general-purpose event handler. This function determines the mouse or touch position relative to the canvas element.
+function ev_canvas(ev) {
+    var canvasRect = canvas.getBoundingClientRect();
+    var clientX, clientY;
+
+    if (ev.touches && ev.touches.length > 0) {
+        ev.preventDefault();
+        clientX = ev.touches[0].clientX;
+        clientY = ev.touches[0].clientY;
+    } else {
+        clientX = ev.clientX;
+        clientY = ev.clientY;
+    }
+
+    var x = clientX - canvasRect.left;
+    var y = clientY - canvasRect.top;
+
+    var func;
+    if (ev.type === 'mousedown' || ev.type === 'touchstart') {
+        func = tool.startDrawing;
+    } else if (ev.type === 'mousemove' || ev.type === 'touchmove') {
+        func = tool.draw;
+    } else if (ev.type === 'mouseup' || ev.type === 'touchend') {
+        func = tool.endDrawing;
+    }
+
+    if (func) {
+        func(x, y);
+    }
+}
+
+// Función para verificar si el canvas contiene algo dibujado
+function isCanvasEmpty() {
+    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    var data = imageData.data;
+
+    for (var i = 0; i < data.length; i += 4) {
+        // Comprobar si el canal alfa (transparencia) es mayor que 0
+        if (data[i + 3] !== 0) {
+            return false; // El canvas contiene algo dibujado
+        }
+    }
+
+    return true; // El canvas está vacío
+}
 
 function generaImpreso() {
     document.getElementById("cargando").style.display = 'inline-block';
