@@ -464,6 +464,7 @@ function generaImpreso() {
 
 
 function iniciaGeneraPdf() {
-    
+    if (!$("#exenc").valid()) return;
+    generaImpreso();
 }
 // JavaScript Document
