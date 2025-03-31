@@ -413,6 +413,13 @@ function isCanvasEmpty() {
     return true; // El canvas está vacío
 }
 
+
+function iniciaGeneraPdf() {
+    if (!$("#exenc").valid()) return;
+    generaImpreso();
+}
+
+
 function generaImpreso() {
     document.getElementById("cargando").style.display = 'inline-block';
     let pet = $.ajax({
@@ -461,10 +468,4 @@ function generaImpreso() {
 
 
 
-
-
-function iniciaGeneraPdf() {
-    if (!$("#exenc").valid()) return;
-    generaImpreso();
-}
 // JavaScript Document
