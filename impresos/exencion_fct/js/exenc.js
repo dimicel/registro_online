@@ -4,6 +4,9 @@ let id_nie="", nombre="", nif_nie="";
 let ciclos_basico={};
 let ciclos_medio={};
 let ciclos_superior={};
+let drawing = false;
+let mouseX, mouseY;
+let canvas, context, tool, canvas_upload;
 
 
 $(document).ready(function() {
@@ -292,7 +295,7 @@ function canvasFirma() {
                 text: "Aceptar",
                 click: function() {
                     if (!isCanvasEmpty()) {
-                        document.getElementById("firma").value = "FORMULARIO FIRMADO";
+                        document.getElementById("firma").value = "SOLICITUD FIRMADA";
                         canvas_upload = canvas.toDataURL('image/png');
                     } else {
                         document.getElementById("firma").value = "";
@@ -314,7 +317,7 @@ function canvasFirma() {
                 text: "Cancelar",
                 click: function() {
                     if (!isCanvasEmpty()) {
-                        document.getElementById("firma").value = "FORMULARIO FIRMADO";
+                        document.getElementById("firma").value = "SOLICITUD FIRMADA";
                         canvas_upload = canvas.toDataURL('image/png');
                     } else {
                         document.getElementById("firma").value = "";
