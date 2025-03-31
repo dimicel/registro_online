@@ -104,6 +104,13 @@
                             <table id="tab_lista_docs"  style="width: 90%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="t_firm">Firma</label>
+                            <span class="errorTxt" style="font-size: 1em;"></span>
+                            <input type="text" class="form-control" name="firma" id="firma" placeholder="Clic aquí para firmar" readonly onclick="canvasFirma();" />
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-center mt-5 mb-4">
                         <input type="button" id="generar" class="btn btn-success" value="REGISTRAR SOLICITUD" onclick="iniciaGeneraPdf() " />
                     </div>
@@ -176,6 +183,12 @@
     <div id="array_input_type_file" style="display:none"></div>
     <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url( 'recursos/espera.gif') no-repeat center center; opacity: .7; "></div>
     <div id="mensaje_div" style="display:none "></div>
+    <div id="div_canvas_firma" style="display:none; text-align:center;">
+        <label><small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small></label><br>
+        <div id="div_lienzo" >
+            <canvas id="firmaCanvas" width="400" height="200" style="background-color:white; border: 1px solid black;"></canvas>
+        </div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

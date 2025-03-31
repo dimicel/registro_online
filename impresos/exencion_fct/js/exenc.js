@@ -276,6 +276,57 @@ function borraFila(obj, e) {
     inputsFiles[num_fila].remove();
 }
 
+function canvasFirma() {
+    tool = new tool_pencil();
+    $("#div_canvas_firma").dialog({
+        autoOpen: true,
+        dialogClass: "alert no-close",
+        modal: true,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "FIRMA",
+        width: 500,
+        buttons: [{
+                class: "btn btn-success textoboton",
+                text: "Aceptar",
+                click: function() {
+                    if (!isCanvasEmpty()) {
+                        document.getElementById("firma").value = "FORMULARIO FIRMADO";
+                        canvas_upload = canvas.toDataURL('image/png');
+                    } else {
+                        document.getElementById("firma").value = "";
+                    }
+                    $("#div_canvas_firma").dialog("close");
+                    $("#div_canvas_firma").dialog("destroy");
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Borrar",
+                click: function() {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    document.getElementById("firma").value = "";
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    if (!isCanvasEmpty()) {
+                        document.getElementById("firma").value = "FORMULARIO FIRMADO";
+                        canvas_upload = canvas.toDataURL('image/png');
+                    } else {
+                        document.getElementById("firma").value = "";
+                    }
+                    $("#div_canvas_firma").dialog("close");
+                    $("#div_canvas_firma").dialog("destroy");
+                }
+            }
+        ]
+    });
+}
+
 
 function generaImpreso() {
     document.getElementById("cargando").style.display = 'inline-block';
