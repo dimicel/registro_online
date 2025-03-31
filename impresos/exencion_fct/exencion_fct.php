@@ -105,10 +105,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3">
-                            <label for="t_firm">Firma</label>
+                        <div class="col-6 offset-3">
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input type="text" class="form-control" name="firma" id="firma" placeholder="Clic aquí para firmar" readonly onclick="canvasFirma();" />
+                            <input type="text" class="form-control" name="firma" id="firma" placeholder="Clic aquí para firmar la solicitud" readonly onclick="canvasFirma();" />
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-5 mb-4">
