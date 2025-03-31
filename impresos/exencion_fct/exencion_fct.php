@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 offset-3">
+                        <div class="col-6 offset-3 mt-3">
                             <span class="errorTxt" style="font-size: 1em;"></span>
                             <input type="text" class="form-control" name="firma" id="firma" placeholder="Clic aquí para firmar la solicitud" readonly onclick="canvasFirma();" />
                         </div>
