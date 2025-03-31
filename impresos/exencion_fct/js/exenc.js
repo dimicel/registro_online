@@ -11,6 +11,16 @@ var canvas, context, tool, canvas_upload;
 
 $(document).ready(function() {
     document.body.style.overflowY = "scroll";
+    document.getElementById("cargando").style.display = '';
+    canvas = document.getElementById('firmaCanvas');
+    context = canvas.getContext('2d');
+    canvas.addEventListener('mousedown', ev_canvas, false);
+    canvas.addEventListener('mousemove', ev_canvas, false);
+    canvas.addEventListener('mouseup', ev_canvas, false);
+    canvas.addEventListener("mouseout", ev_canvas, false);
+    canvas.addEventListener('touchstart', ev_canvas, false);
+    canvas.addEventListener('touchmove', ev_canvas, false);
+    canvas.addEventListener('touchend', ev_canvas, false);
 
     dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, function(resp) {
         if (resp["error"] != "ok") document.write(resp["error"]);
@@ -60,6 +70,7 @@ $(document).ready(function() {
             } else {
                 alerta("Los datos de Ciclos Formativos no se han podido recuperar. El formulario no se podrá cumplimentar.","ERROR RECUPERACIÓN DATOS");
             }
+            document.getElementById("cargando").style.display = 'none';
         }, "json");
     });
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
