@@ -416,12 +416,13 @@ function isCanvasEmpty() {
 
 function iniciaGeneraPdf() {
     if (!$("#exenc").valid()) return;
-    generaImpreso();
+    alert("Generación formulario simulada  OK")
+    //generaImpreso();
 }
 
 
 function generaImpreso() {
-    document.getElementById("cargando").style.display = 'inline-block';
+    document.getElementById("cargando").style.display = '';
     let pet = $.ajax({
         url: "php/generapdf.php",
         type: "POST",
