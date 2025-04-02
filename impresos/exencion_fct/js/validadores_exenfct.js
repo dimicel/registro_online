@@ -6,7 +6,7 @@ $("#exenc").validate({
         formacion: { required: true },
         ciclos_f: { required: true },
         firma: { required: true },
-        tab_lista_docs: { tabla: true } // Aplicamos la regla personalizada
+        tab_lista_docs: { required:true, tabla: true } // Aplicamos la regla personalizada
     },
     messages: {
         lista_don: { required: "Seleccione" },
@@ -30,10 +30,11 @@ $("#exenc").validate({
 $.validator.addMethod("tabla", function(value, element) {
     var tabla = $("#tab_lista_docs");
     var filas = tabla.find("tr");
-
+    alert("vvv")
     // Si solo hay una fila y su única celda contiene el texto de vacío
     if (filas.length === 1) {
         var celdaTexto = filas.first().find("td").text().trim();
+        alert(celdaTexto)
         return celdaTexto !== "LISTA DE DOCUMENTOS VACÍA"; // Debe ser falso si está vacía
     }
 
