@@ -143,6 +143,7 @@ function cambiaTipoForm(v){
 function anadeDoc(e) {
     e.preventDefault();
     creaInputs();
+    document.getElementById("error_tabla").innerHTML="";
     $("#anade_documento").dialog({
         autoOpen: true,
         dialogClass: "alert no-close",
@@ -415,9 +416,26 @@ function isCanvasEmpty() {
 
 
 function iniciaGeneraPdf() {
-    if (!$("#exenc").valid()) return;
-    alert("Generación formulario simulada  OK")
-    //generaImpreso();
+    var validaForm=$("#exenc").valid();
+    var validaTabla=validarTabla();
+    if (validaForm  && validaTabla){
+        alert("Generación formulario simulada  OK")
+        //generaImpreso();
+    }
+}
+
+function validarTabla(){
+    var tabla = $("#tab_lista_docs");
+    var filas = tabla.find("tr");
+    var resultado=true;
+    if (filas.length === 1) {
+        var celdaTexto = filas.first().find("td").text().trim();
+        if(celdaTexto == "LISTA DE DOCUMENTOS VACÍA"){
+            resultado=false;
+            document.getElementById("error_tabla").innerHTML="No se han adjuntado documentos";
+        }
+    }
+    return resultado; 
 }
 
 
