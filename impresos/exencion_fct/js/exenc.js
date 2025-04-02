@@ -143,7 +143,7 @@ function cambiaTipoForm(v){
 function anadeDoc(e) {
     e.preventDefault();
     creaInputs();
-    document.getElementById("error_tabla").innerHTML="";
+    activaErrorEnTabla(false);
     $("#anade_documento").dialog({
         autoOpen: true,
         dialogClass: "alert no-close",
@@ -440,10 +440,21 @@ function validarTabla(){
         var celdaTexto = filas.first().find("td").text().trim();
         if(celdaTexto == "LISTA DE DOCUMENTOS VACÍA"){
             resultado=false;
-            document.getElementById("error_tabla").innerHTML="No se han adjuntado documentos";
+            activaErrorEnTabla(true);
         }
     }
     return resultado; 
+}
+
+function activaErrorEnTabla(i){
+    if (i){
+        document.getElementById("error_tabla").innerHTML="No se han adjuntado documentos";
+        document.getElementById("tab_lista_docs").style.borderColor="RED";
+    }
+    else {
+        document.getElementById("error_tabla").innerHTML="";
+        document.getElementById("tab_lista_docs").style.borderColor="black";
+    }
 }
 
 
