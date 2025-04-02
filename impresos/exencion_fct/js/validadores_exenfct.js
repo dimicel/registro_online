@@ -5,12 +5,7 @@ $("#exenc").validate({
         nif_nie: { required: true },
         formacion: { required: true },
         ciclos_f: { required: true },
-        firma: { required: true },
-        validar_tabla: { required: function(element) {
-            // La validación se ejecuta justo antes de enviar el formulario
-            var tabla = $('#tab_lista_docs');
-            return tabla.find('tr').length === 1 && tabla.find('td').text() === 'LISTA DE DOCUMENTOS VACÍA';
-          } } // Aplicamos la regla personalizada
+        firma: { required: true }
     },
     messages: {
         lista_don: { required: "Seleccione" },
@@ -18,8 +13,7 @@ $("#exenc").validate({
         nif_nie: { required: "Complete el campo" },
         formacion: { required: "Seleccione" },
         ciclos_f: { required: "Falta selección de ciclo" },
-        firma: { required: "No se ha firmado la solicitud" },
-        validar_tabla: { required: "No se ha adjuntado ningún documento." }
+        firma: { required: "No se ha firmado la solicitud" }
     },
     errorPlacement: function(error, element) {
         error.insertBefore(element);
