@@ -173,7 +173,7 @@
                 <div class="row mt-2 justify-content-center">
                     <div class="col-10 form-inline">
                         <label for="archivo_con">Documento:</label>
-                        <input type="text"  id="archivo_con" style="width: 80%" class="form-control ml-2" maxlength="256" onclick="selArchConsej();" placeholder="Click aquí para seleccionar documento" readonly/>
+                        <input type="text"  id="archivo_con" style="width: 80%" class="form-control ml-2" maxlength="256" onclick="selArch();" placeholder="Click aquí para seleccionar documento" readonly/>
                     </div>
                 </div>
             </div>

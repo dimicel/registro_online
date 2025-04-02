@@ -291,6 +291,18 @@ function borraFila(obj, e) {
     inputsFiles[num_fila].remove();
 }
 
+function selArch(){
+    if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked").length==0){
+        alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
+        return;
+    }
+
+    selUltimoFile().click();
+
+    
+
+}
+
 function canvasFirma() {
     tool = new tool_pencil();
     $("#div_canvas_firma").dialog({
