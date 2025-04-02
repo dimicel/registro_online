@@ -296,11 +296,7 @@ function selArch(){
         alerta("Debe seleccionar antes un tipo de documento.","FALTA SELECCIÓN TIPO");
         return;
     }
-
     selUltimoFile().click();
-
-    
-
 }
 
 function canvasFirma() {

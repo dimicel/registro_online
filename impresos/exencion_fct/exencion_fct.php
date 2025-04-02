@@ -149,13 +149,13 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="declar_interesado" name="tipo_con" class="custom-control-input" value="Declaración del interesado" onchange="$('#div_den_otro_con').hide(); "/>
+                        <input type="radio" id="declar_interesado" name="tipo_con" class="custom-control-input" value="Declaración del interesado de las actividades más representativas" onchange="$('#div_den_otro_con').hide(); "/>
                         <label for="declar_interesado" class="custom-control-label">Declaración del interesado de las actividades más representativas (SÓLO TRABAJADOPRES POR CUENTA PROPIA).</label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col custom-control custom-switch mi-checkbox">
-                        <input type="radio" id="cert_vol_bec" name="tipo_con" class="custom-control-input" value="Certificación para voluntarios o becarios" onchange="$('#div_den_otro_con').hide(); "/>
+                        <input type="radio" id="cert_vol_bec" name="tipo_con" class="custom-control-input" value="Certificación de la organización donde se han prestado servicios como voluntario/a o becario/a" onchange="$('#div_den_otro_con').hide(); "/>
                         <label for="cert_vol_bec" class="custom-control-label">Para trabajadores o trabajadoras voluntarios o becarios, certificación de la organización donde se haya prestado la asistencia en la que consten, específicamente, las actividades y funciones realizadas, el año en el que se han realizado y el número total de horas dedicadas a las mismas.</label>
                     </div>
                 </div>
