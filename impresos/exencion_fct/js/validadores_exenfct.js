@@ -15,7 +15,7 @@ $("#exenc").validate({
         formacion: { required: "Seleccione" },
         ciclos_f: { required: "Falta selección de ciclo" },
         firma: { required: "No se ha firmado la solicitud" },
-        tab_lista_docs: { tabla: "No se ha adjuntado ningún documento." }
+        validar_tabla: { tabla: "No se ha adjuntado ningún documento." }
     },
     errorPlacement: function(error, element) {
         error.insertBefore(element);
