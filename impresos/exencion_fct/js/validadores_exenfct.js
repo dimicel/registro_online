@@ -1,4 +1,5 @@
 $("#exenc").validate({
+    ignore:[],
     rules: {
         lista_don: { required: true },
         nombre: { required: true },
