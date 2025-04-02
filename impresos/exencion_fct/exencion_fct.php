@@ -77,7 +77,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-3" id="div_formacion">
-                            <label for="formacion">Formación:</label>
+                            <label for="formacion">*Formación:</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
                             <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm(this.value)">
                                 <option value="">Marque uno...</option>
@@ -87,7 +87,7 @@
                             </select>
                         </div>
                         <div class="col"  id="div_grado_medio">
-                            <label for="ciclos_f">Denominación:</label>
+                            <label for="ciclos_f">*Denominación:</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
                             <select name="ciclos_f" id="ciclos_f" size="1"  class="custom-select" onchange="cambiaFormGM()">
                             </select>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col">
-                            <label id="label_estudios_aportados" for="estudios">Documentación que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
+                            <label id="label_estudios_aportados" for="estudios">*Documentación que aporta (<a style="color:#00C" href="#" onclick="anadeDoc(event)">Clic AQUÍ para añadir documentos</a>)</label>
                         </div>
                     </div>
                     <div class="row">
