@@ -6,7 +6,11 @@ $("#exenc").validate({
         formacion: { required: true },
         ciclos_f: { required: true },
         firma: { required: true },
-        validar_tabla: { tabla: true } // Aplicamos la regla personalizada
+        validar_tabla: { required: function(element) {
+            // La validación se ejecuta justo antes de enviar el formulario
+            var tabla = $('#tab_lista_docs');
+            return tabla.find('tr').length === 1 && tabla.find('td').text() === 'LISTA DE DOCUMENTOS VACÍA';
+          } } // Aplicamos la regla personalizada
     },
     messages: {
         lista_don: { required: "Seleccione" },
@@ -15,7 +19,7 @@ $("#exenc").validate({
         formacion: { required: "Seleccione" },
         ciclos_f: { required: "Falta selección de ciclo" },
         firma: { required: "No se ha firmado la solicitud" },
-        validar_tabla: { tabla: "No se ha adjuntado ningún documento." }
+        validar_tabla: { required: "No se ha adjuntado ningún documento." }
     },
     errorPlacement: function(error, element) {
         error.insertBefore(element);
@@ -23,7 +27,7 @@ $("#exenc").validate({
 });
 
 // 🔹 REGLA PERSONALIZADA PARA VALIDAR LA TABLA
-$.validator.addMethod("tabla", function(value, element) {
+/*$.validator.addMethod("tabla", function(value, element) {
     var tabla = $("#tab_lista_docs");
     var filas = tabla.find("tr");
     alert("vvv")
@@ -35,7 +39,7 @@ $.validator.addMethod("tabla", function(value, element) {
     }
 
     return true; // Si hay más de una fila, está bien
-}, "No se ha adjuntado ningún documento.");
+}, "No se ha adjuntado ningún documento.");*/
 
 
  
