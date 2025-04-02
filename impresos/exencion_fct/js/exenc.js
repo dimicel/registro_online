@@ -449,11 +449,11 @@ function validarTabla(){
 function activaErrorEnTabla(i){
     if (i){
         document.getElementById("error_tabla").innerHTML="No se han adjuntado documentos";
-        document.getElementById("tab_lista_docs").style.border="RED";
+        document.getElementById("tab_lista_docs").style.borderColor="red 1px solid";
     }
     else {
         document.getElementById("error_tabla").innerHTML="";
-        document.getElementById("tab_lista_docs").style.border="black";
+        document.getElementById("tab_lista_docs").style.borderColor="black";
     }
 }
 
