@@ -24,7 +24,7 @@
     },
     messages: {
         lista_don: {
-            required: "Falta"
+            required: "Seleccione"
         },
         nombre: {
             required: "Complete el campo"
@@ -33,7 +33,7 @@
             required: "Complete el campo"
         },
         formacion:{
-            required: "Falta selección"
+            required: "Seleccione"
         },
         ciclos_f:{
             required: "Falta selección de ciclo"
