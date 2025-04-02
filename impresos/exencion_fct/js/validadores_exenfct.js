@@ -64,6 +64,7 @@ $.validator.addMethod("tabla", function(value, element) {
     // Comprobamos si la tabla tiene una fila con una celda que contenga "LISTA DE DOCUMENTOS VACÍA"
     var hasEmptyRow = $("#tab_lista_docs tr").length === 1 && 
                       $("#tab_lista_docs tr td").text().trim() === "LISTA DE DOCUMENTOS VACÍA";
+    alert("hhh")
     return !hasEmptyRow;  // Retorna `true` si NO está vacía, `false` si tiene la fila con ese texto
 }, "No se ha adjuntado ningún documento.");
 
