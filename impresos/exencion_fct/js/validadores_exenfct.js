@@ -1,5 +1,4 @@
 $("#exenc").validate({
-    ignore:[],
     rules: {
         lista_don: { required: true },
         nombre: { required: true },
@@ -7,7 +6,7 @@ $("#exenc").validate({
         formacion: { required: true },
         ciclos_f: { required: true },
         firma: { required: true },
-        tab_lista_docs: { required:true, tabla: true } // Aplicamos la regla personalizada
+        validar_tabla: { tabla: true } // Aplicamos la regla personalizada
     },
     messages: {
         lista_don: { required: "Seleccione" },
@@ -19,11 +18,7 @@ $("#exenc").validate({
         tab_lista_docs: { tabla: "No se ha adjuntado ningún documento." }
     },
     errorPlacement: function(error, element) {
-        if (element.attr("id") === "tab_lista_docs") {
-            error.appendTo(element.prev().prev()); // Muestra el error en el span
-        } else {
-            error.insertBefore(element);
-        }
+        error.insertBefore(element);
     }
 });
 
