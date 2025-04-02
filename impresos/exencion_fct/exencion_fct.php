@@ -101,7 +101,6 @@
                     <div class="row">
                         <div class="col" >
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input type="hidden" name="validar_tabla">
                             <table  style="width: 90%; margin: 0 auto;background-color:lightslategrey"><tr><td style="width:50%"><b>Descripción</b></td><td  style="width:50%"><b>Documento</b></td></tr></table>
                             <table id="tab_lista_docs"  style="width: 90%; margin: 0 auto;"><tr><td style="text-align:center">LISTA DE DOCUMENTOS VACÍA</td></tr></table>
                         </div>
