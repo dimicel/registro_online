@@ -1,65 +1,45 @@
- $("#exenc").validate({
+$("#exenc").validate({
     rules: {
-        lista_don: {
-            required: true
-        },
-        nombre: {
-            required: true
-        },
-        nif_nie:{
-            required: true
-        },
-        formacion:{
-            required: true
-        },
-        ciclos_f:{
-            required: true
-        },
-        firma: {
-            required: true
-        },
-        tab_lista_docs:{
-            tabla:true
-        }
+        lista_don: { required: true },
+        nombre: { required: true },
+        nif_nie: { required: true },
+        formacion: { required: true },
+        ciclos_f: { required: true },
+        firma: { required: true },
+        tab_lista_docs: { tabla: true } // Aplicamos la regla personalizada
     },
     messages: {
-        lista_don: {
-            required: "Seleccione"
-        },
-        nombre: {
-            required: "Complete el campo"
-        },
-        nif_nie:{
-            required: "Complete el campo"
-        },
-        formacion:{
-            required: "Seleccione"
-        },
-        ciclos_f:{
-            required: "Falta selección de ciclo"
-        },
-        firma: {
-            required: "No se ha firmado la solicitud"
-        },
-        tab_lista_docs:{
-            tabla: "No se ha adjuntado ningún documento."
-        }
+        lista_don: { required: "Seleccione" },
+        nombre: { required: "Complete el campo" },
+        nif_nie: { required: "Complete el campo" },
+        formacion: { required: "Seleccione" },
+        ciclos_f: { required: "Falta selección de ciclo" },
+        firma: { required: "No se ha firmado la solicitud" },
+        tab_lista_docs: { tabla: "No se ha adjuntado ningún documento." }
     },
     errorPlacement: function(error, element) {
-        //$(element).prev($('.errorTxt')).html(error);
-        
-        if (element.attr("name") === "tab_lista_docs") error.insertBefore(element.prev().prev());
-        else error.insertBefore(element);
+        if (element.attr("id") === "tab_lista_docs") {
+            error.appendTo(element.prev().prev()); // Muestra el error en el span
+        } else {
+            error.insertBefore(element);
+        }
     }
 });
 
-// Definimos una regla personalizada para validar la tabla
+// 🔹 REGLA PERSONALIZADA PARA VALIDAR LA TABLA
 $.validator.addMethod("tabla", function(value, element) {
-    // Comprobamos si la tabla tiene una fila con una celda que contenga "LISTA DE DOCUMENTOS VACÍA"
-    var hasEmptyRow = $("#tab_lista_docs tr").length === 1 && 
-                      $("#tab_lista_docs tr td").text().trim() === "LISTA DE DOCUMENTOS VACÍA";
-    return !hasEmptyRow;  // Retorna `true` si NO está vacía, `false` si tiene la fila con ese texto
+    var tabla = $("#tab_lista_docs");
+    var filas = tabla.find("tr");
+
+    // Si solo hay una fila y su única celda contiene el texto de vacío
+    if (filas.length === 1) {
+        var celdaTexto = filas.first().find("td").text().trim();
+        return celdaTexto !== "LISTA DE DOCUMENTOS VACÍA"; // Debe ser falso si está vacía
+    }
+
+    return true; // Si hay más de una fila, está bien
 }, "No se ha adjuntado ningún documento.");
+
 
  
 
