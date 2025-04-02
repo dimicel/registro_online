@@ -497,8 +497,6 @@ function generaImpreso() {
             alerta(mensaje, "Registro correcto");
         }
         document.getElementById('exenc').reset();
-        document.getElementById("email2").value = "";
-        document.getElementById("email3").value = "";
     });
 }
 
