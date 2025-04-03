@@ -52,18 +52,21 @@ $(document).ready(function() {
                         ciclos_basico[cont_bas]={};
                         ciclos_basico[cont_bas]["ciclo"]=resp["datos"][i]["denominacion"];
                         ciclos_basico[cont_bas]["departamento"]=resp["datos"][i]["departamento"];
+                        ciclos_basico[cont_bas]["cursos"]=resp["datos"][i]["cursos"];
                         cont_bas++;
                     }
                     else if (resp.datos[i].grado=="MEDIO"){
                         ciclos_medio[cont_med]={};
                         ciclos_medio[cont_med]["ciclo"]=resp["datos"][i]["denominacion"];
                         ciclos_medio[cont_med]["departamento"]=resp["datos"][i]["departamento"];
+                        ciclos_medio[cont_med]["cursos"]=resp["datos"][i]["cursos"];
                         cont_med++;
                     }
                     else if (resp.datos[i].grado=="SUPERIOR"){
                         ciclos_superior[cont_sup]={};
                         ciclos_superior[cont_sup]["ciclo"]=resp["datos"][i]["denominacion"];
                         ciclos_superior[cont_sup]["departamento"]=resp["datos"][i]["departamento"];
+                        ciclos_superior[cont_sup]["cursos"]=resp["datos"][i]["cursos"];
                         cont_sup++;
                     }
                 }

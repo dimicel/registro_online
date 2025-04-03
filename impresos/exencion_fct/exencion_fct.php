@@ -13,7 +13,7 @@
     <link rel="stylesheet" href=<?php echo "css/trans.css?q=".time();?> type="text/css">
     <link rel="stylesheet" href=<?php echo "../../css/est.css?q=".time();?> type="text/css">
     <link rel="stylesheet" href=<?php echo "../../jqueryui/jquery-ui.min.css?q=".time();?>>
-    <title>SOLICITUD EXENCIÓN DE FCT</title>
+    <title>SOLICITUD EXENCIÓN DE PFE</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
             <div class="col-8 justify-content-center" style="text-align: center;">
                 <h5>IES UNIVERSIDAD LABORAL DE TOLEDO</h5>
                 <h5>REGISTRO ONLINE</h5>
-                <h6>SOLICITUD: EXENCIÓN DE FCT</h6><br>
+                <h6>SOLICITUD: EXENCIÓN DE PFE</h6><br>
                 <h5 id="rotulo_curso" style="color:#900; font-weight:bold">CURSO ACTUAL:</h5>
                 <h7 style="color:#900; font-weight:bold">&nbsp;</h7>
             </div>

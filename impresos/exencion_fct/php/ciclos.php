@@ -26,6 +26,7 @@ else {
         $resp["datos"][$cont]["grado"]=$r["grado"];
         $resp["datos"][$cont]["denominacion"]=$r["denominacion"];
         $resp["datos"][$cont]["departamento"]=$r["departamento"];
+        $resp["datos"][$cont]["cursos"]=$r["cursos"];
         $cont++;
     }
     $resp["error"]="ok";
