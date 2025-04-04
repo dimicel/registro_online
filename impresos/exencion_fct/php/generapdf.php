@@ -69,6 +69,7 @@ $num_documento=$_POST['nif_nie'];
 $ensenanzas=$_POST['formacion'];
 $ciclo=$_POST['ciclos_f'];
 $curso_ciclo=$_POST['curso_ciclo'];
+$departamento=$_POST['departamento'];
 
 
 if ($ensenanzas=="GRADO BÁSICO") $curso="Formación Profesional Básica, en el curso ".$curso_ciclo." de " . $ciclo;
