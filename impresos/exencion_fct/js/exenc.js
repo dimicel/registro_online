@@ -154,7 +154,7 @@ function cambiaTipoForm(sel){
         option.value="";
         if (ciclo!=""){
             option.textContent="Curso...";
-            for (i=1; i<=Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo);i++){
+            for (i=1; i<=parseInt(Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo));i++){
                 let option = document.createElement("option");
                 option.value = i+"º";
                 option.textContent = i+"º";
