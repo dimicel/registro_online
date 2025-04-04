@@ -81,6 +81,9 @@ $(document).ready(function() {
     option.value="";
     option.textContent="Seleccione Formación en el desplegable anterior.";
     document.getElementById("ciclos_f").appendChild(option);
+    option.value="";
+    option.textContent="Sel.Form.";
+    document.getElementById("curso_ciclo").appendChild(option);
 });
 
 
