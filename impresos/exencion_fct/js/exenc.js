@@ -154,12 +154,11 @@ function cambiaTipoForm(sel){
         if (ciclo!=""){
             option.textContent="Curso...";
             var indice=Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo)
-            alert(indice+"     "+lista_cic[indice]["cursos"]);
             for (i=1; i<=parseInt(lista_cic[indice]["cursos"]);i++){
                 let option = document.createElement("option");
                 option.value = i+"º";
                 option.textContent = i+"º";
-                document.getElementById("ciclos_f").appendChild(option);
+                document.getElementById("curso_ciclo").appendChild(option);
             }
         }
         else{
