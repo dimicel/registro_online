@@ -90,12 +90,14 @@
                             <label for="ciclos_f">*Denominación:</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
                             <select name="ciclos_f" id="ciclos_f" size="1"  class="custom-select" onchange="cambiaTipoForm('ciclo')">
+                                <option value="">Seleccione Formación en el desplegable anterior</option>
                             </select>
                         </div>
                         <div class="col-2"  id="div_curso_ciclo">
                             <label for="curso_ciclo">*Curso:</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
                             <select name="curso_ciclo" id="curso_ciclo" size="1"  class="custom-select">
+                                <option value="">Sel.Form.</option>
                             </select>
                         </div>
                     </div>
