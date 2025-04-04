@@ -114,7 +114,6 @@ function confirmar() {
 
 
 function cambiaTipoForm(sel){
-    alert(sel);
     let formacion=document.getElementById("formacion").value;
     let ciclo=document.getElementById("ciclos_f").value;
     if (formacion=="basico") lista_cic=ciclos_basico;
@@ -143,6 +142,7 @@ function cambiaTipoForm(sel){
         }
     }
     else if(sel=='ciclos_f'){
+        alert(parseInt(Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo)))
         document.getElementById("curso_ciclo").innerHTML="";
         let option=document.createElement("option");
         option.value="";
