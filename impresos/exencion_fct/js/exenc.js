@@ -114,8 +114,8 @@ function confirmar() {
 
 
 function cambiaTipoForm(sel){
-    let formacion=document.getElementById("formacion").value;
-    let ciclo=document.getElementById("ciclos_f").value;
+    var formacion=document.getElementById("formacion").value;
+    var ciclo=document.getElementById("ciclos_f").value;
     if (formacion=="basico") lista_cic=ciclos_basico;
     else if(formacion=="medio")lista_cic=ciclos_medio;
     else if(formacion=="superior") lista_cic=ciclos_superior;
