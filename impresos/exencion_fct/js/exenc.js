@@ -114,6 +114,7 @@ function confirmar() {
 
 
 function cambiaTipoForm(sel){
+    alert(sel);
     let formacion=document.getElementById("formacion").value;
     let ciclo=document.getElementById("ciclos_f").value;
     if (formacion=="basico") lista_cic=ciclos_basico;
