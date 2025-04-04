@@ -116,13 +116,13 @@ function confirmar() {
 function cambiaTipoForm(sel){
     var formacion=document.getElementById("formacion").value;
     var ciclo=document.getElementById("ciclos_f").value;
+    var option = document.createElement("option");
     if (formacion=="basico") lista_cic=ciclos_basico;
     else if(formacion=="medio")lista_cic=ciclos_medio;
     else if(formacion=="superior") lista_cic=ciclos_superior;
     if (sel=='formacion'){
         document.getElementById("ciclos_f").innerHTML="";
         document.getElementById("curso_ciclo").innerHTML="";
-        var option=document.createElement("option");
         option.value="";
         if (formacion!=""){
             option.textContent="Seleccione un ciclo ....";
@@ -139,19 +139,17 @@ function cambiaTipoForm(sel){
             }
         }
         else {
-            var opcion = document.createElement("option");
-            opcion.value="";
-            opcion.textContent="Seleccione Formación en el desplegable anterior.";
-            document.getElementById("ciclos_f").appendChild(opcion);
-            opcion = document.createElement("option");
-            opcion.value="";
-            opcion.textContent="Sel.Form.";
-            document.getElementById("curso_ciclo").appendChild(opcion);
+            option.value="";
+            option.textContent="Seleccione Formación en el desplegable anterior.";
+            document.getElementById("ciclos_f").appendChild(option);
+            option = document.createElement("option");
+            option.value="";
+            option.textContent="Sel.Form.";
+            document.getElementById("curso_ciclo").appendChild(option);
         }
     }
     else if(sel=='ciclo'){
         document.getElementById("curso_ciclo").innerHTML="";
-        var option=document.createElement("option");
         option.value="";
         if (ciclo!=""){
             option.textContent="Curso...";
