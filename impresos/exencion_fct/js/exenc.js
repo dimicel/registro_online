@@ -127,6 +127,8 @@ function cambiaTipoForm(sel){
         if (formacion!=""){
             option.textContent="Seleccione un ciclo ....";
             document.getElementById("ciclos_f").appendChild(option);
+            option = document.createElement("option");
+            option.value="";
             option.textContent="Sel.Cic.";
             document.getElementById("curso_ciclo").appendChild(option);
             for (i=0; i<Object.keys(lista_cic).length;i++){
