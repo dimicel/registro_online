@@ -153,6 +153,7 @@ function cambiaTipoForm(sel){
         option.value="";
         if (ciclo!=""){
             option.textContent="Curso...";
+            document.getElementById("curso_ciclo").appendChild(option);
             var indice=Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo)
             for (i=1; i<=parseInt(lista_cic[indice]["cursos"]);i++){
                 option = document.createElement("option");
