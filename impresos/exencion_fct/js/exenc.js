@@ -151,13 +151,13 @@ function cambiaTipoForm(sel){
     }
     else if(sel=='ciclo'){
         document.getElementById("curso_ciclo").innerHTML="";
-        let option=document.createElement("option");
+        var option=document.createElement("option");
         option.value="";
         if (ciclo!=""){
             option.textContent="Curso...";
             var indice=Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo)
             for (i=1; i<=parseInt(lista_cic[indice]["cursos"]);i++){
-                let option = document.createElement("option");
+                option = document.createElement("option");
                 option.value = i+"º";
                 option.textContent = i+"º";
                 document.getElementById("curso_ciclo").appendChild(option);
