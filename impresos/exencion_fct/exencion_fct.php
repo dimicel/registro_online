@@ -46,6 +46,7 @@
         <input type="hidden" name="apellidos" id="apellidos">
         <input type="hidden" name="nif_nie" id="nif_nie">
         <input type="hidden" name="departamento" id="departamento">
+        <input type="hidden" name="subido_por" id="subido_por">
         <div class="row ui-widget-header ui-corner-all" style="padding-left:10px; padding-right:10px">
             <div  style="display:inline-block;margin-top:10px;margin-left:10px">
                 <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />

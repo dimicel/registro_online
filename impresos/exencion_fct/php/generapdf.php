@@ -60,7 +60,7 @@ function quitaAcentos($s){
 
 
 
-$curso_acad= $_POST['curso'];
+$anno_curso= $_POST['curso'];
 $id_nie=$_POST['id_nie'];
 $lista_don=$_POST['lista_don'];
 $nombre=$_POST['nombre'];
@@ -70,7 +70,7 @@ $ensenanzas=$_POST['formacion'];
 $ciclo=$_POST['ciclos_f'];
 $curso_ciclo=$_POST['curso_ciclo'];
 $departamento=$_POST['departamento'];
-
+$subidopor=$_POST['subido_por'];
 
 if ($ensenanzas=="GRADO BÁSICO") $curso="Formación Profesional Básica, en el curso ".$curso_ciclo." de " . $ciclo;
 elseif ($ensenanzas=="GRADO MEDIO") $curso="Formación Profesional de Grado Medio, en el curso ".$curso_ciclo." de " . $ciclo;
@@ -96,6 +96,96 @@ while ($repite_registro){
     }
     $res->free();
 }
+
+$dirRegistro=substr($registro, 17);
+
+///Parametro de bind sss por la siguiente tabla
+//"i": Entero (integer)
+//"d": Decimal (double)
+//"s": Cadena (string) y fechas
+//"b": Blob (para datos binarios)
+
+// Iniciar una transacción para asegurar la integridad de los datos
+$mysqli->begin_transaction();
+
+try {
+    // Insertar registro en la primera tabla
+    $stmt1 = $mysqli->prepare("INSERT INTO exencion_fct (estudios_superados,id_nie,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,tlf_fijo,tlf_movil,email,
+                                                            grado,ciclo,curso_ciclo,modalidad,turno,modulos) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt1->bind_param("sssssssssssssssssssss", $estudios_superados,$id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
+                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$curso,$modalidad,$turno,$modulos);
+    
+    if ($stmt1->execute() === false) {
+        throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt1->error);
+    }
+    $stmt1->close();
+    // Insertar registros en la segunda tabla
+    $stmt2 = $mysqli->prepare("INSERT INTO exencion_fct_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
+    $contador_docs=0;
+    for($i=0;$i<count($desc);$i++) {
+        $contador_docs=$i+1;
+        $indice=sprintf("%02d", $i+1)."_";
+        $rutaTb="docs/".$id_nie."/exencion_pfe"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$_FILES["docs"]["name"][$i];
+        $stmt2->bind_param("sssss", $id_nie, $registro, $desc[$i], $rutaTb, $subidopor);
+        if ($stmt2->execute() === false) {
+            throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt2->error);
+        }
+    }
+    if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
+        if (isset($_FILES["pasaporte"]))$documentos_aportados.="; Documento de identificación (pasaporte)";
+        if (isset($_FILES["dni_anverso"]))$documentos_aportados.="; Documento de identificación (DNI)";
+        $check2=true;
+        $indice=sprintf("%02d", $contador_docs+1)."_";
+        $descDoc="Documento de identificación";
+        $rutaTb="docs/".$id_nie."/exencion_pfe"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
+        $stmt2->bind_param("sssss", $id_nie,$registro,$descDoc , $rutaTb, $subidopor);
+        if ($stmt2->execute() === false) {
+            throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt2->error);
+        }
+    }
+    $stmt2->close();
+    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."exencion_pfe/".$anno_curso."/".$dirRegistro."/docs"."/";
+    if (!is_dir($rutaCompleta)) {
+        mkdir($rutaCompleta, 0777, true);
+    }
+    $contador_docs=0;
+    if (isset($_FILES["docs"])){
+        for ($i=0;$i<count($_FILES["docs"]["tmp_name"]);$i++){
+            $contador_docs=$i+1;
+            $indice=sprintf("%02d", $i+1)."_";
+            $nombreDoc=$indice.$_FILES["docs"]["name"][$i];
+            if(!move_uploaded_file($_FILES["docs"]["tmp_name"][$i], $rutaCompleta.$nombreDoc))
+            {
+                // Si hay un error al mover el archivo, eliminar los archivos ya movidos
+                $archivosEliminados = glob($rutaCompleta . "*");
+                foreach ($archivosEliminados as $archivoEliminado) {
+                    unlink($archivoEliminado);
+                }
+    
+                // Eliminar la ruta creada
+                rmdir($rutaCompleta);
+                rmdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_pfe/".$anno_curso."/".$dirRegistro."/");
+    
+                // Revertir la transacción en la base de datos
+                $mysqli->rollback();
+                $mysqli->close();
+    
+                // Mostrar mensaje de error o realizar otras acciones necesarias
+                exit("error_subida");
+            }
+        }
+    }
+    // Confirmar la transacción
+    $mysqli->commit();
+} catch (Exception $e) {
+    // En caso de error, revertir la transacción
+    $mysqli->rollback();
+    $mysqli->close();
+    exit("database ".$e->getMessage());
+}
+////////////////////////////////////////////////////////////
+
+$ruta=__DIR__."/../../../docs/".$id_nie."/"."exencion_pfe/".$anno_curso."/".$dirRegistro."/docs"."/";
 
 
 // create new PDF document

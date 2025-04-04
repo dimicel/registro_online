@@ -497,6 +497,7 @@ function activaErrorEnTabla(i){
 
 function generaImpreso() {
     document.getElementById("cargando").style.display = '';
+    document.getElementById("subido_por").value="usuario";
     let pet = $.ajax({
         url: "php/generapdf.php",
         type: "POST",
