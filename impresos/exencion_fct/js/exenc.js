@@ -33,6 +33,9 @@ $(document).ready(function() {
             document.getElementById("nif_nie").value = nif_nie;
             document.getElementById("nombre").value = nombre;
             document.getElementById("apellidos").value = apellidos;
+            document.getElementById("nif_nie_").value = nif_nie;
+            document.getElementById("nombre_").value = nombre;
+            document.getElementById("apellidos_").value = apellidos;
             anno_ini_curso = resp["anno_ini_curso"];
             document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
             curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
