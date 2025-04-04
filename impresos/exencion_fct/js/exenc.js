@@ -146,15 +146,13 @@ function cambiaTipoForm(sel){
         }
     }
     else if(sel=='ciclo'){
-        alert(ciclo);
-        alert(Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo));
-        alert("333");
         document.getElementById("curso_ciclo").innerHTML="";
         let option=document.createElement("option");
         option.value="";
         if (ciclo!=""){
             option.textContent="Curso...";
-            for (i=1; i<=parseInt(Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo));i++){
+            var indice=Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo)
+            for (i=1; i<=parseInt(lista_cic[indice]["cursos"]);i++){
                 let option = document.createElement("option");
                 option.value = i+"º";
                 option.textContent = i+"º";
