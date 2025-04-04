@@ -146,7 +146,7 @@ function cambiaTipoForm(sel){
         }
     }
     else if(sel=='ciclo'){
-        alert("2222");
+        alert(ciclo);
         alert(Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo));
         alert("333");
         document.getElementById("curso_ciclo").innerHTML="";
