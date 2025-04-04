@@ -103,9 +103,9 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('IES Universidad Laboral');
-$pdf->SetTitle('Impreso Matrícula');
+$pdf->SetTitle('Exención PFE');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Impreso Matrícula');
+$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Exención PFE');
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
