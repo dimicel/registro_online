@@ -40,6 +40,8 @@
 
         <!-- FORMULARIO --------------------------------------------------------------------------------------->
         <form id="exenc">
+        <input type="hidden" name="curso" id="curso">
+        <input type="hidden" name="id_nie" id="id_nie">
         <div class="row ui-widget-header ui-corner-all" style="padding-left:10px; padding-right:10px">
             <div  style="display:inline-block;margin-top:10px;margin-left:10px">
                 <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
@@ -51,7 +53,10 @@
                             <label for="lista_don">*Tratamiento</label>
                         </div>
                         <div class="col">
-                            <label for="nombre" style="margin-left:10px">*Nombre y Apellidos</label>
+                            <label for="nombre" style="margin-left:10px">*Nombre</label>
+                        </div>
+                        <div class="col">
+                            <label for="nombre" style="margin-left:10px">*Apellidos</label>
                         </div>
                         <div class="col-3">
                             <label for="nombre" style="margin-left:10px">*NIF/NIE/Pasaporte</label>
@@ -68,11 +73,15 @@
                         </div>
                         <div class="col">
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input type="text" class="form-control" name="nombre" id="nombre"  maxlength="90" />
+                            <input type="text" class="form-control" name="nombre" id="nombre"  maxlength="25" readonly/>
+                        </div>
+                        <div class="col">
+                            <span class="errorTxt" style="font-size: 1em;"></span>
+                            <input type="text" class="form-control" name="apellidos" id="apellidos"  maxlength="40" readonly/>
                         </div>
                         <div class="col-3">
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input style="margin-left: 5px" class="form-control" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" />
+                            <input style="margin-left: 5px" class="form-control" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" readonly/>
                         </div>
                     </div>
                     <div class="row mt-3">

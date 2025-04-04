@@ -58,58 +58,23 @@ function quitaAcentos($s){
     return $s;
 }
 
-function calculaCurso(){
-    $mes=(int)date("n");
-    $anno=(int)date("Y");
-    if ($mes>=7 && $mes<=12) 
-        return (string)($anno).'-'.(string)($anno+1);
-    else
-        return (string)($anno-1).'-'.(string)($anno);
-}
 
-if (!isset($_POST["nombre"])) exit("Acceso denegado");
-$curso_acad= calculaCurso();
+
+$curso_acad= $_POST['curso'];
+$id_nie=$_POST['id_nie'];
 $lista_don=$_POST['lista_don'];
 $nombre=$_POST['nombre'];
-$nif_nie=$_POST['nif_nie'];
-
-$pass_nif=$_POST['pass_nif'];
-
-if (!isset($_POST['formacion'])) $ensenanzas="";
-else{
-	if (is_null($_POST['formacion'])) $ensenanzas="";
-	else $ensenanzas=$_POST['formacion'];
-}	
-if (!isset($_POST['gmedio'])) $gmedio="";
-else{
-	if (is_null($_POST['gmedio'])) $gmedio="";
-	else $gmedio=$_POST['gmedio'];
-}	
-if (!isset($_POST['gsuperior'])) $gsuperior="";
-else{
-	if (is_null($_POST['gsuperior'])) $gsuperior="";
-	else $gsuperior=$_POST['gsuperior'];
-}	
-
-if (!isset($_POST['fpb'])) $fpb="";
-else{
-	if (is_null($_POST['fpb'])) $fpb="";
-	else $fpb=$_POST['fpb'];
-}
+$apellidos=$_POST['apellidos'];
+$num_documento=$_POST['nif_nie'];
+$ensenanzas=$_POST['formacion'];
+$ciclo=$_POST['ciclos_f'];
+$curso_ciclo=$_POST['curso_ciclo'];
 
 
-if ($ensenanzas=="Formación Profesional Básica") $curso=", especialidad de " . $fpb;
-elseif ($ensenanzas=="Formación Profesional de Grado Medio") $curso=", especialidad de " . $gmedio;
-elseif ($ensenanzas=="Formación Profesional de Grado Superior")	$curso=", especialidad de " . $gsuperior;
+if ($ensenanzas=="GRADO BÁSICO") $curso="Formación Profesional Básica, en el curso ".$curso_ciclo." de " . $ciclo;
+elseif ($ensenanzas=="GRADO MEDIO") $curso="Formación Profesional de Grado Medio, en el curso ".$curso_ciclo." de " . $ciclo;
+elseif ($ensenanzas=="GRADO SUPERIOR")	$curso="Formación Profesional de Grado Superior, en el curso ".$curso_ciclo." de " . $ciclo;
 $documentacion=str_replace("\n","<br>",$_POST['documentacion']);
-
-$num_documento="";
-if ($pass_nif=="nif"){
-	$num_documento="NIF/NIE número " . $nif_nie;
-}
-elseif ($pass_nif=="pass"){
-	$num_documento="número de pasaporte " . $nif_nie;
-}
 
 $registro= generaRegistro();
 include("conexion.php");

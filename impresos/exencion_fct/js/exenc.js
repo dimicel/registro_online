@@ -1,6 +1,6 @@
 let backup_nombre = "";
 let anno_ini_curso="", curso="";
-let id_nie="", nombre="", nif_nie="";
+let id_nie="", nombre="", apellidos="", nif_nie="";
 let ciclos_basico={};
 let ciclos_medio={};
 let ciclos_superior={};
@@ -29,11 +29,14 @@ $(document).ready(function() {
             nif_nie=resp["id_nif"];
             nombre=resp["nombre"];
             apellidos=resp["apellidos"];
+            document.getElementById("id_nie").value = id_nie;
             document.getElementById("nif_nie").value = nif_nie;
-            document.getElementById("nombre").value = nombre + " " + apellidos;
+            document.getElementById("nombre").value = nombre;
+            document.getElementById("apellidos").value = apellidos;
             anno_ini_curso = resp["anno_ini_curso"];
             document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
             curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
+            document.getElementById("curso").value=curso;
 
             if (id_nie.trim() == "" || anno_ini_curso.toString().trim() == "") {
                 document.write("Error datos. Por favor, inténtelo más tarde.");
