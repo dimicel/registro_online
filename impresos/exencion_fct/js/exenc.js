@@ -117,26 +117,51 @@ function confirmar() {
 }
 
 
-function cambiaTipoForm(v){
-    if (v=="basico") lista_cic=ciclos_basico;
-    else if(v=="medio")lista_cic=ciclos_medio;
-    else if(v=="superior") lista_cic=ciclos_superior;
-    document.getElementById("ciclos_f").innerHTML="";
-    let option=document.createElement("option");
-    option.value="";
-    if (v!=""){
-        option.textContent="Seleccione un ciclo ....";
-        document.getElementById("ciclos_f").appendChild(option);
-        for (i=0; i<Object.keys(lista_cic).length;i++){
-            let option = document.createElement("option");
-            option.value = lista_cic[i]["ciclo"];
-            option.textContent = lista_cic[i]["ciclo"];
+function cambiaTipoForm(sel){
+    let formacion=document.getElementById("formacion").value;
+    let ciclo=document.getElementById("ciclos_f").value;
+    if (formacion=="basico") lista_cic=ciclos_basico;
+    else if(formacion=="medio")lista_cic=ciclos_medio;
+    else if(formacion=="superior") lista_cic=ciclos_superior;
+    if (sel=='formacion'){
+        document.getElementById("ciclos_f").innerHTML="";
+        document.getElementById("curso_ciclo").innerHTML="";
+        let option=document.createElement("option");
+        option.value="";
+        if (formacion!=""){
+            option.textContent="Seleccione un ciclo ....";
             document.getElementById("ciclos_f").appendChild(option);
+            for (i=0; i<Object.keys(lista_cic).length;i++){
+                let option = document.createElement("option");
+                option.value = lista_cic[i]["ciclo"];
+                option.textContent = lista_cic[i]["ciclo"];
+                document.getElementById("ciclos_f").appendChild(option);
+            }
+        }
+        else {
+            option.textContent="Seleccione Formación en el desplegable anterior.";
+            document.getElementById("ciclos_f").appendChild(option);
+            option.textContent="Sel.Form.";
+            document.getElementById("curso_ciclo").appendChild(option);
         }
     }
-    else {
-        option.textContent="Seleccione Formación en el desplegable anterior.";
-        document.getElementById("ciclos_f").appendChild(option);
+    else if(sel=='ciclos_f'){
+        document.getElementById("curso_ciclo").innerHTML="";
+        let option=document.createElement("option");
+        option.value="";
+        if (ciclo!=""){
+            option.textContent="Curso...";
+            for (i=1; i<=Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo);i++){
+                let option = document.createElement("option");
+                option.value = i+"º";
+                option.textContent = i+"º";
+                document.getElementById("ciclos_f").appendChild(option);
+            }
+        }
+        else{
+            option.textContent="Sel.Form.";
+            document.getElementById("curso_ciclo").appendChild(option);
+        }
     }
 }
 

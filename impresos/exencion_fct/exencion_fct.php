@@ -79,7 +79,7 @@
                         <div class="col-3" id="div_formacion">
                             <label for="formacion">*Formación:</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm(this.value)">
+                            <select name="formacion" id="formacion" size="1" class="custom-select" onchange="cambiaTipoForm('formacion')">
                                 <option value="">Marque uno...</option>
                                 <option value="basico">GRADO BÁSICO</option>
                                 <option value="medio">GRADO MEDIO</option>
@@ -89,7 +89,13 @@
                         <div class="col"  id="div_ciclo">
                             <label for="ciclos_f">*Denominación:</label>
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <select name="ciclos_f" id="ciclos_f" size="1"  class="custom-select">
+                            <select name="ciclos_f" id="ciclos_f" size="1"  class="custom-select" onchange="cambiaTipoForm('ciclo')">
+                            </select>
+                        </div>
+                        <div class="col-2"  id="div_curso_ciclo">
+                            <label for="curso_ciclo">*Curso:</label>
+                            <span class="errorTxt" style="font-size: 1em;"></span>
+                            <select name="curso_ciclo" id="curso_ciclo" size="1"  class="custom-select">
                             </select>
                         </div>
                     </div>
