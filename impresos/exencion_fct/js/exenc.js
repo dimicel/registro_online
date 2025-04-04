@@ -141,7 +141,7 @@ function cambiaTipoForm(sel){
             document.getElementById("curso_ciclo").appendChild(option);
         }
     }
-    else if(sel=='ciclos_f'){
+    else if(sel=='ciclo'){
         alert("2222");
         alert(parseInt(Object.keys(lista_cic).find(key => lista_cic[key].ciclo === ciclo)));
         alert("333");
