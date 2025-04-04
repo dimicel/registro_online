@@ -122,23 +122,27 @@ function cambiaTipoForm(sel){
     if (sel=='formacion'){
         document.getElementById("ciclos_f").innerHTML="";
         document.getElementById("curso_ciclo").innerHTML="";
-        let option=document.createElement("option");
+        var option=document.createElement("option");
         option.value="";
         if (formacion!=""){
             option.textContent="Seleccione un ciclo ....";
             document.getElementById("ciclos_f").appendChild(option);
             for (i=0; i<Object.keys(lista_cic).length;i++){
-                let option = document.createElement("option");
+                option = document.createElement("option");
                 option.value = lista_cic[i]["ciclo"];
                 option.textContent = lista_cic[i]["ciclo"];
                 document.getElementById("ciclos_f").appendChild(option);
             }
         }
         else {
-            option.textContent="Seleccione Formación en el desplegable anterior.";
-            document.getElementById("ciclos_f").appendChild(option);
-            option.textContent="Sel.Form.";
-            document.getElementById("curso_ciclo").appendChild(option);
+            var opcion = document.createElement("option");
+            opcion.value="";
+            opcion.textContent="Seleccione Formación en el desplegable anterior.";
+            document.getElementById("ciclos_f").appendChild(opcion);
+            opcion = document.createElement("option");
+            opcion.value="";
+            opcion.textContent="Sel.Form.";
+            document.getElementById("curso_ciclo").appendChild(opcion);
         }
     }
     else if(sel=='ciclo'){
