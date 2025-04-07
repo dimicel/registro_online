@@ -76,11 +76,25 @@ $documentacion="";
 $desc= array();
 
 if (isset($_POST['firma'])){
+    /*
 	$imageData = urldecode($_POST['firma']);
 	if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
 	$tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.png');
 	file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 	$firma = $tempFile;
+    */
+    $imageData = urldecode($_POST['firma']);
+    if (!is_dir(__DIR__."/../../../docs/tmp")) mkdir(__DIR__."/../../../docs/tmp", 0777);
+    
+    // Generar el archivo temporal
+    $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_' . session_id());
+    
+    // Asegurarse de que la extensión sea '.png' y no haya caracteres extra
+    $tempFile = pathinfo($tempFile, PATHINFO_DIRNAME) . '/' . basename($tempFile, '.tmp') . '.png';
+    
+    // Guardar el archivo de imagen
+    file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
+    $firma = $tempFile;
 }
 
 if ($grado=="GRADO BÁSICO") $curso="Formación Profesional Básica, en el curso ".$curso_ciclo." de " . $ciclo;
