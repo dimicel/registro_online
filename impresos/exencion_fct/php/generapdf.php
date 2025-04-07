@@ -105,7 +105,7 @@ if (isset($_POST["desc"])){
 }
 
 $registro= generaRegistro();
-exit("tttttttttttt");
+
 include("conexion.php");
 
 if ($mysqli->errno>0) {
@@ -126,7 +126,7 @@ while ($repite_registro){
 }
 
 $dirRegistro=substr($registro, 17);
-
+exit("1111");
 ///Parametro de bind sss por la siguiente tabla
 //"i": Entero (integer)
 //"d": Decimal (double)
