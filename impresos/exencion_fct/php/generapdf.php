@@ -278,7 +278,7 @@ $lista_don $nombre $apellidos, con $num_documento, <b>solicita la exención</b> 
 <br><br>
 Así, presenta la documentación establecida en el artículo 25 punto 2 de la Orden de 29 de julio de 2010, de la Consejería de Educación, Ciencia y Cultura, por la que se regula la evaluación, promoción y acreditación académica del alumnado de formación profesional inicial del sistema educativo de la Comunidad Autónoma de Castilla-La Mancha.<br>
 $documentacion<br><br>
-<p style="text-align:center">$fecha_firma<br>
+<p style="text-align:center">$fecha_firma
 EOD;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->writeHTMLCell(180, 0, $XInicio, $YInicio, $texto, 0, 1, false, true, 'L', true);
@@ -286,13 +286,13 @@ $posicionY=$pdf->getY();
 $pdf->Image($firma, $XInicio, $posicionY, 35, 0, 'PNG');
 
 $texto=<<<EOD
-<br>
+<br><br>
 Fdo.: $nombre $apellidos</p>
 EOD;
 
 $posicionY=$pdf->getY();
 $pdf->SetXY($XInicio,$posicionY);
-$pdf->writeHTMLCell(180, 0, $XInicio, $posicionY, $texto, 0, 1, false, true, 'L', true);
+$pdf->writeHTMLCell(180, 0, $XInicio, $posicionY, $texto, 0, 1, false, true, 'C', true);
 
 
 
