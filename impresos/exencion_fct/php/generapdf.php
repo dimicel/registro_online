@@ -282,5 +282,10 @@ $pdf->Image($firma, 90, 210, 35, 0, '', '', '', false, 300);
 $pdf->SetXY($XInicio,275);
 $pdf->Cell(180,0,"SR/A. DIRECTOR/A DEL IES UNIVERSIDAD LABORAL DE TOLEDO",0,0,'L',0,'',1,true,'T','T');
 
-// Close and output PDF document
-$pdf->Output('exen_fct.pdf', 'D');
+//GENERA EL ARCHIVO NUEVO
+$nombre_fichero=$registro . '.pdf';
+if(!is_dir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro))mkdir(__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro,0777,true);
+$ruta=__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/". $nombre_fichero;
+$pdf->Output($ruta, 'F');
+//FIN GENERA PDF
+exit("ok");

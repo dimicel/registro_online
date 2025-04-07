@@ -499,6 +499,10 @@ function listaSolicitudes() {
                         }
                         tabla+="</td>";
                     }
+                    else if(proc=="Exención Formación en Empresas"){
+                        tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/convalidaciones/"+ item["curso"] + "/"+item["registro"].slice(17)+"/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a>";
+                        tabla+="</td>";
+                    }
                     else{
                         tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/"+item["dir"]+"/"+ item["curso"] + "/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a></td>";
                     }
