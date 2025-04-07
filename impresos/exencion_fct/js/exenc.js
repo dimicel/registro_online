@@ -532,13 +532,13 @@ function generaImpreso() {
                 alerta("Solicitud registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", true, 500);
             }
             document.getElementById('exenc').reset();
-            window.history.back();
+            //window.history.back();
         },
         error: function(xhr, status, error) {
             document.getElementById("cargando").style.display = 'none';
             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
             document.getElementById('exenc').reset();
-            window.history.back();
+            //window.history.back();
         }
     });
             
