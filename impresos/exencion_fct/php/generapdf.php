@@ -61,6 +61,7 @@ function quitaAcentos($s){
 
 
 $anno_curso= $_POST['curso'];
+$fecha_registro=date('Y-m-d');
 $id_nie=$_POST['id_nie'];
 $lista_don=$_POST['lista_don'];
 $nombre=$_POST['nombre'];
