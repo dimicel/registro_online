@@ -71,6 +71,9 @@ $ciclo=$_POST['ciclos_f'];
 $curso_ciclo=$_POST['curso_ciclo'];
 $departamento=$_POST['departamento'];
 $subidopor=$_POST['subido_por'];
+$documentacion="";
+$desc= array();
+
 
 if (isset($_POST['firma'])){
 	$imageData = urldecode($_POST['firma']);
@@ -83,7 +86,24 @@ if (isset($_POST['firma'])){
 if ($ensenanzas=="GRADO BÁSICO") $curso="Formación Profesional Básica, en el curso ".$curso_ciclo." de " . $ciclo;
 elseif ($ensenanzas=="GRADO MEDIO") $curso="Formación Profesional de Grado Medio, en el curso ".$curso_ciclo." de " . $ciclo;
 elseif ($ensenanzas=="GRADO SUPERIOR")	$curso="Formación Profesional de Grado Superior, en el curso ".$curso_ciclo." de " . $ciclo;
-$documentacion=str_replace("\n","<br>",$_POST['documentacion']);
+
+if (isset($_POST["desc"])){
+    foreach($_POST["desc"] as $value) {
+        $documentacion.=$value."; ";
+        $desc[]=$value;
+        if ($value!="Certificación de la empresa" &&
+            $value!="Certificación de la Tesorería General de la Seguridad Social" &&
+            $value!="Certificación de alta en el censo de obligados tributarios" &&
+            $value!="Declaración del interesado de las actividades más representativas" &&
+            $value!="Certificación de la organización donde se han prestado servicios como voluntario/a o becario/a"){
+                $otra_doc.=$value.", ";
+            }
+    }
+    if (substr($otra_doc, -2) === '; ') {
+        $otra_doc = substr_replace($otra_doc, "", -2);
+    }
+    $docs=$_FILES['docs'];
+}
 
 $registro= generaRegistro();
 include("conexion.php");
