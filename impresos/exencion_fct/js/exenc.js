@@ -501,7 +501,7 @@ function generaImpreso() {
     formData.append("lista_don", document.getElementById("lista_don").value);
     formData.append("nombre", document.getElementById("nombre").value);
     formData.append("apellidos", document.getElementById("apellidos").value);
-    formData.append("id_nif", document.getElementById("nif_nie").value);
+    formData.append("nif_nie", document.getElementById("nif_nie").value);
     formData.append("grado", document.getElementById("formacion").value);
     formData.append("ciclo", document.getElementById("ciclos_f").value);
     formData.append("curso", document.getElementById("curso_ciclo").value);
