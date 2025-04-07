@@ -516,7 +516,7 @@ function generaImpreso() {
         formData.append("docs[]", datosFiles[i].files[0]);
     }
 
-    urlPHP="php/registraformulario.php";
+    urlPHP="php/generapdf.php";
     document.getElementById("cargando").style.display = 'inherit';
     $.post({
         url:urlPHP ,
