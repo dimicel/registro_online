@@ -42,9 +42,6 @@
         <form id="exenc">
         <input type="hidden" name="curso" id="curso">
         <input type="hidden" name="id_nie" id="id_nie">
-        <input type="hidden" name="nombre" id="nombre">
-        <input type="hidden" name="apellidos" id="apellidos">
-        <input type="hidden" name="nif_nie" id="nif_nie">
         <input type="hidden" name="departamento" id="departamento">
         <input type="hidden" name="subido_por" id="subido_por">
         <div class="row ui-widget-header ui-corner-all" style="padding-left:10px; padding-right:10px">
@@ -78,15 +75,15 @@
                         </div>
                         <div class="col">
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input type="text" class="form-control" name="nombre_" id="nombre_"  maxlength="25" readonly/>
+                            <input type="text" class="form-control" name="nombre" id="nombre"  maxlength="25" readonly/>
                         </div>
                         <div class="col">
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input type="text" class="form-control" name="apellidos_" id="apellidos_"  maxlength="40" readonly/>
+                            <input type="text" class="form-control" name="apellidos" id="apellidos"  maxlength="40" readonly/>
                         </div>
                         <div class="col-3">
                             <span class="errorTxt" style="font-size: 1em;"></span>
-                            <input style="margin-left: 5px" class="form-control" type="text" name="nif_nie_" id="nif_nie_" size="12" maxlength="12" title="Sin espacios ni guiones" readonly/>
+                            <input style="margin-left: 5px" class="form-control" type="text" name="nif_nie" id="nif_nie" size="12" maxlength="12" title="Sin espacios ni guiones" readonly/>
                         </div>
                     </div>
                     <div class="row mt-3">
