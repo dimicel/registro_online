@@ -169,6 +169,7 @@ elseif($proceso=="exencion_fct"){
         $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         $data["registros"][$contador]["registro"]=$reg["registro"];
         $data["registros"][$contador]["fecha_registro"]=$reg["fecha_registro"];
+        $data["registros"][$contador]["departamento"]=$reg["departamento"];
         $data["registros"][$contador]["visto"]=$reg["procesado"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
