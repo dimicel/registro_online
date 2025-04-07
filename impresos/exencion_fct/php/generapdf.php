@@ -272,7 +272,7 @@ $fecha_actual=getdate();
 $fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
 
 $texto=<<<EOD
-<h2 style="text-align:center"><b>SOLICITUD DE EXENCIÓN DEL MÓDULO DE PERÍODO DE FORMACIÓN EN EMPRESAS</b></h2>
+<h3 style="text-align:center"><b>SOLICITUD DE EXENCIÓN DEL MÓDULO DE PERÍODO DE FORMACIÓN EN EMPRESAS</b></h3>
 <br><br>
 $lista_don $nombre $apellidos, con $num_documento, <b>solicita la exención</b> del Período de Formación en Empresas correspondiente a las enseñanzas de grado $grado de $curso_ciclo curso de $ciclo que se imparte en el centro IES Universidad Laboral de Toledo, en el que está matriculado.  
 <br><br>
