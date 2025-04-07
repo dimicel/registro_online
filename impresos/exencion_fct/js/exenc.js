@@ -34,9 +34,6 @@ $(document).ready(function() {
             document.getElementById("nif_nie").value = nif_nie;
             document.getElementById("nombre").value = nombre;
             document.getElementById("apellidos").value = apellidos;
-            document.getElementById("nif_nie_").value = nif_nie;
-            document.getElementById("nombre_").value = nombre;
-            document.getElementById("apellidos_").value = apellidos;
             anno_ini_curso = resp["anno_ini_curso"];
             document.getElementById("rotulo_curso").innerHTML = "CURSO ACTUAL - " + anno_ini_curso + "/" + (anno_ini_curso + 1);
             curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
@@ -524,6 +521,7 @@ function generaImpreso() {
         contentType: false,
         processData: false,
         success: function(resp) {
+            alert(resp);
             document.getElementById("cargando").style.display = 'none';
             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
             else if (resp.substring(0, 8) == "database") alerta("Hay un problema en la base de datos.Error:"+resp+"<br> Inténtelo más tarde.", "ERROR DB");
