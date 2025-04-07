@@ -138,8 +138,8 @@ $mysqli->begin_transaction();
 try {
     // Insertar registro en la primera tabla
     $stmt1 = $mysqli->prepare("INSERT INTO exencion_fct (id_nie,fecha_registro,registro,curso,nombre,apellidos,id_nif,
-                                                        grado,ciclo,curso_ciclo,departamento) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt1->bind_param("ssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
+                                                        grado,ciclo,curso_ciclo,departamento) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
+    $stmt1->bind_param("sssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,
                                                 $ensenanzas,$ciclo,$curso_ciclo,$departamento);
     
     if ($stmt1->execute() === false) {
