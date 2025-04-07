@@ -61,7 +61,7 @@ if ($consulta->num_rows>0){
 }
 $consulta->free();
 
-$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias,organismo_destino,resolucion from convalidaciones where id_nie='$id_nie' order by curso, fecha_registro,organismo_destino,registro");
+$consulta=$mysqli->query("select fecha_registro,registro,curso,incidencias,resolucion from exencion_fct where id_nie='$id_nie' order by curso, fecha_registro,registro");
 if ($consulta->num_rows>0){
     $data["error"]="ok";
     $contador=0;
