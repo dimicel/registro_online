@@ -283,7 +283,8 @@ EOD;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->writeHTMLCell(180, 0, $XInicio, $YInicio, $texto, 0, 1, false, true, 'L', true);
 $posicionY=$pdf->getY();
-$pdf->Image($firma, $XInicio, $posicionY, 35, 0, 'PNG');
+$anchoImagen=50;
+$pdf->Image($firma, (210-$anchoImagen)/2, $posicionY, $anchoImagen, 0, 'PNG');
 
 $texto=<<<EOD
 <br><br>
