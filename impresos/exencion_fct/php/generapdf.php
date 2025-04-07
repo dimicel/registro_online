@@ -287,7 +287,7 @@ $anchoImagen=50;
 $pdf->Image($firma, (210-$anchoImagen)/2, $posicionY, $anchoImagen, 0, 'PNG');
 
 $texto=<<<EOD
-<br><br>
+<br><br><br><br>
 Fdo.: $nombre $apellidos</p>
 EOD;
 
