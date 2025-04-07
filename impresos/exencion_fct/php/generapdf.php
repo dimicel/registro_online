@@ -95,6 +95,9 @@ if (isset($_POST['firma'])){
     // Guardar el archivo de imagen
     file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
     $firma = $tempFile;
+    $firma = realpath($tempFile);  // Convierte la ruta al archivo temporal a ruta absoluta
+    chmod($tempFile, 0644);  // Da permisos de lectura al archivo
+
 }
 
 if ($grado=="GRADO BÁSICO") $curso="Formación Profesional Básica, en el curso ".$curso_ciclo." de " . $ciclo;
