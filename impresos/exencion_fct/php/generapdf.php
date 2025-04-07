@@ -110,10 +110,10 @@ $mysqli->begin_transaction();
 
 try {
     // Insertar registro en la primera tabla
-    $stmt1 = $mysqli->prepare("INSERT INTO exencion_fct (estudios_superados,id_nie,fecha_registro,registro,curso,nombre,apellidos,id_nif,direccion,localidad,provincia,cp,tlf_fijo,tlf_movil,email,
-                                                            grado,ciclo,curso_ciclo,modalidad,turno,modulos) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt1->bind_param("sssssssssssssssssssss", $estudios_superados,$id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
-                                                $localidad,$provincia,$cp,$tlf_fijo,$tlf_movil,$email,$grado,$ciclo,$curso,$modalidad,$turno,$modulos);
+    $stmt1 = $mysqli->prepare("INSERT INTO exencion_fct (id_nie,fecha_registro,registro,curso,nombre,apellidos,id_nif,
+                                                        grado,ciclo,curso_ciclo,departamento) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt1->bind_param("ssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,$direccion,
+                                                $ensenanzas,$ciclo,$curso_ciclo,$departamento);
     
     if ($stmt1->execute() === false) {
         throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt1->error);
@@ -125,7 +125,7 @@ try {
     for($i=0;$i<count($desc);$i++) {
         $contador_docs=$i+1;
         $indice=sprintf("%02d", $i+1)."_";
-        $rutaTb="docs/".$id_nie."/exencion_pfe"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$_FILES["docs"]["name"][$i];
+        $rutaTb="docs/".$id_nie."/exencion_form_emp"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$_FILES["docs"]["name"][$i];
         $stmt2->bind_param("sssss", $id_nie, $registro, $desc[$i], $rutaTb, $subidopor);
         if ($stmt2->execute() === false) {
             throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt2->error);
@@ -137,14 +137,14 @@ try {
         $check2=true;
         $indice=sprintf("%02d", $contador_docs+1)."_";
         $descDoc="Documento de identificación";
-        $rutaTb="docs/".$id_nie."/exencion_pfe"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
+        $rutaTb="docs/".$id_nie."/exencion_form_emp"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
         $stmt2->bind_param("sssss", $id_nie,$registro,$descDoc , $rutaTb, $subidopor);
         if ($stmt2->execute() === false) {
             throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt2->error);
         }
     }
     $stmt2->close();
-    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."exencion_pfe/".$anno_curso."/".$dirRegistro."/docs"."/";
+    $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs"."/";
     if (!is_dir($rutaCompleta)) {
         mkdir($rutaCompleta, 0777, true);
     }
@@ -164,7 +164,7 @@ try {
     
                 // Eliminar la ruta creada
                 rmdir($rutaCompleta);
-                rmdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_pfe/".$anno_curso."/".$dirRegistro."/");
+                rmdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/");
     
                 // Revertir la transacción en la base de datos
                 $mysqli->rollback();
