@@ -76,13 +76,6 @@ $documentacion="";
 $desc= array();
 
 if (isset($_POST['firma'])){
-    /*
-	$imageData = urldecode($_POST['firma']);
-	if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
-	$tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.png');
-	file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
-	$firma = $tempFile;
-    */
     $imageData = urldecode($_POST['firma']);
     if (!is_dir(__DIR__."/../../../docs/tmp")) mkdir(__DIR__."/../../../docs/tmp", 0777);
     
@@ -95,9 +88,6 @@ if (isset($_POST['firma'])){
     // Guardar el archivo de imagen
     file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
     $firma = $tempFile;
-    $firma = realpath($tempFile);  // Convierte la ruta al archivo temporal a ruta absoluta
-    chmod($tempFile, 0644);  // Da permisos de lectura al archivo
-
 }
 
 if ($grado=="GRADO BÁSICO") $curso="Formación Profesional Básica, en el curso ".$curso_ciclo." de " . $ciclo;
@@ -289,7 +279,7 @@ $lista_don $nombre $apellidos, con $num_documento, <b>solicita la exención</b> 
 Así, presenta la documentación establecida en el artículo 25 punto 2 de la Orden de 29 de julio de 2010, de la Consejería de Educación, Ciencia y Cultura, por la que se regula la evaluación, promoción y acreditación académica del alumnado de formación profesional inicial del sistema educativo de la Comunidad Autónoma de Castilla-La Mancha.<br>
 $documentacion<br><br>
 <p style="text-align:center">$fecha_firma<br>
-<img src='file://$firma' width='35' style='display: block; margin-left: auto; margin-right: auto;'>
+<img src='$firma' width='35' style='display: block; margin-left: auto; margin-right: auto;'>
 <br>
 Fdo.: $nombre $apellidos</p>
 EOD;
