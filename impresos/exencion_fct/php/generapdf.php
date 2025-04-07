@@ -72,6 +72,14 @@ $curso_ciclo=$_POST['curso_ciclo'];
 $departamento=$_POST['departamento'];
 $subidopor=$_POST['subido_por'];
 
+if (isset($_POST['firma'])){
+	$imageData = urldecode($_POST['firma']);
+	if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
+	$tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_'. session_id() . '.png');
+	file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
+	$firma = $tempFile;
+}
+
 if ($ensenanzas=="GRADO BÁSICO") $curso="Formación Profesional Básica, en el curso ".$curso_ciclo." de " . $ciclo;
 elseif ($ensenanzas=="GRADO MEDIO") $curso="Formación Profesional de Grado Medio, en el curso ".$curso_ciclo." de " . $ciclo;
 elseif ($ensenanzas=="GRADO SUPERIOR")	$curso="Formación Profesional de Grado Superior, en el curso ".$curso_ciclo." de " . $ciclo;
@@ -131,18 +139,6 @@ try {
             throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt2->error);
         }
     }
-    if (isset($_FILES["pasaporte"]) || isset($_FILES["dni_anverso"])){
-        if (isset($_FILES["pasaporte"]))$documentos_aportados.="; Documento de identificación (pasaporte)";
-        if (isset($_FILES["dni_anverso"]))$documentos_aportados.="; Documento de identificación (DNI)";
-        $check2=true;
-        $indice=sprintf("%02d", $contador_docs+1)."_";
-        $descDoc="Documento de identificación";
-        $rutaTb="docs/".$id_nie."/exencion_form_emp"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice."documento_identificacion.pdf";
-        $stmt2->bind_param("sssss", $id_nie,$registro,$descDoc , $rutaTb, $subidopor);
-        if ($stmt2->execute() === false) {
-            throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt2->error);
-        }
-    }
     $stmt2->close();
     $rutaCompleta=__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs"."/";
     if (!is_dir($rutaCompleta)) {
@@ -185,7 +181,7 @@ try {
 }
 ////////////////////////////////////////////////////////////
 
-$ruta=__DIR__."/../../../docs/".$id_nie."/"."exencion_pfe/".$anno_curso."/".$dirRegistro."/docs"."/";
+$ruta=__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs"."/";
 
 
 // create new PDF document
@@ -262,6 +258,7 @@ EOD;
 
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->MultiCell(180,0,$texto,0,'L',0,1,$XInicio,$YInicio,true,0,true,false,0);
+$pdf->Image($firma, 90, 210, 35, 0, '', '', '', false, 300);
 
 $pdf->SetXY($XInicio,275);
 $pdf->Cell(180,0,"SR/A. DIRECTOR/A DEL IES UNIVERSIDAD LABORAL DE TOLEDO",0,0,'L',0,'',1,true,'T','T');

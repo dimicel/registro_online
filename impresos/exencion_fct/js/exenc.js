@@ -8,6 +8,7 @@ var drawing = false;
 var mouseX, mouseY;
 var canvas, context, tool, canvas_upload;
 
+var formData = new FormData();
 
 $(document).ready(function() {
     document.body.style.overflowY = "scroll";
@@ -207,7 +208,6 @@ function anadeDoc(e) {
                                 return;
                     }
                     actualizaTablaListaDocs();
-                    if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1)subidoDocIdent=true;
                     document.getElementById("form_anade_documento").reset();
                     $('#div_den_otro_con').hide();
                     $("#anade_documento").dialog("close");
@@ -309,7 +309,6 @@ function borraFila(obj, e) {
     _t = document.getElementById("tab_lista_docs");
     num_fila = obj.parentNode.parentNode.rowIndex;
     if(obj.parentNode.parentNode.cells[0].innerText.indexOf("Documento de identificación")>-1){
-        subidoDocIdent=false;
         if (obj.parentNode.parentNode.cells[0].innerText.indexOf("(Pasaporte)")>-1){
             formData.delete('pasaporte');
         }
@@ -498,46 +497,50 @@ function activaErrorEnTabla(i){
 function generaImpreso() {
     document.getElementById("cargando").style.display = '';
     document.getElementById("subido_por").value="usuario";
-    let pet = $.ajax({
-        url: "php/generapdf.php",
-        type: "POST",
-        data: $("#exenc").serialize()
-    });
-    $.when(pet).done(function(resp) {
-        document.getElementById("cargando").style.display = 'none';
-        if (resp == "servidor") {
-            mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de su solicitud.<br>Por favor, vuelva a intentarlo más tarde.<br>";
-            mensaje += "Si ve que el problema persiste, puede cumplimentar el formulario y presentarlo en ventanilla accediendo por Secretaría->Impresos de Secretaría->Para presentar en Ventanilla.";
-            alerta(mensaje, "Error de servidor");
-        } else if (resp == "registro_erroneo") {
-            mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de su solicitud.<br>Por favor, vuelva a intentarlo más tarde.<br>";
-            mensaje += "Si ve que el problema persiste, puede cumplimentar el formulario y presentarlo en ventanilla accediendo por Secretaría->Impresos de Secretaría->Para presentar en Ventanilla.";
-            alerta(mensaje, "Error de servidor");
-        } else if (resp.indexOf("envio2_fallido") != -1) {
-            mensaje = "No se ha podido enviar a su correo el impreso y número de registro.<br>Por favor, revise si el email introducido es correcto y vuelva a intentarlo.<br>";
-            mensaje += "Si el email es correcto, puede deberse a un fallo en el servidor. En este caso, vuelva a intentar más tarde el proceso.";
-            mensaje += "Si ve que el problema persiste, puede cumplimentar el formulario y presentarlo en ventanilla accediendo por Secretaría->Impresos de Secretaría->Para presentar en Ventanilla.";
-            alerta(mensaje, "Error en envío");
-        } else if (resp.indexOf("envio1_fallido") != -1) {
-            num_reg = resp.slice(14);
-            mensaje = "No se ha podido enviar a su correo el impreso y número de registro.";
-            mensaje += "Aún así, parece que su impreso se ha sido enviado correctamente a la Secretaría del Cento, con el nº de registro:<br><b>";
-            mensaje += num_reg + "</b><br>";
-            mensaje += "Puede ponerse en contacto con el personal de secretaría para verificarlo, en el teléfono 925 22 34 00 EXTENSIONES 272 y 236";
-        } else if (resp == "no_file") {
-            alerta("Ha habido un error y no se ha podido generar el fichero con el formulario registrado.", "Error en servidor");
-        } else if (resp.indexOf("envio_ok") != -1) {
-            num_reg = resp.slice(8);
-            mensaje = "Proceso finalizado correctamente. Tome nota de su nº de registro:<br><br>";
-            mensaje += "<center><b>" + num_reg + "</b></center><br><br>";
-            mensaje += "RECUERDE QUE:<br><br>";
-            mensaje += "-DEBE ENVIAR EL Nº DE REGISTRO POR <strong>PAPAS 2.0</strong>, AL GRUPO <strong>'Coordinadores de mi centro'</strong> (PUEDE SELECCIONAR Y COPIAR CON EL RATÓN EL Nº DE REGISTRO, Y PEGARLO EN EL MENSAJE DE PAPAS). DE LO CONTRARIO, EL FORMULARIO NO SE CONSIDERARÁ FIRMADO Y NO SERÁ VÁLIDO.<br>"
-            mensaje += "-SI VE QUE NO RECIBE EL CORREO ELECTRÓNICO, DEBE REVISAR LA CARPETA SPAM O CORREO NO DESEADO.<br><br>";
-            mensaje += "-SI EN EL PLAZO DE 24/48 HORAS EL PERSONAL DE SECRETARÍA NO HA RECIBIDO SU SOLICITUD, DEBE PONERSE EN CONTACTO CON ELLOS EN EL TELÉFONO 925 22 34 00 EXTENSIONES 272 Y 236";
-            alerta(mensaje, "Registro correcto");
+    document.getElementById('firma').value = encodeURIComponent(canvas_upload);
+    formData.append("id_nie", id_nie);
+    formData.append("anno_curso", curso);
+    formData.append("lista_don", document.getElementById("lista_don").value);
+    formData.append("nombre", document.getElementById("nombre").value);
+    formData.append("apellidos", document.getElementById("apellidos").value);
+    formData.append("id_nif", document.getElementById("nif_nie").value);
+    formData.append("grado", document.getElementById("formacion").value);
+    formData.append("ciclo", document.getElementById("ciclos_f").value);
+    formData.append("curso", document.getElementById("curso_ciclo").value);
+    formData.append("departamento", document.getElementById("departamento").value);
+    formData.append("subido_por", document.getElementById("subido_por").value);
+        
+    datosHidden = document.querySelectorAll('input[name="desc[]"]');
+    datosFiles = document.querySelectorAll('input[name="docs[]"]');
+    for (var i = 0; i < datosHidden.length; i++) {
+        formData.append("desc[]", datosHidden[i].value);
+        formData.append("docs[]", datosFiles[i].files[0]);
+    }
+
+    urlPHP="php/registraformulario.php";
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post({
+        url:urlPHP ,
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(resp) {
+            document.getElementById("cargando").style.display = 'none';
+            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+            else if (resp.substring(0, 8) == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+            else if (resp == "error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.", "ERROR UPLOAD");
+            else if (resp == "ok") {
+                alerta("Solicitud registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", true, 500);
+            }
+            document.getElementById('exenc').reset();
+        },
+        error: function(xhr, status, error) {
+            document.getElementById("cargando").style.display = 'none';
+            alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+            document.getElementById('exenc').reset();
         }
-        document.getElementById('exenc').reset();
     });
+            
 }
 
 
