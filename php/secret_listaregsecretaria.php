@@ -163,7 +163,18 @@ elseif($proceso=="convalidaciones"){
         $contador++;
     }
 }
-
+elseif($proceso=="exencion_fct"){
+    while ($reg=$res->fetch_assoc()){
+        $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
+        $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
+        $data["registros"][$contador]["registro"]=$reg["registro"];
+        $data["registros"][$contador]["fecha_registro"]=$reg["fecha_registro"];
+        $data["registros"][$contador]["visto"]=$reg["procesado"];
+        if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
+        else $data["registros"][$contador]["incidencias"]=1;
+        $contador++;
+    }
+}
 elseif ($proceso=="prematricula"){
     while ($reg=$res->fetch_assoc()){
         $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
