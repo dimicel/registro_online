@@ -421,7 +421,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             $("#CSV_seguro").addClass("disabled");
         }
     }
-    else if(tipo_formulario="convalidaciones"){
+    else if(tipo_formulario=="convalidaciones" || tipo_formulario=="exencion_fct"){
         habilitaMenu(false, false);
         document.getElementById("div_incidencias").style.display="none";
         document.getElementById("div_convalidaciones").style.display="inherit";
@@ -454,12 +454,12 @@ function listaRegistros(orden_campo, orden_direccion) {
     curso_num="";
     $("#div_nuevos_otra_comunidad").hide();
     if (tipo_formulario == "revision_examen") {
-        tabla = document.getElementById('tipo_form').value;
+        tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "del_alumno", "registro"];
         estilo = ["width:70px", "width:210px", "width:200px", "width:270px"];
         encabezamiento = ["NIE", "Solicitante", "Alumno", "Nº Registro"];
     } else if (tipo_formulario == "revision_calificacion") {
-        tabla = document.getElementById('tipo_form').value;
+        tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "registro"];
         estilo = ["width:70px", "width:220px", "width:270px"];
         encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
@@ -468,6 +468,11 @@ function listaRegistros(orden_campo, orden_direccion) {
         campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min"];
         estilo = ["width:70px", "width:220px", "width:85px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;" ];
         encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Consej.","Proc.Cons.","Minist.","Proc.Minist.","Visto"];
+    } else if(tipo_formulario=="exencion_fct"){
+        tabla = tipo_formulario;
+        campos = ["id_nie", "nombre", "fecha_registro","registro","resolucion"];
+        estilo = ["width:70px", "width:220px", "width:85px;text-align:center;", "width:220px;", "width:70px;text-align:center;" ];
+        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Registro","Resolución","Visto"];
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
         else if (document.getElementById("curso_pre_mat").value == "3eso") {tabla = "premat_eso"; grupo="3º ESO";}
@@ -563,7 +568,7 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
 
     //Construcción del encabezamiento de la tabla
-    if(tipo_formulario=="convalidaciones"){
+    if(tipo_formulario=="convalidaciones" || tipo_formulario=="exencion_fct"){
         if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
         else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
         encab = "<tr>";
@@ -659,6 +664,18 @@ function listaRegistros(orden_campo, orden_direccion) {
         }
     }
     else if(tabla=="convalidaciones"){
+        if (document.getElementById("check_vistas").checked) _v=0;
+        else _v=1;
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            vistas:_v
+        }
+    }
+    else if(tabla=="exencion_fct"){
         if (document.getElementById("check_vistas").checked) _v=0;
         else _v=1;
         datos = {
