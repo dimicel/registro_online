@@ -105,6 +105,7 @@ if (isset($_POST["desc"])){
 }
 
 $registro= generaRegistro();
+exit("tttttttttttt");
 include("conexion.php");
 
 if ($mysqli->errno>0) {
