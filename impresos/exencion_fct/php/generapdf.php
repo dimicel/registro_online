@@ -271,13 +271,15 @@ $lista_don $nombre $apellidos, con $num_documento, <b>solicita la exención</b> 
 <br><br>
 Así, presenta la documentación establecida en el artículo 25 punto 2 de la Orden de 29 de julio de 2010, de la Consejería de Educación, Ciencia y Cultura, por la que se regula la evaluación, promoción y acreditación académica del alumnado de formación profesional inicial del sistema educativo de la Comunidad Autónoma de Castilla-La Mancha.<br>
 $documentacion<br><br>
-<p style="text-align:center">$fecha_firma<br><br><br><br>
+<p style="text-align:center">$fecha_firma<br>
+<img src='$firma' width='35' style='display: block; margin-left: auto; margin-right: auto;'>
+<br>
 Fdo.: $nombre $apellidos</p>
 EOD;
 
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->MultiCell(180,0,$texto,0,'L',0,1,$XInicio,$YInicio,true,0,true,false,0);
-$pdf->Image($firma, 90, 210, 35, 0, '', '', '', false, 300);
+
 
 $pdf->SetXY($XInicio,275);
 $pdf->Cell(180,0,"SR/A. DIRECTOR/A DEL IES UNIVERSIDAD LABORAL DE TOLEDO",0,0,'L',0,'',1,true,'T','T');
