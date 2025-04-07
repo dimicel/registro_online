@@ -501,7 +501,7 @@ function generaImpreso() {
     formData.append("nif_nie", document.getElementById("nif_nie").value);
     formData.append("grado", document.getElementById("formacion").value);
     formData.append("ciclo", document.getElementById("ciclos_f").value);
-    formData.append("curso", document.getElementById("curso_ciclo").value);
+    formData.append("curso_ciclo", document.getElementById("curso_ciclo").value);
     formData.append("departamento", document.getElementById("departamento").value);
     formData.append("subido_por", document.getElementById("subido_por").value);
     formData.append("firma", encodeURIComponent(canvas_upload));
