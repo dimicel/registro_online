@@ -496,7 +496,6 @@ function activaErrorEnTabla(i){
 function generaImpreso() {
     document.getElementById("cargando").style.display = '';
     document.getElementById("subido_por").value="usuario";
-    document.getElementById('firma').value = encodeURIComponent(canvas_upload);
     formData.append("id_nie", id_nie);
     formData.append("anno_curso", curso);
     formData.append("lista_don", document.getElementById("lista_don").value);
@@ -508,6 +507,7 @@ function generaImpreso() {
     formData.append("curso", document.getElementById("curso_ciclo").value);
     formData.append("departamento", document.getElementById("departamento").value);
     formData.append("subido_por", document.getElementById("subido_por").value);
+    formData.append("firma", encodeURIComponent(canvas_upload));
         
     datosHidden = document.querySelectorAll('input[name="desc[]"]');
     datosFiles = document.querySelectorAll('input[name="docs[]"]');
