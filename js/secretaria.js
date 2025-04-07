@@ -166,6 +166,7 @@ function generaSelectTipo_form(matriz){
     // Crear las opciones restantes
     const opciones = [
         { value: "convalidaciones", text: "Convalidaciones ("+matriz.convalidaciones+")" },
+        { value: "exencion_fct", text: "Exencion PFE ("+matriz.exencion_fct+")" },
         { value: "matricula_ciclos", text: "Matrícula CICLOS" },
         { value: "matricula", text: "Matrícula ESO y BACH" },
         { value: "matricula_fpb", text: "Matrícula FPB" },
