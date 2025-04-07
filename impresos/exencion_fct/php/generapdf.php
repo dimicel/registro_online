@@ -74,7 +74,6 @@ $departamento=$_POST['departamento'];
 $subidopor=$_POST['subido_por'];
 $documentacion="";
 $desc= array();
-exit($id_nif);
 
 if (isset($_POST['firma'])){
 	$imageData = urldecode($_POST['firma']);
