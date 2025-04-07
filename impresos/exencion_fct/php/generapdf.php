@@ -59,7 +59,6 @@ function quitaAcentos($s){
 }
 
 
-
 $anno_curso= $_POST['curso'];
 $id_nie=$_POST['id_nie'];
 $lista_don=$_POST['lista_don'];
