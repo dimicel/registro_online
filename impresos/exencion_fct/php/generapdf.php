@@ -114,7 +114,7 @@ $mysqli->set_charset("utf8");
 
 $repite_registro=true;
 while ($repite_registro){
-    $res=$mysqli->query("select * from exenc_fct where registro='$registro'");
+    $res=$mysqli->query("select * from exencion_fct where registro='$registro'");
     if ($res->num_rows>0){
        $registro= generaRegistro(); 
     }
