@@ -465,8 +465,7 @@ function iniciaGeneraPdf() {
     var validaForm=$("#exenc").valid();
     var validaTabla=validarTabla();
     if (validaForm  && validaTabla){
-        alert("Generación formulario simulada  OK")
-        //generaImpreso();
+        generaImpreso();
     }
 }
 
