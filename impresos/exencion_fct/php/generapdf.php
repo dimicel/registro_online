@@ -265,9 +265,9 @@ $fecha_actual=getdate();
 $fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
 
 $texto=<<<EOD
-<h2 style="text-align:center"><b>SOLICITUD DE EXENCIÓN DEL MÓDULO DE FORMACIÓN EN CENTROS DE TRABAJO</b></h2>
+<h2 style="text-align:center"><b>SOLICITUD DE EXENCIÓN DEL MÓDULO DE PERÍODO DE FORMACIÓN EN EMPRESAS</b></h2>
 <br><br>
-$lista_don $nombre $apellidos, con $num_documento, <b>solicita la exención</b> de la Formación en Centros de Trabajo correspondiente a las enseñanzas de $grado de $curso que se imparte en el centro IES Universidad Laboral de Toledo, en el que está matriculado.  
+$lista_don $nombre $apellidos, con $num_documento, <b>solicita la exención</b> del Período de Formación en Empresas correspondiente a las enseñanzas de grado $grado de $curso_ciclo curso de $ciclo que se imparte en el centro IES Universidad Laboral de Toledo, en el que está matriculado.  
 <br><br>
 Así, presenta la documentación establecida en el artículo 25 punto 2 de la Orden de 29 de julio de 2010, de la Consejería de Educación, Ciencia y Cultura, por la que se regula la evaluación, promoción y acreditación académica del alumnado de formación profesional inicial del sistema educativo de la Comunidad Autónoma de Castilla-La Mancha.<br>
 $documentacion<br><br>
