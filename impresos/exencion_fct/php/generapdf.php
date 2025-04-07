@@ -278,7 +278,8 @@ Fdo.: $nombre $apellidos</p>
 EOD;
 
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->MultiCell(180,0,$texto,0,'L',0,1,$XInicio,$YInicio,true,0,true,false,0);
+//$pdf->MultiCell(180,0,$texto,0,'L',0,1,$XInicio,$YInicio,true,0,true,false,0);
+$pdf->writeHTMLCell(180, 0, $XInicio, $YInicio, $texto, 0, 1, false, true, 'L', true);
 
 
 $pdf->SetXY($XInicio,275);
