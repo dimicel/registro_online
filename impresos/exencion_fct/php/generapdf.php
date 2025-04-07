@@ -286,7 +286,7 @@ $lista_don $nombre $apellidos, con $num_documento, <b>solicita la exención</b> 
 Así, presenta la documentación establecida en el artículo 25 punto 2 de la Orden de 29 de julio de 2010, de la Consejería de Educación, Ciencia y Cultura, por la que se regula la evaluación, promoción y acreditación académica del alumnado de formación profesional inicial del sistema educativo de la Comunidad Autónoma de Castilla-La Mancha.<br>
 $documentacion<br><br>
 <p style="text-align:center">$fecha_firma<br>
-<img src='$firma' width='35' style='display: block; margin-left: auto; margin-right: auto;'>
+<img src='file://$firma' width='35' style='display: block; margin-left: auto; margin-right: auto;'>
 <br>
 Fdo.: $nombre $apellidos</p>
 EOD;
