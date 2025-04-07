@@ -106,7 +106,7 @@ if (isset($_POST["desc"])){
 
 $registro= generaRegistro();
 
-include("conexion.php");
+include(__DIR__.'/../../../conexion.php');
 
 if ($mysqli->errno>0) {
     exit("servidor");
