@@ -3,6 +3,7 @@ session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
+include("../../../php/conexion.php");
 
 class MYPDF extends TCPDF {
 
@@ -105,8 +106,6 @@ if (isset($_POST["desc"])){
 }
 
 $registro= generaRegistro();
-
-include(__DIR__.'/../../../conexion.php');
 
 if ($mysqli->errno>0) {
     exit("servidor");
