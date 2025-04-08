@@ -10,7 +10,6 @@ var curso_actual,curso_premat,curso_mat;
 var sesion_id;
 var tipo_formulario="";
 var n_reg="";
-var departamentos=[];
 
 
 $(function() {
@@ -448,7 +447,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         habilitaMenu(false, false);
         document.getElementById("div_incidencias").style.display="none";
         document.getElementById("div_convalidaciones").style.display="inherit";
-        if (tipo_formulario=="exencion_fct") document.getElementById("div_exencion_fct").style.display="inherit";
+        if (tipo_formulario=="exencion_fct") document.getElementById("div_exencion_fct").style.display="";
         document.getElementById("div_curso_premat").style.display = "none";
         document.getElementById("div_curso_mat").style.display = "none";
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
