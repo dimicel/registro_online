@@ -1132,7 +1132,6 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
 }
 
 function confirmadoBorradoAdjunto(procedim) {
-    alert(procedim);return;
     registro=document.getElementById("registro").value;
     registro_adjuntos_exenc_fct=registro.slice(0, -4);
     refresca_docs=document.getElementById("refresca_docs").value;
