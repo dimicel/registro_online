@@ -80,7 +80,7 @@ else {
 
 $coletilla="";
 if (($tabla=="convalidaciones" || $tabla=="exencion_fct") && $visto==0){
-    $coletilla=" procesado=$visto and ";
+    //$coletilla=" procesado=$visto and ";
 }
 else{
     if ($solo_incidencias==1) $coletilla="incidencias!='' and ";
