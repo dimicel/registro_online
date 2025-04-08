@@ -237,7 +237,7 @@
                     <div class="row" style="display:none" id="div_exencion_fct">
                         <label class="col-form-label col-1" style="margin-left:20px">Departamento: </label>
                         <div class="col-5" style="margin-left:20px">
-                            <select id="departamento" class="form-control" onchange="cambioDepartamento(this.value)"></select>
+                            <select id="departamento" class="form-control" onchange="listaRegistros();"></select>
                         </div>
                         <div class="col">
                             <input type="button" class="btn btn-success" value="Aviso a Jefe del Dpto seleccionado" onclick="avisarJefesDpto()">

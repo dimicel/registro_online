@@ -723,7 +723,6 @@ function listaRegistros(orden_campo, orden_direccion) {
         }
     }
     $.post("php/secret_listaregsecretaria.php", datos, function(resp) {
-        alert(resp.error);
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registros") {
             document.getElementById("div_notabla").style.display = "inline-block";
@@ -2379,9 +2378,7 @@ function listadoAutorUsoImag(){
     document.getElementById("descarga_csv_autor_uso_imagenes").submit();
 }
 
-function cambioDepartamento(dpto){
 
-}
 
 function avisarJefesDpto(){
 
