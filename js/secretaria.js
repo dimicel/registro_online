@@ -972,6 +972,27 @@ function verRegAdjuntosConvalid(reg){
     },"json");
 }
 
+
+function verRegAdjuntosExencFCT(reg){
+    _div="";
+    $.post("php/secret_exencion_fct_adjuntos.php",{registro:reg},(resp2)=>{
+        if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
+        else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
+        else {
+            _div+="<ul id='ul_docs_convalid'>";
+            for(i=0;i<resp2.datos.length;i++){
+                _div += "<li><a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a>";
+                if (resp2.datos[i].subidopor=="secretaria"){
+                    _div+="&nbsp&nbsp(<a style='color:RED;font-size:0.75em' href='#' onclick='borraAdjuntosConvalid(\""+resp2.datos[i].ruta+"\",\""+resp2.datos[i].descripcion+"\",\""+reg+"\",1)'>X</a>)";
+                }
+                _div+="</li>";
+            }
+            _div+="</ul>";
+        }
+        document.getElementById("ver_reg_ajuntosConvalid").innerHTML=_div;
+    },"json");
+}
+
 function verRegistro(obj) {
     ancho = 700;
     form1 = document.getElementById("tipo_form").value;
@@ -1380,7 +1401,7 @@ function verRegistroExencionFCT(num_registro){
             contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
             contenido += botones;
             document.getElementById("verRegistro_div").innerHTML = contenido;
-            verRegAdjuntosConvalid(num_registro);
+            verRegAdjuntosExencFCT(num_registro);
 
             $("#verRegistro_div").dialog({
                 autoOpen: true,
