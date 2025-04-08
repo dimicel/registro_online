@@ -18,7 +18,7 @@ $orden_direccion=$_POST["orden_direccion"];
 if ($orden_campo=="registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
 if ($orden_campo=="fecha_registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
 else $orden_listado=$orden_campo." ".$orden_direccion;
-if ($tabla=="convalidaciones") $visto=$_POST["vistas"];
+if ($tabla=="convalidaciones" || $tabla=="exencion_fct") $visto=$_POST["vistas"];
 else $solo_incidencias=$_POST["solo_incidencias"];
 if (isset($_POST["grupo"])) $grupo=$_POST["grupo"];
 if (isset($_POST["modalidad"])) $modalidad=$_POST["modalidad"];
