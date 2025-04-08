@@ -235,8 +235,8 @@
                         </div>
                     </div>
                     <div class="row" style="display:none" id="div_exencion_fct">
-                        <label class="col-form-label col-lg-1" style="margin-left:20px">Departamento: </label>
-                        <div class="col-lg-" style="margin-left:-35px">
+                        <label class="col-form-label col-1" style="margin-left:20px">Departamento: </label>
+                        <div class="col-6" style="margin-left:-35px">
                             <select id="departamento" class="form-control" onchange="cambioDepartamento(this.value)"></select>
                         </div>
                         <div class="col" style="margin-left:-35px">
