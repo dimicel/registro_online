@@ -1094,6 +1094,7 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
             alerta(msg,"ERROR DE CARGA");
         }
         else{
+            alert(555555);
             _del_ruta = "../" + ruta;
             document.getElementById("doc_cod_seg").value = "";
             document.getElementById("del_ruta").value = _del_ruta;
