@@ -88,7 +88,7 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["resolucion"]=$reg["resolucion"];
         $data["registro"]["incidencias"]=$reg["incidencias"];
     } 
-    elseif($tabla=="exenxion_fct"){
+    elseif($tabla=="exencion_fct"){
         $data["registro"]["id_nie"]= $reg["id_nie"];
         $data["registro"]["id_nif"]= $reg["id_nif"];
         $data["registro"]["nombre"]=$reg["nombre"];
