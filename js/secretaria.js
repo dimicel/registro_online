@@ -2024,7 +2024,7 @@ function adjuntaResolucion(_id_nie,registro,doc_res){
     datos.append("id_nie",encodeURIComponent(_id_nie));
     datos.append("registro",encodeURIComponent(registro));
     datos.append("resolucion",doc_res.files[0]);
-    datos.append("curso",encodeURIComponent(curso_actual));
+    datos.append("curso",encodeURIComponent(document.getElementById("curso").value));
     document.getElementById("cargando").style.display = 'inherit';
     $.post({
         url:"php/secret_convalid_suberes.php" ,
@@ -2125,7 +2125,7 @@ function adjuntaDocAdicional(_id_nie,registro){
                                 datos.append("registro",encodeURIComponent(registro));
                                 datos.append("descripcion",encodeURIComponent(document.getElementById("desc_adic_conval").value));
                                 datos.append("documento",document.getElementById("conval_doc_adicional").files[0]);
-                                datos.append("curso",encodeURIComponent(curso_actual));
+                                datos.append("curso",encodeURIComponent(document.getElementById("curso").value));
                                 document.getElementById("cargando").style.display = 'inherit';
                                 $.post({
                                     url:"php/secret_convalid_subedocadic.php" ,
@@ -2254,7 +2254,7 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
                         datos.append("registro",encodeURIComponent(registro));
                         datos.append("descripcion",encodeURIComponent(document.getElementById("desc_adic_exenc_fct").value));
                         datos.append("documento",document.getElementById("exenc_fct_doc_adicional").files[0]);
-                        datos.append("curso",encodeURIComponent(curso_actual));
+                        datos.append("curso",encodeURIComponent(document.getElementById("curso").value));
                         document.getElementById("cargando").style.display = 'inherit';
                         $.post({
                             url:"php/secret_exencion_fct_subedocadic.php" ,

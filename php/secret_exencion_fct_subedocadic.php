@@ -14,7 +14,6 @@ $descripcion=urldecode($_POST["descripcion"]);
 $dirRegistro=substr($registro, 17);
 $subidopor=$_SESSION['tipo_usu'];
 $nombre_doc=$_FILES["documento"]["name"];
-$anno_carpeta=substr($dirRegistro, 4, 4);
 $r=$mysqli->query("SELECT * FROM exenciones_fct_docs WHERE registro='$registro' ");
 if (!$r){
     exit("database");
@@ -24,10 +23,10 @@ else{
     $indice=sprintf("%02d", $numFilas+1)."_";
 }
 
-$rutaTb="docs/".$id_nie."/exencion_form_emp"."/".$anno_carpeta."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
-$rutaCompleta=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_carpeta."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
+$rutaTb="docs/".$id_nie."/exencion_form_emp"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
+$rutaCompleta=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
 
-$ruta_dir=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_carpeta."/".$dirRegistro."/docs";
+$ruta_dir=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs";
 
 if (!is_file($rutaCompleta)){
     $mysqli->begin_transaction();
