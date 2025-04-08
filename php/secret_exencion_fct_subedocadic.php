@@ -31,7 +31,7 @@ $ruta_dir=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$
 if (!is_file($rutaCompleta)){
     $mysqli->begin_transaction();
     try{
-        $stmt2 = $mysqli->prepare("INSERT INTO convalidaciones_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
+        $stmt2 = $mysqli->prepare("INSERT INTO exencion_fct_docs (id_nie, registro, descripcion, ruta, subidopor) VALUES (?, ?, ?, ?, ?)");
         $stmt2->bind_param("sssss", $id_nie,$registro, $descripcion, $rutaTb, $subidopor);
         $stmt2->execute();
         $stmt2->close();
@@ -60,14 +60,6 @@ else{
     if(!move_uploaded_file($_FILES["documento"]["tmp_name"], $rutaCompleta)){
         $mysqli->rollback();
         exit("error_subida");
-    }
-    else{
-        if($descripcion=="Resolución del Ministerio"){
-            $mysqli->query("UPDATE convalidaciones SET $resuelto_min=1 WHERE registro='$registro'");
-        }
-        elseif($descripcion=="Resolución de Consejería"){
-            $mysqli->query("UPDATE convalidaciones SET $resuelto_con=1 WHERE registro='$registro'");
-        }
     }
 }
 
