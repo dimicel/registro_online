@@ -1328,7 +1328,7 @@ function verRegistroConvalidaciones(num_registro){
             //contenido +="<div class='col-3'>"
             //contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/></div>";
             //contenido +="<div class='col-2'>"
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional('convalidaciones',\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
             contenido += "</div></div>";
             //contenido +="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+resp.registro.id_nie+"\",\""+num_registro+"\",this)'/>";
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
@@ -1374,7 +1374,7 @@ function verRegistroExencionFCT(num_registro){
             contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             contenido +="<div class='col-3'>";
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional('exencion_fct',\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
             contenido += "</div></div>";
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
             contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
@@ -2076,7 +2076,7 @@ function tipoDocAdjuntoConvalid(obj){
 }
 
 
-function adjuntaDocAdicional(_id_nie,registro){
+function adjuntaDocAdicional(procedimiento,_id_nie,registro){
     //Para convalidaciones
     __ministerio=0;
     __consejeria=0;
@@ -2214,9 +2214,6 @@ function adjuntaDocAdicional(_id_nie,registro){
             alerta("Ha ocurrido algún error. Inténtelo más tarde","ERROR NO DEFINIDO");
         }
     },"json");
-
-
-
 }
 
 function descargaCSVelearningFctProy(){
