@@ -752,7 +752,8 @@ function listaRegistros(orden_campo, orden_direccion) {
                             fecha = new Date(fechaString);
 
                             // Crear el objeto Date para la fecha límite
-                            fechaLimite = new Date("2024-06-15");
+                            anno_final_curso=document.getElementById("curso").value.slice(-4);
+                            fechaLimite = new Date(anno_final_curso+"-06-15");
                         } 
                         else if (j==3 || j==5 || j==7) data += "<td style='" + estilo[j] + "'>" + array_sino[data_array[i][campos[j]]] + "</td>";
                         else if(j==4){
@@ -804,9 +805,31 @@ function listaRegistros(orden_campo, orden_direccion) {
                 else if(tipo_formulario=="exencion_fct"){
                     data += "<tr onclick='verRegistroExencionFCT(\""+data_array[i]["registro"]+"\")'>";
                     for (j = 0; j < campos.length; j++) {
-                        data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                        if(j==2){
+                            data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
+                            // String de la fecha
+                            fechaString = data_array[i][campos[j]]; 
+
+                            // Convertir el string a un objeto Date
+                            fecha = new Date(fechaString);
+
+                            // Crear el objeto Date para la fecha límite
+                            anno_final_curso=document.getElementById("curso").value.slice(-4);
+                            fechaLimite = new Date(anno_final_curso+"-06-15");
+                        }
+                        else{
+                            data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                        }
                     }
-                    data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
+                    if (fecha < fechaLimite){
+                        if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                        else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                    }
+                    else{
+                        if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
+                        else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
+                    }
+                    data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>"; 
                 }
                 else{
                     data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
