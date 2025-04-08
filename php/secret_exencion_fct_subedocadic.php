@@ -14,9 +14,9 @@ $descripcion=urldecode($_POST["descripcion"]);
 $dirRegistro=substr($registro, 17);
 $subidopor=$_SESSION['tipo_usu'];
 $nombre_doc=$_FILES["documento"]["name"];
-$r=$mysqli->query("SELECT * FROM exenciones_fct_docs WHERE registro='$registro' ");
-if ($r===false){
-    exit("Error: ".$mysqli->errno);
+$r=$mysqli->query("SELECT * FROM exencion_fct_docs WHERE registro='$registro' ");
+if (!$r){
+    exit("database");
 }
 else{
     $numFilas = $r->num_rows;
