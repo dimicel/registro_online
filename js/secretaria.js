@@ -601,7 +601,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             }
             else{
                 if (tipo_formulario=="exencion_fct" && i==4){
-                    encab+="<td style='width:70px' title='Informe Jefe de Dpto.'><center>Informe JD</center></td>";
+                    encab+="<td style='width:70px' title='Informe del Jefe de Departamento'><center>Informe JD</center></td>";
                     encab+="<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
                 }
                 else {
