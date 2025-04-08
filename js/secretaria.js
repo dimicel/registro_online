@@ -2220,13 +2220,13 @@ function adjuntaDocAdicional(_id_nie,registro){
 function adjuntaDocAdicionalExencFCT(_id_nie,registro){
     c="<div class='row'>";
     c+="<div class='col-5'><label for='desc_adic_exenc_fct' class='col-form-label'>Descripción: </label></div>";
-    c+="<div class='col'><label for='doc_adic_exenc_fct' class='col-form-label'>Documento: </label></div>";
+    c+="<div class='col-7'><label for='doc_adic_exenc_fct' class='col-form-label'>Documento: </label></div>";
     c+="</div>";
     c+="<div class='row'>";
     c+="<div class='col-5'><input type='text' class='form-control' id='desc_adic_exenc_fct' name='desc_adic_conval' maxlength='40' readonly/></div></div>";
-    c+="<div class='col'><input type='text' class='form-control' id='doc_adic_exenc_fct' readonly placeholder='Seleccionar documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/></div>";
+    c+="<div class='col-7'><input type='text' class='form-control' id='doc_adic_exenc_fct' readonly placeholder='Seleccionar documento' onclick='document.getElementById(\"exenc_fct_doc_adicional\").click()'/></div>";
     c+="</div>";
-    c+="<input type='file' id='conval_doc_adicional' name='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById(\"doc_adic_conval\").value=this.files[0].name'/>";
+    c+="<input type='file' id='exenc_fct_doc_adicional' name='exenc_fct_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById(\"doc_adic_exenc_fct\").value=this.files[0].name'/>";
     document.getElementById("div_dialogs2").innerHTML=c;   
     
     $("#div_dialogs2").dialog({
