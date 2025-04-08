@@ -88,6 +88,18 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["resolucion"]=$reg["resolucion"];
         $data["registro"]["incidencias"]=$reg["incidencias"];
     } 
+    elseif($tabla=="exenxion_fct"){
+        $data["registro"]["id_nie"]= $reg["id_nie"];
+        $data["registro"]["id_nif"]= $reg["id_nif"];
+        $data["registro"]["nombre"]=$reg["nombre"];
+        $data["registro"]["apellidos"]=$reg["apellidos"];
+        $data["registro"]["ciclo"]=$reg["ciclo"];
+        $data["registro"]["grado"]=$reg["grado"];
+        $data["registro"]["curso_ciclo"]=$reg["curso_ciclo"];
+        $data["registro"]["procesado"]=$reg["procesado"];
+        $data["registro"]["resolucion"]=$reg["resolucion"];
+        $data["registro"]["incidencias"]=$reg["incidencias"];
+    }
     elseif(substr($tabla,0,7)=="premat_" || (substr($tabla,0,4)=="mat_" && $tabla!="mat_ciclos" && $tabla!="mat_fpb")){
         if (substr($tabla,0,4)=="mat_"){
             if(strrpos($tabla,"eso")>=0  || strrpos($tabla,"bach")>=0 )$data["registro"]["consolida_premat"]= $reg["consolida_premat"];
