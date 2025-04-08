@@ -1374,7 +1374,6 @@ function verRegistroExencionFCT(num_registro){
             contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             contenido +="<div class='col-3'>";
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/></div>"
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
             contenido += "</div></div>";
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
