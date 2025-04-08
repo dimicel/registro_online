@@ -9,7 +9,7 @@ if ($mysqli->errno>0) {
 $ruta=$_POST["ruta"];
 $tabla=$_POST["tabla"];
 $_rutadb=substr($ruta,3);//$ruta viene con ../ delante. $_rutadb es la ruta sin eso
-
+exit($ruta . "     ".$tabla);
 $registro="";
 $res=$mysqli->query("select * from $tabla  where ruta='$_rutadb'");
 if($res->num_rows>0){
@@ -20,7 +20,7 @@ if($res->num_rows>0){
 
 try {
     // Eliminar el registro de la base de datos
-    $sql = "delete from convalidaciones_docs where ruta=?";
+    $sql = "delete from $tabla where ruta=?";
     $stmt = $mysqli->prepare($sql);
     $id = 1; // Aquí debes especificar el ID del registro que deseas borrar
     $stmt->bind_param("s", $_rutadb);
