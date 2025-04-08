@@ -26,6 +26,8 @@ if (isset($_POST["curso_num"])) $curso_num=$_POST["curso_num"];
 else $curso_num="";
 if(isset($_POST["nuevo_otra_comunidad"])) $nuevo_otra_com=$_POST["nuevo_otra_comunidad"];
 else $nuevo_otra_com="";
+if (isset($_POST["departamento"])) $departamento=$_POST["departamento"];
+else $departamento="";
 
 if ($tabla=="mat_ciclos"){
     $ciclo=$_POST["ciclo"];
@@ -62,6 +64,10 @@ elseif($tabla=="convalidaciones"){
     //$campos="id_nie,nombre,apellidos,registro,fecha_registro,incidencias,procesado,resuelve_cen,resuelve_con,resuelve_min,resuelto_cen,resuelto_con,resuelto_min";
     $campos="*";
 }
+elseif($tabla=="exencion_fct"){
+    $proceso=$tabla;
+    $campos="*";
+}
 else {
     $proceso=$tabla;
     if ($proceso=="revision_examen"){
@@ -73,11 +79,16 @@ else {
 }
 
 $coletilla="";
-if ($tabla=="convalidaciones" && $visto==0){
+if (($tabla=="convalidaciones" || $tabla=="exencion_fct") && $visto==0){
     $coletilla=" procesado=$visto and ";
 }
 else{
     if ($solo_incidencias==1) $coletilla="incidencias!='' and ";
+}
+if ($tabla=="exencion_fct"){
+    if ($departamento!="Todos"){
+        $coletilla.="departamento='$departamento' and ";
+    }
 }
 if ($nuevo_otra_com=="Si") $coletilla.="al_nuevo_otracomunidad='Si' and ";
 if($curso_num!="") $coletilla.="grupo='$curso_num' and ";

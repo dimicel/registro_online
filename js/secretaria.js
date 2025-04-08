@@ -705,7 +705,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             buscar: buscar,
             tabla: tabla,
             curso: document.getElementById('curso').value,
-            departamento:document.getElementById('dpartamento').value,
+            departamento:document.getElementById('departamento').value,
             orden_campo: orden_campo,
             orden_direccion: direccion[orden_direccion],
             vistas:_v
