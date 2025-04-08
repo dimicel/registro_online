@@ -43,15 +43,15 @@ try {
     $mysqli->close();
     exit($e->getMessage());
 }
-
-$res_consejeria=$mysqli->query("select * from convalidaciones_docs where registro='$registro' and descripcion='Resolución de Consejería'");
-$res_ministerio=$mysqli->query("select * from convalidaciones_docs where registro='$registro' and descripcion='Resolución del Ministerio'");
-if ($res_consejeria->num_rows>0) $resuelto_consejeria=1;
-else $resuelto_consejeria=0;
-if ($res_ministerio->num_rows>0) $resuelto_ministerio=1;
-else $resuelto_ministerio=0;
-$mysqli->query("UPDATE convalidaciones SET resuelto_con='$resuelto_consejeria',resuelto_min='$resuelto_ministerio' WHERE registro='$registro'");
-
+if ($tabla=="convalidaciones_docs"){
+    $res_consejeria=$mysqli->query("select * from convalidaciones_docs where registro='$registro' and descripcion='Resolución de Consejería'");
+    $res_ministerio=$mysqli->query("select * from convalidaciones_docs where registro='$registro' and descripcion='Resolución del Ministerio'");
+    if ($res_consejeria->num_rows>0) $resuelto_consejeria=1;
+    else $resuelto_consejeria=0;
+    if ($res_ministerio->num_rows>0) $resuelto_ministerio=1;
+    else $resuelto_ministerio=0;
+    $mysqli->query("UPDATE convalidaciones SET resuelto_con='$resuelto_consejeria',resuelto_min='$resuelto_ministerio' WHERE registro='$registro'");
+}
 // Cerrar la conexión
 $mysqli->close();
 exit("ok");
