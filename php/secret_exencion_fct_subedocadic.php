@@ -45,6 +45,7 @@ if (!is_file($rutaCompleta)){
         $mysqli->commit();
     }
     catch (Exception $e) {
+        exit($e);
         // En caso de error, revertir la transacción
         $mysqli->rollback();
         exit("database");
