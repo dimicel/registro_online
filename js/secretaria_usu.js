@@ -1094,14 +1094,13 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
             alerta(msg,"ERROR DE CARGA");
         }
         else{
-            alert(procedimiento);return;
             _del_ruta = "../" + ruta;
             document.getElementById("doc_cod_seg").value = "";
             document.getElementById("del_ruta").value = _del_ruta;
             document.getElementById("registro").value = registro;
             document.getElementById("refresca_docs").value = refrescaDocs;
             document.getElementById("del_documento").innerHTML = descripcion;
-            document.getElementById("tipo_procedimiento").innerHTML = procedimiento;
+            document.getElementById("tipo_procedimiento").value = procedimiento;
             cod_seg = Math.floor(Math.random() * 1000).toString();
             if (cod_seg.length < 4) {
                 aux = "";
