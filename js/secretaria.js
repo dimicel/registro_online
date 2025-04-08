@@ -989,7 +989,7 @@ function verRegAdjuntosExencFCT(reg){
             }
             _div+="</ul>";
         }
-        document.getElementById("ver_reg_ajuntosConvalid").innerHTML=_div;
+        document.getElementById("ver_reg_ajuntosExencFCT").innerHTML=_div;
     },"json");
 }
 
