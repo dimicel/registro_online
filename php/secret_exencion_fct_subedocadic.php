@@ -25,7 +25,6 @@ else{
 
 $rutaTb="docs/".$id_nie."/exencion_form_emp"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
 $rutaCompleta=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
-
 $ruta_dir=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs";
 
 if (!is_file($rutaCompleta)){
