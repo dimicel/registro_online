@@ -1328,7 +1328,7 @@ function verRegistroConvalidaciones(num_registro){
             //contenido +="<div class='col-3'>"
             //contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/></div>";
             //contenido +="<div class='col-2'>"
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional('convalidaciones',\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
             contenido += "</div></div>";
             //contenido +="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+resp.registro.id_nie+"\",\""+num_registro+"\",this)'/>";
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
@@ -1374,7 +1374,7 @@ function verRegistroExencionFCT(num_registro){
             contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             contenido +="<div class='col-3'>";
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional('exencion_fct',\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
             contenido += "</div></div>";
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
             contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
@@ -2076,7 +2076,7 @@ function tipoDocAdjuntoConvalid(obj){
 }
 
 
-function adjuntaDocAdicional(procedimiento,_id_nie,registro){
+function adjuntaDocAdicional(_id_nie,registro){
     //Para convalidaciones
     __ministerio=0;
     __consejeria=0;
@@ -2214,6 +2214,124 @@ function adjuntaDocAdicional(procedimiento,_id_nie,registro){
             alerta("Ha ocurrido algún error. Inténtelo más tarde","ERROR NO DEFINIDO");
         }
     },"json");
+}
+
+
+function adjuntaDocAdicionalExencFCT(_id_nie,registro){
+    c="<div class='row'>";
+    c+="<div class='col-5'><label for='desc_adic_exenc_fct' class='col-form-label'>Descripción: </label></div>";
+    c+="<div class='col'><label for='doc_adic_exenc_fct' class='col-form-label'>Documento: </label></div>";
+    c+="</div>";
+    c+="<div class='row'>";
+    c+="<div class='col-5'><input type='text' class='form-control' id='desc_adic_exenc_fct' name='desc_adic_conval' maxlength='40' readonly/></div></div>";
+    c+="<div class='col'><input type='text' class='form-control' id='doc_adic_exenc_fct' readonly placeholder='Seleccionar documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/></div>";
+    c+="</div>";
+    c+="<input type='file' id='conval_doc_adicional' name='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById(\"doc_adic_conval\").value=this.files[0].name'/>";
+    document.getElementById("div_dialogs2").innerHTML=c;   
+    
+    $("#div_dialogs2").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "ADJUNTAR DOCUMENTO ADICIONAL A CONVALIDACIÓN",
+        width: 1000,
+        position: { my: "center", at: "center", of: window },
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Subir Documento",
+                click: function() {
+                    if (document.getElementById("desc_adic_conval").value.trim().length==0 || document.getElementById("doc_adic_conval").value.trim().length==0){
+                        alerta("No has seleccionado documento o falta su descripción.", "FALTAN DATOS");
+                    }
+                    else{
+                        datos = new FormData();
+                        datos.append("id_nie",encodeURIComponent(_id_nie));
+                        datos.append("registro",encodeURIComponent(registro));
+                        datos.append("descripcion",encodeURIComponent(document.getElementById("desc_adic_conval").value));
+                        datos.append("documento",document.getElementById("conval_doc_adicional").files[0]);
+                        datos.append("curso",encodeURIComponent(curso_actual));
+                        document.getElementById("cargando").style.display = 'inherit';
+                        $.post({
+                            url:"php/secret_convalid_subedocadic.php" ,
+                            data: datos,
+                            contentType: false,
+                            processData: false,
+                            success: function(resp) {
+                                //document.getElementById("cargando").style.display = 'none';
+                                if (resp == "servidor"){
+                                    document.getElementById("cargando").style.display = 'none';
+                                    alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                                } 
+                                else if (resp == "database") {
+                                    document.getElementById("cargando").style.display = 'none';
+                                    alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
+                                }
+                                else if (resp == "error_subida") {
+                                    document.getElementById("cargando").style.display = 'none';
+                                    alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
+                                }
+                                else if (resp == "ok"){
+                                    if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio' || document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
+                                        if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio'){
+                                            organismo="ministerio";
+                                        }
+                                        else if(document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
+                                            organismo="consejeria";
+                                        }
+                                        $.post("php/secret_convalid_procesado_organismo.php",{registro:registro,organismo:organismo,estado_procesado:1},(resp)=>{
+                                            document.getElementById("cargando").style.display = 'none';
+                                            if(resp=="ok"){
+                                                alerta("Estado procesado cambiado correctamente y resolución adjuntada.", "OK");
+                                            }
+                                            else if(resp=="no_registro") {
+                                                alerta("No existe el registro","ERROR");
+                                            }
+                                            else {
+                                                alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
+                                                //obj.checked=!obj.checked;
+                                            }
+                                            listaRegistros();
+                                        });
+                                    }
+                                    else{
+                                        document.getElementById("cargando").style.display = 'none';
+                                        alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
+                                    } 
+                                    verRegAdjuntosConvalid(registro);
+                                }
+                                //document.getElementById("cargando").style.display = 'inherit';
+                               
+                                document.getElementById("div_dialogs2").innerHTML="";
+                                $("#div_dialogs2").dialog("close");
+                                $("#div_dialogs2").dialog("destroy");
+                            },
+                            error: function(xhr, status, error) {
+                                document.getElementById("cargando").style.display = 'none';
+                                alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                                document.getElementById("div_dialogs2").innerHTML="";
+                                $("#div_dialogs2").dialog("close");
+                                $("#div_dialogs2").dialog("destroy");
+                            }
+                        });
+                    }
+                    
+                }
+            },
+            {
+            class: "btn btn-success textoboton",
+            text: "Cancelar",
+            click: function() {
+                document.getElementById("div_dialogs2").innerHTML="";
+                $("#div_dialogs2").dialog("close");
+                $("#div_dialogs2").dialog("destroy");
+            }
+            }]
+    });
 }
 
 function descargaCSVelearningFctProy(){
