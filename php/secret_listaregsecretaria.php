@@ -79,19 +79,25 @@ else {
 }
 
 $coletilla="";
-if (($tabla=="convalidaciones" || $tabla=="exencion_fct") && $visto==0){
-    //$coletilla=" procesado=$visto and ";
-}
-else{
-    if ($solo_incidencias==1) $coletilla="incidencias!='' and ";
-}
-if ($tabla=="exencion_fct"){
-    if ($departamento!="Todos"){
-        $coletilla.="departamento='$departamento' and ";
+if ($tabla=="convalidaciones" || $tabla="exencion_fct"){
+    if ($tabla=="exencion_fct"){
+        if ($departamento!="Todos"){
+            $coletilla.=" departamento='$departamento' and ";
+        }
+        if ($visto==0){
+            $coletilla.=" procesado=0 and ";
+        }
+    }
+    if ($tabla=="convalidaciones"  && $visto==0){
+        $coletilla.=" procesado=0 and ";
     }
 }
-if ($nuevo_otra_com=="Si") $coletilla.="al_nuevo_otracomunidad='Si' and ";
-if($curso_num!="") $coletilla.="grupo='$curso_num' and ";
+else{
+    if ($solo_incidencias==1) $coletilla.=" incidencias!='' and ";
+}
+
+if ($nuevo_otra_com=="Si") $coletilla.=" al_nuevo_otracomunidad='Si' and ";
+if($curso_num!="") $coletilla.=" grupo='$curso_num' and ";
 
 
 if ($proceso=="matriculaciclos"){
