@@ -2223,7 +2223,7 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
     c+="<div class='col-7'><label for='doc_adic_exenc_fct' class='col-form-label'>Documento: </label></div>";
     c+="</div>";
     c+="<div class='row'>";
-    c+="<div class='col-5'><input type='text' class='form-control' id='desc_adic_exenc_fct' name='desc_adic_conval' maxlength='40' readonly/></div></div>";
+    c+="<div class='col-5'><input type='text' class='form-control' id='desc_adic_exenc_fct' name='desc_adic_conval' maxlength='40'/></div></div>";
     c+="<div class='col-7'><input type='text' class='form-control' id='doc_adic_exenc_fct' readonly placeholder='Seleccionar documento' onclick='document.getElementById(\"exenc_fct_doc_adicional\").click()'/></div>";
     c+="</div>";
     c+="<input type='file' id='exenc_fct_doc_adicional' name='exenc_fct_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById(\"doc_adic_exenc_fct\").value=this.files[0].name'/>";
@@ -2237,7 +2237,7 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
         hide: { effect: "fade", duration: 0 },
         resizable: false,
         show: { effect: "fade", duration: 0 },
-        title: "ADJUNTAR DOCUMENTO ADICIONAL A CONVALIDACIÓN",
+        title: "ADJUNTAR DOCUMENTO ADICIONAL A EXENCIÓN DE PFE",
         width: 1000,
         position: { my: "center", at: "center", of: window },
         buttons: [
@@ -2245,7 +2245,7 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
                 class: "btn btn-success textoboton",
                 text: "Subir Documento",
                 click: function() {
-                    if (document.getElementById("desc_adic_conval").value.trim().length==0 || document.getElementById("doc_adic_conval").value.trim().length==0){
+                    if (document.getElementById("desc_adic_exenc_fct").value.trim().length==0 || document.getElementById("doc_adic_exenc_fct").value.trim().length==0){
                         alerta("No has seleccionado documento o falta su descripción.", "FALTAN DATOS");
                     }
                     else{
@@ -2276,32 +2276,8 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
                                     alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
                                 }
                                 else if (resp == "ok"){
-                                    if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio' || document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
-                                        if(document.getElementById("tipo_doc_conval").value=='Resolución del Ministerio'){
-                                            organismo="ministerio";
-                                        }
-                                        else if(document.getElementById("tipo_doc_conval").value=='Resolución de Consejería'){
-                                            organismo="consejeria";
-                                        }
-                                        $.post("php/secret_convalid_procesado_organismo.php",{registro:registro,organismo:organismo,estado_procesado:1},(resp)=>{
-                                            document.getElementById("cargando").style.display = 'none';
-                                            if(resp=="ok"){
-                                                alerta("Estado procesado cambiado correctamente y resolución adjuntada.", "OK");
-                                            }
-                                            else if(resp=="no_registro") {
-                                                alerta("No existe el registro","ERROR");
-                                            }
-                                            else {
-                                                alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
-                                                //obj.checked=!obj.checked;
-                                            }
-                                            listaRegistros();
-                                        });
-                                    }
-                                    else{
-                                        document.getElementById("cargando").style.display = 'none';
-                                        alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
-                                    } 
+                                    document.getElementById("cargando").style.display = 'none';
+                                    alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
                                     verRegAdjuntosConvalid(registro);
                                 }
                                 //document.getElementById("cargando").style.display = 'inherit';
