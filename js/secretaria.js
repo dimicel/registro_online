@@ -801,6 +801,13 @@ function listaRegistros(orden_campo, orden_direccion) {
                     data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
 
                 }
+                else if(tipo_formulario=="exencion_fct"){
+                    data += "<tr onclick='verRegistroExencionFCT(\""+data_array[i]["registro"]+"\")'>";
+                    for (j = 0; j < campos.length; j++) {
+                        data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                    }
+                    data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
+                }
                 else{
                     data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
                     //Check de selección. si es prematrícula no aparece
