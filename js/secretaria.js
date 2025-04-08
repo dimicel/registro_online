@@ -824,7 +824,13 @@ function listaRegistros(orden_campo, orden_direccion) {
                             fechaLimite = new Date(anno_final_curso+"-06-15");
                         }
                         else if(j==4){
-                            
+                            if (data_array[i]["resolucion"]=="PENDIENTE"){
+                                data+="<td style:'width:70px;text-align:center'>-</td>";
+                            }
+                            else {
+                                data+="<td style:'width:70px;text-align:center'><a href='#' target='_blank'>Ver</a></td>";
+                            }
+                            data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                         }
                         else{
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
