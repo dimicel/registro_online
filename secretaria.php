@@ -234,7 +234,7 @@
                             <label for="check_vistas" class="custom-control-label" style="margin-top:5px;margin-left:10px;">SÓLO No Vistas</label>
                         </div>
                     </div>
-                    <div class="form-group row" style="margin-top:10px" id="div_exencion_fct">
+                    <div class=" row" style="margin-top:10px" id="div_exencion_fct">
                         <label class="col-form-label col-lg-2" style="margin-left:20px">Departamento: </label>
                         <div class="col-lg-6" style="margin-left:-35px">
                             <select id="departamento" class="form-control" onchange="cambioDepartamento(this.value)"></select>
