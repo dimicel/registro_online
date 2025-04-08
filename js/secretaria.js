@@ -1354,6 +1354,51 @@ function verRegistroConvalidaciones(num_registro){
     }, "json");
 }
 
+function verRegistroExencionFCT(num_registro){
+    ancho = 700;
+    formulario="convalidaciones"
+    botones = "<div style='text-align:right'>";
+    botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(\""+num_registro+"\",\"exencion_fct\",document.getElementById(\"incidencias_text\").value)'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
+    botones += "</div>";
+    contenido="";
+    $.post("php/secret_recuperaregistro.php", { formulario: formulario, registro: num_registro }, function(resp) {
+        if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
+        else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
+        else if (resp.error == "ok") {
+            contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><span class='verReg_label' style='margin-left:5px'>Nº Registro: </span><span class='verReg_campo'>" + num_registro +"</span><br>";
+            contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
+            contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>"+resp.registro.curso_ciclo+" de Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
+            contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
+            contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
+            contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
+            contenido +="<div class='col-3'>";
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/></div>"
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido += "</div></div>";
+            contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
+            contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
+            contenido += botones;
+            document.getElementById("verRegistro_div").innerHTML = contenido;
+            verRegAdjuntosConvalid(num_registro);
+
+            $("#verRegistro_div").dialog({
+                autoOpen: true,
+                dialogClass: "no-close",
+                modal: true,
+                draggable: false,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "VISTA DEL REGISTRO",
+                width: ancho,
+                position: { my: "center top", at: "center top", of: window }
+            });
+        }
+    }, "json");
+}
+
 function verPanelResolver(id_nie,registro){
     ancho=1000;
     salir=false;
@@ -2408,7 +2453,6 @@ function listadoAutorUsoImag(){
     document.getElementById("curso_csv_autor_uso_imagenes").value=curso_actual;
     document.getElementById("descarga_csv_autor_uso_imagenes").submit();
 }
-
 
 
 function avisarJefesDpto(){
