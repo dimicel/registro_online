@@ -10,6 +10,7 @@ var curso_actual,curso_premat,curso_mat;
 var sesion_id;
 var tipo_formulario="";
 var n_reg="";
+var departamentos=[];
 
 
 $(function() {
@@ -70,6 +71,22 @@ $(function() {
         else if(resp.error="server"){
             alerta("Error en base de datos. La aplicación no funcionará correctamente.","ERROR DB");
         }
+        return ($.post('php/secret_recupera_departamentos.php',{},()=>{},"json"));
+    });
+    prom6=prom5.then((resp)=>{
+        if (resp.error=="ok"){
+            for(i=0;i<resp.registro.length;i++){
+                opt=document.createElement("option");
+                opt.value=resp.registro[i].departamento;
+                opt.textContent=resp.registro[i].departamento;
+                opt.dataset.email=resp.registro[i].email_jd;
+                document.getElementById("departamento").appendChild(opt);
+            }
+        }
+        else {
+            alerta("Ha habido algún error con la base de datos o el servidor. Las exenciones de formación en empresa no funcionarán correctamente","ERROR DB/SERVIDOR");
+        }
+        
     });
 
     $("#div_nie_registrado").dialog({
@@ -353,6 +370,7 @@ function generaSelectMat_fpb(){
 function listaRegistros(orden_campo, orden_direccion) {
     document.getElementById("div_incidencias").style.display="inherit";
     document.getElementById("div_convalidaciones").style.display="none";
+    document.getElementById("div_exencion_fct").style.display="none";
     ocultaCursosDesplegable();
     tipo_formulario = document.getElementById('tipo_form').value;
     if (tipo_formulario == "prematricula") {
@@ -425,6 +443,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         habilitaMenu(false, false);
         document.getElementById("div_incidencias").style.display="none";
         document.getElementById("div_convalidaciones").style.display="inherit";
+        if (tipo_formulario=="exencion_fct") document.getElementById("div_exencion_fct").style.display="inherit";
         document.getElementById("div_curso_premat").style.display = "none";
         document.getElementById("div_curso_mat").style.display = "none";
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
@@ -682,6 +701,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             buscar: buscar,
             tabla: tabla,
             curso: document.getElementById('curso').value,
+            departamento:document.getElementById('dpartamento').value,
             orden_campo: orden_campo,
             orden_direccion: direccion[orden_direccion],
             vistas:_v
@@ -2352,4 +2372,12 @@ function subeLogo(obj, imagen){
 function listadoAutorUsoImag(){
     document.getElementById("curso_csv_autor_uso_imagenes").value=curso_actual;
     document.getElementById("descarga_csv_autor_uso_imagenes").submit();
+}
+
+function cambioDepartamento(dpto){
+
+}
+
+function avisarJefesDpto(){
+    
 }
