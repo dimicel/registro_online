@@ -1088,13 +1088,13 @@ function adjuntosConvalid(registro){
 }
 
 function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
-    alert(procedimiento);return;
     $("#div_dialogs2").load("html/secretaria.txt?q="+Date.now()+" #div_borra_adjuntosconvalid", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
         }
         else{
+            alert(procedimiento);return;
             _del_ruta = "../" + ruta;
             document.getElementById("doc_cod_seg").value = "";
             document.getElementById("del_ruta").value = _del_ruta;
