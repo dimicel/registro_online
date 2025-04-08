@@ -1356,7 +1356,7 @@ function verRegistroConvalidaciones(num_registro){
 
 function verRegistroExencionFCT(num_registro){
     ancho = 700;
-    formulario="convalidaciones"
+    formulario="exencion_fct"
     botones = "<div style='text-align:right'>";
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(\""+num_registro+"\",\"exencion_fct\",document.getElementById(\"incidencias_text\").value)'/>";
