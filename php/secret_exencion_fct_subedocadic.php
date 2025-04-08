@@ -16,7 +16,7 @@ $subidopor=$_SESSION['tipo_usu'];
 $nombre_doc=$_FILES["documento"]["name"];
 $r=$mysqli->query("SELECT * FROM exenciones_fct_docs WHERE registro='$registro' ");
 if ($r===false){
-    exit($mysqli->errno);
+    exit("Error: ".$mysqli->errno);
 }
 else{
     $numFilas = $r->num_rows;
