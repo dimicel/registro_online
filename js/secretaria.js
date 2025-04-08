@@ -2299,7 +2299,7 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
                                 else if (resp == "ok"){
                                     document.getElementById("cargando").style.display = 'none';
                                     alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
-                                    verRegAdjuntosConvalid(registro);
+                                    verRegAdjuntosExencFCT(registro);
                                 }
                                 //document.getElementById("cargando").style.display = 'inherit';
                                
