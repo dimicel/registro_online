@@ -5,6 +5,7 @@ var pagina = 1;
 var orden_direccion_usu = "🡅";
 var validFormSubeDoc;
 var registro_adjuntos_convalid="";
+var registro_adjuntos_exenc_fct="";
 //var alto_tabla_usus=480;
 
 $(function() {
@@ -1099,6 +1100,7 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
             document.getElementById("registro").value = registro;
             document.getElementById("refresca_docs").value = refrescaDocs;
             document.getElementById("del_documento").innerHTML = descripcion;
+            document.getElementById("tipo_procedimiento").innerHTML = procedimiento;
             cod_seg = Math.floor(Math.random() * 1000).toString();
             if (cod_seg.length < 4) {
                 aux = "";
@@ -1108,8 +1110,8 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
                 cod_seg = aux + cod_seg;
             }
             document.getElementById("doc_cod_seg").innerHTML = cod_seg;
-            if (procedimiento=="convalidaciones") titulo="BORRADO DE DOCUMENTO ADJUNTO DE CONVALIDACIÓN";
-            else if(procedimiento=="exencion_fct") titulo="BORRADO DE DOCUMENTO ADJUNTO DE EXENCIÓN DE PFE";
+            if (procedimiento=="convalidaciones_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE CONVALIDACIÓN";
+            else if(procedimiento=="exencion_fct_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE EXENCIÓN DE PFE";
             else titulo="";
             $("#div_dialogs2").dialog({
                 autoOpen: true,
@@ -1129,20 +1131,25 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
     });
 }
 
-function confirmadoBorradoAdjuntoConvalid() {
+function confirmadoBorradoAdjunto(procedim) {
     registro=document.getElementById("registro").value;
+    registro_adjuntos_exenc_fct=registro.slice(0, -4);
     refresca_docs=document.getElementById("refresca_docs").value;
     doc_ruta = document.getElementById("del_ruta").value;
     if (document.getElementById("doc_cod_seg").innerHTML == document.getElementById("t_doc_cod_seg").value) {
-        $.post("php/secret_usu_borra_adjuntoconvalid.php", { ruta: doc_ruta }, function(resp) {
+        $.post("php/secret_usu_borra_adjunto.php", {tabla:procedim, ruta: doc_ruta }, function(resp) {
             document.getElementById("t_doc_cod_seg").value="";
             if (resp == "error") {
                 alerta("No se ha podido borrar el documento.", "ERROR BORRADO");
             } else if (resp == "ok") {
                 alerta("Documento borrado con éxito.", "BORRADO OK");
-                if (refresca_docs=='0')regeneraListaAdjuntosConvalid();
+                if (refresca_docs=='0'){
+                    if (procedim=="convalidaciones_docs") regeneraListaAdjuntosConvalid();
+                    else if (procedim=="exencion_fct_docs") regeneraListaAdjuntosExencFCT();
+                }
                 else {
-                    verRegAdjuntosConvalid(registro);
+                    if (procedim=="convalidaciones_docs") verRegAdjuntosConvalid(registro);
+                    else if (procedim=="exencion_fct_docs") verRegAdjuntosExencFCT(registro);
                     listaRegistros();
                 }
             }
@@ -1162,6 +1169,24 @@ function regeneraListaAdjuntosConvalid(){
     $.post("php/secret_convalid_adjuntos.php",{registro:registro_adjuntos_convalid},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
         contenido = "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de iesulabto_convcm_"+registro_adjuntos_convalid+"</span><br>";
+        if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
+        else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>No hay documentos adjuntos a la solicitud.</span>";
+        else {
+            for(i=0;i<resp.datos.length;i++){
+                contenido += "<button onclick='borraAdjuntos(\""+resp.datos[i].ruta+"\")' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button>";
+                contenido += "<a style='color:GREEN;font-size:0.75em;margin-left:10px;' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a><br>";
+            }
+        }
+        document.getElementById("div_dialogs_adjuntosconvalid").innerHTML=contenido;
+    },"json");
+}
+
+
+function regeneraListaAdjuntosExencFCT(){
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post("php/secret_exencion_fct_adjuntos.php",{registro:registro_adjuntos_exenc_fct},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
+        contenido = "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de iesulabto_convcm_"+registro_adjuntos_exenc_fct+"</span><br>";
         if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp.error=="sin_adjuntos") contenido += "<span class='verReg_label'>No hay documentos adjuntos a la solicitud.</span>";
         else {

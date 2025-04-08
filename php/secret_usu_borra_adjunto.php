@@ -7,10 +7,11 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 $ruta=$_POST["ruta"];
+$tabla=$_POST["tabla"];
 $_rutadb=substr($ruta,3);//$ruta viene con ../ delante. $_rutadb es la ruta sin eso
 
 $registro="";
-$res=$mysqli->query("select * from convalidaciones_docs where ruta='$_rutadb'");
+$res=$mysqli->query("select * from ".$tabla." where ruta='$_rutadb'");
 if($res->num_rows>0){
     while($reg=$res->fetch_assoc()){
         $registro=$reg["registro"];
