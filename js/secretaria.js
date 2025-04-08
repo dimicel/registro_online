@@ -2252,12 +2252,12 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
                         datos = new FormData();
                         datos.append("id_nie",encodeURIComponent(_id_nie));
                         datos.append("registro",encodeURIComponent(registro));
-                        datos.append("descripcion",encodeURIComponent(document.getElementById("desc_adic_conval").value));
-                        datos.append("documento",document.getElementById("conval_doc_adicional").files[0]);
+                        datos.append("descripcion",encodeURIComponent(document.getElementById("desc_adic_exenc_fct").value));
+                        datos.append("documento",document.getElementById("exenc_fct_doc_adicional").files[0]);
                         datos.append("curso",encodeURIComponent(curso_actual));
                         document.getElementById("cargando").style.display = 'inherit';
                         $.post({
-                            url:"php/secret_execion_fct_subedocadic.php" ,
+                            url:"php/secret_exencion_fct_subedocadic.php" ,
                             data: datos,
                             contentType: false,
                             processData: false,

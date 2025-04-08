@@ -13,12 +13,9 @@ $anno_curso=urldecode($_POST["curso"]);
 $descripcion=urldecode($_POST["descripcion"]);
 $dirRegistro=substr($registro, 17);
 $subidopor=$_SESSION['tipo_usu'];
-if($descripcion=="Resolución del Ministerio" || $descripcion=="Resolución de Consejería"){
-    $nombre_doc=$descripcion.".pdf";
-}
-else $nombre_doc=$_FILES["documento"]["name"];
+$nombre_doc=$_FILES["documento"]["name"];
 
-$r=$mysqli->query("SELECT * FROM convalidaciones_docs WHERE registro='$registro'");
+$r=$mysqli->query("SELECT * FROM exenciones_fct_docs WHERE registro='$registro' ");
 if (!$r){
     exit("database");
 }
@@ -26,15 +23,11 @@ else{
     $numFilas = $r->num_rows;
     $indice=sprintf("%02d", $numFilas+1)."_";
 }
-if($descripcion=="Resolución del Ministerio" || $descripcion=="Resolución de Consejería"){
-    $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$nombre_doc;
-    $rutaCompleta=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/".$nombre_doc;
-}
-else {
-    $rutaTb="docs/".$id_nie."/convalidaciones"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
-    $rutaCompleta=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
-}
-$ruta_dir=__DIR__."/../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro."/docs";
+
+$rutaTb="docs/".$id_nie."/exencion_form_emp"."/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
+$rutaCompleta=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs"."/".$indice.$nombre_doc;
+
+$ruta_dir=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs";
 
 if (!is_file($rutaCompleta)){
     $mysqli->begin_transaction();
