@@ -600,7 +600,13 @@ function listaRegistros(orden_campo, orden_direccion) {
                 encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
             }
             else{
-                encab += "<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
+                if (tipo_formulario=="exencion_fct" && i==4){
+                    encab+="<td style='width:70px' title='Informe Jefe de Dpto.'>Inf.JD</td>";
+                    encab+="<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
+                }
+                else {
+                    encab += "<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
+                }
             }
         }
         encab += "<td style='width:90px; text-align: center'>Observaciones</td></tr>";
@@ -816,6 +822,9 @@ function listaRegistros(orden_campo, orden_direccion) {
                             // Crear el objeto Date para la fecha límite
                             anno_final_curso=document.getElementById("curso").value.slice(-4);
                             fechaLimite = new Date(anno_final_curso+"-06-15");
+                        }
+                        else if(j==4){
+                            
                         }
                         else{
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
