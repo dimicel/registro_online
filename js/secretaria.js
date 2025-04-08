@@ -75,6 +75,11 @@ $(function() {
     });
     prom6=prom5.then((resp)=>{
         if (resp.error=="ok"){
+            opt=document.createElement("option");
+            opt.value="Todos";
+            opt.textContent="Todos";
+            opt.dataset.email="todos";
+            document.getElementById("departamento").appendChild(opt);
             for(i=0;i<resp.registro.length;i++){
                 opt=document.createElement("option");
                 opt.value=resp.registro[i].departamento;
@@ -2379,5 +2384,5 @@ function cambioDepartamento(dpto){
 }
 
 function avisarJefesDpto(){
-    
+
 }
