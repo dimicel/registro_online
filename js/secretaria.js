@@ -2257,7 +2257,7 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
                         datos.append("curso",encodeURIComponent(curso_actual));
                         document.getElementById("cargando").style.display = 'inherit';
                         $.post({
-                            url:"php/secret_convalid_subedocadic.php" ,
+                            url:"php/secret_execion_fct_subedocadic.php" ,
                             data: datos,
                             contentType: false,
                             processData: false,
