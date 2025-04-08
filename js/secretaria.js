@@ -825,10 +825,10 @@ function listaRegistros(orden_campo, orden_direccion) {
                         }
                         else if(j==4){
                             if (data_array[i]["resolucion"]=="PENDIENTE"){
-                                data+="<td style:'width:70px;text-align:center'>-</td>";
+                                data+="<td style:'width:70px;'><center>-</center></td>";
                             }
                             else {
-                                data+="<td style:'width:70px;text-align:center'><a href='#' target='_blank'>Ver</a></td>";
+                                data+="<td style:'width:70px;'><center><a href='#' target='_blank'>Ver</a></center></td>";
                             }
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                         }
