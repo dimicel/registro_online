@@ -11,7 +11,7 @@ if ($mysqli->errno>0) {
 
 $departamento=$_POST['config_dpto'];
 $email=$_POST['config_email_jd'];
-
+exit($departamento . "    " . $email);
 
 $sql = "UPDATE departamentos SET email_jd = ? WHERE departamento=?";
 
