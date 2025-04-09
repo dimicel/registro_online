@@ -130,6 +130,39 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 								}
 							}
 						}
+						elseif($tipodoc=="exencion_fct"){
+							if ($doc != "." && $doc != ".." && ($dir==$filtro || $filtro=="todos"))
+							{
+								if (is_file("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf"))
+								{
+									$data["docs"][$tipodoc][$contador]["resolucion"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf";
+								}
+								else 
+								{
+									$data["docs"][$tipodoc][$contador]["resolucion"]="";
+								}
+								if (is_file("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/informe_jd/informe_jd.pdf"))
+								{
+									$data["docs"][$tipodoc][$contador]["informe_jd"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf";
+								}
+								else 
+								{
+									$data["docs"][$tipodoc][$contador]["informe_jd"]="";
+								}
+								$subConv=opendir("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc);
+								while(false!=($docConv=readdir($subConv)))
+								{
+									if ($docConv!="." && $docConv!=".." && $docConv!="docs")
+									{
+										$data["error"]="ok";
+										$data["docs"][$tipodoc][$contador]["curso"]=$dir;
+										$data["docs"][$tipodoc][$contador]["doc"]=$docConv;
+										$data["docs"][$tipodoc][$contador]["enlace"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/".$docConv;
+										$contador++;
+									}
+								}
+							}
+						}
 						else
 						{
 							if ($doc != "." && $doc != ".."  && ($dir==$filtro || $filtro=="todos"))

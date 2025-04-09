@@ -298,7 +298,20 @@ function obtieneDocsExpediente() {
                             }
                         }
                         else if(docs_exp[td] == "EXENCIÓN FORMACIÓN EN EMPRESAS (PFE)"){
-                            
+                            contenido_div += "<td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
+                            contenido_div += "<td><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"+resp["docs"][td][j]["doc"] + "</a>";
+                            contenido_div += "<a style='margin-left:15px;margin-right:15px' href='#' onclick='adjuntosConvalid(\""+resp['docs'][td][j]['doc']+"\")'>>Ver Adjuntos<</a>";
+                            if (resp["docs"][td][j]["resolucion"]=="" && resp["docs"][td][j]["informe_jd"]==""){
+                                contenido_div +="</td>";
+                            }
+                            else{
+                                if (resp["docs"][td][j]["resolucion"]!=""){
+                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion']+"'>>Resolución<</a></td>";
+                                }
+                                if (resp["docs"][td][j]["informe_jd"]!=""){
+                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['informe_jd']+"' title='Informe del Jefe de Departamento'>>Informe JD<</a></td>";
+                                }
+                            }
                         }
                         else{
                             contenido_div += "<td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
