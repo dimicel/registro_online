@@ -2532,6 +2532,111 @@ function logosFirmaSello(){
     });
 }
 
+function datosDepartamentos(){
+    volver=false;
+    $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
+        if (resp.error=="ok"){
+            document.getElementById("director").value=resp.registro.director;
+            document.getElementById("centro").value=resp.registro.centro;
+            document.getElementById("cp").value=resp.registro.cp_centro;
+            document.getElementById("direccion").value=resp.registro.direccion_centro;
+            document.getElementById("localidad").value=resp.registro.localidad_centro;
+            document.getElementById("provincia").value=resp.registro.provincia_centro;
+            document.getElementById("tlf_centro").value=resp.registro.tlf_centro;
+            document.getElementById("fax_centro").value=resp.registro.fax_centro;
+            document.getElementById("email_centro").value=resp.registro.email_centro;
+            document.getElementById("email_jef_res").value=resp.registro.email_jefe_residencia;
+            document.getElementById("finza_bonif").value=resp.registro.residencia_fianza_bonificados;
+            document.getElementById("finza_nobonif").value=resp.registro.residencia_fianza_no_bonificados;
+        }
+        else if (resp.datos=="server"){
+            alerta("Error en servidor. No se pueden editar los datos asociados al centro","ERROR SERVIDOR");
+            volver=true;
+        }
+    },"json");
+    if (volver) return;
+
+    $("#config_departamentos").validate({
+        rules: {
+            config_dpto: {
+                required: true
+            },
+            config_email_jd: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            config_dpto: {
+                required: "Seleccione un departamento"
+            },
+            config_email_jd: {
+                required: "Complete el campo",
+                email: "Formato de email incorrecto"
+            }
+        },
+        errorPlacement: function(error, element) {
+            $(element).prev().prev($('.errorTxt')).html(error);
+        }
+    });
+
+    $("#div_config_departamentos").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "DATOS ASOCIADOS A LOS DEPARTAMENTOS",
+        width: 700,
+        position: { my: "center", at: "center", of: window },
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Guardar Cambios",
+                click: function() {
+                    if ($("#config_departamentos").valid()){
+                        document.getElementById("cargando").style.display = 'inherit';
+                        $.post({
+                            url:"php/secret_actualiza_param_centro.php" ,
+                            data: $("#config_departamentos").serialize(),
+                            success: function(resp) {
+                                document.getElementById("cargando").style.display = 'none';
+                                if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                                else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                                else if (resp == "ok"){
+                                    alerta("Datos del centro actualizados correctamente.","ACTUALIZACIÓN CORRECTA");
+                                }
+                                else{
+                                    alerta(resp,"ERROR");
+                                }
+                                $("#div_config_departamentos").dialog("close");
+                                $("#div_config_departamentos").dialog("destroy");
+                            },
+                            error: function(xhr, status, error) {
+                                document.getElementById("cargando").style.display = 'none';
+                                alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                                $("#div_config_departamentos").dialog("close");
+                                $("#div_config_departamentos").dialog("destroy");
+                            }
+                        });
+                    }
+                    
+                }
+            },
+            {
+            class: "btn btn-success textoboton",
+            text: "Cancelar",
+            click: function() {
+                $("#div_config_departamentos").dialog("close");
+                $("#div_config_departamentos").dialog("destroy");
+            }
+        }]
+    });
+    
+}
+
 
 function subeLogo(obj, imagen){
     if (obj.files[0].type !== "image/jpeg" && obj.files[0].type !== "image/jpg") {
