@@ -15,7 +15,7 @@ $email=$_POST['config_email_jd'];
 $sql = "UPDATE departamentos SET email_jd = ? WHERE departamento=?";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param('ss', $departamento, $email);
+$stmt->bind_param('ss', $email, $departamento);
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
