@@ -2623,6 +2623,7 @@ function datosDepartamentos(){
 }
 
 function selDptoConfigDpto(obj){
+    alert(obj.value);
     if (obj.value=""){
         document.getElementById("config_email_jd").value="";
         document.getElementById("config_email_jd").readOnly=true;
