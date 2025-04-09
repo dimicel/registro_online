@@ -2541,29 +2541,6 @@ function logosFirmaSello(){
 }
 
 function datosDepartamentos(){
-    volver=false;
-    $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
-        if (resp.error=="ok"){
-            document.getElementById("director").value=resp.registro.director;
-            document.getElementById("centro").value=resp.registro.centro;
-            document.getElementById("cp").value=resp.registro.cp_centro;
-            document.getElementById("direccion").value=resp.registro.direccion_centro;
-            document.getElementById("localidad").value=resp.registro.localidad_centro;
-            document.getElementById("provincia").value=resp.registro.provincia_centro;
-            document.getElementById("tlf_centro").value=resp.registro.tlf_centro;
-            document.getElementById("fax_centro").value=resp.registro.fax_centro;
-            document.getElementById("email_centro").value=resp.registro.email_centro;
-            document.getElementById("email_jef_res").value=resp.registro.email_jefe_residencia;
-            document.getElementById("finza_bonif").value=resp.registro.residencia_fianza_bonificados;
-            document.getElementById("finza_nobonif").value=resp.registro.residencia_fianza_no_bonificados;
-        }
-        else if (resp.datos=="server"){
-            alerta("Error en servidor. No se pueden editar los datos asociados al centro","ERROR SERVIDOR");
-            volver=true;
-        }
-    },"json");
-    if (volver) return;
-
     $("#config_departamentos").validate({
         rules: {
             config_dpto: {
