@@ -910,6 +910,10 @@ function selTipoDoc(obj) {
         alerta("Para adjuntar al expediente la resolución de convalidaciones del Ministerio o Consejería u otro tipo de documento adjunto, debe hacerse a través del botón 'Adjuntar Documento', seleccionando la solicitud correspondiente del listado que aparece en  'Tipo de formulario: Convalidaciones' (en la pantalla inicial).","OPERACIÓN NO DISPONIBLE AQUÍ",false,500);
         obj.value="";
     }
+    else if(obj.value=="exencion_fct"){
+        alerta("Para adjuntar al expediente algun documento adicional relacionado con la exención de formación en empresas, debe hacerse a través del botón 'Adjuntar Documento', seleccionando la solicitud correspondiente del listado que aparece en  'Tipo de formulario: Exención PFE' (en la pantalla inicial).","OPERACIÓN NO DISPONIBLE AQUÍ",false,500);
+        obj.value="";
+    }
     else {
         document.getElementById("documento").accept = "application/pdf";
         document.getElementById("nom_doc").readOnly=false;
