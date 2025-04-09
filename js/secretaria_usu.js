@@ -811,6 +811,7 @@ function subeDocExpediente(id, nom) {
             alerta(msg,"ERROR DE CARGA");
         }
         else{
+            generaSelectCurso(document.getElementById("curso_doc"));
             validFormSubeDoc = $("#form_sube_doc").validate({
                 rules: {
                     tipo_doc: {
