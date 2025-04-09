@@ -2626,6 +2626,7 @@ function selDptoConfigDpto(obj){
     if (obj.value==""){
         document.getElementById("config_email_jd").value="";
         document.getElementById("config_email_jd").readOnly=true;
+        document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
     }
     else {
         $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
