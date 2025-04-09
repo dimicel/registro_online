@@ -2632,9 +2632,9 @@ function selDptoConfigDpto(obj){
             if(resp.error!="ok") alerta ("No se han podido consultar los datos de los departamentos.","ERROR DB/SERVER");
             else {
                 for (i=0; i<resp.registro.length;i++){
-                    alert(obj.value+"     "+resp.registro[i].departamento);
                     if (resp.registro[i].departamento==obj.value){
-                        document.getElementById("config_email_jd").value=resp.registro[i].email_jd;
+                        if (resp.registro[i].email_jd.length>0) document.getElementById("config_email_jd").value=resp.registro[i].email_jd;
+                        else document.getElementById("config_email_jd").value="";
                         document.getElementById("config_email_jd").readOnly=false;
                         break;
                     }
