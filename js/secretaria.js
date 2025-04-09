@@ -2634,7 +2634,7 @@ function selDptoConfigDpto(obj){
                 for (i=0; i<resp.registro.length;i++){
                     if (resp.registro[i].departamento==obj.value){
                         if (resp.registro[i].email_jd.length>0) document.getElementById("config_email_jd").value=resp.registro[i].email_jd;
-                        else document.getElementById("config_email_jd").value="";
+                        else document.getElementById("config_email_jd").placeholder="";
                         document.getElementById("config_email_jd").readOnly=false;
                         break;
                     }
