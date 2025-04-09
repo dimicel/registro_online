@@ -79,12 +79,20 @@ $(function() {
             opt.textContent="Todos";
             opt.dataset.email="todos";
             document.getElementById("departamento").appendChild(opt);
+            opt=document.createElement("option");
+            opt.value="";
+            opt.textContent="Seleccione departamento ...";
+            document.getElementById("config_dpto").appendChild(opt);
             for(i=0;i<resp.registro.length;i++){
                 opt=document.createElement("option");
                 opt.value=resp.registro[i].departamento;
                 opt.textContent=resp.registro[i].departamento;
                 opt.dataset.email=resp.registro[i].email_jd;
                 document.getElementById("departamento").appendChild(opt);
+                opt=document.createElement("option");
+                opt.value=resp.registro[i].departamento;
+                opt.textContent=resp.registro[i].departamento;
+                document.getElementById("config_dpto").appendChild(opt);
             }
         }
         else {
