@@ -2596,16 +2596,16 @@ function datosDepartamentos(){
                                 else{
                                     alerta(resp,"ERROR");
                                 }
-                                $("#div_config_departamentos").dialog("close");
-                                $("#div_config_departamentos").dialog("destroy");
+                                //$("#div_config_departamentos").dialog("close");
+                                //$("#div_config_departamentos").dialog("destroy");
                                 $("#config_departamentos").validate().resetForm();
                                 document.getElementById("config_departamentos").reset();
                             },
                             error: function(xhr, status, error) {
                                 document.getElementById("cargando").style.display = 'none';
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                                $("#div_config_departamentos").dialog("close");
-                                $("#div_config_departamentos").dialog("destroy");
+                                //$("#div_config_departamentos").dialog("close");
+                                //$("#div_config_departamentos").dialog("destroy");
                                 $("#config_departamentos").validate().resetForm();
                                 document.getElementById("config_departamentos").reset();
                             }
@@ -2616,7 +2616,7 @@ function datosDepartamentos(){
             },
             {
             class: "btn btn-success textoboton",
-            text: "Cancelar",
+            text: "Salir",
             click: function() {
                 $("#div_config_departamentos").dialog("close");
                 $("#div_config_departamentos").dialog("destroy");
