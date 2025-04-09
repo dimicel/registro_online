@@ -2591,7 +2591,7 @@ function datosDepartamentos(){
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                                 else if (resp == "ok"){
-                                    alerta("Emaiol del Jefe de Departamento actualizado correctamente.","ACTUALIZACIÓN CORRECTA");
+                                    alerta("Email del Jefe de Departamento actualizado correctamente.","ACTUALIZACIÓN CORRECTA");
                                 }
                                 else{
                                     alerta(resp,"ERROR");
