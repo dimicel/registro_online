@@ -550,12 +550,12 @@
                 <div class="col-4">
                     <label for="config_dpto">Departamento</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <select id="config_dpto" name="config_dpto" class="form-control" onchange="this.value==''?document.getElementById('config_email_jd').readOnly=true:document.getElementById('config_email_jd').readOnly=false"></select>
+                    <select id="config_dpto" name="config_dpto" class="form-control" onchange="selDptoConfigDpto(this)"></select>
                 </div>
                 <div class="col">
                     <label for="config_email_jd">Email del Jefe de Dpto.</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" id="config_email_jd" name="config_email_jd" class="form-control" readonly>
+                    <input type="text" id="config_email_jd" name="config_email_jd" class="form-control" placeholder="Seleccione un departamento" readonly>
                 </div>
             </div>
         </form>
