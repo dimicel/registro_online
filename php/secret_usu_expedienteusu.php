@@ -55,6 +55,7 @@ for($i=0;$i<count($tablas);$i++){
 $tipos_doc=[
 	"certificado_notas"=>"certificado_notas",//par índice del array y directorio de ubicación de los docs
 	"convalidaciones"=>"convalidaciones",
+	"exencion_fct"=>"exencion_form_emp",
 	"anulacion_matricula"=>"anulacion_matricula",
 	"anulacion_modulos_modular"=>"anul_mod_modular",
 	"renuncia_convocatoria"=>"renuncia_conv",

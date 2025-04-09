@@ -244,6 +244,7 @@ function verExpediente(id_nie, nom, n_reg) {
         "anulacion_modulos_modular": "ANULACIÓN DE MÓDULOS (MODULAR)",
         "certificado_notas": "CERTIFICADOS DE NOTAS",
         "convalidaciones": "CONVALIDACIONES",
+        "exencion_fct":"EXENCIÓN FORMACIÓN EN EMPRESAS (PFE)",
         "fct": "FCT",
         "homologacion_estudios": "HOMOLOGACIÓN DE ESTUDIOS",
         "matriculas": "MATRICULAS",
@@ -295,6 +296,9 @@ function obtieneDocsExpediente() {
                                     contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion_min']+"'>>Res.Minist.<</a></td>";
                                 }
                             }
+                        }
+                        else if(docs_exp[td] == "EXENCIÓN FORMACIÓN EN EMPRESAS (PFE)"){
+                            
                         }
                         else{
                             contenido_div += "<td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
