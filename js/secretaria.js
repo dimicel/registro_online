@@ -2622,6 +2622,27 @@ function datosDepartamentos(){
     
 }
 
+function selDptoConfigDpto(obj){
+    if (obj.value=""){
+        document.getElementById("config_email_jd").value="";
+        document.getElementById("config_email_jd").readOnly=true;
+    }
+    else {
+        $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
+            if(resp.error!="ok") alerta ("No se han podido consultar los datos de los departamentos.","ERROR DB/SERVER");
+            else {
+                for (i=0; i<resp.registro.length;i++){
+                    if (resp.registro[i].departamento==obj.value){
+                        document.getElementById("config_email_jd").value=resp.registro[i].email_jd;
+                        document.getElementById("config_email_jd").readOnly=false;
+                        break;
+                    }
+                }
+            }
+        },"json");
+    }
+}
+
 
 function subeLogo(obj, imagen){
     if (obj.files[0].type !== "image/jpeg" && obj.files[0].type !== "image/jpg") {
