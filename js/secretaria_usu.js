@@ -281,7 +281,7 @@ function obtieneDocsExpediente() {
                         if(docs_exp[td] == "CONVALIDACIONES"){
                             contenido_div += "<td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
                             contenido_div += "<td><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"+resp["docs"][td][j]["doc"] + "</a>";
-                            contenido_div += "<a style='margin-left:15px;margin-right:15px' href='#' onclick='adjuntosConvalid(\""+resp['docs'][td][j]['doc']+"\")'>>Ver Adjuntos<</a>";
+                            contenido_div += "<a style='margin-left:15px;margin-right:15px' href='#' onclick='adjuntosConvalid(\""+resp['docs'][td][j]['doc']+"\",\"convalidaciones\")'>>Ver Adjuntos<</a>";
                             if (resp["docs"][td][j]["resolucion"]=="" && resp["docs"][td][j]["resolucion_con"]=="" && resp["docs"][td][j]["resolucion_min"]==""){
                                 contenido_div +="</td>";
                             }
@@ -300,7 +300,7 @@ function obtieneDocsExpediente() {
                         else if(docs_exp[td] == "EXENCIÓN FORMACIÓN EN EMPRESAS (PFE)"){
                             contenido_div += "<td width='80px'>" + resp["docs"][td][j]["curso"] + "</td>";
                             contenido_div += "<td><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"+resp["docs"][td][j]["doc"] + "</a>";
-                            contenido_div += "<a style='margin-left:15px;margin-right:15px' href='#' onclick='adjuntosConvalid(\""+resp['docs'][td][j]['doc']+"\")'>>Ver Adjuntos<</a>";
+                            contenido_div += "<a style='margin-left:15px;margin-right:15px' href='#' onclick='adjuntosConvalid(\""+resp['docs'][td][j]['doc']+"\",\"exencion_fct\")'>>Ver Adjuntos<</a>";
                             if (resp["docs"][td][j]["resolucion"]=="" && resp["docs"][td][j]["informe_jd"]==""){
                                 contenido_div +="</td>";
                             }
@@ -1064,10 +1064,12 @@ function bloqueaNomArch(){
 }
 
 
-function adjuntosConvalid(registro){
+function adjuntosConvalid(registro,procedimiento){
     registro_adjuntos_convalid=registro.slice(0, -4);
-    document.getElementById("cargando").style.display = 'inherit';
-    $.post("php/secret_convalid_adjuntos.php",{registro:registro_adjuntos_convalid},(resp)=>{
+    document.getElementById("cargando").style.display = '';
+    if (procedimiento=="convalidaciones") url="php/secret_convalid_adjuntos.php";
+    else if(procedimiento=="exencion_fct") url="php/secret_exencion_fct_adjuntos.php";
+    $.post(url,{registro:registro_adjuntos_convalid},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
         contenido = "<span class='verReg_label'>DOCUMENTOS ADJUNTOS de "+registro+"</span><br>";
         if(resp.error=="server") contenido += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
