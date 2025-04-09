@@ -337,7 +337,7 @@ function obtieneDocsExpediente() {
 
 
 function borraDocExp(obj) {
-    $("#div_dialogs2").load("html/secretaria.txt?q="+Date.now()+" #div_borra_doc", function(response,status, xhr){
+    $("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #div_borra_doc", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -399,7 +399,7 @@ function confirmadoBorradoDoc() {
 }
 
 function cambiaNomDocExp(obj) {
-    $("#div_dialogs2").load("html/secretaria.txt?q="+Date.now()+" #div_camb_nom_doc", function(response,status, xhr){
+    $("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #div_camb_nom_doc", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -479,7 +479,7 @@ function confirmaCambioNombreDoc() {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
-    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_expediente_usuario", function(response,status, xhr){
+    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_expediente_usuario", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -522,7 +522,7 @@ function panelExpedienteUsuario(id_nie,nom) {
 
 
 function panelEnvioEmail(dir_email) {
-    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
+    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -597,7 +597,7 @@ function panelEnvioEmail(dir_email) {
 }
 
 function eliminaUsuario(id, nom) {
-    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_elimina_usuario", function(response,status,xhr){
+    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_elimina_usuario", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -660,7 +660,7 @@ function confirmadoEliminarUsuario(nie_borrar) {
 }
 
 function panelModUsu(id) {
-    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_modif_datos_usu", function(response,status,xhr){
+    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_modif_datos_usu", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -822,7 +822,7 @@ function modUsu() {
 
 
 function subeDocExpediente(id, nom) {
-    $("#div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_sube_docs", function(response,status,xhr){
+    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_sube_docs", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -1108,7 +1108,7 @@ function adjuntosConvalid(registro,procedimiento){
 }
 
 function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
-    $("#div_dialogs2").load("html/secretaria.txt?q="+Date.now()+" #div_borra_adjuntosconvalid", function(response,status, xhr){
+    $("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #div_borra_adjuntosconvalid", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");

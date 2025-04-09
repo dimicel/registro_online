@@ -212,7 +212,7 @@ function res_ordenUsus() {
 
 
 function res_panelEnvioEmail(dir_email) {
-    $("#res_div_dialogs").load("html/secretaria.txt?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
+    $("#res_div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
