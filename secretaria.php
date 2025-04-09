@@ -544,7 +544,7 @@
         </div>
     </div>
 
-    <div class="row alertas" id="div_config_departamentos">
+    <div class="form-row alertas" id="div_config_departamentos">
         <form id="config_departamentos">
         <div class="col-4">
             <label for="config_dpto">Departamento</label>
