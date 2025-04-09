@@ -116,10 +116,11 @@
                     <li class="nav-item" id="menu7">
                         <a class="nav-link dropdown-toggle" id="menu_matricula" href="#" data-toggle="dropdown">Configuración</a>
                         <div class="dropdown-menu" >
-                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
-                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="logosFirmaSello()">Logos - Firma y sello</a>
-                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Ciclos Formativos</a>
-                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Módulos de Ciclos Formativos</a>
+                            <a id="param_centro" class="dropdown-item" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
+                            <a id="logos_firma_sello" class="dropdown-item" href="#" onclick="logosFirmaSello()">Logos - Firma y sello</a>
+                            <a id="config_ciclos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Ciclos Formativos</a>
+                            <a id="config_modulos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Módulos de Ciclos Formativos</a>
+                            <a id="config_jef_dpto" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Departamentos</a>
                         </div>    
                     </li>
                     <li class="nav-item" id="menu8">
