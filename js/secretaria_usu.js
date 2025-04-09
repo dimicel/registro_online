@@ -907,7 +907,7 @@ function selTipoDoc(obj) {
         bloqueaNomArch();
     }
     else if(obj.value == "Convalidaciones"){
-        alerta("Para adjuntar al expediente la resolución de convalidaciones del Ministerio o Consejería u otro tipo de documento adjunto, debe hacerse a través del botón 'Adjuntar Documento', seleccionando la solicitud correspondiente del listado que aparece en  'Tipo de formulario: Convalidaciones' (en la pantalla inicial).","OPERACIÓN NO DISPONIBLE AQUÍ");
+        alerta("Para adjuntar al expediente la resolución de convalidaciones del Ministerio o Consejería u otro tipo de documento adjunto, debe hacerse a través del botón 'Adjuntar Documento', seleccionando la solicitud correspondiente del listado que aparece en  'Tipo de formulario: Convalidaciones' (en la pantalla inicial).","OPERACIÓN NO DISPONIBLE AQUÍ",false,500);
         obj.value="";
     }
     else {
