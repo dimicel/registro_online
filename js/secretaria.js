@@ -2584,14 +2584,14 @@ function datosDepartamentos(){
                     if ($("#config_departamentos").valid()){
                         document.getElementById("cargando").style.display = 'inherit';
                         $.post({
-                            url:"php/secret_actualiza_param_centro.php" ,
+                            url:"php/secret_actualiza_param_departamentos.php" ,
                             data: $("#config_departamentos").serialize(),
                             success: function(resp) {
                                 document.getElementById("cargando").style.display = 'none';
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                                 else if (resp == "ok"){
-                                    alerta("Datos del centro actualizados correctamente.","ACTUALIZACIÓN CORRECTA");
+                                    alerta("Emaiol del Jefe de Departamento actualizado correctamente.","ACTUALIZACIÓN CORRECTA");
                                 }
                                 else{
                                     alerta(resp,"ERROR");
