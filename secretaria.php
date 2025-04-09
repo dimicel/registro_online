@@ -546,16 +546,18 @@
 
     <div class="row alertas" id="div_config_departamentos">
         <form id="config_departamentos">
-        <div class="col-4">
-            <label for="config_dpto">Departamento</label>
-            <span class="errorTxt" style="font-size: 1em;"></span>
-            <select id="config_dpto" name="config_dpto" class="form-control"></select>
-        </div>
-        <div class="col">
-            <label for="config_email_jd">Email del Jefe de Dpto.</label>
-            <span class="errorTxt" style="font-size: 1em;"></span>
-            <input type="text" id="config_email_jd" name="config_email_jd" class="form-control" readonly>
-        </div>
+            <div class="row">
+                <div class="col-4">
+                    <label for="config_dpto">Departamento</label>
+                    <span class="errorTxt" style="font-size: 1em;"></span>
+                    <select id="config_dpto" name="config_dpto" class="form-control"></select>
+                </div>
+                <div class="col">
+                    <label for="config_email_jd">Email del Jefe de Dpto.</label>
+                    <span class="errorTxt" style="font-size: 1em;"></span>
+                    <input type="text" id="config_email_jd" name="config_email_jd" class="form-control" readonly>
+                </div>
+            </div>
         </form>
     </div>
     
