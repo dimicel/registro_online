@@ -10,7 +10,7 @@ $(function() {
 
     setInterval(() => {
         $.post("php/keep_alive.php", function(){
-          //swe mantiene la sesion activa haciendo una llamada a keep_alive.php cada 10mn
+          //se mantiene la sesion activa haciendo una llamada a keep_alive.php cada 10mn
         });
       }, 600000); // Cada 10 minutos
       
