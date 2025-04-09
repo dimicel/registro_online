@@ -2561,7 +2561,7 @@ function datosDepartamentos(){
             }
         },
         errorPlacement: function(error, element) {
-            $(element).prev().prev($('.errorTxt')).html(error);
+            $(element).prev($('.errorTxt')).html(error);
         }
     });
 
