@@ -43,12 +43,18 @@ if ($result->num_rows > 0) {
 } else {
     echo "No se encontraron registros para los departamentos seleccionados.";
 }
-$error="";
+$error="<ul>";
 $mysqli->close();
-
+$error_generado=false;
 for ($i=0; $i<count($envios_email);$i++){
-    if (strlen(trim($envios_email[$i]["email"]))==0)$error.=$envios_email[$i]["departamento"].": No tiene email. Asígnelo en Configuración->Departamentos<br>";
-    elseif(filter_var($envios_email[$i]["email"], FILTER_VALIDATE_EMAIL)) $error.=$envios_email[$i]["departamento"].": Email incorrecto o con formato no válido. Modifíquelo en Configuración->Departamentos<br>";
+    if (strlen(trim($envios_email[$i]["email"]))==0){
+        $error.="<li>".$envios_email[$i]["departamento"].": No tiene email. Asígnelo en Configuración->Departamentos</li><br>";
+        $error_generado=true;
+    }
+    elseif(filter_var($envios_email[$i]["email"], FILTER_VALIDATE_EMAIL)){
+        $error.="<li>".$envios_email[$i]["departamento"].": Email incorrecto o con formato no válido. Modifíquelo en Configuración->Departamentos</li><br>";
+        $error_generado=true;
+    } 
     else {
         $mail = new PHPMailer(true);
         $mail->CharSet = 'UTF-8';
@@ -73,12 +79,14 @@ for ($i=0; $i<count($envios_email);$i++){
         $cuerpo = 'Departamento de '.$envios_email[$i]["departamento"].'<br>'.$mensaje;
         $mail->Body =$cuerpo;
         if (!$mail->send()){
-            $error.=$envios_email[$i]["departamento"]."<br>";
+            $error.="<li>".$envios_email[$i]["departamento"].": Fallo al enviar el correo</li><br>";
+            $error_generado=true;
         }
     }
 }
+$error.="/ul>";
 
-if ($error=="") exit("ok");
+if (!$error_generado) exit("ok");
 else exit($error);
 
 
