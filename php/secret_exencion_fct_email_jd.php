@@ -46,15 +46,13 @@ if ($result->num_rows > 0) {
 $error="<ul>";
 $mysqli->close();
 $error_generado=false;
-if(filter_var(trim(preg_replace('/[^\x20-\x7E]/', '', $envios_email[0]["email"])), FILTER_VALIDATE_EMAIL)) echo "ok";
-else echo "mal";
-exit();
+
 for ($i=0; $i<count($envios_email);$i++){
     if (strlen(trim($envios_email[$i]["email"]))==0){
         $error.="<li>".$envios_email[$i]["departamento"].": No tiene email. Asígnelo en Configuración->Departamentos</li><br>";
         $error_generado=true;
     }
-    elseif(filter_var(trim($envios_email[$i]["email"]), FILTER_VALIDATE_EMAIL)){
+    elseif(filter_var(trim(preg_replace('/[^\x20-\x7E]/', '', $envios_email[0]["email"])), FILTER_VALIDATE_EMAIL)){
         $error.="<li>".$envios_email[$i]["departamento"].": Email incorrecto o con formato no válido. Modifíquelo en Configuración->Departamentos</li><br>";
         $error_generado=true;
     } 
