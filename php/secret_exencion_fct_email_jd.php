@@ -84,7 +84,7 @@ for ($i=0; $i<count($envios_email);$i++){
         }
     }
 }
-$error.="/ul>";
+$error.="</ul>";
 
 if (!$error_generado) exit("ok");
 else exit($error);
