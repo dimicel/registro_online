@@ -135,6 +135,7 @@ $enfermedad=$_POST["enfermedad"];
 $medicacion=$_POST["medicacion"];
 $alergias=$_POST["alergias"];
 $otros_datos=$_POST["otros_datos"];
+$ip_remota=$_SERVER['REMOTE_ADDR'];
 /*if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
 else $ruta_tarjeta="";
 if($_POST["nombre_foto"]!="") $ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpg";
