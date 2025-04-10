@@ -46,13 +46,8 @@ if ($result->num_rows > 0) {
 $error="<ul>";
 $mysqli->close();
 $error_generado=false;
-$email = $envios_email[0]["email"];
-echo "[" . $email . "]<br>";
-echo "Longitud: " . strlen($email) . "<br>";
-echo "ASCII: ";
-for ($j = 0; $j < strlen($email); $j++) {
-    echo ord($email[$j]) . " ";
-}
+if(filter_var('unidimi@gmail.com', FILTER_VALIDATE_EMAIL)) echo "ok";
+else echo "mal";
 exit();
 for ($i=0; $i<count($envios_email);$i++){
     if (strlen(trim($envios_email[$i]["email"]))==0){
