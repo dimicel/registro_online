@@ -19,6 +19,8 @@ $provincia=$_POST['provincia'];
 $iban = trim($_POST['iban']);
 $bic = trim($_POST['bic']);
 $titular_cuenta = trim($_POST['titular_cuenta']);
+$ip_remota=$_SERVER['REMOTE_ADDR'];
+$fecha_hora_firma=date('Y-m-d H:i:s');
 
 if (isset($_POST['firma_sepa'])){
 	$imageData = urldecode($_POST['firma_sepa']);
@@ -28,7 +30,7 @@ if (isset($_POST['firma_sepa'])){
 	$firma = $tempFile;
 }
 
-$mysqli->query("update residentes set titular_cuenta='$titular_cuenta', iban='$iban', bic='$bic' where registro='$registro'");
+$mysqli->query("update residentes set titular_cuenta='$titular_cuenta', iban='$iban', bic='$bic', ip_remota='$ip_remota', fecha_hora_firma='$fecha_hora_firma' where registro='$registro'");
 if ($mysqli->errno>0){
 	unlink($tempFile);
     exit("registro_erroneo ".$mysqli->errno);
