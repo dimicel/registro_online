@@ -2719,7 +2719,7 @@ function avisarJefesDpto(){
         emails.push(desp.options[desp.selectedIndex].dataset.email);
         departamentos.push(desp.options[desp.selectedIndex].value);
     } 
-    alert(555555555);
+    
     $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos},(resp)=>{
         alert(resp);
     });
