@@ -136,6 +136,7 @@ $medicacion=$_POST["medicacion"];
 $alergias=$_POST["alergias"];
 $otros_datos=$_POST["otros_datos"];
 $ip_remota=$_SERVER['REMOTE_ADDR'];
+$fecha_hora_firma=date('Y-m-d H:i:s');
 /*if($_POST["nombre_tarjeta"]!="") $ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie;
 else $ruta_tarjeta="";
 if($_POST["nombre_foto"]!="") $ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpg";
@@ -225,7 +226,9 @@ $mysqli->query("insert into residentes (id_nie,
                                         email_tutor2,
                                         tlf_tutor2,
 										fianza,
-										titular_cuenta) 
+										titular_cuenta,
+										fecha_hora_firma,
+										ip_remota) 
                                         values ('$id_nie',
                                         '$registro',
                                         '$fecha_registro',
@@ -267,7 +270,9 @@ $mysqli->query("insert into residentes (id_nie,
 										'$tut2_email',
 										'$tut2_telef',
 										'$fianza',
-										'$titular_cuenta')");
+										'$titular_cuenta',
+										'$fecha_hora_firma',
+										'$ip_remota')");
 if ($mysqli->errno>0){
 	unlink($tempFile);
 	$respuesta["status"]="registro_erroneo ".$mysqli->errno;
