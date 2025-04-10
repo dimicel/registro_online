@@ -47,7 +47,7 @@ $error="";
 $mysqli->close();
 
 for ($i=0; $i<count($envios_email);$i++){
-    exit("it ".$i);
+    
     $mail = new PHPMailer(true);
     $mail->CharSet = 'UTF-8';
     $mail->isSMTP();
@@ -73,6 +73,7 @@ for ($i=0; $i<count($envios_email);$i++){
     if (!$mail->send()){
         $error.=$envios_email[$i]["departamento"]."<br>";
     }
+    exit("it ".$i);
 }
 
 if ($error=="") exit("ok");
