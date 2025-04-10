@@ -2712,5 +2712,5 @@ function avisarJefesDpto(){
         }
     }
     else emails.push(desp.options[desp.selectedIndex].dataset.email);
-    alert(emails.length)
+    alert(emails[0])
 }
