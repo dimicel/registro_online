@@ -2728,7 +2728,7 @@ function avisarJefesDpto(){
             alerta("Hay un problema en la base de datos o el servidor. Inténtelo en otro momento.","ERROR DB/SERVIDOR");
         }
         else{
-            alerta("Ha fallado el envío del aviso a los siguientes departamentos:<br>"+resp,"ERROR/FALLO");
+            alerta("Ha fallado el envío del aviso a los siguientes departamentos:<br>"+resp,"ERROR/FALLO", false,600);
         }
     });
     
