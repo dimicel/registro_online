@@ -2721,7 +2721,15 @@ function avisarJefesDpto(){
     } 
 
     $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos},(resp)=>{
-        alert(resp);
+        if (resp=='ok'){
+            alerta("Se ha realizado correctamente el aviso a los Jefes de Departamanto.","ENVÍO COMUNICACIÓN OK");
+        }
+        else if(resp="server"){
+            alerta("Hay un problema en la base de datos o el servidor. Inténtelo en otro momento.","ERROR DB/SERVIDOR");
+        }
+        else{
+            alerta("Ha fallado el envío del aviso a los siguientes departamentos:<br>"+resp,"ERROR/FALLO");
+        }
     });
     
 }
