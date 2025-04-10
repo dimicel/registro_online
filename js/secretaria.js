@@ -844,14 +844,14 @@ function listaRegistros(orden_campo, orden_direccion) {
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                         }
                     }
-                    if (fecha < fechaLimite){
-                        if (data_array[i]["visto"]==1) data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
-                        else  data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
-                    }
-                    else{
+                    //if (fecha < fechaLimite){
+                    //    if (data_array[i]["visto"]==1) data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                    //    else  data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                    //}
+                    //else{
                         if (data_array[i]["visto"]==1) data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
                         else  data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
-                    }
+                    //}
                     data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>"; 
                 }
                 else{
@@ -2719,7 +2719,7 @@ function avisarJefesDpto(){
         emails.push(desp.options[desp.selectedIndex].dataset.email);
         departamentos.push(desp.options[desp.selectedIndex].value);
     } 
-    
+
     $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos},(resp)=>{
         alert(resp);
     });
