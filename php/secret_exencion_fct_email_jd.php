@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
 $error="<ul>";
 $mysqli->close();
 $error_generado=false;
-if(filter_var(trim(preg_replace('/[^\x20-\x7E]/', '', $envios_email[$i]["email"])), FILTER_VALIDATE_EMAIL)) echo "vale";
+if(filter_var(trim(preg_replace('/[^\x20-\x7E]/', '', $envios_email[0]["email"])), FILTER_VALIDATE_EMAIL)) echo "vale";
 else echo "no vale";
 exit();
 
