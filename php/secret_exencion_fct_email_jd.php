@@ -74,10 +74,10 @@ for ($i=0; $i<count($envios_email);$i++){
 
         $asunto="Aviso de solicitudes de Exención PFE pendientes.";
         $mensaje="Hay pendientes de resolver ".$envios_email[$i]["pendientes"] . " solicitudes de Exención de Formación en la Empresa.";
-        $mensaje.="<br>No responda a este correo. El contenido del mismo se ha generado automáticamente.";
+        $mensaje.="<br><br>No responda a este correo. El contenido del mismo se ha generado automáticamente.";
         $mail->addAddress($envios_email[$i]["email"], '');
         $mail->Subject = 'REGISTRO ONLINE - '.$asunto;
-        $cuerpo = 'Departamento de '.$envios_email[$i]["departamento"].'<br>'.$mensaje;
+        $cuerpo = 'A la atención del Jefe del Departamento de '.$envios_email[$i]["departamento"].':<br><br>'.$mensaje;
         $mail->Body =$cuerpo;
         if (!$mail->send()){
             $error.="<li>".$envios_email[$i]["departamento"].": Fallo al enviar el correo</li><br>";
