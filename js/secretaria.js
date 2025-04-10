@@ -2711,6 +2711,6 @@ function avisarJefesDpto(){
             if (desp.options[i].value!="Todos") emails.push(desp.options[i].dataset.email);
         }
     }
-    else emails.push(desp.selectedIndex.dataset.email);
+    else emails.push(desp.options[desp.selectedIndex].dataset.email);
     alert(emails.length)
 }
