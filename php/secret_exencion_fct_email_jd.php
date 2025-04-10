@@ -73,7 +73,7 @@ for ($i=0; $i<count($envios_email);$i++){
     if (!$mail->send()){
         $error.=$envios_email[$i]["departamento"]."<br>";
     }
-    exit("it ".$i);
+    if ($i==1)exit("it ".$i);
 }
 
 if ($error=="") exit("ok");
