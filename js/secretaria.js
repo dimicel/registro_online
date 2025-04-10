@@ -2721,7 +2721,7 @@ function avisarJefesDpto(){
     } 
 
     $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos},(resp)=>{
-
+        alert(resp);
     });
     
 }

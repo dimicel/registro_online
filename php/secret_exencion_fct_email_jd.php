@@ -7,8 +7,8 @@ header("Content-Type: text/html;charset=utf-8");
 
 if ($mysqli->errno>0) exit("server");
 
-$departamento=$_POST["departamento"];
-$email=$_POST["email"];
+$departamentos=$_POST["departamentos"];
+$emails=$_POST["emails"];
 
 // Convertir el array de departamentos en un formato adecuado para la consulta SQL (lista de valores separados por comas)
 $departamentos_implode = "'" . implode("','", $departamentos) . "'";
