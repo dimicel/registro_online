@@ -2705,12 +2705,23 @@ function listadoAutorUsoImag(){
 
 function avisarJefesDpto(){
     var emails=[];
+    var departamentos=[];
     var desp=document.getElementById('departamento');
     if (desp.value=='Todos'){
         for (i=0;i<desp.options.length;i++){
-            if (desp.options[i].value!="Todos") emails.push(desp.options[i].dataset.email);
+            if (desp.options[i].value!="Todos"){
+                emails.push(desp.options[i].dataset.email);
+                departamentos.push(desp.options[i].value);
+            } 
         }
     }
-    else emails.push(desp.options[desp.selectedIndex].dataset.email);
-    alert(emails[0])
+    else{
+        emails.push(desp.options[desp.selectedIndex].dataset.email);
+        departamentos.push(desp.options[desp.selectedIndex].value);
+    } 
+
+    $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos},(resp)=>{
+
+    });
+    
 }
