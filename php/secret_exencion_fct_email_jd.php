@@ -12,7 +12,6 @@ $emails=$_POST["emails"];
 
 // Convertir el array de departamentos en un formato adecuado para la consulta SQL (lista de valores separados por comas)
 $departamentos_implode = "'" . implode("','", $departamentos) . "'";
-exit("eeeee");
 // Preparar la consulta SQL para contar los registros por departamento y con procesado = 0
 $sql = "SELECT departamento, procesado, COUNT(*) as num_registros
         FROM exencion_fct
