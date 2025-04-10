@@ -46,6 +46,14 @@ if ($result->num_rows > 0) {
 $error="<ul>";
 $mysqli->close();
 $error_generado=false;
+$email = $envios_email[0]["email"];
+echo "[" . $email . "]<br>";
+echo "Longitud: " . strlen($email) . "<br>";
+echo "ASCII: ";
+for ($j = 0; $j < strlen($email); $j++) {
+    echo ord($email[$j]) . " ";
+}
+exit();
 for ($i=0; $i<count($envios_email);$i++){
     if (strlen(trim($envios_email[$i]["email"]))==0){
         $error.="<li>".$envios_email[$i]["departamento"].": No tiene email. Asígnelo en Configuración->Departamentos</li><br>";
