@@ -47,33 +47,35 @@ $error="";
 $mysqli->close();
 
 for ($i=0; $i<count($envios_email);$i++){
-    
-    $mail = new PHPMailer(true);
-    $mail->CharSet = 'UTF-8';
-    $mail->isSMTP();
-    $mail->Host = 'ssl://mail.ulaboral.org';
-    $mail->SMTPAuth = TRUE;
-    $mail->SMTPSecure = 'tls';
-    $mail->Username = 'noresponder@ies.ulaboral.org';
-    $mail->Password = 'Uni-L@boral-23';
+    if (strlen(trim($envios_email[$i]["email"]))==0)$error.=$envios_email[$i]["departamento"].": No tiene email. Asígnelo en Configuración->Departamentos<br>";
+    elseif(filter_var($envios_email[$i]["email"], FILTER_VALIDATE_EMAIL)) $error.=$envios_email[$i]["departamento"].": Email incorrecto o con formato no válido. Modifíquelo en Configuración->Departamentos<br>";
+    else {
+        $mail = new PHPMailer(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->isSMTP();
+        $mail->Host = 'ssl://mail.ulaboral.org';
+        $mail->SMTPAuth = TRUE;
+        $mail->SMTPSecure = 'tls';
+        $mail->Username = 'noresponder@ies.ulaboral.org';
+        $mail->Password = 'Uni-L@boral-23';
 
-    // Set the SMTP port. 587 para TLS 
-    $mail->Port = 465;
-    $mail->setLanguage('es', 'PHPmailer/language/');
-    $mail->setFrom('noresponder@ies.ulaboral.org', 'Registro Online - IES Universidad Laboral');
-    $mail->isHTML(true);
+        // Set the SMTP port. 587 para TLS 
+        $mail->Port = 465;
+        $mail->setLanguage('es', 'PHPmailer/language/');
+        $mail->setFrom('noresponder@ies.ulaboral.org', 'Registro Online - IES Universidad Laboral');
+        $mail->isHTML(true);
 
-    $asunto="Aviso de solicitudes de Exención PFE pendientes.";
-    $mensaje="Hay pendientes de resolver ".$envios_email[$i]["pendientes"] . " solicitudes de Exención de Formación en la Empresa.";
-    $mensaje.="<br>No responda a este correo. El contenido del mismo se ha generado automáticamente.";
-    $mail->addAddress($envios_email[$i]["email"], '');
-    $mail->Subject = 'REGISTRO ONLINE - '.$asunto;
-    $cuerpo = 'Departamento de '.$envios_email[$i]["departamento"].'<br>'.$mensaje;
-    $mail->Body =$cuerpo;
-    if (!$mail->send()){
-        $error.=$envios_email[$i]["departamento"]."<br>";
+        $asunto="Aviso de solicitudes de Exención PFE pendientes.";
+        $mensaje="Hay pendientes de resolver ".$envios_email[$i]["pendientes"] . " solicitudes de Exención de Formación en la Empresa.";
+        $mensaje.="<br>No responda a este correo. El contenido del mismo se ha generado automáticamente.";
+        $mail->addAddress($envios_email[$i]["email"], '');
+        $mail->Subject = 'REGISTRO ONLINE - '.$asunto;
+        $cuerpo = 'Departamento de '.$envios_email[$i]["departamento"].'<br>'.$mensaje;
+        $mail->Body =$cuerpo;
+        if (!$mail->send()){
+            $error.=$envios_email[$i]["departamento"]."<br>";
+        }
     }
-    if ($i==1)exit("it ".$i);
 }
 
 if ($error=="") exit("ok");
