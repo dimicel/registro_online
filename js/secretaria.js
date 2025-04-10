@@ -2725,7 +2725,7 @@ function avisarJefesDpto(){
         if (resp=='ok'){
             alerta("Se ha realizado correctamente el aviso a los Jefes de Departamanto.","ENVÍO COMUNICACIÓN OK");
         }
-        else if(resp="server"){
+        else if(resp=="server"){
             alerta("Hay un problema en la base de datos o el servidor. Inténtelo en otro momento.","ERROR DB/SERVIDOR");
         }
         else{

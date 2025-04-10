@@ -45,7 +45,6 @@ if ($result->num_rows > 0) {
 }
 $error="";
 $mysqli->close();
-exit("vueltas ".count($envios_email) . $envios_email[0]["departamento"]."  ".$envios_email[0]["email"]."  ".$envios_email[0]["pendientes"]);
 for ($i=0; $i<count($envios_email);$i++){
     $mail = new PHPMailer(true);
     $mail->CharSet = 'UTF-8';
