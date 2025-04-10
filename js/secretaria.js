@@ -2721,7 +2721,6 @@ function avisarJefesDpto(){
     } 
 
     $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos},(resp)=>{
-        alert(resp);
         if (resp=='ok'){
             alerta("Se ha realizado correctamente el aviso a los Jefes de Departamanto.","ENVÍO COMUNICACIÓN OK");
         }
