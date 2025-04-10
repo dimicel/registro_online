@@ -20,8 +20,8 @@ $sql = "SELECT departamento, procesado, COUNT(*) as num_registros
         GROUP BY departamento";
 
 // Ejecutar la consulta
-$result = $conn->query($sql);
-exit("rrrrrrrrrr");
+$result = $mysqli->query($sql);
+
 // Comprobar si hay resultados
 if ($result->num_rows > 0) {
     // Recorrer los resultados y mostrarlos
@@ -40,5 +40,7 @@ $cuerpo = 'RESIDENCIA del IES Universidad Laboral<br>'.$mensaje;
 $mail->Body =$cuerpo;
 $mail->send();
 */
+
+$mysqli->close();
 
  
