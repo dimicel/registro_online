@@ -2704,5 +2704,13 @@ function listadoAutorUsoImag(){
 
 
 function avisarJefesDpto(){
-
+    var emails=[];
+    var desp=document.getElementById('departamento');
+    if (desp.value=='Todos'){
+        for (i=0;i<desp.options.length;i++){
+            if (desp.options[i].value!="Todos") emails.push(desp.options[i].dataset.email);
+        }
+    }
+    else emails.push(desp.selectedIndex.dataset.email);
+    alert(emails.length)
 }
