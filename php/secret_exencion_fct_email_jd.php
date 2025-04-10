@@ -18,10 +18,10 @@ $sql = "SELECT departamento, procesado, COUNT(*) as num_registros
         WHERE departamento IN ($departamentos_implode)
         AND procesado = 0
         GROUP BY departamento";
-exit("aaaaaaa");
+
 // Ejecutar la consulta
 $result = $conn->query($sql);
-
+exit("rrrrrrrrrr");
 // Comprobar si hay resultados
 if ($result->num_rows > 0) {
     // Recorrer los resultados y mostrarlos
