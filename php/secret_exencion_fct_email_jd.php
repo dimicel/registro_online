@@ -45,6 +45,7 @@ if ($result->num_rows > 0) {
 }
 $error="";
 $mysqli->close();
+exit(count($envios_email));
 for ($i=0; $i<count($envios_email);$i++){
     $mail = new PHPMailer(true);
     $mail->CharSet = 'UTF-8';
