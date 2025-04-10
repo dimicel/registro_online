@@ -14,7 +14,7 @@ $emails=$_POST["emails"];
 $departamentos_implode = "'" . implode("','", $departamentos) . "'";
 
 // Preparar la consulta SQL para contar los registros por departamento y con procesado = 0
-$sql = "SELECT departamento, COUNT(*) as num_registros
+$sql = "SELECT departamento, procesado, COUNT(*) as num_registros
         FROM exencion_fct
         WHERE departamento IN ($departamentos_implode)
         AND procesado = 0
