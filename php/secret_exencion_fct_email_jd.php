@@ -51,7 +51,7 @@ for ($i=0; $i<count($envios_email);$i++){
         $error.="<li>".$envios_email[$i]["departamento"].": No tiene email. Asígnelo en Configuración->Departamentos</li><br>";
         $error_generado=true;
     }
-    elseif(filter_var($envios_email[$i]["email"], FILTER_VALIDATE_EMAIL)){
+    elseif(filter_var(trim($envios_email[$i]["email"]), FILTER_VALIDATE_EMAIL)){
         $error.="<li>".$envios_email[$i]["departamento"].": Email incorrecto o con formato no válido. Modifíquelo en Configuración->Departamentos</li><br>";
         $error_generado=true;
     } 
