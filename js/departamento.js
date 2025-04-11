@@ -130,34 +130,25 @@ function listaUsus() {
             for (i = 0; i < data_array.length; i++) {
                 data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
-                data += "<td style='" + estilo_usu[1] + "'><a href='docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+data_array[i]["registro"]+".pdf' target='_blank'>" + data_array[i]["nombre"] + "</a></td>";
-                data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
-                if (data_array[i]["bonificado"]==1){
-                    data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
+                data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
+                data += "<td style='" + estilo_usu[2] + "'><a href='docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+data_array[i]["dirRegistro"]+"/"+data_array[i]["registro"]+".pdf' target='_blank'>"+data_array[i]["registro"]+"</a></td>";
+                if (data_array[i]["informe_jd"]!=""){
+                    data += "<td style='" + estilo_usu[3] + ";text-align:center'><a href='"+data_array[i]["informe_jd"]+"' target='_blank'>Ver</a></td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>NO</td>";
+                    data += "<td style='" + estilo_usu[3] + ";text-align:center'>-</td>";
                 }
-                data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='fianza(\""+data_array[i]["registro"]+"\",this)'>" + data_array[i]["devolucion_fianza"] + "</td>";
-                if (data_array[i]["baja"]==1){
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
-                }
-                else{
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center' ondblclick='altaBaja(\""+data_array[i]["registro"]+"\",this)'>NO</td>";
-                }
-                let partes = data_array[i]["fecha_baja"].split('-');
-                let fechaConvertida = partes[2] + '-' + partes[1] + '-' + partes[0];
-                if (data_array[i]["baja"]==1){
-                    data += "<td style='" + estilo_usu[6] + ";text-align:center'>"+fechaConvertida+"</td>";
+                if (data_array[i]["resolucion"]!=""){
+                    data += "<td style='" + estilo_usu[4] + ";text-align:center'><a href='"+data_array[i]["resolucion"]+"' target='_blank'>Ver</a></td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[6] + ";text-align:center'>-</td>";
+                    data += "<td style='" + estilo_usu[4] + ";text-align:center'>-</td>";
                 }
-                if (data_array[i]["sepa"]!=""){
-                    data += "<td style='" + estilo_usu[7] + ";text-align:center'><a href='"+data_array[i]["sepa"]+"' target='_blank'>Ver</a></td>";
+                if (data_array[i]["visto"]==1){
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Sí</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[7] + ";text-align:center'>-</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>No</td>";
                 }
                 data += "</tr>";
             }
