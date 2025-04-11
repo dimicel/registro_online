@@ -2574,7 +2574,7 @@ function datosDepartamentos(){
         resizable: false,
         show: { effect: "fade", duration: 0 },
         title: "DATOS ASOCIADOS A LOS DEPARTAMENTOS",
-        width: 800,
+        width: 900,
         position: { my: "center", at: "center", of: window },
         buttons: [
             {
