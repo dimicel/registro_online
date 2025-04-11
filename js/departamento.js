@@ -1,15 +1,15 @@
-res_campos = new Array();
-res_encabezamiento = new Array();
-var res_anno_ini_curso = 0;
-var res_mes;
-var res_orden_campo;
-var res_orden_direccion;
-var res_curso_actual;
-var res_num_registros;
-var res_num_reg_pagina = 25;
-var res_numero_paginas;
-var res_pagina = 1;
-var res_orden_direccion_usu = "🡅";
+campos = new Array();
+encabezamiento = new Array();
+var anno_ini_curso = 0;
+var mes;
+var orden_campo;
+var orden_direccion;
+var curso_actual;
+var num_registros;
+var num_reg_pagina = 25;
+var numero_paginas;
+var pagina = 1;
+var orden_direccion_usu = "🡅";
 
 
 
@@ -17,7 +17,7 @@ $(function() {
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
     else document.getElementById("servidor_pruebas").style.display="none";
    
-    document.getElementById("res_cargando").style.display = 'inherit';
+    document.getElementById("cargando").style.display = 'inherit';
     prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "residencia" },()=>{},"json"));
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
@@ -28,17 +28,17 @@ $(function() {
                 document.getElementById("boton_salir").style.display='none';
             }
             if (document.getElementById("rotulo_tipo_usu")) document.getElementById("rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
-            document.getElementById("res_rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
-            res_anno_ini_curso = resp["anno_ini_curso"];
-            res_mes = resp["mes"];
-            _curso = res_anno_ini_curso + "-" + (res_anno_ini_curso + 1);
-            res_curso_actual=_curso;
-            res_generaSelectCurso();
-            document.getElementById("res_curso").value = _curso;
+            document.getElementById("rotulo_tipo_usu").innerHTML="RESIDENCIA - GESTIÓN DEL REGISTRO ONLINE"; 
+            anno_ini_curso = resp["anno_ini_curso"];
+            mes = resp["mes"];
+            _curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
+            curso_actual=_curso;
+            generaSelectCurso();
+            document.getElementById("curso").value = _curso;
 
-            $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
+            $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
                 total: 1,
-                page: res_pagina,
+                page: pagina,
                 maxVisible: 10,
                 leaps: true,
                 firstLastUse: true,
@@ -52,16 +52,16 @@ $(function() {
                 lastClass: 'last',
                 firstClass: 'first'
             }).on("page", function(event, num) {
-                res_pagina = num;
-                res_listaUsus();
+                pagina = num;
+                listaUsus();
             });
-            $('#res_navegacion_usus_top li').addClass('page-item');
-            $('#res_navegacion_usus_top a').addClass('page-link');
-            $('#res_navegacion_usus_bottom li').addClass('page-item');
-            $('#res_navegacion_usus_bottom a').addClass('page-link');
+            $('#navegacion_usus_top li').addClass('page-item');
+            $('#navegacion_usus_top a').addClass('page-link');
+            $('#navegacion_usus_bottom li').addClass('page-item');
+            $('#navegacion_usus_bottom a').addClass('page-link');
 
-            res_listaUsus();
-            document.getElementById("res_cargando").style.display = 'none';
+            listaUsus();
+            document.getElementById("cargando").style.display = 'none';
         } 
     });
 
@@ -69,11 +69,11 @@ $(function() {
     
 });
 
-function res_generaSelectCurso(){
-    if (res_mes<6) a_final=res_anno_ini_curso;
-    else a_final=res_anno_ini_curso+1;
+function generaSelectCurso(){
+    if (mes<6) a_final=anno_ini_curso;
+    else a_final=anno_ini_curso+1;
 
-    const miSelect = document.getElementById("res_curso");
+    const miSelect = document.getElementById("curso");
     for (var i=2020;i<=a_final;i++){
         const elemento = document.createElement("option");
         elemento.value = i+"-"+(parseInt(i)+1);
@@ -83,32 +83,15 @@ function res_generaSelectCurso(){
 }
 
 
-/*function ordenListado(obj) {
-    if (obj.innerHTML == "Docs" || obj.innerHTML == "Incidencias" || obj.innerHTML == "Listado") return;
-    if (obj.innerHTML.indexOf("🡅") == -1 && obj.innerHTML.indexOf("🡇") == -1) {
-        enc = obj.innerHTML;
-        sim_dir = "🡅";
-    } else {
-        enc = obj.innerHTML.substring(0, obj.innerHTML.length - 3);
-        sim_dir = obj.innerHTML.substring(obj.innerHTML.length - 2, obj.innerHTML.length);
-        if (sim_dir == "🡅") sim_dir = "🡇";
-        else if (sim_dir == "🡇") sim_dir = "🡅";
-    }
-    campo = res_campos[res_encabezamiento.indexOf(obj.innerHTML)];
-    if (campo == "nombre") campo = "apellidos";
-    res_orden_campo = campo;
-    res_orden_direccion = sim_dir;
-    res_listaUsus(campo, sim_dir);
-}*/
 
 
-function res_cierrasesion() {
+function cierrasesion() {
     $.post("php/logout.php", {}, function(resp) {
         open("index.php?q=" + Date.now().toString(), "_self");
     });
 }
 
-function res_listaUsus() {
+function listaUsus() {
     direccion = new Array();
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
@@ -116,46 +99,46 @@ function res_listaUsus() {
     estilo_usu = ["width:80px", "width:220px", "width:220px", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:70px;text-align:center","width:40px;text-align:center"];
     encabezamiento_usu = ["NIE", "Alumno", "Email", "Bonificado","Devolución Fianza(€)","Baja","Fecha Baja","SEPA"];
 
-    //Construcción del res_encabezamiento de la tabla
+    //Construcción del encabezamiento de la tabla
     encab_usus = "<tr>";
     for (i = 0; i < encabezamiento_usu.length; i++) {
-        if (encabezamiento_usu[i] == "Alumno") encab_usus += "<td style='" + estilo_usu[i] + "'onclick='res_ordenUsus()'>" + encabezamiento_usu[i] + " " + res_orden_direccion_usu + "</td>";
+        if (encabezamiento_usu[i] == "Alumno") encab_usus += "<td style='" + estilo_usu[i] + "'onclick='ordenUsus()'>" + encabezamiento_usu[i] + " " + orden_direccion_usu + "</td>";
         else encab_usus += "<td style='" + estilo_usu[i] + "'>" + encabezamiento_usu[i] + "</td>";
     }
     ///////////////////////////////////////////////
     datos = {
-        res_buscar: document.getElementById("res_busqueda_usus").value,
-        res_orden_direccion_usu: direccion[res_orden_direccion_usu],
-        res_pagina: res_pagina,
-        res_num_reg_pagina: res_num_reg_pagina,
-        res_curso:document.getElementById("res_curso").value,
+        buscar: document.getElementById("busqueda_usus").value,
+        orden_direccion_usu: direccion[orden_direccion_usu],
+        pagina: pagina,
+        num_reg_pagina: num_reg_pagina,
+        curso:document.getElementById("curso").value,
         filtro_bajas:document.getElementById("filtro_bajas").value
     }
     $.post("php/residencia_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "sin_registros") {
-            document.getElementById("div_res_notabla_usus").style.display = "inline-block";
-            document.getElementById("div_res_tabla_usus").style.display = "none";
-            res_numero_paginas=1;
-            res_pagina=1;
-            $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
-                total: res_numero_paginas
+            document.getElementById("div_notabla_usus").style.display = "inline-block";
+            document.getElementById("div_tabla_usus").style.display = "none";
+            numero_paginas=1;
+            pagina=1;
+            $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
+                total: numero_paginas
             });
-            $('#res_navegacion_usus_top li').addClass('page-item');
-            $('#res_navegacion_usus_top a').addClass('page-link');
-            $('#res_navegacion_usus_bottom li').addClass('page-item');
-            $('#res_navegacion_usus_bottom a').addClass('page-link');
+            $('#navegacion_usus_top li').addClass('page-item');
+            $('#navegacion_usus_top a').addClass('page-link');
+            $('#navegacion_usus_bottom li').addClass('page-item');
+            $('#navegacion_usus_bottom a').addClass('page-link');
         } else {
-            document.getElementById("div_res_notabla_usus").style.display = "none";
-            document.getElementById("div_res_tabla_usus").style.display = "inline-block";
+            document.getElementById("div_notabla_usus").style.display = "none";
+            document.getElementById("div_tabla_usus").style.display = "inline-block";
             data = "";
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
                 if (data_array[i]["id_nie"].substring(0,9) == "S4500175G") continue;
                 data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
-                data += "<td style='" + estilo_usu[1] + "'><a href='docs/"+data_array[i]["id_nie"]+"/residencia/"+document.getElementById("res_curso").value+"/"+data_array[i]["registro"]+".pdf' target='_blank'>" + data_array[i]["nombre"] + "</a></td>";
-                data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='res_panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
+                data += "<td style='" + estilo_usu[1] + "'><a href='docs/"+data_array[i]["id_nie"]+"/residencia/"+document.getElementById("curso").value+"/"+data_array[i]["registro"]+".pdf' target='_blank'>" + data_array[i]["nombre"] + "</a></td>";
+                data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
                 if (data_array[i]["bonificado"]==1){
                     data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
                 }
@@ -185,34 +168,34 @@ function res_listaUsus() {
                 }
                 data += "</tr>";
             }
-            document.getElementById("res_encabezado_usus").innerHTML = encab_usus;
-            document.getElementById("res_registros_usus").innerHTML = data;
-            res_num_registros = resp.num_registros;
-            res_numero_paginas = Math.ceil(res_num_registros / res_num_reg_pagina);
-            if (res_pagina > res_numero_paginas) res_pagina = res_numero_paginas;
+            document.getElementById("encabezado_usus").innerHTML = encab_usus;
+            document.getElementById("registros_usus").innerHTML = data;
+            num_registros = resp.num_registros;
+            numero_paginas = Math.ceil(num_registros / num_reg_pagina);
+            if (pagina > numero_paginas) pagina = numero_paginas;
             
-            $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
-                total: res_numero_paginas
+            $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
+                total: numero_paginas
             });
-            $('#res_navegacion_usus_top li').addClass('page-item');
-            $('#res_navegacion_usus_top a').addClass('page-link');
-            $('#res_navegacion_usus_bottom li').addClass('page-item');
-            $('#res_navegacion_usus_bottom a').addClass('page-link');
+            $('#navegacion_usus_top li').addClass('page-item');
+            $('#navegacion_usus_top a').addClass('page-link');
+            $('#navegacion_usus_bottom li').addClass('page-item');
+            $('#navegacion_usus_bottom a').addClass('page-link');
         }
     }, "json");
 }
 
 
 
-function res_ordenUsus() {
-    if (res_orden_direccion_usu == "🡅") res_orden_direccion_usu = "🡇";
-    else res_orden_direccion_usu = "🡅";
-    res_listaUsus();
+function ordenUsus() {
+    if (orden_direccion_usu == "🡅") orden_direccion_usu = "🡇";
+    else orden_direccion_usu = "🡅";
+    listaUsus();
 }
 
 
-function res_panelEnvioEmail(dir_email) {
-    $("#res_div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
+function panelEnvioEmail(dir_email) {
+    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -244,7 +227,7 @@ function res_panelEnvioEmail(dir_email) {
                     $(element).prev().prev().html(error);
                 }
             });
-            $("#res_div_dialogs").dialog({
+            $("#div_dialogs").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
                 modal: true,
@@ -260,11 +243,11 @@ function res_panelEnvioEmail(dir_email) {
                             asunto = document.getElementById("usu_asunto_email").value;
                             mensaje = document.getElementById("usu_cuerpo_email").value;
                             if (validFormEmail.form()) {
-                                document.getElementById("res_cargando").style.display = "inherit";
+                                document.getElementById("cargando").style.display = "inherit";
                                 $.post("php/residencia_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
-                                    document.getElementById("res_cargando").style.display = "none";
+                                    document.getElementById("cargando").style.display = "none";
                                     alerta("Correo electrónico enviado.", "EMAIL");
-                                    $("#res_div_dialogs").dialog("close");
+                                    $("#div_dialogs").dialog("close");
                                 });
                             }
                         }
@@ -273,12 +256,12 @@ function res_panelEnvioEmail(dir_email) {
                         class: "btn btn-success textoboton",
                         text: "Cancelar",
                         click: function() {
-                            $("#res_div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("close");
                         }
                     }
                 ],
                 close: function(event, ui) {
-                    $("#res_div_dialogs").dialog("destroy");
+                    $("#div_dialogs").dialog("destroy");
                 }
             });
         }
@@ -333,12 +316,12 @@ function cambioEmailJefeRes(){
                 text: "Guardar Cambios",
                 click: function() {
                     if ($("#cambio_email_jef_res").valid()){
-                        document.getElementById("res_cargando").style.display = 'inherit';
+                        document.getElementById("cargando").style.display = 'inherit';
                         $.post({
                             url:"php/residencia_actualiza_email_jr.php" ,
                             data: $("#cambio_email_jef_res").serialize(),
                             success: function(resp) {
-                                document.getElementById("res_cargando").style.display = 'none';
+                                document.getElementById("cargando").style.display = 'none';
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                                 else if (resp == "ok"){
@@ -351,7 +334,7 @@ function cambioEmailJefeRes(){
                                 $("#div_cambio_email_jef_res").dialog("destroy");
                             },
                             error: function(xhr, status, error) {
-                                document.getElementById("res_cargando").style.display = 'none';
+                                document.getElementById("cargando").style.display = 'none';
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                                 $("#div_cambio_email_jef_res").dialog("close");
                                 $("#div_cambio_email_jef_res").dialog("destroy");
@@ -382,8 +365,8 @@ function estadoBonificado(__registro,celda){
         mensaje="<p>Va a cambiar el estado del residente de BONIFICADO a NO BONIFICADO.</p>";
         bonificado=0;
     }
-    document.getElementById("res_div_dialogs").innerHTML=mensaje;
-    $("#res_div_dialogs").dialog({
+    document.getElementById("div_dialogs").innerHTML=mensaje;
+    $("#div_dialogs").dialog({
         autoOpen: true,
         dialogClass: "no-close",
         modal: true,
@@ -399,29 +382,29 @@ function estadoBonificado(__registro,celda){
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
-                    document.getElementById("res_cargando").style.display = 'inherit';
+                    document.getElementById("cargando").style.display = 'inherit';
                     $.post({
                         url:"php/residencia_cambio_estado_bonificado.php" ,
                         data: {registro:__registro,bonificado:bonificado},
                         success: function(resp) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            document.getElementById("cargando").style.display = 'none';
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
                                 alerta("Cambio de estado realizado correctamente.","ACTUALIZACIÓN CORRECTA");
-                                res_listaUsus();
+                                listaUsus();
                             }
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
                         },
                         error: function(xhr, status, error) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            document.getElementById("cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
                         }
                     });
                 }
@@ -430,8 +413,8 @@ function estadoBonificado(__registro,celda){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#res_div_dialogs").dialog("close");
-                $("#res_div_dialogs").dialog("destroy");
+                $("#div_dialogs").dialog("close");
+                $("#div_dialogs").dialog("destroy");
             }
         }]
     });
@@ -449,7 +432,7 @@ function altaBaja(__registro,celda){
         mensaje="<p>El residente vuelve a estar de ALTA en la residencia.</p>";
         baja=0;
     }
-    document.getElementById("res_div_dialogs").innerHTML=mensaje;
+    document.getElementById("div_dialogs").innerHTML=mensaje;
     if (celda.innerHTML=="NO"){
         $("#form_baja").validate({
             rules: {
@@ -491,7 +474,7 @@ function altaBaja(__registro,celda){
         document.getElementById('fech_baja').value = todayFormatted;
     }
     
-    $("#res_div_dialogs").dialog({
+    $("#div_dialogs").dialog({
         autoOpen: true,
         dialogClass: "no-close",
         modal: true,
@@ -510,29 +493,29 @@ function altaBaja(__registro,celda){
                     if (baja==1) if (!$("#form_baja").valid()) return;
                     if (baja==1) fecha_baja=document.getElementById('fech_baja').value;
                     else fecha_baja="";
-                    document.getElementById("res_cargando").style.display = 'inherit';
+                    document.getElementById("cargando").style.display = 'inherit';
                     $.post({
                         url:"php/residencia_alta_baja.php",
                         data: {registro:__registro,baja:baja,fecha_baja:fecha_baja},
                         success: function(resp) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            document.getElementById("cargando").style.display = 'none';
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
                                 alerta("Cambio de estado realizado correctamente.","ACTUALIZACIÓN CORRECTA");
-                                res_listaUsus();
+                                listaUsus();
                             }
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
                         },
                         error: function(xhr, status, error) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            document.getElementById("cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
                         }
                     });
                 }
@@ -541,8 +524,8 @@ function altaBaja(__registro,celda){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#res_div_dialogs").dialog("close");
-                $("#res_div_dialogs").dialog("destroy");
+                $("#div_dialogs").dialog("close");
+                $("#div_dialogs").dialog("destroy");
             }
         }]
     });
@@ -554,8 +537,8 @@ function fianza(__registro,celda){
     mensaje="<div class='form-row'><div class='col form-group'>";
     mensaje+="<label for='_fianz'>Fianza (€):</label>";
     mensaje+="<input type='number' name='_fianz' id='_fianz' class='form-control' value='"+celda.innerText+"' step='0.01' min='0' /></div></div>";
-    document.getElementById("res_div_dialogs").innerHTML=mensaje;
-    $("#res_div_dialogs").dialog({
+    document.getElementById("div_dialogs").innerHTML=mensaje;
+    $("#div_dialogs").dialog({
         autoOpen: true,
         dialogClass: "no-close",
         modal: true,
@@ -571,29 +554,29 @@ function fianza(__registro,celda){
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
-                    document.getElementById("res_cargando").style.display = 'inherit';
+                    document.getElementById("cargando").style.display = 'inherit';
                     $.post({
                         url:"php/residencia_cambio_fianza.php" ,
                         data: {registro:__registro,fianza:document.getElementById("_fianz").value},
                         success: function(resp) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            document.getElementById("cargando").style.display = 'none';
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
                                 alerta("Cambio de estado realizado correctamente.","ACTUALIZACIÓN CORRECTA");
-                                res_listaUsus();
+                                listaUsus();
                             }
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
                         },
                         error: function(xhr, status, error) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            document.getElementById("cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $("#div_dialogs").dialog("close");
+                            $("#div_dialogs").dialog("destroy");
                         }
                     });
                 }
@@ -602,20 +585,20 @@ function fianza(__registro,celda){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#res_div_dialogs").dialog("close");
-                $("#res_div_dialogs").dialog("destroy");
+                $("#div_dialogs").dialog("close");
+                $("#div_dialogs").dialog("destroy");
             }
         }]
     });
 }
 
-function res_cierrasesion() {
+function cierrasesion() {
     $.post("php/logout.php", {}, function(resp) {
         open("index.php?q=" + Date.now().toString(), "_self");
     });
 }
 
 function remesasBanco() {
-    document.getElementById("curso_csv_remesas").value = document.getElementById("res_curso").value;
+    document.getElementById("curso_csv_remesas").value = document.getElementById("curso").value;
     document.getElementById("descarga_csv_remesas").submit();
 }
