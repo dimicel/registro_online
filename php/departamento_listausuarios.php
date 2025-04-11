@@ -60,12 +60,19 @@ while ($reg=$res->fetch_assoc()){
     $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
     $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["apellidos"])).", ".ucwords(strtolower($reg["nombre"]));
     $data["registros"][$contador]["registro"]= $reg["registro"];
-    
-    if (is_file(("../docs/".$reg["id_nie"]."/residencia/sepa_".$reg["id_nie"].".pdf"))){
-        $data["registros"][$contador]["sepa"]="docs/".$reg["id_nie"]."/residencia/sepa_".$reg["id_nie"].".pdf";
+    $data["registros"][$contador]["visto"]= $reg["procesado"];
+    $dirRegistro=substr($reg["registro"], 17);
+    if (is_file(("../docs/".$reg["id_nie"]."/exencion_form_emp"."/".$curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf"))){
+        $data["registros"][$contador]["informe_jd"]="docs/".$reg["id_nie"]."/exencion_form_emp"."/".$curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
     }
     else{
-        $data["registros"][$contador]["sepa"]="";
+        $data["registros"][$contador]["informe_jd"]="";
+    }
+    if (is_file(("../docs/".$reg["id_nie"]."/exencion_form_emp"."/".$curso."/".$dirRegistro."/docs/resolucion/resolucion.pdf"))){
+        $data["registros"][$contador]["resolucion"]="docs/".$reg["id_nie"]."/exencion_form_emp"."/".$curso."/".$dirRegistro."/docs/resolucion/resolucion.pdf";
+    }
+    else{
+        $data["registros"][$contador]["resolucion"]="";
     }
     $contador++;
 }
