@@ -2549,6 +2549,11 @@ function datosDepartamentos(){
             config_email_jd: {
                 required: true,
                 email: true
+            },
+            config_password_jd: {
+                required:false,
+                minlength: 8,
+                password:true
             }
         },
         messages: {
@@ -2558,6 +2563,10 @@ function datosDepartamentos(){
             config_email_jd: {
                 required: "Complete el campo",
                 email: "Formato de email incorrecto"
+            },
+            config_password_jd:{
+                minlength: "Longitud mínima es de 8 caracteres",
+                password: "Debe contener, al menos, una minúscula, una mayúscula y un número."
             }
         },
         errorPlacement: function(error, element) {
@@ -2633,6 +2642,9 @@ function selDptoConfigDpto(obj){
         document.getElementById("config_email_jd").value="";
         document.getElementById("config_email_jd").readOnly=true;
         document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
+        document.getElementById("config_password_jd").value="";
+        document.getElementById("config_password_jd").readOnly=true;
+        document.getElementById("config_password_jd").placeholder="Seleccione un departamento";
     }
     else {
         $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
@@ -2643,6 +2655,8 @@ function selDptoConfigDpto(obj){
                         if (resp.registro[i].email_jd.length>0) document.getElementById("config_email_jd").value=resp.registro[i].email_jd;
                         else document.getElementById("config_email_jd").placeholder="";
                         document.getElementById("config_email_jd").readOnly=false;
+                        document.getElementById("config_password_jd").placeholder="";
+                        document.getElementById("config_password_jd").readOnly=false;
                         break;
                     }
                 }
