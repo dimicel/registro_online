@@ -28,6 +28,10 @@ elseif (!isset($_POST['tipo_usu']) || !isset($_SESSION['tipo_usu']) || $_POST['t
         elseif($_POST['tipo_usu']=="jefe departamento"){
             $respuesta["error"]="ok";
             $respuesta["tipo_usu"]="jefe departamento";
+            $respuesta["departamento"]=$_SESSION['id_nif'];
+            $respuesta["email_jd"]=$_SESSION['email_jd'];
+            $respuesta["anno_ini_curso"]=calculaCurso_ini();
+            exit (json_encode($respuesta));
         }
         else{
             $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
