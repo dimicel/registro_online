@@ -27,7 +27,8 @@ $conCadena="update usuarios set password='$pass' where id_nie='S4500175GJEF'";
 if ($mysqli->query($conCadena)===TRUE) echo "ok jefatura";
 else echo "error jefatura";
 
-
+//S4500175GJDE ES USUARIO COMÚN PARA TODOS LOS JEFES DE DPTO. LA CONTRASEÑA SE RESTAURA DESDE LA APLICACIÓN ENTRANDO COMO SECRETARIO
+//MENU CONFIGURACIÓN->DEPARTAMENTOS
 
 
 $mysqli->close();
