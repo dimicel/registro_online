@@ -182,9 +182,9 @@ $(function() {
 function entra() {
     if (document.getElementById("form_login").checkValidity()) {
         $.post("php/index_login.php", $("#form_login").serialize(), function(resp) {
-            if (resp.error == "server") alerta("Fallo de conexión al servidor", "Error Servidor");
-            else if (resp.error == "password") alerta("Contraseña inválida", "Error Password");
-            else if (resp.error == "nousu") alerta("El usuario no existe. Consulte en la Secretaría del Centro.", "Error Usuario");
+            if (resp.error == "server") alerta("Fallo de conexión al servidor", "ERROR SERVIDOR");
+            else if (resp.error == "password") alerta("Contraseña inválida", "ERROR PASSWORD");
+            else if (resp.error == "nousu") alerta("El usuario no existe. Consulte en la Secretaría del Centro.", "ERROR USUARIO");
             else if(resp.error=="inhabilitado") alerta("El usuario se ha inhabilitado por decisión del mismo, o por no ser ya alumno del centro. No podrá operar ni recibirá notificaciones.", "USUARIO INHABILITADO");
             else if (resp.error == "primera_vez") {
                 document.getElementById("nu_nie").value = document.getElementById("usuario").value;
@@ -196,7 +196,10 @@ function entra() {
                 $("#nuevoUsuario_div").dialog('open');
             } else if (resp.error == "ok") {
                 document.location = resp.pagina;
+            } else if(resp.error == "nodpto"){
+                alerta ("No existe ningún Jefe de Departamento con esas credenciales.","ERROR USUARIO");
             }
+
         }, "json");
     } else document.getElementById("form_login").classList.add("was-validated");
 }

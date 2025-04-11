@@ -28,7 +28,7 @@ function alerta(mensaje, titulo, previo, ancho) {
     if (typeof(ancho) != 'number') ancho = 300;
     if (typeof(duracion) != 'number') duracion = 0;
     $("#mensaje_div").dialog({
-        title: titulo,
+        title: titulo.toUpperCase(),
         autoOpen: false,
         draggable: false,
         dialogClass: "alertas no-close",
