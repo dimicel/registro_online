@@ -20,7 +20,7 @@ else $sql = "UPDATE departamentos SET email_jd = ?, password=? WHERE departament
 $stmt = $mysqli->prepare($sql);
 
 if (strlen($password)>0) $stmt->bind_param('sss', $email,$pass, $departamento);
-else $stmt->bind_param('ss', $email,$departamento);
+else $stmt->bind_param('ss', $email, $departamento);
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
