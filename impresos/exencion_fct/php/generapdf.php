@@ -74,6 +74,8 @@ $departamento=$_POST['departamento'];
 $subidopor=$_POST['subido_por'];
 $documentacion="";
 $desc= array();
+$ip_remota=$_SERVER['REMOTE_ADDR'];
+$fecha_hora_firma=date('Y-m-d H:i:s');
 
 if (isset($_POST['firma'])){
     $imageData = urldecode($_POST['firma']);
@@ -145,9 +147,9 @@ $mysqli->begin_transaction();
 try {
     // Insertar registro en la primera tabla
     $stmt1 = $mysqli->prepare("INSERT INTO exencion_fct (id_nie,fecha_registro,registro,curso,nombre,apellidos,id_nif,
-                                                        grado,ciclo,curso_ciclo,departamento) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
-    $stmt1->bind_param("sssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,
-                                                $grado,$ciclo,$curso_ciclo,$departamento);
+                                                        grado,ciclo,curso_ciclo,departamento,ip_remota,fecha_hora_firma) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+    $stmt1->bind_param("sssssssssssss", $id_nie,$fecha_registro,$registro,$anno_curso,$nombre,$apellidos,$id_nif,
+                                                $grado,$ciclo,$curso_ciclo,$departamento,$ip_remota,$fecha_hora_firma);
     
     if ($stmt1->execute() === false) {
         throw new Exception("Error al ejecutar la consulta de inserción: " . $stmt1->error);
