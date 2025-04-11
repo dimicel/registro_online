@@ -28,7 +28,16 @@ else {
 	if ($usuario=="S4500175GJDE"){
 		$consulta=$mysqli->query("select * from departamentos");
 		if ($consulta->num_rows>0){
-
+			while($dpto=$consulta->fetch_array(MYSQLI_ASSOC)){
+				if(password_verify($contrasena,$dpto['password'])){
+					$_SESSION['tipo_usu']="jefe departamento";
+					$_SESSION['departamento']=$dpto['departamento'];
+					$_SESSION['email_jd']=$dpto['email_jd'];
+					$dat["error"]="ok";
+					$dat["pagina"]= "departamento.php?q=".time();
+					exit(json_encode($dat));
+				}
+			}
 		}
 		else{
 			$consulta->free();
@@ -83,12 +92,6 @@ else {
 					$_SESSION['tipo_usu']="residencia";
 					$dat["error"]="ok";
 					$dat["pagina"]= "residencia.php?q=".time();
-					exit(json_encode($dat));
-				}
-				elseif($pass['id_nie']=="S4500175GJDE"){
-					$_SESSION['tipo_usu']="jefe departamento";
-					$dat["error"]="ok";
-					$dat["pagina"]= "departamento.php?q=".time();
 					exit(json_encode($dat));
 				}
 				else{
