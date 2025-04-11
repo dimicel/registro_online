@@ -78,9 +78,7 @@ $(function() {
         return document.getElementById("nu_email").value == value ? true : false;
     });
 
-    jQuery.validator.addMethod("password", function(value, element) {
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value);
-    });
+    
 
     jQuery.validator.addMethod("rep_password", function(value, element) {
         return document.getElementById("nu_password").value === value ? true : false;

@@ -126,6 +126,10 @@ function validaDNI_NIE(dni) {
     }
 }
 
+jQuery.validator.addMethod("password", function(value, element) {
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value);
+});
+
 jQuery.validator.addMethod("numero_nif", function(value, element) {
     if (value.miTrim() == '') return true;
     return /(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))/.test(value.miTrim());

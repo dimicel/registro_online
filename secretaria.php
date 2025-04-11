@@ -555,7 +555,12 @@
                 <div class="col">
                     <label for="config_email_jd">Email del Jefe de Dpto.</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" id="config_email_jd" name="config_email_jd" class="form-control" placeholder="Seleccione un departamento" readonly>
+                    <input type="text" id="config_email_jd" name="config_email_jd" class="form-control" placeholder="Seleccione antes un departamento" readonly>
+                </div>
+                <div class="col">
+                    <label for="config_password_jd">Contraseña del Jefe de Dpto.<small>(En blanco no se cambia)</small></label>
+                    <span class="errorTxt" style="font-size: 1em;"></span>
+                    <input type="text" id="config_password_jd" name="config_password_jd" class="form-control" placeholder="Seleccione antes un departamento" readonly>
                 </div>
             </div>
         </form>
