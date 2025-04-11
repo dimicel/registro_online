@@ -2553,7 +2553,7 @@ function datosDepartamentos(){
             config_password_jd: {
                 required:false,
                 minlength: 8,
-                password:true
+                password2:true
             }
         },
         messages: {
@@ -2566,7 +2566,7 @@ function datosDepartamentos(){
             },
             config_password_jd:{
                 minlength: "Longitud mínima es de 8 caracteres",
-                password: "Debe contener, al menos, una minúscula, una mayúscula y un número."
+                password2: "Debe contener, al menos, una minúscula, una mayúscula y un número."
             }
         },
         errorPlacement: function(error, element) {
