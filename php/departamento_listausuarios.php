@@ -62,6 +62,7 @@ while ($reg=$res->fetch_assoc()){
     $data["registros"][$contador]["registro"]= $reg["registro"];
     $data["registros"][$contador]["visto"]= $reg["procesado"];
     $dirRegistro=substr($reg["registro"], 17);
+    $data["registros"][$contador]["dirRegistro"]= $dirRegistro;
     if (is_file(("../docs/".$reg["id_nie"]."/exencion_form_emp"."/".$curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf"))){
         $data["registros"][$contador]["informe_jd"]="docs/".$reg["id_nie"]."/exencion_form_emp"."/".$curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
     }
