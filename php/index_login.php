@@ -55,16 +55,28 @@ else {
 				$dat["pagina"]= "secretaria.php?q=".time();
 				exit(json_encode($dat));
 			} 
-			else if ($pass['id_nie']=="S4500175GJEF"){
+			elseif ($pass['id_nie']=="S4500175GJEF"){
 				$_SESSION['tipo_usu']="jefatura estudios";
 				$dat["error"]="ok";
 				$dat["pagina"]= "secretaria.php?q=".time();
 				exit(json_encode($dat));
 			} 
-			else if ($pass['id_nie']=="S4500175GRES"){
+			elseif ($pass['id_nie']=="S4500175GRES"){
 				$_SESSION['tipo_usu']="residencia";
 				$dat["error"]="ok";
 				$dat["pagina"]= "residencia.php?q=".time();
+				exit(json_encode($dat));
+			}
+			elseif ($pass['id_nie']=="S4500175GRES"){
+				$_SESSION['tipo_usu']="residencia";
+				$dat["error"]="ok";
+				$dat["pagina"]= "residencia.php?q=".time();
+				exit(json_encode($dat));
+			}
+			elseif($pass['id_nie']=="S4500175GJDT"){
+				$_SESSION['tipo_usu']="jefe departamento";
+				$dat["error"]="ok";
+				$dat["pagina"]= "departamento.php?q=".time();
 				exit(json_encode($dat));
 			}
 			else{
