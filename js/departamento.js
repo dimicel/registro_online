@@ -201,7 +201,7 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
             contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
-            contenido +="<div class='col-4 d-flex test-align-right'>";
+            contenido +="<div class='col-4 d-flex justify-content-right'>";
             contenido +="<label>Valoración del informe:</label>";
             contenido +="</div>";
             contenido +="<div class='col-5' >";
