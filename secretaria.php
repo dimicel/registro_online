@@ -563,7 +563,7 @@
                     <input type="text" id="config_password_jd" name="config_password_jd" class="form-control" placeholder="Seleccione antes un departamento" readonly>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col">
                     <label>En caso de introducir la contraseña (si se desea cambiar), debe cumplir los siguientes requisitos: Debe contener, al menos, una minúscula, una mayúscula y un número.</label>
                 </div>
