@@ -25,7 +25,6 @@ $(function() {
         else {
             anno_ini_curso = resp["anno_ini_curso"];
             departamento= resp["departamento"];
-            alert(departamento);
             document.getElementById("rotulo_tipo_usu").innerHTML="DEPARTAMENTO: "+departamento.toUpperCase(); 
             mes = resp["mes"];
             _curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
