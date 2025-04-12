@@ -149,7 +149,7 @@ function listaUsus() {
                     data += "<td style='" + estilo_usu[5] + ";text-align:center'>Procesado</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'><input type='button' class='' style='height:1em' value='Procesar' onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'></td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'><input type='button' class='btn btn-success btn-sm' style='height:1.5em' value='Procesar' onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'></td>";
                 }
                 data += "</tr>";
             }
