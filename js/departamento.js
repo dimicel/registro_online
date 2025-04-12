@@ -190,7 +190,7 @@ function verPanelProcesamiento(reg,dirReg){
     ancho = 700;
     formulario="exencion_fct"
     botones = "<div style='text-align:right'>";
-    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+num_registro+"\",\"exencion_fct\",document.getElementById(\"incidencias_text\").value)'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+reg+"\")'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
     botones += "</div>";
     contenido="";
