@@ -184,3 +184,7 @@ function cierrasesion() {
     });
 }
 
+function generarInforme(reg,dirReg){
+    alert(reg+"    "+dirReg);
+}
+
