@@ -90,8 +90,8 @@ function listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:220px", "width:240px","width:70px;text-align:center","width:70px;text-align:center","width:70px;text-align:center"];
-    encabezamiento_usu = ["NIE", "Alumno", "Nº Registro","Informe","Resolución","Visto"];
+    estilo_usu = ["width:80px", "width:220px", "width:240px","width:70px;text-align:center","width:70px;text-align:center","width:100px;text-align:center"];
+    encabezamiento_usu = ["NIE", "Alumno", "Nº Registro","Informe","Resolución","Estado"];
 
     //Construcción del encabezamiento de la tabla
     encab_usus = "<tr>";
@@ -146,10 +146,10 @@ function listaUsus() {
                     data += "<td style='" + estilo_usu[4] + ";text-align:center'>-</td>";
                 }
                 if (data_array[i]["visto"]==1){
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Sí</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Procesado</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>No</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'><input type='button' class='btn btn-success btn-sm' value='Procesar' onclick='generarInforme("+data_array[i]["registro"]+","+data_array[i]["dirRegistro"]+")'></td>";
                 }
                 data += "</tr>";
             }
