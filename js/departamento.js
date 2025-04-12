@@ -151,7 +151,7 @@ function listaUsus() {
                 }
                 else{
                     //data += "<td style='" + estilo_usu[5] + ";text-align:center'><input type='button' class='btn btn-success btn-sm'  value='Procesar' onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'></td>";
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Pendiente</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Procesado</td>";
                 }
                 data += "</tr>";
             }
