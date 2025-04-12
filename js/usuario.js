@@ -346,7 +346,7 @@ $(function() {
             p1: {
                 required: "Debe completar el campo.",
                 minlength: "Debe contener 8 caracteres como mínimo.",
-                password: "No cumple los requisitos."
+                password: "Debe contener, al menos, una minúscula, una mayúscula y un número."
             },
             p2: {
                 required: "Debe completar el campo.",
