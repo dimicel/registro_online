@@ -9,7 +9,6 @@ header("Pragma: no-cache");
 $respuesta=array();
 $mes=0;
 $dia=0;
-var_dump("Valores:");
 var_dump($_POST['tipo_usu']);
 var_dump($_SESSION['tipo_usu']);
 if (!isset($_SESSION['ID'])) $respuesta["error"]="Error_01 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
@@ -27,14 +26,6 @@ elseif (!isset($_POST['tipo_usu']) || !isset($_SESSION['tipo_usu']) || $_POST['t
             $respuesta["error"]="ok";
             $respuesta["tipo_usu"]="secretaria";
         }
-        elseif($_POST['tipo_usu']=="jefe departamento"){
-            $respuesta["error"]="ok";
-            $respuesta["tipo_usu"]="jefe departamento";
-            $respuesta["departamento"]=$_SESSION['departamento'];
-            $respuesta["email_jd"]=$_SESSION['email_jd'];
-            $respuesta["anno_ini_curso"]=calculaCurso_ini();
-            exit (json_encode($respuesta));
-        }
         else{
             $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
         }
@@ -42,6 +33,14 @@ elseif (!isset($_POST['tipo_usu']) || !isset($_SESSION['tipo_usu']) || $_POST['t
     else {
         $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
     }
+}
+elseif($_POST['tipo_usu']=="jefe departamento" && $_SESSION['tipo_usu']=="jefe departamento"){
+    $respuesta["error"]="ok";
+    $respuesta["tipo_usu"]="jefe departamento";
+    $respuesta["departamento"]=$_SESSION['departamento'];
+    $respuesta["email_jd"]=$_SESSION['email_jd'];
+    $respuesta["anno_ini_curso"]=calculaCurso_ini();
+    exit (json_encode($respuesta));
 }
 else $respuesta["error"]="ok";
 
