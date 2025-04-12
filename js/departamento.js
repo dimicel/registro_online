@@ -132,7 +132,7 @@ function listaUsus() {
                 data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
-                data += "<td style='" + estilo_usu[2] + "'><a href='#'  onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'>"+data_array[i]["registro"]+"</a></td>";
+                data += "<td style='" + estilo_usu[2] + "'><a href='#'  onclick='verPanelProcesamiento(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'>"+data_array[i]["registro"]+"</a></td>";
                 //data += "<td style='" + estilo_usu[2] + "'><a href='docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+data_array[i]["dirRegistro"]+"/"+data_array[i]["registro"]+".pdf' target='_blank'>"+data_array[i]["registro"]+"</a></td>";
                 if (data_array[i]["informe_jd"]!=""){
                     data += "<td style='" + estilo_usu[3] + ";text-align:center'><a href='"+data_array[i]["informe_jd"]+"' target='_blank' >Ver</a></td>";
@@ -151,7 +151,7 @@ function listaUsus() {
                 }
                 else{
                     //data += "<td style='" + estilo_usu[5] + ";text-align:center'><input type='button' class='btn btn-success btn-sm'  value='Procesar' onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'></td>";
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Procesado</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Pendiente</td>";
                 }
                 data += "</tr>";
             }
@@ -186,7 +186,52 @@ function cierrasesion() {
     });
 }
 
-function generarInforme(reg,dirReg){
-    alert(reg+"    "+dirReg);
+function verPanelProcesamiento(reg,dirReg){
+    ancho = 700;
+    formulario="exencion_fct"
+    botones = "<div style='text-align:right'>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+num_registro+"\",\"exencion_fct\",document.getElementById(\"incidencias_text\").value)'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
+    botones += "</div>";
+    contenido="";
+    $.post("php/secret_recuperaregistro.php", { formulario: "exencion_fct", registro: reg }, function(resp) {
+        if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
+        else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
+        else if (resp.error == "ok") {
+            contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><span class='verReg_label' style='margin-left:5px'>Nº Registro: </span><span class='verReg_campo'>" + num_registro +"</span><br>";
+            contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
+            contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>"+resp.registro.curso_ciclo+" de Grado " + resp.registro.grado + " "+resp.registro.ciclo+"</span><br>";
+            contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
+            contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
+            contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
+            contenido +="<div class='col-3'>";
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido += "</div></div>";
+            contenido += "<div class='row' id='div_motivo'><div class='col-5>'"
+            contenido += "<span class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL: </span>";
+            contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea>";
+            contenido += "</div></div></div>";
+            contenido += botones;
+            document.getElementById("verRegistro_div").innerHTML = contenido;
+            verRegAdjuntosExencFCT(num_registro);
+
+            $("#verRegistro_div").dialog({
+                autoOpen: true,
+                dialogClass: "no-close",
+                modal: true,
+                draggable: false,
+                hide: { effect: "fade", duration: 0 },
+                resizable: false,
+                show: { effect: "fade", duration: 0 },
+                title: "VISTA DEL REGISTRO",
+                width: ancho,
+                position: { my: "center top", at: "center top", of: window }
+            });
+        }
+    }, "json");
 }
 
+
+function generaInforme(){
+
+}
