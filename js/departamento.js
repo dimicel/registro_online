@@ -112,7 +112,7 @@ function listaUsus() {
     $.post("php/departamento_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "sin_registros") {
-            document.getElementById("div_notabla_usus").style.display = "flex";
+            document.getElementById("div_notabla_usus").style.display = "";
             document.getElementById("div_tabla_usus").style.display = "none";
             numero_paginas=1;
             pagina=1;
@@ -125,7 +125,7 @@ function listaUsus() {
             $('#navegacion_usus_bottom a').addClass('page-link');
         } else {
             document.getElementById("div_notabla_usus").style.display = "none";
-            document.getElementById("div_tabla_usus").style.display = "block";
+            document.getElementById("div_tabla_usus").style.display = "";
             data = "";
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
