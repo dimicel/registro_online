@@ -45,14 +45,8 @@
                 <div class="col-2" >
                     <select id="curso" size="1" onchange="listaUsus();" class="form-control"></select>
                 </div>
-                <div class="col-3">
-                    <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
-                </div>
-                <div class="col-2" style="display:none" id="csv_remesas">
-                    <input type="button" class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">
-                </div>
                 <div class="col-1">
-                    <input type="button" id="boton_salir"  class="textoboton btn btn-success" value="SALIR" onclick="javascript: cierrasesion();">
+                    <input type="button" id="boton_salir"  class="textoboton btn btn-success" value="Cerrar Sesión" onclick="javascript: cierrasesion();">
                 </div>
             </div>
             
