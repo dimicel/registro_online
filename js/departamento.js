@@ -207,7 +207,7 @@ function verPanelProcesamiento(reg,dirReg){
             contenido +="<div class='col-3'>";
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+reg+"\")'/>";
             contenido += "</div></div>";
-            contenido += "<div class='row' id='div_motivo'><div class='col-5>'"
+            contenido += "<div class='row alertas' id='div_motivo'><div class='col>'"
             contenido += "<span class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL: </span>";
             contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea>";
             contenido += "</div></div></div>";
