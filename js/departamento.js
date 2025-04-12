@@ -106,7 +106,7 @@ function listaUsus() {
         pagina: pagina,
         num_reg_pagina: num_reg_pagina,
         curso:document.getElementById("curso").value,
-        departamento:departamanto
+        departamento:departamento
     }
     $.post("php/departamento_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
