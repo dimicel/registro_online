@@ -204,7 +204,7 @@ function verPanelProcesamiento(reg,dirReg){
             contenido +="<div class='col-4'>";
             contenido +="<label>Valoración del informe:</label>";
             contenido +="</div>";
-            contenido +="<div class='col-5' style='margin-left:-20px'>";
+            contenido +="<div class='col-5' style='margin-left:-30px'>";
             contenido +="<select id='valoracion_informe' class='form-control' onchange='seleccionValoracion(this.value)'/>";
             contenido +="<option value=''>Seleccione una...</option>";
             contenido +="<option value='exento'>EXENTO</option>";
