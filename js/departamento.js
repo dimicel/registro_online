@@ -125,7 +125,7 @@ function listaUsus() {
             $('#navegacion_usus_bottom a').addClass('page-link');
         } else {
             document.getElementById("div_notabla_usus").style.display = "none";
-            document.getElementById("div_tabla_usus").style.display = "inline-block";
+            document.getElementById("div_tabla_usus").style.display = "";
             data = "";
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {

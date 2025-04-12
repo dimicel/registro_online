@@ -72,7 +72,7 @@
                     <table id="registros_usus" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:20px">
                     </table>
                 </div>
-                <div id="div_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px">
+                <div id="div_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px;" >
                     <span>No hay usuarios que listar.</span>
                 </div>
             </div>
