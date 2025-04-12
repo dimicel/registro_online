@@ -565,7 +565,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col">
-                    <label>En caso de introducir la contraseña (si se desea cambiar), debe contener, al menos, una minúscula, una mayúscula y un número.</label>
+                    <label>En caso de introducir la contraseña (si se desea cambiar), debe tener como mínimo 8 caracteres de longitud, y contener, al menos, una minúscula, una mayúscula y un número.</label>
                 </div>
             </div>
         </form>
