@@ -201,11 +201,11 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
             contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
-            contenido +="<div class='col-5'>";
+            contenido +="<div class='col-4'>";
             contenido +="<label>Valoración del informe:</label>";
             contenido +="</div>";
             contenido +="<div class='col-5'>";
-            contenido +="<select id='valoracion_informe' class='form-control' onchange='(this.value!=\"\" && this.value!=\"exento\")?document.getElementById(\"div_motivo\").style.display=\"\":document.getElementById(\"div_motivo\").style.display=\"none\"'/>";
+            contenido +="<select id='valoracion_informe' class='form-control' onchange='seleccionValoracion(this.value)'/>";
             contenido +="<option value=''>Seleccione una...</option>";
             contenido +="<option value='exento'>EXENTO</option>";
             contenido +="<option value='parcialmente exento'>PARCIALMENTE EXENTO</option>";
@@ -242,6 +242,11 @@ function limiteCaracteres(obj){
     var rot=document.getElementById("rotulo_motivo");
     if (obj.value.length<=1000) rot.innerHTML="MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL ("+String(1000-obj.value.length)+"/1000): ";
     else obj.value=obj.value.slice(0,-1);
+}
+
+function seleccionValoracion(v){
+    if (v=="" || v=="exento") document.getElementById("div_motivo").style.display="none";
+    else document.getElementById("div_motivo").style.display="";
 }
 
 function verRegAdjuntosExencFCT(reg){
