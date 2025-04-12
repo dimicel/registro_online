@@ -30,6 +30,7 @@ else {
 		if ($consulta->num_rows>0){
 			while($dpto=$consulta->fetch_array(MYSQLI_ASSOC)){
 				if(password_verify($contrasena,$dpto['password'])){
+					$_SESSION['acceso_logueado']="correcto";
 					$_SESSION['tipo_usu']="jefe departamento";
 					$_SESSION['departamento']=$dpto['departamento'];
 					$_SESSION['email_jd']=$dpto['email_jd'];
