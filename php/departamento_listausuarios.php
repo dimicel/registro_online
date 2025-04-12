@@ -10,9 +10,9 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-$pagina=$_POST["res_pagina"];
+$pagina=$_POST["pagina"];
 $num_reg_pagina=$_POST["num_reg_pagina"];//Número de registros por página
-$orden_direccion=$_POST["res_orden_direccion_usu"];
+$orden_direccion=$_POST["orden_direccion_usu"];
 $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
 $departamento=$_POST["departamento"];
