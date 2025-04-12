@@ -99,6 +99,7 @@ function listaUsus() {
         if (encabezamiento_usu[i] == "Alumno") encab_usus += "<td style='" + estilo_usu[i] + "'onclick='ordenUsus()'>" + encabezamiento_usu[i] + " " + orden_direccion_usu + "</td>";
         else encab_usus += "<td style='" + estilo_usu[i] + "'>" + encabezamiento_usu[i] + "</td>";
     }
+    document.getElementById("encabezado_usus").innerHTML = encab_usus;
     ///////////////////////////////////////////////
     datos = {
         buscar: document.getElementById("busqueda_usus").value,
@@ -152,7 +153,6 @@ function listaUsus() {
                 }
                 data += "</tr>";
             }
-            document.getElementById("encabezado_usus").innerHTML = encab_usus;
             document.getElementById("registros_usus").innerHTML = data;
             num_registros = resp.num_registros;
             numero_paginas = Math.ceil(num_registros / num_reg_pagina);
