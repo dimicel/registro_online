@@ -20,8 +20,8 @@ $departamento=$_POST["departamento"];
 
 $offset=($pagina-1)*$num_reg_pagina;
 
-$consulta="SELECT * FROM residentes  where curso='$curso' and departamento='$departamento' ";
-$sql = "SELECT COUNT(*) AS total FROM residentes where curso='$curso'  and departamento='$departamento' ";
+$consulta="SELECT * FROM exencion_fct  where curso='$curso' and departamento='$departamento' ";
+$sql = "SELECT COUNT(*) AS total FROM exencion_fct where curso='$curso'  and departamento='$departamento' ";
 
 
 
