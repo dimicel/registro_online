@@ -90,7 +90,7 @@ function listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:220px", "width:220px","width:70px;text-align:center","width:70px;text-align:center","width:70px;text-align:center"];
+    estilo_usu = ["width:80px", "width:220px", "width:240px","width:70px;text-align:center","width:70px;text-align:center","width:70px;text-align:center"];
     encabezamiento_usu = ["NIE", "Alumno", "Nº Registro","Informe","Resolución","Visto"];
 
     //Construcción del encabezamiento de la tabla
