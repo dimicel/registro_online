@@ -208,7 +208,7 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<span class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL: </span>";
             contenido += "<textarea id='motivo' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'></textarea>";
             contenido += "</div></div><hr>";
-            contenido += "<div class='row mt-5'><div class='col' style='text-align:right'>"
+            contenido += "<div class='row'><div class='col' style='text-align:right'>"
             contenido += botones;
             contenido += "</div></div></div>";
             document.getElementById("verRegistro_div").innerHTML = contenido;
