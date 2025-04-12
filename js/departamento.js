@@ -112,7 +112,7 @@ function listaUsus() {
     $.post("php/departamento_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "sin_registros") {
-            document.getElementById("div_notabla_usus").style.display = "block";
+            document.getElementById("div_notabla_usus").style.display = "flex";
             document.getElementById("div_tabla_usus").style.display = "none";
             numero_paginas=1;
             pagina=1;
