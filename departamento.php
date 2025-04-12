@@ -45,8 +45,8 @@
                 <div class="col-2" >
                     <select id="curso" size="1" onchange="listaUsus();" class="form-control"></select>
                 </div>
-                <div class="col-1 offset-5">
-                    <input type="button" id="boton_salir"  class="textoboton btn btn-success" value="Cerrar Sesión" onclick="javascript: cierrasesion();">
+                <div class="col-1">
+                    <input type="button" id="boton_salir" style="float:right" class="textoboton btn btn-success" value="Cerrar Sesión" onclick="javascript: cierrasesion();">
                 </div>
             </div>
             
