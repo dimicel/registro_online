@@ -25,7 +25,7 @@ $(function() {
         else {
             anno_ini_curso = resp["anno_ini_curso"];
             departamento= resp["departamento"];
-            document.getElementById("rotulo_tipo_usu").innerHTML="GESTIÓN DEL REGISTRO ONLINE - DEPARTAMENTO: "+departamento.toUpperCase(); 
+            document.getElementById("rotulo_tipo_usu").innerHTML="DEPARTAMENTO: "+departamento.toUpperCase(); 
             mes = resp["mes"];
             _curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
             curso_actual=_curso;
