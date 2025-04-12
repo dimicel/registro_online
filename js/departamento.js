@@ -245,6 +245,7 @@ function limiteCaracteres(obj){
 }
 
 function seleccionValoracion(v){
+    alert(v);
     if (v=="" || v=="exento") document.getElementById("div_motivo").style.display="none";
     else document.getElementById("div_motivo").style.display="";
 }
