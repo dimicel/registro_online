@@ -2566,7 +2566,7 @@ function datosDepartamentos(){
             },
             config_password_jd:{
                 minlength: "Longitud mínima es de 8 caracteres",
-                password2: "Debe contener, al menos, una minúscula, una mayúscula y un número."
+                password2: "No cumple los requisitos."
             }
         },
         errorPlacement: function(error, element) {
