@@ -205,7 +205,7 @@ function verPanelProcesamiento(reg,dirReg){
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+reg+"\")'/>";
             contenido += "</div></div>";
             contenido += "<div class='row mt-3' id='div_motivo'><div class='col'>"
-            contenido += "<span id='rotulo_motivo' class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (0/500): </span>";
+            contenido += "<span id='rotulo_motivo' class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (500/500): </span>";
             contenido += "<textarea id='motivo' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control' oninput='limiteCaracteres(this)'></textarea>";
             contenido += "</div></div><hr>";
             contenido += "<div class='row'><div class='col' style='text-align:right'>"
@@ -232,7 +232,7 @@ function verPanelProcesamiento(reg,dirReg){
 
 function limiteCaracteres(obj){
     var rot=document.getElementById("rotulo_motivo");
-    if (obj.value.length<=50) rot.innerHTML="MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL ("+String(500-obj.value.length)+"/500): ";
+    if (obj.value.length<=500) rot.innerHTML="MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL ("+String(500-obj.value.length)+"/500): ";
     else obj.value=obj.value.slice(0,-1);
 }
 
