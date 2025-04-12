@@ -68,12 +68,12 @@
             <div class="row justify-content-center">
                 <table id="encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px;height:1em">
                 </table><br>
-                <div id="div_tabla_usus" style="overflow: auto; height: 480px;" class="table-hover row">
+                <div id="div_tabla_usus" style="overflow: auto; height: 480px;" class="table-hover">
                     <table id="registros_usus" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:20px">
                     </table>
                 </div>
-                <div id="div_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px" class="row">
-                    No hay usuarios que listar.
+                <div id="div_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px">
+                    <span>No hay usuarios que listar.</span>
                 </div>
             </div>
             <div class="row justify-content-center">
