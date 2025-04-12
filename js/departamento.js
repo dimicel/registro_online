@@ -230,10 +230,10 @@ function verPanelProcesamiento(reg,dirReg){
     }, "json");
 }
 
-function limiteCaracteres(){
+function limiteCaracteres(obj){
     var rot=document.getElementById("rotulo_motivo");
-    if (this.value.length<=50) rot.innerHTML="MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL ("+String(500-this.value.length)+"/500): ";
-    else this.value=this.value.slice(0,-1);
+    if (obj.value.length<=50) rot.innerHTML="MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL ("+String(500-obj.value.length)+"/500): ";
+    else obj.value=obj.value.slice(0,-1);
 }
 
 function verRegAdjuntosExencFCT(reg){
