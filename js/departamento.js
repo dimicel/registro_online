@@ -198,14 +198,14 @@ function verPanelProcesamiento(reg,dirReg){
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
         else if (resp.error == "ok") {
-            contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><span class='verReg_label' style='margin-left:5px'>Nº Registro: </span><span class='verReg_campo'>" + num_registro +"</span><br>";
+            contenido += "<span class='verReg_label'>NIE: </span><span class='verReg_campo'>" + resp.registro.id_nie +"</span><span class='verReg_label' style='margin-left:5px'>NIF: </span><span class='verReg_campo'>" + resp.registro.id_nif +"</span><span class='verReg_label' style='margin-left:5px'>Nº Registro: </span><span class='verReg_campo'>" + reg +"</span><br>";
             contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
             contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>"+resp.registro.curso_ciclo+" de Grado " + resp.registro.grado + " "+resp.registro.ciclo+"</span><br>";
             contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
             contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             contenido +="<div class='col-3'>";
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+reg+"\")'/>";
             contenido += "</div></div>";
             contenido += "<div class='row' id='div_motivo'><div class='col-5>'"
             contenido += "<span class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL: </span>";
@@ -213,7 +213,7 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "</div></div></div>";
             contenido += botones;
             document.getElementById("verRegistro_div").innerHTML = contenido;
-            verRegAdjuntosExencFCT(num_registro);
+            verRegAdjuntosExencFCT(reg);
 
             $("#verRegistro_div").dialog({
                 autoOpen: true,
@@ -229,6 +229,26 @@ function verPanelProcesamiento(reg,dirReg){
             });
         }
     }, "json");
+}
+
+function verRegAdjuntosExencFCT(reg){
+    _div="";
+    $.post("php/secret_exencion_fct_adjuntos.php",{registro:reg},(resp2)=>{
+        if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
+        else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
+        else {
+            _div+="<ul id='ul_docs_convalid'>";
+            for(i=0;i<resp2.datos.length;i++){
+                _div += "<li><a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp2.datos[i].ruta+"'>"+resp2.datos[i].descripcion+"</a>";
+                if (resp2.datos[i].subidopor=="secretaria"){
+                    _div+="&nbsp&nbsp(<a style='color:RED;font-size:0.75em' href='#' onclick='borraAdjuntos(\"exencion_fct_docs\",\""+resp2.datos[i].ruta+"\",\""+resp2.datos[i].descripcion+"\",\""+reg+"\",1)'>X</a>)";
+                }
+                _div+="</li>";
+            }
+            _div+="</ul>";
+        }
+        document.getElementById("ver_reg_ajuntosExencFCT").innerHTML=_div;
+    },"json");
 }
 
 
