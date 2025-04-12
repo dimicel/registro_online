@@ -56,17 +56,11 @@
                     <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="listaUsus()">
                 </div>
             </div> 
-            <div class="row justify-content-center" style="margin-top:10px">
-                <div class="col">
+            <div class="row" style="margin-top:10px">
+                <div class="col  justify-content-center">
                     <ul class="pagination pagination-sm" id="navegacion_usus_top"></ul>
                 </div>
             </div>
-            <!--<div class="row justify-content-center" >
-                <div class="col" style="text-align: center;">
-                    <span style="display: block; margin: 0 auto;">Usuario con fondo rojo = Usuario INHABILITADO.</span>
-                </div>
-            </div>-->
-
             <div class="row justify-content-center">
                 <div class="col">
                     <table id="encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px;height:1em">
@@ -79,8 +73,8 @@
                     </table>
                 </div>
             </div>
-            <div class="row" id="div_notabla_usus">
-                <div class="col" style="display:none; height: 400px; text-align: center; margin-left: 20px;" >
+            <div class="row" id="div_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px;">
+                <div class="col"  >
                     <span>No hay usuarios que listar.</span>
                 </div>
             </div>
