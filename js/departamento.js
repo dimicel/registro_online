@@ -202,7 +202,15 @@ function verPanelProcesamiento(reg,dirReg){
             contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             contenido +="<div class='col-3'>";
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+reg+"\")'/>";
+            contenido +="<label>Valoración del informe:</label>";
+            contenido +="</div>";
+            contenido +="<div class='col-5'>";
+            contenido +="<select id='valoracion_informe' class='form-control' onchange='(this.value!='' && this.value!='exento')?document.getElementById(\"div_motivo\").style.display=\"\":document.getElementById(\"div_motivo\").style.display=\"none\"'/>";
+            contenido +="<option value=''>Seleccione una...</option>";
+            contenido +="<option value='exento'>EXENTO</option>";
+            contenido +="<option value='parcialmente exento'>PARCIALMENTE EXENTO</option>";
+            contenido +="<option value='no exento'>NO EXENTO</option>";
+            contenido +="</select>";
             contenido += "</div></div>";
             contenido += "<div class='row mt-3 alertas' id='div_motivo'><div class='col'>"
             contenido += "<span id='rotulo_motivo' class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (1000/1000): </span>";
