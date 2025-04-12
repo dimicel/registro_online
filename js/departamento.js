@@ -188,11 +188,8 @@ function cierrasesion() {
 
 function verPanelProcesamiento(reg,dirReg){
     ancho = 700;
-    formulario="exencion_fct"
-    botones = "<div style='text-align:right'>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+reg+"\")'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
-    botones += "</div>";
     contenido="";
     $.post("php/secret_recuperaregistro.php", { formulario: "exencion_fct", registro: reg }, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
@@ -210,8 +207,10 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<div class='row' id='div_motivo'><div class='col'>"
             contenido += "<span class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL: </span>";
             contenido += "<textarea id='motivo' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'></textarea>";
-            contenido += "</div></div></div>";
+            contenido += "</div></div>";
+            contenido += "<div class='row'><div class='col' style='text-align:right'>"
             contenido += botones;
+            contenido += "</div></div></div>";
             document.getElementById("verRegistro_div").innerHTML = contenido;
             verRegAdjuntosExencFCT(reg);
 
