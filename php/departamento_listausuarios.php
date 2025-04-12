@@ -21,7 +21,7 @@ $departamento=$_POST["departamento"];
 $offset=($pagina-1)*$num_reg_pagina;
 
 $consulta="SELECT * FROM exencion_fct  where curso='$curso' and departamento='$departamento' ";
-$sql = "SELECT COUNT(*) AS total FROM exencion_fct where curso='$curso'  and departamento='$departamento' ";
+$sql = "SELECT COUNT(*) AS total FROM exencion_fct where curso='$curso' and departamento='$departamento' ";
 
 
 
@@ -35,6 +35,8 @@ else {
     $sql.=" and (apellidos LIKE '%$buscar%' OR nombre  LIKE '%$buscar%' OR id_nie  LIKE '%$buscar%')";
 }
 
+$data["consulta"]=$consulta;
+
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
@@ -44,6 +46,8 @@ if ($result->num_rows > 0) {
 } else {
     $data["num_registros"] = 0;
 }
+
+
     
 
 $res=$mysqli->query($consulta);
