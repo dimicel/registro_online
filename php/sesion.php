@@ -9,8 +9,7 @@ header("Pragma: no-cache");
 $respuesta=array();
 $mes=0;
 $dia=0;
-var_dump($_POST['tipo_usu']);
-var_dump($_SESSION['tipo_usu']);
+
 if (!isset($_SESSION['ID'])) $respuesta["error"]="Error_01 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
 //elseif($_SESSION['ip'] != $_SERVER['HTTP_X_FORWARDED_FOR']) $respuesta["error"]="Error_02 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
 //elseif ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) $respuesta["error"]="Error_02 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
