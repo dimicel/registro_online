@@ -9,7 +9,8 @@ header("Pragma: no-cache");
 $respuesta=array();
 $mes=0;
 $dia=0;
-
+var_dump($_POST['tipo_usu']);
+var_dump($_SESSION['tipo_usu']);
 if (!isset($_SESSION['ID'])) $respuesta["error"]="Error_01 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
 //elseif($_SESSION['ip'] != $_SERVER['HTTP_X_FORWARDED_FOR']) $respuesta["error"]="Error_02 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
 //elseif ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) $respuesta["error"]="Error_02 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
@@ -21,7 +22,7 @@ elseif (!isset($_POST['tipo_usu']) || !isset($_SESSION['tipo_usu']) || $_POST['t
             $respuesta["error"]="ok";
             $respuesta["tipo_usu"]="jefatura estudios";
         }
-        else if($_POST['tipo_usu']=="residencia" && $_SESSION['tipo_usu']=="secretaria"){
+        elseif($_POST['tipo_usu']=="residencia" && $_SESSION['tipo_usu']=="secretaria"){
             $respuesta["error"]="ok";
             $respuesta["tipo_usu"]="secretaria";
         }
@@ -40,7 +41,6 @@ elseif (!isset($_POST['tipo_usu']) || !isset($_SESSION['tipo_usu']) || $_POST['t
     else {
         $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
     }
-    
 }
 else $respuesta["error"]="ok";
 
