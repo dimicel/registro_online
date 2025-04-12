@@ -38,15 +38,15 @@ if (strlen($password) > 0) {
     ///////////////////////////////////////
     if ($pass_asignada) {
         $sql = "UPDATE departamentos SET email_jd = ? WHERE departamento = ?";
+        $stmt = $mysqli->prepare($sql);
         $stmt->bind_param('ss', $email, $departamento);
     } 
     else {
         $sql = "UPDATE departamentos SET email_jd = ?, password = ? WHERE departamento = ?";
         $pass = password_hash($password, PASSWORD_BCRYPT);
+        $stmt = $mysqli->prepare($sql);
         $stmt->bind_param('sss', $email, $pass, $departamento);
-    }
-    $stmt = $mysqli->prepare($sql);
-    
+    } 
 } else {
     $sql = "UPDATE departamentos SET email_jd = ? WHERE departamento = ?";
     $stmt = $mysqli->prepare($sql);
