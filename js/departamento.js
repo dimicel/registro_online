@@ -271,6 +271,12 @@ function verRegAdjuntosExencFCT(reg){
 
 
 function generaInforme(_registro){
-    alert(_registro)
+    var val=document.getElementById("valoracion_informe").value;
+    var mot=document.getElementById("motivo").value.trim().length;
+    if (val=="") alerta("No se puede generar el informe sin una valoración. Seleccione una antes.","VALORACIÓN VACÍA");
+    else if(val!="" && mot==0) alerta("Una valoración NO EXENTO o PARCIELMENTE EXENTO requiere cumplimentar el campo MOTIVO.","MOTIVO VACÍO");
+    else {
+        alert("Informe lanzado");
+    }
 
 }
