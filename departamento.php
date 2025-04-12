@@ -66,7 +66,7 @@
             </div>-->
 
             <div class="row justify-content-center">
-                <table id="encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px">
+                <table id="encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px;height:1em">
                 </table><br>
                 <div id="div_tabla_usus" style="overflow: auto; height: 480px;" class="table-hover">
                     <table id="registros_usus" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:20px">
