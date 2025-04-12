@@ -270,6 +270,7 @@ function verRegAdjuntosExencFCT(reg){
 }
 
 
-function generaInforme(){
+function generaInforme(_registro){
+    alert(_registro)
 
 }
