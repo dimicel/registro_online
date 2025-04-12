@@ -29,7 +29,7 @@ if (strlen($password) > 0) {
     $pass_asignada=false;
     if ($consulta->num_rows>0){
         while($dpto=$consulta->fetch_array(MYSQLI_ASSOC)){
-            if(password_verify($contrasena,$dpto['password']) && $dpto['departamento']!=$departamento){
+            if(password_verify($password,$dpto['password']) && $dpto['departamento']!=$departamento){
                 $pass_asignada=true;
                 break;
             }
