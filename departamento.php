@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="row" id="div_tabla_usus">  
-                <div  style="overflow: auto; height: 480px;" class="table-hover col d-flex justify-content-center">
+                <div  style="overflow: auto; height: 480px;" class="table-hover col  justify-content-center">
                     <table id="registros_usus" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:20px">
                     </table>
                 </div>
@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col">
+                <div class="col  d-flex justify-content-center">
                     <ul class="pagination pagination-sm" id="navegacion_usus_bottom"></ul>
                 </div>
             </div>
