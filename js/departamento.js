@@ -212,7 +212,7 @@ function verPanelProcesamiento(reg,dirReg){
             contenido +="<option value='no exento'>NO EXENTO</option>";
             contenido +="</select>";
             contenido += "</div></div>";
-            contenido += "<div class='row mt-3 alertas' id='div_motivo'><div class='col'>"
+            contenido += "<div class='row mt-3' id='div_motivo' style='display:none'><div class='col'>"
             contenido += "<span id='rotulo_motivo' class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (1000/1000): </span>";
             contenido += "<textarea id='motivo' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control' oninput='limiteCaracteres(this)'></textarea>";
             contenido += "</div></div><hr>";
@@ -245,7 +245,6 @@ function limiteCaracteres(obj){
 }
 
 function seleccionValoracion(v){
-    alert(v);
     if (v=="" || v=="exento") document.getElementById("div_motivo").style.display="none";
     else document.getElementById("div_motivo").style.display="";
 }
