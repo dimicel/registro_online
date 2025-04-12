@@ -132,9 +132,10 @@ function listaUsus() {
                 data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
-                data += "<td style='" + estilo_usu[2] + "'><a href='docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+data_array[i]["dirRegistro"]+"/"+data_array[i]["registro"]+".pdf' target='_blank'>"+data_array[i]["registro"]+"</a></td>";
+                data += "<td style='" + estilo_usu[2] + "'><a href='#' target='_blank' >"+data_array[i]["registro"]+"</a></td>";
+                //data += "<td style='" + estilo_usu[2] + "'><a href='docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+data_array[i]["dirRegistro"]+"/"+data_array[i]["registro"]+".pdf' target='_blank'>"+data_array[i]["registro"]+"</a></td>";
                 if (data_array[i]["informe_jd"]!=""){
-                    data += "<td style='" + estilo_usu[3] + ";text-align:center'><a href='"+data_array[i]["informe_jd"]+"' target='_blank'>Ver</a></td>";
+                    data += "<td style='" + estilo_usu[3] + ";text-align:center'><a href='"+data_array[i]["informe_jd"]+"' target='_blank' onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'>Ver</a></td>";
                 }
                 else{
                     data += "<td style='" + estilo_usu[3] + ";text-align:center'>-</td>";
@@ -149,7 +150,8 @@ function listaUsus() {
                     data += "<td style='" + estilo_usu[5] + ";text-align:center'>Procesado</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'><input type='button' class='btn btn-success btn-sm'  value='Procesar' onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'></td>";
+                    //data += "<td style='" + estilo_usu[5] + ";text-align:center'><input type='button' class='btn btn-success btn-sm'  value='Procesar' onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'></td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Pendiente</td>";
                 }
                 data += "</tr>";
             }
