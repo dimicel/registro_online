@@ -23,9 +23,9 @@ $(function() {
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
-            document.getElementById("rotulo_tipo_usu").innerHTML="GESTIÓN DEL REGISTRO ONLINE - DEPARTAMENTO: "+departamento.toUpperCase(); 
             anno_ini_curso = resp["anno_ini_curso"];
             departamento= resp["departamento"];
+            document.getElementById("rotulo_tipo_usu").innerHTML="GESTIÓN DEL REGISTRO ONLINE - DEPARTAMENTO: "+departamento.toUpperCase(); 
             mes = resp["mes"];
             _curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
             curso_actual=_curso;
