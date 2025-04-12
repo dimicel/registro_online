@@ -57,7 +57,9 @@
                 </div>
             </div> 
             <div class="row justify-content-center" style="margin-top:10px">
-                <ul class="pagination pagination-sm" id="navegacion_usus_top"></ul>
+                <div class="col">
+                    <ul class="pagination pagination-sm" id="navegacion_usus_top"></ul>
+                </div>
             </div>
             <!--<div class="row justify-content-center" >
                 <div class="col" style="text-align: center;">
@@ -66,18 +68,26 @@
             </div>-->
 
             <div class="row justify-content-center">
-                <table id="encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px;height:1em">
-                </table><br>
-                <div id="div_tabla_usus" style="overflow: auto; height: 480px;" class="table-hover">
+                <div class="col">
+                    <table id="encabezado_usus" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-left:20px;height:1em">
+                    </table>
+                </div>
+            </div>
+            <div class="row" id="div_tabla_usus">  
+                <div  style="overflow: auto; height: 480px;" class="table-hover col">
                     <table id="registros_usus" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:20px">
                     </table>
                 </div>
-                <div id="div_notabla_usus" style="display:none; height: 400px; text-align: center; margin-left: 20px;" >
+            </div>
+            <div class="row" id="div_notabla_usus">
+                <div class="col" style="display:none; height: 400px; text-align: center; margin-left: 20px;" >
                     <span>No hay usuarios que listar.</span>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <ul class="pagination pagination-sm" id="navegacion_usus_bottom"></ul>
+                <div class="col">
+                    <ul class="pagination pagination-sm" id="navegacion_usus_bottom"></ul>
+                </div>
             </div>
         </div>
         <!-- FIN LISTADO DE USUARIOS__________________________________________________________________-->
