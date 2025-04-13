@@ -85,12 +85,6 @@
             </div>
         </div> 
     </div>
-    <div id="div_canvas_firma" style="display:none; text-align:center;">
-        <label><small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small></label><br>
-        <div id="div_lienzo" >
-            <canvas id="firmaCanvas" width="400" height="200" style="background-color:white; border: 1px solid black;"></canvas>
-        </div>
-    </div>
     <div id="confirmarnuevaInsc_div" class="alertas"></div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -103,6 +97,7 @@
     <script src=<?php echo "js/res.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "../../js/croppie/croppie.min.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/validadores_res.js?q=".time();?> type="text/javascript"></script>
+    <script src=<?php echo "../../js/firma.js?q=".time();?> type="text/javascript"></script>
 
 </body>
 
