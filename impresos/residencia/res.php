@@ -98,7 +98,7 @@
     <script src=<?php echo "js/res.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "../../js/croppie/croppie.min.js?q=".time();?> type="text/javascript"></script>
     <script src=<?php echo "js/validadores_res.js?q=".time();?> type="text/javascript"></script>
-
+    <script src=<?php echo "../../js/firma.js?q=".time();?> type="text/javascript"></script>
 </body>
 
 </html>
