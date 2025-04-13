@@ -46,21 +46,21 @@ var formData = new FormData();
 
 $(document).ready(function() {
     // Crear el contenedor principal
-    const divCanvasFirma = document.createElement('div');
+    let divCanvasFirma = document.createElement('div');
     divCanvasFirma.id = 'div_canvas_firma';
     divCanvasFirma.style.display = 'none';
     divCanvasFirma.style.textAlign = 'center';
 
     // Crear el label
-    const label = document.createElement('label');
+    let label = document.createElement('label');
     label.innerHTML = "<small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small>";
 
     // Crear el contenedor para el canvas
-    const divLienzo = document.createElement('div');
+    let divLienzo = document.createElement('div');
     divLienzo.id = 'div_lienzo';
 
     // Crear el canvas
-    const canvas = document.createElement('canvas');
+    let canvas = document.createElement('canvas');
     canvas.id = 'firmaCanvas';
     canvas.width = 400;
     canvas.height = 200;
