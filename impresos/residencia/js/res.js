@@ -536,7 +536,7 @@ function limitarDigitos(input, maxDigits) {
 }
 
 
-function alerta(mensaje, titulo, previo, ancho) {
+/*function alerta(mensaje, titulo, previo, ancho) {
     if (typeof(previo) == 'boolean' && previo == true) {
         document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta(true)'/></div>";
     } else {
@@ -557,7 +557,7 @@ function alerta(mensaje, titulo, previo, ancho) {
         width: ancho
     });
     $("#mensaje_div").dialog('open');
-}
+}*/
 
 
 
