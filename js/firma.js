@@ -45,13 +45,33 @@ var canvas, context, tool, canvas_upload;
 var formData = new FormData();
 
 $(document).ready(function() {
-    /*div_firma="<div id='div_canvas_firma' style='display:none; text-align:center;'>";
-    div_firma+="    <label><small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small></label>";
-    div_firma+="    <div id='div_lienzo' >";
-    div_firma+="        <canvas id='firmaCanvas' width='400' height='200' style='background-color:white; border: 1px solid black;'></canvas>";
-    div_firma+="    </div>";
-    div_firma+="</div>";
-    document.body.innerHTML+=div_firma;*/
+    const contenedor = document.getElementById('contenedor');  // O el ID que necesites
+
+    const divCanvasFirma = document.createElement('div');
+    divCanvasFirma.id = 'div_canvas_firma';
+    divCanvasFirma.style.display = 'none';
+    divCanvasFirma.style.textAlign = 'center';
+
+    const label = document.createElement('label');
+    label.innerHTML = "<small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small>";
+
+    const divLienzo = document.createElement('div');
+    divLienzo.id = 'div_lienzo';
+
+    const canvas = document.createElement('canvas');
+    canvas.id = 'firmaCanvas';
+    canvas.width = 400;
+    canvas.height = 200;
+    canvas.style.backgroundColor = 'white';
+    canvas.style.border = '1px solid black';
+
+    divLienzo.appendChild(canvas);
+    divCanvasFirma.appendChild(label);
+    divCanvasFirma.appendChild(divLienzo);
+
+    // Insertarlo al contenedor específico
+    contenedor.appendChild(divCanvasFirma);
+
     canvas = document.getElementById('firmaCanvas');
     context = canvas.getContext('2d');
     canvas.addEventListener('mousedown', ev_canvas, false);
