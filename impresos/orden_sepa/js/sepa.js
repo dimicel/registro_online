@@ -140,30 +140,6 @@ function registraSolicitud() {
 }
 
 
-/*function alerta(mensaje, titulo, previo, ancho) {
-    if (typeof(previo) == 'boolean' && previo == true) {
-        document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta(true)'/></div>";
-    } else {
-        document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta()'/></div>";
-    }
-
-    if (typeof(ancho) != 'number') ancho = 300;
-    if (typeof(duracion) != 'number') duracion = 0;
-    $("#mensaje_div").dialog({
-        title: titulo,
-        autoOpen: false,
-        draggable: false,
-        dialogClass: "alertas no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        width: ancho
-    });
-    $("#mensaje_div").dialog('open');
-}*/
-
-
 
 function canvasFirma() {
     tool = new tool_pencil();
