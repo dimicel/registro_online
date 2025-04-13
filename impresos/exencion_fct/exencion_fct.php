@@ -218,4 +218,5 @@
 <script src=<?php echo "../../js/comun.js?q=".time();?> type="text/javascript"></script>
 <script src=<?php echo "js/exenc.js?q=".time();?> type="text/javascript"></script>
 <script src=<?php echo "js/validadores_exenfct.js?q=".time();?> type="text/javascript"></script>
+<script src=<?php echo "../../js/firma.js?q=".time();?> type="text/javascript"></script>
 </html>

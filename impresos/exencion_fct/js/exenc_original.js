@@ -4,7 +4,9 @@ let id_nie="", nombre="", apellidos="", nif_nie="";
 let ciclos_basico={};
 let ciclos_medio={};
 let ciclos_superior={};
-
+var drawing = false;
+var mouseX, mouseY;
+var canvas, context, tool, canvas_upload;
 
 var formData = new FormData();
 
