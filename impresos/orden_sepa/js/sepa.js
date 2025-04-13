@@ -9,7 +9,6 @@ var canvas, context, tool, canvas_upload;
 
 
 $(document).ready(function() {
-    alerta("funciona","ccc");
     document.getElementById("cargando").style.display = '';
     canvas = document.getElementById('firmaCanvas');
     context = canvas.getContext('2d');
