@@ -24,6 +24,7 @@ var canvas, context, tool, canvas_upload;
 
 
 $(document).ready(function() {
+    alerta("funciona");
     document.getElementById("cargando").style.display = '';
     $("#pagina_1").load("res_html/pagina1.html?q="+Date.now().toString(), function() {
         creaValidatorPagina1();
