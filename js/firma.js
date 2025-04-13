@@ -45,12 +45,13 @@ var canvas, context, tool, canvas_upload;
 var formData = new FormData();
 
 $(document).ready(function() {
-    document.body.innerHTML+="<div id='div_canvas_firma' style='display:none; text-align:center;'>";
-    document.body.innerHTML+="    <label><small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small></label>";
-    document.body.innerHTML+="    <div id='div_lienzo' >";
-    document.body.innerHTML+="        <canvas id='firmaCanvas' width='400' height='200' style='background-color:white; border: 1px solid black;'></canvas>";
-    document.body.innerHTML+="    </div>";
-    document.body.innerHTML+="</div>";
+    div_firma="<div id='div_canvas_firma' style='display:none; text-align:center;'>";
+    div_firma+="    <label><small>Puede firmar manteniendo pulsado el botón del ratón, con una tableta digitalizadora o usando el dedo si está con una tablet o un móvil.</small></label>";
+    div_firma+="    <div id='div_lienzo' >";
+    div_firma+="        <canvas id='firmaCanvas' width='400' height='200' style='background-color:white; border: 1px solid black;'></canvas>";
+    div_firma+="    </div>";
+    div_firma+="</div>";
+    document.body.innerHTML+=div_firma;
     canvas = document.getElementById('firmaCanvas');
     context = canvas.getContext('2d');
     canvas.addEventListener('mousedown', ev_canvas, false);
