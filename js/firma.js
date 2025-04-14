@@ -42,7 +42,7 @@ if (isset($_POST['firma'])){
 var drawing = false;
 var mouseX, mouseY;
 var canvas, context, tool, canvas_upload;
-var formData = new FormData();
+
 
 $(document).ready(function() {
     // Crear el contenedor principal

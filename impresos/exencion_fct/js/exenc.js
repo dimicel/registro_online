@@ -5,7 +5,7 @@ let ciclos_basico={};
 let ciclos_medio={};
 let ciclos_superior={};
 
-
+var formData = new FormData();
 
 $(document).ready(function() {
     document.body.style.overflowY = "scroll";
