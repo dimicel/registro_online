@@ -285,6 +285,10 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
         datosFormulario.append("ciclo", _ciclo);
         datosFormulario.append("valoracion", val);
         datosFormulario.append("motivo", mot);
+        datosFormulario.append("registro", _registro);
+        datosFormulario.append("dirRegistro", _dirReg);
+        datosFormulario.append("curso", document.getElementById("curso").value);    
+        datosFormulario.append("departamento", departamento);
         // Aquí va la firma
         datosFormulario.append("firma", encodeURIComponent(canvas_upload)); // ¡importante!
         
