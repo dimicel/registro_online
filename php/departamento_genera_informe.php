@@ -44,6 +44,10 @@ $valoracion=$_POST["valoracion"];
 $motivo=$_POST["motivo"];
 $registro=$_POST["registro"];
 $dirRegistro=$_POST["dirRegistro"];
+// Obtener la IP remota del usuario
+$ip_remota = $_SERVER['REMOTE_ADDR'];
+// Obtener la fecha y hora actuales
+$fecha_hora_actual = date("Y-m-d H:i:s");
 
 if (isset($_POST['firma'])){
     $imageData = urldecode($_POST['firma']);
@@ -72,12 +76,6 @@ if ($result->num_rows==0){
     exit("sin_registro");
 }
 
-
-// Obtener la IP remota del usuario
-$ip_remota = $_SERVER['REMOTE_ADDR'];
-
-// Obtener la fecha y hora actuales
-$fecha_hora_actual = date("Y-m-d H:i:s");
 
 // Actualizar la tabla exencion_fct
 $update_query = "UPDATE exencion_fct 
