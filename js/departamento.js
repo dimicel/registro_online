@@ -307,4 +307,5 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
             }});
     }
 
+
 }
