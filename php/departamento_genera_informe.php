@@ -73,6 +73,43 @@ if ($result->num_rows==0){
 }
 
 
+// Obtener la IP remota del usuario
+$ip_remota = $_SERVER['REMOTE_ADDR'];
+
+// Obtener la fecha y hora actuales
+$fecha_hora_actual = date("Y-m-d H:i:s");
+
+// Actualizar la tabla exencion_fct
+$update_query = "UPDATE exencion_fct 
+                 SET resolucion = ?, 
+                     motivo = ?, 
+                     procesado = 1, 
+                     fecha_hora_firma_jd = ?, 
+                     ip_remota_j = ? 
+                 WHERE registro = ?";
+
+$stmt = $mysqli->prepare($update_query);
+if (!$stmt) {
+    exit("Error en la preparación de la consulta: " . $mysqli->error);
+}
+
+$stmt->bind_param("sssss", $valoracion, $motivo, $fecha_hora_actual, $ip_remota, $registro);
+
+if (!$stmt->execute()) {
+    exit("Error al ejecutar la consulta: " . $stmt->error);
+}
+
+// Verificar si se actualizó alguna fila
+if ($stmt->affected_rows === 0) {
+    exit("sin_actualizacion");
+}
+
+$stmt->close();
+$mysqli->close();
+
+
+
+
 
 
 

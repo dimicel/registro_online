@@ -244,7 +244,9 @@ function limiteCaracteres(obj){
 }
 
 function seleccionValoracion(v){
-    if (v=="" || v=="exento") document.getElementById("div_motivo").style.display="none";
+    if (v=="" || v=="exento") {
+        document.getElementById("div_motivo").style.display="none";
+    }
     else document.getElementById("div_motivo").style.display="";
 }
 
@@ -275,6 +277,11 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
     if (val=="") alerta("No se puede generar el informe sin una valoración. Seleccione una antes.","VALORACIÓN VACÍA");
     else if(val!="" && val!="exento" && mot==0) alerta("Una valoración NO EXENTO o PARCIELMENTE EXENTO requiere cumplimentar el campo MOTIVO.","MOTIVO VACÍO");
     else {
+        if (val=="exento" || val==""){
+            document.getElementById("motivo").value="";
+            document.getElementById("rotulo_motivo").innerHTML="MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (1000/1000): ";
+            mot="";
+        }
         let datosFormulario = new FormData();
         datosFormulario.append("id_nie", _id_nie);
         datosFormulario.append("apellidos", _apellidos);
@@ -307,7 +314,11 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
                     $("#verRegistro_div").dialog("destroy");
                 } 
                 else if (resp == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
+                else if (resp == "sin_actualizacion") alerta("No se ha podido actualizar el registro en la tabla. Proceso abortado.", "ERROR ACTUALIZACIÓN");
                 else if (resp == "no_informe") alerta("No se ha podido generar el informe. Inténtelo más tarde.", "Error al generar informe");
+                else {
+                    alerta(resp,"ERROR ACTUALIZACIÓN");
+                }
             }});
     }
 
