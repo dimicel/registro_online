@@ -2,9 +2,31 @@
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("conexion.php");
+require_once('tcpdf/config/tcpdf_config_alt.php');
+require_once('tcpdf/tcpdf.php');
 header("Content-Type: text/html;charset=utf-8");
 
-$data=array();
+class MYPDF extends TCPDF {
+
+	//Page header
+	public function Header() {
+		// Logo
+		$image_file = '../recursos/logo_ccm.jpg';
+		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		$image_file = '../recursos/mini_escudo.jpg';
+		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+				
+		$this->SetFont('helvetica', '', 8);
+		// Title
+		//$this->setCellHeightRatio(1.75);
+		$encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
+		$this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
+		//$this->Ln();
+		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
+		
+	}
+}
+
 if ($mysqli->errno>0) {
     exit("server");
 }
@@ -39,24 +61,22 @@ if (isset($_POST['firma'])){
 }
 
 
-$consulta="SELECT * FROM exencion_fct  where curso='$curso' and departamento='$departamento' ";
-
-$data["consulta"]=$consulta;
+$consulta="SELECT * FROM exencion_fct  where registro='$registro'";
 
 $result = $mysqli->query($sql);
 
-if ($result->num_rows > 0) {
-    // Obtener el resultado
-    $resultado=$result->fetch_assoc();
-    $data["num_registros"] = $resultado['total'];
-} else {
-    $data["num_registros"] = 0;
+if ($mysqli->errno>0) {
+    exit("server");
 }
-$res=$mysqli->query($consulta);
-
-if ($res->num_rows==0){
+if ($result->num_rows==0){
     exit("sin_registro");
 }
+
+
+
+
+
+
 
 
 
