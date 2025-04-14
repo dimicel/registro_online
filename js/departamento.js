@@ -188,8 +188,6 @@ function cierrasesion() {
 
 function verPanelProcesamiento(reg,dirReg){
     ancho = 700;
-    botones = "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+reg+"\")'/>";
-    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
     contenido="";
     $.post("php/secret_recuperaregistro.php", { formulario: "exencion_fct", registro: reg }, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
@@ -217,7 +215,8 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<textarea id='motivo' style='width:100%;height:15em;' onchange='javascript:actualizar=true;' class='verReg_campo form-control' oninput='limiteCaracteres(this)'></textarea>";
             contenido += "</div></div><hr>";
             contenido += "<div class='row'><div class='col' style='text-align:right'>"
-            contenido += botones;
+            contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+reg+"\",\""+dirReg+"\",\""+resp.registro.id_nie+"\",\""+resp.registro.apellidos+"\",\""+resp.registro.nombre+"\",\""+resp.registro.id_nif+"\",\""+resp.registro.curso_ciclo+"\",\""+resp.registro.grado +"\",\""+resp.registro.ciclo+"\")'/>";
+            contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
             contenido += "</div></div></div>";
             document.getElementById("verRegistro_div").innerHTML = contenido;
             verRegAdjuntosExencFCT(reg);
@@ -270,13 +269,42 @@ function verRegAdjuntosExencFCT(reg){
 }
 
 
-function generaInforme(_registro){
+function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_curso_ciclo,_grado,_ciclo) {
     var val=document.getElementById("valoracion_informe").value;
     var mot=document.getElementById("motivo").value.trim().length;
     if (val=="") alerta("No se puede generar el informe sin una valoración. Seleccione una antes.","VALORACIÓN VACÍA");
     else if(val!="" && val!="exento" && mot==0) alerta("Una valoración NO EXENTO o PARCIELMENTE EXENTO requiere cumplimentar el campo MOTIVO.","MOTIVO VACÍO");
     else {
-        alert("Informe lanzado");
+        let datosFormulario = new FormData();
+        datosFormulario.append("id_nie", _id_nie);
+        datosFormulario.append("apellidos", _apellidos);
+        datosFormulario.append("nombre", _nombre);
+        datosFormulario.append("id_nif", _id_nif);
+        datosFormulario.append("curso_ciclo", _curso_ciclo);
+        datosFormulario.append("grado", _grado);
+        datosFormulario.append("ciclo", _ciclo);
+        datosFormulario.append("valoracion", val);
+        datosFormulario.append("motivo", mot);
+        // Aquí va la firma
+        datosFormulario.append("firma", encodeURIComponent(canvas_upload)); // ¡importante!
+        
+        $.ajax({
+            url: "php/departamento_genera_informe.php",
+            type: "POST",
+            data: datosFormulario,
+            processData: false,
+            contentType: false,
+            success: function(resp) {
+                if (resp == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
+                else if (resp == "ok") {
+                    alerta("Informe generado correctamente.","INFORME GENERADO");
+                    listaUsus();
+                    $("#verRegistro_div").dialog("close");
+                    $("#verRegistro_div").dialog("destroy");
+                } 
+                else if (resp == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
+                else if (resp == "no_informe") alerta("No se ha podido generar el informe. Inténtelo más tarde.", "Error al generar informe");
+            }});
     }
 
 }
