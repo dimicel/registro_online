@@ -556,6 +556,7 @@
                     <label for="config_email">Nombre y Apellidos del Jefe de Dpto.</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
                     <input type="text" id="config_nombre_jd" name="config_nombre_jd" class="form-control" maxlength="120" placeholder="Seleccione antes un departamento" readonly>
+                </div>
             </div>
             <div class="row mt-3">
                 <div class="col-6">
