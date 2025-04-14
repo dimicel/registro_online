@@ -21,6 +21,7 @@ function cerrar_y_salir($mysqli, $stmt, $mensaje) {
 $departamento = $_POST['config_dpto'];
 $email = $_POST['config_email_jd'];
 $password = $_POST['config_password_jd'];
+$nombre_ap_jd= $_POST['config_nombre_jd'];
 
 
 if (strlen($password) > 0) {
@@ -37,20 +38,20 @@ if (strlen($password) > 0) {
     }
     ///////////////////////////////////////
     if ($pass_asignada) {
-        $sql = "UPDATE departamentos SET email_jd = ? WHERE departamento = ?";
+        $sql = "UPDATE departamentos SET email_jd = ?, nombre_ap_jd=? WHERE departamento = ?";
         $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param('ss', $email, $departamento);
+        $stmt->bind_param('sss', $email,$nombre_ap_jd, $departamento);
     } 
     else {
-        $sql = "UPDATE departamentos SET email_jd = ?, password = ? WHERE departamento = ?";
+        $sql = "UPDATE departamentos SET email_jd = ?,nombre_ap_jd=?, password = ? WHERE departamento = ?";
         $pass = password_hash($password, PASSWORD_BCRYPT);
         $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param('sss', $email, $pass, $departamento);
+        $stmt->bind_param('ssss', $email,$nombre_ap_jd, $pass, $departamento);
     } 
 } else {
-    $sql = "UPDATE departamentos SET email_jd = ? WHERE departamento = ?";
+    $sql = "UPDATE departamentos SET email_jd = ?,nombre_ap_jd=? WHERE departamento = ?";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('ss', $email, $departamento);
+    $stmt->bind_param('sss', $email,$nombre_ap_jd, $departamento);
 }
 
 if ($stmt->execute()) {

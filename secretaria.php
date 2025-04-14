@@ -544,7 +544,7 @@
         </div>
     </div>
 
-    <div class="row alertas" id="div_config_departamentos">
+    <div class="container alertas" id="div_config_departamentos">
         <form id="config_departamentos">
             <div class="row">
                 <div class="col-4">
@@ -555,13 +555,13 @@
                 <div class="col">
                     <label for="config_email">Nombre y Apellidos del Jefe de Dpto.</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" id="config_nombre_jd" name="config_nombre_jd" class="form-control" placeholder="Seleccione antes un departamento" readonly>
+                    <input type="text" id="config_nombre_jd" name="config_nombre_jd" class="form-control" maxlength="120" placeholder="Seleccione antes un departamento" readonly>
             </div>
             <div class="row mt-3">
                 <div class="col-4">
                     <label for="config_email_jd">Email del Jefe de Dpto.</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" id="config_email_jd" name="config_email_jd" class="form-control" placeholder="Seleccione antes un departamento" readonly>
+                    <input type="text" id="config_email_jd" name="config_email_jd" class="form-control" maxlength="255" placeholder="Seleccione antes un departamento" readonly>
                 </div>
                 <div class="col-4">
                     <label for="config_password_jd">Contraseña del Jefe de Dpto.<small>(En blanco no se cambia)</small></label>
