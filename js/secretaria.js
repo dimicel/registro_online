@@ -2614,18 +2614,35 @@ function datosDepartamentos(){
                                 else{
                                     alerta(resp,"ERROR");
                                 }
+                                
+                                document.getElementById("config_dpto").value="";
+                                document.getElementById("config_nombre_jd").value="";
+                                document.getElementById("config_email_jd").value="";
+                                document.getElementById("config_password_jd").value=""; 
+                                document.getElementById("config_password_jd").readOnly=true;
+                                document.getElementById("config_password_jd").placeholder="Seleccione un departamento";
+                                document.getElementById("config_email_jd").readOnly=true;
+                                document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
+                                document.getElementById("config_nombre_jd").readOnly=true;
+                                document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";
                                 //$("#div_config_departamentos").dialog("close");
                                 //$("#div_config_departamentos").dialog("destroy");
-                                $("#config_departamentos").validate().resetForm();
-                                document.getElementById("config_departamentos").reset();
                             },
                             error: function(xhr, status, error) {
                                 document.getElementById("cargando").style.display = 'none';
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                                document.getElementById("config_dpto").value="";
+                                document.getElementById("config_nombre_jd").value="";
+                                document.getElementById("config_email_jd").value="";
+                                document.getElementById("config_password_jd").value=""; 
+                                document.getElementById("config_password_jd").readOnly=true;
+                                document.getElementById("config_password_jd").placeholder="Seleccione un departamento";
+                                document.getElementById("config_email_jd").readOnly=true;
+                                document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
+                                document.getElementById("config_nombre_jd").readOnly=true;
+                                document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";
                                 //$("#div_config_departamentos").dialog("close");
                                 //$("#div_config_departamentos").dialog("destroy");
-                                $("#config_departamentos").validate().resetForm();
-                                document.getElementById("config_departamentos").reset();
                             }
                         });
                     }
