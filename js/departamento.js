@@ -302,7 +302,7 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
         datosFormulario.append("firma", encodeURIComponent(canvas_upload)); // ¡importante!
         
         $.ajax({
-            url: "php/departamento_genera_informe.php",
+            url: "php/departamento_genera_informe_resolucion.php",
             type: "POST",
             data: datosFormulario,
             processData: false,
