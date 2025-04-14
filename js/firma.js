@@ -2,13 +2,14 @@
 <input type="text" class="form-control" name="firma" id="firma" placeholder="Clic aquí para firmar la solicitud" readonly onclick="canvasFirma();" />
 
 La variable que llevará la firma en la petion $.post será igual a encodeURIComponent(canvas_upload), por ejemplo
-formData.append("firma", encodeURIComponent(canvas_upload)); 
-El resto de datos se añaden a formdata de la misma forma: formData.append("variable que se pasa a php", valor de la variuable);
+formData.append("firma", encodeURIComponent(canvas_upload)); o un input hiiden cuyo valor sea asignado con encodeURIComponent(canvas_upload),
+o {variable_que_sea:encodeURIComponent(canvas_upload)}
+
 
 La estructura $.post será
 $.post({
         url:"script php"",
-        data: formData,
+        data: la estrutura de datos que sea (formdata, formulario.serialize(), cadena json  {}),
         contentType: false,
         processData: false,
         success: function(resp) {
