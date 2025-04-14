@@ -48,7 +48,6 @@ $dirRegistro=$_POST["dirRegistro"];
 $ip_remota = $_SERVER['REMOTE_ADDR'];
 // Obtener la fecha y hora actuales
 $fecha_hora_actual = date("Y-m-d H:i:s");
-$departamentoMayusculas = strtoupper($departamento);
 
 if (isset($_POST['firma'])){
     $imageData = urldecode($_POST['firma']);
@@ -79,6 +78,7 @@ if ($result->num_rows==0){
 else {
 	$row = $result->fetch_assoc();
 	$tratamiento=$row["tratamiento"];
+	$nombre_jd=$row["nombre_ap_jd"];
 }
 
 
@@ -112,6 +112,19 @@ $mysqli->close();
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///GENERA EL INFORME
 ///////////////////////////////////////////////////////////////////////////////////////////
+if($valoracion=="exento"){
+	$texto_acuerda="INFORMAR FAVORABLEMENTE DE LA EXENCIÓN TOTAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO <br>";
+	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos);
+	$motivo="";
+}
+elseif($valoracion=="parcialmente_exento"){
+	$texto_acuerda="INFORMAR FAVORABLEMENTE DE LA EXENCIÓN PARCIAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO ";
+	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:<br>";
+}
+elseif($valoracion=="no_exento"){
+	$texto_acuerda="INFORMAR DESFAVORABLEMENTE DE LA EXENCIÓN DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO ";
+	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:<br>";
+}
 
 // create new PDF document
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -175,12 +188,14 @@ $fecha_actual=getdate();
 $fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
 
 $texto=<<<EOD
-<h3 style="text-align:center"><b>DEPARTAMENTO DE $departamentoMayusculas</b></h3>
-<h2>style="text-align:center"><b>INFORME DE EXENCIÓN A </b></h2>
-$lista_don <b>$nombre $apellidos</b>, con <b>$num_documento</b>, <b>solicita la exención</b> del Período de Formación en Empresas correspondiente a las enseñanzas de grado <b>$grado de $curso_ciclo curso de $ciclo</b> que se imparte en el centro IES Universidad Laboral de Toledo, en el que está matriculado.  
-<br><br>
-Así, presenta la documentación establecida en el artículo 25 punto 2 de la Orden de 29 de julio de 2010, de la Consejería de Educación, Ciencia y Cultura, por la que se regula la evaluación, promoción y acreditación académica del alumnado de formación profesional inicial del sistema educativo de la Comunidad Autónoma de Castilla-La Mancha:<br>
-<b>$documentacion</b><br><br>
+<h3 style="text-align:center"><b>DEPARTAMENTO DE {strtoupper($departamento)}</b></h3>
+<h2>style="text-align:center"><b>INFORME DE EXENCIÓN DE PFE A {strtoupper($tratamiento)} {strtoupper($nombre)} {strtoupper($apellidos)}</b></h2>
+Examinada la documentación recibida en la Secretaría del Centro sobre la petición de solicitud de exención del Período de Formación en Empresas
+ presentada por el alumno/a <b>{strtoupper($tratamiento)} {strtoupper($nombre)} {strtoupper($apellidos)}</b>, con DNI/NIE <b>$id_nif</b>, del curso 
+ <b>$curso_ciclo</b> del Ciclo Formativo de Grado <b>$grado</b> de <b>$ciclo</b>, este departamento<br><br>
+ ACUERDA:<br><br>
+<p style="text-align:justify">$texto_acuerda</p>
+<p style="text-align:justify">$motivo<br><br>
 <p style="text-align:center">$fecha_firma
 EOD;
 $pdf->SetXY($XInicio,$YInicio);
@@ -191,16 +206,13 @@ $pdf->Image($firma, (210-$anchoImagen)/2, $posicionY, $anchoImagen, 0, 'PNG');
 
 $texto=<<<EOD
 <br><br><br><br><br><br>
-Fdo.: $nombre $apellidos</p>
+Fdo.: $nombre_jd</p>
 EOD;
 
 $posicionY=$pdf->getY();
 $pdf->SetXY($XInicio,$posicionY);
 $pdf->writeHTMLCell(180, 0, $XInicio, $posicionY, $texto, 0, 1, false, true, 'C', true);
 
-
-$pdf->SetXY($XInicio,275);
-$pdf->Cell(180,0,"SR/A. DIRECTOR/A DEL IES UNIVERSIDAD LABORAL DE TOLEDO",0,0,'L',0,'',1,true,'T','T');
 
 // Agregar texto en el lateral izquierdo en formato vertical, centrado en la altura de un A4
 $pdf->StartTransform();
@@ -216,9 +228,8 @@ $pdf->StopTransform();
 
 
 //GENERA EL ARCHIVO NUEVO
-$nombre_fichero=$registro . '.pdf';
-if(!is_dir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro))mkdir(__DIR__."/../../../docs/".$id_nie."/"."convalidaciones/".$anno_curso."/".$dirRegistro,0777,true);
-$ruta=__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/". $nombre_fichero;
+if(!is_dir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd"))mkdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd",0777,true);
+$ruta=__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 
