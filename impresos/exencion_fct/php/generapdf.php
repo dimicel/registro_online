@@ -303,7 +303,7 @@ $pdf->Cell(180,0,"SR/A. DIRECTOR/A DEL IES UNIVERSIDAD LABORAL DE TOLEDO",0,0,'L
 
 // Agregar texto en el lateral izquierdo en formato vertical, centrado en la altura de un A4
 $pdf->StartTransform();
-$pdf->Rotate(90, 10, 148); // Rotar el texto 90 grados (centrado en la altura de A4)
+$pdf->Rotate(90, 5, 148); // Rotar el texto 90 grados (centrado en la altura de A4)
 
 // Calcular la posición centrada en la altura de A4
 $alturaPagina = $pdf->getPageHeight(); // Altura de la página
