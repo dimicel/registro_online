@@ -44,6 +44,7 @@ $valoracion=$_POST["valoracion"];
 $motivo=$_POST["motivo"];
 $registro=$_POST["registro"];
 $dirRegistro=$_POST["dirRegistro"];
+$nombre_ap_jd=$_POST["nombre_ap_jd"];
 // Obtener la IP remota del usuario
 $ip_remota = $_SERVER['REMOTE_ADDR'];
 // Obtener la fecha y hora actuales
@@ -205,7 +206,7 @@ $pdf->Image($firma, (210-$anchoImagen)/2, $posicionY, $anchoImagen, 0, 'PNG');
 
 $texto=<<<EOD
 <br><br><br><br><br><br>
-Fdo.: $nombre_jd</p>
+Fdo.: $nombre_ap_jd</p>
 EOD;
 
 $posicionY=$pdf->getY();

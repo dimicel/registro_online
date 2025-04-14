@@ -26,7 +26,6 @@ $(function() {
             anno_ini_curso = resp["anno_ini_curso"];
             departamento= resp["departamento"];
             nombre_ap_jd= resp["nombre_ap_jd"];
-            alert(nombre_ap_jd)
             document.getElementById("rotulo_tipo_usu").innerHTML="DEPARTAMENTO: "+departamento.toUpperCase(); 
             mes = resp["mes"];
             _curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
@@ -298,6 +297,7 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
         datosFormulario.append("dirRegistro", _dirReg);
         datosFormulario.append("curso", document.getElementById("curso").value);    
         datosFormulario.append("departamento", departamento);
+        datosFormulario.append("nombre_ap_jd", nombre_ap_jd);
         // Aquí va la firma
         datosFormulario.append("firma", encodeURIComponent(canvas_upload)); // ¡importante!
         
