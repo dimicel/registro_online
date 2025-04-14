@@ -265,7 +265,7 @@ $pdf->setCellPaddings(0,0,0,0);
 $pdf->setCellHeightRatio(2);
 
 $YInicio=40;
-$XInicio=12;
+$XInicio=12; 
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 $fecha_actual=getdate();
 $fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
