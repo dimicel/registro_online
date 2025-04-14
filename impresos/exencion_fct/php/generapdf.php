@@ -298,10 +298,21 @@ $pdf->SetXY($XInicio,$posicionY);
 $pdf->writeHTMLCell(180, 0, $XInicio, $posicionY, $texto, 0, 1, false, true, 'C', true);
 
 
-
-
 $pdf->SetXY($XInicio,275);
 $pdf->Cell(180,0,"SR/A. DIRECTOR/A DEL IES UNIVERSIDAD LABORAL DE TOLEDO",0,0,'L',0,'',1,true,'T','T');
+
+// Agregar texto en el lateral izquierdo en formato vertical, centrado en la altura de un A4
+$pdf->StartTransform();
+$pdf->Rotate(90, 10, 148); // Rotar el texto 90 grados (centrado en la altura de A4)
+
+// Calcular la posición centrada en la altura de A4
+$alturaPagina = $pdf->getPageHeight(); // Altura de la página
+$posicionCentradaY = $alturaPagina / 2; // Calcular la posición centrada
+
+$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->Text(10, $posicionCentradaY, "Fecha y hora de firma: $fecha_hora_firma");
+$pdf->StopTransform();
+
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';

@@ -103,9 +103,10 @@ if (!$stmt->execute()) {
 if ($stmt->affected_rows === 0) {
     exit("sin_actualizacion");
 }
-
 $stmt->close();
 $mysqli->close();
+
+
 
 
 
