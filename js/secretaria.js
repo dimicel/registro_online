@@ -2546,6 +2546,9 @@ function datosDepartamentos(){
             config_dpto: {
                 required: true
             },
+            config_nombre_jd: {
+                required: true
+            },
             config_email_jd: {
                 required: true,
                 email: true
@@ -2559,6 +2562,9 @@ function datosDepartamentos(){
         messages: {
             config_dpto: {
                 required: "Seleccione un departamento"
+            },
+            config_nombre_jd: {
+                required: "Complete el campo"
             },
             config_email_jd: {
                 required: "Complete el campo",
@@ -2642,6 +2648,9 @@ function datosDepartamentos(){
 
 function selDptoConfigDpto(obj){
     if (obj.value==""){
+        document.getElementById("config_nombre_jd").value="";
+        document.getElementById("config_nombre_jd").readOnly=true;
+        document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";
         document.getElementById("config_email_jd").value="";
         document.getElementById("config_email_jd").readOnly=true;
         document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
@@ -2658,6 +2667,9 @@ function selDptoConfigDpto(obj){
                         if (resp.registro[i].email_jd.length>0) document.getElementById("config_email_jd").value=resp.registro[i].email_jd;
                         else document.getElementById("config_email_jd").placeholder="";
                         document.getElementById("config_email_jd").readOnly=false;
+                        if (resp.registro[i].nombre_ap_jd.length>0) document.getElementById("config_nombre_jd").value=resp.registro[i].nombre_ap_jd;
+                        else document.getElementById("config_nombre_jd").placeholder="";
+                        document.getElementById("config_nombre_jd").readOnly=false;
                         document.getElementById("config_password_jd").placeholder="";
                         document.getElementById("config_password_jd").readOnly=false;
                         break;

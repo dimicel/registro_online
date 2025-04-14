@@ -553,11 +553,17 @@
                     <select id="config_dpto" name="config_dpto" class="form-control" onchange="selDptoConfigDpto(this)"></select>
                 </div>
                 <div class="col">
+                    <label for="config_email">Nombre y Apellidos del Jefe de Dpto.</label>
+                    <span class="errorTxt" style="font-size: 1em;"></span>
+                    <input type="text" id="config_nombre_jd" name="config_nombre_jd" class="form-control" placeholder="Seleccione antes un departamento" readonly>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">
                     <label for="config_email_jd">Email del Jefe de Dpto.</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
                     <input type="text" id="config_email_jd" name="config_email_jd" class="form-control" placeholder="Seleccione antes un departamento" readonly>
                 </div>
-                <div class="col">
+                <div class="col-4">
                     <label for="config_password_jd">Contraseña del Jefe de Dpto.<small>(En blanco no se cambia)</small></label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
                     <input type="text" id="config_password_jd" name="config_password_jd" class="form-control" placeholder="Seleccione antes un departamento" readonly>
