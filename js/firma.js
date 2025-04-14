@@ -60,15 +60,15 @@ $(document).ready(function() {
     divLienzo.id = 'div_lienzo';
 
     // Crear el canvas
-    let canvas = document.createElement('canvas');
-    canvas.id = 'firmaCanvas';
-    canvas.width = 400;
-    canvas.height = 200;
-    canvas.style.backgroundColor = 'white';
-    canvas.style.border = '1px solid black';
+    let canvasLocal = document.createElement('canvas');
+    canvasLocal.id = 'firmaCanvas';
+    canvasLocal.width = 400;
+    canvasLocal.height = 200;
+    canvasLocal.style.backgroundColor = 'white';
+    canvasLocal.style.border = '1px solid black';
 
     // Añadir los elementos al DOM
-    divLienzo.appendChild(canvas);
+    divLienzo.appendChild(canvasLocal);
     divCanvasFirma.appendChild(label);
     divCanvasFirma.appendChild(divLienzo);
 
