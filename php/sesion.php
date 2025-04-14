@@ -37,6 +37,7 @@ elseif($_POST['tipo_usu']=="jefe departamento" && $_SESSION['tipo_usu']=="jefe d
     $respuesta["error"]="ok";
     $respuesta["tipo_usu"]="jefe departamento";
     $respuesta["departamento"]=$_SESSION['departamento'];
+    $respuesta["nombre_ap_jd"]=$_SESSION['nombre_ap_jd'];
     $respuesta["email_jd"]=$_SESSION['email_jd'];
     $respuesta["anno_ini_curso"]=calculaCurso_ini();
     exit (json_encode($respuesta));

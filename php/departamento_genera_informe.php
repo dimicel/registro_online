@@ -78,7 +78,6 @@ if ($result->num_rows==0){
 else {
 	$row = $result->fetch_assoc();
 	$tratamiento=$row["tratamiento"];
-	$nombre_jd=$row["nombre_ap_jd"];
 }
 
 

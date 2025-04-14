@@ -33,6 +33,7 @@ else {
 					$_SESSION['acceso_logueado']="correcto";
 					$_SESSION['tipo_usu']="jefe departamento";
 					$_SESSION['departamento']=$dpto['departamento'];
+					$_SESSION['nombre_ap_jd']=$dpto['nombre_ap_jd'];
 					$_SESSION['email_jd']=$dpto['email_jd'];
 					$dat["error"]="ok";
 					$dat["pagina"]= "departamento.php?q=".time();
