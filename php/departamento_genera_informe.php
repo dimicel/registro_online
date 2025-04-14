@@ -78,12 +78,7 @@ if ($result->num_rows==0){
 }
 else {
 	$row = $result->fetch_assoc();
-	$num_documento=$row["num_documento"];
-	$documentacion=$row["documentacion"];
-	$fecha_hora_firma_jd=$row["fecha_hora_firma_jd"];
-	$ip_remota_j=$row["ip_remota_j"];
-	$lista_don=($row["sexo"]=="H")?"Don":"Doña";
-
+	$tratamiento=$row["tratamiento"];
 }
 
 
