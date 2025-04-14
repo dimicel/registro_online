@@ -214,7 +214,7 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "</div></div>";
             contenido += "<div class='row mt-3' id='div_motivo' style='display:none'><div class='col'>"
             contenido += "<span id='rotulo_motivo' class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (1000/1000): </span>";
-            contenido += "<textarea id='motivo' style='width:100%;height:8em' onchange='javascript:actualizar=true;' class='verReg_campo form-control' oninput='limiteCaracteres(this)'></textarea>";
+            contenido += "<textarea id='motivo' style='width:100%;height:15em;' onchange='javascript:actualizar=true;' class='verReg_campo form-control' oninput='limiteCaracteres(this)'></textarea>";
             contenido += "</div></div><hr>";
             contenido += "<div class='row'><div class='col' style='text-align:right'>"
             contenido += botones;
