@@ -90,7 +90,7 @@ $(document).ready(function() {
 
 function canvasFirma() {
     tool = new tool_pencil();
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, canvas.width, canvas.height);//Borra el canvas para limpiar la firma anterior
     document.getElementById("firma").value = "";
     $("#div_canvas_firma").dialog({
         autoOpen: true,
