@@ -214,6 +214,9 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<div class='row mt-3' id='div_motivo' style='display:none'><div class='col'>"
             contenido += "<span id='rotulo_motivo' class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (1000/1000): </span>";
             contenido += "<textarea id='motivo' style='width:100%;height:15em;' onchange='javascript:actualizar=true;' class='verReg_campo form-control' oninput='limiteCaracteres(this)'></textarea>";
+            contenido += "</div></div>";
+            contenido += "<div class='row' id='div_firma'><div class='col'>";
+            contenido += "<input type=text' class=form-control name=firma id=firma placeholder=Clic aquí para firmar el informe readonly onclick='canvasFirma();' />";
             contenido += "</div></div><hr>";
             contenido += "<div class='row'><div class='col' style='text-align:right'>"
             contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+reg+"\",\""+dirReg+"\",\""+resp.registro.id_nie+"\",\""+resp.registro.apellidos+"\",\""+resp.registro.nombre+"\",\""+resp.registro.id_nif+"\",\""+resp.registro.curso_ciclo+"\",\""+resp.registro.grado +"\",\""+resp.registro.ciclo+"\")'/>";
@@ -284,8 +287,10 @@ function verRegAdjuntosExencFCT(reg){
 function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_curso_ciclo,_grado,_ciclo) {
     var val=document.getElementById("valoracion_informe").value;
     var mot=document.getElementById("motivo").value.trim().length;
+    var firma=document.getElementById("firma").value;
     if (val=="") alerta("No se puede generar el informe sin una valoración. Seleccione una antes.","VALORACIÓN VACÍA");
     else if(val!="" && val!="exento" && mot==0) alerta("Una valoración NO EXENTO o PARCIELMENTE EXENTO requiere cumplimentar el campo MOTIVO.","MOTIVO VACÍO");
+    else if(firma=="") alerta("No se puede generar el informe sin una firma. Pulse en el campo FIRMA para firmar el informe.","FIRMA VACÍA");
     else {
         if (val=="exento" || val==""){
             document.getElementById("motivo").value="";

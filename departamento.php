@@ -107,6 +107,7 @@
     <script src=<?php echo "js/context_menu/jquery.ui.position.js?q=".time(); ?>></script>
     <script src=<?php echo "js/departamento.js?q=".time(); ?> type="text/javascript"></script>
     <script src=<?php echo "js/comun.js?q=".time(); ?> type="text/javascript"></script>
+    <script src=<?php echo "js/firma.js?q=".time(); ?> type="text/javascript"></script>
 </body>
 
 </html>
