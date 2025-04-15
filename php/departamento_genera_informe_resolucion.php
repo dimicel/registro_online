@@ -133,11 +133,11 @@ if($valoracion=="exento"){
 }
 elseif($valoracion=="parcialmente exento"){
 	$texto_acuerda="<p style='text-align:justify'>INFORMAR FAVORABLEMENTE DE LA EXENCIÓN PARCIAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO/A ";
-	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:</p><br>";
+	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CONTINUACIÓN SE RAZONAN:</p><br>";
 }
 elseif($valoracion=="no exento"){
 	$texto_acuerda="<p style='text-align:justify'>INFORMAR DESFAVORABLEMENTE DE LA EXENCIÓN DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO/A ";
-	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:</p><br>";
+	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CONTINUACIÓN SE RAZONAN:</p><br>";
 }
 
 // create new PDF document
