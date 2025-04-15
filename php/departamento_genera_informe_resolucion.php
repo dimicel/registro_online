@@ -118,7 +118,7 @@ if ($stmt->affected_rows === 0) {
 }
 $stmt->close();
 $mysqli->close();
-exit("ok_text");
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///GENERA EL INFORME
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -242,7 +242,7 @@ if(!is_dir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curs
 $ruta=__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
-
+exit("ok_text");
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
