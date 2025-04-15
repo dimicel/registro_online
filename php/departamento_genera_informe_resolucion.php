@@ -44,8 +44,11 @@ else {
 $id_nie=$_POST["id_nie"];
 $anno_curso=$_POST["curso"];
 $departamento=$_POST["departamento"];
+$departamentoMayus=strtoupper($departamento);
 $apellidos=$_POST["apellidos"];
+$apellidosMayus=strtoupper($apellidos);
 $nombre=$_POST["nombre"];
+$nombreMayus=strtoupper($nombre);
 $id_nif=$_POST["id_nif"];
 $curso_ciclo=$_POST["curso_ciclo"];
 $grado=$_POST["grado"];
@@ -89,6 +92,7 @@ if ($result->num_rows!=1){
 else {
 	$row = $result->fetch_assoc();
 	$tratamiento=$row["tratamiento"];
+	$tratamientoMayus=strtoupper($tratamiento);
 }
 
 /*
@@ -198,11 +202,11 @@ $fecha_actual=getdate();
 $fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
 
 $texto=<<<EOD
-<h3 style="text-align:center"><b>DEPARTAMENTO DE {strtoupper($departamento)}</b></h3>
-<h2>style="text-align:center"><b>INFORME DE EXENCIÓN DE PFE A {strtoupper($tratamiento)} {strtoupper($nombre)} {strtoupper($apellidos)}</b></h2>
+<h3 style="text-align:center"><b>DEPARTAMENTO DE $departamentoMatyus</b></h3>
+<h2>style="text-align:center"><b>INFORME DE EXENCIÓN DE PFE A $tratamientoMayus $nombreMayus $apellidosMayus</b></h2>
 Examinada la documentación recibida en la Secretaría del Centro sobre la petición de solicitud de exención del Período de Formación en Empresas
- presentada por el alumno/a <b>{strtoupper($tratamiento)} {strtoupper($nombre)} {strtoupper($apellidos)}</b>, con DNI/NIE <b>$id_nif</b>, del curso 
- <b>$curso_ciclo</b> del Ciclo Formativo de Grado <b>$grado</b> de <b>$ciclo</b>, este departamento<br><br>
+ presentada por el alumno/a <b>$tratamiento $nombre $apellidos</b>, con DNI/NIE <b>$id_nif</b>, del curso 
+ <b>$curso_ciclo</b> del <b>Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
  ACUERDA:<br><br>
 <p style="text-align:justify">$texto_acuerda</p>
 <p style="text-align:justify">$motivo<br><br>
@@ -243,11 +247,6 @@ if (!is_dir($dir)) mkdir($dir, 0777, true);
 
 $ruta = realpath($dir) . "/informe_jd.pdf";
 $pdf->Output($ruta, 'F');
-
-//if(!is_dir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd"))mkdir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd",0777,true);
-//$ruta="../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
-//file_put_contents($ruta, "test");
-//$pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 exit("ok_text");
 
