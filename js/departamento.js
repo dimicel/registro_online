@@ -215,8 +215,8 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<span id='rotulo_motivo' class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (1000/1000): </span>";
             contenido += "<textarea id='motivo' style='width:100%;height:15em;' onchange='javascript:actualizar=true;' class='verReg_campo form-control' oninput='limiteCaracteres(this)'></textarea>";
             contenido += "</div></div>";
-            contenido += "<div class='row' id='div_firma'><div class='col'>";
-            contenido += "<input type=text' class=form-control name=firma id=firma placeholder=Clic aquí para firmar el informe readonly onclick='canvasFirma();' />";
+            contenido += "<div class='row' id='div_firma'><div class='col-4 offset-4'>";
+            contenido += "<input type=text' class=form-control name=firma id=firma placeholder='Clic aquí para firmar el informe' readonly onclick='canvasFirma();' />";
             contenido += "</div></div><hr>";
             contenido += "<div class='row'><div class='col' style='text-align:right'>"
             contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+reg+"\",\""+dirReg+"\",\""+resp.registro.id_nie+"\",\""+resp.registro.apellidos+"\",\""+resp.registro.nombre+"\",\""+resp.registro.id_nif+"\",\""+resp.registro.curso_ciclo+"\",\""+resp.registro.grado +"\",\""+resp.registro.ciclo+"\")'/>";
