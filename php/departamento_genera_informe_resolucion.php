@@ -98,7 +98,7 @@ $update_query = "UPDATE exencion_fct
                      motivo = ?, 
                      procesado = 1, 
                      fecha_hora_firma_jd = ?, 
-                     ip_remota_j = ? 
+                     ip_remota_jd = ? 
                  WHERE registro = ?";
 
 $stmt = $mysqli->prepare($update_query);
