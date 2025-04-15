@@ -338,7 +338,7 @@ $pdf->Image("../recursos/sello_firma.jpg", (210-$anchoImagen)/2, $posicionY, $an
 
 $texto=<<<EOD
 <br><br><br><br><br><br>
-Fdo.: $nombre_ap_jd</p>
+Fdo.: $nombreDirector</p>
 EOD;
 
 $posicionY=$pdf->getY();

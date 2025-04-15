@@ -315,6 +315,7 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
                     $("#verRegistro_div").dialog("close");
                     $("#verRegistro_div").dialog("destroy");
                 } 
+                else if(resp=="config_centro") alerta("No se ha podido recuperar la configuración del centro.","ERROR DB");
                 else if (resp == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
                 else if (resp == "sin_actualizacion") alerta("No se ha podido actualizar el registro en la tabla. Proceso abortado.", "ERROR ACTUALIZACIÓN");
                 else if (resp == "no_informe") alerta("No se ha podido generar el informe. Inténtelo más tarde.", "Error al generar informe");
