@@ -31,6 +31,16 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 
+$consultaCentro = $mysqli->query("SELECT * FROM config_centro ");
+if ($consultaCentro->num_rows!=1){
+    exit("config_centro");
+}
+else {
+    $datosCentro=$consultaCentro->fetch_assoc();
+    $nombreDirector=$datosCentro["director"];
+    $nombreDirectorMayus=strtoupper($nombreDirector);
+}
+
 $id_nie=$_POST["id_nie"];
 $curso=$_POST["curso"];
 $departamento=$_POST["departamento"];

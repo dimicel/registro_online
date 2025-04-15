@@ -16,6 +16,11 @@ $consultaCentro = $mysqli->query("SELECT * FROM config_centro ");
 if ($consultaCentro->num_rows!=1){
     exit("config_centro");
 }
+else {
+    $datosCentro=$consultaCentro->fetch_assoc();
+    $nombreDirector=$datosCentro["director"];
+    $nombreDirectorMayus=strtoupper($nombreDirector);
+}
 
 $registro=$_POST["registro"];
 $modulos=$_POST["modulo_convalid"];
@@ -196,7 +201,7 @@ if($res_fav>0 || $res_nofav>0){
     $pdf->SetXY(0,$Yinicio);
     $pdf->SetFont('helvetica', '', 8);
 
-    $html="<p>D. <b>LUIS ÁNGEL CORRALES MARIBLANCA</b>, director del centro educativo <b>IES UNIVERSIDAD LABORAL (Toledo)</b>, una vez examinada la documentación presentada por ";
+    $html="<p>D. <b>$nombreDirectorMayus</b>, director del centro educativo <b>IES UNIVERSIDAD LABORAL (Toledo)</b>, una vez examinada la documentación presentada por ";
     $html.="<b>".strtoupper($dr["nombre"])." ".strtoupper($dr["apellidos"])."</b> en la solicitud con nº de registro " . $registro . " por la que solicita la convalidación de módulos de Formación Profesional correspondientes al ";
     if ($dr["grado"]=="Curso de Especialización"){
         $html.=$dr["grado"] . " " . "<b>".strtoupper($dr["ciclo"])."</b>";
@@ -277,7 +282,7 @@ if($res_fav>0 || $res_nofav>0){
     
     $Yinicio+=$altoSello+4;
     $pdf->SetY($Yinicio);
-    $pdf->Cell(0,0,"Fdo.: Luis Ángel Corrales Mariblanca",0,0,'C',0,'',1,false,'T','T');
+    $pdf->Cell(0,0,"Fdo.: ".$nombreDirector,0,0,'C',0,'',1,false,'T','T');
 
     
     
