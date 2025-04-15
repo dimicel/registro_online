@@ -42,7 +42,7 @@ else {
 }
 
 $id_nie=$_POST["id_nie"];
-$curso=$_POST["curso"];
+$anno_curso=$_POST["curso"];
 $departamento=$_POST["departamento"];
 $apellidos=$_POST["apellidos"];
 $nombre=$_POST["nombre"];
