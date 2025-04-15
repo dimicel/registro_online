@@ -238,8 +238,8 @@ $pdf->StopTransform();
 
 
 //GENERA EL ARCHIVO NUEVO
-if(!is_dir(__DIR__."../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd"))mkdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd",0777,true);
-$ruta=__DIR__."../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
+if(!is_dir(__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd"))mkdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd",0777,true);
+$ruta=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 exit("ok_text");
@@ -360,8 +360,8 @@ $pdf->StopTransform();
 
 
 //GENERA EL ARCHIVO NUEVO
-if(!is_dir(__DIR__."../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion"))mkdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion",0777,true);
-$ruta=__DIR__."../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion/informe_jd.pdf";
+if(!is_dir(__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion"))mkdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion",0777,true);
+$ruta=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion/informe_jd.pdf";
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 
