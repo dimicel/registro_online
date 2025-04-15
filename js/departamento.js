@@ -225,6 +225,8 @@ function verPanelProcesamiento(reg,dirReg){
             document.getElementById("verRegistro_div").innerHTML = contenido;
             if (resp.registro.procesado==1){
                 document.getElementById("valoracion_informe").value=resp.registro.valoracion;
+                if (resp.registro.motivo===undefined || resp.registro.motivo===null || resp.registro.motivo=="") document.getElementById("motivo").value="";
+                else document.getElementById("motivo").value=resp.registro.motivo;
                 document.getElementById("motivo").value=resp.registro.motivo;
                 document.getElementById("div_motivo").style.display="";
                 document.getElementById("motivo").readOnly=true;
