@@ -2100,6 +2100,7 @@ function cambiaEstadoResolucionConvalidaciones(_rr,obj){
     $.post("php/secret_convalid_estado_resol.php",{registro:_rr,estado:obj.value},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
         if(resp=="server") alerta("Estado convalidación no cambiado. Hay un problema en el servidor.","ERROR SERVIDOR");
+        else if(resp=="config_centro") alerta("No se han podido recuperar datos del centro.","ERROR DB");
         else if(resp=="no_registro")alerta("Estado convalidación no cambiado. No se ha encontrado el registro.","ERROR DB");
         else if(resp=="ok") alerta("El estado de la convalidación se ha cambiado a RESOLUCIÓN "+obj.value,"ESTADO RESOLUCIÓN CAMBIADA");
     })

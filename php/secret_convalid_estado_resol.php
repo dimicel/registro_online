@@ -12,6 +12,11 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 
+$consultaCentro = $mysqli->query("SELECT * FROM config_centro ");
+if ($consultaCentro->num_rows!=1){
+    exit("config_centro");
+}
+
 $registro=$_POST["registro"];
 $modulos=$_POST["modulo_convalid"];
 $estados=$_POST["estado_convalid"];
