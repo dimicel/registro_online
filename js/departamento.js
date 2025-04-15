@@ -290,7 +290,7 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
     var firma=document.getElementById("firma").value;
     if (val=="") alerta("No se puede generar el informe sin una valoración. Seleccione una antes.","VALORACIÓN VACÍA");
     else if(val!="" && val!="exento" && mot==0) alerta("Una valoración NO EXENTO o PARCIELMENTE EXENTO requiere cumplimentar el campo MOTIVO.","MOTIVO VACÍO");
-    else if(firma=="") alerta("No se puede generar el informe sin una firma. Pulse en el campo FIRMA para firmar el informe.","FIRMA VACÍA");
+    else if(firma=="") alerta("No se puede generar el informe sin firmarlo.","FIRMA VACÍA");
     else {
         if (val=="exento" || val==""){
             document.getElementById("motivo").value="";
