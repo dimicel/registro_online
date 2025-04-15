@@ -84,7 +84,7 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 if ($result->num_rows!=1){
-    exit("sin_registro".strlen($registro)."   ".strlen(trim($registro)));
+    exit("sin_registro");
 }
 else {
 	$row = $result->fetch_assoc();
