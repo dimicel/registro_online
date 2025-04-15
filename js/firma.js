@@ -78,7 +78,7 @@ $(document).ready(function() {
 
 
     canvas = document.getElementById('firmaCanvas');
-    context = canvas.getContext('2d');
+    context = canvas.getContext('2d', { willReadFrequently: true });
     canvas.addEventListener('mousedown', ev_canvas, false);
     canvas.addEventListener('mousemove', ev_canvas, false);
     canvas.addEventListener('mouseup', ev_canvas, false);
