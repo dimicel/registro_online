@@ -237,7 +237,7 @@ $alturaPagina = $pdf->getPageHeight(); // Altura de la página
 $posicionCentradaY = $alturaPagina / 2; // Calcular la posición centrada
 
 $pdf->SetFont('dejavusans', '', 8, '', true);
-$pdf->Text(5, $posicionCentradaY, "Fecha y hora de firma: $fecha_hora_firma");
+$pdf->Text(5, $posicionCentradaY, "Fecha y hora de firma: $fecha_hora_actual");
 $pdf->StopTransform();
 
 
@@ -361,7 +361,7 @@ $alturaPagina = $pdf->getPageHeight(); // Altura de la página
 $posicionCentradaY = $alturaPagina / 2; // Calcular la posición centrada
 
 $pdf->SetFont('dejavusans', '', 8, '', true);
-$pdf->Text(5, $posicionCentradaY, "Fecha y hora de firma: $fecha_hora_firma");
+$pdf->Text(5, $posicionCentradaY, "Fecha y hora de firma: $fecha_hora_actual");
 $pdf->StopTransform();
 
 
