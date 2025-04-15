@@ -127,17 +127,17 @@ $mysqli->close();
 ///GENERA EL INFORME
 ///////////////////////////////////////////////////////////////////////////////////////////
 if($valoracion=="exento"){
-	$texto_acuerda="INFORMAR FAVORABLEMENTE DE LA EXENCIÓN TOTAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO <br>";
-	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos);
+	$texto_acuerda="<p style='text-align:center'>INFORMAR FAVORABLEMENTE DE LA EXENCIÓN TOTAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO/A <br>";
+	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)."</p>";
 	$motivo="";
 }
 elseif($valoracion=="parcialmente_exento"){
-	$texto_acuerda="INFORMAR FAVORABLEMENTE DE LA EXENCIÓN PARCIAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO ";
-	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:<br>";
+	$texto_acuerda="<p style='text-align:justify'>INFORMAR FAVORABLEMENTE DE LA EXENCIÓN PARCIAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO/A ";
+	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:</p><br>";
 }
 elseif($valoracion=="no_exento"){
-	$texto_acuerda="INFORMAR DESFAVORABLEMENTE DE LA EXENCIÓN DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO ";
-	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:<br>";
+	$texto_acuerda="<p style='text-align:justify'>INFORMAR DESFAVORABLEMENTE DE LA EXENCIÓN DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO/A ";
+	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:</p><br>";
 }
 
 // create new PDF document
@@ -208,7 +208,7 @@ Examinada la documentación recibida en la Secretaría del Centro sobre la petic
  presentada por el alumno/a <b>$tratamiento $nombre $apellidos</b>, con DNI/NIE <b>$id_nif</b>, del curso 
  <b>$curso_ciclo</b> del <b>Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
  ACUERDA:<br><br>
-<p style="text-align:justify">$texto_acuerda</p>
+$texto_acuerda
 <p style="text-align:justify">$motivo<br><br>
 <p style="text-align:center">$fecha_firma
 EOD;
