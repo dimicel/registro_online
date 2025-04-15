@@ -247,7 +247,7 @@ if (!is_dir($dir)) mkdir($dir, 0777, true);
 
 $ruta = realpath($dir) . "/informe_jd.pdf";
 $pdf->Output($ruta, 'F');
-//FIN GENERA PDF
+//FIN GENERA INFORME DEL JEFE DE DEPARTAMENTO
 
 
 
@@ -366,10 +366,12 @@ $pdf->StopTransform();
 
 
 //GENERA EL ARCHIVO NUEVO
-if(!is_dir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion"))mkdir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion",0777,true);
-$ruta="../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion/resolucion.pdf";
+$dir = "../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion";
+if (!is_dir($dir)) mkdir($dir, 0777, true);
+
+$ruta = realpath($dir) . "/resolucion.pdf";
 $pdf->Output($ruta, 'F');
-//FIN GENERA PDF
+//FIN GENERA RESOLUCIÓN
 
 
 
