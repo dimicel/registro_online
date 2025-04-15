@@ -62,10 +62,10 @@ $fecha_hora_actual = date("Y-m-d H:i:s");
 
 if (isset($_POST['firma'])){
     $imageData = urldecode($_POST['firma']);
-    if (!is_dir(__DIR__."/../../../docs/tmp")) mkdir(__DIR__."/../../../docs/tmp", 0777);
+    if (!is_dir("../docs/tmp")) mkdir(__DIR__."/../../../docs/tmp", 0777);
     
     // Generar el archivo temporal
-    $tempFile = tempnam(__DIR__."/../../../docs/tmp", 'canvas_' . session_id());
+    $tempFile = tempnam("../docs/tmp", 'canvas_' . session_id());
     
     // Asegurarse de que la extensión sea '.png' y no haya caracteres extra
     $tempFile = pathinfo($tempFile, PATHINFO_DIRNAME) . '/' . basename($tempFile, '.tmp') . '.png';
@@ -238,8 +238,8 @@ $pdf->StopTransform();
 
 
 //GENERA EL ARCHIVO NUEVO
-if(!is_dir(__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd"))mkdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd",0777,true);
-$ruta=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
+if(!is_dir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd"))mkdir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd",0777,true);
+$ruta="../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 exit("ok_text");
@@ -360,8 +360,8 @@ $pdf->StopTransform();
 
 
 //GENERA EL ARCHIVO NUEVO
-if(!is_dir(__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion"))mkdir(__DIR__."/../../../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion",0777,true);
-$ruta=__DIR__."/../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion/informe_jd.pdf";
+if(!is_dir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion"))mkdir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion",0777,true);
+$ruta="../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion/informe_jd.pdf";
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 
