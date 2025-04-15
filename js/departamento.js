@@ -227,7 +227,7 @@ function verPanelProcesamiento(reg,dirReg){
                 document.getElementById("valoracion_informe").value=resp.registro.valoracion;
                 alert(resp.registro.motivo);
                 if (resp.registro.motivo===undefined || resp.registro.motivo===null || resp.registro.motivo==""){alert(5555);document.getElementById("motivo").innerText="";} 
-                else document.getElementById("motivo").value=resp.registro.motivo;
+                //else document.getElementById("motivo").value=resp.registro.motivo;
                 document.getElementById("motivo").value=resp.registro.motivo;
                 document.getElementById("div_motivo").style.display="";
                 document.getElementById("motivo").readOnly=true;
