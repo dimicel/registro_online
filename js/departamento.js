@@ -220,7 +220,6 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
             contenido += "</div></div></div>";
             document.getElementById("verRegistro_div").innerHTML = contenido;
-            verRegAdjuntosExencFCT(reg);
             if (resp.resgistro.procesado==1){
                 document.getElementById("valoracion_informe").value=resp.registro.valoracion;
                 document.getElementById("motivo").value=resp.registro.motivo;
@@ -229,6 +228,8 @@ function verPanelProcesamiento(reg,dirReg){
                 document.getElementById("valoracion_informe").disabled=true;
                 seleccionValoracion(resp.registro.valoracion);
             }
+            verRegAdjuntosExencFCT(reg);
+            
 
             $("#verRegistro_div").dialog({
                 autoOpen: true,
