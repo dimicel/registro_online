@@ -221,6 +221,14 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "</div></div></div>";
             document.getElementById("verRegistro_div").innerHTML = contenido;
             verRegAdjuntosExencFCT(reg);
+            if (resp.resgistro.procesado==1){
+                document.getElementById("valoracion_informe").value=resp.registro.valoracion;
+                document.getElementById("motivo").value=resp.registro.motivo;
+                document.getElementById("div_motivo").style.display="";
+                document.getElementById("motivo").readOnly=true;
+                document.getElementById("valoracion_informe").disabled=true;
+                seleccionValoracion(resp.registro.valoracion);
+            }
 
             $("#verRegistro_div").dialog({
                 autoOpen: true,
