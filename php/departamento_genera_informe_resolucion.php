@@ -83,7 +83,7 @@ $result = $mysqli->query($sql);
 if ($mysqli->errno>0) {
     exit("server");
 }
-if ($result->num_rows==0){
+if ($result->num_rows!=1){
     exit("sin_registro");
 }
 else {
