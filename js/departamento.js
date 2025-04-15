@@ -219,11 +219,12 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<input type=text' class=form-control name=firma id=firma placeholder='Clic aquí para firmar el informe' readonly onclick='canvasFirma();' />";
             contenido += "</div></div><hr>";
             contenido += "<div class='row'><div class='col' style='text-align:right'>"
-            contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+reg+"\",\""+dirReg+"\",\""+resp.registro.id_nie+"\",\""+resp.registro.apellidos+"\",\""+resp.registro.nombre+"\",\""+resp.registro.id_nif+"\",\""+resp.registro.curso_ciclo+"\",\""+resp.registro.grado +"\",\""+resp.registro.ciclo+"\")'/>";
+            contenido += "<input id='btn_generar_informe' style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+reg+"\",\""+dirReg+"\",\""+resp.registro.id_nie+"\",\""+resp.registro.apellidos+"\",\""+resp.registro.nombre+"\",\""+resp.registro.id_nif+"\",\""+resp.registro.curso_ciclo+"\",\""+resp.registro.grado +"\",\""+resp.registro.ciclo+"\")'/>";
             contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
             contenido += "</div></div></div>";
             document.getElementById("verRegistro_div").innerHTML = contenido;
             if (resp.registro.procesado==1){
+                document.getElementById("btn_generar_informe").disabled=true;
                 document.getElementById("valoracion_informe").value=resp.registro.resolucion;
                 if (resp.registro.motivo===undefined || resp.registro.motivo===null || resp.registro.motivo=="")document.getElementById("motivo").value="aaaa";
                 else document.getElementById("motivo").value=resp.registro.motivo;
