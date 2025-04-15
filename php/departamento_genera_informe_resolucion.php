@@ -207,7 +207,7 @@ $texto=<<<EOD
 Examinada la documentación recibida en la Secretaría del Centro sobre la petición de solicitud de exención del Período de Formación en Empresas
  presentada por el alumno/a <b>$tratamiento $nombre $apellidos</b>, con DNI/NIE <b>$id_nif</b>, del curso 
  <b>$curso_ciclo</b> del <b>Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
- ACUERDA:<br><br>
+ ACUERDA:
 $texto_acuerda
 <p style="text-align:justify">$motivo<br><br>
 <p style="text-align:center">$fecha_firma
