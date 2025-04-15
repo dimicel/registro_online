@@ -91,7 +91,7 @@ else {
 	$tratamiento=$row["tratamiento"];
 }
 
-
+/*
 // Actualizar la tabla exencion_fct
 $update_query = "UPDATE exencion_fct 
                  SET resolucion = ?, 
@@ -118,7 +118,7 @@ if ($stmt->affected_rows === 0) {
 }
 $stmt->close();
 $mysqli->close();
-
+*/
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///GENERA EL INFORME
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -240,7 +240,8 @@ $pdf->StopTransform();
 //GENERA EL ARCHIVO NUEVO
 if(!is_dir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd"))mkdir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd",0777,true);
 $ruta="../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
-$pdf->Output($ruta, 'F');
+file_put_contents($ruta, "test");
+//$pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 exit("ok_text");
 
@@ -361,7 +362,7 @@ $pdf->StopTransform();
 
 //GENERA EL ARCHIVO NUEVO
 if(!is_dir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion"))mkdir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion",0777,true);
-$ruta="../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion/informe_jd.pdf";
+$ruta="../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/resolucion/resolucion.pdf";
 $pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 
