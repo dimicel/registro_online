@@ -225,6 +225,7 @@ function verPanelProcesamiento(reg,dirReg){
             document.getElementById("verRegistro_div").innerHTML = contenido;
             if (resp.registro.procesado==1){
                 document.getElementById("btn_generar_informe").disabled=true;
+                document.getElementById("div_firma").style.display="none";
                 document.getElementById("valoracion_informe").value=resp.registro.resolucion;
                 if (resp.registro.motivo===undefined || resp.registro.motivo===null || resp.registro.motivo=="")document.getElementById("motivo").value="aaaa";
                 else document.getElementById("motivo").value=resp.registro.motivo;
