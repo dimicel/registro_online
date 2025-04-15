@@ -203,7 +203,7 @@ $fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon
 
 $texto=<<<EOD
 <h3 style="text-align:center"><b>DEPARTAMENTO DE $departamentoMayus</b></h3>
-<h2>style="text-align:center"><b>INFORME DE EXENCIÓN DE PFE A $tratamientoMayus $nombreMayus $apellidosMayus</b></h2>
+<h2 style="text-align:center"><b>INFORME DE EXENCIÓN DE PFE A $tratamientoMayus $nombreMayus $apellidosMayus</b></h2>
 Examinada la documentación recibida en la Secretaría del Centro sobre la petición de solicitud de exención del Período de Formación en Empresas
  presentada por el alumno/a <b>$tratamiento $nombre $apellidos</b>, con DNI/NIE <b>$id_nif</b>, del curso 
  <b>$curso_ciclo</b> del <b>Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
