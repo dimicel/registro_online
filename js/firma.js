@@ -90,6 +90,8 @@ $(document).ready(function() {
 
 function canvasFirma() {
     tool = new tool_pencil();
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById("firma").value = "";
     $("#div_canvas_firma").dialog({
         autoOpen: true,
         dialogClass: "alert no-close",
