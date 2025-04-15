@@ -78,7 +78,7 @@ if (isset($_POST['firma'])){
 
 $consulta="SELECT * FROM exencion_fct  where registro='$registro'";
 
-$result = $mysqli->query($sql);
+$result = $mysqli->query($consulta);
 
 if ($mysqli->errno>0) {
     exit("server");
