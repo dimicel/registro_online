@@ -300,6 +300,7 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
             document.getElementById("rotulo_motivo").innerHTML="MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (1000/1000): ";
             mot="";
         }
+        if (mot==0) document.getElementById("motivo").value="";
         let datosFormulario = new FormData();
         datosFormulario.append("id_nie", _id_nie);
         datosFormulario.append("apellidos", _apellidos);
