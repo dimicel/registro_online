@@ -95,12 +95,12 @@ else {
 	$tratamientoMayus=strtoupper($tratamiento);
 }
 
-/*
+
 // Actualizar la tabla exencion_fct
 $update_query = "UPDATE exencion_fct 
                  SET resolucion = ?, 
                      motivo = ?, 
-                     procesado = 1, 
+                     procesado = 0, 
                      fecha_hora_firma_jd = ?, 
                      ip_remota_jd = ? 
                  WHERE registro = ?";
@@ -122,7 +122,7 @@ if ($stmt->affected_rows === 0) {
 }
 $stmt->close();
 $mysqli->close();
-*/
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///GENERA EL INFORME
 ///////////////////////////////////////////////////////////////////////////////////////////
