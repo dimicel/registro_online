@@ -329,9 +329,9 @@ $XInicio=12;
 $texto=<<<EOD
 <h3 style="text-align:center"><b>RESOLUCIÓN EXENCIÓN PFE</b></h3>
 Recibido el informe del Jefe de Departamento de $departamento 
- presentada por el alumno/a <b>{strtoupper($tratamiento)} {strtoupper($nombre)} {strtoupper($apellidos)}</b>, con DNI/NIE <b>$id_nif</b>, del curso 
- <b>$curso_ciclo</b> del Ciclo Formativo de Grado <b>$grado</b> de <b>$ciclo</b>, este departamento<br><br>
- ACUERDA:<br><br>
+ presentada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>, del curso 
+ <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
+ ACUERDA:
 <p style="text-align:justify">$texto_acuerda</p>
 <p style="text-align:justify">$motivo<br><br>
 <p style="text-align:center">$fecha_firma
@@ -372,6 +372,8 @@ if (!is_dir($dir)) mkdir($dir, 0777, true);
 $ruta = realpath($dir) . "/resolucion.pdf";
 $pdf->Output($ruta, 'F');
 //FIN GENERA RESOLUCIÓN
+
+exit("ok");
 
 
 
