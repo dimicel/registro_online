@@ -230,14 +230,14 @@ $pdf->writeHTMLCell(180, 0, $XInicio, $posicionY, $texto, 0, 1, false, true, 'C'
 
 // Agregar texto en el lateral izquierdo en formato vertical, centrado en la altura de un A4
 $pdf->StartTransform();
-$pdf->Rotate(90, 5, 148); // Rotar el texto 90 grados (centrado en la altura de A4)
+$pdf->Rotate(90, 2, 148); // Rotar el texto 90 grados (centrado en la altura de A4)
 
 // Calcular la posición centrada en la altura de A4
 $alturaPagina = $pdf->getPageHeight(); // Altura de la página
 $posicionCentradaY = $alturaPagina / 2; // Calcular la posición centrada
 
-$pdf->SetFont('dejavusans', '', 8, '', true);
-$pdf->Text(5, $posicionCentradaY, "Fecha y hora de firma: $fecha_hora_actual");
+$pdf->SetFont('dejavusans', '', 5, '', true);
+$pdf->Text(2, $posicionCentradaY, "Fecha y hora de firma: $fecha_hora_actual");
 $pdf->StopTransform();
 
 
@@ -360,7 +360,7 @@ $pdf->Rotate(90, 5, 148); // Rotar el texto 90 grados (centrado en la altura de 
 $alturaPagina = $pdf->getPageHeight(); // Altura de la página
 $posicionCentradaY = $alturaPagina / 2; // Calcular la posición centrada
 
-$pdf->SetFont('dejavusans', '', 8, '', true);
+$pdf->SetFont('dejavusans', '', 5, '', true);
 $pdf->Text(5, $posicionCentradaY, "Fecha y hora de firma: $fecha_hora_actual");
 $pdf->StopTransform();
 
