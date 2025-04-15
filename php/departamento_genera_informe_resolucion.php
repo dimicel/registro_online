@@ -95,12 +95,12 @@ else {
 	$tratamientoMayus=strtoupper($tratamiento);
 }
 
-
+/*
 // Actualizar la tabla exencion_fct
 $update_query = "UPDATE exencion_fct 
                  SET resolucion = ?, 
                      motivo = ?, 
-                     procesado = 0, 
+                     procesado = 1, 
                      fecha_hora_firma_jd = ?, 
                      ip_remota_jd = ? 
                  WHERE registro = ?";
@@ -122,7 +122,7 @@ if ($stmt->affected_rows === 0) {
 }
 $stmt->close();
 $mysqli->close();
-
+*/
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///GENERA EL INFORME
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -131,11 +131,11 @@ if($valoracion=="exento"){
 	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)."</p>";
 	$motivo="";
 }
-elseif($valoracion=="parcialmente_exento"){
+elseif($valoracion=="parcialmente exento"){
 	$texto_acuerda="<p style='text-align:justify'>INFORMAR FAVORABLEMENTE DE LA EXENCIÓN PARCIAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO/A ";
 	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:</p><br>";
 }
-elseif($valoracion=="no_exento"){
+elseif($valoracion=="no exento"){
 	$texto_acuerda="<p style='text-align:justify'>INFORMAR DESFAVORABLEMENTE DE LA EXENCIÓN DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO/A ";
 	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:</p><br>";
 }
