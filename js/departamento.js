@@ -329,8 +329,6 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
                 else if (resp == "ok") {
                     alerta("Informe generado correctamente.","INFORME GENERADO");
                     listaUsus();
-                    $("#verRegistro_div").dialog("close");
-                    $("#verRegistro_div").dialog("destroy");
                 } 
                 else if(resp=="config_centro") alerta("No se ha podido recuperar la configuración del centro.","ERROR DB");
                 else if (resp == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
@@ -339,6 +337,8 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
                 else {
                     alerta(resp,"ERROR ACTUALIZACIÓN");
                 }
+                $("#verRegistro_div").dialog("close");
+                $("#verRegistro_div").dialog("destroy");
             }});
     }
 
