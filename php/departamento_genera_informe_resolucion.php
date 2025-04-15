@@ -238,9 +238,15 @@ $pdf->StopTransform();
 
 
 //GENERA EL ARCHIVO NUEVO
-if(!is_dir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd"))mkdir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd",0777,true);
-$ruta="../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
-file_put_contents($ruta, "test");
+$dir = "../docs/$id_nie/exencion_form_emp/$anno_curso/$dirRegistro/docs/informe_jd";
+if (!is_dir($dir)) mkdir($dir, 0777, true);
+
+$ruta = realpath($dir) . "/informe_jd.pdf";
+$pdf->Output($ruta, 'F');
+
+//if(!is_dir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd"))mkdir("../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd",0777,true);
+//$ruta="../docs/".$id_nie."/"."exencion_form_emp/".$anno_curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf";
+//file_put_contents($ruta, "test");
 //$pdf->Output($ruta, 'F');
 //FIN GENERA PDF
 exit("ok_text");
