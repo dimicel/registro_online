@@ -152,7 +152,7 @@ function listaUsus() {
                 }
                 else{
                     //data += "<td style='" + estilo_usu[5] + ";text-align:center'><input type='button' class='btn btn-success btn-sm'  value='Procesar' onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'></td>";
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center;background-color:red'>Pendiente</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center;background-color:brown'>Pendiente</td>";
                 }
                 data += "</tr>";
             }
@@ -269,7 +269,7 @@ function seleccionValoracion(v){
 
 function verRegAdjuntosExencFCT(reg){
     _div="";
-    $.post("php/secret_exencion_fct_adjuntos.php",{registro:reg},(resp2)=>{
+    $.post("php/secret_exencion_fct_adjuntos.php",{registro:reg,listarResolucion:false},(resp2)=>{
         if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {

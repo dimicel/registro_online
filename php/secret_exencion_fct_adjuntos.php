@@ -9,6 +9,13 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 $registro=$_POST["registro"];
+if(isset($_POST["listarResolucion"])){
+    $listaRes=false;
+}
+else {
+    $listaRes=true;
+}
+
 
 $sql = "SELECT *  FROM exencion_fct_docs WHERE registro = '$registro' ORDER BY ruta";
 $result = $mysqli->query($sql);
@@ -21,10 +28,17 @@ if ($result->num_rows > 0) {
         $contador++;
     }
     $mysqli->close();
-    if (is_file("../".dirname($data["datos"][$contador-1]["ruta"])."/resolucion/resolucion.pdf")){
-        $data["datos"][$contador]["descripcion"]="Resolución";
-        $data["datos"][$contador]["ruta"]=dirname($data["datos"][$contador-1]["ruta"])."/resolucion/resolucion.pdf";
-        $data["datos"][$contador]["subidopor"]="generado_por_aplicacion";
+    if ($listaRes==true){
+        if (is_file("../".dirname($data["datos"][$contador-1]["ruta"])."/informe_jd/informe_jd.pdf")){
+            $data["datos"][$contador]["descripcion"]="Informe del Jefe Dpto.";
+            $data["datos"][$contador]["ruta"]=dirname($data["datos"][$contador-1]["ruta"])."/informe_jd/informe_jd.pdf";
+            $data["datos"][$contador]["subidopor"]="generado_por_aplicacion";
+        }
+        if (is_file("../".dirname($data["datos"][$contador-1]["ruta"])."/resolucion/resolucion.pdf")){
+            $data["datos"][$contador]["descripcion"]="Resolución";
+            $data["datos"][$contador]["ruta"]=dirname($data["datos"][$contador-1]["ruta"])."/resolucion/resolucion.pdf";
+            $data["datos"][$contador]["subidopor"]="generado_por_aplicacion";
+        }
     }
     $data["error"]="ok";
     exit(json_encode($data));
