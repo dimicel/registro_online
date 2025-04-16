@@ -17,8 +17,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>GESTIÓN DEL REGISTRO ONLINE - SECRETARIA DEL IES UNIVERSIDAD LABORAL DE TOLEDO</title>
     <style>
+        .tablaExpediente {
+        height: 500px;
+        overflow-y: scroll;
+        scrollbar-width: auto;            /* Firefox */
+        }
+
+        /* Scrollbar visible en navegadores basados en WebKit (Chrome, Edge, etc.) */
         .tablaExpediente::-webkit-scrollbar {
-            width: 8px;
+        width: 8px;
+        }
+
+        .tablaExpediente::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 4px;
+        }
+
+        .tablaExpediente::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
         }
     </style>
 </head>
