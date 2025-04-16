@@ -143,7 +143,7 @@ foreach($tipos_doc as $tipodoc=>$ruta){
 								}
 								if (is_file("../docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/informe_jd/informe_jd.pdf"))
 								{
-									$data["docs"][$tipodoc][$contador]["informe_jd"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/resolucion/resolucion.pdf";
+									$data["docs"][$tipodoc][$contador]["informe_jd"]="docs/".$id_nie."/".$ruta."/".$dir."/".$doc."/docs/informe_jd/informe_jd.pdf";
 								}
 								else 
 								{
