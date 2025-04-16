@@ -831,12 +831,14 @@ function listaRegistros(orden_campo, orden_direccion) {
                             anno_final_curso=document.getElementById("curso").value.slice(-4);
                             fechaLimite = new Date(anno_final_curso+"-06-15");
                         }
-                        else if(j==4){
+                        else if(j==4){//Aquí se hace la columna Informe JD y Resolución juntas 
+                            dirRegistro=data_array[i]["registro"].slice(17);
+                            rutaInforme="docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+dirRegistro+"docs/informe_jd/informe_jd.pdf";
                             if (data_array[i]["resolucion"]=="PENDIENTE"){
                                 data+="<td style='width:70px;'><center>-</center></td>";
                             }
                             else {
-                                data+="<td style='width:70px;'><center><a href='#' target='_blank'>Ver</a></center></td>";
+                                data+="<td style='width:70px;'><center><a href='"+rutaInforme+"' target='_blank'>Ver</a></center></td>";
                             }
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                         }
