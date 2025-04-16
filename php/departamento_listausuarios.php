@@ -65,6 +65,8 @@ while ($reg=$res->fetch_assoc()){
     $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["apellidos"])).", ".ucwords(strtolower($reg["nombre"]));
     $data["registros"][$contador]["registro"]= $reg["registro"];
     $data["registros"][$contador]["visto"]= $reg["procesado"];
+    
+    $data["registros"][$contador]["resolucion"]= strtoupper($reg["resolucion"]);
     $dirRegistro=substr($reg["registro"], 17);
     $data["registros"][$contador]["dirRegistro"]= $dirRegistro;
     if (is_file(("../docs/".$reg["id_nie"]."/exencion_form_emp"."/".$curso."/".$dirRegistro."/docs/informe_jd/informe_jd.pdf"))){
