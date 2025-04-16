@@ -506,7 +506,9 @@ function panelExpedienteUsuario(id_nie,nom) {
                 resizable: false,
                 show: { effect: "fade", duration: 0 },
                 title: "EXPEDIENTE DEL USUARIO",
-                width: 900,
+                width: 800,
+                height:auto,
+                maxHeight: 600,
                 position: { my: "center top", at: "center top", of: window },
                 buttons: [{
                     class: "btn btn-success textoboton",
