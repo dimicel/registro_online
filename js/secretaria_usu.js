@@ -503,7 +503,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                 dialogClass: "alert no-close",
                 modal: true,
                 hide: { effect: "fade", duration: 0 },
-                resizable: false,
+                resizable: true,
                 show: { effect: "fade", duration: 0 },
                 title: "EXPEDIENTE DEL USUARIO",
                 width: 900,
