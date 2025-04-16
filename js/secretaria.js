@@ -838,7 +838,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                                 data+="<td style='width:70px;'><center>-</center></td>";
                             }
                             else {
-                                data+="<td style='width:70px;'><center><a href='"+rutaInforme+"' target='_blank'>Ver</a></center></td>";
+                                data+="<td style='width:70px;'><center><a href='"+rutaInforme+"' target='_blank' onclick='event.stopPropagation();'>Ver</a></center></td>";
                             }
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                         }
