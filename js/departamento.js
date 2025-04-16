@@ -142,7 +142,7 @@ function listaUsus() {
                     data += "<td style='" + estilo_usu[3] + ";text-align:center'>-</td>";
                 }
                 if (data_array[i]["resolucion"]!=""){
-                    data += "<td style='" + estilo_usu[4] + ";text-align:center'><a href='"+data_array[i]["resolucion"]+"' target='_blank'>Ver</a></td>";
+                    data += "<td style='" + estilo_usu[4] + ";text-align:center'><a href='"+data_array[i]["resolucion"]+"' target='_blank'>"+data_array[i]["resResolucion"]+"</a></td>";
                 }
                 else{
                     data += "<td style='" + estilo_usu[4] + ";text-align:center'>-</td>";
