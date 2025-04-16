@@ -840,10 +840,10 @@ function listaRegistros(orden_campo, orden_direccion) {
                             else {
                                 data+="<td style='width:70px;'><center><a href='"+rutaInforme+"' target='_blank' onclick='event.stopPropagation();'>Ver</a></center></td>";
                             }
-                            data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                            data += "<td style='" + estilo[j] + "'>" + "PARCIALMENTE EXENTO" + "</td>";//data_array[i][campos[j]]
                         }
                         else{
-                            data += "<td style='" + estilo[j] + "'>" + "PARCIALMENTE EXENTO" + "</td>";//data_array[i][campos[j]]
+                            data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                         }
                     }
                     //if (fecha < fechaLimite){
