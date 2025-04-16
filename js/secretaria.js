@@ -843,7 +843,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                         }
                         else{
-                            data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                            data += "<td style='" + estilo[j] + "'>" + "PARCIALMENTE EXENTO" + "</td>";//data_array[i][campos[j]]
                         }
                     }
                     //if (fecha < fechaLimite){
