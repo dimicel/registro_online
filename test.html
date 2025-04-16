@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #div_tabla_expediente {
+      height: 200px;
+      overflow-y: auto;
+      border: 1px solid #999;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td {
+      border: 1px solid gray;
+      padding: 4px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="div_tabla_expediente">
+  <table>
+    <tbody id="tabla_body"></tbody>
+  </table>
+</div>
+
+<script>
+  let html = "";
+  for (let i = 0; i < 50; i++) {
+    html += "<tr><td>Fila " + i + "</td><td>Contenido</td></tr>";
+  }
+  document.getElementById("tabla_body").innerHTML = html;
+</script>
+
+</body>
+</html>
