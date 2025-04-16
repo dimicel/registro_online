@@ -308,7 +308,7 @@ function obtieneDocsExpediente() {
                                 if (resp["docs"][td][j]["resolucion"]!=""){
                                     contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion']+"'>>Resolución<</a></td>";
                                 }
-                                if (resp["docs"][td][j]["informe_jd"]!=""){
+                                if (resp["docs"][td][j]["informe_jd"]!=""){alert(5555);
                                     contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['informe_jd']+"' title='Informe del Jefe de Departamento'>>Informe JD<</a></td>";
                                 }
                             }
