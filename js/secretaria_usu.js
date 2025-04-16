@@ -330,7 +330,7 @@ function obtieneDocsExpediente() {
                     }
                 }
             }
-            contenido_div += "</table><center>FIN EXPEDIENTE</center>";
+            contenido_div += "</table><br><center>FIN EXPEDIENTE</center>";
             document.getElementById("div_tabla_expediente").innerHTML = contenido_div;
         }
     }, "json");
