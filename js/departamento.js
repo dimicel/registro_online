@@ -91,7 +91,7 @@ function listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:220px", "width:240px","width:70px;text-align:center","width:70px;text-align:center","width:100px;text-align:center"];
+    estilo_usu = ["width:80px", "width:220px", "width:240px","width:70px;text-align:center","width:110px;text-align:center","width:100px;text-align:center"];
     encabezamiento_usu = ["NIE", "Alumno", "Nº Registro","Informe","Resolución","Estado"];
 
     //Construcción del encabezamiento de la tabla
@@ -142,7 +142,7 @@ function listaUsus() {
                     data += "<td style='" + estilo_usu[3] + ";text-align:center'>-</td>";
                 }
                 if (data_array[i]["resolucion"]!=""){
-                    data += "<td style='" + estilo_usu[4] + ";text-align:center'><a href='"+data_array[i]["resolucion"]+"' target='_blank'>"+data_array[i]["resResolucion"]+"</a></td>";
+                    data += "<td style='" + estilo_usu[4] + ";text-align:center'><a href='"+data_array[i]["resolucion"]+"' target='_blank'>PARCIALMENTE EXENTO</a></td>";//"+data_array[i]["resResolucion"]+"
                 }
                 else{
                     data += "<td style='" + estilo_usu[4] + ";text-align:center'>-</td>";
