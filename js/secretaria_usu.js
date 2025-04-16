@@ -332,6 +332,7 @@ function obtieneDocsExpediente() {
             }
             contenido_div += "</table>"
             document.getElementById("div_tabla_expediente").innerHTML = contenido_div;
+            console.log(getComputedStyle(document.querySelector("dialog")).overflow);
         }
     }, "json");
 }
