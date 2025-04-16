@@ -142,17 +142,17 @@ function listaUsus() {
                     data += "<td style='" + estilo_usu[3] + ";text-align:center'>-</td>";
                 }
                 if (data_array[i]["resolucion"]!=""){
-                    data += "<td style='" + estilo_usu[4] + ";text-align:center'><a href='"+data_array[i]["resolucion"]+"' target='_blank'>PARCIALMENTE EXENTO</a></td>";//"+data_array[i]["resResolucion"]+"
+                    data += "<td style='" + estilo_usu[4] + ";text-align:center'><a href='"+data_array[i]["resolucion"]+"' target='_blank'>"+data_array[i]["resResolucion"]+"</a></td>";
                 }
                 else{
                     data += "<td style='" + estilo_usu[4] + ";text-align:center'>-</td>";
                 }
                 if (data_array[i]["visto"]==1){
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Procesado</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center;background-color:green'>Procesado</td>";
                 }
                 else{
                     //data += "<td style='" + estilo_usu[5] + ";text-align:center'><input type='button' class='btn btn-success btn-sm'  value='Procesar' onclick='generarInforme(\""+data_array[i]["registro"]+"\",\""+data_array[i]["dirRegistro"]+"\")'></td>";
-                    data += "<td style='" + estilo_usu[5] + ";text-align:center'>Pendiente</td>";
+                    data += "<td style='" + estilo_usu[5] + ";text-align:center;background-color:red'>Pendiente</td>";
                 }
                 data += "</tr>";
             }
