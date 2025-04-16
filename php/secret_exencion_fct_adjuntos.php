@@ -33,6 +33,7 @@ if ($result->num_rows > 0) {
             $data["datos"][$contador]["descripcion"]="Informe del Jefe Dpto.";
             $data["datos"][$contador]["ruta"]=dirname($data["datos"][$contador-1]["ruta"])."/informe_jd/informe_jd.pdf";
             $data["datos"][$contador]["subidopor"]="generado_por_aplicacion";
+            $contador++;
         }
         if (is_file("../".dirname($data["datos"][$contador-1]["ruta"])."/resolucion/resolucion.pdf")){
             $data["datos"][$contador]["descripcion"]="Resolución";
