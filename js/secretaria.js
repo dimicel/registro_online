@@ -833,7 +833,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                         }
                         else if(j==4){//Aquí se hace la columna Informe JD y Resolución juntas 
                             dirRegistro=data_array[i]["registro"].slice(17);
-                            rutaInforme="docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+dirRegistro+"docs/informe_jd/informe_jd.pdf";
+                            rutaInforme="docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+dirRegistro+"/docs/informe_jd/informe_jd.pdf";
                             if (data_array[i]["resolucion"]=="PENDIENTE"){
                                 data+="<td style='width:70px;'><center>-</center></td>";
                             }
