@@ -269,7 +269,7 @@ function obtieneDocsExpediente() {
             contenido_div = "<center>NO EXISTEN DOCUMENTOS ASOCIADOS A ESTE NIE</center>";
             document.getElementById("div_tabla_expediente").innerHTML = contenido_div;
         } else {
-            contenido_div = "<table style='height:200px !important;overflow-y:true' >";
+            contenido_div = "<div style='height:500px !important;overflow-y:auto' ><table>";
             //Obtenemos los docs desde los propios directorios del expediente
             for (var td in docs_exp) {
                 if (resp["docs"][td].length > 0) {
@@ -330,7 +330,7 @@ function obtieneDocsExpediente() {
                     }
                 }
             }
-            contenido_div += "</table>"
+            contenido_div += "</table></div>"
             document.getElementById("div_tabla_expediente").innerHTML = contenido_div;
         }
     }, "json");
@@ -507,7 +507,6 @@ function panelExpedienteUsuario(id_nie,nom) {
                 show: { effect: "fade", duration: 0 },
                 title: "EXPEDIENTE DEL USUARIO",
                 width: 800,
-                height: 700,
                 position: { my: "center top", at: "center top", of: window },
                 buttons: [{
                     class: "btn btn-success textoboton",
