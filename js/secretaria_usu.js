@@ -269,7 +269,7 @@ function obtieneDocsExpediente() {
             contenido_div = "<center>NO EXISTEN DOCUMENTOS ASOCIADOS A ESTE NIE</center>";
             document.getElementById("div_tabla_expediente").innerHTML = contenido_div;
         } else {
-            contenido_div = "<div style='height:500px;overflow-y:scroll;' class='tablaExpediente' ><table>";
+            contenido_div = "<table>";
             //Obtenemos los docs desde los propios directorios del expediente
             for (var td in docs_exp) {
                 if (resp["docs"][td].length > 0) {
@@ -330,7 +330,7 @@ function obtieneDocsExpediente() {
                     }
                 }
             }
-            contenido_div += "</table></div>"
+            contenido_div += "</table>"
             document.getElementById("div_tabla_expediente").innerHTML = contenido_div;
         }
     }, "json");
