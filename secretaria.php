@@ -16,6 +16,11 @@
     <link rel="stylesheet" href=<?php echo "js/context_menu/jquery.contextMenu.min.css?q=".time();?>>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>GESTIÓN DEL REGISTRO ONLINE - SECRETARIA DEL IES UNIVERSIDAD LABORAL DE TOLEDO</title>
+    <style>
+        .tablaExpediente::-webkit-scrollbar {
+            width: 8px;
+        }
+    </style>
 </head>
 
 <body>
