@@ -502,8 +502,8 @@ function listaRegistros(orden_campo, orden_direccion) {
     } else if(tipo_formulario=="exencion_fct"){
         tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "fecha_registro","registro","resolucion"];
-        estilo = ["width:70px", "width:180px", "width:85px;text-align:center;", "width:230px;", "width:70px;text-align:center;" , "width:60px;text-align:center;"];
-        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Registro","Resolución","Visto"];
+        estilo = ["width:70px", "width:180px", "width:85px;text-align:center;", "width:230px;", "width:150px;text-align:center;" ];
+        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Registro","Resolución"];
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
         else if (document.getElementById("curso_pre_mat").value == "3eso") {tabla = "premat_eso"; grupo="3º ESO";}
