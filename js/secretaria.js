@@ -851,8 +851,8 @@ function listaRegistros(orden_campo, orden_direccion) {
                     //    else  data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
                     //}
                     //else{
-                        if (data_array[i]["visto"]==1) data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
-                        else  data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
+                        //if (data_array[i]["visto"]==1) data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
+                        //else  data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
                     //}
                     data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>"; 
                 }
