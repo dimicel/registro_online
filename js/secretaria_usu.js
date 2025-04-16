@@ -507,6 +507,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                 show: { effect: "fade", duration: 0 },
                 title: "EXPEDIENTE DEL USUARIO",
                 width: 900,
+                height:600,
                 position: { my: "center top", at: "center top", of: window },
                 buttons: [{
                     class: "btn btn-success textoboton",
@@ -515,7 +516,10 @@ function panelExpedienteUsuario(id_nie,nom) {
                         $("#div_dialogs").dialog("close");
                         $("#div_dialogs").dialog("destroy");
                     }
-                }]
+                }],
+                open: function(event, ui) {
+                    $(".ui-dialog-titlebar-close").hide();
+                }
             });
         }
     });  
