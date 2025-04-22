@@ -51,7 +51,7 @@
                     </div>
                     <center>
                         <div style="padding-top:15px;">
-                            <input type="button" id="b_ok_login" class="btn btn-success btn-xs" value="Entrar" tabindex="3" onclick="entra()">
+                            <input type="button" id="b_ok_login" class="btn btn-success btn-sm" value="Entrar" tabindex="3" onclick="entra()">
                         </div>
                     </center>
                 </form>
