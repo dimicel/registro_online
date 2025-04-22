@@ -124,6 +124,9 @@ $(function() {
                 if($("#encabezado_docs tr td:nth-child(4)").html() == "Centro"){
                     n_reg=$(this).children("td:nth-child(2)").attr("title");
                 }
+                else if($("#encabezado_docs tr td:nth-child(4)").html() == "Registro"){
+                    n_reg=$(this).children("td:nth-child(4)").html();
+                }
                 else {
                     n_reg=$(this).children("td:nth-child(3)").html();
                 }
