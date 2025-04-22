@@ -501,7 +501,7 @@ function panelExpedienteUsuario(id_nie,nom) {
             $("#div_dialogs").dialog({
                 autoOpen: true,
                 dialogClass: "alert no-close",
-                modal: true,
+                modal: false,
                 hide: { effect: "fade", duration: 0 },
                 resizable: true,
                 show: { effect: "fade", duration: 0 },
