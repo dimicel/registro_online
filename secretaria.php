@@ -40,7 +40,7 @@
         <!--_______________________________________________________________________________________-->
         <div id="doc_reg_tab" class="ui-widget-header ui-corner-all">
             <div style="margin-top:10px; margin-left:10px;" id="menu_div">
-                <ul class="nav bg-white" style="font-size:0.7em !important">
+                <ul class="nav bg-white w-auto" style="font-size:0.7em !important">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="menu1" href="#" data-toggle="dropdown" >
                             Gestión Usuarios
