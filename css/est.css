@@ -98,6 +98,13 @@ div#div_email p {
     display: none;
 }*/
 
+.oculta_scroll{
+    overflow: hidden ;
+    overflow-y: hidden ;
+    overflow-x: hidden ;
+    -ms-overflow-style: -ms-autohiding-scrollbar ;
+}
+
 table {
     border-collapse: collapse;
     table-layout: fixed;
