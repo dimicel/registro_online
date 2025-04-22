@@ -748,7 +748,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         }
         else {
             document.getElementById("div_notabla").style.display = "none";
-            document.getElementById("div_tabla").style.display = "inline-block";
+            document.getElementById("div_tabla").style.display = "flex";
             //encab = "";
             data = "";
             data_array = resp["registros"];
