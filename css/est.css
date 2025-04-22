@@ -94,9 +94,9 @@ div#div_email p {
     font-size: 0.75em;
 }
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     display: none;
-}
+}*/
 
 table {
     border-collapse: collapse;
