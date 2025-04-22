@@ -18,7 +18,7 @@
 <body onkeyup="javascript:if(event.keyCode=='13')entra();">
     <!-- LOGIN ___________________________________________________________-->
     <!--__________________________________________________________________-->
-    <div id="login" class="centrado container" style="overflow-y: scroll important;">
+    <div id="login" class="centrado container" style="overflow-y: scroll !important;">
         <header style="text-align:center; color: #000080;">
             <center>
                 <h2><img src="recursos/escudo.jpg" class="img-responsive" width="229" height="211" alt="Escudo_Uni"></h2>
