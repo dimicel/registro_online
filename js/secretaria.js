@@ -389,7 +389,7 @@ function ajustarAnchoTablaRegistros() {
     if (encabezadoTabla && divTabla && registrosTabla) {
       const anchoEncabezado = encabezadoTabla.offsetWidth;
       divTabla.style.width = anchoEncabezado + 'px';
-      registrosTabla.style.width = '100%';
+      //registrosTabla.style.width = '100%';
       registrosTabla.style.marginLeft = 'auto';
       registrosTabla.style.marginRight = 'auto';
     }
