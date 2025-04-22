@@ -261,7 +261,7 @@
                 </div>
             </div>-->
             <div style="margin-top:20px">
-                <div id="div_tabla" style="overflow: auto; height: 400px;" class="table-hover">
+                <div id="div_tabla" style=" height: 400px;" class="table-hover">
                     <table cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:auto;margin-right:auto;">
                         <thead id="encabezado_docs" class="encab_tablas " style="display: block;">
                             <tr>
