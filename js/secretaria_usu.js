@@ -287,13 +287,13 @@ function obtieneDocsExpediente() {
                             }
                             else{
                                 if (resp["docs"][td][j]["resolucion"]!=""){
-                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion']+"'>>Res.Centro<</a></td>";
+                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion']+"?q="+Date.now()+"'>>Res.Centro<</a></td>";
                                 }
                                 if (resp["docs"][td][j]["resolucion_con"]!=""){
-                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion_con']+"'>>Res.Consej.<</a></td>";
+                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion_con']+"?q="+Date.now()+"'>>Res.Consej.<</a></td>";
                                 }
                                 if (resp["docs"][td][j]["resolucion_min"]!=""){
-                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion_min']+"'>>Res.Minist.<</a></td>";
+                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion_min']+"?q="+Date.now()+"'>>Res.Minist.<</a></td>";
                                 }
                             }
                         }
