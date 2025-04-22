@@ -480,7 +480,8 @@ function confirmaCambioNombreDoc() {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
-    $("#div_dialogs").addClass("scroll-invisible");
+    document.getElementById("div_dialogs").style.overflow = "hidden";
+    //$("#div_dialogs").addClass("scroll-invisible");
     $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_expediente_usuario", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
