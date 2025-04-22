@@ -750,9 +750,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         else {
             document.getElementById("div_notabla").style.display = "none";
             document.getElementById("div_tabla").style.display = "block";
-            if (document.getElementById("registros_docs").scrollHeight > document.getElementById("registros_docs").clientHeight) {
-                document.getElementById("div_tabla").style.width=document.getElementById("encabezado_docs").style.width+20+"px";
-            }
+            
             //encab = "";
             data = "";
             data_array = resp["registros"];
@@ -914,6 +912,9 @@ function listaRegistros(orden_campo, orden_direccion) {
             
             document.getElementById("encabezado_docs").innerHTML = encab;
             document.getElementById("registros_docs").innerHTML = data;
+            if (document.getElementById("registros_docs").scrollHeight > document.getElementById("registros_docs").clientHeight) {
+                document.getElementById("div_tabla").style.width=document.getElementById("encabezado_docs").style.width+10+"px";
+            }
         }
     }, "json");
 }
