@@ -99,15 +99,15 @@ div#div_email p {
 }*/
 
 /* En vez de eliminar el scrollbar, lo hacemos transparente, para que pueda visualizarse cuando se necesite */
-::-webkit-scrollbar {
+.scroll-invisible::-webkit-scrollbar {
     width: 0px;
     /*background: transparent; /* opcional */
   }
 
-  .scroll-visible::-webkit-scrollbar {
+.scroll-visible::-webkit-scrollbar {
     width: 8px !important;
     /*background: #f1f1f1;*/ /* opcional */
-  }
+}
 
 
 
