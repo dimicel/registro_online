@@ -39,7 +39,7 @@
                 <div class="row justify-content-center">
                     <span style="font-size:14px; color:green">Complete sus datos personales en 'Mis Datos'. Le facilitará el proceso a la hora de cumplimentar formularios.</span>
                 </div>
-                <div id="menu_div" class="row justify-content-center" style="margin-top: 10px; margin-bottom: 10px;">
+                <div id="menu_div" class="row justify-content-center">
                     <!--<nav class="navbar" style="background-color: rgb(63, 151, 63);">-->
                     <ul class="nav bg-success">
                         <li class="nav-item" id="menu1">
