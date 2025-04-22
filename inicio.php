@@ -16,16 +16,7 @@
 </head>
 
 <body onkeyup="javascript:if(event.keyCode=='13')entra();">
-    <script>
-document.getElementById('form_login').addEventListener('submit', function (event) {
-    if (!this.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    this.classList.add('was-validated');
-});
-
-    </script>
+   
     <!-- LOGIN ___________________________________________________________-->
     <!--__________________________________________________________________-->
     <div id="login" class="centrado container" style="overflow-y: scroll !important;">
