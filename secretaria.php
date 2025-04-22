@@ -22,7 +22,7 @@
 </head>
 
 <body class="scroll-invisible">
-    <div id="panel" style="display: block;  padding: 5px; width:990px" class="ui-widget-header ui-corner-all centrado">
+    <div id="panel" style="display: block;  padding: 5px; width:1050px" class="ui-widget-header ui-corner-all centrado">
         <div style="display:table-cell; padding-left:10px; padding-top: 10px">
             <img src="recursos/escudo.jpg" width="115" height="105" alt="Escudo_Uni">
         </div>
