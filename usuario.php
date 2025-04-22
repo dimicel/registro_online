@@ -69,7 +69,7 @@
                     <!--</nav>-->
                 </div>
                 <div style="clear:both"></div>
-                <div style="margin-top:20px">
+                <div style="margin-top:20px;overflow-y:auto; max-height: 600px;">
                     <h5 style="color:brown">Solicitudes Registradas</h5>
                     <table id="solicitudes">
 
