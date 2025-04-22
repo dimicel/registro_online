@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-12">
-                            <label for="password" class="col-lg-12 control-label ">Contraseña</label>
+                            <label for="password" >Contraseña</label>
                             <input name="password" type="password" id="password" class="form-control" tabindex="2" required>
                             <div class="invalid-feedback">Complete el campo</div>
                             <div class="valid-feedback"></div>
