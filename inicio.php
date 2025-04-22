@@ -32,7 +32,7 @@
             </center>
         </header>
         <div class="row justify-content-center" style="margin-top: 20px;">
-            <div class="ui-widget-header ui-corner-all col-xs-12 col-sm-8 col-md-3 " style="padding:20px">
+            <div class="ui-widget-header ui-corner-all col-12 col-sm-10 col-md-6 col-lg-4 " style="padding:20px">
                 <form id="form_login" class="form-horizontal needs-validation" novalidate>
                     <div class="form-group row">
                         <div class="col-lg-12">
