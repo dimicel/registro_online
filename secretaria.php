@@ -263,12 +263,12 @@
             <div style="margin-top:20px">
                 <div id="div_tabla" style="overflow: auto; height: 400px;" class="table-hover">
                     <table cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:auto;margin-right:auto;">
-                        <thead id="encabezado_docs" class="encab_tablas ">
+                        <thead id="encabezado_docs" class="encab_tablas " style="display: block;">
                             <tr>
                                 <td style="text-align: center; width: 900px;">Selecciona tipo de formulario en el desplegable de arriba.</td>
                             </tr>
                         </thead>
-                        <tbody id="registros_docs" ></tbody>
+                        <tbody id="registros_docs" style="display: block; overflow-y: auto;"></tbody>
                     </table>
                 </div>
                 <div id="div_notabla" style="display:none; height: 400px; text-align:center; margin-left: 10px">
