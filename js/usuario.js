@@ -518,8 +518,8 @@ function listaSolicitudes() {
             });
             listado.innerHTML = tabla;
             if (document.getElementById("div_solicitudes").scrollHeight > document.getElementById("div_solicitudes").clientHeight) {
-                alert(listado.offsetWidth+"    "+document.getElementById("div_solicitudes").parentNode.parentNode.offsetWidth);
-                document.getElementById("div_solicitudes").style.width=listado.offsetWidth+20+"px";
+                alert(listado.offsetWidth+"    "+document.getElementById("div_solicitudes").offsetWidth);
+                document.getElementById("div_solicitudes").style.width=listado.offsetWidth-100+"px";
                 //document.getElementById("div_solicitudes").style.marginLeft="20px";
             }
             //document.getElementById("div_solicitudes").style.width = listado.offsetWidth +20+ "px";
