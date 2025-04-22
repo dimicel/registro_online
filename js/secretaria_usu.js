@@ -319,7 +319,7 @@ function obtieneDocsExpediente() {
                             contenido_div += "<td><a href='" + resp["docs"][td][j]["enlace"] + "' target='_blank'>"
                             contenido_div += resp["docs"][td][j]["doc"] + "</a></td>";
                         }
-                        if (docs_exp[td] != "MATRICULAS" && docs_exp[td] != "PREMATRICULAS" && docs_exp[td] != "CONVALIDACIONES" && docs_exp[td] !="EXENCIÓN FORMACIÓN EN EMPRESAS (PFE)" ) {
+                        if (docs_exp[td] != "MATRICULAS" && docs_exp[td] != "PREMATRICULAS" && docs_exp[td] != "CONVALIDACIONES" && docs_exp[td] !="EXENCIÓN FORMACIÓN EN EMPRESAS (PFE)" && docs_exp[td] !="TRANSPORTE ESCOLAR") {
                             //contenido_div += "<td onclick='borraDocExp(this)' style='color:brown; text-align:center' width='20px' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente'>X</tr>";
                             contenido_div += "<td><button onclick='borraDocExp(this.parentNode)' class='textoboton btn btn-danger btn-sm' data-toggle='tooltip' data-placement='right' title='Borrar documento del expediente' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-trash'></i></button></td>";
                             contenido_div += "<td><button onclick='cambiaNomDocExp(this.parentNode)' class='textoboton btn btn-success btn-sm' data-toggle='tooltip' data-placement='right' title='Cambiar nombre del documento' style='color:white;font-weight:bold; font-size:1em !important'><i class='bi bi-pencil-square'></i></i></button></td>";
