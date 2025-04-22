@@ -175,7 +175,7 @@ function cierraListaUsuarios() {
 }
 
 
-function verExpediente(id_nie, nom, n_reg) {
+function verExpediente(id_nie, nom) {
     tablas = ["mat_1eso",
         "mat_2eso",
         "mat_2esopmar",
@@ -256,12 +256,13 @@ function verExpediente(id_nie, nom, n_reg) {
         "transporte_escolar": "TRANSPORTE ESCOLAR",
         "otros": "OTROS"
     }
-    alert("n_reg: "+n_reg);
-    panelExpedienteUsuario(id_nie,nom,n_reg);
+    
+    panelExpedienteUsuario(id_nie,nom);
     
 }
 
 function obtieneDocsExpediente() {
+    alert("n_reg: "+n_reg);
     filtro_curso = document.getElementById("curso_exp").value;
     $.post("php/secret_usu_expedienteusu.php", { id_nie: document.getElementById("nie_exp").innerHTML, filtro: filtro_curso }, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
