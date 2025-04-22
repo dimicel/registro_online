@@ -78,7 +78,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-auto p-0" style="padding:0px;">
-                        <div id="div_solicitudes" style="overflow-y:auto; height: 400px; padding: 0;box-sizing: border-box;">
+                        <div id="div_solicitudes" style="overflow-y:auto; height: 400px; padding: 0;">
                             <table id="solicitudes"  ></table>
                         </div>
                     </div>
