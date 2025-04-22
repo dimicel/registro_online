@@ -46,7 +46,7 @@
                             Gestión Usuarios
                         </a>
                         <div class="dropdown-menu">
-                            <a class="nav-link small" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios <br> Cambio de contraseña</a>
+                            <a class="nav-link small" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios y Cambiar contraseña</a>
                             <a class="nav-link small" href="#" onclick="javascript: verListaUsuarios();">Usuarios <br> Listado General</a>
                         </div>
                     </li>
