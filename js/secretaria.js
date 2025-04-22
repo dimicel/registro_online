@@ -742,7 +742,7 @@ function listaRegistros(orden_campo, orden_direccion) {
     $.post("php/secret_listaregsecretaria.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registros") {
-            document.getElementById("div_notabla").style.display = "inline-block";
+            document.getElementById("div_notabla").style.display = "flex";
             document.getElementById("div_tabla").style.display = "none";
             habilitaMenu(false, false);
         }

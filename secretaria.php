@@ -270,7 +270,7 @@
         <table id="registros_docs" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left: auto; margin-right: auto;">
         </table>
     </div>
-    <div id="div_notabla" style="display:none; height: 400px; margin-left: auto; margin-right: auto;">
+    <div id="div_notabla" style="display:none; height: 400px;justify-content:center">
         No se ha seleccionado tipo de formulario o no hay formularios de este tipo registrados.
     </div>
 </div>
