@@ -47,7 +47,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="menu1">
                             <a class="nav-link small" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios/Cambio de contraseña</a>
-                            <a class="nav-link" href="#" onclick="javascript: verListaUsuarios();">Usuarios - Listado General</a>
+                            <a class="nav-link small" href="#" onclick="javascript: verListaUsuarios();">Usuarios - Listado General</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -55,9 +55,9 @@
                             Seleccionar
                         </a>
                         <div class="dropdown-menu" aria-labelledby="menu2" >
-                            <a class="dropdown-item " href="#" onclick="seleccionaRegistros('todo')">Todas</a>
-                            <a class="dropdown-item " href="#" onclick="seleccionaRegistros('ninguno')">Ninguna</a>
-                            <a class="dropdown-item " href="#" onclick="seleccionaRegistros('invertir')">Invertir Selección</a>
+                            <a class="dropdown-item small" href="#" onclick="seleccionaRegistros('todo')">Todas</a>
+                            <a class="dropdown-item small" href="#" onclick="seleccionaRegistros('ninguno')">Ninguna</a>
+                            <a class="dropdown-item small" href="#" onclick="seleccionaRegistros('invertir')">Invertir Selección</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -65,10 +65,10 @@
                             Listar Solicitudes
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item " href="#" onclick="registrosAPdf('seleccionadas')">Seleccionadas</a>
-                            <a class="dropdown-item " href="#" onclick="registrosAPdf('no listadas')">No listadas</a>
-                            <a class="dropdown-item " href="#" onclick="registrosAPdf('listadas')">Listadas</a>
-                            <a class="dropdown-item " href="#" onclick="registrosAPdf('todas')">Todas</a>
+                            <a class="dropdown-item small" href="#" onclick="registrosAPdf('seleccionadas')">Seleccionadas</a>
+                            <a class="dropdown-item small" href="#" onclick="registrosAPdf('no listadas')">No listadas</a>
+                            <a class="dropdown-item small" href="#" onclick="registrosAPdf('listadas')">Listadas</a>
+                            <a class="dropdown-item small" href="#" onclick="registrosAPdf('todas')">Todas</a>
                         </div>
                     </li>
                     <li class="nav-item" id="menu4">
@@ -119,11 +119,11 @@
                     <li class="nav-item" id="menu7">
                         <a class="nav-link dropdown-toggle" id="menu_matricula" href="#" data-toggle="dropdown">Configuración</a>
                         <div class="dropdown-menu" >
-                            <a id="param_centro" class="dropdown-item" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
-                            <a id="logos_firma_sello" class="dropdown-item" href="#" onclick="logosFirmaSello()">Logos - Firma y sello</a>
-                            <a id="config_ciclos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Ciclos Formativos</a>
-                            <a id="config_modulos" class="dropdown-item" href="#" onclick="alerta('En desarrollo','')">Módulos de Ciclos Formativos</a>
-                            <a id="config_jef_dpto" class="dropdown-item" href="#" onclick="datosDepartamentos()">Departamentos</a>
+                            <a id="param_centro" class="dropdown-item small" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
+                            <a id="logos_firma_sello" class="dropdown-item small" href="#" onclick="logosFirmaSello()">Logos - Firma y sello</a>
+                            <a id="config_ciclos" class="dropdown-item small" href="#" onclick="alerta('En desarrollo','')">Ciclos Formativos</a>
+                            <a id="config_modulos" class="dropdown-item small" href="#" onclick="alerta('En desarrollo','')">Módulos de Ciclos Formativos</a>
+                            <a id="config_jef_dpto" class="dropdown-item small" href="#" onclick="datosDepartamentos()">Departamentos</a>
                         </div>    
                     </li>
                     <li class="nav-item" id="menu8">
@@ -131,16 +131,16 @@
                         <div class="dropdown-menu" >
                             <!--<a id="menu_listado_mat_pdf" class="dropdown-item disabled" href="#" onclick="listaMatriculas();">Listado de Matrículas</a>-->
                             <!--<a id="menu_csv_mat" class="dropdown-item disabled" href="#" onclick="descargaCSVmatriculas();">CSV Matrículas</a>-->
-                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVelearningFctProy()">CSV Matrícula E-Learning (FCT y Proyecto)</a>  
-                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVconsolPremat()">CSV Consolidan Prematrícula</a>  
-                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVProgLing()">CSV Programa Lingüístico (Sólo ESO)</a>
-                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVAlNuevos()">CSV Alumnos Nuevos (Sólo ESO y BACH)</a>                         
-                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVnuevosOtraCom()">CSV Nuevos de otra comunidad (TODOS)</a>
-                            <a id="CSV_transporte" data="csv_tra_seg" class="dropdown-item" href="#" onclick="descargaCSVtransporte()">CSV Transporte Escolar</a>
-                            <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoSeguroEscolarCiclos()">CSV Seguro Escolar Ciclos</a>
-                            <a id="CSV_num_ss" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoNumSS()">CSV Número de la Seguridad Social</a>
-                            <a id="CSV_autor_fotos" data="csv_tra_seg" class="dropdown-item" href="#" onclick="listadoAutorUsoImag()">CSV Autorización Uso Imágenes</a>
-                            <a id="fotos_alumnos" class="dropdown-item" href="#" onclick="descargaFotos()">Descarga Fotos</a>
+                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="descargaCSVelearningFctProy()">CSV Matrícula E-Learning (FCT y Proyecto)</a>  
+                            <a id="CSV_consol_premat" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="descargaCSVconsolPremat()">CSV Consolidan Prematrícula</a>  
+                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="descargaCSVProgLing()">CSV Programa Lingüístico (Sólo ESO)</a>
+                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="descargaCSVAlNuevos()">CSV Alumnos Nuevos (Sólo ESO y BACH)</a>                         
+                            <a id="CSV_nuevos_otra_com" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="descargaCSVnuevosOtraCom()">CSV Nuevos de otra comunidad (TODOS)</a>
+                            <a id="CSV_transporte" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="descargaCSVtransporte()">CSV Transporte Escolar</a>
+                            <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="listadoSeguroEscolarCiclos()">CSV Seguro Escolar Ciclos</a>
+                            <a id="CSV_num_ss" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="listadoNumSS()">CSV Número de la Seguridad Social</a>
+                            <a id="CSV_autor_fotos" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="listadoAutorUsoImag()">CSV Autorización Uso Imágenes</a>
+                            <a id="fotos_alumnos" class="dropdown-item small" href="#" onclick="descargaFotos()">Descarga Fotos</a>
                         </div>
                     </li>
                     <li class="nav-item" id="menu9">
