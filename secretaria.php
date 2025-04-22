@@ -260,7 +260,7 @@
                     No se ha seleccionado tipo de formulario o no hay formularios de este tipo registrados.
                 </div>
             </div>-->
-            <div>
+            <div style="margin-top:20px">
                 <div id="div_tabla" style="overflow: auto; height: 400px;" class="table-hover">
                     <table cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:auto;margin-right:auto;">
                         <thead id="encabezado_docs" class="encab_tablas ">
