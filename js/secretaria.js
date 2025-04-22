@@ -914,6 +914,8 @@ function listaRegistros(orden_campo, orden_direccion) {
             document.getElementById("registros_docs").innerHTML = data;
             if (document.getElementById("div_tabla").scrollHeight > document.getElementById("div_tabla").clientHeight) {
                 document.getElementById("div_tabla").style.width=document.getElementById("encabezado_docs").offsetWidth+25+"px";
+                document.getElementById("registros_docs").style.marginLeft="auto";
+                document.getElementById("registros_docs").style.marginRight="auto";
             }
         }
     }, "json");
