@@ -40,14 +40,14 @@
         <!--_______________________________________________________________________________________-->
         <div id="doc_reg_tab" class="ui-widget-header ui-corner-all">
             <div style="margin-top:10px; margin-left:10px;" id="menu_div">
-                <ul class="nav bg-white nav-pills" style="font-size:0.7em !important">
+                <ul class="nav bg-white" style="font-size:0.7em !important">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="menu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                             Gestión Usuarios
                         </a>
                         <div class="dropdown-menu" aria-labelledby="menu1">
-                            <a class="nav-link" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios/Cambio de contraseña</a>
-                            <a class="nav-link" href="#" onclick="javascript: verListaUsuarios();">Usuarios - Listado General</a>
+                            <a class="nav-link fs-6" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios/Cambio de contraseña</a>
+                            <a class="nav-link fs-6" href="#" onclick="javascript: verListaUsuarios();">Usuarios - Listado General</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
