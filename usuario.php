@@ -78,7 +78,7 @@
                 </div>
                 <div class="row">
                     <div class="col" id="div_solicitudes" style="overflow-y:auto; height: 400px;">
-                        <table id="solicitudes" style="margin-left:auto;margin-right:auto"></table>
+                        <table id="solicitudes" style="margin-left:0;margin-right:0"></table>
                     </div>
                 </div>
             </div>
