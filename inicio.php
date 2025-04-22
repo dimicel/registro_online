@@ -51,7 +51,8 @@
                     </div>
                     <center>
                         <div style="padding-top:15px;">
-                            <input type="button" id="b_ok_login" class="btn btn-success btn-sm" value="Entrar" tabindex="3" onclick="entra()">
+                            <button type="button" id="b_ok_login" class="btn btn-success w-100" onclick="entra()">Entrar</button>
+                            <!--<input type="button" id="b_ok_login" class="btn btn-success btn-sm" value="Entrar" tabindex="3" onclick="entra()">-->
                         </div>
                     </center>
                 </form>
