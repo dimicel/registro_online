@@ -1537,7 +1537,7 @@ function actualizaIncidencias(registro, form, incidencias) {
     });
 }
 
-function panelNuevoUsuario() {
+function panelNuevoUsuario() { 
     $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_nuevo_registro", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
