@@ -750,6 +750,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         else {
             document.getElementById("div_notabla").style.display = "none";
             document.getElementById("div_tabla").style.display = "block";
+            document.getElementById("div_tabla").style.width=document.getElementById("encabezado_docs").style.width;
             //encab = "";
             data = "";
             data_array = resp["registros"];
