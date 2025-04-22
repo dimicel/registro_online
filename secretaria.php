@@ -252,8 +252,8 @@
                         <td style="text-align: center; width: 900px;">Selecciona tipo de formulario en el desplegable de arriba.</td>
                     </tr>
                 </table>
-                <div id="div_tabla" style="overflow: auto; height: 400px;margin-left:auto;margin-right:auto" class="table-hover">
-                    <table id="registros_docs" cellpadding="0" cellspacing="0" class="noseleccionable">
+                <div id="div_tabla" style="overflow: auto; height: 400px;" class="table-hover">
+                    <table id="registros_docs" cellpadding="0" cellspacing="0" class="noseleccionable" style="margin-left:auto;margin-right:auto;">
                     </table>
                 </div>
                 <div id="div_notabla" style="display:none; height: 400px; text-align:center; margin-left: 10px">
