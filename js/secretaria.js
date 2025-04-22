@@ -381,19 +381,6 @@ function generaSelectMat_fpb(){
       }  
 }
 
-function ajustarAnchoTablaRegistros() {
-    const encabezadoTabla = document.getElementById('encabezado_docs');
-    const divTabla = document.getElementById('div_tabla');
-    const registrosTabla = document.getElementById('registros_docs');
-
-    if (encabezadoTabla && divTabla && registrosTabla) {
-      const anchoEncabezado = encabezadoTabla.offsetWidth;
-      divTabla.style.width = anchoEncabezado + 'px';
-      //registrosTabla.style.width = '100%';
-      registrosTabla.style.marginLeft = 'auto';
-      registrosTabla.style.marginRight = 'auto';
-    }
-  }
 
 
 function listaRegistros(orden_campo, orden_direccion) {
@@ -758,13 +745,11 @@ function listaRegistros(orden_campo, orden_direccion) {
         else if (resp.error == "no_tabla" || resp.error == "sin_registros") {
             document.getElementById("div_notabla").style.display = "block";
             document.getElementById("div_tabla").style.display = "none";
-            ajustarAnchoTablaRegistros();
             habilitaMenu(false, false);
         }
         else {
             document.getElementById("div_notabla").style.display = "none";
             document.getElementById("div_tabla").style.display = "block";
-            ajustarAnchoTablaRegistros();
             //encab = "";
             data = "";
             data_array = resp["registros"];
