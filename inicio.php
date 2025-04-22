@@ -50,8 +50,10 @@
                         </div>
                     </div>
                     <center>
-                        <div style="padding-top:15px;">
-                            <button type="button" id="b_ok_login" class="btn btn-success w-100" onclick="entra()">Entrar</button>
+                        <div style="padding-top:15px;" class="row justify-content-center">
+                            <div class="col-lg-12" style="text-align: center;">
+                                <button type="button" id="b_ok_login" class="btn btn-success w-100" onclick="entra()">Entrar</button>                            
+                            </div>    
                             <!--<input type="button" id="b_ok_login" class="btn btn-success btn-sm" value="Entrar" tabindex="3" onclick="entra()">-->
                         </div>
                     </center>
