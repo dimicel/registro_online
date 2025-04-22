@@ -517,6 +517,7 @@ function listaSolicitudes() {
                 };
             });
             listado.innerHTML = tabla;
+            DocumentFragment.getElementById("div_solicitudes").style.width = document.getElementById("solicitudes").offsetWidth +25+ "px";
         }
     }, "json");
 }
