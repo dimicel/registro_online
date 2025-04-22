@@ -491,7 +491,7 @@ function listaSolicitudes() {
                     tabla += "<td style='width:90px;text-align:center;color:blue'>" + f_reg.substr(8, 2) + "-" + f_reg.substr(5, 2) + "-" + f_reg.substr(0, 4) + "</td>";
                     if (proc=="Convalidaciones"){
                         tabla += "<td style='color:blue'><a style='color:blue' href='docs/"+id_nie+"/convalidaciones/"+ item["curso"] + "/"+item["registro"].slice(17)+"/"+ item["registro"] + ".pdf' target='_blank'>" + item["registro"] + "</a>";
-                        if (item["resolucion"]=="PROCESADA"){
+                        if (item["procesado"]==1){
                             tabla += "<a style='margin-left:10px;color:GREEN' href='docs/"+id_nie+"/convalidaciones/"+ item["curso"] + "/"+item["registro"].slice(17)+"/docs/resolucion/resolucion.pdf?q="+Date.now()+"' target='_blank' title='Ver documento'>(Ver documento)</a>"
                         }
                         else{
