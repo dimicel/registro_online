@@ -44,8 +44,8 @@
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" id="menu1"  href="#" data-toggle="dropdown" >Gestión Usuarios</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item small" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios y Cambiar contraseña</a>
-                            <a class="dropdown-item small" href="#" onclick="javascript: verListaUsuarios();">Usuarios <br> Listado General</a>
+                            <a class="dropdown-item small" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios / Cambio de contraseña</a>
+                            <a class="dropdown-item small" href="#" onclick="javascript: verListaUsuarios();">Usuarios - Listado General</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" >
