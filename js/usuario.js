@@ -522,7 +522,7 @@ function listaSolicitudes() {
                 document.getElementById("div_solicitudes").style.width=listado.offsetWidth+"px";
                 //document.getElementById("div_solicitudes").style.marginLeft="20px";
             }
-            //document.getElementById("div_solicitudes").style.width = listado.offsetWidth +20+ "px";
+            
         }
     }, "json");
 }
