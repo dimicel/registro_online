@@ -518,6 +518,7 @@ function listaSolicitudes() {
             });
             listado.innerHTML = tabla;
             if (document.getElementById("div_solicitudes").scrollHeight > document.getElementById("div_solicitudes").clientHeight) {
+                alert(888);
                 document.getElementById("div_solicitudes").style.width=listado.offsetWidth+"px";
                 document.getElementById("div_solicitudes").style.marginLeft="20px";
             }
