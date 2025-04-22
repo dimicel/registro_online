@@ -40,28 +40,24 @@
         <!--_______________________________________________________________________________________-->
         <div id="doc_reg_tab" class="ui-widget-header ui-corner-all">
             <div style="margin-top:10px; margin-left:10px;" id="menu_div">
-                <ul class="nav bg-white w-auto" style="font-size:0.7em !important">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="menu1" href="#" data-toggle="dropdown" >
-                            Gestión Usuarios
-                        </a>
+                <ul class="nav bg-white" style="font-size:0.7em !important">
+                    <li class="nav-item dropdown" id="menu1">
+                        <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown" >Gestión Usuarios</a>
                         <div class="dropdown-menu">
                             <a class="nav-link small" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios y Cambiar contraseña</a>
                             <a class="nav-link small" href="#" onclick="javascript: verListaUsuarios();">Usuarios <br> Listado General</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="menu2" href="#" data-toggle="dropdown" >
-                            Seleccionar
-                        </a>
+                    <li class="nav-item dropdown" id="menu2">
+                        <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown" >Seleccionar</a>
                         <div class="dropdown-menu" >
                             <a class="dropdown-item small" href="#" onclick="seleccionaRegistros('todo')">Todas</a>
                             <a class="dropdown-item small" href="#" onclick="seleccionaRegistros('ninguno')">Ninguna</a>
                             <a class="dropdown-item small" href="#" onclick="seleccionaRegistros('invertir')">Invertir Selección</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle " id="menu3" href="#" data-toggle="dropdown">
+                    <li class="nav-item dropdown" id="menu3">
+                        <a class="nav-link dropdown-toggle "  href="#" data-toggle="dropdown">
                             Listar Solicitudes
                         </a>
                         <div class="dropdown-menu">
