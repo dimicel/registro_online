@@ -1087,7 +1087,7 @@ function adjuntosConvalid(registro,procedimiento){
         else {
             contenido+="";
             for(i=0;i<resp.datos.length;i++){
-                contenido += "<a style='color:GREEN;font-size:0.75em; margin-right:10px;' target='_blank' href='"+resp.datos[i].ruta+"'>"+resp.datos[i].descripcion+"</a>";
+                contenido += "<a style='color:GREEN;font-size:0.75em; margin-right:10px;' target='_blank' href='"+resp.datos[i].ruta+"?q="+Date.now()+"'>"+resp.datos[i].descripcion+"</a>";
                 if (resp.datos[i].subidopor=="secretaria"){
                     contenido += "<button onclick='borraAdjuntos(\""+resp.datos[i].ruta+"\",\""+resp.datos[i].descripcion+"\",\""+registro+"\",0)' class='textoboton btn btn-danger' data-toggle='tooltip' data-placement='right' title='Borrar adjunto de convalidación' style='color:white;font-weight:bold; font-size:0.5em !important'><i class='bi bi-trash'></i></button>";
                 }
