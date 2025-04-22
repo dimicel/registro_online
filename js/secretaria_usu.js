@@ -500,14 +500,14 @@ function panelExpedienteUsuario(id_nie,nom) {
             obtieneDocsExpediente();
             $("#div_dialogs").dialog({
                 autoOpen: true,
-                //dialogClass: "alert no-close",
+                dialogClass: "alert no-close",
                 modal: true,
                 hide: { effect: "fade", duration: 0 },
-                resizable: true,
+                resizable: false,
                 show: { effect: "fade", duration: 0 },
                 title: "EXPEDIENTE DEL USUARIO",
                 width: 800,
-                maxHeight:700,
+                //maxHeight:700,
                 position: { my: "center top", at: "center top", of: window },
                 buttons: [{
                     class: "btn btn-success textoboton",
