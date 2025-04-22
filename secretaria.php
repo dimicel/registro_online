@@ -42,7 +42,7 @@
             <div style="margin-top:10px; margin-left:10px;" id="menu_div">
                 <ul class="nav bg-white" style="font-size:0.7em !important">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="menu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                        <a class="nav-link dropdown-toggle" id="menu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
                             Gestión Usuarios
                         </a>
                         <div class="dropdown-menu" aria-labelledby="menu1">
