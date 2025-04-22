@@ -517,9 +517,9 @@ function listaSolicitudes() {
                 };
             });
             listado.innerHTML = tabla;
-            if (document.getElementById("div_solicitudes").scrollHeight > document.getElementById("div_solicitudes").clientHeight) {
+            /*if (document.getElementById("div_solicitudes").scrollHeight > document.getElementById("div_solicitudes").clientHeight) {
                 document.getElementById("div_solicitudes").style.width=listado.offsetWidth+20+"px";
-            }
+            }*/
             
         }
     }, "json");
