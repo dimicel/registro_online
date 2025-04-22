@@ -26,9 +26,9 @@
                 <h1 style="color:red;display:none" id="servidor_pruebas" ><strong>¡¡¡SERVIDOR DE PRUEBAS!!!</strong></h1>
                 <h1><strong>IES UNIVERSIDAD LABORAL</strong></h1>
                 <h2><strong>TRAMITACIÓN ONLINE DE DOCUMENTACIÓN</strong></h2>
-                <br>
-                <h4>Por favor, utilice navegadores actualizados (Chrome, Edge, Firefox). Microsoft Internet Explorer no es compatible 100% con esta plataforma.</h4>
-                <h4 class="text-danger">Esta plataforma tampoco es compatible con dispositivos móviles. Utilice un ordenador para realizar los trámites.</h4>
+                <p>Por favor, utilice navegadores actualizados (Chrome, Edge, Firefox).</p>
+                <p><strong>Microsoft Internet Explorer no es compatible 100% con esta plataforma.</strong></p>
+                <p class="text-danger">Esta plataforma tampoco es compatible con dispositivos móviles. Utilice un ordenador para realizar los trámites.</p>
             </center>
         </header>
         <div class="row justify-content-center" style="margin-top: 20px;">
