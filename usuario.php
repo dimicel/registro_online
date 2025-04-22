@@ -40,33 +40,35 @@
                     <span style="font-size:14px; color:green">Complete sus datos personales en 'Mis Datos'. Le facilitará el proceso a la hora de cumplimentar formularios.</span>
                 </div>
                 <div id="menu_div" class="row justify-content-center">
-                    <!--<nav class="navbar" style="background-color: rgb(63, 151, 63);">-->
-                    <ul class="nav bg-success">
-                        <li class="nav-item" id="menu1">
-                            <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: cambioDatosPers();">Mis Datos</a>
-                        </li>
-                        <li class="nav-item" id="menu2">
-                            <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: $('#div_mod_pass').dialog('open');">Cambiar Contraseña</a>
-                        </li>
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle " style="color:white;font-size: 0.8em;" id="menu3" href="#" data-toggle="dropdown">
-                                    Documentos adjuntos
-                                </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('foto');$('#div_subida_archivos_usu').dialog('open');">Fotografía Alumno</a>
-                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('dni');$('#div_subida_archivos_usu').dialog('open');">Documento Identificación</a>
-                                <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('seguro');$('#div_subida_archivos_usu').dialog('open');">Resguardo Seguro Escolar</a>
-                                <!--<a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('certificado');$('#div_subida_archivos_usu').dialog('open');">Certificado Notas</a>--> 
-                            </div>
-                        </li>
-                                        
-                        <li class="nav-item" id="menu4">
-                            <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: cierraSesion();">Salir</a>
-                        </li>
+                    <div class="col">
+                        <!--<nav class="navbar" style="background-color: rgb(63, 151, 63);">-->
+                        <ul class="nav bg-success">
+                            <li class="nav-item" id="menu1">
+                                <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: cambioDatosPers();">Mis Datos</a>
+                            </li>
+                            <li class="nav-item" id="menu2">
+                                <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: $('#div_mod_pass').dialog('open');">Cambiar Contraseña</a>
+                            </li>
+                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle " style="color:white;font-size: 0.8em;" id="menu3" href="#" data-toggle="dropdown">
+                                        Documentos adjuntos
+                                    </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('foto');$('#div_subida_archivos_usu').dialog('open');">Fotografía Alumno</a>
+                                    <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('dni');$('#div_subida_archivos_usu').dialog('open');">Documento Identificación</a>
+                                    <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('seguro');$('#div_subida_archivos_usu').dialog('open');">Resguardo Seguro Escolar</a>
+                                    <!--<a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('certificado');$('#div_subida_archivos_usu').dialog('open');">Certificado Notas</a>--> 
+                                </div>
+                            </li>
+                                            
+                            <li class="nav-item" id="menu4">
+                                <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: cierraSesion();">Salir</a>
+                            </li>
 
-                    </ul>
-                    <!--</nav>-->
+                        </ul>
+                        <!--</nav>-->
+                    </div>
                 </div>
                 <!--<div style="clear:both"></div>-->
                 <div class="row">
