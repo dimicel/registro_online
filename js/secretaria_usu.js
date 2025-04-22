@@ -269,7 +269,7 @@ function obtieneDocsExpediente() {
             contenido_div = "<center>NO EXISTEN DOCUMENTOS ASOCIADOS A ESTE NIE</center>";
             document.getElementById("div_tabla_expediente").innerHTML = contenido_div;
         } else {
-            contenido_div = "<table style='display: block; width: 100%'>";
+            contenido_div = "<table style='display: block; width: 100%;overflow-y:auto'>";
             //Obtenemos los docs desde los propios directorios del expediente
             for (var td in docs_exp) {
                 if (resp["docs"][td].length > 0) {
