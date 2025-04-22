@@ -33,7 +33,7 @@
         <div class="row justify-content-center" style="margin-top: 20px;">
             <div class="ui-widget-header ui-corner-all col-xs-12 col-sm-8 col-md-3 " style="padding:20px">
                 <form id="form_login" class="form-horizontal needs-validation" novalidate>
-                    <div class="form-group">
+                    <div class="form-group row">
                         <label for="usuario" class="col-lg-12 control-label ">NIE<small> (Nº de Identificación Escolar)</small></label>
                         <div class="col-lg-12">
                             <input name="usuario" type="text" id="usuario" class="form-control" tabindex="1" required>
@@ -41,7 +41,7 @@
                             <div class="valid-feedback"></div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group row">
                         <label for="password" class="col-lg-12 control-label ">Contraseña</label>
                         <div class="col-lg-12">
                             <input name="password" type="password" id="password" class="form-control" tabindex="2" required>
