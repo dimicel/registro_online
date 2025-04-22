@@ -19,7 +19,7 @@
    
     <!-- LOGIN ___________________________________________________________-->
     <!--__________________________________________________________________-->
-<!--    <div id="login" class="centrado container" style="overflow-y: scroll !important;">
+    <div id="login" class="centrado container" style="overflow-y: scroll !important;">
         <header style="text-align:center; color: #000080;">
             <center>
                 <h2><img src="recursos/escudo.jpg" class="img-responsive" width="229" height="211" alt="Escudo_Uni"></h2>
@@ -28,7 +28,7 @@
                 <h2><strong>TRAMITACIÓN ONLINE DE DOCUMENTACIÓN</strong></h2>
                 <br>
                 <h4>Por favor, utilice navegadores actualizados (Chrome, Edge, Firefox). Microsoft Internet Explorer no es compatible 100% con esta plataforma.</h4>
-                <h4>Esta plataforma tampoco es compatible con dispositivos móviles. Utilice un ordenador para realizar los trámites.</h4>
+                <h4 class="text-danger">Esta plataforma tampoco es compatible con dispositivos móviles. Utilice un ordenador para realizar los trámites.</h4>
             </center>
         </header>
         <div class="row justify-content-center" style="margin-top: 20px;">
@@ -54,9 +54,9 @@
                         <div style="padding-top:15px;" class="row justify-content-center">
                             <div class="col-lg-12" style="text-align: center;">
                                 <button type="button" id="b_ok_login" class="btn btn-success w-100" onclick="entra()">Entrar</button>                            
-                            </div> -->   
+                            </div>  
                             <!--<input type="button" id="b_ok_login" class="btn btn-success btn-sm" value="Entrar" tabindex="3" onclick="entra()">-->
-                       <!-- </div>
+                        </div>
                     </center>
                 </form>
                 <center>
@@ -69,45 +69,7 @@
             </div>
         </div>
     </div>
--->
 
-<div id="login" class="container py-4">
-  <header class="text-center text-primary mb-4">
-    <img src="recursos/escudo.jpg" class="img-fluid mb-3" width="150" alt="Escudo_Uni">
-    <h1 class="text-danger d-none" id="servidor_pruebas"><strong>¡¡¡SERVIDOR DE PRUEBAS!!!</strong></h1>
-    <h2><strong>IES UNIVERSIDAD LABORAL</strong></h2>
-    <h4><strong>TRAMITACIÓN ONLINE DE DOCUMENTACIÓN</strong></h4>
-    <p class="mt-3">
-      Por favor, utilice navegadores actualizados (Chrome, Edge, Firefox). <br>
-      <strong>Microsoft Internet Explorer no es compatible</strong> con esta plataforma.
-    </p>
-    <p class="text-danger"><strong>Esta plataforma tampoco es compatible con dispositivos móviles.</strong></p>
-  </header>
-
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
-      <form id="form_login" class="needs-validation" novalidate>
-        <div class="mb-3">
-          <label for="usuario" class="form-label">NIE <small>(Nº de Identificación Escolar)</small></label>
-          <input name="usuario" type="text" id="usuario" class="form-control" required>
-          <div class="invalid-feedback">Complete el campo</div>
-        </div>
-
-        <div class="mb-3">
-          <label for="password" class="form-label">Contraseña</label>
-          <input name="password" type="password" id="password" class="form-control" required>
-          <div class="invalid-feedback">Complete el campo</div>
-        </div>
-
-        <button type="submit" id="b_ok_login" class="btn btn-success w-100">Entrar</button>
-      </form>
-
-      <div class="text-center mt-3">
-        <a href="javascript:recuperaPass()" class="text-decoration-none">Recuperar contraseña</a>
-      </div>
-    </div>
-  </div>
-</div>
 
     <!--_______________________________________________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
