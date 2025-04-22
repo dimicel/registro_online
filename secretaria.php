@@ -246,7 +246,7 @@
                 </form>
             </div>
             <div style="clear: both"></div>
-            <div style="margin-top:20px; text-align: center;">
+            <div style="margin-top:20px;">
                 <table id="encabezado_docs" class="encab_tablas noseleccionable" cellpadding="0" cellspacing="0" style="margin-top:1em;margin-left:auto;margin-right:auto;">
                     <tr>
                         <td style="text-align: center; width: 900px;">Selecciona tipo de formulario en el desplegable de arriba.</td>
