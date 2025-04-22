@@ -913,6 +913,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             document.getElementById("encabezado_docs").innerHTML = encab;
             document.getElementById("registros_docs").innerHTML = data;
             if (document.getElementById("registros_docs").scrollHeight > document.getElementById("registros_docs").clientHeight) {
+                alert(8888);
                 document.getElementById("div_tabla").style.width=document.getElementById("encabezado_docs").style.width+10+"px";
             }
         }
