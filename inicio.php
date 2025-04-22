@@ -30,7 +30,7 @@
                 <h4>Esta plataforma tampoco es compatible con dispositivos móviles. Utilice un ordenador para realizar los trámites.</h4>
             </center>
         </header>
-        <div class="row">
+        <div class="row justify-content-center" style="margin-top: 20px;">
             <div class="ui-widget-header ui-corner-all col-xs-12 col-sm-8 col-md-3 " style="padding:20px">
                 <form id="form_login" class="form-horizontal needs-validation" novalidate>
                     <div class="form-group">
