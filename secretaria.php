@@ -75,11 +75,11 @@
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Prematrícula</a>
                         <div class="dropdown-menu" >
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input checkbox_prematricula small" id="premat_eso" onchange="cambiaEstadoPrematricula(this,'eso')">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="premat_eso" onchange="cambiaEstadoPrematricula(this,'eso')">
                                 <label for="premat_eso" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">ESO</label>
                             </div>
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input checkbox_prematricula small" id="premat_bach" onchange="cambiaEstadoPrematricula(this,'bach')">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="premat_bach" onchange="cambiaEstadoPrematricula(this,'bach')">
                                 <label for="premat_bach" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Bachillerato</label>
                             </div>
                             <div class="dropdown-divider"></div>
