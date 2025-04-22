@@ -42,10 +42,10 @@
             <div style="margin-top:10px; margin-left:10px;" id="menu_div">
                 <ul class="nav bg-white" style="font-size:0.7em !important">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="menu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                        <a class="nav-link dropdown-toggle" id="menu1" href="#" data-toggle="dropdown" >
                             Gestión Usuarios
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="menu1">
+                        <div class="dropdown-menu">
                             <a class="nav-link small" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios/Cambio de contraseña</a>
                             <a class="nav-link small" href="#" onclick="javascript: verListaUsuarios();">Usuarios - Listado General</a>
                         </div>
@@ -54,7 +54,7 @@
                         <a class="nav-link dropdown-toggle" id="menu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Seleccionar
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="menu2" >
+                        <div class="dropdown-menu" >
                             <a class="dropdown-item small" href="#" onclick="seleccionaRegistros('todo')">Todas</a>
                             <a class="dropdown-item small" href="#" onclick="seleccionaRegistros('ninguno')">Ninguna</a>
                             <a class="dropdown-item small" href="#" onclick="seleccionaRegistros('invertir')">Invertir Selección</a>
@@ -117,7 +117,7 @@
                         <a class="nav-link" href="#" onclick="document.location='residencia.php?q='+Date.now()">Residencia</a>
                     </li>
                     <li class="nav-item" id="menu7">
-                        <a class="nav-link dropdown-toggle" id="menu_matricula" href="#" data-toggle="dropdown">Configuración</a>
+                        <a class="nav-link dropdown-toggle" id="menu_configuracion" href="#" data-toggle="dropdown">Configuración</a>
                         <div class="dropdown-menu" >
                             <a id="param_centro" class="dropdown-item small" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
                             <a id="logos_firma_sello" class="dropdown-item small" href="#" onclick="logosFirmaSello()">Logos - Firma y sello</a>
@@ -127,7 +127,7 @@
                         </div>    
                     </li>
                     <li class="nav-item" id="menu8">
-                        <a class="nav-link dropdown-toggle" id="menu_matricula" href="#" data-toggle="dropdown">Descargas</a>
+                        <a class="nav-link dropdown-toggle" id="menu_descargas" href="#" data-toggle="dropdown">Descargas</a>
                         <div class="dropdown-menu" >
                             <!--<a id="menu_listado_mat_pdf" class="dropdown-item disabled" href="#" onclick="listaMatriculas();">Listado de Matrículas</a>-->
                             <!--<a id="menu_csv_mat" class="dropdown-item disabled" href="#" onclick="descargaCSVmatriculas();">CSV Matrículas</a>-->
