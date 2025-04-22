@@ -252,9 +252,9 @@
                         <td style="text-align: center; width: 900px;">Selecciona tipo de formulario en el desplegable de arriba.</td>
                     </tr>
                 </table>
-                <div id="div_tabla" style="overflow: auto; height: 400px;" class="table-hover">
-                    <center><table id="registros_docs" cellpadding="0" cellspacing="0" class="noseleccionable">
-                    </table></center>
+                <div id="div_tabla" style="overflow: auto; height: 400px;margin-left:auto;margin-right:auto" class="table-hover">
+                    <table id="registros_docs" cellpadding="0" cellspacing="0" class="noseleccionable">
+                    </table>
                 </div>
                 <div id="div_notabla" style="display:none; height: 400px; text-align:center; margin-left: 10px">
                     No se ha seleccionado tipo de formulario o no hay formularios de este tipo registrados.
