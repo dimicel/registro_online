@@ -19,7 +19,7 @@
     <!-- LOGIN ___________________________________________________________-->
     <!--__________________________________________________________________-->
     <div id="login" class="centrado" style="overflow-y: scroll important;">
-        <hgroup style="text-align:center; color: #000080;">
+        <header style="text-align:center; color: #000080;">
             <center>
                 <h2><img src="recursos/escudo.jpg" class="img-responsive" width="229" height="211" alt="Escudo_Uni"></h2>
                 <h1 style="color:red;display:none" id="servidor_pruebas" ><strong>¡¡¡SERVIDOR DE PRUEBAS!!!</strong></h1>
@@ -29,7 +29,7 @@
                 <h4>Por favor, utilice navegadores actualizados (Chrome, Edge, Firefox). Microsoft Internet Explorer no es compatible 100% con esta plataforma.</h4>
                 <h4>Esta plataforma tampoco es compatible con dispositivos móviles. Utilice un ordenador para realizar los trámites.</h4>
             </center>
-        </hgroup>
+        </header>
         <div class="row">
             <div class="ui-widget-header ui-corner-all col-xs-12 col-sm-8 col-md-3 container" style="padding:20px">
                 <form id="form_login" class="form-horizontal needs-validation" novalidate>
