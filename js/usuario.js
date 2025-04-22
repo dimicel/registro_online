@@ -483,7 +483,7 @@ function listaSolicitudes() {
         else if (data["error"] == "ok") {
             tabla = "<tr style='position:sticky; top:0;background-color:#228b22;width:100%;color:white !important'><th>Curso</th><th>Fecha</th><th>Número de Registro</th><th>Observaciones</th></tr>";
             Object.keys(data.proceso).forEach(function(proc) {
-                tabla += "<tr><th colspan='5' style='text-align:left'><label style='font-size:1em;color:white !important'>" + proc.toUpperCase() + "</label></th></tr>";
+                tabla += "<tr><th colspan='5' style='text-align:left'><label style='font-size:1em;color:black !important'>" + proc.toUpperCase() + "</label></th></tr>";
                 for (i = 0; i < data["proceso"][proc].length; i++) {
                     item = data["proceso"][proc][i];
                     f_reg = item["fecha_registro"];
