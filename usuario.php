@@ -71,7 +71,7 @@
                 <div style="clear:both"></div>
                 <h5 style="color:brown;margin-top:20px;">Solicitudes Registradas</h5>
                 <div style="overflow-y:auto; max-height: 600px;" id="div_solicitudes">
-                    <table id="solicitudes">
+                    <table id="solicitudes" style="margin-left:auto;margin-right:auto">
 
                     </table>
                 </div>
