@@ -35,11 +35,11 @@
                 <li><a href="#impresos">Solicitudes</a></li>
             </ul>
             
-            <div id="misgestiones">
+            <div id="misgestiones" class="container">
                 <div class="row justify-content-center">
                     <span style="font-size:14px; color:green">Complete sus datos personales en 'Mis Datos'. Le facilitará el proceso a la hora de cumplimentar formularios.</span>
                 </div>
-                <div id="menu_div">
+                <div id="menu_div" class="row">
                     <!--<nav class="navbar" style="background-color: rgb(63, 151, 63);">-->
                     <ul class="nav bg-success">
                         <li class="nav-item" id="menu1">
@@ -68,12 +68,12 @@
                     </ul>
                     <!--</nav>-->
                 </div>
-                <div style="clear:both"></div>
-                <h5 style="color:brown;margin-top:20px;">Solicitudes Registradas</h5>
-                <div style="overflow-y:auto; max-height: 600px;" id="div_solicitudes" class="flex justify-content-center">
-                    <table id="solicitudes" style="margin-left:auto;margin-right:auto">
-
-                    </table>
+                <!--<div style="clear:both"></div>-->
+                <div class="row">
+                    <h5 style="color:brown;margin-top:20px;">Solicitudes Registradas</h5>
+                </div>
+                <div style="overflow-y:auto; max-height: 600px;" id="div_solicitudes" class="row">
+                    <table id="solicitudes" style="margin-left:auto;margin-right:auto"></table>
                 </div>
             </div>
             <div id="impresos">
