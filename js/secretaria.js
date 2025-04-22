@@ -384,10 +384,14 @@ function generaSelectMat_fpb(){
 function ajustarAnchoTablaRegistros() {
     const encabezadoTabla = document.getElementById('encabezado_docs');
     const divTabla = document.getElementById('div_tabla');
+    const registrosTabla = document.getElementById('registros_docs');
 
-    if (encabezadoTabla && divTabla) {
+    if (encabezadoTabla && divTabla && registrosTabla) {
       const anchoEncabezado = encabezadoTabla.offsetWidth;
       divTabla.style.width = anchoEncabezado + 'px';
+      registrosTabla.style.width = '100%';
+      registrosTabla.style.marginLeft = 'auto';
+      registrosTabla.style.marginRight = 'auto';
     }
   }
 
