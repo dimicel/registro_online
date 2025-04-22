@@ -91,26 +91,26 @@
                         <div class="dropdown-menu" >
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_eso" onchange="cambiaEstadoMatricula(this,'eso')">
-                                <label for="check_mat_eso" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">ESO</label>
+                                <label for="check_mat_eso" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">ESO</label>
                             </div>
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_bach" onchange="cambiaEstadoMatricula(this,'bach')">
-                                <label for="check_mat_bach" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Bachillerato</label>
+                                <label for="check_mat_bach" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Bachillerato</label>
                             </div>
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_ciclos" onchange="cambiaEstadoMatricula(this,'ciclos')">
-                                <label for="check_mat_ciclos" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Ciclos</label>
+                                <label for="check_mat_ciclos" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Ciclos</label>
                             </div>
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_ciclos-e" onchange="cambiaEstadoMatricula(this,'ciclo_e')">
-                                <label for="check_mat_ciclos-e" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Ciclos Elearning (FCT/Proyecto)</label>
+                                <label for="check_mat_ciclos-e" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Ciclos Elearning (FCT/Proyecto)</label>
                             </div>
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_mat_fpb" onchange="cambiaEstadoMatricula(this,'fpb')">
-                                <label for="check_mat_fpb" class="custom-control-label" style="margin-top:10px;margin-left:10px; color:#493f26 !important">FPB</label>
+                                <label for="check_mat_fpb" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">FPB</label>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a id="menu_listado_mat" class="dropdown-item" href="#" onclick="javascript:subirMatDelphos();">Subir CSV Delphos para Matrícula</a>
+                            <a id="menu_listado_mat" class="dropdown-item small" href="#" onclick="javascript:subirMatDelphos();">Subir CSV Delphos para Matrícula</a>
                         </div>
                     </li>
                     <li class="nav-item" id="menu6">
