@@ -105,7 +105,7 @@ div#div_email p {
   }
 
   .scroll-visible::-webkit-scrollbar {
-    width: 8px;
+    width: 8px !important;
     /*background: #f1f1f1;*/ /* opcional */
   }
 
