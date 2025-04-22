@@ -78,7 +78,7 @@
                 </div>
                 <div class="row d-flex justify-content-center">
                     <div class="col" id="div_solicitudes" style="overflow-y:auto; height: 400px;">
-                        <table id="solicitudes" style="margin-left:0;margin-right:0"></table>
+                        <table id="solicitudes" style="margin-left:auto;margin-right:auto"></table>
                     </div>
                 </div>
             </div>
