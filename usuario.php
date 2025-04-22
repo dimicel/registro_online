@@ -69,8 +69,8 @@
                     <!--</nav>-->
                 </div>
                 <div style="clear:both"></div>
-                <div style="margin-top:20px;overflow-y:auto; max-height: 600px;">
-                    <h5 style="color:brown">Solicitudes Registradas</h5>
+                <h5 style="color:brown;margin-top:20px;">Solicitudes Registradas</h5>
+                <div style="overflow-y:auto; max-height: 600px;">
                     <table id="solicitudes">
 
                     </table>
