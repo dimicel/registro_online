@@ -306,10 +306,10 @@ function obtieneDocsExpediente() {
                             }
                             else{
                                 if (resp["docs"][td][j]["informe_jd"]!=""){
-                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['informe_jd']+"' title='Informe del Jefe de Departamento'>>Informe JD<</a>";
+                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['informe_jd']+"?q="+Date.now()+"' title='Informe del Jefe de Departamento'>>Informe JD<</a>";
                                 }
                                 if (resp["docs"][td][j]["resolucion"]!=""){
-                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion']+"'>>Resolución<</a>";
+                                    contenido_div += "<a target='_blank' style='margin-left:5px' href='"+resp['docs'][td][j]['resolucion']+"?q="+Date.now()+"'>>Resolución<</a>";
                                 }
                                 contenido_div +="</td>";
                             }
