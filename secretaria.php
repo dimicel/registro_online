@@ -359,9 +359,9 @@
         </div>
     </div>
     <div id="mensaje_div" class="alertas"></div>
-    <div id="div_dialogs" class="ui-widget-header ui-corner-all alertas oculta_scroll"></div>
-    <div id="div_dialogs2" class="ui-widget-header ui-corner-all alertas oculta_scroll"></div>
-    <div id="div_dialogs_adjuntosconvalid" class="ui-widget-header ui-corner-all alertas oculta_scroll"></div>
+    <div id="div_dialogs" class="ui-widget-header ui-corner-all alertas"></div>
+    <div id="div_dialogs2" class="ui-widget-header ui-corner-all alertas"></div>
+    <div id="div_dialogs_adjuntosconvalid" class="ui-widget-header ui-corner-all alertas"></div>
     
     <div id="formulario_descargar_csv" style="display:none">
         <form id="descarga_csv_premat" action="php/secret_csv_prematricula.php" method="POST" target="_self">
