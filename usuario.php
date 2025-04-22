@@ -76,8 +76,8 @@
                         <h5 style="color:brown;margin-top:20px;">Solicitudes Registradas</h5>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col d-flex align-content-center" id="div_solicitudes" style="overflow-y:auto; height: 400px;width:fit-content !important;padding:0px !important">
+                <div class="row d-flex justify-content-center">
+                    <div class="col" id="div_solicitudes" style="overflow-y:auto; height: 400px;width:fit-content !important;padding:0px !important">
                         <table id="solicitudes" ></table>
                     </div>
                 </div>
