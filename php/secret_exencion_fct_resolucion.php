@@ -14,13 +14,13 @@ class MYPDF extends TCPDF {
 		$image_file = '../recursos/logo_ccm.jpg';
 		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 		$image_file = '../recursos/mini_escudo.jpg';
-		$this->Image($image_file, 160, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		$this->Image($image_file, 180, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 				
 		$this->SetFont('helvetica', '', 8);
 		// Title
 		//$this->setCellHeightRatio(1.75);
 		$encab = "<label><strong>CONSEJERÍA DE EDUCACIÓN CULTURA Y DEPORTES DE CASTILLA - LA MANCHA<br>IES UNIVERSIDAD LABORAL DE TOLEDO</strong></label>";
-		$this->writeHTMLCell(0, 0, 0, 11, $encab, 0, 1, 0, true, 'C', true);
+		$this->writeHTMLCell(0, 0, 15, 11, $encab, 0, 1, 0, true, 'C', true);
 		//$this->Ln();
 		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
 		
@@ -183,8 +183,8 @@ $XInicio=12;
 
 $texto=<<<EOD
 <br><br><br><br><br><br><br><br><b>D./DÑA. $nombreDirectorMayus</b>, director/a del Centro Educativo $centroEducativoMayus, una vez
-examinada la documentación presnetada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>,
-solicitando la exención del Perído de Formación en Empresas, correspondiente al curso <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
+examinada la documentación presentada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>,
+solicitando la exención del módulo formativo correspondiente al Perído de Formación en Empresas, correspondiente al curso <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
 <b>RESUELVE:</b><br>$texto_acuerda<br>$motivo<br><br>
 <p style="text-align:center">$fecha_firma
 EOD;
