@@ -2918,7 +2918,10 @@ function invalidaInformeJDExencionFCT(registro){
                     alerta("No se ha podido invalidar el informe del Jefe de Departamento por algún problema en la base de datos.","NO INVALIDADO");
                 }
                 else if (resp=="no_borrado"){
-                    alerta("La solicitud se ha marcado como NO PROCESADA, pero no se ha podido eliminar el fichero del informe del Jefe de Departamento.","FICHERO NO BORRADO");
+                    alerta("La solicitud se ha marcado como NO PROCESADA, pero no se ha podido eliminar el fichero del informe del Jefe de Departamento.","FICHERO INFORME NO BORRADO");
+                }
+                else if (resp=="res_no_borrado"){
+                    alerta("El fichero de Resolución que había generado no se ha podido borrar.","FICHERO RESOLUCIÓN NO BORRADO");
                 }
                 else if( resp=="no_existe"){
                     alerta("No se ha encontrado fichero del informe del Jefe de Departamento que borrar. El registro se ha marcado como NO PROCESADO.","FICHERO NO ENCONTRADO");

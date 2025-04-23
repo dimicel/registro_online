@@ -28,15 +28,17 @@ if ($result->num_rows == 1 ) {
     elseif ($mysqli->affected_rows==0) exit("no_actualizado");  
     elseif ($mysqli->affected_rows==1){
         if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
-            if(unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
-                exit("ok");
-            }
-            else{
+            if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
                 exit("no_borrado");
             }
         }
         else{
             exit("no_existe");
+        }
+        if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
+            if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
+                exit("res_no_borrado");
+            }
         }
     }
 } else {
