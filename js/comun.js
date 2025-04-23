@@ -82,6 +82,7 @@ function confirmarAccion(mensaje, titulo, ancho) {
                     class: "textoboton btn btn-success",
                     click: function() {
                         $div.dialog("close");
+                        $div.dialog("destroy");
                         resolve(true);
                     }
                 },
@@ -90,6 +91,7 @@ function confirmarAccion(mensaje, titulo, ancho) {
                     class: "textoboton btn btn-danger",
                     click: function() {
                         $div.dialog("close");
+                        $div.dialog("destroy");
                         resolve(false);
                     }
                 }],
