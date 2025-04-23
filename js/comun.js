@@ -41,7 +41,7 @@ function alerta(mensaje, titulo, previo, ancho) {
     $("#mensaje_div").dialog('open');
 }
 
-function confirmarAccion(mensaje, titulo, ancho) {
+/*function confirmarAccion(mensaje, titulo, ancho) {
     if (typeof(ancho) != 'number') ancho = 300;
     document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div><br><div display='inline-block'><input style='float:right' type='button' class='textoboton btn btn-danger' value='Cancelar' onclick='$(\"#mensaje_div\").dialog(\"close\");return false;'/>";
     document.getElementById('mensaje_div').innerHTML += "<input style='float:right' type='button' class='textoboton btn btn-success' value='Ok' onclick='$(\"#mensaje_div\").dialog(\"close\");return true;'/></div>";
@@ -58,7 +58,40 @@ function confirmarAccion(mensaje, titulo, ancho) {
         width: ancho
     });
     $("#mensaje_div").dialog('open')
+}*/
+
+function confirmarAccion(mensaje, titulo, ancho) {
+    if (typeof ancho !== 'number') ancho = 300;
+
+    return new Promise((resolve) => {
+        const $div = $("#mensaje_div");
+        $div.html('<div>${mensaje}</div>');
+        $div.dialog({
+            title: titulo.toUpperCase(),
+            autoOpen: false,
+            draggable: false,
+            dialogClass: "alertas no-close",
+            modal: true,
+            resizable: false,
+            show: { effect: "fade", duration: 0 },
+            hide: { effect: "fade", duration: 0 },
+            width: ancho,
+            open: function () {
+                $div.find(".btn-success").on("click", function () {
+                    $div.dialog("close");
+                    resolve(true);
+                });
+                $div.find(".btn-danger").on("click", function () {
+                    $div.dialog("close");
+                    resolve(false);
+                });
+            }
+        });
+
+        $div.dialog("open");
+    });
 }
+
 
 
 function cierraAlerta(previo) {
