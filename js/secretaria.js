@@ -842,7 +842,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                             dirRegistro=data_array[i]["registro"].slice(17);
                             rutaInforme=data_array[i]["rutaInforme"];
                             rutaResolucion=data_array[i]["rutaResolucion"];                            
-                            if (data_array[i]["resolucion"]=="PENDIENTE"){
+                            if (rutaInforme=="" && rutaResolucion==""){
                                 data+="<td style='width:70px;'><center>-</center></td>";
                                 data += "<td style='" + estilo[j] + "'>-</td>";
                             }
