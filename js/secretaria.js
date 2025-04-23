@@ -2872,6 +2872,7 @@ confirmarAccion("Se va a generar la resolución.", "RESOLUCIÓN")
             document.getElementById("cargando").style.display = 'none';
             if (resp=="ok"){
                 alerta("Informe de Jefe de Departamento invalidado correctamente.","OK");
+                listaRegistros();
                 verRegAdjuntosExencFCT(registro);
             }
             else if (resp=="server"){
