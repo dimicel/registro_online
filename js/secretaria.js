@@ -824,7 +824,7 @@ function listaRegistros(orden_campo, orden_direccion) {
 
                 }
                 else if(tipo_formulario=="exencion_fct"){
-                    data += "<tr onclick='verRegistroExencionFCT(\""+data_array[i]["registro"]+"\",\""+data_array[i]["rutaInforme"]+"\")'>";
+                    data += "<tr onclick='verRegistroExencionFCT(\""+data_array[i]["registro"]+"\",\""+data_array[i]["rutaInforme"]+"\",\""+data_array[i]["rutaResolucion"]+"\")'>";
                     for (j = 0; j < campos.length; j++) {
                         if(j==2){
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
@@ -1431,7 +1431,7 @@ function verRegistroConvalidaciones(num_registro){
     }, "json");
 }
 
-function verRegistroExencionFCT(num_registro,rutaInforme){
+function verRegistroExencionFCT(num_registro,rutaInforme,rutaResolucion){
     ancho = 700;
     formulario="exencion_fct"
     botones = "<div style='text-align:right'>";
@@ -1455,7 +1455,7 @@ function verRegistroExencionFCT(num_registro,rutaInforme){
             contenido +="<div class='col-3'>";
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
             contenido += "</div>";
-            if (rutaInforme.length>0){
+            if (rutaInforme.length>0 || rutaResolucion.length>0) {
                 contenido +="<div class='col-3'>";
                 contenido +="<input type='button' class='textoboton btn btn-success' value='Generar Resolución' onclick='resolucionExencionFCT(\""+num_registro+"\")'/>";
                 contenido +="</div>";
