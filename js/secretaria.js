@@ -740,7 +740,9 @@ function listaRegistros(orden_campo, orden_direccion) {
             curso_num:curso_num
         }
     }
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_listaregsecretaria.php", datos, function(resp) {
+        document.getElementById("cargando").style.display = 'none';
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registros") {
             document.getElementById("div_notabla").style.display = "block";
@@ -995,7 +997,9 @@ function formularioProcesado(obj){
 
 function verRegAdjuntosConvalid(reg){
     _div="";
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_adjuntos.php",{registro:reg},(resp2)=>{
+        document.getElementById("cargando").style.display = 'none';
         if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
@@ -1016,7 +1020,9 @@ function verRegAdjuntosConvalid(reg){
 
 function verRegAdjuntosExencFCT(reg){
     _div="";
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_exencion_fct_adjuntos.php",{registro:reg},(resp2)=>{
+        document.getElementById("cargando").style.display = 'none';
         if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
@@ -1067,7 +1073,9 @@ function verRegistro(obj) {
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(registro,formulario,document.getElementById(\"incidencias_text\").value)'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
     botones += "</div>";
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_recuperaregistro.php", { formulario: form, registro: registro }, function(resp) {
+        document.getElementById("cargando").style.display = 'none';
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
         else if (resp.error == "ok") {
@@ -1366,7 +1374,9 @@ function verRegistroConvalidaciones(num_registro){
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
     botones += "</div>";
     contenido="";
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_recuperaregistro.php", { formulario: formulario, registro: num_registro }, function(resp) {
+        document.getElementById("cargando").style.display = 'none';
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
         else if (resp.error == "ok") {
@@ -1425,7 +1435,9 @@ function verRegistroExencionFCT(num_registro,rutaRes){
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
     botones += "</div>";
     contenido="";
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_recuperaregistro.php", { formulario: formulario, registro: num_registro }, function(resp) {
+        document.getElementById("cargando").style.display = 'none';
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
         else if (resp.error == "ok") {
@@ -1467,7 +1479,9 @@ function verRegistroExencionFCT(num_registro,rutaRes){
 function verPanelResolver(id_nie,registro){
     ancho=1000;
     salir=false;
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
         if (resp["error"]=="ok"){
             panel=document.getElementById("verModulosConvalidaciones_div");
             cont="<form id='form_relacion_modulos_convalid'><input type='hidden' name='registro' value='"+registro+"'/><div class='container'><div class='form-group form-row'>";
@@ -1507,7 +1521,9 @@ function verPanelResolver(id_nie,registro){
                 position: { my: "center top", at: "center top", of: window },
                 buttons:{
                     "Resolver":function(){
+                        document.getElementById("cargando").style.display = 'inherit';
                         $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
+                            document.getElementById("cargando").style.display = 'none';
                             if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
                             else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
                             else if(resp=="ok"){
@@ -1536,6 +1552,7 @@ function verPanelResolver(id_nie,registro){
         else{
             alerta("Error en servidor o base de datos.","ERROR");
         } 
+        
     },"json");
 
 }
@@ -1611,7 +1628,7 @@ function generaPass() {
 
 function altaUsuario() {
     if (document.getElementById("form_alta_usuario").checkValidity()) {
-        document.getElementById("cargando").style.display = 'inline-block';
+        document.getElementById("cargando").style.display = 'inherit';
         $.post("php/secret_nuevousuario.php", $("#form_alta_usuario").serialize(), function(resp) {
             document.getElementById("cargando").style.display = 'none';
             if (resp == "server" || resp == "fallo_cambio") {
@@ -1636,7 +1653,9 @@ function altaUsuario() {
 }
 
 function reasignarPassword() {
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_cambiopassword.php", $("#form_alta_usuario").serialize(), function(resp) {
+        document.getElementById("cargando").style.display = 'none';
         if (resp == "server" || resp == "fallo_alta") {
             alerta("Ha habido un fallo en el servidor y no se ha podido cambiar la contraseña. Inténtelo más tarde.", "ERROR DE SERVIDOR");
         } else if (resp == "ok") {
@@ -1673,7 +1692,9 @@ function habilitaMenu(m2, m3) {
 
 
 function registrosAPdf(tipo_listado) {
+    document.getElementById("cargando").style.display = 'inherit';
     $("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #formulario_descargar_solicitudes", function(response,status, xhr){
+        document.getElementById("cargando").style.display = 'none';
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -1760,13 +1781,19 @@ function cierrasesion() {
 }
 
 function cambiaEstadoPrematricula(obj, nivel) {
-    $.post('php/secret_prematricula.php', { matricula: nivel, peticion: 'write', estado: obj.checked });
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post('php/secret_prematricula.php', { matricula: nivel, peticion: 'write', estado: obj.checked }, function(resp) {
+        document.getElementById("cargando").style.display = 'none';
+    });
 }
 
 function cambiaEstadoMatricula(obj, nivel) {
     if (obj.checked) estado=1;
     else estado=0;
-    $.post('php/secret_matricula.php', { matricula: nivel, peticion: 'write', estado: estado });
+    document.getElementById("cargando").style.display = 'inherit';
+    $.post('php/secret_matricula.php', { matricula: nivel, peticion: 'write', estado: estado }, function(resp) {
+        document.getElementById("cargando").style.display = 'none';
+    });
 }
 
 
@@ -1777,7 +1804,7 @@ function subeExcel(obj) {
     }
     datos = new FormData();
     datos.append("csv", obj.files[0]);
-    document.getElementById("cargando").style.display = 'inline-block';
+    document.getElementById("cargando").style.display = 'inherit';
     $.ajax({
             url: "php/secret_csv_nuevosusus.php",
             type: 'POST',
@@ -1811,7 +1838,9 @@ function descargaCSVpremat() {
 
 
 function verDocsMatricula(id, edad) {
+    document.getElementById("cargando").style.display = 'inherit';
     $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_docs_matricula", function(response,status, xhr){
+        document.getElementById("cargando").style.display = 'none';
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -1819,6 +1848,7 @@ function verDocsMatricula(id, edad) {
         else{
             _curso = document.getElementById("curso").value;
             if (typeof edad === 'undefined') edad=0;
+            document.getElementById("cargando").style.display = 'inherit';
             d1 = Promise.resolve($.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/seguro/" + _curso + "/" + id }));
             d2 = d1.then((resp1) => {
                 if (resp1 != "no_existe") {
@@ -1866,6 +1896,7 @@ function verDocsMatricula(id, edad) {
                 return $.post("php/secret_compruebafoto.php", { url: "../docs/fotos/" + id });
             });
             d4.then((resp4) => {
+                document.getElementById("cargando").style.display = 'none';
                 if (resp4 != "no_existe") {
                     _dir="docs/fotos/" + id + resp4 + "?q=" + Date.now();
                     document.getElementById("doc_mat_foto").src = _dir;
@@ -1901,7 +1932,9 @@ function descargaCSVtransporte() {
 }
 
 function listaMatriculas() {
+    document.getElementById("cargando").style.display = 'inherit';
     $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_listadoMatriculas", function(response,status, xhr){
+        document.getElementById("cargando").style.display = 'none';
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -2054,7 +2087,9 @@ function descargaCSVconsolPremat(){
 }
 
 function verCertificado(id){
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_existe_certificado.php",{id_nie:id, curso:document.getElementById("curso").value},(r)=>{
+        document.getElementById("cargando").style.display = 'none';
         if (r=="ok") window.open("docs/"+id+"/certificado_notas/"+document.getElementById("curso").value+"/"+id+".pdf","_blank");
         else alerta("El alumno no tiene certificado de notas para el curso escolar seleccionado.", "NO EXISTE EL DOCUMENTO");
     });
@@ -2063,7 +2098,9 @@ function verCertificado(id){
 
 
 function subirMatDelphos(){
+    document.getElementById("cargando").style.display = 'inherit';
     $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #formulario_subir_mat_delphos", function(response,status, xhr){
+        document.getElementById("cargando").style.display = 'none';
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -2150,7 +2187,9 @@ function adjuntaDocAdicional(_id_nie,registro){
     //Para convalidaciones
     __ministerio=0;
     __consejeria=0;
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_ver_procesado_organismo.php",{registro:registro},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
         if(resp.error=='ok'){
             __ministerio=resp.ministerio;
             __consejeria=resp.consejeria;
@@ -2387,7 +2426,9 @@ function descargaCSVelearningFctProy(){
 
 function parametrosCentro(){
     volver=false;
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
         if (resp.error=="ok"){
             document.getElementById("director").value=resp.registro.director;
             document.getElementById("centro").value=resp.registro.centro;
@@ -2709,7 +2750,9 @@ function selDptoConfigDpto(obj){
         document.getElementById("config_password_jd").placeholder="Seleccione un departamento";
     }
     else {
+        document.getElementById("cargando").style.display = 'inherit';
         $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
+            document.getElementById("cargando").style.display = 'none';
             if(resp.error!="ok") alerta ("No se han podido consultar los datos de los departamentos.","ERROR DB/SERVER");
             else {
                 for (i=0; i<resp.registro.length;i++){
@@ -2741,7 +2784,7 @@ function subeLogo(obj, imagen){
     datos = new FormData();
     datos.append("archivo", obj.files[0]);
     datos.append("tipo",imagen);
-    document.getElementById("cargando").style.display = 'inline-block';
+    document.getElementById("cargando").style.display = 'inherit';
     $.ajax({
             url: "php/secret_logo_firma.php",
             type: 'POST',
@@ -2798,8 +2841,9 @@ function avisarJefesDpto(){
         emails.push(desp.options[desp.selectedIndex].dataset.email);
         departamentos.push(desp.options[desp.selectedIndex].value);
     } 
-
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
         if (resp=='ok'){
             alerta("Se ha realizado correctamente el aviso a los Jefes de Departamanto.","ENVÍO COMUNICACIÓN OK");
         }
@@ -2815,7 +2859,9 @@ function avisarJefesDpto(){
 
 
 function resolucionExencionFCT(registro){
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_exencion_fct_resolucion.php",{registro:registro},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
         if (resp=="ok"){
             alerta("Informe de Jefe de Departamento invalidado correctamente.","OK");
             verRegAdjuntosExencFCT(registro);
@@ -2835,7 +2881,12 @@ function resolucionExencionFCT(registro){
 
 
 function invalidaInformeJDExencionFCT(registro){
+    confirmacion=confirmarAccion("¿Está seguro de que desea invalidar el informe del Jefe de Departamento?","INFORME JD");
+    alert(confirmacion);return;
+    if (!confirmacion) return;
+    document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_exencion_fct_invalida_informe_jd.php",{registro:registro},(resp)=>{
+        document.getElementById("cargando").style.display = 'none';
         if (resp=="ok"){
             alerta("Informe de Jefe de Departamento invalidado correctamente.","OK");
             verRegAdjuntosExencFCT(registro);
