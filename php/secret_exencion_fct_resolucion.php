@@ -109,14 +109,14 @@ $mysqli->close();
 ///GENERA LA RESOLUCIÓN
 ///////////////////////////////////////////////////////////////////////////////////////////
 if($valoracion=="exento"){
-	$texto_acuerda="<b>RECONOCER</b> la exención <b>TOTAL</b> del módulo profesional correspondiente al Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
+	$texto_acuerda="<b>RECONOCER</b> la exención <b>TOTAL</b> del módulo profesional del Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
 	$motivo="";
 }
 elseif($valoracion=="parcialmente exento"){
-	$texto_acuerda="<b>RECONOCER</b> la exención <b>PARCIAL</b> del módulo profesional correspondiente al Período de Formación en Empresas por los motivos que a continuación se razonan:";
+	$texto_acuerda="<b>RECONOCER</b> la exención <b>PARCIAL</b> del módulo profesional del Período de Formación en Empresas por los motivos que a continuación se razonan:";
 }
 elseif($valoracion=="no exento"){
-	$texto_acuerda="<b>NO RECONOCER</b> la exención del módulo profesional correspondiente al Período de Formación en Empresas por los motivos que a continuación se razonan:";
+	$texto_acuerda="<b>NO RECONOCER</b> la exención del módulo profesional del Período de Formación en Empresas por los motivos que a continuación se razonan:";
 }
 
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
