@@ -26,19 +26,23 @@ if ($result->num_rows == 1 ) {
     $mysqli->query("UPDATE exencion_fct SET procesado=0 WHERE registro='$registro'");
     if ($mysqli->errno>0) exit("server"); 
     else{
+        $error="";
         if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
             if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
                 exit("no_borrado");
+            }
+            else{
+                if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
+                    if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
+                        $error="res_no_borrado";
+                    }
+                }
             }
         }
         else{
             exit("no_existe");
         }
-        if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
-            if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
-                exit("res_no_borrado");
-            }
-        }
+        if($error!="") exit($error);
     }
 } else {
     exit("no_registro");
