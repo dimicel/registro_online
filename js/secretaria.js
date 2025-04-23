@@ -1426,7 +1426,7 @@ function verRegistroConvalidaciones(num_registro){
     }, "json");
 }
 
-function verRegistroExencionFCT(num_registro,rutaRes){
+function verRegistroExencionFCT(num_registro,rutaInforme){
     ancho = 700;
     formulario="exencion_fct"
     botones = "<div style='text-align:right'>";
@@ -1449,7 +1449,7 @@ function verRegistroExencionFCT(num_registro,rutaRes){
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             contenido +="<div class='col-3'>";
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
-            if (rutaRes.length>0){
+            if (rutaInforme.length>0){
                 contenido +="<input type='button' class='textoboton btn btn-success' value='Generar Resolución' onclick='resolucionExencionFCT(\""+num_registro+"\")'/>";
                 contenido += "<input type='button' class='textoboton btn btn-danger' value='Informe del Jefe de Departamento NO Válido' onclick='invalidaInformeJDExencionFCT(\""+num_registro+"\")'/>";
             }
