@@ -76,16 +76,23 @@ function confirmarAccion(mensaje, titulo, ancho) {
             show: { effect: "fade", duration: 0 },
             hide: { effect: "fade", duration: 0 },
             width: ancho,
-            buttons:{
-                "Aceptar": function() {
-                    $div.dialog("close");
-                    resolve(true);
+            buttons:[
+                {
+                    text:"Aceptar",
+                    class: "textoboton btn btn-success",
+                    click: function() {
+                        $div.dialog("close");
+                        resolve(true);
+                    }
                 },
-                "Cancelar": function() {
-                    $div.dialog("close");
-                    resolve(false);
-                }
-            }
+                {
+                    text: "Cancelar",
+                    class: "textoboton btn btn-danger",
+                    click: function() {
+                        $div.dialog("close");
+                        resolve(false);
+                    }
+                }],
         });
         $div.dialog("open");
     });

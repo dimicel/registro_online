@@ -2888,9 +2888,7 @@ function resolucionExencionFCT(registro){
 function invalidaInformeJDExencionFCT(registro){
     confirmarAccion("¿Está seguro de que desea invalidar el informe del Jefe de Departamento?", "INFORME JD")
     .then(function(confirmacion) {
-        alert("Resultado: " + confirmacion);
         if (confirmacion) {
-            alert("Acción confirmada por el usuario.");
             document.getElementById("cargando").style.display = 'inherit';
             $.post("php/secret_exencion_fct_invalida_informe_jd.php",{registro:registro},(resp)=>{
                 document.getElementById("cargando").style.display = 'none';
@@ -2909,7 +2907,7 @@ function invalidaInformeJDExencionFCT(registro){
                 }
             });
         } else {
-            alerta("Acción cancelada por el usuario.","CANCELADO");
+            alerta("Acción cancelada.","CANCELADO");
         }
     });
 
