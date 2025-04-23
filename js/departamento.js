@@ -223,17 +223,17 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
             contenido += "</div></div></div>";
             document.getElementById("verRegistro_div").innerHTML = contenido;
+            if (resp.registro.resolucion!="PENDIENTE" && resp.registro.resolucion!="") document.getElementById("valoracion_informe").value=resp.registro.resolucion;
+            document.getElementById("motivo").value=resp.registro.motivo;
+            seleccionValoracion(resp.registro.valoracion);
             if (resp.registro.procesado==1){
                 document.getElementById("btn_generar_informe").disabled=true;
                 document.getElementById("div_firma").style.display="none";
-                document.getElementById("valoracion_informe").value=resp.registro.resolucion;
                 if (resp.registro.motivo===undefined || resp.registro.motivo===null || resp.registro.motivo=="")document.getElementById("motivo").value="aaaa";
                 else document.getElementById("motivo").value=resp.registro.motivo;
-                document.getElementById("motivo").value=resp.registro.motivo;
                 document.getElementById("div_motivo").style.display="";
                 document.getElementById("motivo").readOnly=true;
-                document.getElementById("valoracion_informe").disabled=true;
-                seleccionValoracion(resp.registro.valoracion);
+                document.getElementById("valoracion_informe").disabled=true; 
             }
             verRegAdjuntosExencFCT(reg);
             
@@ -261,7 +261,7 @@ function limiteCaracteres(obj){
 }
 
 function seleccionValoracion(v){
-    if (v=="" || v=="exento") {
+    if (v=="" || v=="exento" || v=="PENDIENTE") {
         document.getElementById("div_motivo").style.display="none";
     }
     else document.getElementById("div_motivo").style.display="";
