@@ -43,8 +43,8 @@ function alerta(mensaje, titulo, previo, ancho) {
 
 function confirmarAccion(mensaje, titulo, ancho) {
     if (typeof(ancho) != 'number') ancho = 300;
-    document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick=''$(\"#mensaje_div\").dialog(\"close\");return true;'/></div>";
-    document.getElementById('mensaje_div').innerHTML += "<div style='text-align: right;'><input type='button' class='textoboton btn btn-danger' value='Cancelar' onclick='$(\"#mensaje_div\").dialog(\"close\");return false;'/></div>";
+    document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick=''$(\"#mensaje_div\").dialog(\"close\");return true;'/>";
+    document.getElementById('mensaje_div').innerHTML += "<input type='button' class='textoboton btn btn-danger' value='Cancelar' onclick='$(\"#mensaje_div\").dialog(\"close\");return false;'/></div>";
     $("#mensaje_div").dialog({
         title: titulo.toUpperCase(),
         autoOpen: false,
