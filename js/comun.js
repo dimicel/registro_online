@@ -65,7 +65,7 @@ function confirmarAccion(mensaje, titulo, ancho) {
 
     return new Promise((resolve) => {
         const $div = $("#mensaje_div");
-        $div.html('<div>${mensaje}</div>');
+        $div.html('<div>'+mensaje+'</div>');
         $div.dialog({
             title: titulo.toUpperCase(),
             autoOpen: false,
@@ -76,18 +76,17 @@ function confirmarAccion(mensaje, titulo, ancho) {
             show: { effect: "fade", duration: 0 },
             hide: { effect: "fade", duration: 0 },
             width: ancho,
-            open: function () {
-                $div.find(".btn-success").on("click", function () {
+            buttons:{
+                "Aceptar": function() {
                     $div.dialog("close");
                     resolve(true);
-                });
-                $div.find(".btn-danger").on("click", function () {
+                },
+                "Cancelar": function() {
                     $div.dialog("close");
                     resolve(false);
-                });
+                }
             }
         });
-
         $div.dialog("open");
     });
 }
