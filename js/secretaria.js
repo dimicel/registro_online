@@ -2892,7 +2892,8 @@ confirmarAccion("Se va a generar la resolución.", "RESOLUCIÓN")
             else{
                 alerta(resp,"ERROR DB/SERVIDOR");
             }
-           
+            $("#verRegistro_div").dialog("close").dialog("destroy");
+            
         });
     }
     else {
