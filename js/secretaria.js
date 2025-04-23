@@ -838,15 +838,20 @@ function listaRegistros(orden_campo, orden_direccion) {
                         }
                         else if(j==4){//Aquí se hace la columna Informe JD y Resolución juntas 
                             dirRegistro=data_array[i]["registro"].slice(17);
-                            rutaInforme="docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+dirRegistro+"/docs/informe_jd/informe_jd.pdf";
-                            rutaResolucion="docs/"+data_array[i]["id_nie"]+"/exencion_form_emp/"+document.getElementById("curso").value+"/"+dirRegistro+"/docs/resolucion/resolucion.pdf";                            
+                            rutaInforme=data_array[i]["rutaInforme"];
+                            rutaResolucion=data_array[i]["rutaResolucion"];                            
                             if (data_array[i]["resolucion"]=="PENDIENTE"){
                                 data+="<td style='width:70px;'><center>-</center></td>";
                                 data += "<td style='" + estilo[j] + "'>-</td>";
                             }
                             else {
                                 data+="<td style='width:70px;'><center><a href='"+rutaInforme+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>Ver</a></center></td>";
-                                data+="<td style='width:70px;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
+                                if (rutaResolucion!=""){
+                                    data+="<td style='width:70px;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
+                                }
+                                else{
+                                    data += "<td style='" + estilo[j] + "'>-</td>";
+                                }
                             }
                         }
                         else{
