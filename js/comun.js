@@ -62,51 +62,36 @@ function alerta(mensaje, titulo, previo, ancho) {
 
 function confirmarAccion(mensaje, titulo, ancho) {
     if (typeof ancho !== 'number') ancho = 300;
-
+    const $div = $("#mensaje_div");
+    mensaje+="<div class='text-end mt-3'>";
+    mensaje+="<button id='btnAceptar' class='textoboton btn btn-success btn-sm me-2'>Aceptar</button>";
+    mensaje+="<button id='btnCancelar' class='textoboton btn btn-danger btn-sm'>Cancelar</button>";
+    mensaje+="</div>";
+    $div.html('<div>'+mensaje+'</div>');
     return new Promise((resolve) => {
-        const $div = $("#mensaje_div");
-        $div.html('<div>'+mensaje+'</div>');
         $div.dialog({
             title: titulo.toUpperCase(),
-            autoOpen: false,
+            autoOpen: true,
+            modal: true,
             draggable: false,
             dialogClass: "alertas no-close",
-            modal: true,
             resizable: false,
+            width: ancho,
             show: { effect: "fade", duration: 0 },
             hide: { effect: "fade", duration: 0 },
-            width: ancho,
-            buttons:[
-                {
-                    text: "Aceptar",
-                    click: function() {
-                        $div.dialog("close");
-                        $div.dialog("destroy");
-                        resolve(true);
-                    }
-                },
-                {
-                    text: "Cancelar",
-                    click: function() {
-                        $div.dialog("close");
-                        $div.dialog("destroy");
-                        resolve(false);
-                    }
-                }
-            ],
-            open: function() {
-                setTimeout(() => {
-                    const $buttons = $div.parent().find(".ui-dialog-buttonpane button");
-            
-                    console.log("Botones encontrados:", $buttons.length); // para verificar
-            
-                    $buttons.eq(0).addClass("textoboton btn btn-success btn-sm");
-                    $buttons.eq(1).addClass("textoboton btn btn-danger btn-sm");
-                }, 0);
+            open: function () {
+                // Asocia eventos a los botones internos
+                $div.find("#btnAceptar").off("click").on("click", () => {
+                    $div.dialog("close").dialog("destroy");
+                    resolve(true);
+                });
+
+                $div.find("#btnCancelar").off("click").on("click", () => {
+                    $div.dialog("close").dialog("destroy");
+                    resolve(false);
+                });
             }
         });
-        
-        $div.dialog("open");
     });
 }
 
