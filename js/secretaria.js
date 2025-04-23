@@ -2881,8 +2881,11 @@ confirmarAccion("Se va a generar la resolución.", "RESOLUCIÓN")
             else if (resp=="no_registro"){
                 alerta("No existe el registro","NO REGISTRO");
             }
+            else if (resp=="config_centro"){
+                alerta("No se ha podido obtener el nombre del director para la firma.","ERROR DB");
+            }
             else{
-                alerta("Error al invalidar el informe del Jefe de Departamento. Inténtelo más tarde.","ERROR DB/SERVIDOR");
+                alerta(resp,"ERROR DB/SERVIDOR");
             }
            
         });
