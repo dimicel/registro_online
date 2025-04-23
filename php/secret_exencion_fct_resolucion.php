@@ -250,7 +250,7 @@ $pdf->Output($ruta, 'F');
 //FIN GENERA INFORME DEL JEFE DE DEPARTAMENTO
 
 
-/*
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///GENERA LA RESOLUCIÓN
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -372,7 +372,7 @@ if (!is_dir($dir)) mkdir($dir, 0777, true);
 $ruta = realpath($dir) . "/resolucion.pdf";
 $pdf->Output($ruta, 'F');
 //FIN GENERA RESOLUCIÓN
-*/
+
 exit("ok");
 
 
