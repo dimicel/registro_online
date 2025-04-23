@@ -230,8 +230,6 @@ function verPanelProcesamiento(reg,dirReg){
             if (resp.registro.procesado==1){
                 document.getElementById("btn_generar_informe").disabled=true;
                 document.getElementById("div_firma").style.display="none";
-                if (resp.registro.motivo===undefined || resp.registro.motivo===null || resp.registro.motivo=="")document.getElementById("motivo").value="aaaa";
-                else document.getElementById("motivo").value=resp.registro.motivo;
                 document.getElementById("div_motivo").style.display="";
                 document.getElementById("motivo").readOnly=true;
                 document.getElementById("valoracion_informe").disabled=true; 
@@ -265,7 +263,10 @@ function seleccionValoracion(v){
     if (v=="" || v=="exento" || v=="PENDIENTE") {
         document.getElementById("div_motivo").style.display="none";
     }
-    else document.getElementById("div_motivo").style.display="";
+    else{
+        document.getElementById("motivo").readOnly=false;
+        document.getElementById("div_motivo").style.display="";
+    } 
 }
 
 function verRegAdjuntosExencFCT(reg){
