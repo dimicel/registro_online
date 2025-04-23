@@ -2919,10 +2919,7 @@ function invalidaInformeJDExencionFCT(registro){
                 else if (resp=="no_registro"){
                     alerta("No existe el registro","NO REGISTRO");
                 }
-                else if (resp=="no_actualizado"){
-                    alerta("No se ha podido invalidar el informe del Jefe de Departamento por algún problema en la base de datos.","NO INVALIDADO");
-                }
-                else if (resp=="no_borrado"){
+                /*else if (resp=="no_borrado"){
                     alerta("La solicitud se ha marcado como NO PROCESADA, pero no se ha podido eliminar el fichero del informe del Jefe de Departamento.","FICHERO INFORME NO BORRADO");
                 }
                 else if (resp=="res_no_borrado"){
@@ -2930,7 +2927,7 @@ function invalidaInformeJDExencionFCT(registro){
                 }
                 else if( resp=="no_existe"){
                     alerta("No se ha encontrado fichero del informe del Jefe de Departamento que borrar. El registro se ha marcado como NO PROCESADO.","FICHERO NO ENCONTRADO");
-                }
+                }*/
                 else{
                     alerta("Error al invalidar el informe del Jefe de Departamento. Inténtelo más tarde.","ERROR DB/SERVIDOR");
                 }

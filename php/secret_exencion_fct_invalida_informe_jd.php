@@ -29,20 +29,18 @@ if ($result->num_rows == 1 ) {
         $error="";
         if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
             if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
-                exit("no_borrado");
-            }
-            else{
-                if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
-                    if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
-                        $error="res_no_borrado";
-                    }
-                }
+                //$error="no_borrado";
             }
         }
-        else{
-            exit("no_existe");
+        //else{
+        //    $error="no_existe";
+        //}
+        if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
+            if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
+                //$error="res_no_borrado";
+            }
         }
-        if($error!="") exit($error);
+        //if($error!="") exit($error);
     }
 } else {
     exit("no_registro");
