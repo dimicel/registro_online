@@ -182,7 +182,7 @@ $YInicio=40;
 $XInicio=12; 
 
 $texto=<<<EOD
-<br><br><br><br><br><br><br><br><b>D./DÑA. $nombreDirectorMayus</b>, director/a del Centro Educativo $centroEducativoMayus, una vez
+<br><br><br><br><br><br><br><br><b>D./DÑA. $nombreDirectorMayus</b>, director/a del Centro Educativo $centroEducativoMayus DE TOLEDO, una vez
 examinada la documentación presentada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>,
 solicitando la exención del módulo formativo correspondiente al Perído de Formación en Empresas, correspondiente al curso <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
 <b>RESUELVE:</b><br>$texto_acuerda<br>$motivo<br><br>
