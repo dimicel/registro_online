@@ -847,7 +847,12 @@ function listaRegistros(orden_campo, orden_direccion) {
                                 data += "<td style='" + estilo[j] + "'>-</td>";
                             }
                             else {
-                                data+="<td style='width:70px;'><center><a href='"+rutaInforme+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>Ver</a></center></td>";
+                                if (rutaInforme!=""){
+                                    data+="<td style='width:70px;'><center><a href='"+rutaInforme+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
+                                }
+                                else{
+                                    data += "<td style='width:70px'>-</td>";
+                                } 
                                 if (rutaResolucion!=""){
                                     data+="<td style='width:70px;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
                                 }
@@ -2871,7 +2876,7 @@ confirmarAccion("Se va a generar la resolución.", "RESOLUCIÓN")
         $.post("php/secret_exencion_fct_resolucion.php",{registro:registro},(resp)=>{
             document.getElementById("cargando").style.display = 'none';
             if (resp=="ok"){
-                alerta("Informe de Jefe de Departamento invalidado correctamente.","OK");
+                alerta("La resolución ha sido generada con éxito.","RESOLUCIÓN OK");
                 listaRegistros();
                 verRegAdjuntosExencFCT(registro);
             }
