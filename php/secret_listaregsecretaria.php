@@ -196,7 +196,7 @@ elseif($proceso=="exencion_fct"){
         }
         else    $data["registros"][$contador]["rutaInforme"]="";
         if(is_file("../docs/".$reg["id_nie"]."/exencion_form_emp/".$curso."/".substr($reg["registro"], 17)."/docs/resolucion/resolucion.pdf")){
-            $data["registros"][$contador]["rutaResolucion"]="docs/".$reg["id_nie"]."/exencion_form_emp/".$curso."/".substr($reg["registro"], 17)."/docs/resolucion/resolucion.pdf"
+            $data["registros"][$contador]["rutaResolucion"]="docs/".$reg["id_nie"]."/exencion_form_emp/".$curso."/".substr($reg["registro"], 17)."/docs/resolucion/resolucion.pdf";
         }
         else $data["registros"][$contador]["rutaResolucion"]="";        
             
