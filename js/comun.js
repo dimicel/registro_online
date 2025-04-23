@@ -95,10 +95,14 @@ function confirmarAccion(mensaje, titulo, ancho) {
                 }
             ],
             open: function() {
-                // Aplicamos clases Bootstrap al vuelo
-                let $buttons = $div.parent().find(".ui-dialog-buttonpane button");
-                $buttons.eq(0).addClass("textoboton btn btn-success btn-sm");
-                $buttons.eq(1).addClass("textoboton btn btn-danger btn-sm");
+                setTimeout(() => {
+                    const $buttons = $div.parent().find(".ui-dialog-buttonpane button");
+            
+                    console.log("Botones encontrados:", $buttons.length); // para verificar
+            
+                    $buttons.eq(0).addClass("textoboton btn btn-success btn-sm");
+                    $buttons.eq(1).addClass("textoboton btn btn-danger btn-sm");
+                }, 0);
             }
         });
         
