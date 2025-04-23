@@ -822,7 +822,7 @@ function listaRegistros(orden_campo, orden_direccion) {
 
                 }
                 else if(tipo_formulario=="exencion_fct"){
-                    data += "<tr onclick='verRegistroExencionFCT(\""+data_array[i]["registro"]+"\")'>";
+                    data += "<tr onclick='verRegistroExencionFCT(\""+data_array[i]["registro"]+"\",\""+data_array[i]["rutaResolucion"]+"\")'>";
                     for (j = 0; j < campos.length; j++) {
                         if(j==2){
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
@@ -1416,7 +1416,7 @@ function verRegistroConvalidaciones(num_registro){
     }, "json");
 }
 
-function verRegistroExencionFCT(num_registro){
+function verRegistroExencionFCT(num_registro,rutaRes){
     ancho = 700;
     formulario="exencion_fct"
     botones = "<div style='text-align:right'>";
@@ -1437,6 +1437,10 @@ function verRegistroExencionFCT(num_registro){
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             contenido +="<div class='col-3'>";
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            if (rutaRes.length>0){
+                contenido +="<input type='button' class='textoboton btn btn-success' value='Generar Resolución' onclick='resolucionExencionFCT(\""+num_registro+"\")'/>";
+                contenido += "<input type='button' class='textoboton btn btn-danger' value='Informe del Jefe de Departamento NO Válido' onclick='invalidaInformeJDExencionFCT(\""+num_registro+"\")'/>";
+            }
             contenido += "</div></div>";
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
             contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
@@ -2807,4 +2811,44 @@ function avisarJefesDpto(){
         }
     });
     
+}
+
+
+function resolucionExencionFCT(registro){
+    $.post("php/secret_exencion_fct_resolucion.php",{registro:registro},(resp)=>{
+        if (resp=="ok"){
+            alerta("Informe de Jefe de Departamento invalidado correctamente.","OK");
+            verRegAdjuntosExencFCT(registro);
+        }
+        else if (resp=="server"){
+            alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+        }
+        else if (resp=="no_registro"){
+            alerta("No existe el registro","NO REGISTRO");
+        }
+        else{
+            alerta("Error al invalidar el informe del Jefe de Departamento. Inténtelo más tarde.","ERROR DB/SERVIDOR");
+        }
+    });
+
+}
+
+
+function invalidaInformeJDExencionFCT(registro){
+    $.post("php/secret_exencion_fct_invalida_informe_jd.php",{registro:registro},(resp)=>{
+        if (resp=="ok"){
+            alerta("Informe de Jefe de Departamento invalidado correctamente.","OK");
+            verRegAdjuntosExencFCT(registro);
+        }
+        else if (resp=="server"){
+            alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+        }
+        else if (resp=="no_registro"){
+            alerta("No existe el registro","NO REGISTRO");
+        }
+        else{
+            alerta("Error al invalidar el informe del Jefe de Departamento. Inténtelo más tarde.","ERROR DB/SERVIDOR");
+        }
+    });
+
 }
