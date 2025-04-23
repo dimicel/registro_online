@@ -78,8 +78,7 @@ function confirmarAccion(mensaje, titulo, ancho) {
             width: ancho,
             buttons:[
                 {
-                    text:"Aceptar",
-                    class: "textoboton btn btn-success btn-sm",
+                    text: "Aceptar",
                     click: function() {
                         $div.dialog("close");
                         $div.dialog("destroy");
@@ -88,14 +87,21 @@ function confirmarAccion(mensaje, titulo, ancho) {
                 },
                 {
                     text: "Cancelar",
-                    class: "textoboton btn btn-danger btn-sm",
                     click: function() {
                         $div.dialog("close");
                         $div.dialog("destroy");
                         resolve(false);
                     }
-                }],
+                }
+            ],
+            open: function() {
+                // Aplicamos clases Bootstrap al vuelo
+                let $buttons = $div.parent().find(".ui-dialog-buttonpane button");
+                $buttons.eq(0).addClass("textoboton btn btn-success btn-sm");
+                $buttons.eq(1).addClass("textoboton btn btn-danger btn-sm");
+            }
         });
+        
         $div.dialog("open");
     });
 }
