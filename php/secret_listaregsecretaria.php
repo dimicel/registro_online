@@ -191,12 +191,12 @@ elseif($proceso=="exencion_fct"){
         $data["registros"][$contador]["resolucion"]=$reg["resolucion"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
-        if(is_file("../docs/".$reg["id_nie"]."/".$curso."/exencion_form_emp/".substr($reg["registro"], 17)."/docs/informe_jd/informe_jd.pdf")){
-            $data["registros"][$contador]["rutaInforme"]="docs/".$reg["id_nie"]."/".$curso."/exencion_form_emp/".substr($reg["registro"], 17)."/docs/informe_jd/informe_jd.pdf";
+        if(is_file("../docs/".$reg["id_nie"]."/exencion_form_emp/".$curso."/".substr($reg["registro"], 17)."/docs/informe_jd/informe_jd.pdf")){
+            $data["registros"][$contador]["rutaInforme"]="docs/".$reg["id_nie"]."/exencion_form_emp/".$curso."/".substr($reg["registro"], 17)."/docs/informe_jd/informe_jd.pdf";
         }
         else    $data["registros"][$contador]["rutaInforme"]="";
-        if(is_file("../docs/".$reg["id_nie"]."/".$curso."/exencion_form_emp/".substr($reg["registro"], 17)."/docs/resolucion/resolucion.pdf")){
-            $data["registros"][$contador]["rutaResolucion"]="docs/".$reg["id_nie"]."/".$curso."/exencion_form_emp/".substr($reg["registro"], 17)."/docs/resolucion/resolucion.pdf";
+        if(is_file("../docs/".$reg["id_nie"]."/exencion_form_emp/".$curso."/".substr($reg["registro"], 17)."/docs/resolucion/resolucion.pdf")){
+            $data["registros"][$contador]["rutaResolucion"]="docs/".$reg["id_nie"]."/exencion_form_emp/".$curso."/".substr($reg["registro"], 17)."/docs/resolucion/resolucion.pdf"
         }
         else $data["registros"][$contador]["rutaResolucion"]="";        
             
