@@ -19,13 +19,16 @@ $result = $mysqli->query("SELECT * FROM exencion_fct WHERE registro='$registro'"
 
 // Comprobar si hay resultados
 if ($result->num_rows == 1 ) {
+    $fila = $result->fetch_assoc();
+    $id_nie=$fila['id_nie'];
+    $curso=$fila['curso'];
     // Recorrer los resultados y mostrarlos
     $mysqli->query("UPDATE exencion_fct SET procesado=0 WHERE registro='$registro'");
     if ($mysqli->errno>0) exit("server");
     elseif ($mysqli->affected_rows==0) exit("no_actualizado");  
     elseif ($mysqli->affected_rows==1){
-        if(is_file("../docs/".$registro."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
-            if(unlink("../docs/".$registro."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
+        if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
+            if(unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
                 exit("ok");
             }
             else{
