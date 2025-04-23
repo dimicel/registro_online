@@ -20,7 +20,7 @@ class MYPDF extends TCPDF {
 		// Title
 		//$this->setCellHeightRatio(1.75);
 		$encab = "<label><strong>CONSEJERÍA DE EDUCACIÓN CULTURA Y DEPORTES DE CASTILLA - LA MANCHA<br>IES UNIVERSIDAD LABORAL DE TOLEDO</strong></label>";
-		$this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
+		$this->writeHTMLCell(0, 0, 30, 11, $encab, 0, 1, 0, true, 'C', true);
 		//$this->Ln();
 		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
 		
@@ -182,7 +182,7 @@ $YInicio=40;
 $XInicio=12; 
 
 $texto=<<<EOD
-<br><br><br><br><b>D./DÑA. $nombreDirectorMayus</b>, director/a del Centro Educativo $centroEducativoMayus, una vez
+<br><br><br><br><br><br><br><br><b>D./DÑA. $nombreDirectorMayus</b>, director/a del Centro Educativo $centroEducativoMayus, una vez
 examinada la documentación presnetada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>,
 solicitando la exención del Perído de Formación en Empresas, correspondiente al curso <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
 <b>RESUELVE:</b><br>$texto_acuerda<br>$motivo<br><br>
