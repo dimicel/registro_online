@@ -109,16 +109,14 @@ $mysqli->close();
 ///GENERA LA RESOLUCIÓN
 ///////////////////////////////////////////////////////////////////////////////////////////
 if($valoracion=="exento"){
-	$texto_acuerda="<b>RECONOCER LA EXENCIÓN TOTAL</b> del Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
+	$texto_acuerda="<b>RECONOCER</b> la exención <b>TOTAL</b> del módulo profesional correspondiente al Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
 	$motivo="";
 }
 elseif($valoracion=="parcialmente_exento"){
-	$texto_acuerda="INFORMAR FAVORABLEMENTE DE LA EXENCIÓN PARCIAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO ";
-	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:<br>";
+	$texto_acuerda="<b>RECONOCER</b> la exención <b>PARCIAL</b> del módulo profesional correspondiente al Período de Formación en Empresas por los motivos que a continuación se razonan:<br>";
 }
 elseif($valoracion=="no_exento"){
-	$texto_acuerda="INFORMAR DESFAVORABLEMENTE DE LA EXENCIÓN DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO ";
-	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos)." POR LOS MOTIVOS QUE A CUNTINUACIÓN SE RAZONAN:<br>";
+	$texto_acuerda="<b>NO RECONOCER</b> la exención del módulo profesional correspondiente al Período de Formación en Empresas por los motivos que a continuación se razonan:<br>";
 }
 
 // create new PDF document
