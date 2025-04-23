@@ -848,7 +848,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                             }
                             else {
                                 if (rutaInforme!=""){
-                                    data+="<td style='width:70px;'><center><a href='"+rutaInforme+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
+                                    data+="<td style='width:70px;'><center><a href='"+rutaInforme+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>Ver</a></center></td>";
                                 }
                                 else{
                                     data += "<td style='width:70px;text-align:center'>-</td>";
