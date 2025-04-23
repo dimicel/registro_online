@@ -79,7 +79,7 @@ function confirmarAccion(mensaje, titulo, ancho) {
             buttons:[
                 {
                     text:"Aceptar",
-                    class: "textoboton btn btn-success",
+                    class: "textoboton btn btn-success btn-sm",
                     click: function() {
                         $div.dialog("close");
                         $div.dialog("destroy");
@@ -88,7 +88,7 @@ function confirmarAccion(mensaje, titulo, ancho) {
                 },
                 {
                     text: "Cancelar",
-                    class: "textoboton btn btn-danger",
+                    class: "textoboton btn btn-danger btn-sm",
                     click: function() {
                         $div.dialog("close");
                         $div.dialog("destroy");
