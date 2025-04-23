@@ -824,7 +824,7 @@ function listaRegistros(orden_campo, orden_direccion) {
 
                 }
                 else if(tipo_formulario=="exencion_fct"){
-                    data += "<tr onclick='verRegistroExencionFCT(\""+data_array[i]["registro"]+"\",\""+data_array[i]["rutaResolucion"]+"\")'>";
+                    data += "<tr onclick='verRegistroExencionFCT(\""+data_array[i]["registro"]+"\",\""+data_array[i]["rutaInforme"]+"\")'>";
                     for (j = 0; j < campos.length; j++) {
                         if(j==2){
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
