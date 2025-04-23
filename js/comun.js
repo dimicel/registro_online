@@ -63,7 +63,7 @@ function alerta(mensaje, titulo, previo, ancho) {
 function confirmarAccion(mensaje, titulo, ancho) {
     if (typeof ancho !== 'number') ancho = 300;
     const $div = $("#mensaje_div");
-    mensaje+="<div class='text-end mt-3'>";
+    mensaje+="<hr><div class='text-end mt-3'>";
     mensaje+="<button id='btnAceptar' class='textoboton btn btn-success btn-sm ml-2'>Aceptar</button>";
     mensaje+="<button id='btnCancelar' class='textoboton btn btn-danger btn-sm ml-2'>Cancelar</button>";
     mensaje+="</div>";
