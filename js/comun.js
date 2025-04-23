@@ -97,7 +97,7 @@ function confirmarAccion(mensaje, titulo, ancho) {
             open: function() {
                 // Aplicamos clases Bootstrap al vuelo
                 alert()
-                let $buttons = $div.parent().find(".ui-dialog-buttonpane");
+                let $buttons = $div.parent().find(".ui-button .ui-corner-all .ui-widget");
                 $buttons.eq(0).addClass("textoboton btn btn-success btn-sm");
                 $buttons.eq(1).addClass("textoboton btn btn-danger btn-sm");
             }
