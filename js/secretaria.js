@@ -2923,6 +2923,7 @@ function invalidaInformeJDExencionFCT(registro){
                 else{
                     alerta("Error al invalidar el informe del Jefe de Departamento. Inténtelo más tarde.","ERROR DB/SERVIDOR");
                 }
+                listaRegistros();
             });
         } else {
             alerta("Acción cancelada.","CANCELADO");
