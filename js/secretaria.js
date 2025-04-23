@@ -2864,24 +2864,32 @@ function avisarJefesDpto(){
 
 
 function resolucionExencionFCT(registro){
-    document.getElementById("cargando").style.display = 'inherit';
-    $.post("php/secret_exencion_fct_resolucion.php",{registro:registro},(resp)=>{
-        document.getElementById("cargando").style.display = 'none';
-        if (resp=="ok"){
-            alerta("Informe de Jefe de Departamento invalidado correctamente.","OK");
-            verRegAdjuntosExencFCT(registro);
-        }
-        else if (resp=="server"){
-            alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
-        }
-        else if (resp=="no_registro"){
-            alerta("No existe el registro","NO REGISTRO");
-        }
-        else{
-            alerta("Error al invalidar el informe del Jefe de Departamento. Inténtelo más tarde.","ERROR DB/SERVIDOR");
-        }
-    });
-
+confirmarAccion("Se va a generar la resolución.", "RESOLUCIÓN")
+.then(function(confirmacion) {
+    if (confirmacion) {
+        document.getElementById("cargando").style.display = 'inherit';
+        $.post("php/secret_exencion_fct_resolucion.php",{registro:registro},(resp)=>{
+            document.getElementById("cargando").style.display = 'none';
+            if (resp=="ok"){
+                alerta("Informe de Jefe de Departamento invalidado correctamente.","OK");
+                verRegAdjuntosExencFCT(registro);
+            }
+            else if (resp=="server"){
+                alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+            }
+            else if (resp=="no_registro"){
+                alerta("No existe el registro","NO REGISTRO");
+            }
+            else{
+                alerta("Error al invalidar el informe del Jefe de Departamento. Inténtelo más tarde.","ERROR DB/SERVIDOR");
+            }
+           
+        });
+    }
+    else {
+        alerta("Acción cancelada.","CANCELADO");
+    }
+});
 }
 
 
@@ -2893,7 +2901,7 @@ function invalidaInformeJDExencionFCT(registro){
             $.post("php/secret_exencion_fct_invalida_informe_jd.php",{registro:registro},(resp)=>{
                 document.getElementById("cargando").style.display = 'none';
                 if (resp=="ok"){
-                    alerta("Informe de Jefe de Departamento invalidado correctamente.","OK");
+                    alerta("Informe de Jefe de Departamento invalidado correctamente.","INFORME INVALIDADO");
                     verRegAdjuntosExencFCT(registro);
                 }
                 else if (resp=="server"){
@@ -2901,6 +2909,15 @@ function invalidaInformeJDExencionFCT(registro){
                 }
                 else if (resp=="no_registro"){
                     alerta("No existe el registro","NO REGISTRO");
+                }
+                else if (resp=="no_actualizado"){
+                    alerta("No se ha podido invalidar el informe del Jefe de Departamento por algún problema en la base de datos.","NO INVALIDADO");
+                }
+                else if (resp=="no_borrado"){
+                    alerta("La solicitud se ha marcado como NO PROCESADA, pero no se ha podido eliminar el fichero del informe del Jefe de Departamento.","FICHERO NO BORRADO");
+                }
+                else if( resp=="no_existe"){
+                    alerta("No se ha encontrado fichero del informe del Jefe de Departamento que borrar. El registro se ha marcado como NO PROCESADO.","FICHERO NO ENCONTRADO");
                 }
                 else{
                     alerta("Error al invalidar el informe del Jefe de Departamento. Inténtelo más tarde.","ERROR DB/SERVIDOR");
