@@ -260,7 +260,7 @@ function limiteCaracteres(obj){
     else obj.value=obj.value.slice(0,-1);
 }
 
-function seleccionValoracion(v){
+function seleccionValoracion(v){alert(v)
     if (v=="" || v=="exento" || v=="PENDIENTE") {
         document.getElementById("div_motivo").style.display="none";
     }
