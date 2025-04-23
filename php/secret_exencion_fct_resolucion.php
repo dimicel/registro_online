@@ -14,13 +14,13 @@ class MYPDF extends TCPDF {
 		$image_file = '../recursos/logo_ccm.jpg';
 		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 		$image_file = '../recursos/mini_escudo.jpg';
-		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		$this->Image($image_file, 160, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 				
 		$this->SetFont('helvetica', '', 8);
 		// Title
 		//$this->setCellHeightRatio(1.75);
 		$encab = "<label><strong>CONSEJERÍA DE EDUCACIÓN CULTURA Y DEPORTES DE CASTILLA - LA MANCHA<br>IES UNIVERSIDAD LABORAL DE TOLEDO</strong></label>";
-		$this->writeHTMLCell(0, 0, 30, 11, $encab, 0, 1, 0, true, 'C', true);
+		$this->writeHTMLCell(0, 0, 0, 11, $encab, 0, 1, 0, true, 'C', true);
 		//$this->Ln();
 		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
 		
