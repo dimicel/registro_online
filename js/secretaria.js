@@ -1449,11 +1449,16 @@ function verRegistroExencionFCT(num_registro,rutaInforme){
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             contenido +="<div class='col-3'>";
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido += "</div>";
             if (rutaInforme.length>0){
+                contenido +="<div class='col-3'>";
                 contenido +="<input type='button' class='textoboton btn btn-success' value='Generar Resolución' onclick='resolucionExencionFCT(\""+num_registro+"\")'/>";
+                contenido +="</div>";
+                contenido +="<div class='col-3'>";
                 contenido += "<input type='button' class='textoboton btn btn-danger' value='Informe del Jefe de Departamento NO Válido' onclick='invalidaInformeJDExencionFCT(\""+num_registro+"\")'/>";
+                contenido +="</div>";
             }
-            contenido += "</div></div>";
+            contenido += "</div>";
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
             contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
             contenido += botones;
