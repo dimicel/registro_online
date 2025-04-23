@@ -185,7 +185,7 @@ $texto=<<<EOD
 <br><br><br><br><b>D./DÑA. $nombreDirectorMayus</b>, director/a del Centro Educativo $centroEducativoMayus, una vez
 examinada la documentación presnetada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>,
 solicitando la exención del Perído de Formación en Empresas, correspondiente al curso <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
-<b>RESUELVE:</b><br> $texto_acuerda<br>$motivo<br><br>
+<b>RESUELVE:</b><br>$texto_acuerda<br>$motivo<br><br>
 <p style="text-align:center">$fecha_firma
 EOD;
 $pdf->SetXY($XInicio,$YInicio);
