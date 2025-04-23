@@ -225,7 +225,7 @@ function verPanelProcesamiento(reg,dirReg){
             document.getElementById("verRegistro_div").innerHTML = contenido;
             if (resp.registro.resolucion!="PENDIENTE" && resp.registro.resolucion!="") document.getElementById("valoracion_informe").value=resp.registro.resolucion;
             document.getElementById("motivo").value=resp.registro.motivo;
-            seleccionValoracion(resp.registro.valoracion);
+            seleccionValoracion(resp.registro.resolucion);
             if (resp.registro.procesado==1){
                 document.getElementById("btn_generar_informe").disabled=true;
                 document.getElementById("div_firma").style.display="none";
