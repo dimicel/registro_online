@@ -112,10 +112,10 @@ if($valoracion=="exento"){
 	$texto_acuerda="<b>RECONOCER</b> la exención <b>TOTAL</b> del módulo profesional correspondiente al Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
 	$motivo="";
 }
-elseif($valoracion=="parcialmente_exento"){
+elseif($valoracion=="parcialmente exento"){
 	$texto_acuerda="<b>RECONOCER</b> la exención <b>PARCIAL</b> del módulo profesional correspondiente al Período de Formación en Empresas por los motivos que a continuación se razonan:<br>";
 }
-elseif($valoracion=="no_exento"){
+elseif($valoracion=="no exento"){
 	$texto_acuerda="<b>NO RECONOCER</b> la exención del módulo profesional correspondiente al Período de Formación en Empresas por los motivos que a continuación se razonan:<br>";
 }
 
@@ -181,7 +181,7 @@ $texto=<<<EOD
 <b>D./DÑA. $nombreDirectorMayus</b>, director/a del Centro Educativo $centroEducativoMayus, una vez
 examinada la documentación presnetada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>,
 solicitando la exención del Perído de Formación en Empresas, correspondiente al curso <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
- RESUELVE:<br><br>
+ RESUELVE:<br>
 <p style="text-align:justify">$texto_acuerda</p>
 <p style="text-align:justify">$motivo<br><br>
 <p style="text-align:center">$fecha_firma
