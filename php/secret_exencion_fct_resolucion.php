@@ -19,7 +19,7 @@ class MYPDF extends TCPDF {
 		$this->SetFont('helvetica', '', 8);
 		// Title
 		//$this->setCellHeightRatio(1.75);
-		$encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
+		$encab = "<label><strong>CONSEJERÍA DE EDUCACIÓN CULTURA Y DEPORTES DE CASTILLA - LA MANCHA<br>IES UNIVERSIDAD LABORAL DE TOLEDO</strong></label>";
 		$this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
 		//$this->Ln();
 		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
@@ -41,6 +41,8 @@ else {
     $datosCentro=$consultaCentro->fetch_assoc();
     $nombreDirector=$datosCentro["director"];
     $nombreDirectorMayus=strtoupper($nombreDirector);
+	$centroEducativo=$datosCentro["centro"];
+	$centroEducativoMayus=strtoupper($centroEducativo);	
 }
 
 $consulta = $mysqli->query("SELECT * FROM exencion_fct WHERE registro='$registro'");
@@ -107,8 +109,7 @@ $mysqli->close();
 ///GENERA LA RESOLUCIÓN
 ///////////////////////////////////////////////////////////////////////////////////////////
 if($valoracion=="exento"){
-	$texto_acuerda="INFORMAR FAVORABLEMENTE DE LA EXENCIÓN TOTAL DEL PERÍODO DE FORMACIÓN EN EMPRESAS AL ALUMNO <br>";
-	$texto_acuerda.=strtoupper($tratamiento)." ".strtoupper($nombre)." ".strtoupper($apellidos);
+	$texto_acuerda="<b>RECONOCER LA EXENCIÓN TOTAL</b> del Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
 	$motivo="";
 }
 elseif($valoracion=="parcialmente_exento"){
@@ -179,11 +180,10 @@ $YInicio=40;
 $XInicio=12; 
 
 $texto=<<<EOD
-<h3 style="text-align:center"><b>RESOLUCIÓN EXENCIÓN PFE</b></h3>
-Recibido el informe del Jefe de Departamento de $departamento 
- presentada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>, del curso 
- <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
- ACUERDA:
+<b>D./DÑA. $nombreDirectorMayus</b>, director/a del Centro Educativo $centroEducativoMayus, una vez
+examinada la documentación presnetada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>,
+solicitando la exención del Perído de Formación en Empresas, correspondiente al curso <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b>, este departamento<br><br>
+ RESUELVE:<br><br>
 <p style="text-align:justify">$texto_acuerda</p>
 <p style="text-align:justify">$motivo<br><br>
 <p style="text-align:center">$fecha_firma
