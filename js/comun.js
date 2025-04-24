@@ -34,7 +34,7 @@ function alerta(mensaje, titulo, previo, ancho) {
     if (typeof(duracion) != 'number') duracion = 0;
     $("#mensaje_div").dialog({
         title: titulo.toUpperCase(),
-        autoOpen: false,
+        autoOpen: true,
         draggable: false,
         dialogClass: "alertas no-close",
         modal: true,
@@ -43,7 +43,14 @@ function alerta(mensaje, titulo, previo, ancho) {
         show: { effect: "fade", duration: 0 },
         width: ancho
     });
-    $("#mensaje_div").dialog('open');
+}
+
+function cierraAlerta(previo) {
+    if (typeof(previo) == 'boolean' && previo == true) {
+        window.history.back();
+    }
+    $("#mensaje_div").dialog("close").dialog("destroy");
+    $("#mensaje_div").remove();
 }
 
 //Confirmar o no la salida de un formulario
@@ -85,11 +92,13 @@ function confirmarAccion(mensaje, titulo, ancho) {
                 // Asocia eventos a los botones internos
                 $div.find("#btnAceptar").off("click").on("click", () => {
                     $div.dialog("close").dialog("destroy");
+                    $("#mensaje_div").remove();
                     resolve(true);
                 });
 
                 $div.find("#btnCancelar").off("click").on("click", () => {
                     $div.dialog("close").dialog("destroy");
+                    $("#mensaje_div").remove();
                     resolve(false);
                 });
             }
@@ -97,14 +106,6 @@ function confirmarAccion(mensaje, titulo, ancho) {
     });
 }
 
-
-
-function cierraAlerta(previo) {
-    if (typeof(previo) == 'boolean' && previo == true) {
-        window.history.back();
-    }
-    $("#mensaje_div").dialog("close");
-}
 
 function pinchaFila(x) {
     if (tecla != 17) {
