@@ -337,39 +337,6 @@ function labelAutorizacionesMenor(txt) {
 }
 
 
-function confirmar() {
-    document.getElementById('mensaje_div').innerHTML = "El proceso de registro será cancelado y se borrarán los datos del formulario.";
-    $("#mensaje_div").dialog({
-        title: "CANCELACIÓN DE PROCESO",
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        buttons: [{
-                class: "btn btn-success textoboton",
-                text: "Aceptar",
-                click: function() {
-                    $(this).dialog("close");
-                    window.history.back();
-                }
-            },
-            {
-                class: "btn btn-success textoboton",
-                text: "Cancelar",
-                click: function() {
-                    $(this).dialog("close");
-                    return false;
-                }
-            }
-        ]
-    });
-
-    $("#mensaje_div").dialog('open');
-}
-
-
 function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
     document.getElementById('confirmarnuevaMat_div').innerHTML = mensaje;
     $("#confirmarnuevaMat_div").dialog({
