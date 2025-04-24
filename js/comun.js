@@ -19,6 +19,11 @@ $(function() {
 
 
 function alerta(mensaje, titulo, previo, ancho) {
+    let $div = $("#mensaje_div");
+    if ($div.length === 0) {
+        $("body").append("<div id='mensaje_div'></div>");
+        $div = $("#mensaje_div");
+    }
     if (typeof(previo) == 'boolean' && previo == true) {
         document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta(true)'/></div>";
     } else {
@@ -55,7 +60,11 @@ function confirmar() {
 //Función para confirmar una acción, devuelve un booleano. Ancho es opcional y por defecto es 300px
 function confirmarAccion(mensaje, titulo, ancho) {
     if (typeof ancho !== 'number') ancho = 300;
-    const $div = $("#mensaje_div");
+    let $div = $("#mensaje_div");
+    if ($div.length === 0) {
+        $("body").append("<div id='mensaje_div'></div>");
+        $div = $("#mensaje_div");
+    }
     mensaje+="<hr><div class='mt-3' style='text-align: right;'>";
     mensaje+="<button id='btnAceptar' class='textoboton btn btn-success btn-sm ml-2'>Aceptar</button>";
     mensaje+="<button id='btnCancelar' class='textoboton btn btn-danger btn-sm ml-2'>Cancelar</button>";
