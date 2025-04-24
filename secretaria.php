@@ -359,7 +359,6 @@
             <span id="num_procesados" style="font-size:0.5em !important"></span>
         </div>
     </div>
-    <div id="mensaje_div" class="alertas"></div>
     <div id="div_dialogs" class="ui-widget-header ui-corner-all alertas" style="overflow:hidden"></div>
     <div id="div_dialogs2" class="ui-widget-header ui-corner-all alertas"></div>
     <div id="div_dialogs_adjuntosconvalid" class="ui-widget-header ui-corner-all alertas"></div>

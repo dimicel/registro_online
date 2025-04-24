@@ -87,7 +87,6 @@
     </div>
 
     <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('../../recursos/espera.gif') no-repeat center center; opacity: .7;"></div>
-    <div id="mensaje_div" style="display:none"></div>
     <div id="consol_div" style="display:none"></div>
     <div id="confirmarnuevaMat_div" class="alertas"></div>
     <div id="div_ayuda_docs" class="alertas">

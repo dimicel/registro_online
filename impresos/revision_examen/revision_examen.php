@@ -81,8 +81,7 @@
 
 
     <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('../../recursos/espera.gif') no-repeat center center; opacity: .7;"></div>
-    <div id="mensaje_div" style="display:none"></div>
-
+    
     <script src="../../js/jquery-1.12.1.min.js" type="text/javascript"></script>
     <script src="../../jqueryui/jquery-ui.min.js"></script>
     <script src="../../js/comun.js"></script>
