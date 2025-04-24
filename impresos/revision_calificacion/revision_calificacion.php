@@ -11,10 +11,10 @@
 <body>
     <center>
         <div id="logos" style="width:1080px">
-            <div style="display:inline-block; float:left">
+            <div style="display:block; float:left">
                 <input style="width:175px; height:100px" type="image" src="../../recursos/logo_ccm.jpg" />
             </div>
-            <div style="display:inline-block; float:right">
+            <div style="display:block; float:right">
                 <input style="width:150px; height:150px" type="image" src="../../recursos/mini_escudo.jpg" />
             </div>
         </div>
