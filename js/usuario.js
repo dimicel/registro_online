@@ -441,39 +441,6 @@ function cierraSesion() {
     });
 }
 
-function confirmarBaja(mensaje, titulo, botonAceptar) {
-    document.getElementById('mensaje_div').innerHTML = mensaje;
-    $("#mensaje_div").dialog({
-        title: titulo,
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        buttons: [{
-                class: "btn btn-success textoboton",
-                text: botonAceptar,
-                click: function() {
-                    $(this).dialog("close");
-                    if (botonAceptar == "Borrar") {
-                        confirmarBaja("El proceso es irreversible.<br>¿Está seguro que desea causar baja en el sistema?", "¡¡¡ATENCIÓN!!!", "Confirmar Baja");
-                    } else confirmadoBorradoCuenta();
-                }
-            },
-            {
-                class: "btn btn-success textoboton",
-                text: "Cancelar",
-                click: function() {
-                    $(this).dialog("close");
-                    return false;
-                }
-            }
-        ]
-    });
-
-    $("#mensaje_div").dialog('open');
-}
 
 function listaSolicitudes() {
     listado = document.getElementById("solicitudes");
