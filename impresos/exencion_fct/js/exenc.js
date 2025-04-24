@@ -74,7 +74,13 @@ $(document).ready(function() {
 
 
 function confirmar() {
-    document.getElementById('mensaje_div').innerHTML = "El proceso de registro será cancelado y se borrarán los datos del formulario.";
+confirmarAccion("El proceso de registro será cancelado y se borrarán los datos del formulario.", "CANCELACIÓN DE PROCESO")
+.then(function(confirmacion) {
+    if (confirmacion) {
+        window.history.back();
+    }
+});
+/*    document.getElementById('mensaje_div').innerHTML = "El proceso de registro será cancelado y se borrarán los datos del formulario.";
     $("#mensaje_div").dialog({
         title: "CANCELACIÓN DE PROCESO",
         autoOpen: false,
@@ -102,7 +108,7 @@ function confirmar() {
         ]
     });
 
-    $("#mensaje_div").dialog('open');
+    $("#mensaje_div").dialog('open');*/
 }
 
 
