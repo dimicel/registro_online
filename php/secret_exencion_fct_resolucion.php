@@ -109,14 +109,14 @@ $mysqli->close();
 ///GENERA LA RESOLUCIÓN
 ///////////////////////////////////////////////////////////////////////////////////////////
 if($valoracion=="exento"){
-	$texto_acuerda="<b>RECONOCER</b> la exención <b>TOTAL</b> del módulo profesional del Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
+	$texto_acuerda="<b>RECONOCER</b> la exención <b>TOTAL</b> del Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
 	$motivo="";
 }
 elseif($valoracion=="parcialmente exento"){
-	$texto_acuerda="<b>RECONOCER</b> la exención <b>PARCIAL</b> del módulo profesional del Período de Formación en Empresas por los motivos que a continuación se razonan:";
+	$texto_acuerda="<b>RECONOCER</b> la exención <b>PARCIAL</b> del Período de Formación en Empresas por los motivos que a continuación se razonan:";
 }
 elseif($valoracion=="no exento"){
-	$texto_acuerda="<b>NO RECONOCER</b> la exención del módulo profesional del Período de Formación en Empresas por los motivos que a continuación se razonan:";
+	$texto_acuerda="<b>NO RECONOCER</b> la exención del Período de Formación en Empresas por los motivos que a continuación se razonan:";
 }
 
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -184,7 +184,7 @@ $XInicio=12;
 $texto=<<<EOD
 <br><br><br><br><br><br><br><br><b>D./DÑA. $nombreDirectorMayus</b>, director/a del Centro Educativo $centroEducativoMayus DE TOLEDO, una vez
 examinada la documentación presentada por el alumno/a <b>$tratamientoMayus $nombreMayus $apellidosMayus</b>, con DNI/NIE <b>$id_nif</b>,
-solicitando la exención del módulo formativo del Perído de Formación en Empresas, correspondiente al curso <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b><br><br>
+solicitando la exención del Perído de Formación en Empresas, correspondiente al curso <b>$curso_ciclo del Ciclo Formativo de Grado $grado</b> de <b>$ciclo</b><br><br>
 <b>RESUELVE:</b><br>$texto_acuerda<br>$motivo<br><br>
 <p style="text-align:center">$fecha_firma
 EOD;
