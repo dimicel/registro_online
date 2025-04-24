@@ -1462,7 +1462,7 @@ function verRegistroExencionFCT(num_registro,rutaInforme,rutaResolucion){
             }
             if(rutaResolucion.length>0) {
                 contenido +="<div class='col'>";
-                contenido += "<input type='button' class='textoboton btn btn-danger' value='Eliminar Informe del JD y Resolución' title='Esta acción pondrá el estado del registro a NO PROCESADO para que el Jefe de Departamento haga otro informe.' onclick='invalidaInformeJDExencionFCT(\""+num_registro+"\")'/>";
+                contenido += "<input type='button' class='textoboton btn btn-danger' value='Eliminar Informe del JD y Resolución' title='Esta acción pondrá el estado del registro a NO PROCESADO para que el Jefe de Departamento rehaga el informe.' onclick='invalidaInformeJDExencionFCT(\""+num_registro+"\")'/>";
                 contenido +="</div>";
             }
             contenido += "</div>";
