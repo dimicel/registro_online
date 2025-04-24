@@ -1455,12 +1455,14 @@ function verRegistroExencionFCT(num_registro,rutaInforme,rutaResolucion){
             contenido +="<div class='col-3'>";
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
             contenido += "</div>";
-            if (rutaInforme.length>0 || rutaResolucion.length>0) {
+            if (rutaInforme.length>0) {
                 contenido +="<div class='col-3'>";
                 contenido +="<input type='button' class='textoboton btn btn-success' value='Generar Resolución' onclick='resolucionExencionFCT(\""+num_registro+"\")'/>";
                 contenido +="</div>";
+            }
+            if(rutaResolucion.length>0) {
                 contenido +="<div class='col'>";
-                contenido += "<input type='button' class='textoboton btn btn-danger' value='Informe del Jefe de Departamento NO Válido' onclick='invalidaInformeJDExencionFCT(\""+num_registro+"\")'/>";
+                contenido += "<input type='button' class='textoboton btn btn-danger' value='Eliminar Informe del JD y Resolución' title='Esta acción pondrá el estado del registro a NO PROCESADO para que el Jefe de Departamento haga otro informe.' onclick='invalidaInformeJDExencionFCT(\""+num_registro+"\")'/>";
                 contenido +="</div>";
             }
             contenido += "</div>";
@@ -2904,7 +2906,7 @@ confirmarAccion("Se va a generar la resolución.", "RESOLUCIÓN")
 
 
 function invalidaInformeJDExencionFCT(registro){
-    confirmarAccion("¿Está seguro de que desea invalidar el informe del Jefe de Departamento?", "INFORME JD")
+    confirmarAccion("¿Está seguro de que desea invalidar el informe del Jefe de Departamento?<br>Si acepta se relaizarán lsa siguientes acciones:<ul><li>Eliminará el informe del Jefe de Departamento</li><li>Eliminará la resolución (si la hubiera)</li><li>Pondrá el registro en estado NO PROCESADO</li>", "INFORME JD")
     .then(function(confirmacion) {
         if (confirmacion) {
             document.getElementById("cargando").style.display = 'inherit';
