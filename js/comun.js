@@ -41,24 +41,15 @@ function alerta(mensaje, titulo, previo, ancho) {
     $("#mensaje_div").dialog('open');
 }
 
-/*function confirmarAccion(mensaje, titulo, ancho) {
-    if (typeof(ancho) != 'number') ancho = 300;
-    document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div><br><div display='inline-block'><input style='float:right' type='button' class='textoboton btn btn-danger' value='Cancelar' onclick='$(\"#mensaje_div\").dialog(\"close\");return false;'/>";
-    document.getElementById('mensaje_div').innerHTML += "<input style='float:right' type='button' class='textoboton btn btn-success' value='Ok' onclick='$(\"#mensaje_div\").dialog(\"close\");return true;'/></div>";
 
-    $("#mensaje_div").dialog({
-        title: titulo.toUpperCase(),
-        autoOpen: false,
-        draggable: false,
-        dialogClass: "alertas no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        width: ancho
+function confirmar() {
+    confirmarAccion("El proceso de registro será cancelado y se borrarán los datos del formulario.", "CANCELACIÓN DE PROCESO")
+    .then(function(confirmacion) {
+        if (confirmacion) {
+            window.history.back();
+        }
     });
-    $("#mensaje_div").dialog('open')
-}*/
+    }
 
 function confirmarAccion(mensaje, titulo, ancho) {
     if (typeof ancho !== 'number') ancho = 300;

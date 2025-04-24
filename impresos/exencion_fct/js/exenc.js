@@ -73,45 +73,6 @@ $(document).ready(function() {
 });
 
 
-function confirmar() {
-confirmarAccion("El proceso de registro será cancelado y se borrarán los datos del formulario.", "CANCELACIÓN DE PROCESO")
-.then(function(confirmacion) {
-    if (confirmacion) {
-        window.history.back();
-    }
-});
-/*    document.getElementById('mensaje_div').innerHTML = "El proceso de registro será cancelado y se borrarán los datos del formulario.";
-    $("#mensaje_div").dialog({
-        title: "CANCELACIÓN DE PROCESO",
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        buttons: [{
-                class: "btn btn-success textoboton",
-                text: "Aceptar",
-                click: function() {
-                    $(this).dialog("close"); 
-                    window.history.back();
-                }
-            },
-            {
-                class: "btn btn-success textoboton",
-                text: "Cancelar",
-                click: function() {
-                    $(this).dialog("close");
-                    return false;
-                }
-            }
-        ]
-    });
-
-    $("#mensaje_div").dialog('open');*/
-}
-
-
 function cambiaTipoForm(sel){
     var formacion=document.getElementById("formacion").value;
     var ciclo=document.getElementById("ciclos_f").value;
