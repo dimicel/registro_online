@@ -2871,7 +2871,7 @@ function avisarJefesDpto(){
 
 
 function resolucionExencionFCT(registro){
-confirmarAccion("Se va a generar la resolución.", "RESOLUCIÓN")
+confirmar("Se va a generar la resolución.", "RESOLUCIÓN")
 .then(function(confirmacion) {
     if (confirmacion) {
         document.getElementById("cargando").style.display = 'inherit';
@@ -2906,7 +2906,7 @@ confirmarAccion("Se va a generar la resolución.", "RESOLUCIÓN")
 
 
 function invalidaInformeJDExencionFCT(registro){
-    confirmarAccion("¿Está seguro de que desea invalidar el informe del Jefe de Departamento?<br>Si acepta se relaizarán lsa siguientes acciones:<ul><li>Eliminará el informe del Jefe de Departamento</li><li>Eliminará la resolución (si la hubiera)</li><li>Pondrá el registro en estado NO PROCESADO</li>", "INFORME JD")
+    confirmar("¿Está seguro de que desea invalidar el informe del Jefe de Departamento?<br>Si acepta se relaizarán lsa siguientes acciones:<ul><li>Eliminará el informe del Jefe de Departamento</li><li>Eliminará la resolución (si la hubiera)</li><li>Pondrá el registro en estado NO PROCESADO</li>", "INFORME JD")
     .then(function(confirmacion) {
         if (confirmacion) {
             document.getElementById("cargando").style.display = 'inherit';

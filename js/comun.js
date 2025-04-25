@@ -54,8 +54,8 @@ function cierraAlerta(previo) {
 }
 
 //Confirmar o no la salida de un formulario
-function confirmar() {
-    confirmarAccion("El proceso de registro será cancelado y se borrarán los datos del formulario.", "CANCELACIÓN DE PROCESO")
+function confirmarSalida() {
+    confirmar("El proceso de registro será cancelado y se borrarán los datos del formulario.", "CANCELACIÓN DE PROCESO")
     .then(function(confirmacion) {
         if (confirmacion) {
             window.history.back();
@@ -65,7 +65,7 @@ function confirmar() {
 
 
 //Función para confirmar una acción, devuelve un booleano. Ancho es opcional y por defecto es 300px
-function confirmarAccion(mensaje, titulo, ancho) {
+function confirmar(mensaje, titulo, ancho) {
     if (typeof ancho !== 'number') ancho = 300;
     let $div = $("#mensaje_div");
     if ($div.length === 0) {

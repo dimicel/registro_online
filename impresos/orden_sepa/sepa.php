@@ -47,7 +47,7 @@
                 <div class="col-12">
                     <div class="row" style=" margin-top:10px; margin-left:10px">
                         <div class="col-2">
-                            <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmar()" />
+                            <input type="button" value="&#x21c7;" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Regresar a página principal" onclick="confirmarSalida()" />
                         </div>
                     </div>
                     <hr>
