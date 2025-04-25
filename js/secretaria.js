@@ -1603,7 +1603,7 @@ function panelNuevoUsuario() {
                 //maxHeight: 500,
                 width: 550,
                 close:function(event,ui){
-                    $("#div_dialogs").dialog("destroy");
+                    $("#div_dialogs").dialog("colose").dialog("destroy");
                 }
             });
         }
@@ -1929,7 +1929,7 @@ function verDocsMatricula(id, edad) {
                     title: "DOCUMENTOS DE LA MATRÍCULA",
                     width: 800,
                     close:function(event,ui){
-                        $("#div_dialogs").dialog("destroy");
+                        $("#div_dialogs").dialog("close").dialog("destroy");
                     }
                 });
             });            
@@ -1969,7 +1969,7 @@ function listaMatriculas() {
                 title: "MATRÍCULAS: SELECCIÓN TIPO LISTADO",
                 width: 900,
                 close:function(event,ui){
-                    $("#div_dialogs").dialog("destroy");
+                    $("#div_dialogs").dialog("close").dialog("destroy");
                 }
             });
         }
@@ -2128,7 +2128,7 @@ function subirMatDelphos(){
                 title: "SUBIDA CSV MATRÍCULA DELPHOS",
                 width: 600,
                 close:function(event,ui){
-                    $("#div_dialogs").dialog("destroy");
+                    $("#div_dialogs").dialog("close").dialog("destroy");
                 }
             });
         }
