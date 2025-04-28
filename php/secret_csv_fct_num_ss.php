@@ -40,8 +40,8 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
 
     $Datos.="'".utf8_decode($r["id_nie"])."'".";";
     $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
-    $Datos.=utf8_decode($r["num_ss"].";");
-    $Datos.=utf8_decode('\t'.$r["fecha_mod_nuss"].";");
+    $Datos.=utf8_decode("\t".$r["num_ss"].";");
+    $Datos.=utf8_decode($r["fecha_mod_nuss"].";");
     $Datos.=utf8_decode($paga_seguro).PHP_EOL;		
 }
 
