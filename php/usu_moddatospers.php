@@ -53,19 +53,19 @@ if(strlen($nss)>0){
 }
 else{
 $consulta="update usuarios_dat set sexo='$sexo',
-                                fecha_nac='$fecha_nac',
-                                telef_alumno='$telefono',
-                                email='$email',
-                                direccion='$direccion',
-                                cp='$cp',
-                                localidad='$localidad',
-                                provincia='$provincia',
-                                tutor1='$tutor1',
-                                email_tutor1='$email_tut1',
-                                tlf_tutor1='$telef_tut1',
-                                tutor2='$tutor2',
-                                email_tutor2='$email_tut2',
-                                tlf_tutor2='$telef_tut2' where id_nie='$id_nie'";
+            fecha_nac='$fecha_nac',
+            telef_alumno='$telefono',
+            email='$email',
+            direccion='$direccion',
+            cp='$cp',
+            localidad='$localidad',
+            provincia='$provincia',
+            tutor1='$tutor1',
+            email_tutor1='$email_tut1',
+            tlf_tutor1='$telef_tut1',
+            tutor2='$tutor2',
+            email_tutor2='$email_tut2',
+            tlf_tutor2='$telef_tut2' where id_nie='$id_nie'";
 }
 if($mysqli->query($consulta)==TRUE) exit("ok");
 else exit("Fallo:".$mysqli->error);
