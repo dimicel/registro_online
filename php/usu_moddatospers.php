@@ -26,18 +26,36 @@ $tutor2=$_POST["dat_tutor2"];
 $telef_tut2=$_POST["dat_telef_tut2"];
 $email_tut2=$_POST["dat_email_tut2"];
 $nss=trim($_POST["dat_nss"]);
+$fecha_cambio_nuss=date('Y-m-d');
 
 $checkusu=$mysqli->query("select * form usuarios_dat where id_nie='$id_nie'");
 if($checkusu->num_rows==0){
     $mysqli->query("insert into usuarios_dat (id_nie) values ('$id_nie')");
 }
 
-
+if(strlen($nss)>0){
+    $consulta="update usuarios_dat set sexo='$sexo',
+    fecha_nac='$fecha_nac',
+    telef_alumno='$telefono',
+    email='$email',
+    num_ss='$nss',
+    fecha_mod_nuss='$fecha_cambio_nuss',
+    direccion='$direccion',
+    cp='$cp',
+    localidad='$localidad',
+    provincia='$provincia',
+    tutor1='$tutor1',
+    email_tutor1='$email_tut1',
+    tlf_tutor1='$telef_tut1',
+    tutor2='$tutor2',
+    email_tutor2='$email_tut2',
+    tlf_tutor2='$telef_tut2' where id_nie='$id_nie'";
+}
+else{
 $consulta="update usuarios_dat set sexo='$sexo',
                                 fecha_nac='$fecha_nac',
                                 telef_alumno='$telefono',
                                 email='$email',
-                                num_ss='$nss',
                                 direccion='$direccion',
                                 cp='$cp',
                                 localidad='$localidad',
@@ -48,9 +66,7 @@ $consulta="update usuarios_dat set sexo='$sexo',
                                 tutor2='$tutor2',
                                 email_tutor2='$email_tut2',
                                 tlf_tutor2='$telef_tut2' where id_nie='$id_nie'";
-
-
-
+}
 if($mysqli->query($consulta)==TRUE) exit("ok");
 else exit("Fallo:".$mysqli->error);
 
