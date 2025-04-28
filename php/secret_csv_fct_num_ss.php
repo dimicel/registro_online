@@ -11,7 +11,7 @@ $curso=$_POST["curso_csv_seguro"];
 
 $anno_calculo=substr($curso,0,4);
 
-$res=$mysqli->query("SELECT usuarios.apellidos, usuarios.nombre, usuarios.id_nie, usuarios_dat.num_ss FROM usuarios INNER JOIN usuarios_dat ON usuarios.id_nie=usuarios_dat.id_nie where usuarios_dat.num_ss is not NULL and usuarios_dat.num_ss<>''  ORDER BY usuarios.apellidos ASC, usuarios.nombre ASC");
+$res=$mysqli->query("SELECT usuarios.apellidos, usuarios.nombre, usuarios.id_nie, usuarios_dat.num_ss, usuarios_dat.fecha_mod_nuss FROM usuarios INNER JOIN usuarios_dat ON usuarios.id_nie=usuarios_dat.id_nie where usuarios_dat.num_ss is not NULL and usuarios_dat.num_ss<>''  ORDER BY usuarios.apellidos ASC, usuarios.nombre ASC");
 
 if ($res->num_rows==0){
     $error="No hay registros que listar.";
@@ -20,7 +20,7 @@ if ($res->num_rows==0){
 $Name = 'listado_num_ss.csv';
 $FileName = "./$Name";
 
-$Datos='NIE;ALUMNO;Nº SEGURIDAD SOCIAL'.PHP_EOL;
+$Datos='NIE;ALUMNO;Nº SEGURIDAD SOCIAL;ULTIMA MODIFICACION NUSS'.PHP_EOL;
 
 header('Expires: 0');
 header('Cache-control: private');
@@ -41,6 +41,7 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
     $Datos.="'".utf8_decode($r["id_nie"])."'".";";
     $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
     $Datos.=utf8_decode($r["num_ss"].";");
+    $Datos.=utf8_decode($r["fecha_mod_nuss"].";");
     $Datos.=utf8_decode($paga_seguro).PHP_EOL;		
 }
 
