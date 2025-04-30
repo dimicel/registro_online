@@ -148,7 +148,7 @@
     <script src=<?php echo "js/jquery_validate/additional-methods.min.js?q=".time(); ?>></script>
     <script src=<?php echo "js/jquery.bootpag.min.js?q=".time(); ?> type="text/javascript"></script>
     <script src=<?php echo "js/context_menu/jquery.contextMenu.min.js?q=".time(); ?>></script>
-    <script src=<?php echo "js/context_menu/jquery.ui.position.js?q=".time(); ?>></script>
+    <script src=<?php echo "js/context_menu/jquery.ui.position.min.js?q=".time(); ?>></script>
     <script src=<?php echo "js/residencia.js?q=".time(); ?> type="text/javascript"></script>
     <script src=<?php echo "js/comun.js?q=".time(); ?> type="text/javascript"></script>
     <script src=<?php echo "js/croppie/croppie.min.js?q=".time(); ?> type="text/javascript"></script>
