@@ -1603,7 +1603,7 @@ function panelNuevoUsuario() {
                 //maxHeight: 500,
                 width: 550,
                 close:function(event,ui){
-                    $("#div_dialogs").dialog("colose").dialog("destroy");
+                    $("#div_dialogs").dialog("close").dialog("destroy");
                 }
             });
         }
