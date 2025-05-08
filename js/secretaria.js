@@ -354,7 +354,7 @@ function generaSelectMat_ciclos(){
         data.forEach(item => {
             if (item.grado === "SUPERIOR") {prefijo = "GS";}
             else if (item.grado === "MEDIO") {prefijo = "GM";}
-            opciones[item.denominacion] = '${prefijo} ${item.denominacion}';
+            opciones[item.denominacion] = prefijo+" "+item.denominacion;
         });
         const select = document.getElementById("mat_ciclos");
         
