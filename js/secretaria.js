@@ -101,20 +101,19 @@ $(function() {
         return ($.post('impresos/exencion_fct/php/ciclos.php',{},()=>{},"json"));  
     });
     prom7=prom6.then((resp)=>{
-        alert(resp.length);
-        for (i=0; i<resp.length; i++){ alert(333333);
+        for (i=0; i<resp.datos.length; i++){
             if (resp[i].grado === "SUPERIOR" || resp[i].grado === "MEDIO") {
                 let prefijo = "";
-                if (resp[i].grado === "SUPERIOR") {prefijo = "GS";}
-                else if (resp[i].grado === "MEDIO") {prefijo = "GM";}
+                if (resp.datos[i].grado === "SUPERIOR") {prefijo = "GS";}
+                else if (resp.datos[i].grado === "MEDIO") {prefijo = "GM";}
                 const option = document.createElement("option");
-                option.value = resp[i].denominacion;
-                option.text = prefijo + " " + resp[i].denominacion;
+                option.value = resp.datos[i].denominacion;
+                option.text = prefijo + " " + resp.datos[i].denominacion;
                 if (value === "") {
                     option.selected = true;
                 }
                 document.getElementById("mat_ciclos").add(option);
-                alert(resp[i].grado+" "+resp[i].denominacion);
+                alert(resp.datos[i].grado+" "+resp.datos[i].denominacion);
             }
         } 
     });
