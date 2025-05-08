@@ -173,26 +173,18 @@
                     <div class="form-group row" id="div_curso_mat_ciclos" style="display:none">
                         <label class="col-form-label col-lg-2" style="margin-left: -15px;">Ciclo: </label>
                         <div class="col-lg-5">
-                            <select id="mat_ciclos" size="1" style="margin-left: -60px;" onchange="listaRegistros();" class="form-control"></select>
+                            <select id="mat_ciclos" size="1" style="margin-left: -60px;" onchange="CreaSelCursoTurnoGMGS(this.value);listaRegistros();" class="form-control"></select>
                         </div>
                         <label class="col-form-label col-lg-1" style="margin-left: 20px;">Curso: </label>
                         <div class="col-lg-1">
                             <select id="mat_ciclos_curso" style="margin-left: -10px;" size="1" onchange="listaRegistros();" class="form-control">
                                 <option value="" selected>...</option>
-                                <option value='1º'>1º</option>
-                                <option value='2º'>2º</option>
-                                <option value='3º'>3º</option>
-                                <option value='Modular'>Modular</option>
-                                <option value='learning'>E-learning</option>
                             </select>
                         </div>
                         <label class="col-form-label col-lg-1" style="margin-left: 50px;">Turno: </label>
                         <div class="col-lg-1">
                             <select id="mat_ciclos_turno" style="margin-left: -15px;" size="1" onchange="listaRegistros();" class="form-control">
                                 <option value="" selected>...</option>
-                                <option value='Diurno'>Diurno</option>
-                                <option value='Vespertino'>Vespertino</option>
-                                <option value='Nocturno'>Nocturno</option>
                             </select>
                         </div>
                     </div>

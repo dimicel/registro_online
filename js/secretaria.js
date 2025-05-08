@@ -11,7 +11,7 @@ var sesion_id;
 var tipo_formulario="";
 var n_reg="";
 var ciclos_gb=new Array();
-var ciclos_gm=new Array();
+var ciclos_gm_gs=new Array();
 var ciclos_gs=new Array();
 
 $(function() {
@@ -138,9 +138,11 @@ $(function() {
             }
             if (resp.datos[i].grado == "MEDIO") {
                 ciclos_gm.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
+                ciclos_gm_gs.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
             }
             if (resp.datos[i].grado == "SUPERIOR") {
                 ciclos_gs.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
+                ciclos_gm_gs.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
             }
         }
         
@@ -370,7 +372,32 @@ function generaSelectCurso_mat(){
 }
 
 
+function CreaSelCursoTurnoGMGS(c){
+    if (c != "") {
+        arr=ciclos_gm_gs;
+        for(i=0; i<arr.length; i++){
+            if (arr[i][0]==c){
+                cicloArr=arr[i];
+                break;
+            } 
+        }
+        document.getElementById("mat_ciclos_curso").innerHTML = "";
+        cu = "<option value=''>...</option>";
+        cu += "<option value='1º'>1º</option>";
+        if (cicloArr[1]>=2 )cu += "<option value='2º'>2º</option>";
+        if (cicloArr[1]==3) cu += "<option value='3º'>3º</option>";
+        cu += "<option value='Modular'>Modular</option>";
+        if(cicloArr[5]==1) cu += "<option value='learning'>E-Learning</option>";
+        document.getElementById("mat_ciclos_curso").innerHTML = cu;
 
+        document.getElementById("mat_ciclos_turno").innerHTML = "";
+        tu = "<option value=''>...</option>";
+        if (cicloArr[2] == 1) tu += "<option value='Diurno'>Diurno</option>";
+        if (cicloArr[3] == 1) tu += "<option value='Vespertino'>Vespertino</option>";
+        if (cicloArr[4] == 1) tu += "<option value='Nocturno'>Nocturno</option>";
+        document.getElementById("mat_ciclos_turno").innerHTML = tu;
+    }
+}
 
 
 
