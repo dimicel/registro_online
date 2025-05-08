@@ -352,10 +352,9 @@ function generaSelectMat_ciclos(){
 
     fetch('impresos/exencion_fct/php/ciclos.php').then(response => response.json()).then(data => {
         data.forEach(item => {
-            if (item.grado === "SUPERIOR") { prefijo="GS"; }
-            else if (item.grado === "MEDIO") { prefijo="GM"; }
-            const prefijo = item.grado === "SUPERIOR" ? "GS" : "GM";
-            opciones[item.denominacion] = `${prefijo} ${item.denominacion}`;
+            if (item.grado === "SUPERIOR") {prefijo = "GS";}
+            else if (item.grado === "MEDIO") {prefijo = "GM";}
+            opciones[item.denominacion] = '${prefijo} ${item.denominacion}';
         });
         const select = document.getElementById("mat_ciclos");
         
