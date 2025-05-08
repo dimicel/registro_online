@@ -20,6 +20,11 @@ var primera_vez_pag_2=true;
 var primera_vez_pag_3=true;
 var mensaje_docs;
 
+let grados = new Array();
+let ciclos_gb = new Array();
+let ciclos_gm = new Array();
+let ciclos_gs = new Array();
+
 
 $(document).ready(function() {
     dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
@@ -103,12 +108,49 @@ $(document).ready(function() {
 
         return $.post("../../php/usu_existe_mat.php", { id_nie: id_nie, curso: anno_curso },()=>{},"json");
     });
-    dat4.then((r)=>{
+    dat5=dat4.then((r)=>{
         existe_mat=(r.error=="ok")?true:false;
         if (existe_mat) {
             mensajeNuevaMat = "Ya existe una matrícula registrada.<br>Si continúa el proceso, se eliminará la que tenga ya creada y se sustituirá por ésta.";
             confirmarnuevaMat(mensajeNuevaMat, "MATRÍCULA EXISTENTE", "Crear Nueva");
         }
+        return ($.post('../exencion_fct/php/ciclos.php',{},()=>{},"json")); 
+    });
+    dat6=dat5.then((resp)=>{
+        const option = document.createElement("option");
+        option.value="";
+        option.text="Seleccione uno...";
+        option.selected=true;
+        document.getElementById("sel_grado").add(option);
+        for (i=0; i<resp.datos.length; i++){
+            if (resp.datos[i].e-learnig === 1) {
+                existe_grado=false;
+                for (let i = 0; i < document.getElementById("sel_grado").options.length; i++) {
+                    if (document.getElementById("sel_grado").options[i].value == resp.datos[i].grado) {
+                      existe_grado=true;
+                    }
+                }
+                if (!existe_grado){
+                    const option = document.createElement("option");
+                    option.value = resp.datos[i].grado;
+                    option.text =resp.datos[i].grado;
+                    document.getElementById("sel_grado").add(option);
+                }
+            }
+        } 
+        
+        for (i=0; i<resp.datos.length; i++){
+            if (resp.datos[i].grado === "BÁSICO" && resp.datos[i].e-learning === 1) {
+                ciclos_gb.push(resp.datos[i].denominacion);
+            }
+            else if (resp.datos[i].grado === "MEDIO" && resp.datos[i].e-learning === 1) {
+                ciclos_gm.push(resp.datos[i].denominacion);
+            }
+            if (resp.datos[i].grado === "SUPERIOR" && resp.datos[i].e-learning === 1) {
+                ciclos_gs.push(resp.datos[i].denominacion);
+            }
+        } 
+        
     });
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
@@ -379,13 +421,25 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
 
 function creaSelCiclos(g) {
     if (g != "") {
-        if (g == "MEDIO") {
-            sel = "<option value='Instalaciones Eléctricas y Automáticas'>Instalaciones Eléctricas y Automáticas</option>";
-            document.getElementById("div_sel_proy").style.display="none";
-        } else if (g == "SUPERIOR") {
+        if (g == "BÁSICO") {
             sel = "<option value=''>Seleccione uno...</option>";
-            sel += "<option value='Administración y Finanzas'>Administración y Finanzas</option>";
-            sel += "<option value='Guía, Información y Asistencias Turísticas'>Guía, Información y Asistencias Turísticas</option>";
+            for (i=0; i<ciclos_gb.length; i++){
+                sel += "<option value='"+ciclos_gb[i]+"'>"+ciclos_gb[i]+"</option>";
+            }
+            document.getElementById("div_sel_proy").style.display="none";
+        }
+        if (g == "MEDIO") {
+            sel = "<option value=''>Seleccione uno...</option>";
+            for (i=0; i<ciclos_gm.length; i++){
+                sel += "<option value='"+ciclos_gm[i]+"'>"+ciclos_gm[i]+"</option>";
+            }
+            document.getElementById("div_sel_proy").style.display="none";
+        }
+        else if (g == "SUPERIOR") {
+            sel = "<option value=''>Seleccione uno...</option>";
+            for (i=0; i<ciclos_gs.length; i++){
+                sel += "<option value='"+ciclos_gs[i]+"'>"+ciclos_gs[i]+"</option>";
+            }
             document.getElementById("div_sel_proy").style.display="inherit";
         }
         document.getElementById("sel_ciclos").innerHTML=sel;
