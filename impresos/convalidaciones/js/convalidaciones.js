@@ -10,11 +10,17 @@ var matrizMods=[];
 var formData = new FormData();
 var subidoDocIdent=false;
 
+var ciclos_gb=new Array();
+var ciclos_gm=new Array();  
+var ciclos_gs=new Array();
+var cursos_espcializacion=new Array();
+
 $(document).ready(function() {
 
     document.body.style.overflowY = "scroll";
 
-    dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, function(resp) {
+    dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, function() {}, "json"));
+    dat2= dat1.then((resp) => {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else {
             id_nie = resp["id_nie"];
@@ -34,9 +40,9 @@ $(document).ready(function() {
             }
 
         }
-    }, "json"));
-    dat2 = dat1.then(() => {
-        $.post("../../php/usu_recdatospers.php", { id_nie: id_nie }, (resp) => {
+        $.post("../../php/usu_recdatospers.php", { id_nie: id_nie }, () => {}, "json");
+    });
+    dat3 = dat2.then((resp) => {
             if (resp.error == "ok") {
                 for (e in resp.datos) {
                     if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
@@ -55,8 +61,25 @@ $(document).ready(function() {
                 document.getElementById("localidad").value = '';
                 document.getElementById("provincia").value = '';
             }
-        }, "json");
+            return ($.post('../exencion_fct/php/ciclos.php',{},()=>{},"json")); 
+        
     });
+    dat3.then((resp) => {
+        for (i=0; i<resp.datos.length; i++){
+            if (resp.datos[i].grado == "BÁSICO") {
+                ciclos_gb.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
+            }
+            if (resp.datos[i].grado == "MEDIO") {
+                ciclos_gm.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
+            }
+            if (resp.datos[i].grado == "SUPERIOR") {
+                ciclos_gs.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
+            }
+            if (resp.datos[i].grado == "CURSO DE ESPECIALIZACIÓN") {
+                cursos_espcializacion.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
+            }
+        }
+    }); 
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
 
@@ -220,29 +243,24 @@ function selGrado(obj) {
         sel.appendChild(option);
         return;
     }
-    $.post("php/listaciclos.php", { grado: obj.value }, (resp) => {
-        if (resp["error"] == "servidor") {
-            alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
-        } else if (resp["error"] == "error_consulta") {
-            alerta("Hay un problema con la base de datos. Inténtelo más tarde.", "ERROR DB");
-        } else if (resp["error"] == "no_ciclos") {
-            alerta("No se encuentran ciclos formativos registrados.", "SELECT SIN CICLOS");
-        } else if (resp["error"] == "ok") {
-            sel.innerHTML = "";
-            option = document.createElement('option');
-            option.value = "";
-            if (obj.value == "") option.text = "Selecciona grado ...";
-            else option.text = "Selecciona ciclo ...";
-            sel.appendChild(option);
-            for (i = 0; i < resp["datos"].length; i++) {
-                const option = document.createElement('option');
-                option.value = resp["datos"][i];
-                option.text = resp["datos"][i];
-                sel.appendChild(option);
-            }
-            sel.selectedIndex = 0;
-        }
-    }, "json");
+    sel.innerHTML = "";
+    option = document.createElement('option');
+    option.value = "";
+    if (obj.value == "") option.text = "Selecciona grado ...";
+    else option.text = "Selecciona ciclo ...";
+    sel.appendChild(option);
+    if (obj.value == "Básico") {arr=ciclos_gb;}
+    else if (obj.value == "Medio") {arr=ciclos_gm;}
+    else if (obj.value == "Superior") {arr=ciclos_gs;}
+    else if (obj.value == "Curso de Especialización") {arr=cursos_espcializacion;}
+    for (i = 0; i < arr.length; i++) {
+        const option = document.createElement('option');
+        option.value = arr[i][0];
+        option.text = arr[i][0];
+        sel.appendChild(option);
+    }
+    sel.selectedIndex = 0;
+        
 }
 
 
