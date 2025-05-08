@@ -2986,7 +2986,7 @@ function eliminaPrematriculas(){
     }
     else return;
     if (confirmar2){
-        document.getElementById("cargando").style.display = 'inherit';
+        //document.getElementById("cargando").style.display = 'inherit';
         $.post("php/secret_elimina_prematriculas.php",{},(resp)=>{
             document.getElementById("cargando").style.display = 'none';
             if (resp=="ok"){
