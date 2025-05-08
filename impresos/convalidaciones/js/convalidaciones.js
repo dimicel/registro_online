@@ -294,7 +294,7 @@ function selCiclo(obj){
     optModalidad="<option value=''>Seleccione uno...</option>";
     optModalidad+="<option value='Presencial'>Presencial</option>";
     optModalidad+="<option value='Semipresencial'>Semipresencial</option>";
-    optModalidad+="<option value='Modular'>Modular</option>";
+    if (cicloArr[5]==0)optModalidad+="<option value='Modular'>Modular</option>";
     if (cicloArr[5]==1) optModalidad+="<option value='Virtual'>Virtual (E-Learning)</option>";
     document.getElementById("modalidad").innerHTML=optModalidad;
 
