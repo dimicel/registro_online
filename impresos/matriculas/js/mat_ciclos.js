@@ -460,7 +460,7 @@ function CreaSelCurso(c) {
         cu = "<option value=''>Seleccione uno...</option>";
         cu += "<option value='Modular'>Modular</option>";
         cu += "<option value='1º'>1º</option>";
-        cu += "<option value='2º'>2º</option>";
+        if (cicloArr[1]>=2 )cu += "<option value='2º'>2º</option>";
         if (cicloArr[1]==3) cu += "<option value='3º'>3º</option>";
         document.getElementById("sel_curso").innerHTML = cu;
         seleccionCurso();
