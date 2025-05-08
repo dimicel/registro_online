@@ -486,41 +486,6 @@ function CreaSelTurno(t) {
         if (cicloArr[4] == 1) tu += "<option value='Nocturno'>Nocturno</option>";
         if (cicloArr[5] == 1) tu += "<option value='E-learning'>E-learning</option>";
         document.getElementById("sel_turno").innerHTML = tu;
-        /*if (c == "Cocina y Gastronomía"  || c == "Servicios en Restauración") {
-            tu = "<option value=''>Seleccione uno...</option>";
-            tu += "<option value='Diurno'>Diurno</option>";
-            tu += "<option value='Vespertino'>Vespertino</option>";
-            document.getElementById("sel_turno").innerHTML = tu;
-        }
-        else if(c == "Instalaciones Eléctricas y Automáticas"){
-            tu = "<option value=''>Seleccione uno...</option>";
-            tu += "<option value='Diurno'>Diurno</option>";
-            tu += "<option value='Vespertino'>Vespertino</option>";
-            if(t=="Modular") tu += "<option value='E-learning'>E-learning</option>";
-            document.getElementById("sel_turno").innerHTML = tu;
-        } 
-        else if (c == "Panadería, Repostería y Confitería" || c == "Gestión de Alojamientos Turísticos" ||
-            c == "Mantenimiento de Instalaciones Térmicas y de Fluidos" || c=="Dirección de Servicios de Restauración") {
-            document.getElementById("sel_turno").innerHTML = "<option value='Vespertino'>Vespertino</option>";
-        } else if (c == "Administración y Finanzas") {
-            tu = "<option value=''>Seleccione uno...</option>";
-            tu += "<option value='Diurno'>Diurno</option>";
-            tu += "<option value='Nocturno'>Nocturno</option>";
-            if(t=="Modular")tu += "<option value='E-learning'>E-learning</option>";
-            document.getElementById("sel_turno").innerHTML = tu;
-        }
-        else if(c=="Guía, Información y Asistencias Turísticas"){
-            tu = "<option value=''>Seleccione uno...</option>";
-            tu += "<option value='Diurno'>Diurno</option>";
-            if(t=="Modular") tu += "<option value='E-learning'>E-learning</option>";
-            document.getElementById("sel_turno").innerHTML = tu;
-        }
-        else {
-            document.getElementById("sel_turno").innerHTML = "<option value='Diurno'>Diurno</option>";
-        }
-        if (t == "3º") {
-            document.getElementById("sel_turno").innerHTML = "<option value='Nocturno'>Nocturno</option>";
-        }*/
         seleccionCurso();
     }
 }
