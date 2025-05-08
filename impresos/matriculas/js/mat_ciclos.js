@@ -467,11 +467,26 @@ function CreaSelCurso(c) {
     }
 }
 
-function CreaSelTurno(t) {
+function CreaSelTurno() {
     if (t != "") {
         c = document.getElementById("sel_ciclos").value;
+        gr=document.getElementById("sel_grado").value;
+        if (gr=="MEDIO"){ arr=ciclos_gm;}
+        else if (gr=="SUPERIOR"){ arr=ciclos_gs;}
+        for(i=0; i<arr.length; i++){
+            if (arr[i][0]==c){
+                cicloArr=arr[i];
+                break;
+            } 
+        }
         document.getElementById("sel_turno").innerHTML = "";
-        if (c == "Cocina y Gastronomía"  || c == "Servicios en Restauración") {
+        tu = "<option value=''>Seleccione uno...</option>";
+        if (cicloArr[2] == 1) tu += "<option value='Diurno'>Diurno</option>";
+        if (cicloArr[3] == 1) tu += "<option value='Vespertino'>Vespertino</option>";
+        if (cicloArr[4] == 1) tu += "<option value='Nocturno'>Nocturno</option>";
+        if (cicloArr[5] == 1) tu += "<option value='E-learning'>E-learning</option>";
+        document.getElementById("sel_turno").innerHTML = tu;
+        /*if (c == "Cocina y Gastronomía"  || c == "Servicios en Restauración") {
             tu = "<option value=''>Seleccione uno...</option>";
             tu += "<option value='Diurno'>Diurno</option>";
             tu += "<option value='Vespertino'>Vespertino</option>";
@@ -505,7 +520,7 @@ function CreaSelTurno(t) {
         }
         if (t == "3º") {
             document.getElementById("sel_turno").innerHTML = "<option value='Nocturno'>Nocturno</option>";
-        }
+        }*/
         seleccionCurso();
     }
 }
