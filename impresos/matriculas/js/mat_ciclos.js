@@ -114,7 +114,7 @@ $(document).ready(function() {
         }
         return ($.post('../exencion_fct/php/ciclos.php',{},()=>{},"json")); 
     });
-    data6=dat5.then((r)=>{
+    data6=dat5.then((resp)=>{
         for (i=0; i<resp.datos.length; i++){
             if (resp.datos[i].grado == "MEDIO") {
                 ciclos_gm.push(new Array[resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]]);
