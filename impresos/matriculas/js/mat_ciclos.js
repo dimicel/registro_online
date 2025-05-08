@@ -451,6 +451,10 @@ function CreaSelCurso(c) {
         if (gr=="MEDIO"){ arr=ciclos_gm;}
         else if (gr=="SUPERIOR"){ arr=ciclos_gs;}
         cicloArr=arr.find(elemento => elemento == c);
+        alert(cicloArr.length)
+        for (i=0; i<cicloArr.length; i++){
+            alert(cicloArr[i]);
+        }
         document.getElementById("sel_curso").innerHTML = "";
         cu = "<option value=''>Seleccione uno...</option>";
         cu += "<option value='Modular'>Modular</option>";
