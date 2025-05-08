@@ -456,10 +456,6 @@ function CreaSelCurso(c) {
                 break;
             } 
         }
-        alert(cicloArr.length)
-        for (i=0; i<cicloArr.length; i++){
-            alert(cicloArr[i]);
-        }
         document.getElementById("sel_curso").innerHTML = "";
         cu = "<option value=''>Seleccione uno...</option>";
         cu += "<option value='Modular'>Modular</option>";
