@@ -11,6 +11,7 @@ var sesion_id;
 var tipo_formulario="";
 var n_reg="";
 var ciclos_gb=new Array();
+var ciclos_gm=new Array();  
 var ciclos_gm_gs=new Array();
 var ciclos_gs=new Array();
 
