@@ -23,10 +23,11 @@ elseif ($c->num_rows==0){
 else {
     $cont=0;
     while($r=$c->fetch_assoc()){
-        $resp["datos"][$cont]["grado"]=$r["grado"];
-        $resp["datos"][$cont]["denominacion"]=$r["denominacion"];
-        $resp["datos"][$cont]["departamento"]=$r["departamento"];
-        $resp["datos"][$cont]["cursos"]=$r["cursos"];
+        //$resp["datos"][$cont]["grado"]=$r["grado"];
+        //$resp["datos"][$cont]["denominacion"]=$r["denominacion"];
+        //$resp["datos"][$cont]["departamento"]=$r["departamento"];
+        //$resp["datos"][$cont]["cursos"]=$r["cursos"];
+        $resp["datos"][$cont]=$r;
         $cont++;
     }
     $resp["error"]="ok";
