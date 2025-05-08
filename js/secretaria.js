@@ -863,10 +863,10 @@ function listaRegistros(orden_campo, orden_direccion) {
                             fechaLimite = new Date(anno_final_curso+"-06-15");
                         }
                         else if(j==4){//Aquí se hace la columna Informe JD y Resolución juntas 
-                            abrDpto="";alert(data_array[i]["departamento"])
-                            for (i=0;i<departamentos.length;i++){
-                                if (data_array[i]["departamento"]==departamentos[i][0]){
-                                    abrDpto=departamentos[i][1];
+                            abrDpto="";
+                            for (j=0;j<departamentos.length;j++){
+                                if (data_array[i]["departamento"]==departamentos[j][0]){
+                                    abrDpto=departamentos[j][1];
                                 }
                             }
                             data+="<td style='width:35px'><center>"+abrDpto+"</center></td>";
