@@ -2975,10 +2975,10 @@ function invalidaInformeJDExencionFCT(registro){
 
 
 function eliminaPrematriculas(){
-    if (mes>=5  &&  mes<=12){
+    /*if (mes>=5  &&  mes<=12){
         alerta("No se pueden eliminar las prematrículas en el mes actual.<br>Sólo se pueden eliminar desde enero a abril.","INHABILITADO POR FECHA");
         return;
-    }
+    }*/
     let confirmar1, confirmar2
     confirmar1=confirmar("¿Está seguro de que desea eliminar las prematriculas de los alumnos?<br>Si acepta se eliminarán todos los registros de prematrícula de las base de datos y los formularios generados en PDF.<br>Esta acción no se puede deshacer y no se podrán recuperar los datos eliminados.","ELIMINAR PREMATRICULAS");
     if (confirmar1){
