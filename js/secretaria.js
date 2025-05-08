@@ -325,7 +325,7 @@ function generaSelectCurso_mat(){
 }
 
 function generaSelectMat_ciclos(){
-    const opciones = {
+    /*const opciones = {
         "": "Seleccione uno...",
         "Cocina y Gastronomía": "GM Cocina y Gastronomía",
         "Gestión Administrativa": "GM Gestión Administrativa",
@@ -344,19 +344,37 @@ function generaSelectMat_ciclos(){
         "Guía, Información y Asistencias Turísticas": "GS Guía, Información y Asistencias Turísticas",
         "Mantenimiento de Instalaciones Térmicas y de Fluidos": "GS Mantenimiento de Instalaciones Térmicas y de Fluidos",
         "Sistemas Electrotécnicos y Automatizados": "GS Sistemas Electrotécnicos y Automatizados"
-      };
+      };*/
+
+    const opciones = {
+        "": "Seleccione uno..."
+    };
+
+    fetch('impresos/exencion_fct/php/ciclos.php').then(response => response.json()).then(data => {
+        data.forEach(item => {
+            if (item.grado === "SUPERIOR") { prefijo="GS"; }
+            else if (item.grado === "MEDIO") { prefijo="GM"; }
+            const prefijo = item.grado === "SUPERIOR" ? "GS" : "GM";
+            opciones[item.denominacion] = `${prefijo} ${item.denominacion}`;
+    });
+
+    const select = document.getElementById("mat_ciclos");
+    
+    for (const [value, label] of Object.entries(opciones)) {
+    const option = document.createElement("option");
+    option.value = value;
+    option.text = label;
+    if (value === "") {
+        option.selected = true;
+    }
+    select.add(option);
+    } 
+    })
+    .catch(error => {
+        console.error("Error al obtener los datos:", error);
+    });
       
-      const select = document.getElementById("mat_ciclos");
       
-      for (const [value, label] of Object.entries(opciones)) {
-        const option = document.createElement("option");
-        option.value = value;
-        option.text = label;
-        if (value === "") {
-          option.selected = true;
-        }
-        select.add(option);
-      } 
 }
 
 function generaSelectMat_fpb(){
