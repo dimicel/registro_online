@@ -248,8 +248,8 @@ function selGrado(obj) {
 
 function selCiclo(obj){
     document.getElementById('modulos').value='';
-    //if (obj.value=="Administración y Finanzas (NOCTURNO)") document.getElementById("turno").value="Nocturno";
-    //else document.getElementById("turno").selectedIndex=0;
+    if (obj.value=="Administración y Finanzas (NOCTURNO)") document.getElementById("turno").value="Nocturno";
+    else document.getElementById("turno").selectedIndex=0;
 }
 
 function selModulos(e) {
