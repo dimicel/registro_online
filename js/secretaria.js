@@ -14,6 +14,7 @@ var ciclos_gb=new Array();
 var ciclos_gm=new Array();  
 var ciclos_gm_gs=new Array();
 var ciclos_gs=new Array();
+var departamentos=new Array();
 
 $(function() {
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
@@ -89,13 +90,14 @@ $(function() {
             for(i=0;i<resp.registro.length;i++){
                 opt=document.createElement("option");
                 opt.value=resp.registro[i].departamento;
-                opt.textContent=resp.registro[i].departamento;
+                opt.textContent=resp.registro[i].departamento +" ("+resp.registro[i].abreviatura+")";
                 opt.dataset.email=resp.registro[i].email_jd;
                 document.getElementById("departamento").appendChild(opt);
                 opt=document.createElement("option");
                 opt.value=resp.registro[i].departamento;
-                opt.textContent=resp.registro[i].departamento;
+                opt.textContent=resp.registro[i].departamento +" ("+resp.registro[i].abreviatura+")";
                 document.getElementById("config_dpto").appendChild(opt);
+                departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura));
             }
         }
         else {
@@ -634,6 +636,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             }
             else{
                 if (tipo_formulario=="exencion_fct" && i==4){
+                    encab+="<td style='width:35px'><center>Dpto.</center></td>";
                     encab+="<td style='width:70px' title='Informe del Jefe de Departamento'><center>Informe JD</center></td>";
                     encab+="<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
                 }
@@ -860,6 +863,13 @@ function listaRegistros(orden_campo, orden_direccion) {
                             fechaLimite = new Date(anno_final_curso+"-06-15");
                         }
                         else if(j==4){//Aquí se hace la columna Informe JD y Resolución juntas 
+                            abrDpto="";
+                            for (i=0;i<departamentos.length;i++){
+                                if (data_array[i]["departamento"]==departamentos[i][0]){
+                                    abrDpto=departamentos[i][1];
+                                }
+                            }
+                            data+="<td style='width:35px'><center>"+abrDpto+"</center></td>";
                             dirRegistro=data_array[i]["registro"].slice(17);
                             rutaInforme=data_array[i]["rutaInforme"];
                             rutaResolucion=data_array[i]["rutaResolucion"];                            
