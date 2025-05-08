@@ -122,8 +122,8 @@ $(document).ready(function() {
         option.text="Seleccione uno...";
         option.selected=true;
         document.getElementById("sel_grado").add(option);
-        for (i=0; i<resp.datos.length; i++){alert(resp.datos[i]["e-learning"]);
-            if (resp.datos[i]["e-learning"] == 1) {alert(888);
+        for (i=0; i<resp.datos.length; i++){
+            if (resp.datos[i]["e-learning"] == 1) {
                 existe_grado=false;
                 for (let i = 0; i < document.getElementById("sel_grado").options.length; i++) {
                     if (document.getElementById("sel_grado").options[i].value == resp.datos[i].grado) {
