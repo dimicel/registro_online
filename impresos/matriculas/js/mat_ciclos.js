@@ -20,6 +20,9 @@ var primera_vez_pag_2=true;
 var primera_vez_pag_3=true;
 var mensaje_docs;
 
+let ciclos_gm= new Array();
+let ciclos_gs= new Array();
+
 
 $(document).ready(function() {
     dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
@@ -103,11 +106,22 @@ $(document).ready(function() {
 
         return $.post("../../php/usu_existe_mat.php", { id_nie: id_nie, curso: anno_curso },()=>{},"json");
     });
-    dat4.then((r)=>{
+    dat5=dat4.then((r)=>{
         existe_mat=(r.error=="ok")?true:false;
         if (existe_mat) {
             mensajeNuevaMat = "Ya existe una matrícula registrada.<br>Si continúa el proceso, se eliminará la que tenga ya creada y se sustituirá por ésta.";
             confirmarnuevaMat(mensajeNuevaMat, "MATRÍCULA EXISTENTE", "Crear Nueva");
+        }
+        return ($.post('../exencion_fct/php/ciclos.php',{},()=>{},"json")); 
+    });
+    data6=dat5.then((r)=>{
+        for (i=0; i<resp.datos.length; i++){
+            if (resp.datos[i].grado == "MEDIO") {
+                ciclos_gm.push(new Array[resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]]);
+            }
+            if (resp.datos[i].grado == "SUPERIOR") {
+                ciclos_gs.push(new Array[resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]]);
+            }
         }
     });
 
@@ -378,7 +392,6 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
 
 
 function CreaSelTurno() {
-    alert(1)
     curs=document.getElementById("sel_curso").value;
     c = document.getElementById("sel_ciclos").value;
     document.getElementById("sel_turno").innerHTML = "";
@@ -416,27 +429,16 @@ function creaSelCiclos(g) {
         document.getElementById("sel_curso").innerHTML = "<option value=''>Seleccione CICLO</option>";
         document.getElementById("sel_turno").innerHTML = "<option value=''>Seleccione CICLO</option>";
         if (g == "MEDIO") {
-            sel = "<option value=''>Seleccione uno...</option>";
-            sel += "<option value='Cocina y Gastronomía'>Cocina y Gastronomía</option>";
-            sel += "<option value='Gestión Administrativa'>Gestión Administrativa</option>";
-            sel += "<option value='Instalaciones de Producción de Calor'>Instalaciones de Producción de Calor</option>";
-            sel += "<option value='Instalaciones Eléctricas y Automáticas'>Instalaciones Eléctricas y Automáticas</option>";
-            sel += "<option value='Instalaciones Frigoríficas y de Climatización'>Instalaciones Frigoríficas y de Climatización</option>";
-            sel += "<option value='Panadería, Repostería y Confitería'>Panadería, Repostería y Confitería</option>";
-            sel += "<option value='Servicios en Restauración'>Servicios en Restauración</option>";
+            arr=ciclos_gm;
         } else if (g == "SUPERIOR") {
-            sel = "<option value=''>Seleccione uno...</option>";
-            sel += "<option value='Administración y Finanzas'>Administración y Finanzas</option>";
-            sel += "<option value='Agencias de Viajes y Gestión de Eventos'>Agencias de Viajes y Gestión de Eventos</option>";
-            sel += "<option value='Asistencia a la Dirección'>Asistencia a la Dirección</option>";
-            sel += "<option value='Automatización y Robótica Industrial'>Automatización y Robótica Industrial</option>";
-            sel += "<option value='Dirección de Cocina'>Dirección de Cocina</option>";
-            sel += "<option value='Dirección de Servicios de Restauración'>Dirección de Servicios de Restauración</option>";
-            sel += "<option value='Gestión de Alojamientos Turísticos'>Gestión de Alojamientos Turísticos</option>";
-            sel += "<option value='Guía, Información y Asistencias Turísticas'>Guía, Información y Asistencias Turísticas</option>";
-            sel += "<option value='Mantenimiento de Instalaciones Térmicas y de Fluidos'>Mantenimiento de Instalaciones Térmicas y de Fluidos</option>";
-            sel += "<option value='Sistemas Electrotécnicos y Automatizados'>Sistemas Electrotécnicos y Automatizados</option>";
+            arr=ciclos_gs;
         }
+
+        sel = "<option value=''>Seleccione uno...</option>";
+        for (i = 0; i < arr.length; i++) {
+            sel += "<option value='"+arr[i][0]+"'>"+arr[i][0]+"</option>";
+        }
+        
         document.getElementById("sel_ciclos").innerHTML=sel;
         seleccionCurso();
     }
@@ -457,7 +459,6 @@ function CreaSelCurso(c) {
 }
 
 function CreaSelTurno(t) {
-    alert(2)
     if (t != "") {
         c = document.getElementById("sel_ciclos").value;
         document.getElementById("sel_turno").innerHTML = "";
