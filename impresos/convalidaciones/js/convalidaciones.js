@@ -265,9 +265,39 @@ function selGrado(obj) {
 
 
 function selCiclo(obj){
-    document.getElementById('modulos').value='';
-    if (obj.value=="Administración y Finanzas (NOCTURNO)") document.getElementById("turno").value="Nocturno";
-    else document.getElementById("turno").selectedIndex=0;
+    grado=document.getElementById("grado").value;
+    ciclo=obj.value;
+    if (grado == "Básico") {arr=ciclos_gb;}
+    else if (grado == "Medio") {arr=ciclos_gm;}
+    else if (grado == "Superior") {arr=ciclos_gs;}
+    else if (grado == "Curso de Especialización") {arr=cursos_espcializacion;}
+    for(i=0; i<arr.length; i++){
+        if (arr[i][0]==ciclo){
+            cicloArr=arr[i];
+            break;
+        } 
+    }
+    optCurso="<option value=''>Seleccione uno...</option>";
+    optCurso += "<option value='1º'>1º</option>";
+    if (cicloArr[1]>1) optCurso += "<option value='2º'>2º</option>";
+    if (cicloArr[1]>2) optCurso += "<option value='3º'>3º</option>";
+    if (cicloArr[5]==1) optCurso += "<option value='Virtual_Modular'>Virtual (E-Learning)/Modular</option>";
+    document.getElementById("curso").innerHTML=optCurso;
+    document.getElementById("curso").selectedIndex=0;
+    optTurno="<option value=''>Seleccione uno...</option>";
+    if (cicloArr[2]==1) optTurno += "<option value='Diurno'>Diurno</option>";
+    if (cicloArr[3]==1) optTurno += "<option value='Vespertino'>Vespertino</option>";
+    if (cicloArr[4]==1) optTurno += "<option value='Nocturno'>Nocturno</option>";
+    if (cicloArr[5]==1) optTurno += "<option value='Virtual'>Virtual (E-Learning)</option>";
+    document.getElementById("turno").innerHTML=optTurno;
+    document.getElementById("turno").selectedIndex=0;
+    optModalidad="<option value=''>Seleccione uno...</option>";
+    optModalidad+="<option value='Presencial'>Presencial</option>";
+    optModalidad+="<option value='Semipresencial'>Semipresencial</option>";
+    optModalidad+="<option value='Modular'>Modular</option>";
+    if (cicloArr[5]==1) optModalidad+="<option value='Virtual'>Virtual (E-Learning)</option>";
+    document.getElementById("modalidad").innerHTML=optModalidad;
+
 }
 
 function selModulos(e) {
