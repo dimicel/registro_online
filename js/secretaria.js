@@ -10,7 +10,9 @@ var curso_actual,curso_premat,curso_mat;
 var sesion_id;
 var tipo_formulario="";
 var n_reg="";
-
+var ciclos_gb=new Array();
+var ciclos_gm=new Array();
+var ciclos_gs=new Array();
 
 $(function() {
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
@@ -129,6 +131,18 @@ $(function() {
                 document.getElementById("mat_fpb").add(option);
             }
         } 
+
+        for (i=0; i<resp.datos.length; i++){
+            if (resp.datos[i].grado == "BÁSICO") {
+                ciclos_gb.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
+            }
+            if (resp.datos[i].grado == "MEDIO") {
+                ciclos_gm.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
+            }
+            if (resp.datos[i].grado == "SUPERIOR") {
+                ciclos_gs.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
+            }
+        }
         
     });
 

@@ -391,39 +391,6 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
 
 
 
-function CreaSelTurno() {
-    curs=document.getElementById("sel_curso").value;
-    c = document.getElementById("sel_ciclos").value;
-    document.getElementById("sel_turno").innerHTML = "";
-    if(curs=="Elear" || curs=="Libre"){
-        document.getElementById("sel_turno").innerHTML = "<option value='-'>-</option>";
-        return;
-    }
-    else if (curs == "3º") {
-        document.getElementById("sel_turno").innerHTML = "<option value='Nocturno'>Nocturno</option>";
-        return;
-    }
-    if (c == "Cocina y Gastronomía" || c == "Instalaciones Eléctricas y Automáticas" ||
-        c == "Servicios en Restauración") {
-        tu = "<option value=''>Seleccione uno...</option>";
-        tu += "<option value='Diurno'>Diurno</option>";
-        tu += "<option value='Vespertino'>Vespertino</option>";
-        document.getElementById("sel_turno").innerHTML = tu;
-    } else if (c == "Panadería, Repostería y Confitería" || c == "Gestión de Alojamientos Turísticos" ||
-        c == "Mantenimiento de Instalaciones Térmicas y de Fluidos") {
-        document.getElementById("sel_turno").innerHTML = "<option value='Vespertino'>Vespertino</option>";
-    } else if (c == "Administración y Finanzas") {
-        tu = "<option value=''>Seleccione uno...</option>";
-        tu += "<option value='Diurno'>Diurno</option>";
-        tu += "<option value='Nocturno'>Nocturno</option>";
-        document.getElementById("sel_turno").innerHTML = tu;
-    } else {
-        document.getElementById("sel_turno").innerHTML = "<option value='Diurno'>Diurno</option>";
-    }
-   
-}
-
-
 function creaSelCiclos(g) {
     if (g != "") {
         document.getElementById("sel_curso").innerHTML = "<option value=''>Seleccione CICLO</option>";
