@@ -101,6 +101,11 @@ $(function() {
         return ($.post('impresos/exencion_fct/php/ciclos.php',{},()=>{},"json"));  
     });
     prom7=prom6.then((resp)=>{
+        const option = document.createElement("option");
+        option.value="";
+        option.text="Seleccione uno...";
+        option.selected=true;
+        document.getElementById("mat_ciclos").add(option);
         for (i=0; i<resp.datos.length; i++){
             if (resp.datos[i].grado === "SUPERIOR" || resp.datos[i].grado === "MEDIO") {
                 let prefijo = "";
@@ -109,9 +114,6 @@ $(function() {
                 const option = document.createElement("option");
                 option.value = resp.datos[i].denominacion;
                 option.text = prefijo + " " + resp.datos[i].denominacion;
-                if (value === "") {
-                    option.selected = true;
-                }
                 document.getElementById("mat_ciclos").add(option);
                 alert(resp.datos[i].grado+" "+resp.datos[i].denominacion);
             }
