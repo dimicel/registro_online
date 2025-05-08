@@ -2961,6 +2961,32 @@ function invalidaInformeJDExencionFCT(registro){
             alerta("Acción cancelada.","CANCELADO");
         }
     });
+}
 
 
+function eliminaPrematriculas(){
+    let confirmar1, confirmar2
+    confirmar1=confirmar("¿Está seguro de que desea eliminar las prematriculas de los alumnos?<br>Si acepta se eliminarán todos los registros de prematrícula de las base de datos y los formularios generados en PDF.<br>Esta acción no se puede deshacer y no se podrán recuperar los datos eliminados.","ELIMINAR PREMATRICULAS");
+    if (confirmar1){
+        confirmar2=confirmar("Por favor, confirme otra vez que desea eliminar todas las prematríuclas.<br>¡¡¡RECUERDE QUE ESTE PROCEDIMIENTO ES IRREVERSIBLE!!!","CONFIRMAR ELIMINACIÓN");
+    }
+    else return;
+    if (confirmar2){
+        document.getElementById("cargando").style.display = 'inherit';
+        $.post("php/secret_elimina_prematriculas.php",{},(resp)=>{
+            document.getElementById("cargando").style.display = 'none';
+            if (resp=="ok"){
+                alerta("Prematrículas eliminadas correctamente.","ELIMINACIÓN CORRECTA");
+            }
+            else if (resp=="server"){
+                alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+            }
+            else if (resp=="no_registro"){
+                alerta("No existen prematrículas.","NO HAY PREMATRÍCULAS");
+            }
+            else{
+                alerta(resp,"ERROR DB/SERVIDOR");
+            }
+        });
+    }
 }
