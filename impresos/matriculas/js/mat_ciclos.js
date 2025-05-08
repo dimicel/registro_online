@@ -467,7 +467,7 @@ function CreaSelCurso(c) {
     }
 }
 
-function CreaSelTurno() {
+function CreaSelTurno(t) {
     if (t != "") {
         c = document.getElementById("sel_ciclos").value;
         gr=document.getElementById("sel_grado").value;
