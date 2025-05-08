@@ -123,12 +123,11 @@ $(document).ready(function() {
         option.selected=true;
         document.getElementById("sel_grado").add(option);
         for (i=0; i<resp.datos.length; i++){
-            if (resp.datos[i]["e-learning"] == 1) {alert("es");
+            if (resp.datos[i]["e-learning"] == 1) {
                 existe_grado=false;
                 for (let j = 0; j < document.getElementById("sel_grado").options.length; j++) {
-                    alert(document.getElementById("sel_grado").options[j].value +"   "+ resp.datos[i].grado);
                     if (document.getElementById("sel_grado").options[j].value == resp.datos[i].grado) {
-                      existe_grado=true;alert(8);
+                      existe_grado=true;
                     }
                 }
                 if (!existe_grado){
