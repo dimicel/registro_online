@@ -17,8 +17,6 @@ $(function() {
     else document.getElementById("servidor_pruebas").style.display="none";
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
-    //generaSelectMat_ciclos();
-    generaSelectMat_fpb();
     
     document.getElementById("cargando").style.display = 'inherit';
     prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "secretaria" },()=>{},"json"));
@@ -115,9 +113,23 @@ $(function() {
                 option.value = resp.datos[i].denominacion;
                 option.text = prefijo + " " + resp.datos[i].denominacion;
                 document.getElementById("mat_ciclos").add(option);
-                alert(resp.datos[i].grado+" "+resp.datos[i].denominacion);
             }
         } 
+
+        const option2 = document.createElement("option");
+        option2.value="";
+        option2.text="Seleccione uno...";
+        option2.selected=true;
+        document.getElementById("mat_fpb").add(option2);
+        for (i=0; i<resp.datos.length; i++){
+            if (resp.datos[i].grado === "BÁSICO") {
+                const option = document.createElement("option");
+                option.value = resp.datos[i].denominacion;
+                option.text = resp.datos[i].denominacion;
+                document.getElementById("mat_fpb").add(option);
+            }
+        } 
+        
     });
 
     $("#div_nie_registrado").dialog({
@@ -343,68 +355,8 @@ function generaSelectCurso_mat(){
     } 
 }
 
-function generaSelectMat_ciclos(){
-    /*const opciones = {
-        "": "Seleccione uno...",
-        "Cocina y Gastronomía": "GM Cocina y Gastronomía",
-        "Gestión Administrativa": "GM Gestión Administrativa",
-        "Instalaciones de Producción de Calor": "GM Instalaciones de Producción de Calor",
-        "Instalaciones Eléctricas y Automáticas": "GM Instalaciones Eléctricas y Automáticas",
-        "Instalaciones Frigoríficas y de Climatización": "GM Instalaciones Frigoríficas y de Climatización",
-        "Panadería, Repostería y Confitería": "GM Panadería, Repostería y Confitería",
-        "Servicios en Restauración": "GM Servicios en Restauración",
-        "Administración y Finanzas": "GS Administración y Finanzas",
-        "Agencias de Viajes y Gestión de Eventos": "GS Agencias de Viajes y Gestión de Eventos",
-        "Asistencia a la Dirección": "GS Asistencia a la Dirección",
-        "Automatización y Robótica Industrial": "GS Automatización y Robótica Industrial",
-        "Dirección de Cocina": "GS Dirección de Cocina",
-        "Dirección de Servicios de Restauración": "GS Dirección de Servicios de Restauración",
-        "Gestión de Alojamientos Turísticos": "GS Gestión de Alojamientos Turísticos",
-        "Guía, Información y Asistencias Turísticas": "GS Guía, Información y Asistencias Turísticas",
-        "Mantenimiento de Instalaciones Térmicas y de Fluidos": "GS Mantenimiento de Instalaciones Térmicas y de Fluidos",
-        "Sistemas Electrotécnicos y Automatizados": "GS Sistemas Electrotécnicos y Automatizados"
-      };*/
 
-    $.post('impresos/exencion_fct/php/ciclos.php',{},(item)=>{
-        for (i=0; i<item.length; i++){ 
-            if (item[i.grado] === "SUPERIOR" || item[i.grado] === "MEDIO") {
-                let prefijo = "";
-                if (item[i].grado === "SUPERIOR") {prefijo = "GS";}
-                else if (item[i].grado === "MEDIO") {prefijo = "GM";}
-                const option = document.createElement("option");
-                option.value = item.denominacion;
-                option.text = prefijo + " " + item.denominacion;
-                if (value === "") {
-                    option.selected = true;
-                }
-                document.getElementById("mat_ciclos").add(option);
-            }
-        } 
-    }); 
-      
-}
 
-function generaSelectMat_fpb(){
-    const options = [
-        { value: "", label: "Seleccione uno..." },
-        { value: "Alojamiento y Lavandería", label: "Alojamiento y Lavandería" },
-        { value: "Cocina y Restauración", label: "Cocina y Restauración" },
-        { value: "Electricidad y Electrónica", label: "Electricidad y Electrónica" },
-        { value: "Servicios Administrativos", label: "Servicios Administrativos" }
-      ];
-      
-      const select = document.getElementById("mat_fpb");
-      
-      for (let i = 0; i < options.length; i++) {
-        const option = document.createElement("option");
-        option.value = options[i].value;
-        option.text = options[i].label;
-        if (i === 0) { // selecciona el primer elemento
-          option.selected = true;
-        }
-        select.add(option);
-      }  
-}
 
 
 
