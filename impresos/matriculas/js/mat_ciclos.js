@@ -447,12 +447,16 @@ function creaSelCiclos(g) {
 
 function CreaSelCurso(c) {
     if (c != "") {
+        gr=document.getElementById("sel_grado").value;
+        if (gr=="MEDIO"){ arr=ciclos_gm;}
+        else if (gr=="SUPERIOR"){ arr=ciclos_gs;}
+        cicloArr=arr[arr.indexOf(c)];
         document.getElementById("sel_curso").innerHTML = "";
         cu = "<option value=''>Seleccione uno...</option>";
         cu += "<option value='Modular'>Modular</option>";
         cu += "<option value='1º'>1º</option>";
         cu += "<option value='2º'>2º</option>";
-        if (c == "Administración y Finanzas") cu += "<option value='3º'>3º</option>";
+        if (cicloArr[1]==3) cu += "<option value='3º'>3º</option>";
         document.getElementById("sel_curso").innerHTML = cu;
         seleccionCurso();
     }
