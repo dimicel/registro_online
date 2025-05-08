@@ -122,8 +122,8 @@ $(document).ready(function() {
         option.text="Seleccione uno...";
         option.selected=true;
         document.getElementById("sel_grado").add(option);
-        for (i=0; i<resp.datos.length; i++){alert(resp["datos"][i]["e-learnig"]);
-            if (resp.datos[i]["e-learnig"] === 1) {alert(88);
+        for (i=0; i<resp.datos.length; i++){
+            if (resp.datos[i]["e-learning"] === 1) {
                 existe_grado=false;
                 for (let i = 0; i < document.getElementById("sel_grado").options.length; i++) {
                     if (document.getElementById("sel_grado").options[i].value == resp.datos[i].grado) {
@@ -140,13 +140,13 @@ $(document).ready(function() {
         } 
         
         for (i=0; i<resp.datos.length; i++){
-            if (resp.datos[i].grado === "BÁSICO" && resp.datos[i]["e-learnig"] === 1) {
+            if (resp.datos[i].grado === "BÁSICO" && resp.datos[i]["e-learning"] === 1) {
                 ciclos_gb.push(resp.datos[i].denominacion);
             }
-            else if (resp.datos[i].grado === "MEDIO" && resp.datos[i]["e-learnig"] === 1) {
+            else if (resp.datos[i].grado === "MEDIO" && resp.datos[i]["e-learning"] === 1) {
                 ciclos_gm.push(resp.datos[i].denominacion);
             }
-            if (resp.datos[i].grado === "SUPERIOR" && resp.datos[i]["e-learnig"] === 1) {
+            if (resp.datos[i].grado === "SUPERIOR" && resp.datos[i]["e-learning"] === 1) {
                 ciclos_gs.push(resp.datos[i].denominacion);
             }
         } 
