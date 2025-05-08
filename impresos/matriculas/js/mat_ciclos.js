@@ -450,7 +450,12 @@ function CreaSelCurso(c) {
         gr=document.getElementById("sel_grado").value;
         if (gr=="MEDIO"){ arr=ciclos_gm;}
         else if (gr=="SUPERIOR"){ arr=ciclos_gs;}
-        cicloArr=arr.find(elemento => elemento == c);
+        for(i=0; i<arr.length; i++){
+            if (arr[i][0]==c){
+                cicloArr=arr[i];
+                break;
+            } 
+        }
         alert(cicloArr.length)
         for (i=0; i<cicloArr.length; i++){
             alert(cicloArr[i]);
