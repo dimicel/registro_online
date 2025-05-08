@@ -123,7 +123,7 @@ $(document).ready(function() {
         option.selected=true;
         document.getElementById("sel_grado").add(option);
         for (i=0; i<resp.datos.length; i++){
-            if (resp.datos[i].e-learnig === 1) {
+            if (resp.datos[i]["e-learnig"] === 1) {
                 existe_grado=false;
                 for (let i = 0; i < document.getElementById("sel_grado").options.length; i++) {
                     if (document.getElementById("sel_grado").options[i].value == resp.datos[i].grado) {
