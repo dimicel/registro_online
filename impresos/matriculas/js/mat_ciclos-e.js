@@ -127,7 +127,7 @@ $(document).ready(function() {
                 existe_grado=false;
                 for (let i = 0; i < document.getElementById("sel_grado").options.length; i++) {
                     if (document.getElementById("sel_grado").options[i].value == resp.datos[i].grado) {
-                      existe_grado=true;
+                      existe_grado=true;alert(8);
                     }
                 }
                 if (!existe_grado){
