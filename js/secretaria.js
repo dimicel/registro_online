@@ -102,7 +102,7 @@ $(function() {
     });
     prom7=prom6.then((resp)=>{
         for (i=0; i<resp.datos.length; i++){
-            if (resp[i].grado === "SUPERIOR" || resp[i].grado === "MEDIO") {
+            if (resp.datos[i].grado === "SUPERIOR" || resp.datos[i].grado === "MEDIO") {
                 let prefijo = "";
                 if (resp.datos[i].grado === "SUPERIOR") {prefijo = "GS";}
                 else if (resp.datos[i].grado === "MEDIO") {prefijo = "GM";}
