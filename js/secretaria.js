@@ -17,7 +17,7 @@ $(function() {
     else document.getElementById("servidor_pruebas").style.display="none";
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
-    generaSelectMat_ciclos();
+    //generaSelectMat_ciclos();
     generaSelectMat_fpb();
     
     document.getElementById("cargando").style.display = 'inherit';
@@ -98,7 +98,23 @@ $(function() {
         else {
             alerta("Ha habido algún error con la base de datos o el servidor. Las exenciones de formación en empresa no funcionarán correctamente","ERROR DB/SERVIDOR");
         }
-        
+        return ($.post('impresos/exencion_fct/php/ciclos.php',{},()=>{},"json"));  
+    });
+    prom7=prom6.then((resp)=>{
+        for (i=0; i<resp.length; i++){ 
+            if (resp[i].grado === "SUPERIOR" || resp[i].grado === "MEDIO") {
+                let prefijo = "";
+                if (resp[i].grado === "SUPERIOR") {prefijo = "GS";}
+                else if (resp[i].grado === "MEDIO") {prefijo = "GM";}
+                const option = document.createElement("option");
+                option.value = resp[i].denominacion;
+                option.text = prefijo + " " + resp[i].denominacion;
+                if (value === "") {
+                    option.selected = true;
+                }
+                document.getElementById("mat_ciclos").add(option);
+            }
+        } 
     });
 
     $("#div_nie_registrado").dialog({
@@ -346,10 +362,6 @@ function generaSelectMat_ciclos(){
         "Sistemas Electrotécnicos y Automatizados": "GS Sistemas Electrotécnicos y Automatizados"
       };*/
 
-    const opciones = {
-        "": "Seleccione uno..."
-    };
-    document.getElementById("cargando").style.display = '';
     $.post('impresos/exencion_fct/php/ciclos.php',{},(item)=>{
         for (i=0; i<item.length; i++){ 
             if (item[i.grado] === "SUPERIOR" || item[i.grado] === "MEDIO") {
@@ -365,7 +377,6 @@ function generaSelectMat_ciclos(){
                 document.getElementById("mat_ciclos").add(option);
             }
         } 
-        document.getElementById("cargando").style.display = 'none';
     }); 
       
 }
