@@ -378,6 +378,7 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
 
 
 function CreaSelTurno() {
+    alert(1)
     curs=document.getElementById("sel_curso").value;
     c = document.getElementById("sel_ciclos").value;
     document.getElementById("sel_turno").innerHTML = "";
@@ -456,6 +457,7 @@ function CreaSelCurso(c) {
 }
 
 function CreaSelTurno(t) {
+    alert(2)
     if (t != "") {
         c = document.getElementById("sel_ciclos").value;
         document.getElementById("sel_turno").innerHTML = "";
