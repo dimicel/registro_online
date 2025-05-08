@@ -101,10 +101,9 @@ $(function() {
         return ($.post('impresos/exencion_fct/php/ciclos.php',{},()=>{},"json"));  
     });
     prom7=prom6.then((resp)=>{
-        alert(888);
         for (i=0; i<resp.length; i++){ 
             if (resp[i].grado === "SUPERIOR" || resp[i].grado === "MEDIO") {
-                let prefijo = "";
+                let prefijo = "";alert(111);
                 if (resp[i].grado === "SUPERIOR") {prefijo = "GS";}
                 else if (resp[i].grado === "MEDIO") {prefijo = "GM";}
                 const option = document.createElement("option");
