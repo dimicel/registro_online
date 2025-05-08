@@ -125,9 +125,9 @@ $(document).ready(function() {
         for (i=0; i<resp.datos.length; i++){
             if (resp.datos[i]["e-learning"] == 1) {
                 existe_grado=false;
-                for (let i = 0; i < document.getElementById("sel_grado").options.length; i++) {
-                    alert(document.getElementById("sel_grado").options[i].value +"   "+ resp.datos[i].grado);
-                    if (document.getElementById("sel_grado").options[i].value == resp.datos[i].grado) {
+                for (let j = 0; j < document.getElementById("sel_grado").options.length; i++) {
+                    alert(document.getElementById("sel_grado").options[j].value +"   "+ resp.datos[i].grado);
+                    if (document.getElementById("sel_grado").options[j].value == resp.datos[i].grado) {
                       existe_grado=true;alert(8);
                     }
                 }
