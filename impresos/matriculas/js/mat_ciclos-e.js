@@ -140,13 +140,13 @@ $(document).ready(function() {
         } 
         
         for (i=0; i<resp.datos.length; i++){
-            if (resp.datos[i].grado === "BÁSICO" && resp.datos[i].e-learning === 1) {
+            if (resp.datos[i].grado === "BÁSICO" && resp.datos[i]["e-learnig"] === 1) {
                 ciclos_gb.push(resp.datos[i].denominacion);
             }
-            else if (resp.datos[i].grado === "MEDIO" && resp.datos[i].e-learning === 1) {
+            else if (resp.datos[i].grado === "MEDIO" && resp.datos[i]["e-learnig"] === 1) {
                 ciclos_gm.push(resp.datos[i].denominacion);
             }
-            if (resp.datos[i].grado === "SUPERIOR" && resp.datos[i].e-learning === 1) {
+            if (resp.datos[i].grado === "SUPERIOR" && resp.datos[i]["e-learnig"] === 1) {
                 ciclos_gs.push(resp.datos[i].denominacion);
             }
         } 
