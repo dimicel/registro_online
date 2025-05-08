@@ -113,6 +113,7 @@ $(function() {
                     option.selected = true;
                 }
                 document.getElementById("mat_ciclos").add(option);
+                alert(resp[i].grado+" "+resp[i].denominacion);
             }
         } 
     });
