@@ -777,6 +777,11 @@ function selCurso(obj){
     if (obj.value=="Virtual_Modular"){
         document.getElementById("turno").value="Virtual";
         document.getElementById("turno").disabled=true;  
+        document.getElementById("modalidad").value="Virtual";
+        document.getElementById("modalidad").disabled=true;  
     }
-    else document.getElementById("turno").disabled=false;
+    else{
+        document.getElementById("turno").disabled=false;
+        document.getElementById("modalidad").disabled=false;
+    }  
 }
