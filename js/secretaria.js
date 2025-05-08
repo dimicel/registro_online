@@ -349,28 +349,24 @@ function generaSelectMat_ciclos(){
     const opciones = {
         "": "Seleccione uno..."
     };
-
-    fetch('impresos/exencion_fct/php/ciclos.php').then(response => response.json()).then(data => {
-        data.forEach(item => {
-            if (item.grado === "SUPERIOR") {prefijo = "GS";}
-            else if (item.grado === "MEDIO") {prefijo = "GM";}
-            opciones[item.denominacion] = prefijo+" "+item.denominacion;
-        });
-        const select = document.getElementById("mat_ciclos");
-        
-        for (const [value, label] of Object.entries(opciones)) {
-            const option = document.createElement("option");
-            option.value = value;
-            option.text = label;
+    document.getElementById("cargando").style.display = '';
+    $.post('impresos/exencion_fct/php/ciclos.php',{},(item)=>{
+        for (i=0; i<item.length; i++){ 
+            if (item[i.grado] === "SUPERIOR" || item[i.grado] === "MEDIO") {
+                let prefijo = "";
+                if (item[i].grado === "SUPERIOR") {prefijo = "GS";}
+                else if (item[i].grado === "MEDIO") {prefijo = "GM";}
+                const option = document.createElement("option");
+                option.value = item.denominacion;
+                option.text = prefijo + " " + item.denominacion;
                 if (value === "") {
                     option.selected = true;
                 }
-            select.add(option);
+                document.getElementById("mat_ciclos").add(option);
+            }
         } 
-    }).catch(error => {
-        console.error("Error al obtener los datos:", error);
-    });
-      
+        document.getElementById("cargando").style.display = 'none';
+    }); 
       
 }
 
