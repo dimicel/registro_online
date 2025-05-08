@@ -40,7 +40,7 @@ $(document).ready(function() {
             }
 
         }
-        $.post("../../php/usu_recdatospers.php", { id_nie: id_nie }, () => {}, "json");
+        return ($.post("../../php/usu_recdatospers.php", { id_nie: id_nie }, () => {}, "json"));
     });
     dat3 = dat2.then((resp) => {
             if (resp.error == "ok") {
