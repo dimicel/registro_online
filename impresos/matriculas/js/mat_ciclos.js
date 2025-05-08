@@ -117,10 +117,10 @@ $(document).ready(function() {
     data6=dat5.then((resp)=>{
         for (i=0; i<resp.datos.length; i++){
             if (resp.datos[i].grado == "MEDIO") {
-                ciclos_gm.push(new Array[resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]]);
+                ciclos_gm.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
             }
             if (resp.datos[i].grado == "SUPERIOR") {
-                ciclos_gs.push(new Array[resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]]);
+                ciclos_gs.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
             }
         }
     });
