@@ -35,7 +35,7 @@ $(function() {
             }
             anno_ini_curso = resp["anno_ini_curso"];
             anno_ini_curso_docs = resp["anno_ini_curso_docs"];
-            mes = resp["mes"];
+            mes = resp["mes"];alert(mes);
             _curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
             curso_actual=_curso;
             if (mes<=6 && mes>=1) curso_premat=_curso;
