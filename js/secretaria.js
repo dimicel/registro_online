@@ -29,6 +29,7 @@ $(function() {
             if (resp["tipo_usu"]=="jefatura estudios"){
                 document.getElementById("rotulo_tipo_usu").innerHTML="JEFATURA ESTUDIOS - GESTIÓN DEL REGISTRO ONLINE";
                 document.getElementById("menu1").classList.add("disabled");
+                document.getElementById("borra_premat").style.display="";
             }
             anno_ini_curso = resp["anno_ini_curso"];
             anno_ini_curso_docs = resp["anno_ini_curso_docs"];

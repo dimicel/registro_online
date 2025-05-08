@@ -80,6 +80,8 @@
                             </div>
                             <div class="dropdown-divider"></div>
                             <a id="CSV_premat" class="dropdown-item disabled" href="#" onclick="descargaCSVpremat()">Descarga CSV</a>
+                            <div class="dropdown-divider"></div>
+                            <a id="borra_premat" style="display:none" class="dropdown-item" href="#" onclick="eliminaPrematriculas()">Borrar Prematrículas</a>
                         </div>
                     </li>
                     <li class="nav-item" id="menu5">
