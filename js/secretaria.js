@@ -356,21 +356,19 @@ function generaSelectMat_ciclos(){
             else if (item.grado === "MEDIO") { prefijo="GM"; }
             const prefijo = item.grado === "SUPERIOR" ? "GS" : "GM";
             opciones[item.denominacion] = `${prefijo} ${item.denominacion}`;
-    });
-
-    const select = document.getElementById("mat_ciclos");
-    
-    for (const [value, label] of Object.entries(opciones)) {
-    const option = document.createElement("option");
-    option.value = value;
-    option.text = label;
-    if (value === "") {
-        option.selected = true;
-    }
-    select.add(option);
-    } 
-    })
-    .catch(error => {
+        });
+        const select = document.getElementById("mat_ciclos");
+        
+        for (const [value, label] of Object.entries(opciones)) {
+            const option = document.createElement("option");
+            option.value = value;
+            option.text = label;
+                if (value === "") {
+                    option.selected = true;
+                }
+            select.add(option);
+        } 
+    }).catch(error => {
         console.error("Error al obtener los datos:", error);
     });
       
