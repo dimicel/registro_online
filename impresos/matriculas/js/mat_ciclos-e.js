@@ -122,7 +122,7 @@ $(document).ready(function() {
         option.text="Seleccione uno...";
         option.selected=true;
         document.getElementById("sel_grado").add(option);
-        for (i=0; i<resp.datos.length; i++){alert(resp.datos[i]["e-learnig"]);
+        for (i=0; i<resp.datos.length; i++){alert(resp["datos"][i]["e-learnig"]);
             if (resp.datos[i]["e-learnig"] === 1) {alert(88);
                 existe_grado=false;
                 for (let i = 0; i < document.getElementById("sel_grado").options.length; i++) {
