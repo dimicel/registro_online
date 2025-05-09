@@ -41,3 +41,4 @@ foreach ($iterator as $fileInfo) {
         deleteDirectoryContents($fileInfo->getPathname());
     }
 }
+exit ("ok");
