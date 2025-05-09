@@ -2997,6 +2997,11 @@ function eliminaPrematriculas(){
                         else if (resp=="no_registro"){
                             alerta("No existen prematrículas.","NO HAY PREMATRÍCULAS");
                         }
+                        else if (resp=="error_premat_bach" || resp=="error_premat_eso"){
+                            if (resp=="error_premat_bach") alerta("No se han podido eliminar las prematrículas de BACHILLERATO.","ERROR DB/SERVIDOR");
+                            else if (resp=="error_premat_eso") alerta("No se han podido eliminar las prematrículas de ESO.","ERROR DB/SERVIDOR");
+                            else alerta("No se han podido eliminar las prematrículas de BACHILLERATO y ESO.","ERROR DB/SERVIDOR");
+                        }
                         else{
                             alerta(resp,"ERROR DB/SERVIDOR");
                         }
