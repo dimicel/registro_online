@@ -157,7 +157,7 @@ function anadeDoc(e) {
                     }
                     else if(document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Otro" &&
                             document.getElementById("den_otro_con").value.trim().length == 0){
-                                alerta("Debe especificar qué tipo de documento va a adjuntar.", "FALTAN DATOS");
+                                alerta("Debe dar una descripción al documento seleccionado.", "FALTAN DESCRIPCIÓN");
                                 return;
                     }
                     actualizaTablaListaDocs();
