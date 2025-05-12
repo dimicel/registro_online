@@ -404,6 +404,7 @@ function generaSelectsDepartamentos(arrayDptos){
         opt.textContent=arrayDptos[i][0] +" ("+arrayDptos[i][1]+")";
         document.getElementById("config_dpto").appendChild(opt);
         document.getElementById("departamento").appendChild(opt);
+        alert(0);
     }
 }
 
