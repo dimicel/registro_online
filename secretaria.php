@@ -119,9 +119,10 @@
                         <div class="dropdown-menu" >
                             <a id="param_centro" class="dropdown-item small" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
                             <a id="logos_firma_sello" class="dropdown-item small" href="#" onclick="logosFirmaSello()">Logos - Firma y sello</a>
+                            <a id="config_modulos" class="dropdown-item small" href="#" onclick="alerta('En desarrollo','')">Departamentos</a>
                             <a id="config_ciclos" class="dropdown-item small" href="#" onclick="alerta('En desarrollo','')">Ciclos Formativos</a>
                             <a id="config_modulos" class="dropdown-item small" href="#" onclick="alerta('En desarrollo','')">Módulos de Ciclos Formativos</a>
-                            <a id="config_jef_dpto" class="dropdown-item small" href="#" onclick="datosDepartamentos()">Departamentos</a>
+                            <a id="config_jef_dpto" class="dropdown-item small" href="#" onclick="JefesDepartamento()">Jefes de Departamento</a>
                         </div>    
                     </li>
                     <li class="nav-item" id="menu8">

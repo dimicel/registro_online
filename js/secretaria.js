@@ -2647,7 +2647,7 @@ function logosFirmaSello(){
     });
 }
 
-function datosDepartamentos(){
+function JefesDepartamento(){
     $("#config_departamentos").validate({
         rules: {
             config_dpto: {
