@@ -544,7 +544,7 @@
                 <div class="col-6">
                     <label for="config_dpto">Departamento</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <select id="config_dpto" size=3 name="config_dpto" class="form-control" onchange="selDptoConfigDpto(this)"></select>
+                    <select id="config_dpto" name="config_dpto" class="form-control" onchange="selDptoConfigDpto(this)"></select>
                 </div>
                 <div class="col-6">
                     <label for="config_email">Nombre y Apellidos del Jefe de Dpto.</label>
@@ -567,6 +567,22 @@
             <div class="row mt-3">
                 <div class="col">
                     <label>En caso de introducir la contraseña (si se desea cambiar), debe tener como mínimo 8 caracteres de longitud, y contener, al menos, una minúscula, una mayúscula y un número.</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+        <div class="container alertas" id="div_config_departamentos">
+        <form id="config_departamentos">
+            <div class="row">
+                <div class="col-6">
+                    <label for="dpto">Departamentos</label>
+                    <select id="dpto" name="dpto" class="form-control" onchange="selDptoConfigDpto(this)"></select>
+                </div>
+                <div class="col-6">
+                    <label for="config_email">Nombre y Apellidos del Jefe de Dpto.</label>
+                    <span class="errorTxt" style="font-size: 1em;"></span>
+                    <input type="text" id="config_nombre_jd" name="config_nombre_jd" class="form-control" maxlength="120" placeholder="Seleccione antes un departamento" readonly>
                 </div>
             </div>
         </form>
