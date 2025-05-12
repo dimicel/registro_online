@@ -544,7 +544,7 @@
                 <div class="col-6">
                     <label for="config_dpto">Departamento</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <select id="config_dpto" name="config_dpto" class="form-control" onchange="selDptoConfigDpto(this)"></select>
+                    <select id="config_dpto" size=3 name="config_dpto" class="form-control" onchange="selDptoConfigDpto(this)"></select>
                 </div>
                 <div class="col-6">
                     <label for="config_email">Nombre y Apellidos del Jefe de Dpto.</label>
