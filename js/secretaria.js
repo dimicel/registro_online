@@ -405,6 +405,9 @@ function generaSelectsDepartamentos(){
         opt.value=departamentos[i][0];
         opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
         document.getElementById("config_dpto").appendChild(opt);
+        opt=document.createElement("option");
+        opt.value=departamentos[i][0];
+        opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
         opt.dataset.email=departamentos[i][2];
         document.getElementById("departamento").appendChild(opt);
     }
