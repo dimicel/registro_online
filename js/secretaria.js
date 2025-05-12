@@ -389,6 +389,8 @@ function generaSelectCursoTurnoGMGS(c){
 
 
 function generaSelectsDepartamentos(){
+    document.getElementById("departamento").innerHTML="";
+    document.getElementById("config_dpto").innerHTML="";
     opt=document.createElement("option");
     opt.value="Todos";
     opt.textContent="Todos";
@@ -2765,6 +2767,7 @@ function JefesDepartamento(){
             class: "btn btn-success textoboton",
             text: "Salir",
             click: function() {
+                generaSelectsDepartamentos();
                 //$("#config_departamentos").validate().resetForm();
                 //document.getElementById("config_departamentos").reset();
                 document.getElementById("config_dpto").value="";
@@ -2777,8 +2780,8 @@ function JefesDepartamento(){
                 document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
                 document.getElementById("config_nombre_jd").readOnly=true;
                 document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";        
-                $("#div_config_departamentos").dialog("close");
-                $("#div_config_departamentos").dialog("destroy");
+                //$("#div_config_departamentos").dialog("close");
+                //$("#div_config_departamentos").dialog("destroy");
             }
         }]
     });
