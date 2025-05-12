@@ -78,27 +78,10 @@ $(function() {
     });
     prom6=prom5.then((resp)=>{
         if (resp.error=="ok"){
-            opt=document.createElement("option");
-            opt.value="Todos";
-            opt.textContent="Todos";
-            opt.dataset.email="todos";
-            document.getElementById("departamento").appendChild(opt);
-            opt=document.createElement("option");
-            opt.value="";
-            opt.textContent="Seleccione departamento ...";
-            document.getElementById("config_dpto").appendChild(opt);
             for(i=0;i<resp.registro.length;i++){
-                opt=document.createElement("option");
-                opt.value=resp.registro[i].departamento;
-                opt.textContent=resp.registro[i].departamento +" ("+resp.registro[i].abreviatura+")";
-                opt.dataset.email=resp.registro[i].email_jd;
-                document.getElementById("departamento").appendChild(opt);
-                opt=document.createElement("option");
-                opt.value=resp.registro[i].departamento;
-                opt.textContent=resp.registro[i].departamento +" ("+resp.registro[i].abreviatura+")";
-                document.getElementById("config_dpto").appendChild(opt);
                 departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura));
             }
+            generaSelectsDepartamentos(departamentos);
         }
         else {
             alerta("Ha habido algún error con la base de datos o el servidor. Las exenciones de formación en empresa no funcionarán correctamente","ERROR DB/SERVIDOR");
@@ -377,7 +360,7 @@ function generaSelectCurso_mat(){
 }
 
 
-function CreaSelCursoTurnoGMGS(c){
+function generaSelectCursoTurnoGMGS(c){
     if (c != "") {
         arr=ciclos_gm_gs;
         for(i=0; i<arr.length; i++){
@@ -401,6 +384,26 @@ function CreaSelCursoTurnoGMGS(c){
         if (cicloArr[3] == 1) tu += "<option value='Vespertino'>Vespertino</option>";
         if (cicloArr[4] == 1) tu += "<option value='Nocturno'>Nocturno</option>";
         document.getElementById("mat_ciclos_turno").innerHTML = tu;
+    }
+}
+
+
+function generaSelectsDepartamentos(arrayDptos){
+    opt=document.createElement("option");
+    opt.value="Todos";
+    opt.textContent="Todos";
+    opt.dataset.email="todos";
+    document.getElementById("departamento").appendChild(opt);
+    opt=document.createElement("option");
+    opt.value="";
+    opt.textContent="Seleccione departamento ...";
+    document.getElementById("config_dpto").appendChild(opt);
+    for(i=0;i<arrayDptos.length;i++){
+        opt=document.createElement("option");
+        opt.value=arrayDptos[i][0];
+        opt.textContent=arrayDptos[i][0] +" ("+arrayDptos[i][1]+")";
+        document.getElementById("config_dpto").appendChild(opt);
+        document.getElementById("departamento").appendChild(opt);
     }
 }
 

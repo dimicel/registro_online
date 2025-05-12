@@ -176,7 +176,7 @@
                     <div class="form-group row" id="div_curso_mat_ciclos" style="display:none">
                         <label class="col-form-label col-lg-2" style="margin-left: -15px;">Ciclo: </label>
                         <div class="col-lg-5">
-                            <select id="mat_ciclos" size="1" style="margin-left: -60px;" onchange="CreaSelCursoTurnoGMGS(this.value);listaRegistros();" class="form-control"></select>
+                            <select id="mat_ciclos" size="1" style="margin-left: -60px;" onchange="generaSelectCursoTurnoGMGS(this.value);listaRegistros();" class="form-control"></select>
                         </div>
                         <label class="col-form-label col-lg-1" style="margin-left: 20px;">Curso: </label>
                         <div class="col-lg-1">
