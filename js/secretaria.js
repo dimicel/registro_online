@@ -81,7 +81,7 @@ $(function() {
             for(i=0;i<resp.registro.length;i++){
                 departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd));
             }
-            generaSelectsDepartamentos(departamentos);
+            generaSelectsDepartamentos();
         }
         else {
             alerta("Ha habido algún error con la base de datos o el servidor. Las exenciones de formación en empresa no funcionarán correctamente","ERROR DB/SERVIDOR");
@@ -388,7 +388,7 @@ function generaSelectCursoTurnoGMGS(c){
 }
 
 
-function generaSelectsDepartamentos(arrayDptos){
+function generaSelectsDepartamentos(){
     opt=document.createElement("option");
     opt.value="Todos";
     opt.textContent="Todos";
@@ -398,12 +398,12 @@ function generaSelectsDepartamentos(arrayDptos){
     opt.value="";
     opt.textContent="Seleccione departamento ...";
     document.getElementById("config_dpto").appendChild(opt);
-    for(i=0;i<arrayDptos.length;i++){
+    for(i=0;i<departamentos.length;i++){
         opt=document.createElement("option");
-        opt.value=arrayDptos[i][0];
-        opt.textContent=arrayDptos[i][0] +" ("+arrayDptos[i][1]+")";
+        opt.value=departamentos[i][0];
+        opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
         document.getElementById("config_dpto").appendChild(opt);
-        opt.dataset.email=arrayDptos[i][2];
+        opt.dataset.email=departamentos[i][2];
         document.getElementById("departamento").appendChild(opt);
     }
 }
@@ -2652,6 +2652,7 @@ function logosFirmaSello(){
 }
 
 function JefesDepartamento(){
+    generaSelectsDepartamentos();
     $("#config_departamentos").validate({
         rules: {
             config_dpto: {
