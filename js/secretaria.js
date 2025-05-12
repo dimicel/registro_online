@@ -79,7 +79,7 @@ $(function() {
     prom6=prom5.then((resp)=>{
         if (resp.error=="ok"){
             for(i=0;i<resp.registro.length;i++){
-                departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura));
+                departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd));
             }
             generaSelectsDepartamentos(departamentos);
         }
@@ -403,8 +403,8 @@ function generaSelectsDepartamentos(arrayDptos){
         opt.value=arrayDptos[i][0];
         opt.textContent=arrayDptos[i][0] +" ("+arrayDptos[i][1]+")";
         document.getElementById("config_dpto").appendChild(opt);
+        opt.dataset.email=arrayDptos[i][2];
         document.getElementById("departamento").appendChild(opt);
-        alert(arrayDptos[i][0]);
     }
 }
 
