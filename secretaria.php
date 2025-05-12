@@ -572,17 +572,24 @@
         </form>
     </div>
 
-        <div class="container alertas" id="div_config_departamentos">
-        <form id="config_departamentos">
+    <div class="container alertas" id="div_departamentos">
+        <form id="form_departamentos">
             <div class="row">
                 <div class="col-6">
                     <label for="dpto">Departamentos</label>
                     <select id="dpto" name="dpto" class="form-control" onchange="selDptoConfigDpto(this)"></select>
                 </div>
+            </div>
+            <div class="row mt-3">
                 <div class="col-6">
-                    <label for="config_email">Nombre y Apellidos del Jefe de Dpto.</label>
+                    <label for="dpto_nombre">Nombre del Departamento</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" id="config_nombre_jd" name="config_nombre_jd" class="form-control" maxlength="120" placeholder="Seleccione antes un departamento" readonly>
+                    <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" >
+                </div>
+                <div class="col-6">
+                    <label for="dpto_abreviatura">Abreviatura</label>
+                    <span class="errorTxt" style="font-size: 1em;"></span>
+                    <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" >
                 </div>
             </div>
         </form>
