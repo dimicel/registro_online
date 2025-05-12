@@ -391,7 +391,7 @@ function generaSelectCursoTurnoGMGS(c){
 function generaSelectsDepartamentos(){
     document.getElementById("departamento").innerHTML="";
     document.getElementById("config_dpto").innerHTML="";
-   /* opt=document.createElement("option");
+    opt=document.createElement("option");
     opt.value="Todos";
     opt.textContent="Todos";
     opt.dataset.email="todos";
@@ -407,7 +407,7 @@ function generaSelectsDepartamentos(){
         document.getElementById("config_dpto").appendChild(opt);
         opt.dataset.email=departamentos[i][2];
         document.getElementById("departamento").appendChild(opt);
-    }*/
+    }
 }
 
 
