@@ -3142,7 +3142,7 @@ function cancelaOPeracionDepartamentos(obj){
 
 function guardaAnadeDpto(textBoton){
     if (document.getElementById("dpto_nombre").value.trim().length==0 || document.getElementById("dpto_abreviatura").value.trim().length==0){
-            alerta("Complete todos los campos obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
+            alerta("Los campos 'Nombre del Departamento' y 'Abreviatura' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
             return;
         }
     if (textBoton=="Añadir Dpto."){
