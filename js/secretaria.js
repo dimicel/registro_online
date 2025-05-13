@@ -3054,7 +3054,7 @@ function gestionDptos(){
                     document.getElementById("dpto_abreviatura").readOnly=false;
                     div_boton_guardar_cambios.style.visibility="visible";
                     //Inhabilita los botones del dialog
-                    $("#div_departamentos").parent().find("button").prop("disabled", true);
+                    $("#div_departamentos").parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
 
                 }
             },
@@ -3066,7 +3066,7 @@ function gestionDptos(){
                     document.getElementById("dpto_nombre").readOnly=false;
                     document.getElementById("dpto_abreviatura").readOnly=false;
                     //Inhabilita los botones del dialog
-                    $("#div_departamentos").parent().find("button").prop("disabled", true);
+                    $("#div_departamentos").parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                 }
             },
             {
