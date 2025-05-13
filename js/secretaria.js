@@ -3020,3 +3020,65 @@ function eliminaPrematriculas(){
         }
     });
 }
+
+
+
+function gestionDptos(){
+    generaSelectGestionDptos();
+    $("#div_gestion_dptos").dialog({
+        autoOpen: true,
+        dialogClass: "no-close",
+        modal: true,
+        draggable: false,
+        hide: { effect: "fade", duration: 0 },
+        resizable: false,
+        show: { effect: "fade", duration: 0 },
+        title: "GESTIÓN DE DEPARTAMENTOS DE FP",
+        width: 800,
+        position: { my: "center", at: "center", of: window },
+        buttons: [
+            {
+                class: "btn btn-success textoboton",
+                text: "Nuevo",
+                click: function() {
+                    document.getElementById("dpto_nombre").value="";
+                    document.getElementById("dpto_abreviatura").value="";
+                    document.getElementById("dpto_nombre").readOnly=false;
+                    document.getElementById("dpto_abreviatura").readOnly=false;
+                    div_boton_guardar_cambios.style.display="none";
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Modificar",
+                click: function() {
+                    div_boton_guardar_cambios.style.display="";
+                    document.getElementById("dpto_nombre").readOnly=false;
+                    document.getElementById("dpto_abreviatura").readOnly=false;
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Borrar",
+                click: function() {
+                    
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Salir",
+                click: function() {
+                    $("#div_gestion_dptos").dialog("close");
+                    $("#div_gestion_dptos").dialog("destroy");
+                }
+            }]
+    });
+}
+
+function generaSelectGestionDptos(){
+    var c="";
+    for (i=0;i<departamentos.length;i++){
+        c+="<option value='"+departamentos[i][0]+"'>"+departamentos[i][0]+"</option>";
+    }
+    document.getElementById("dpto_select").innerHTML=c;
+}

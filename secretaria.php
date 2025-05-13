@@ -119,10 +119,10 @@
                         <div class="dropdown-menu" >
                             <a id="param_centro" class="dropdown-item small" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
                             <a id="logos_firma_sello" class="dropdown-item small" href="#" onclick="logosFirmaSello()">Logos - Firma y sello</a>
-                            <a id="config_modulos" class="dropdown-item small" href="#" onclick="alerta('En desarrollo','')">Departamentos</a>
+                            <a id="config_modulos" class="dropdown-item small" href="#" onclick="gestionDptos()">Departamentos FP</a>
                             <a id="config_ciclos" class="dropdown-item small" href="#" onclick="alerta('En desarrollo','')">Ciclos Formativos</a>
                             <a id="config_modulos" class="dropdown-item small" href="#" onclick="alerta('En desarrollo','')">Módulos de Ciclos Formativos</a>
-                            <a id="config_jef_dpto" class="dropdown-item small" href="#" onclick="JefesDepartamento()">Jefes de Departamento</a>
+                            <a id="config_jef_dpto" class="dropdown-item small" href="#" onclick="JefesDepartamento()">Jefes de Departamento FP</a>
                         </div>    
                     </li>
                     <li class="nav-item" id="menu8">
@@ -576,20 +576,24 @@
         <form id="form_departamentos">
             <div class="row">
                 <div class="col-6">
-                    <label for="dpto">Departamentos</label>
-                    <select id="dpto" name="dpto" class="form-control" onchange="selDptoConfigDpto(this)"></select>
+                    <label for="dpto_select">Departamentos</label>
+                    <select id="dpto_select" name="dpto_select" class="form-control" size=4></select>
                 </div>
+                
             </div>
             <div class="row mt-3">
                 <div class="col-6">
                     <label for="dpto_nombre">Nombre del Departamento</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" >
+                    <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" readonly >
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <label for="dpto_abreviatura">Abreviatura</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" >
+                    <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" readonly>
+                </div>
+                <div class="col-3" style="text-align: center;display:none" id="div_boton_guardar_cambios">
+                    <button type="button" id="btn_nuevo_dpto" class="btn btn-success btn-sm" onclick="guardaCambiosDpto()">Guardar Cambios</button>
                 </div>
             </div>
         </form>
