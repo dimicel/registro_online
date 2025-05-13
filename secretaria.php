@@ -574,6 +574,8 @@
 
     <div class="container alertas" id="div_departamentos">
         <form id="form_departamentos">
+            <input type="hidden" id="backup_dpto_nombre" name="backup_dpto_nombre" value="">
+            <input type="hidden" id="backup_dpto_abreviatura" name="backup_dpto_abreviatura" value="">
             <div class="row">
                 <div class="col-6">
                     <label for="dpto_select">Departamentos</label>

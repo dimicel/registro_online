@@ -3072,6 +3072,8 @@ function gestionDptos(){
                     document.getElementById("div_desc_operacion").style.visibility='visible';
                     document.getElementById("desc_operacion").innerHTML="MODIFICACIÓN DE DEPARTAMENTO";
                     document.getElementById("btn_nuevo_dpto").innerHTML="Guardar Cambios";
+                    document.getElementById("backup_dpto_nombre").value=document.getElementById("dpto_nombre").value;
+                    document.getElementById("backup_dpto_abreviatura").value=document.getElementById("dpto_abreviatura").value;
                 }
             },
             {
@@ -3149,8 +3151,16 @@ function guardaAnadeDpto(textBoton){
         
     }
     else if(textBoton=="Guardar Cambios"){
+        if (document.getElementById("dpto_nombre").value==document.getElementById("backup_dpto_nombre").value && document.getElementById("dpto_abreviatura").value==document.getElementById("backup_dpto_abreviatura").value){
+            alerta("No se han realizado cambios en el departamento. No se guardará ningún cambio","SIN CAMBIOS");
+        }
         
     }
+    div_boton_guardar_cambios.style.visibility="hidden";
+    document.getElementById("dpto_nombre").readOnly=true;
+    document.getElementById("dpto_abreviatura").readOnly=true;
+    $("#div_departamentos").parent().find(".ui-dialog-buttonpane button").prop("disabled", false);
+    document.getElementById("div_desc_operacion").style.visibility='hidden';
 
 }
 
