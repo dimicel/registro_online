@@ -581,7 +581,7 @@
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-5">
+                <div class="col-6">
                     <label for="dpto_nombre">Nombre del Departamento</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
                     <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" readonly >
@@ -591,7 +591,7 @@
                     <span class="errorTxt" style="font-size: 1em;"></span>
                     <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" readonly>
                 </div>
-                <div class="col-5 d-flex flex-column justify-content-end" style="text-align: center;display:none" id="div_boton_guardar_cambios">
+                <div class="col-4 d-flex flex-column justify-content-end" style="text-align: center;display:none" id="div_boton_guardar_cambios">
                     <div class="w-100 d-flex justify-content-end">
                         <button type="button" id="btn_nuevo_dpto" class="btn btn-success btn-sm" onclick="guardaCambiosDpto()">Guardar Cambios</button>
                         <button type="button" id="btn_nuevo_dpto" class="btn btn-danger btn-sm" onclick="gestionSeleccionDpto();this.parent.style.display='none'">Cancelar</button>
