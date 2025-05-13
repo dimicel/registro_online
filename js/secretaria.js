@@ -3152,7 +3152,7 @@ function guardaAnadeDpto(textBoton){
     }
     else if(textBoton=="Guardar Cambios"){
         if (document.getElementById("dpto_nombre").value==document.getElementById("backup_dpto_nombre").value && document.getElementById("dpto_abreviatura").value==document.getElementById("backup_dpto_abreviatura").value){
-            alerta("No se han realizado cambios en el departamento. No se guardará ningún cambio","SIN CAMBIOS");
+            alerta("No se han realizado cambios en el departamento. No se realizará ninguna acción.","SIN CAMBIOS");
         }
         
     }
