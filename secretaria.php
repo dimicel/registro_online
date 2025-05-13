@@ -592,8 +592,10 @@
                     <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" readonly>
                 </div>
                 <div class="col-5 d-flex flex-column justify-content-end" style="text-align: center;display:none" id="div_boton_guardar_cambios">
-                    <button type="button" id="btn_nuevo_dpto" class="btn btn-success btn-sm" onclick="guardaCambiosDpto()">Guardar Cambios</button>
-                    <button type="button" id="btn_nuevo_dpto" class="btn btn-danger btn-sm" onclick="gestionSeleccionDpto();this.parent.style.display='none'">Cancelar</button>
+                    <div class="w-100 d-flex justify-content-between">
+                        <button type="button" id="btn_nuevo_dpto" class="btn btn-success btn-sm" onclick="guardaCambiosDpto()">Guardar Cambios</button>
+                        <button type="button" id="btn_nuevo_dpto" class="btn btn-danger btn-sm" onclick="gestionSeleccionDpto();this.parent.style.display='none'">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </form>
