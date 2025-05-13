@@ -580,7 +580,7 @@
                     <select id="dpto_select" name="dpto_select" class="form-control" size=4 onchange="gestionSeleccionDpto()"></select>
                 </div>
                 <div class="col-6" id="div_desc_operacion" style="visibility:hidden">
-                    <h4 id="desc_operacion" style="text-align: center;">Gestión de Departamentos</h4>
+                    <h4 id="desc_operacion" style="text-align: center;color:brown;margin-top:20px"></h4>
                 </div>
             </div>
             <div class="row mt-3">
