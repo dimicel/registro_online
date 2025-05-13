@@ -3148,7 +3148,11 @@ function guardaAnadeDpto(textBoton){
     if (document.getElementById("dpto_nombre").value.trim().length==0 || document.getElementById("dpto_abreviatura").value.trim().length==0){
             alerta("Los campos 'Nombre del Departamento' y 'Abreviatura' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
             return;
-        }
+    }
+    if (document.getElementById("dpto_nombre").parentNode.innerHTML=="Nombre duplicado" || document.getElementById("dpto_abreviatura").parentNode.innerHTML=="Duplicada"){
+        alerta("Los campos 'Nombre del Departamento' y 'Abreviatura' no pueden estar duplicados.","NOMBRE O ABREVIATURA DUPLICADOS");
+        return;
+    }
     if (textBoton=="Añadir Dpto."){
         document.getElementById("cargando").style.display = '';
         $.post("php/secret_anade_departamento.php",{dpto_nombre:document.getElementById("dpto_nombre").value,dpto_abreviatura:document.getElementById("dpto_abreviatura").value},(resp)=>{
