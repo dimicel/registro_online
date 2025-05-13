@@ -3029,7 +3029,7 @@ function eliminaPrematriculas(){
 
 
 function gestionDptos(){
-    $("#div_gestion_dptos").dialog({
+    $("#div_departamentos").dialog({
         autoOpen: true,
         dialogClass: "no-close",
         modal: true,
