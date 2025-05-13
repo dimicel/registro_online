@@ -3101,6 +3101,7 @@ function gestionDptos(){
                                                         departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
                                                     }
                                                     generaSelectsDepartamentos();
+                                                    document.getElementById("dpto_select").selectedIndex=0;
                                                 }
                                             },"json");
                                         }
@@ -3164,6 +3165,7 @@ function guardaAnadeDpto(textBoton){
                             departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
                         }
                         generaSelectsDepartamentos();
+                        document.getElementById("dpto_select").selectedIndex=0;
                     }
                 },"json");
             }
@@ -3178,6 +3180,35 @@ function guardaAnadeDpto(textBoton){
     else if(textBoton=="Guardar Cambios"){
         if (document.getElementById("dpto_nombre").value==document.getElementById("backup_dpto_nombre").value && document.getElementById("dpto_abreviatura").value==document.getElementById("backup_dpto_abreviatura").value){
             alerta("No se han realizado cambios en el departamento. No se realizará ninguna acción.","SIN CAMBIOS");
+        }
+        else{
+            nom_dpto=document.getElementById("dpto_nombre").value;
+            abr_dpto=document.getElementById("dpto_abreviatura").value;
+            id_dpto=document.getElementById("dpto_select").options[document.getElementById("dpto_select").selectedIndex].dataset.id;
+            $.post("php/secret_modifica_departamento.php",{dpto_nombre:nom_dpto,dpto_abreviatura:abr_dpto, dpto_id:id_dpto},(resp)=>{  
+                if (resp=="ok"){
+                    alerta("Departamento modificado correctamente.","MODIFICACIÓN CORRECTA");
+                    document.getElementById("cargando").style.display = '';
+                    $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
+                        document.getElementById("cargando").style.visibility="hidden";
+                        if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
+                        else {
+                            departamentos=[];
+                            for(i=0; i<resp.registro.length;i++){
+                                departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
+                            }
+                            generaSelectsDepartamentos();
+                            document.getElementById("dpto_select").selectedIndex=0;
+                        }
+                    },"json");
+                }
+                else if (resp=="server"){
+                    alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+                }
+                else{
+                    alerta(resp,"ERROR DB/SERVIDOR");
+                }
+            }); 
         }
     }
     div_boton_guardar_cambios.style.visibility="hidden";
