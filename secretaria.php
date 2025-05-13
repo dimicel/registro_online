@@ -589,12 +589,12 @@
                 <div class="col-5">
                     <label for="dpto_nombre">Nombre del Departamento</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" readonly onblur="compruebaDuplicadoDpto(this)">
+                    <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" readonly onchange="compruebaDuplicadoDpto(this)">
                 </div>
                 <div class="col-2">
                     <label for="dpto_abreviatura">Abreviatura</label>
                     <span class="errorTxt" style="font-size: 1em;"></span>
-                    <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" readonly onblur="compruebaDuplicadoDpto(this)"> 
+                    <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" readonly onchange="compruebaDuplicadoDpto(this)"> 
                 </div>
                 <div class="col-5 d-flex flex-column justify-content-end" style="text-align: center;visibility:hidden" id="div_boton_guardar_cambios">
                     <div class="w-100 d-flex justify-content-end">
