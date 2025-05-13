@@ -579,6 +579,9 @@
                     <label for="dpto_select">Departamentos</label>
                     <select id="dpto_select" name="dpto_select" class="form-control" size=4 onchange="gestionSeleccionDpto()"></select>
                 </div>
+                <div class="col-6" id="div_desc_operacion" style="visibility:hidden">
+                    <h4 id="desc_operacion" style="text-align: center;">Gestión de Departamentos</h4>
+                </div>
             </div>
             <div class="row mt-3">
                 <div class="col-5">
@@ -594,7 +597,7 @@
                 <div class="col-5 d-flex flex-column justify-content-end" style="text-align: center;visibility:hidden" id="div_boton_guardar_cambios">
                     <div class="w-100 d-flex justify-content-end">
                         <button type="button" id="btn_nuevo_dpto" class="btn btn-success btn-sm" onclick="guardaCambiosDpto()">Guardar Cambios</button>
-                        <button type="button" id="btn_cancela_nuevo_dpto" class="btn btn-danger btn-sm ml-2" onclick="gestionSeleccionDpto();this.parentNode.parentNode.style.visibility='hidden';$('#div_departamentos').parent().find('.ui-dialog-buttonpane button').prop('disabled', false);">Cancelar</button>
+                        <button type="button" id="btn_cancela_nuevo_dpto" class="btn btn-danger btn-sm ml-2" onclick="cancelaOPeracionDepartamentos(this)">Cancelar</button>
                     </div>
                 </div>
             </div>

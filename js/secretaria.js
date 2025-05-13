@@ -3055,7 +3055,8 @@ function gestionDptos(){
                     div_boton_guardar_cambios.style.visibility="visible";
                     //Inhabilita los botones del dialog
                     $("#div_departamentos").parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
-
+                    document.getElementById("div_desc_operacion").style.visibility='visible';
+                    document.getElementById("desc_operacion").innerHTML="ALTA DE NUEVO DEPARTAMENTO";
                 }
             },
             {
@@ -3067,6 +3068,8 @@ function gestionDptos(){
                     document.getElementById("dpto_abreviatura").readOnly=false;
                     //Inhabilita los botones del dialog
                     $("#div_departamentos").parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
+                    document.getElementById("div_desc_operacion").style.visibility='visible';
+                    document.getElementById("desc_operacion").innerHTML="MODIFICACIÓN DE DEPARTAMENTO";
                 }
             },
             {
@@ -3126,5 +3129,12 @@ function gestionSeleccionDpto(){
     document.getElementById("dpto_abreviatura").value=obj.options[obj.selectedIndex].dataset.abreviatura;
     document.getElementById("dpto_nombre").readOnly=true;
     document.getElementById("dpto_abreviatura").readOnly=true;
+}
+
+function cancelaOPeracionDepartamentos(obj){
+    gestionSeleccionDpto();
+    obj.parentNode.parentNode.style.visibility='hidden';
+    $('#div_departamentos').parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
+    document.getElementById("div_desc_operacion").style.visibility='hidden';
 }
 
