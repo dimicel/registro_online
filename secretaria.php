@@ -577,7 +577,7 @@
             <div class="row">
                 <div class="col-6">
                     <label for="dpto_select">Departamentos</label>
-                    <select id="dpto_select" name="dpto_select" class="form-control" size=4 onchange="gestionSeleccionDpto(this)"></select>
+                    <select id="dpto_select" name="dpto_select" class="form-control" size=4 onchange="gestionSeleccionDpto()"></select>
                 </div>
             </div>
             <div class="row mt-3">
@@ -591,8 +591,9 @@
                     <span class="errorTxt" style="font-size: 1em;"></span>
                     <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" readonly>
                 </div>
-                <div class="col-3" style="text-align: center;display:none" id="div_boton_guardar_cambios">
+                <div class="col-3 d-flex flex-column justify-content-end" style="text-align: center;display:none" id="div_boton_guardar_cambios">
                     <button type="button" id="btn_nuevo_dpto" class="btn btn-success btn-sm" onclick="guardaCambiosDpto()">Guardar Cambios</button>
+                    <button type="button" id="btn_nuevo_dpto" class="btn btn-danger btn-sm" onclick="gestionSeleccionDpto();this.parent.style.display='none'">Cancelar</button>
                 </div>
             </div>
         </form>
