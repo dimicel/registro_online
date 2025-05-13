@@ -414,6 +414,7 @@ function generaSelectsDepartamentos(){
         opt.value=departamentos[i][0];
         opt.textContent=departamentos[i][0];
         opt.dataset.id=departamentos[i][3];
+        opt.dataset.abreviatura=departamentos[i][1];
         document.getElementById("dpto_select").appendChild(opt);
     }
 }
@@ -3049,7 +3050,7 @@ function gestionDptos(){
                     document.getElementById("dpto_abreviatura").value="";
                     document.getElementById("dpto_nombre").readOnly=false;
                     document.getElementById("dpto_abreviatura").readOnly=false;
-                    div_boton_guardar_cambios.style.display="none";
+                    div_boton_guardar_cambios.style.display="";
                 }
             },
             {
@@ -3110,5 +3111,10 @@ function gestionDptos(){
                 }
             }]
     });
+}
+
+function gestionSeleccionDpto(obj){
+    document.getElementById("dpto_nombre").value=obj.value;
+    document.getElementById("dpto_abreviatura").value=obj.options[obj.selectedIndex].dataset.abreviatura;
 }
 

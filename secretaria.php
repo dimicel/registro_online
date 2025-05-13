@@ -577,7 +577,7 @@
             <div class="row">
                 <div class="col-6">
                     <label for="dpto_select">Departamentos</label>
-                    <select id="dpto_select" name="dpto_select" class="form-control" size=4></select>
+                    <select id="dpto_select" name="dpto_select" class="form-control" size=4 onchange="gestionSeleccionDpto(this)"></select>
                 </div>
             </div>
             <div class="row mt-3">
