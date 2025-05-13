@@ -2885,22 +2885,22 @@ function listadoAutorUsoImag(){
 
 function avisarJefesDpto(){
     var emails=[];
-    var departamentos=[];
+    var departamentos_email=[];
     var desp=document.getElementById('departamento');
     if (desp.value=='Todos'){
         for (i=0;i<desp.options.length;i++){
             if (desp.options[i].value!="Todos"){
                 emails.push(desp.options[i].dataset.email);
-                departamentos.push(desp.options[i].value);
+                departamentos_email.push(desp.options[i].value);
             } 
         }
     }
     else{
         emails.push(desp.options[desp.selectedIndex].dataset.email);
-        departamentos.push(desp.options[desp.selectedIndex].value);
+        departamentos_email.push(desp.options[desp.selectedIndex].value);
     } 
     document.getElementById("cargando").style.display = 'inherit';
-    $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos},(resp)=>{
+    $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos_email},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
         if (resp=='ok'){
             alerta("Se ha realizado correctamente el aviso a los Jefes de Departamanto.","ENVÍO COMUNICACIÓN OK");
@@ -3096,6 +3096,7 @@ function gestionDptos(){
                                                 document.getElementById("cargando").style.visibility="hidden";
                                                 if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
                                                 else {
+                                                    departamentos=[];
                                                     for(i=0; i<resp.registro.length;i++){
                                                         departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
                                                     }
@@ -3148,13 +3149,36 @@ function guardaAnadeDpto(textBoton){
             return;
         }
     if (textBoton=="Añadir Dpto."){
-        
+        document.getElementById("cargando").style.display = '';
+        $.post("php/secret_anade_departamento.php",{dpto_nombre:document.getElementById("dpto_nombre").value,dpto_abreviatura:document.getElementById("dpto_abreviatura").value},(resp)=>{
+            document.getElementById("cargando").style.display = 'none';
+            if (resp=="ok"){
+                alerta("Departamento añadido correctamente.","ALTA CORRECTA");
+                document.getElementById("cargando").style.display = '';
+                $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
+                    document.getElementById("cargando").style.visibility="hidden";
+                    if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
+                    else {
+                        departamentos=[];
+                        for(i=0; i<resp.registro.length;i++){
+                            departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
+                        }
+                        generaSelectsDepartamentos();
+                    }
+                },"json");
+            }
+            else if (resp=="server"){
+                alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+            }
+            else{
+                alerta(resp,"ERROR DB/SERVIDOR");
+            }
+        });
     }
     else if(textBoton=="Guardar Cambios"){
         if (document.getElementById("dpto_nombre").value==document.getElementById("backup_dpto_nombre").value && document.getElementById("dpto_abreviatura").value==document.getElementById("backup_dpto_abreviatura").value){
             alerta("No se han realizado cambios en el departamento. No se realizará ninguna acción.","SIN CAMBIOS");
         }
-        
     }
     div_boton_guardar_cambios.style.visibility="hidden";
     document.getElementById("dpto_nombre").readOnly=true;
