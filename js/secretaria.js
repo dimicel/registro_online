@@ -3219,3 +3219,32 @@ function guardaAnadeDpto(textBoton){
 
 }
 
+function compruebaDuplicadoDpto(this){
+    var valor = this.value;
+    var id = this.id;
+    if (id=="dpto_nombre"){
+        document.getElementById("cargando").style.display = '';
+        $.post("php/secret_comprueba_duplicado_dpto.php",{dpto_nombre:valor, tipo_input:"nombre"},(resp)=>{
+            document.getElementById("cargando").style.display = 'none';
+            if (resp=="duplicado"){
+                this.parentNode.innerHTML="Nombre duplicado";
+            }
+            else{
+                this.parentNode.innerHTML="";
+            }
+        }); 
+    }
+    else if (id=="dpto_abreviatura"){
+        document.getElementById("cargando").style.display = '';
+        $.post("php/secret_comprueba_duplicado_dpto.php",{dpto_abreviatura:valor, tipo_input:"abreviatura"},(resp)=>{
+            document.getElementById("cargando").style.display = 'none';
+            if (resp=="duplicado"){
+                this.parentNode.innerHTML="Duplicada";
+            }
+            else{
+                this.parentNode.innerHTML="";
+            }   
+        });
+    }
+}
+
