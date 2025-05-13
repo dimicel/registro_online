@@ -3057,6 +3057,7 @@ function gestionDptos(){
                     $("#div_departamentos").parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                     document.getElementById("div_desc_operacion").style.visibility='visible';
                     document.getElementById("desc_operacion").innerHTML="ALTA DE NUEVO DEPARTAMENTO";
+                    document.getElementById("btn_nuevo_dpto").innerHTML="Añadir Dpto.";
                 }
             },
             {
@@ -3070,6 +3071,7 @@ function gestionDptos(){
                     $("#div_departamentos").parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                     document.getElementById("div_desc_operacion").style.visibility='visible';
                     document.getElementById("desc_operacion").innerHTML="MODIFICACIÓN DE DEPARTAMENTO";
+                    document.getElementById("btn_nuevo_dpto").innerHTML="Guardar Cambios";
                 }
             },
             {
