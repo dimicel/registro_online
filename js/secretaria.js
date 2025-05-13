@@ -3071,12 +3071,14 @@ function gestionDptos(){
                             confirmar("Por favor, confirme otra vez que desea eliminar el departamento seleccionado.","CONFIRMAR ELIMINACIÓN")
                             .then(function(confirmacion2) {
                                 if(confirmacion2){
-                                    document.getElementById("cargando").style.display = 'inherit';
+                                    document.getElementById("cargando").style.display = '';
                                     $.post("php/secret_elimina_departamento.php",{dpto:document.getElementById("dpto_select").value},(resp)=>{
                                         document.getElementById("cargando").style.display = 'none';
                                         if (resp=="ok"){
                                             alerta("Departamento eliminado correctamente.","ELIMINACIÓN CORRECTA");
+                                            document.getElementById("cargando").style.display = '';
                                             $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
+                                                document.getElementById("cargando").style.display = 'none';
                                                 if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
                                                 else {
                                                     for(i=0; i<resp.registro.length;i++){
@@ -3103,8 +3105,8 @@ function gestionDptos(){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Salir",
                 click: function() {
-                    $("#div_gestion_dptos").dialog("close");
-                    $("#div_gestion_dptos").dialog("destroy");
+                    $("#div_departamentos").dialog("close");
+                    $("#div_departamentos").dialog("destroy");
                 }
             }]
     });
