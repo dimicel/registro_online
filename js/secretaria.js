@@ -3031,7 +3031,7 @@ function eliminaPrematriculas(){
 
 function gestionDptos(){
     document.getElementById("config_dpto").selectedIndex=0;
-    gestionSeleccionDpto();
+    //gestionSeleccionDpto();
     $("#div_departamentos").dialog({
         autoOpen: true,
         dialogClass: "no-close",
