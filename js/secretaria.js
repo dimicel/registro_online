@@ -3052,14 +3052,14 @@ function gestionDptos(){
                     document.getElementById("dpto_abreviatura").value="";
                     document.getElementById("dpto_nombre").readOnly=false;
                     document.getElementById("dpto_abreviatura").readOnly=false;
-                    div_boton_guardar_cambios.style.display="";
+                    div_boton_guardar_cambios.style.visibility="visible";
                 }
             },
             {
                 class: "btn btn-success textoboton btn-sm",
                 text: "Modificar",
                 click: function() {
-                    div_boton_guardar_cambios.style.display="";
+                    div_boton_guardar_cambios.style.visibility="visible";
                     document.getElementById("dpto_nombre").readOnly=false;
                     document.getElementById("dpto_abreviatura").readOnly=false;
                 }
@@ -3076,12 +3076,12 @@ function gestionDptos(){
                                 if(confirmacion2){
                                     document.getElementById("cargando").style.display = '';
                                     $.post("php/secret_elimina_departamento.php",{dpto:document.getElementById("dpto_select").value},(resp)=>{
-                                        document.getElementById("cargando").style.display = 'none';
+                                        document.getElementById("cargando").style.visibility="hidden";
                                         if (resp=="ok"){
                                             alerta("Departamento eliminado correctamente.","ELIMINACIÓN CORRECTA");
                                             document.getElementById("cargando").style.display = '';
                                             $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
-                                                document.getElementById("cargando").style.display = 'none';
+                                                document.getElementById("cargando").style.visibility="hidden";
                                                 if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
                                                 else {
                                                     for(i=0; i<resp.registro.length;i++){
