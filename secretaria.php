@@ -580,7 +580,7 @@
                     <select id="dpto_select" name="dpto_select" class="form-control" size=4 onchange="gestionSeleccionDpto()"></select>
                 </div>
                 <div class="col-6 d-flex justify-content-center align-items-center" id="div_desc_operacion" style="visibility:hidden">
-                    <h4 id="desc_operacion" style="text-align: center;color:brown;"></h4>
+                    <h4 id="desc_operacion" style="color:brown;"></h4>
                 </div>
             </div>
             <div class="row mt-3">
