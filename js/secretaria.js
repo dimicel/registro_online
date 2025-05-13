@@ -3042,7 +3042,7 @@ function gestionDptos(){
         position: { my: "center", at: "center", of: window },
         buttons: [
             {
-                class: "btn btn-success textoboton",
+                class: "btn btn-success textoboton btn-sm",
                 text: "Nuevo",
                 click: function() {
                     document.getElementById("dpto_nombre").value="";
@@ -3053,7 +3053,7 @@ function gestionDptos(){
                 }
             },
             {
-                class: "btn btn-success textoboton",
+                class: "btn btn-success textoboton btn-sm",
                 text: "Modificar",
                 click: function() {
                     div_boton_guardar_cambios.style.display="";
@@ -3062,7 +3062,7 @@ function gestionDptos(){
                 }
             },
             {
-                class: "btn btn-success textoboton",
+                class: "btn btn-success textoboton btn-sm",
                 text: "Borrar",
                 click: function() {
                     confirmar("¿Está seguro de que desea eliminar el departamento seleccionado?.","ELIMINAR DEPARTAMENTO")
@@ -3100,7 +3100,7 @@ function gestionDptos(){
                 }
             },
             {
-                class: "btn btn-success textoboton",
+                class: "btn btn-success textoboton btn-sm",
                 text: "Salir",
                 click: function() {
                     $("#div_gestion_dptos").dialog("close");
