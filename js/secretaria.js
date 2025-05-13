@@ -3223,9 +3223,9 @@ function guardaAnadeDpto(textBoton){
 
 }
 
-function compruebaDuplicadoDpto(this){
-    var valor = this.value;
-    var id = this.id;
+function compruebaDuplicadoDpto(obj){
+    var valor = obj.value;
+    var id = obj.id;
     id_dpto=document.getElementById("dpto_select").options[document.getElementById("dpto_select").selectedIndex].dataset.id;
     var accion="";
     if(document.getElementById("btn_nuevo_dpto").innerHTML=="Añadir Dpto."){
@@ -3239,10 +3239,10 @@ function compruebaDuplicadoDpto(this){
         $.post("php/secret_comprueba_duplicado_dpto.php",{valor:valor, tipo_input:"nombre",accion:accion,id:id_dpto},(resp)=>{
             document.getElementById("cargando").style.display = 'none';
             if (resp=="duplicado"){
-                this.parentNode.innerHTML="Nombre duplicado";
+                obj.parentNode.innerHTML="Nombre duplicado";
             }
             else{
-                this.parentNode.innerHTML="";
+                obj.parentNode.innerHTML="";
             }
         }); 
     }
@@ -3251,10 +3251,10 @@ function compruebaDuplicadoDpto(this){
         $.post("php/secret_comprueba_duplicado_dpto.php",{valor:valor, tipo_input:"abreviatura",accion:accion,id:id_dpto},(resp)=>{
             document.getElementById("cargando").style.display = 'none';
             if (resp=="duplicado"){
-                this.parentNode.innerHTML="Duplicada";
+                obj.parentNode.innerHTML="Duplicada";
             }
             else{
-                this.parentNode.innerHTML="";
+                obj.parentNode.innerHTML="";
             }   
         });
     }
