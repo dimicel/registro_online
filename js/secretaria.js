@@ -79,7 +79,7 @@ $(function() {
     prom6=prom5.then((resp)=>{
         if (resp.error=="ok"){
             for(i=0;i<resp.registro.length;i++){
-                departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd));
+                departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
             }
             generaSelectsDepartamentos();
         }
@@ -410,6 +410,11 @@ function generaSelectsDepartamentos(){
         opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
         opt.dataset.email=departamentos[i][2];
         document.getElementById("departamento").appendChild(opt);
+        opt=document.createElement("option");
+        opt.value=departamentos[i][0];
+        opt.textContent=departamentos[i][0];
+        opt.dataset.id=departamentos[i][3];
+        document.getElementById("dpto_select").appendChild(opt);
     }
 }
 
@@ -3024,7 +3029,6 @@ function eliminaPrematriculas(){
 
 
 function gestionDptos(){
-    generaSelectGestionDptos();
     $("#div_gestion_dptos").dialog({
         autoOpen: true,
         dialogClass: "no-close",
@@ -3061,7 +3065,38 @@ function gestionDptos(){
                 class: "btn btn-success textoboton",
                 text: "Borrar",
                 click: function() {
-                    
+                    confirmar("¿Está seguro de que desea eliminar el departamento seleccionado?.","ELIMINAR DEPARTAMENTO")
+                    .then(function(confirmacion) {
+                        if(confirmacion){
+                            confirmar("Por favor, confirme otra vez que desea eliminar el departamento seleccionado.","CONFIRMAR ELIMINACIÓN")
+                            .then(function(confirmacion2) {
+                                if(confirmacion2){
+                                    document.getElementById("cargando").style.display = 'inherit';
+                                    $.post("php/secret_elimina_departamento.php",{dpto:document.getElementById("dpto_select").value},(resp)=>{
+                                        document.getElementById("cargando").style.display = 'none';
+                                        if (resp=="ok"){
+                                            alerta("Departamento eliminado correctamente.","ELIMINACIÓN CORRECTA");
+                                            $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
+                                                if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
+                                                else {
+                                                    for(i=0; i<resp.registro.length;i++){
+                                                        departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
+                                                    }
+                                                    generaSelectsDepartamentos();
+                                                }
+                                            },"json");
+                                        }
+                                        else if (resp=="server"){
+                                            alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+                                        }
+                                        else{
+                                            alerta(resp,"ERROR DB/SERVIDOR");
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
                 }
             },
             {
@@ -3075,10 +3110,3 @@ function gestionDptos(){
     });
 }
 
-function generaSelectGestionDptos(){
-    var c="";
-    for (i=0;i<departamentos.length;i++){
-        c+="<option value='"+departamentos[i][0]+"'>"+departamentos[i][0]+"</option>";
-    }
-    document.getElementById("dpto_select").innerHTML=c;
-}
