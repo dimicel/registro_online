@@ -388,14 +388,14 @@ function borraDocExp(obj) {
             return;
         }
 
-        // Aquí va tu lógica como antes, sin cambios:
+        // Mueve la lógica de acceso al DOM aquí, después de la carga completa
         _del_ruta_completa = obj.parentElement.children[1].children[0].href;
         _del_ruta = ".." + _del_ruta_completa.substr(_del_ruta_completa.indexOf("/docs/"));
         _del_curso = obj.parentElement.children[0].innerHTML;
         _del_documento_pos = _del_ruta.indexOf(_del_curso);
         _del_documento = _del_ruta.substr(_del_documento_pos + 10);
 
-        document.getElementById("doc_cod_seg").value = "";
+        document.getElementById("doc_cod_seg").value = "";  // Ahora debería estar accesible
         document.getElementById("del_ruta").value = _del_ruta;
         document.getElementById("del_documento").innerHTML = "Curso: " + _del_curso + " Nombre: " + _del_documento;
 
