@@ -329,8 +329,8 @@ function CargadorHTMLParcial(url, selector, destino, modo = "append", callback =
         url: url + "?q=" + Date.now(),
         method: "GET",
         dataType: "html"
-    }).done(function(data) {
-        var contenido = $(data).find(selector);
+    }).done(function(data) {alert(data);
+        var contenido = $(data).find(selector);alert($(contenido).html());
         switch (modo) {
             case "append":
                 $(destino).append(contenido);
