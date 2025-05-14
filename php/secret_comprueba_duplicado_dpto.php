@@ -44,9 +44,7 @@ if ($accion=="alta" && $tipo_input=="nombre") {
     $sql="SELECT * FROM departamentos WHERE abreviatura='$valor'";
 } elseif ($accion=="modifica" && $tipo_input=="abreviatura") {
     $sql="SELECT * FROM departamentos WHERE abreviatura='$valor' AND id!='$id'";
-}
-
-exit("___".$mysqli->errno."___");   
+} 
 
 $resultado=$mysqli->query($sql);
 if ($mysqli->errno>0) {
@@ -67,6 +65,7 @@ if ($accion=="alta" && $tipo_input=="nombre") {
 $coincidencia="";
 if ($hacer_comprobacion) {
     $resultado=$mysqli->query($sql);
+    exit("____".$mysqli->errno);    
     if ($mysqli->errno>0) {
         exit("server");
     }
