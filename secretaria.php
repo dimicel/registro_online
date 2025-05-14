@@ -592,7 +592,7 @@
                     <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" readonly onkeyup="compruebaDuplicadoDpto(this)" onchange="compruebaDuplicadoDpto(this)">
                 </div>
                 <div class="col-3">
-                    <label for="dpto_abreviatura">Abreviatura</label><br>
+                    <label for="dpto_abreviatura">Abreviatura</label>
                     <span class="errorTxt" style="font-size: 0.75em;"></span>
                     <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" readonly onkeyup="compruebaDuplicadoDpto(this)" onchange="compruebaDuplicadoDpto(this)"> 
                 </div>
