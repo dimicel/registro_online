@@ -34,6 +34,8 @@ $valor_normalizado = normalizar_nombre($valor);
 
 $mysqli->set_charset("utf8");
 
+exit($valor);
+
 if ($accion=="alta" && $tipo_input=="nombre") {
     $sql="SELECT * FROM departamentos WHERE departamento='$valor'";
 } elseif ($accion=="modifica" && $tipo_input=="nombre") {
@@ -43,6 +45,8 @@ if ($accion=="alta" && $tipo_input=="nombre") {
 } elseif ($accion=="modifica" && $tipo_input=="abreviatura") {
     $sql="SELECT * FROM departamentos WHERE abreviatura='$valor' AND id!='$id'";
 }
+
+
 
 $resultado=$mysqli->query($sql);
 if ($mysqli->errno>0) {
