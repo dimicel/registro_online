@@ -412,7 +412,7 @@ function generaSelectsDepartamentos(){
         document.getElementById("departamento").appendChild(opt);
         opt=document.createElement("option");
         opt.value=departamentos[i][0];
-        opt.textContent=departamentos[i][0];
+        opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
         opt.dataset.id=departamentos[i][3];
         opt.dataset.abreviatura=departamentos[i][1];
         document.getElementById("dpto_select").appendChild(opt);
