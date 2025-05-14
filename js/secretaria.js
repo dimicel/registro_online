@@ -901,6 +901,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                                     data += "<td style='width:70px;text-align:center'>-</td>";
                                 } 
                                 if (rutaResolucion!=""){
+                                    alert(j+"___"+i);
                                     alert(data_array[i][campos[j]])
                                     data+="<td style='width:70px;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
                                 }
