@@ -3240,10 +3240,10 @@ function compruebaDuplicadoDpto(obj){
         $.post("php/secret_comprueba_duplicado_dpto.php",{valor:valor, tipo_input:"nombre",accion:accion,id:id_dpto},(resp)=>{
             document.getElementById("cargando").style.display = 'none';
             if (resp=="duplicado" || resp=="duplicado_normalizado"){
-                obj.parentNode.parentNode.innerHTML="Nombre duplicado";
+                obj.previousElementSibling.innerHTML="Nombre duplicado";
             }
             else{
-                obj.parentNode.parentNode.innerHTML="";
+                obj.previousElementSibling.innerHTML="";
             }
         }); 
     }
@@ -3252,10 +3252,10 @@ function compruebaDuplicadoDpto(obj){
         $.post("php/secret_comprueba_duplicado_dpto.php",{valor:valor, tipo_input:"abreviatura",accion:accion,id:id_dpto},(resp)=>{
             document.getElementById("cargando").style.display = 'none';
             if (resp=="duplicado" || resp=="duplicado_normalizado"){
-                obj.parentNode.parentNode.innerHTML="Duplicada";
+                obj.previousElementSibling.innerHTML="Duplicada";
             }
             else{
-                obj.parentNode.parentNode.innerHTML="";
+                obj.previousElementSibling.innerHTML="";
             }   
         });
     }
