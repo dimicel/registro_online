@@ -3176,6 +3176,8 @@ function guardaAnadeDpto(textBoton){
                         }
                         generaSelectsDepartamentos();
                         document.getElementById("dpto_select").selectedIndex=0;
+                        document.getElementById("dpto_nombre").value=departamentos[0][0];
+                        document.getElementById("dpto_abreviatura").value=departamentos[0][1];
                     }
                 },"json");
             }
@@ -3208,7 +3210,6 @@ function guardaAnadeDpto(textBoton){
                                 departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
                             }
                             generaSelectsDepartamentos();
-                            document.getElementById("dpto_select").selectedIndex=0;
                         }
                     },"json");
                 }
