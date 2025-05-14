@@ -881,9 +881,9 @@ function listaRegistros(orden_campo, orden_direccion) {
                         }
                         else if(j==4){//Aquí se hace la columna Informe JD y Resolución juntas 
                             abrDpto="";
-                            for (j=0;j<departamentos.length;j++){
-                                if (data_array[i]["departamento"]==departamentos[j][0]){
-                                    abrDpto=departamentos[j][1];
+                            for (k=0;k<departamentos.length;k++){
+                                if (data_array[i]["departamento"]==departamentos[k][0]){
+                                    abrDpto=departamentos[k][1];
                                 }
                             }
                             data+="<td style='width:35px'><center>"+abrDpto+"</center></td>";
@@ -902,9 +902,6 @@ function listaRegistros(orden_campo, orden_direccion) {
                                     data += "<td style='width:70px;text-align:center'>-</td>";
                                 } 
                                 if (rutaResolucion!=""){
-                                    alert(campos.length);
-                                    alert(j+"___"+i);
-                                    alert(data_array[i][campos[j]])
                                     data+="<td style='width:70px;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
                                 }
                                 else{
