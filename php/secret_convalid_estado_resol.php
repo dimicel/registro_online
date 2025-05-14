@@ -21,7 +21,7 @@ else {
     $nombreDirector=$datosCentro["director"];
     $nombreDirectorMayus=strtoupper($nombreDirector);
 }
-
+$genera_resolucion=$_POST["genera_resolucion"];
 $registro=$_POST["registro"];
 $modulos=$_POST["modulo_convalid"];
 $estados=$_POST["estado_convalid"];
@@ -30,6 +30,7 @@ $elementos_sin_resolver=false;
 $resuelto_por=array(
     "FAVORABLE"=>"CENTRO",
     "NO FAVORABLE"=>"CENTRO",
+    "NO PROCEDE"=>"CENTRO",
     "CONSEJERIA"=>"CONSEJERIA",
     "MINISTERIO"=>"MINISTERIO",
     ""=>""
@@ -41,15 +42,20 @@ $res_con=0;
 $res_min=0;
 $res_fav=0;
 $res_nofav=0;
+$res_noproc=0;
 for ($i=0; $i<count($estados);$i++){
     if($estados[$i]=="FAVORABLE"){
         $res_cen++;
         $res_fav++;
     }
-    elseif($estados[$i]=="NO FAVORABLE") {
+    elseif($estados[$i]=="NO FAVORABLE" ){
         $res_cen++;
         $res_nofav++;
     }
+    elseif($estados[$i]=="NO PROCEDE"){
+        $res_cen++;
+        $res_noproc++;
+    } 
     elseif($estados[$i]=="CONSEJERIA") $res_con++;
     elseif($estados[$i]=="MINISTERIO") $res_min++;
 }
@@ -119,7 +125,7 @@ $dr=$concov->fetch_assoc();
 
 // Cerrar conexión
 $mysqli->close();
-
+if($genera_resolucion==0) exit("ok");
 //Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
 $Yinicio=70;
 $margen_derecho=20;
@@ -225,6 +231,16 @@ if($res_fav>0 || $res_nofav>0){
         $html.="<b>No Reconocerle</b> las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente:<br> <b>";
         for ($i=0;$i<count($estados);$i++){
             if ($estados[$i]=="NO FAVORABLE"){
+                $html.=$modulos[$i] ." (".$motivos[$i].")";
+                if ($i<count($estados)-2) $html.="; ";
+            }
+        }
+        $html.="</b><br><br>";
+    }
+    if($res_noproc>0){
+        $html.="<b>No PROCEDE</b> el reconocimiento de las convalidaciones de los siguientes módulos profesionales del ciclo formativo correspondiente:<br> <b>";
+        for ($i=0;$i<count($estados);$i++){
+            if ($estados[$i]=="NO PROCEDE"){
                 $html.=$modulos[$i] ." (".$motivos[$i].")";
                 if ($i<count($estados)-2) $html.="; ";
             }

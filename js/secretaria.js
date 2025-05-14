@@ -1449,11 +1449,11 @@ function verRegistroConvalidaciones(num_registro){
             //contenido +="<label class='verReg_label'>RESOLUCION:</label>";
             //contenido +="</div><div class='col-3'>";
             contenido +="<div class='col-3'>";
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/></div>"
+            contenido +="<input type='button' class='textoboton btn btn-success btn-sm' value='Resolver' onclick='verPanelResolver(\""+resp.registro.id_nie+"\",\""+num_registro+"\");'/></div>"
             //contenido +="<div class='col-3'>"
             //contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Resolución' onclick='document.getElementById(\"ver_reg_resolucion\").click()'/></div>";
             //contenido +="<div class='col-2'>"
-            contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
+            contenido +="<input type='button' class='textoboton btn btn-success btn-sm' value='Adjuntar Documento' onclick='adjuntaDocAdicional(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
             contenido += "</div></div>";
             //contenido +="<input type='file' id='ver_reg_resolucion' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='adjuntaResolucion(\""+resp.registro.id_nie+"\",\""+num_registro+"\",this)'/>";
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
@@ -1544,10 +1544,10 @@ function verPanelResolver(id_nie,registro){
         document.getElementById("cargando").style.display = 'none';
         if (resp["error"]=="ok"){
             panel=document.getElementById("verModulosConvalidaciones_div");
-            cont="<form id='form_relacion_modulos_convalid'><input type='hidden' name='registro' value='"+registro+"'/><div class='container'><div class='form-group form-row'>";
+            cont="<form id='form_relacion_modulos_convalid'><input type='hidden' name='registro' value='"+registro+"'/><input type='hidden' name='genera_resolucion' id='genera_resolucion' value=''/><div class='container'><div class='form-group form-row'>";
             cont+="<div class='col-5'><label>Módulo</label></div>";
             cont+="<div class='col-2'><label>Estado</label></div>";
-            cont+="<div class='col-5'><label>Motivo No Favorable</label></div>";
+            cont+="<div class='col-5'><label>Motivo No Favorable/No Procede</label></div>";
             cont+="</div>";
             for(i=0;i<resp.datos.length;i++){
                 cont+="<div class='form-group form-row'>";
@@ -1558,6 +1558,8 @@ function verPanelResolver(id_nie,registro){
                 else cont+="<option value='FAVORABLE'>FAVORABLE</option>";
                 if(resp.datos[i].resolucion=="NO FAVORABLE")cont+="<option value='NO FAVORABLE' selected>NO FAVORABLE</option>";
                 else  cont+="<option value='NO FAVORABLE'>NO FAVORABLE</option>";
+                if(resp.datos[i].resolucion=="NO PROCEDE")cont+="<option value='NO PROCEDE' selected>NO PROCEDE</option>";
+                else  cont+="<option value='NO PROCEDE'>NO PROCEDE</option>";
                 if(resp.datos[i].resolucion=="CONSEJERIA")cont+="<option value='CONSEJERIA' selected>CONSEJERIA</option>";
                 else  cont+="<option value='CONSEJERIA'>CONSEJERIA</option>";   
                 if(resp.datos[i].resolucion=="MINISTERIO")cont+="<option value='MINISTERIO' selected>MINISTERIO</option>";
@@ -1579,31 +1581,64 @@ function verPanelResolver(id_nie,registro){
                 title: "RESOLUCIÓN CONVALIDACIÓN MÓDULOS",
                 width: ancho,
                 position: { my: "center top", at: "center top", of: window },
-                buttons:{
-                    "Resolver":function(){
-                        document.getElementById("cargando").style.display = 'inherit';
-                        $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
-                            document.getElementById("cargando").style.display = 'none';
-                            if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
-                            else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
-                            else if(resp=="ok"){
-                                alerta("Proceso terminado","OK");
-                            }
-                            else if(resp=="error_db_conval") alerta("No se han grabado los datos de resolución de los módulos poruqe no se ha podido actualizar el estado en la tabla convalidaciones.","ERROR TABLA");
-                            else if(resp=="no_datospdf") alerta("No se puede generar la notificación para el alumno. Fallo al acceder a los datos de la solicitud o hay un registro duplicado. Revise los datos de la tabla en este último caso.","ERROR DB");
-                            else if(resp=="ok_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO.","RESUELVE MINISTERIO");
-                            else if(resp=="ok_consejeria") alerta("No se genera notificación para el alumno. Resuelve CONSEJERIA.","RESUELVE CONSEJERIA");
-                            else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
-                            else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
+                buttons:[
+                    {
+                        class: "btn btn-success textoboton btn-sm",
+                        text:"Resolver",
+                        click:function(){
+                            document.getElementById("cargando").style.display = 'inherit';
+                            document.getElementById("genera_resolucion").value=1;
+                            $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
+                                document.getElementById("cargando").style.display = 'none';
+                                if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
+                                else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
+                                else if(resp=="ok"){
+                                    alerta("Proceso terminado","OK");
+                                }
+                                else if(resp=="error_db_conval") alerta("No se han grabado los datos de resolución de los módulos poruqe no se ha podido actualizar el estado en la tabla convalidaciones.","ERROR TABLA");
+                                else if(resp=="no_datospdf") alerta("No se puede generar la notificación para el alumno. Fallo al acceder a los datos de la solicitud o hay un registro duplicado. Revise los datos de la tabla en este último caso.","ERROR DB");
+                                else if(resp=="ok_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO.","RESUELVE MINISTERIO");
+                                else if(resp=="ok_consejeria") alerta("No se genera notificación para el alumno. Resuelve CONSEJERIA.","RESUELVE CONSEJERIA");
+                                else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
+                                else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
+                                listaRegistros(_orden_campo, _orden_direccion);
+                                $("#verModulosConvalidaciones_div").dialog("destroy");
+                            });
+                        }
+                    },
+                    {
+                        class: "btn btn-success textoboton btn-sm",
+                        text:"Grabar Datos",
+                        click:function(){
+                            document.getElementById("cargando").style.display = 'inherit';
+                            document.getElementById("genera_resolucion").value=0;
+                            $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
+                                document.getElementById("cargando").style.display = 'none';
+                                if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
+                                else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
+                                else if(resp=="ok"){
+                                    alerta("Proceso terminado","OK");
+                                }
+                                else if(resp=="error_db_conval") alerta("No se han grabado los datos de resolución de los módulos poruqe no se ha podido actualizar el estado en la tabla convalidaciones.","ERROR TABLA");
+                                else if(resp=="no_datospdf") alerta("No se puede generar la notificación para el alumno. Fallo al acceder a los datos de la solicitud o hay un registro duplicado. Revise los datos de la tabla en este último caso.","ERROR DB");
+                                else if(resp=="ok_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO.","RESUELVE MINISTERIO");
+                                else if(resp=="ok_consejeria") alerta("No se genera notificación para el alumno. Resuelve CONSEJERIA.","RESUELVE CONSEJERIA");
+                                else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
+                                else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
+                                listaRegistros(_orden_campo, _orden_direccion);
+                                $("#verModulosConvalidaciones_div").dialog("destroy");
+                            });
+                        }
+                    },
+                    {
+                        class: "btn btn-success textoboton btn-sm",
+                        text:"Cancelar",
+                        click:function(){
                             listaRegistros(_orden_campo, _orden_direccion);
                             $("#verModulosConvalidaciones_div").dialog("destroy");
-                        });
-                    },
-                    "Cancelar":function(){
-                        listaRegistros(_orden_campo, _orden_direccion);
-                        $("#verModulosConvalidaciones_div").dialog("destroy");
+                        }
                     }
-                }
+                ]
             });
         }
         else if(resp["error"]=="sin_modulos"){
