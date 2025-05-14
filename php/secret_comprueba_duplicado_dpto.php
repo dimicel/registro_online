@@ -8,9 +8,25 @@ $data=array();
 if ($mysqli->errno>0) {
     exit("server");
 }
+
+
 function normalizar_nombre($nombre) {
     $nombre = strtolower($nombre);
-    $nombre = preg_replace('/[^a-z0-9áéíóúüñ\s]/u', ' ', $nombre); // mantener letras y espacios
+
+    // Reemplazar vocales acentuadas y diéresis por vocales simples
+    $nombre = strtr($nombre, [
+        'á' => 'a', 'à' => 'a', 'ä' => 'a',
+        'é' => 'e', 'è' => 'e', 'ë' => 'e',
+        'í' => 'i', 'ì' => 'i', 'ï' => 'i',
+        'ó' => 'o', 'ò' => 'o', 'ö' => 'o',
+        'ú' => 'u', 'ù' => 'u', 'ü' => 'u',
+        // También puedes incluir mayúsculas si quieres tratar entradas sin `strtolower`
+    ]);
+
+    // Reemplazar cualquier carácter que no sea letra, número, espacio, ñ o ç por un espacio
+    $nombre = preg_replace('/[^a-z0-9ñç\s]/u', ' ', $nombre);
+
+    // Limpiar espacios redundantes
     $nombre = trim($nombre);
     $nombre = preg_replace('/\s+/', ' ', $nombre);
 
