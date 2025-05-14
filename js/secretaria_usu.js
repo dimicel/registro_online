@@ -337,7 +337,7 @@ function obtieneDocsExpediente() {
 }
 
 
-/*function borraDocExp(obj) {
+function borraDocExp(obj) {
     $("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #div_borra_doc", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
@@ -378,9 +378,9 @@ function obtieneDocsExpediente() {
         }
     });
 
-}*/
+}
 
-function borraDocExp(obj) {
+/*function borraDocExp(obj) {
     CargadorHTMLParcial.cargar("html/secretaria.htm", "div_borra_doc", "body", "append", function(status, error) {
         if (status === "error") {
             var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
@@ -425,7 +425,7 @@ function borraDocExp(obj) {
             }
         });
     });
-}
+}*/
 
 
 function confirmadoBorradoDoc() {
