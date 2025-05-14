@@ -70,6 +70,7 @@ if ($hacer_comprobacion) {
     }
     if ($resultado->num_rows>0) {
         while ($row = $resultado->fetch_assoc()) {
+            echo $row['departamento'] . " " . normalizar_nombre($row['departamento']) . " " . $valor_normalizado . "<br>";
             if (normalizar_nombre($row['departamento']) == $valor_normalizado) {
                 $coincidencia = "duplicado_normalizado";
                 break;
