@@ -324,41 +324,33 @@ function validateBIC(bic) {
 }
 
 
-var CargadorHTMLParcial = (function () {
-    function cargar(url, selector, destino, modo = "append", callback = null) {
-        $.ajax({
-            url: url + "?q=" + Date.now(),
-            method: "GET",
-            dataType: "html"
-        }).done(function (data) {
-            var contenido = $(data).find(selector);
-            alert(contenido.html());
-            switch (modo) {
-                case "append":
-                    $(destino).append(contenido);
-                    break;
-                case "prepend":
-                    $(destino).prepend(contenido);
-                    break;
-                case "replace":
-                    $(destino).html(contenido);
-                    break;
-                case "before":
-                    $(destino).before(contenido);
-                    break;
-                case "after":
-                    $(destino).after(contenido);
-                    break;
-            }
-            if (callback) callback("success", null);
-        }).fail(function (jqXHR, textStatus, errorThrown) {
-            if (callback) callback("error", { status: jqXHR.status, statusText: errorThrown });
-        });
-    }
-
-    return {
-        cargar: cargar
-    };
-})();
+function  CargadorHTMLParcial(url, selector, destino, modo = "append") {
+    $.ajax({
+        url: url + "?q=" + Date.now(),
+        method: "GET",
+        dataType: "html"
+    }).done(function(data) {
+        var contenido = $(data).find(selector);
+        switch (modo) {
+            case "append":
+                $(destino).append(contenido);
+                break;
+            case "prepend":
+                $(destino).prepend(contenido);
+                break;
+            case "replace":
+                $(destino).html(contenido);
+                break;
+            case "before":
+                $(destino).before(contenido);
+                break;
+            case "after":
+                $(destino).after(contenido);
+                break;
+        }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("Error al cargar contenido:", textStatus, errorThrown);
+    });
+}
 
   
