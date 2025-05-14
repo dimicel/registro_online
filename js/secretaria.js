@@ -780,6 +780,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             curso_num:curso_num
         }
     }
+    alert(campos.length);
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_listaregsecretaria.php", datos, function(resp) {
         document.getElementById("cargando").style.display = 'none';
