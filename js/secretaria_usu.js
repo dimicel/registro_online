@@ -381,7 +381,7 @@ function obtieneDocsExpediente() {
 }*/
 
 function borraDocExp(obj) {
-    CargadorHTMLParcial.cargar("html/secretaria.htm", "#div_borra_doc", "body", "append", function(status, error) {
+    CargadorHTMLParcial.cargar("html/secretaria.htm", "div_borra_doc", "body", "append", function(status, error) {
         if (status === "error") {
             var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
             alerta(msg, "ERROR DE CARGA");
