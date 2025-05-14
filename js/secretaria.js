@@ -3104,6 +3104,8 @@ function gestionDptos(){
                                                     }
                                                     generaSelectsDepartamentos();
                                                     document.getElementById("dpto_select").selectedIndex=0;
+                                                    document.getElementById("dpto_nombre").value=departamentos[0][0];
+                                                    document.getElementById("dpto_abreviatura").value=departamentos[0][1];
                                                 }
                                             },"json");
                                         }
