@@ -591,12 +591,12 @@
                     <span class="errorTxt" style="font-size: 0.75em;"></span>
                     <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" readonly onkeyup="compruebaDuplicadoDpto(this)" onchange="compruebaDuplicadoDpto(this)">
                 </div>
-                <div class="col-2">
+                <div class="col-3">
                     <label for="dpto_abreviatura">Abreviatura</label><br>
                     <span class="errorTxt" style="font-size: 0.75em;"></span>
                     <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" readonly onkeyup="compruebaDuplicadoDpto(this)" onchange="compruebaDuplicadoDpto(this)"> 
                 </div>
-                <div class="col-5 d-flex flex-column justify-content-end" style="text-align: center;visibility:hidden" id="div_boton_guardar_cambios">
+                <div class="col-4 d-flex flex-column justify-content-end" style="text-align: center;visibility:hidden" id="div_boton_guardar_cambios">
                     <div class="w-100 d-flex justify-content-end">
                         <button type="button" id="btn_nuevo_dpto" class="btn btn-success btn-sm" onclick="guardaAnadeDpto(this.innerHTML)">Guardar Cambios</button>
                         <button type="button" id="btn_cancela_nuevo_dpto" class="btn btn-danger btn-sm ml-2" onclick="cancelaOPeracionDepartamentos(this)">Cancelar</button>
