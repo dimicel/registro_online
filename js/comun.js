@@ -334,7 +334,7 @@ var CargadorHTMLParcial = (function () {
             var contenido = $(data).find(selector);alert(contenido);
             switch (modo) {
                 case "append":
-                    $(destino).append(contenido);
+                    $(destino).append(contenido);alert(destino);
                     break;
                 case "prepend":
                     $(destino).prepend(contenido);
