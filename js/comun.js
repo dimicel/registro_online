@@ -324,7 +324,7 @@ function validateBIC(bic) {
 }
 
 
-function  CargadorHTMLParcial(url, selector, destino, modo = "append") {
+function CargadorHTMLParcial(url, selector, destino, modo = "append", callback = null) { 
     $.ajax({
         url: url + "?q=" + Date.now(),
         method: "GET",
@@ -347,6 +347,11 @@ function  CargadorHTMLParcial(url, selector, destino, modo = "append") {
             case "after":
                 $(destino).after(contenido);
                 break;
+        }
+
+        // Si se pasa un callback, se ejecuta
+        if (callback && typeof callback === "function") {
+            callback();
         }
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.error("Error al cargar contenido:", textStatus, errorThrown);
