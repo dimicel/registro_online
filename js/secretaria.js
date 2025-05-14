@@ -3222,7 +3222,6 @@ function guardaAnadeDpto(textBoton){
     document.getElementById("dpto_abreviatura").readOnly=true;
     $("#div_departamentos").parent().find(".ui-dialog-buttonpane button").prop("disabled", false);
     document.getElementById("div_desc_operacion").style.visibility='hidden';
-
 }
 
 function compruebaDuplicadoDpto(obj){
