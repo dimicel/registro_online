@@ -49,13 +49,35 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 if ($resultado->num_rows>0) {
-    $data="coincidencia";
-    exit($data);
+    exit("duplicado");
 }
 
-
+$hacer_comprobacion=false;
 if ($accion=="alta" && $tipo_input=="nombre") {
-    $sql="SELECT * FROM departamentos WHERE departamento='$valor_normalizado'";
+    $sql="SELECT * FROM departamentos '";
+    $hacer_comprobacion=true;
 } elseif ($accion=="modifica" && $tipo_input=="nombre") {
-    $sql="SELECT * FROM departamentos WHERE departamento='$valor_normalizado' AND id!='$id'";
+    $sql="SELECT * FROM departamentos WHERE id!='$id'";
+    $hacer_comprobacion=true;
 }
+$coincidencia="";
+if ($hacer_comprobacion) {
+    $resultado=$mysqli->query($sql);
+    if ($mysqli->errno>0) {
+        exit("server");
+    }
+    if ($resultado->num_rows>0) {
+        while ($row = $resultado->fetch_assoc()) {
+            if (normalizar_nombre($row['departamento']) == $valor_normalizado) {
+                $coincidencia = "duplicado_normalizado";
+                break;
+            }
+        }
+    }
+}
+
+if($coincidencia=="duplicado_normalizado") {
+    exit("duplicado_normalizado");
+} else {
+    exit("ok");
+}   
