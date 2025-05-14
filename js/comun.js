@@ -325,7 +325,7 @@ function validateBIC(bic) {
 
 
 var CargadorHTMLParcial = (function () {
-    function cargar(url, selector, destino, modo = "append", callback = null) {
+    function cargar(url, selector, destino, modo = "append", callback = null) {alert(0);
         $.ajax({
             url: url + "?q=" + Date.now(),
             method: "GET",
