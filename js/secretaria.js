@@ -3157,7 +3157,7 @@ function guardaAnadeDpto(textBoton){
         alerta("Los campos 'Nombre del Departamento' y 'Abreviatura' no pueden estar duplicados.","NOMBRE O ABREVIATURA DUPLICADOS");
         return;
     }
-    if (textBoton=="Añadir Dpto."){
+    if (textBoton=="Añadir"){
         document.getElementById("cargando").style.display = '';
         $.post("php/secret_anade_departamento.php",{dpto_nombre:document.getElementById("dpto_nombre").value,dpto_abreviatura:document.getElementById("dpto_abreviatura").value},(resp)=>{
             document.getElementById("cargando").style.display = 'none';
@@ -3185,7 +3185,7 @@ function guardaAnadeDpto(textBoton){
             }
         });
     }
-    else if(textBoton=="Guardar Cambios"){
+    else if(textBoton=="Guardar"){
         if (document.getElementById("dpto_nombre").value==document.getElementById("backup_dpto_nombre").value && document.getElementById("dpto_abreviatura").value==document.getElementById("backup_dpto_abreviatura").value){
             alerta("No se han realizado cambios en el departamento. No se realizará ninguna acción.","SIN CAMBIOS");
         }
@@ -3232,10 +3232,10 @@ function compruebaDuplicadoDpto(obj){
     id_dpto=document.getElementById("dpto_select").options[document.getElementById("dpto_select").selectedIndex].dataset.id;
     var accion="";
     
-    if(document.getElementById("btn_nuevo_dpto").innerHTML=="Añadir Dpto."){
+    if(document.getElementById("btn_nuevo_dpto").innerHTML=="Añadir"){
         accion="alta";
     }
-    else if(document.getElementById("btn_nuevo_dpto").innerHTML=="Guardar Cambios"){
+    else if(document.getElementById("btn_nuevo_dpto").innerHTML=="Guardar"){
         accion="modifica";  
     }
     if (id=="dpto_nombre"){
