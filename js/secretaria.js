@@ -391,6 +391,7 @@ function generaSelectCursoTurnoGMGS(c){
 function generaSelectsDepartamentos(){
     document.getElementById("departamento").innerHTML="";
     document.getElementById("config_dpto").innerHTML="";
+    document.getElementById("dpto_select").innerHTML="";
     opt=document.createElement("option");
     opt.value="Todos";
     opt.textContent="Todos";
