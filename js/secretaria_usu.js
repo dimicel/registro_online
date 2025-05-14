@@ -338,7 +338,8 @@ function obtieneDocsExpediente() {
 
 
 function borraDocExp(obj) {
-    $("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #div_borra_doc", function(response,status, xhr){
+    //$("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #div_borra_doc", function(response,status, xhr){
+    $("body").append("html/secretaria.htm?q="+Date.now()+" #div_borra_doc", function(response,status, xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -372,7 +373,7 @@ function borraDocExp(obj) {
                 maxHeight: 500,
                 width: 550,
                 close:function(event,ui){
-                    $("#div_dialogs2").dialog("destroy");
+                    $("#div_dialogs2").dialog("destroy").remove();
                 }
             });
         }
