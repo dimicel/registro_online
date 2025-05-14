@@ -56,7 +56,7 @@ if ($resultado->num_rows>0) {
 
 $hacer_comprobacion=false;
 if ($accion=="alta" && $tipo_input=="nombre") {
-    $sql="SELECT * FROM departamentos '";
+    $sql="SELECT * FROM departamentos";
     $hacer_comprobacion=true;
 } elseif ($accion=="modifica" && $tipo_input=="nombre") {
     $sql="SELECT * FROM departamentos WHERE id!='$id'";
@@ -64,8 +64,7 @@ if ($accion=="alta" && $tipo_input=="nombre") {
 }
 $coincidencia="";
 if ($hacer_comprobacion) {
-    $resultado=$mysqli->query($sql);
-    exit("____".$mysqli->errno);    
+    $resultado=$mysqli->query($sql);   
     if ($mysqli->errno>0) {
         exit("server");
     }
