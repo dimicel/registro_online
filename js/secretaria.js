@@ -3228,6 +3228,7 @@ function compruebaDuplicadoDpto(obj){
     var id = obj.id;
     id_dpto=document.getElementById("dpto_select").options[document.getElementById("dpto_select").selectedIndex].dataset.id;
     var accion="";
+    alert(id);
     if(document.getElementById("btn_nuevo_dpto").innerHTML=="Añadir Dpto."){
         accion="alta";
     }
