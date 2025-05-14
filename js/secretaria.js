@@ -3236,9 +3236,9 @@ function compruebaDuplicadoDpto(obj){
         accion="modifica";  
     }
     if (id=="dpto_nombre"){
-        document.getElementById("cargando").style.display = '';
+        //document.getElementById("cargando").style.display = '';
         $.post("php/secret_comprueba_duplicado_dpto.php",{valor:valor, tipo_input:"nombre",accion:accion,id:id_dpto},(resp)=>{
-            document.getElementById("cargando").style.display = 'none';
+            //document.getElementById("cargando").style.display = 'none';
             if (resp=="duplicado" || resp=="duplicado_normalizado"){
                 obj.previousElementSibling.innerHTML="Nombre duplicado";
             }
@@ -3248,9 +3248,9 @@ function compruebaDuplicadoDpto(obj){
         }); 
     }
     else if (id=="dpto_abreviatura"){
-        document.getElementById("cargando").style.display = '';
+        //document.getElementById("cargando").style.display = '';
         $.post("php/secret_comprueba_duplicado_dpto.php",{valor:valor, tipo_input:"abreviatura",accion:accion,id:id_dpto},(resp)=>{
-            document.getElementById("cargando").style.display = 'none';
+            //document.getElementById("cargando").style.display = 'none';
             if (resp=="duplicado" || resp=="duplicado_normalizado"){
                 obj.previousElementSibling.innerHTML="Duplicada";
             }
