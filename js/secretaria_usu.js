@@ -362,7 +362,8 @@ function borraDocExp(obj) {
                 cod_seg = aux + cod_seg;
             }
             document.getElementById("doc_cod_seg").innerHTML = cod_seg;
-            $("#div_dialogs2").dialog({
+            //$("#div_dialogs2").dialog({
+            $("#div_borra_doc").dialog({    
                 autoOpen: true,
                 dialogClass: "alert no-close",
                 modal: true,
@@ -373,7 +374,8 @@ function borraDocExp(obj) {
                 maxHeight: 500,
                 width: 550,
                 close:function(event,ui){
-                    $("#div_dialogs2").dialog("destroy").remove();
+                    //$("#div_dialogs2").dialog("destroy");
+                    $("#div_borra_doc").dialog("destroy").remove();
                 }
             });
         }
