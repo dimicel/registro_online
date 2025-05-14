@@ -381,7 +381,7 @@ function borraDocExp(obj) {
 }*/
 
 function borraDocExp(obj) {
-    CargadorHTMLParcial("html/secretaria.htm?q="+Date.now(), "div_borra_doc", "body", "append", function() {
+    CargadorHTMLParcial("html/secretaria.htm?q="+Date.now(), "#div_borra_doc", "body", "append", function() {
         _del_ruta_completa = obj.parentElement.children[1].children[0].href;
         _del_ruta = ".." + _del_ruta_completa.substr(_del_ruta_completa.indexOf("/docs/"));
         _del_curso = obj.parentElement.children[0].innerHTML;
