@@ -330,8 +330,8 @@ var CargadorHTMLParcial = (function () {
             url: url + "?q=" + Date.now(),
             method: "GET",
             dataType: "html"
-        }).done(function (data) {alert(data);
-            var contenido = $(data).find(selector);
+        }).done(function (data) {
+            var contenido = $(data).find(selector);alert(contenido);
             switch (modo) {
                 case "append":
                     $(destino).append(contenido);
