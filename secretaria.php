@@ -587,7 +587,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-5">
-                    <label for="dpto_nombre">Nombre del Departamento</label><br>
+                    <label for="dpto_nombre">Nombre del Departamento</label>
                     <span class="errorTxt" style="font-size: 0.75em;"></span>
                     <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" readonly onkeyup="compruebaDuplicadoDpto(this)" onchange="compruebaDuplicadoDpto(this)">
                 </div>
