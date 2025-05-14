@@ -780,7 +780,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             curso_num:curso_num
         }
     }
-    alert(campos.length);
+    
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_listaregsecretaria.php", datos, function(resp) {
         document.getElementById("cargando").style.display = 'none';
@@ -902,6 +902,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                                     data += "<td style='width:70px;text-align:center'>-</td>";
                                 } 
                                 if (rutaResolucion!=""){
+                                    alert(campos.length);
                                     alert(j+"___"+i);
                                     alert(data_array[i][campos[j]])
                                     data+="<td style='width:70px;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
