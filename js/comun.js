@@ -333,7 +333,7 @@ function CargadorHTMLParcial(url, selector, destino, modo = "append", callback =
         var contenido = $(data).find(selector);alert($(contenido).html());
         switch (modo) {
             case "append":
-                $(destino).append(contenido);
+                $(destino).append(data);
                 break;
             case "prepend":
                 $(destino).prepend(contenido);
