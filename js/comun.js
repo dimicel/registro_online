@@ -324,38 +324,6 @@ function validateBIC(bic) {
 }
 
 
-function CargadorHTMLParcial(url, selector, destino, modo = "append", callback = null) { 
-    $.ajax({
-        url: url + "?q=" + Date.now(),
-        method: "GET",
-        dataType: "html"
-    }).done(function(data) {alert(data);
-        var contenido = $(data).find(selector);
-        switch (modo) {
-            case "append":
-                $(destino).append(contenido);
-                break;
-            case "prepend":
-                $(destino).prepend(contenido);
-                break;
-            case "replace":
-                $(destino).html(contenido);
-                break;
-            case "before":
-                $(destino).before(contenido);
-                break;
-            case "after":
-                $(destino).after(contenido);
-                break;
-        }
 
-        // Si se pasa un callback, se ejecuta
-        if (callback && typeof callback === "function") {
-            callback();
-        }
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error("Error al cargar contenido:", textStatus, errorThrown);
-    });
-}
 
   

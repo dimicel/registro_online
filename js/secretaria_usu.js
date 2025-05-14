@@ -336,7 +336,7 @@ function obtieneDocsExpediente() {
     }, "json");
 }
 
-/*
+
 function borraDocExp(obj) {
     $("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #div_borra_doc", function(response,status, xhr){
         if ( status == "error" ) {
@@ -378,43 +378,8 @@ function borraDocExp(obj) {
         }
     });
 
-}*/
-
-function borraDocExp(obj) {
-    CargadorHTMLParcial("html/secretaria.htm", "div_borra_doc", "body", "append", function() {
-        _del_ruta_completa = obj.parentElement.children[1].children[0].href;
-        _del_ruta = ".." + _del_ruta_completa.substr(_del_ruta_completa.indexOf("/docs/"));
-        _del_curso = obj.parentElement.children[0].innerHTML;
-        _del_documento_pos = _del_ruta.indexOf(_del_curso);
-        _del_documento = _del_ruta.substr(_del_documento_pos + 10);
-        document.getElementById("doc_cod_seg").value = "";
-        document.getElementById("del_ruta").value = _del_ruta;
-        document.getElementById("del_documento").innerHTML = "Curso: " + _del_curso + " Nombre: " + _del_documento;
-        cod_seg = Math.floor(Math.random() * 1000).toString();
-        if (cod_seg.length < 4) {
-            aux = "";
-            for (i = cod_seg.length; i < 4; i++) {
-                aux += "0";
-            }
-            cod_seg = aux + cod_seg;
-        }
-        document.getElementById("doc_cod_seg").innerHTML = cod_seg;
-        $("#div_dialogs2").dialog({
-            autoOpen: true,
-            dialogClass: "alert no-close",
-            modal: true,
-            hide: { effect: "fade", duration: 0 },
-            resizable: false,
-            show: { effect: "fade", duration: 0 },
-            title: "BORRADO DE DOCUMENTO DEL EXPEDIENTE",
-            maxHeight: 500,
-            width: 550,
-            close:function(event,ui){
-                $("#div_dialogs2").dialog("destroy");
-            }
-        });    
-    });
 }
+
 
 
 
