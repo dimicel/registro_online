@@ -460,12 +460,8 @@ function confirmaCambioNombreDoc(obj) {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
-    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_expediente_usuario", function(response,status, xhr){
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
+    cargaHTML("html/secretaria.htm", "div_expediente_usuario","EXPEDIENTE DEL USUARIO",800,2000,"","",true)
+    .then ((dialogo)=>{
             $("#nie_exp").html(id_nie);
             $("#nombre_exp").html(nom);
             document.getElementById("curso_exp").innerHTML="";
@@ -478,30 +474,12 @@ function panelExpedienteUsuario(id_nie,nom) {
             }
             document.getElementById("curso_exp").selectIndex=0;
             obtieneDocsExpediente();
-            $("#div_dialogs").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: "EXPEDIENTE DEL USUARIO",
-                width: 800,
-                position: { my: "center top", at: "center top", of: window },
-                buttons: [{
-                    class: "btn btn-success textoboton",
-                    text: "Cerrar",
-                    click: function() {
-                        $("#div_dialogs").dialog("close");
-                        $("#div_dialogs").dialog("destroy");
-                    }
-                }],
-                open: function(event, ui) {
-                    $(".ui-dialog-titlebar-close").hide();
-                }
-            });
         }
-    });  
+    )
+    .catch (error=>{
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 }
 
 
