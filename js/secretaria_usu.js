@@ -392,7 +392,7 @@ function confirmadoBorradoDoc(obj) {
 
 
 function cambiaNomDocExp(obj) {
-    cargaHTML("html/secretaria.htm", "div_camb_nom_doc","CAMBIO DE NOMBRE DE DODUMENTO DEL EXPEDIENTE",550,500,"center center","center center",true)
+    cargaHTML("html/secretaria.htm", "div_camb_nom_doc","CAMBIO DE NOMBRE DE DODUMENTO DEL EXPEDIENTE",550,500,"center center","center center")
     .then ((dialogo)=>{
             document.getElementById("nuevo_nom").value="";
             document.getElementById("tm_doc_cod_seg").value="";
