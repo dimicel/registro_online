@@ -372,6 +372,7 @@ function borraDocExp(obj) {
 function confirmadoBorradoDoc() {
     doc_ruta = document.getElementById("del_ruta").value;
     if (document.getElementById("doc_cod_seg").innerHTML == document.getElementById("t_doc_cod_seg").value) {
+        alert(88888);
         document.getElementById("cargando").style.display = "inherit";
         $.post("php/secret_usu_borra_doc_exp.php", { ruta: doc_ruta }, function(resp) {
             document.getElementById("cargando").style.display = "none";
