@@ -364,13 +364,13 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                     hide: { effect: "fade", duration: 0 },
                     position: { my: posicion_my, at: posicion_at, of: window },
                     buttons: botones,
-                    open: function() {
+                    open: function(event, ui) {
                         $(this).css("overflow", "hidden");
-                        if(funcAbrir!=null) funcAbrir();
+                        funcAbrir && funcAbrir();
                         resolve(this);
                     },
-                    close:function(event,ui){
-                        if(funcCerrar!=null) funcCerrar();
+                    close:function(event, ui) {
+                        funcCerrar && funcCerrar();
                         $("#"+_d.id).dialog("destroy").remove();
                     }
                 });
