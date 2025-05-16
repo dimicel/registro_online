@@ -339,7 +339,7 @@ function obtieneDocsExpediente() {
 
 
 function borraDocExp(obj) {
-    cargaHTML("html/secretaria.htm", "div_borra_doc","BORRADO DE DOCUMENTO DEL EXPEDIENTE",550,500,'','',false)
+    cargaHTML("html/secretaria.htm", "div_borra_doc","BORRADO DE DOCUMENTO DEL EXPEDIENTE",550,500,'','',true)
     .then ((dialogo)=>{
             _del_ruta_completa = obj.parentElement.children[1].children[0].href;
             _del_ruta = ".." + _del_ruta_completa.substr(_del_ruta_completa.indexOf("/docs/"));
