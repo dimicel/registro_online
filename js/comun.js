@@ -324,6 +324,44 @@ function validateBIC(bic) {
 }
 
 
+function cargaHTML(url,contenido,titulo="",ancho=600,alto=400) {
+    _d="";
+    for (i=0; i < 1000; i++) {
+        if (document.getElementById('dialogo' + i) == null) {
+            _d=document.createElement('div');
+            _d.id='dialogo' + i;
+            _d.classList.add('ui-widget-header', 'ui-corner-all', 'alertas');
+            _d.style.display='overflow:hidden';
+            document.body.appendChild(_d);
+            break;
+        }
+    }
 
+    $(_div).load(url+"?q="+Date.now(),"#"+contenido,function(response, status, xhr) {
+        if (status == "error") {
+            var msg = "Error: ";
+            $("#"+_d.id).html(msg + xhr.status + " " + xhr.statusText);
+        } else {
+            $("#"+_d.id).dialog({
+                autoOpen: true,
+                modal: true,
+                draggable: false,
+                resizable: false,
+                title: titulo,
+                dialogClass: "alertas no-close",
+                width: ancho,
+                height: alto,
+                show: { effect: "fade", duration: 0 },
+                hide: { effect: "fade", duration: 0 },
+                open: function() {
+                    $(this).css("overflow", "hidden");
+                },
+                close:function(event,ui){
+                    $("#"+_d.id).dialog("destroy").remove();
+                }
+            });
+        }
+    });
+}
 
   
