@@ -378,6 +378,7 @@ function confirmadoBorradoDoc() {
             alert(resp);
             document.getElementById("cargando").style.display = "none";
             document.getElementById("t_doc_cod_seg").value="";
+            alert(resp+"222");
             if (resp == "error") {
                 alerta("No se ha podido borrar el documento.", "ERROR BORRADO");
             } else if (resp == "ok") {
