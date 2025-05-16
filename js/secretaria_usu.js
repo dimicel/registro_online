@@ -372,8 +372,11 @@ function borraDocExp(obj) {
 function confirmadoBorradoDoc() {
     doc_ruta = document.getElementById("del_ruta").value;
     if (document.getElementById("doc_cod_seg").innerHTML == document.getElementById("t_doc_cod_seg").value) {
+        document.getElementById("cargando").style.display = "inherit";
         $.post("php/secret_usu_borra_doc_exp.php", { ruta: doc_ruta }, function(resp) {
+            document.getElementById("cargando").style.display = "none";
             document.getElementById("t_doc_cod_seg").value="";
+            alert(resp);
             if (resp == "error") {
                 alerta("No se ha podido borrar el documento.", "ERROR BORRADO");
             } else if (resp == "ok") {
@@ -480,7 +483,9 @@ function confirmaCambioNombreDoc() {
     }
 
     if (document.getElementById("m_doc_cod_seg").innerHTML == document.getElementById("tm_doc_cod_seg").value) {
+        document.getElementById("cargando").style.display = "inherit";
         $.post("php/secret_usu_camb_nom_doc_exp.php", { ruta: doc_ruta, nuevo_n: nuevo_n }, function(resp) {
+            document.getElementById("cargando").style.display = "none";
             document.getElementById("tm_doc_cod_seg").value="";
             if (resp == "error") {
                 alerta("No se ha podido modificar el nombre del documento.", "ERROR MODIFICACIÓN");
