@@ -339,7 +339,7 @@ function obtieneDocsExpediente() {
 
 
 function borraDocExp(obj) {
-    cargaHTML("html/secretaria.htm", "div_borra_doc","BORRADO DE DOCUMENTO DEL EXPEDIENTE",550,500,"center center","center center")
+    cargaHTML("html/secretaria_usu.htm", "div_borra_doc","BORRADO DE DOCUMENTO DEL EXPEDIENTE",550,500,"center center","center center")
     .then ((dialogo)=>{
             _del_ruta_completa = obj.parentElement.children[1].children[0].href;
             _del_ruta = ".." + _del_ruta_completa.substr(_del_ruta_completa.indexOf("/docs/"));
@@ -392,7 +392,7 @@ function confirmadoBorradoDoc(obj) {
 
 
 function cambiaNomDocExp(obj) {
-    cargaHTML("html/secretaria.htm", "div_camb_nom_doc","CAMBIO DE NOMBRE DE DODUMENTO DEL EXPEDIENTE",550,500,"center center","center center")
+    cargaHTML("html/secretaria_usu.htm", "div_camb_nom_doc","CAMBIO DE NOMBRE DE DODUMENTO DEL EXPEDIENTE",550,500,"center center","center center")
     .then ((dialogo)=>{
             document.getElementById("nuevo_nom").value="";
             document.getElementById("tm_doc_cod_seg").value="";
@@ -460,7 +460,7 @@ function confirmaCambioNombreDoc(obj) {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
-    cargaHTML("html/secretaria.htm", "div_expediente_usuario","EXPEDIENTE DEL USUARIO",800,2000,"","",
+    cargaHTML("html/secretaria_usu.htm", "div_expediente_usuario","EXPEDIENTE DEL USUARIO",800,2000,"","",
         [{text:"Cerrar",
           class: "textoboton btn btn-success btn-sm",
           click:function(){$(this).closest('.ui-dialog-content').dialog("close");}
@@ -489,7 +489,7 @@ function panelExpedienteUsuario(id_nie,nom) {
 
 
 function panelEnvioEmail(dir_email) {
-    cargaHTML("html/secretaria.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
+    cargaHTML("html/secretaria_usu.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
         [{text:"Cancelar",
             class: "textoboton btn btn-success btn-sm",
             click:function(){
@@ -546,7 +546,7 @@ function panelEnvioEmail(dir_email) {
 
 
 function eliminaUsuario(id, nom) {
-    cargaHTML("html/secretaria.htm", "div_elimina_usuario","ELIMINACIÓN DE USUARIO",550,500)
+    cargaHTML("html/secretaria_usu.htm", "div_elimina_usuario","ELIMINACIÓN DE USUARIO",550,500)
     .then((dialogo)=>{
         document.getElementById("t_cod_seg").value = "";
         cod_seg = Math.floor(Math.random() * 1000).toString();
@@ -593,7 +593,7 @@ function confirmadoEliminarUsuario(nie_borrar,obj) {
 }
 
 function panelModUsu(id) {
-    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_modif_datos_usu", function(response,status,xhr){
+    $("#div_dialogs").load("html/secretaria_usu.htm?q="+Date.now()+" #div_modif_datos_usu", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
             alerta(msg,"ERROR DE CARGA");
@@ -755,7 +755,7 @@ function modUsu() {
 
 
 function subeDocExpediente(id, nom) {
-    cargaHTML("html/secretaria.htm", "div_sube_docs","SUBIR DOCUMENTOS A EXPEDIENTE",600,600)
+    cargaHTML("html/secretaria_usu.htm", "div_sube_docs","SUBIR DOCUMENTOS A EXPEDIENTE",600,600)
     .then((dialogo)=>{
             generaSelectCurso(document.getElementById("curso_doc"));
             validFormSubeDoc = $("#form_sube_doc").validate({
@@ -1032,7 +1032,7 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
     if (procedimiento=="convalidaciones_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE CONVALIDACIÓN";
     else if(procedimiento=="exencion_fct_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE EXENCIÓN DE PFE";
     else titulo="";
-    cargaHTML("html/secretaria.htm", "div_borra_adjuntosconvalid",titulo,550,500,"center center","center center")
+    cargaHTML("html/secretaria_usu.htm", "div_borra_adjuntosconvalid",titulo,550,500,"center center","center center")
     .then((dialogo)=>{
             _del_ruta = "../" + ruta;
             document.getElementById("doc_cod_seg").value = "";
