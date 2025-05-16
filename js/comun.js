@@ -366,7 +366,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                     buttons: botones,
                     open: function(event, ui) {
                         $(this).css("overflow", "hidden");
-                        funcAbrir && funcAbrir();
+                        funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
                         resolve(this);
                     },
                     close:function(event, ui) {
