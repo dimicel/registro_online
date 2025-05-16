@@ -507,6 +507,7 @@ function panelEnvioEmail(dir_email) {
                         document.getElementById("cargando").style.display = "none";
                         alerta("Correo electrónico enviado.", "EMAIL");
                         $(this).closest('.ui-dialog-content').dialog("close");
+                        alert(999);
                     });
                 }
             }    
