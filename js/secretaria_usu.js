@@ -501,12 +501,13 @@ function panelEnvioEmail(dir_email) {
             click:function() {
                 asunto = document.getElementById("usu_asunto_email").value;
                 mensaje = document.getElementById("usu_cuerpo_email").value;
+                const _dialog = $(this).closest('.ui-dialog-content');
                 if (validFormEmail.form()) {
                     document.getElementById("cargando").style.display = "inherit";
                     $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
                         document.getElementById("cargando").style.display = "none";
                         alerta("Correo electrónico enviado.", "EMAIL");
-                        $(this).closest('.ui-dialog-content').dialog("close");
+                        _dialog.dialog("close");
                         alert(999);
                     });
                 }
