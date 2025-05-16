@@ -343,6 +343,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400) {
         }
         alert(_d.id);
         $("#"+_d.id).load(url+"?q="+Date.now(),"#"+contenido,function(response, status, xhr) {
+            alert(status);
             if (status == "error") {
                 var msg = "Error: ";
                 $("#"+_d.id).html(msg + xhr.status + " " + xhr.statusText);
