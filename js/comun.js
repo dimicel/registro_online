@@ -357,7 +357,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400) {
                     title: titulo,
                     dialogClass: "alertas no-close",
                     width: ancho,
-                    height: alto,
+                    maxHeight: alto,
                     show: { effect: "fade", duration: 0 },
                     hide: { effect: "fade", duration: 0 },
                     open: function() {
