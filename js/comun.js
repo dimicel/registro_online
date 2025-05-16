@@ -324,15 +324,14 @@ function validateBIC(bic) {
 }
 
 
-function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",boton_cerrar=false) {
+function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",botones=[]) {
     return new Promise((resolve, reject) => {
-        var botones=[];
         var _d="";
         if(ancho==0) ancho=600;
         if(alto==0) alto=400;
         if (posicion_my=='') posicion_my="center top";
         if (posicion_at=='') posicion_at="center top";
-        for (i=0; i < 1000; i++) {
+        for (let i=0; i < 1000; i++) {
             if (document.getElementById('div_dialogs' + i) == null) {
                 _d=document.createElement('div');
                 _d.id='div_dialogs' + i;
@@ -346,12 +345,12 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
         }
-        if (boton_cerrar) {
+        for(let i=0; i<botones.length; i++){
             botones.push({
-                text: "Cerrar",
+                text: botones[i][0],
                 class: "textoboton btn btn-success btn-sm",
                 click: function() {
-                    $("#"+_d.id).dialog("close");
+                    botones[i][1]();
                 }
             });
         }

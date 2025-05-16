@@ -460,7 +460,9 @@ function confirmaCambioNombreDoc(obj) {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
-    cargaHTML("html/secretaria.htm", "div_expediente_usuario","EXPEDIENTE DEL USUARIO",800,2000,"","",true)
+    cargaHTML("html/secretaria.htm", "div_expediente_usuario","EXPEDIENTE DEL USUARIO",800,2000,"","",
+        ["Cerrar",function(){$(this).closest('.ui-dialog-content').dialog("close");}]
+    )
     .then ((dialogo)=>{
             $("#nie_exp").html(id_nie);
             $("#nombre_exp").html(nom);
@@ -484,6 +486,41 @@ function panelExpedienteUsuario(id_nie,nom) {
 
 
 function panelEnvioEmail(dir_email) {
+    cargaHTML("html/secretaria.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
+        ["Cerrar",function(){$(this).closest('.ui-dialog-content').dialog("close");}]
+    ).then((dialogo)=>{
+            exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!exp_email.test(dir_email)) {
+                alerta("Email incorrecto.", "ERROR");
+                return;
+            }
+            validFormEmail=$("#form_email_usuario").validate({
+                rules: {
+                    usu_asunto_email: {
+                        required: true
+                    },
+                    usu_cuerpo_email: {
+                        required: true
+                    }
+                },
+                messages: {
+                    usu_asunto_email: {
+                        required: "No puede dejar el asunto vacío."
+                    },
+                    usu_cuerpo_email: {
+                        required: "No puede dejar vacío el cuerpo del mensaje."
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    $(element).prev().prev().html(error);
+                }
+            });
+    })
+    .catch (error=>{
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+
     $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
         if ( status == "error" ) {
             var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
