@@ -546,45 +546,29 @@ function panelEnvioEmail(dir_email) {
 
 
 function eliminaUsuario(id, nom) {
-    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_elimina_usuario", function(response,status,xhr){
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
-            document.getElementById("t_cod_seg").value = "";
-            cod_seg = Math.floor(Math.random() * 1000).toString();
-            document.getElementById("nie_eliminar").value = id;
-            document.getElementById("id_usu_elim").innerHTML = id + " - " + nom;
-            if (cod_seg.length < 4) {
-                aux = "";
-                for (i = cod_seg.length; i < 4; i++) {
-                    aux += "0";
-                }
-                cod_seg = aux + cod_seg;
+    cargaHTML("html/secretaria.htm", "div_elimina_usuario","ELIMINACIÓN DE USUARIO",550,500)
+    .then((dialogo)=>{
+        document.getElementById("t_cod_seg").value = "";
+        cod_seg = Math.floor(Math.random() * 1000).toString();
+        document.getElementById("nie_eliminar").value = id;
+        document.getElementById("id_usu_elim").innerHTML = id + " - " + nom;
+        if (cod_seg.length < 4) {
+            aux = "";
+            for (i = cod_seg.length; i < 4; i++) {
+                aux += "0";
             }
-            document.getElementById("cod_seg").innerHTML = cod_seg;
-            $("#div_dialogs").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: "ELIMINACIÓN DE USUARIO",
-                maxHeight: 500,
-                width: 550,
-                close:function(event,ui){
-                    $("#div_dialogs").dialog("destroy");
-                }
-            });
+            cod_seg = aux + cod_seg;
         }
+        document.getElementById("cod_seg").innerHTML = cod_seg;
+    })
+    .catch (error=>{
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
-    
 }
 
 
-function confirmadoEliminarUsuario(nie_borrar) {
+function confirmadoEliminarUsuario(nie_borrar,obj) {
     if (document.getElementById("cod_seg").innerHTML == document.getElementById("t_cod_seg").value) {
         $.post("php/secret_usu_eliminausuario.php", { id: nie_borrar }, function(resp) {
             if (resp == "server") {
@@ -598,7 +582,7 @@ function confirmadoEliminarUsuario(nie_borrar) {
             } else {
                 alerta("Usuario eliminado con éxito.", "BORRADO OK");
             }
-            $('#div_dialogs').dialog('close');
+            $(obj).closest('.ui-dialog-content').dialog('close');
             listaUsus();
             listaRegistros(_orden_campo, _orden_direccion);
         });
