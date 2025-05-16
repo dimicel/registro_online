@@ -506,7 +506,7 @@ function panelEnvioEmail(dir_email) {
                     $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
                         document.getElementById("cargando").style.display = "none";
                         alerta("Correo electrónico enviado.", "EMAIL");
-                        $("#div_dialogs").dialog("close");
+                        $(this).closest('.ui-dialog-content').dialog("close");
                     });
                 }
             }    
