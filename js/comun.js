@@ -330,8 +330,8 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
         var _d="";
         if(ancho==0) ancho=600;
         if(alto==0) alto=400;
-        if (posicion_my=='') position_my="center top";
-        if (posicion_at=='') position_at="center top";
+        if (posicion_my=='') posicion_my="center top";
+        if (posicion_at=='') posicion_at="center top";
         for (i=0; i < 1000; i++) {
             if (document.getElementById('div_dialogs' + i) == null) {
                 _d=document.createElement('div');
