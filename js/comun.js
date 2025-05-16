@@ -328,9 +328,9 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400) {
     return new Promise((resolve, reject) => {
         var _d="";
         for (i=0; i < 1000; i++) {
-            if (document.getElementById('dialogo' + i) == null) {
+            if (document.getElementById('div_dialogs' + i) == null) {
                 _d=document.createElement('div');
-                _d.id='dialogo' + i;
+                _d.id='div_dialogs' + i;
                 _d.classList.add('ui-widget-header', 'ui-corner-all', 'alertas');
                 _d.style.overflow='hidden';
                 document.body.appendChild(_d);
