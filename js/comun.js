@@ -327,7 +327,7 @@ function validateBIC(bic) {
 function cargaHTML(url,contenido,titulo="",ancho=600,alto=400) {
     return new Promise((resolve, reject) => {
         var _d="";
-        for (i=2; i < 1000; i++) {
+        for (i=0; i < 1000; i++) {
             if (document.getElementById('div_dialogs' + i) == null) {
                 _d=document.createElement('div');
                 _d.id='div_dialogs' + i;
@@ -341,8 +341,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400) {
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
         }
-        alert(_d.id);
-        $("#"+_d.id).load(url+"?q="+Date.now(),"#"+contenido,function(response, status, xhr) {
+        $("#"+_d.id).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
             if (status == "error") {
                 var msg = "Error: ";
                 $("#"+_d.id).html(msg + xhr.status + " " + xhr.statusText);
