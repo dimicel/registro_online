@@ -360,6 +360,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400) {
                     hide: { effect: "fade", duration: 0 },
                     open: function() {
                         $(this).css("overflow", "hidden");
+                        alert(8888);
                         resolve(this);
                     },
                     close:function(event,ui){
