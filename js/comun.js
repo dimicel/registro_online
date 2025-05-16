@@ -326,6 +326,7 @@ function validateBIC(bic) {
 
 function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",boton_cerrar=false) {
     return new Promise((resolve, reject) => {
+        var botones=[];
         var _d="";
         if(ancho==0) ancho=600;
         if(alto==0) alto=400;
@@ -345,6 +346,15 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
         }
+        if (boton_cerrar) {
+            botones.push({
+                text: "Cerrar",
+                class: "textoboton btn btn-success btn-sm",
+                click: function() {
+                    $("#"+_d.id).dialog("close").dialog("destroy").remove();
+                }
+            });
+        }
         $("#"+_d.id).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
             if (status == "error") {
                 var msg = "Error: ";
@@ -363,6 +373,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                     show: { effect: "fade", duration: 0 },
                     hide: { effect: "fade", duration: 0 },
                     position: { my: posicion_my, at: posicion_at, of: window },
+                    buttons: botones,
                     open: function() {
                         $(this).css("overflow", "hidden");
                         resolve(this);
@@ -371,13 +382,6 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                         $("#"+_d.id).dialog("destroy").remove();
                     }
                 });
-                if (boton_cerrar) {
-                    var closeButton = $("<button class='textoboton btn btn-success btn-sm'>Cerrar</button>");
-                    closeButton.on("click", function() {
-                        $("#"+_d.id).dialog("close").dialog("destroy").remove();
-                    });
-                    $("#"+_d.id).append(closeButton);
-                }
             }
         });
     });
