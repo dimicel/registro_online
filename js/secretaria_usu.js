@@ -487,8 +487,25 @@ function panelExpedienteUsuario(id_nie,nom) {
 
 function panelEnvioEmail(dir_email) {
     cargaHTML("html/secretaria.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
-        ["Cerrar",function(){$(this).closest('.ui-dialog-content').dialog("close");}]
-    ).then((dialogo)=>{
+        [["Cancelar",
+           function(){
+                $(this).closest('.ui-dialog-content').dialog("close");
+            }
+         ], 
+        ["Enviar",
+            function() {
+                asunto = document.getElementById("usu_asunto_email").value;
+                mensaje = document.getElementById("usu_cuerpo_email").value;
+                if (validFormEmail.form()) {
+                    document.getElementById("cargando").style.display = "inherit";
+                    $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
+                        document.getElementById("cargando").style.display = "none";
+                        alerta("Correo electrónico enviado.", "EMAIL");
+                        $("#div_dialogs").dialog("close");
+                    });
+                }
+            }    
+        ]]).then((dialogo)=>{
             exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (!exp_email.test(dir_email)) {
                 alerta("Email incorrecto.", "ERROR");
