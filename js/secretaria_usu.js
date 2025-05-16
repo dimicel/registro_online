@@ -461,7 +461,10 @@ function confirmaCambioNombreDoc(obj) {
 
 function panelExpedienteUsuario(id_nie,nom) {
     cargaHTML("html/secretaria.htm", "div_expediente_usuario","EXPEDIENTE DEL USUARIO",800,2000,"","",
-        ["Cerrar",function(){$(this).closest('.ui-dialog-content').dialog("close");}]
+        [{text:"Cerrar",
+          class: "textoboton btn btn-success btn-sm",
+          click:function(){$(this).closest('.ui-dialog-content').dialog("close");}
+        }]      
     )
     .then ((dialogo)=>{
             $("#nie_exp").html(id_nie);
@@ -487,13 +490,15 @@ function panelExpedienteUsuario(id_nie,nom) {
 
 function panelEnvioEmail(dir_email) {
     cargaHTML("html/secretaria.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
-        [["Cancelar",
-           function(){
+        [{text:"Cancelar",
+            class: "textoboton btn btn-success btn-sm",
+            click:function(){
                 $(this).closest('.ui-dialog-content').dialog("close");
             }
-         ], 
-        ["Enviar",
-            function() {
+        }, 
+        {text:"Enviar",
+            class: "textoboton btn btn-success btn-sm",
+            click:function() {
                 asunto = document.getElementById("usu_asunto_email").value;
                 mensaje = document.getElementById("usu_cuerpo_email").value;
                 if (validFormEmail.form()) {
@@ -505,7 +510,7 @@ function panelEnvioEmail(dir_email) {
                     });
                 }
             }    
-        ]]).then((dialogo)=>{
+        }]).then((dialogo)=>{
             exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (!exp_email.test(dir_email)) {
                 alerta("Email incorrecto.", "ERROR");
