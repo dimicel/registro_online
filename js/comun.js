@@ -341,7 +341,6 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                 break;
             }
         }
-        alert(_d.id);
         if (!_d) {
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
