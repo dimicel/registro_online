@@ -324,7 +324,7 @@ function validateBIC(bic) {
 }
 
 
-function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",botones=[]) {
+function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",botones=[],funcAbrir=null,funcCerrar=null) {
     return new Promise((resolve, reject) => {
         var _d="";
         if(ancho==0) ancho=600;
@@ -366,9 +366,11 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                     buttons: botones,
                     open: function() {
                         $(this).css("overflow", "hidden");
+                        if(funcAbrir!=null) funcAbrir();
                         resolve(this);
                     },
                     close:function(event,ui){
+                        if(funcCerrar!=null) funcCerrar();
                         $("#"+_d.id).dialog("destroy").remove();
                     }
                 });
