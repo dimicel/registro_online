@@ -755,12 +755,8 @@ function modUsu() {
 
 
 function subeDocExpediente(id, nom) {
-    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_sube_docs", function(response,status,xhr){
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
+    cargaHTML("html/secretaria.htm", "div_sube_docs","SUBIR DOCUMENTOS A EXPEDIENTE",600,600)
+    .then((dialogo)=>{
             generaSelectCurso(document.getElementById("curso_doc"));
             validFormSubeDoc = $("#form_sube_doc").validate({
                 rules: {
@@ -802,23 +798,11 @@ function subeDocExpediente(id, nom) {
                 document.getElementById("nomArchOriginal").disabled=false;
                 $("option[data=simple]").show();
             }
-            $("#div_dialogs").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: "SUBIR DOCUMENTOS A EXPEDIENTE",
-                maxHeight: 600,
-                width: 600,
-                close:function(event,ui){
-                    $("#div_dialogs").dialog("destroy");
-                }
-            });
-        }
-    });
-    
+    })
+    .catch (error=>{
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });    
 }
 
 function selTipoDoc(obj) {
