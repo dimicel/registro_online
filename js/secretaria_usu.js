@@ -542,80 +542,8 @@ function panelEnvioEmail(dir_email) {
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
-
-    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
-            exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            if (!exp_email.test(dir_email)) {
-                alerta("Email incorrecto.", "ERROR");
-                return;
-            }
-            validFormEmail=$("#form_email_usuario").validate({
-                rules: {
-                    usu_asunto_email: {
-                        required: true
-                    },
-                    usu_cuerpo_email: {
-                        required: true
-                    }
-                },
-                messages: {
-                    usu_asunto_email: {
-                        required: "No puede dejar el asunto vacío."
-                    },
-                    usu_cuerpo_email: {
-                        required: "No puede dejar vacío el cuerpo del mensaje."
-                    }
-                },
-                errorPlacement: function(error, element) {
-                    $(element).prev().prev().html(error);
-                }
-            });
-            $("#div_dialogs").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: "ENVÍO DE CORREO ELECTRÓNICO",
-                width: 750,
-                buttons: [{
-                        class: "btn btn-success textoboton",
-                        text: "Enviar",
-                        click: function() {
-                            asunto = document.getElementById("usu_asunto_email").value;
-                            mensaje = document.getElementById("usu_cuerpo_email").value;
-                            if (validFormEmail.form()) {
-                                document.getElementById("cargando").style.display = "inherit";
-                                $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
-                                    document.getElementById("cargando").style.display = "none";
-                                    alerta("Correo electrónico enviado.", "EMAIL");
-                                    $("#div_dialogs").dialog("close");
-                                });
-                            }
-                        }
-                    },
-                    {
-                        class: "btn btn-success textoboton",
-                        text: "Cancelar",
-                        click: function() {
-                            $("#div_dialogs").dialog("close");
-                        }
-                    }
-                ],
-                close: function(event, ui) {
-                    $("#div_dialogs").dialog("destroy");
-                }
-            });
-        }
-    });
-
 }
+
 
 function eliminaUsuario(id, nom) {
     $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_elimina_usuario", function(response,status,xhr){
