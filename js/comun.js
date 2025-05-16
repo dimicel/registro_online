@@ -351,7 +351,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                 text: "Cerrar",
                 class: "textoboton btn btn-success btn-sm",
                 click: function() {
-                    $("#"+_d.id).dialog("close").dialog("destroy").remove();
+                    $("#"+_d.id).dialog("close");
                 }
             });
         }
