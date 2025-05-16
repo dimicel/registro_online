@@ -1096,12 +1096,11 @@ function adjuntosConvalid(registro,procedimiento){
 }
 
 function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
-    $("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #div_borra_adjuntosconvalid", function(response,status, xhr){
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
+    if (procedimiento=="convalidaciones_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE CONVALIDACIÓN";
+    else if(procedimiento=="exencion_fct_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE EXENCIÓN DE PFE";
+    else titulo="";
+    cargaHTML("html/secretaria.htm", "div_borra_adjuntosconvalid",titulo,550,500,"center center","center center")
+    .then((dialogo)=>{
             _del_ruta = "../" + ruta;
             document.getElementById("doc_cod_seg").value = "";
             document.getElementById("del_ruta").value = _del_ruta;
@@ -1118,34 +1117,22 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
                 cod_seg = aux + cod_seg;
             }
             document.getElementById("doc_cod_seg").innerHTML = cod_seg;
-            if (procedimiento=="convalidaciones_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE CONVALIDACIÓN";
-            else if(procedimiento=="exencion_fct_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE EXENCIÓN DE PFE";
-            else titulo="";
-            $("#div_dialogs2").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: titulo,
-                maxHeight: 500,
-                width: 550,
-                close:function(event,ui){
-                    $("#div_dialogs2").dialog("destroy");
-                }
-            });
-        }
+    })
+    .catch (error=>{
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
 }
 
-function confirmadoBorradoAdjunto(procedim) {
+function confirmadoBorradoAdjunto(procedim,obj) {
     registro=document.getElementById("registro").value;
     registro_adjuntos_exenc_fct=registro.slice(0, -4);
     refresca_docs=document.getElementById("refresca_docs").value;
     doc_ruta = document.getElementById("del_ruta").value;
     if (document.getElementById("doc_cod_seg").innerHTML == document.getElementById("t_doc_cod_seg").value) {
+        document.getElementById("cargando").style.display = 'inherit';
         $.post("php/secret_usu_borra_adjunto.php", {tabla:procedim, ruta: doc_ruta }, function(resp) {
+            document.getElementById("cargando").style.display = 'none';
             document.getElementById("t_doc_cod_seg").value="";
             if (resp == "error") {
                 alerta("No se ha podido borrar el documento.", "ERROR BORRADO");
@@ -1164,7 +1151,7 @@ function confirmadoBorradoAdjunto(procedim) {
             else if (resp == "server") {
                 alerta("Documento adjunto no eliminado, porque no se ha podido eliminar el registro asociado en la base de datos", "ERROR DB");
             }
-            $('#div_dialogs2').dialog('close');
+            $(obj).closest('.ui-dialog-content').dialog('close');
         });
     } else {
         document.getElementById("t_doc_cod_seg").value = "";
