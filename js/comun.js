@@ -341,14 +341,13 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400) {
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
         }
-        alert(_d.id);
         $("#"+_d.id).load(url+"?q="+Date.now(),"#"+contenido,function(response, status, xhr) {
-            alert(status);
             if (status == "error") {
                 var msg = "Error: ";
                 $("#"+_d.id).html(msg + xhr.status + " " + xhr.statusText);
                 reject(new Error(msg + xhr.status + " " + xhr.statusText));
             } else {
+                alert(response);
                 $("#"+_d.id).dialog({
                     autoOpen: true,
                     modal: true,
