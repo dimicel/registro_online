@@ -497,7 +497,7 @@ function panelExpedienteUsuario(id_nie,nom) {
                     }
                 }],
                 open: function(event, ui) {
-                    $(".ui-dialog-titlebar-close").hide();
+                    //$(".ui-dialog-titlebar-close").hide();
                 }
             });
         }
