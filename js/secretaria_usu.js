@@ -470,7 +470,7 @@ function cambiaNomDocExp(obj) {
 
 
 
-function confirmaCambioNombreDoc() {
+function confirmaCambioNombreDoc(obj) {
     doc_ruta = document.getElementById("camb_ruta").value;
     nuevo_n = document.getElementById("ruta_nuevo_nombre_doc").value + document.getElementById("nuevo_nom").value.trim() + "." + document.getElementById("ext_nuevo_nombre_doc").value;
     if (document.getElementById("nuevo_nom").value.trim().length == 0) {
@@ -494,6 +494,7 @@ function confirmaCambioNombreDoc() {
             } else if(resp="duplicado"){
                 alerta("No se ha renomnbrado el archivo porque en la misma carpeta ya existe otro fichero con el mismo nombre", "ERROR DE DUPLICADO");
             }
+            $(obj).closest('.ui-dialog-content').dialog('close');
             obtieneDocsExpediente();
         });
     } else {
