@@ -379,7 +379,6 @@ function confirmadoBorradoDoc() {
             } else if (resp == "ok") {
                 alerta("Documento borrado con éxito.", "BORRADO OK");
             }
-            $('#div_dialogs2').dialog('close');
             obtieneDocsExpediente();
         });
     } else {
@@ -490,7 +489,6 @@ function confirmaCambioNombreDoc() {
             } else if(resp="duplicado"){
                 alerta("No se ha renomnbrado el archivo porque en la misma carpeta ya existe otro fichero con el mismo nombre", "ERROR DE DUPLICADO");
             }
-            $('#div_dialogs2').dialog('close');
             obtieneDocsExpediente();
         });
     } else {
