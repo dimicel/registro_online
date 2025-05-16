@@ -600,7 +600,6 @@ function panelModUsu(id) {
         function(){
             $("#dat_fecha_nac").datepicker("destroy");
             $("#form_modif_datos_usu").validate().destroy();
-            $("#div_dialogs").dialog("destroy");
         }
     )
     .then((dialogo)=>{
