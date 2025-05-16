@@ -324,9 +324,10 @@ function validateBIC(bic) {
 }
 
 
-function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",botones=[]) {
+function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",_botones=[]) {
     return new Promise((resolve, reject) => {
         var _d="";
+        var botones=[];
         if(ancho==0) ancho=600;
         if(alto==0) alto=400;
         if (posicion_my=='') posicion_my="center top";
@@ -345,7 +346,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
         }
-        for(let i=0; i<botones.length; i++){
+        for(let i=0; i<_botones.length; i++){
             botones.push({
                 text: botones[i][0],
                 class: "textoboton btn btn-success btn-sm",
