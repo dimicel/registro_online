@@ -326,6 +326,7 @@ function validateBIC(bic) {
 
 function cargaHTML(url,contenido,titulo="",ancho=600,alto=400) {
     return new Promise((resolve, reject) => {
+        alert(url+"    "+contenido+"    "+titulo+"    "+ancho+"    "+alto);
         var _d="";
         for (i=0; i < 1000; i++) {
             if (document.getElementById('div_dialogs' + i) == null) {
