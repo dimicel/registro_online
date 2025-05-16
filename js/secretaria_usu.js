@@ -593,10 +593,7 @@ function confirmadoEliminarUsuario(nie_borrar,obj) {
 }
 
 function panelModUsu(id) {
-    cargaHTML("html/secretaria_usu.htm", "div_modif_datos_usu","TITULO",550,500,"","",[],
-        function() {
-            $(this).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
-        },
+    cargaHTML("html/secretaria_usu.htm", "div_modif_datos_usu","TITULO",550,500,"","",[],null,
         function(){
             $("#dat_fecha_nac").datepicker("destroy");
             $("#form_modif_datos_usu").validate().destroy();
@@ -708,6 +705,8 @@ function panelModUsu(id) {
                     $(element).prev($('.errorTxt')).html(error);
                 }
             });
+            $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
+
         });
            
     })
