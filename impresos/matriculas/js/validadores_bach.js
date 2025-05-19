@@ -120,10 +120,10 @@ function creaValidatorPagina2() {
                 required: true
             },
             email_tutor1: {
-                email: true
+                email_no_obligatorio: true
             },
             email_tutor2: {
-                email: true
+                email_no_obligatorio: true
             }
         },
         messages: {
@@ -140,10 +140,10 @@ function creaValidatorPagina2() {
                 required: "Complete el campo"
             },
             email_tutor1: {
-                email: "No es una dirección correcta"
+                email_no_obligatorio: "No es una dirección correcta"
             },
             email_tutor2: {
-                email: "No es una dirección correcta"
+                email_no_obligatorio: "No es una dirección correcta"
             }
         },
         errorPlacement: function(error, element) {

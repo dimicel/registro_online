@@ -218,6 +218,13 @@ jQuery.validator.addMethod("email", function(value, element) {
     return emailPattern.test(value);
 });
 
+jQuery.validator.addMethod("email_no_obligatorio", function(value, element) {
+    // Expresión regular para validar un correo electrónico
+    if (value.trim()=="") return true;
+    var emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    return emailPattern.test(value);
+});
+
 function revisaNIF_Pasaporte(obj){
     var aux="";
     for (i=0; i<obj.value.length;i++){
