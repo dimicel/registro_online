@@ -10,7 +10,7 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-$tabla=$_POST["tabla"];$data["error2"]=$tabla;
+$tabla=$_POST["tabla"];
 $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
 $orden_campo=$_POST["orden_campo"];
@@ -79,7 +79,7 @@ else {
 }
 
 $coletilla="";
-if ($tabla=="convalidaciones" || $tabla="exencion_fct"){
+if ($tabla=="convalidaciones" || $tabla=="exencion_fct"){
     if ($tabla=="exencion_fct"){
         if ($departamento!="Todos"){
             $coletilla.=" departamento='$departamento' and ";
