@@ -610,7 +610,7 @@ function confirmadoEliminarUsuario(nie_borrar,obj) {
 
 function panelModUsu(id) {
     document.getElementById("cargando").style.display = "inherit";
-    cargaHTML("html/secretaria_usu.htm", "div_modif_datos_usu","TITULO",550,500,"","",[],null,
+    cargaHTML("html/secretaria_usu.htm", "div_modif_datos_usu","TITULO",600,2000,"","",[],null,
         function(){
             $("#dat_fecha_nac").datepicker("destroy");
             $("#form_modif_datos_usu").validate().destroy();
