@@ -2143,7 +2143,7 @@ function verCertificado(id){
 
 function subirMatDelphos(){
     document.getElementById("cargando").style.display = "inherit";
-    cargaHTML("html/secretaria.htm", "formulario_subir_mat_delphos","SUBIDA CSV MATRÍCULA DELPHOS",600,2000)
+    cargaHTML("html/secretaria.htm", "formulario_subir_mat_delphos","SUBIDA CSV MATRÍCULA DELPHOS",600,2000,"center center","center center")
     .then ((dialogo)=>{
             document.getElementById("cargando").style.display = "none";
     })
