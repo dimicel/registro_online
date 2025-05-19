@@ -1988,14 +1988,10 @@ function descargaCSVtransporte() {
 }
 
 function listaMatriculas() {
-    document.getElementById("cargando").style.display = 'inherit';
-    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_listadoMatriculas", function(response,status, xhr){
-        document.getElementById("cargando").style.display = 'none';
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
+    document.getElementById("cargando").style.display = "inherit";
+    cargaHTML("html/secretaria.htm", "div_listadoMatriculas","MATRÍCULAS: SELECCIÓN TIPO LISTADO",900,2000)
+    .then ((dialogo)=>{
+            document.getElementById("cargando").style.display = "none";
             if (document.getElementById("tipo_form").value == "matricula") {
                 document.getElementById("div_consolidadas").style.display = "inherit";
             } else if (document.getElementById("tipo_form").value == "matricula_ciclos") {
@@ -2003,20 +1999,12 @@ function listaMatriculas() {
             } else if (document.getElementById("tipo_form").value == "matricula_fpb") {
                 document.getElementById("div_consolidadas").style.display = "none";
             }
-            $("#div_dialogs").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: "MATRÍCULAS: SELECCIÓN TIPO LISTADO",
-                width: 900,
-                close:function(event,ui){
-                    $("#div_dialogs").dialog("close").dialog("destroy");
-                }
-            });
         }
+    )
+    .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
 
 }
@@ -2154,28 +2142,15 @@ function verCertificado(id){
 
 
 function subirMatDelphos(){
-    document.getElementById("cargando").style.display = 'inherit';
-    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #formulario_subir_mat_delphos", function(response,status, xhr){
-        document.getElementById("cargando").style.display = 'none';
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
-            $("#div_dialogs").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: "SUBIDA CSV MATRÍCULA DELPHOS",
-                width: 600,
-                close:function(event,ui){
-                    $("#div_dialogs").dialog("close").dialog("destroy");
-                }
-            });
-        }
+    document.getElementById("cargando").style.display = "inherit";
+    cargaHTML("html/secretaria.htm", "formulario_subir_mat_delphos","SUBIDA CSV MATRÍCULA DELPHOS",600,2000)
+    .then ((dialogo)=>{
+            document.getElementById("cargando").style.display = "none";
+    })
+    .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
 }
 
