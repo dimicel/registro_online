@@ -77,7 +77,7 @@ function creaValidatorPagina2() {
                 numero_nif: true
             },*/
             email_alumno: {
-                email: true
+                email_no_obligatorio: true
             }
         },
         messages: {
@@ -98,7 +98,7 @@ function creaValidatorPagina2() {
                 numero_nif: "Incorrecto"
             },*/
             email_alumno: {
-                email: "Dirección no válida"
+                email_no_obligatorio: "Dirección no válida"
             }
         },
         errorPlacement: function(error, element) {
@@ -123,10 +123,10 @@ function creaValidatorPagina3() {
                 required: true
             },
             email_tutor1: {
-                email: true
+                email_no_obligatorio: true
             },
             email_tutor2: {
-                email: true
+                email_no_obligatorio: true
             }
         },
         messages: {
@@ -143,10 +143,10 @@ function creaValidatorPagina3() {
                 required: "Complete el campo"
             },
             email_tutor1: {
-                email: "No es una dirección correcta"
+                email_no_obligatorio: "No es una dirección correcta"
             },
             email_tutor2: {
-                email: "No es una dirección correcta"
+                email_no_obligatorio: "No es una dirección correcta"
             }
         },
         errorPlacement: function(error, element) {
