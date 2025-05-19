@@ -10,7 +10,7 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-$tabla=$_POST["tabla"];
+$tabla=$_POST["tabla"];$data["error2"]=$tabla;
 $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
 $orden_campo=$_POST["orden_campo"];
@@ -109,7 +109,6 @@ elseif($proceso=="matriculafpb"){
 elseif($proceso=="prematricula"){
     if ($tabla=="premat_eso") $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' and grupo='$grupo'" ;
     elseif ($tabla=="premat_bach") $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' and grupo='$grupo' and modalidad='$modalidad'" ;
-    $data["error2"]=$tabla;
 }
 else{
     $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' " ;
