@@ -109,7 +109,7 @@ elseif($proceso=="matriculafpb"){
 elseif($proceso=="prematricula"){
     if ($tabla=="premat_eso") $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' and grupo='$grupo'" ;
     elseif ($tabla=="premat_bach") $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' and grupo='$grupo' and modalidad='$modalidad'" ;
-    $data["error2"]=$consulta;
+    $data["error2"]=$tabla;
 }
 else{
     $consulta="select ".$campos." from $tabla where $coletilla curso='$curso' " ;
