@@ -1896,7 +1896,7 @@ function descargaCSVpremat() {
 
 function verDocsMatricula(id, edad) {
     document.getElementById("cargando").style.display = "inherit";
-    cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000)
+    cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000,"center center","center center")
     .then ((dialogo)=>{
             _curso = document.getElementById("curso").value;
             if (typeof edad === 'undefined') edad=0;
