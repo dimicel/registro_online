@@ -1747,13 +1747,8 @@ function habilitaMenu(m2, m3) {
 
 function registrosAPdf(tipo_listado) {
     document.getElementById("cargando").style.display = 'inherit';
-    $("#div_dialogs2").load("html/secretaria.htm?q="+Date.now()+" #formulario_descargar_solicitudes", function(response,status, xhr){
-        document.getElementById("cargando").style.display = 'none';
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
+    cargaHTML("html/secretaria_usu.htm", "formulario_descargar_solicitudes","",0,0)
+    .then ((dialogo)=>{
             //tipo_listado=>seleccionadas, no listadas, listadas, todas, ''
             if (tipo_listado == '') {
                 if (document.getElementById("listadas_seleccionadas").checked) tipo_listado = "seleccionadas";
@@ -1821,10 +1816,14 @@ function registrosAPdf(tipo_listado) {
             boton_refrescar += "listaRegistros(_orden_campo,_orden_direccion);\">";
             boton_refrescar += "</center>";
             document.getElementById("registros_docs").innerHTML = boton_refrescar;
+      
         }
+    )
+    .catch (error=>{
+        document.getElementById("cargando").style.display = 'none';
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
-
-
 }
 
 

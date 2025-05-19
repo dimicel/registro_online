@@ -326,6 +326,7 @@ function validateBIC(bic) {
 
 function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",botones=[],funcAbrir=null,funcCerrar=null) {
     return new Promise((resolve, reject) => {
+        //Si ancho y alto son 0, se genera el div, se carga el contenido HTML pero no se genera ni se abre el diálogo
         var _d="";
         if(ancho==0) ancho=600;
         if(alto==0) alto=400;
@@ -351,29 +352,31 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                 $("#"+_d.id).html(msg + xhr.status + " " + xhr.statusText);
                 reject(new Error(msg + xhr.status + " " + xhr.statusText));
             } else {
-                $("#"+_d.id).dialog({
-                    autoOpen: true,
-                    modal: true,
-                    draggable: false,
-                    resizable: false,
-                    title: titulo,
-                    dialogClass: "alertas no-close",
-                    width: ancho,
-                    maxHeight: alto,
-                    show: { effect: "fade", duration: 0 },
-                    hide: { effect: "fade", duration: 0 },
-                    position: { my: posicion_my, at: posicion_at, of: window },
-                    buttons: botones,
-                    open: function(event, ui) {
-                        $(this).css("overflow", "hidden");
-                        funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
-                        resolve(this);
-                    },
-                    close:function(event, ui) {
-                        funcCerrar && funcCerrar();
-                        $("#"+_d.id).dialog("destroy").remove();
-                    }
-                });
+                if(ancho>0 && alto>0){
+                    $("#"+_d.id).dialog({
+                        autoOpen: true,
+                        modal: true,
+                        draggable: false,
+                        resizable: false,
+                        title: titulo,
+                        dialogClass: "alertas no-close",
+                        width: ancho,
+                        maxHeight: alto,
+                        show: { effect: "fade", duration: 0 },
+                        hide: { effect: "fade", duration: 0 },
+                        position: { my: posicion_my, at: posicion_at, of: window },
+                        buttons: botones,
+                        open: function(event, ui) {
+                            $(this).css("overflow", "hidden");
+                            funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
+                            resolve(this);
+                        },
+                        close:function(event, ui) {
+                            funcCerrar && funcCerrar();
+                            $("#"+_d.id).dialog("destroy").remove();
+                        }
+                    });
+                }
             }
         });
     });
