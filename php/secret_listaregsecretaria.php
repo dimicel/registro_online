@@ -124,7 +124,8 @@ if ($buscar!=""){
     }*/
 } 
 $consulta=$consulta." order by $orden_listado";
-
+$data["error"]=$consulta;
+exit(json_encode($data));
 $res=$mysqli->query($consulta);
 
 if ($res->num_rows==0){
