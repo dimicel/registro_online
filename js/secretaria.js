@@ -1816,7 +1816,7 @@ function registrosAPdf(tipo_listado) {
             boton_refrescar += "listaRegistros(_orden_campo,_orden_direccion);\">";
             boton_refrescar += "</center>";
             document.getElementById("registros_docs").innerHTML = boton_refrescar;
-      
+            
         }
     )
     .catch (error=>{
