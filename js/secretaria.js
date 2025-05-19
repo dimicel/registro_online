@@ -1958,19 +1958,7 @@ function verDocsMatricula(id, edad) {
                     document.getElementById("foto_link").setAttribute("href", "#");
                     document.getElementById("foto_link").setAttribute("target", "_self");
                 }
-                $("#div_dialogs").dialog({
-                    autoOpen: true,
-                    dialogClass: "alert no-close",
-                    modal: true,
-                    hide: { effect: "fade", duration: 0 },
-                    resizable: false,
-                    show: { effect: "fade", duration: 0 },
-                    title: "DOCUMENTOS DE LA MATRÍCULA",
-                    width: 800,
-                    close:function(event,ui){
-                        $("#div_dialogs").dialog("close").dialog("destroy");
-                    }
-                });
+               
             });            
 
         }
