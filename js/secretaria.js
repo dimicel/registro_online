@@ -1895,17 +1895,11 @@ function descargaCSVpremat() {
 
 
 function verDocsMatricula(id, edad) {
-    document.getElementById("cargando").style.display = 'inherit';
-    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_docs_matricula", function(response,status, xhr){
-        document.getElementById("cargando").style.display = 'none';
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
+    document.getElementById("cargando").style.display = "inherit";
+    cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000)
+    .then ((dialogo)=>{
             _curso = document.getElementById("curso").value;
             if (typeof edad === 'undefined') edad=0;
-            document.getElementById("cargando").style.display = 'inherit';
             d1 = Promise.resolve($.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/seguro/" + _curso + "/" + id }));
             d2 = d1.then((resp1) => {
                 if (resp1 != "no_existe") {
@@ -1978,9 +1972,14 @@ function verDocsMatricula(id, edad) {
                     }
                 });
             });            
-        }
-    });
 
+        }
+    )
+    .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 }
 
 function descargaCSVtransporte() {
