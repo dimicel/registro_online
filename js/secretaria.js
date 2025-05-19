@@ -1668,28 +1668,13 @@ function actualizaIncidencias(registro, form, incidencias) {
 }
 
 function panelNuevoUsuario() { 
-    $("#div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_nuevo_registro", function(response,status, xhr){
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
-            generaPass();
-            $("#div_dialogs").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: "NUEVAS ALTAS",
-                //maxHeight: 500,
-                width: 550,
-                close:function(event,ui){
-                    $("#div_dialogs").dialog("close").dialog("destroy");
-                }
-            });
-        }
+    cargaHTML("html/secretaria.htm", "div_nuevo_registro","NUEVAS ALTAS",550,2000)
+    .then ((dialogo)=>{
+        document.getElementById('nr_password').value=generaPass();
+    })
+    .catch (error=>{
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
 }
 
@@ -1717,7 +1702,7 @@ function generaPass() {
         matriz[i] = matriz[j];
         matriz[j] = x;
     }
-    document.getElementById('nr_password').value = matriz.join('');
+    return matriz.join('');
 }
 
 
