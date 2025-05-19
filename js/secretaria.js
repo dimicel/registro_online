@@ -1668,11 +1668,14 @@ function actualizaIncidencias(registro, form, incidencias) {
 }
 
 function panelNuevoUsuario() { 
+    document.getElementById("cargando").style.display = 'inherit';
     cargaHTML("html/secretaria.htm", "div_nuevo_registro","NUEVAS ALTAS",550,2000)
     .then ((dialogo)=>{
+        document.getElementById("cargando").style.display = 'none';
         document.getElementById('nr_password').value=generaPass();
     })
     .catch (error=>{
+        document.getElementById("cargando").style.display = 'none';
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -1749,6 +1752,7 @@ function registrosAPdf(tipo_listado) {
     document.getElementById("cargando").style.display = 'inherit';
     cargaHTML("html/secretaria_usu.htm", "formulario_descargar_solicitudes","",0,0)
     .then ((dialogo)=>{
+            document.getElementById("cargando").style.display = 'none';
             //tipo_listado=>seleccionadas, no listadas, listadas, todas, ''
             if (tipo_listado == '') {
                 if (document.getElementById("listadas_seleccionadas").checked) tipo_listado = "seleccionadas";

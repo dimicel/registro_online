@@ -339,8 +339,10 @@ function obtieneDocsExpediente() {
 
 
 function borraDocExp(obj) {
+    document.getElementById("cargando").style.display = "inherit";
     cargaHTML("html/secretaria_usu.htm", "div_borra_doc","BORRADO DE DOCUMENTO DEL EXPEDIENTE",550,500,"center center","center center")
     .then ((dialogo)=>{
+            document.getElementById("cargando").style.display = "none";
             _del_ruta_completa = obj.parentElement.children[1].children[0].href;
             _del_ruta = ".." + _del_ruta_completa.substr(_del_ruta_completa.indexOf("/docs/"));
             _del_curso = obj.parentElement.children[0].innerHTML;
@@ -361,6 +363,7 @@ function borraDocExp(obj) {
         }
     )
     .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -392,8 +395,10 @@ function confirmadoBorradoDoc(obj) {
 
 
 function cambiaNomDocExp(obj) {
+    document
     cargaHTML("html/secretaria_usu.htm", "div_camb_nom_doc","CAMBIO DE NOMBRE DE DODUMENTO DEL EXPEDIENTE",550,500,"center center","center center")
     .then ((dialogo)=>{
+            document.getElementById("cargando").style.display = "none";
             document.getElementById("nuevo_nom").value="";
             document.getElementById("tm_doc_cod_seg").value="";
             _rut_comp = obj.parentElement.children[1].children[0].href;
@@ -418,6 +423,7 @@ function cambiaNomDocExp(obj) {
         }
     )
     .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -460,6 +466,7 @@ function confirmaCambioNombreDoc(obj) {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
+    document.getElementById("cargando").style.display = "inherit";
     cargaHTML("html/secretaria_usu.htm", "div_expediente_usuario","EXPEDIENTE DEL USUARIO",800,2000,"","",
         [{text:"Cerrar",
           class: "textoboton btn btn-success btn-sm",
@@ -467,6 +474,7 @@ function panelExpedienteUsuario(id_nie,nom) {
         }]      
     )
     .then ((dialogo)=>{
+            document.getElementById("cargando").style.display = "none";
             $("#nie_exp").html(id_nie);
             $("#nombre_exp").html(nom);
             document.getElementById("curso_exp").innerHTML="";
@@ -482,6 +490,7 @@ function panelExpedienteUsuario(id_nie,nom) {
         }
     )
     .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -489,6 +498,7 @@ function panelExpedienteUsuario(id_nie,nom) {
 
 
 function panelEnvioEmail(dir_email) {
+    document.getElementById("cargando").style.display = "inherit";
     cargaHTML("html/secretaria_usu.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
         [{text:"Cancelar",
             class: "textoboton btn btn-success btn-sm",
@@ -512,6 +522,7 @@ function panelEnvioEmail(dir_email) {
                 }
             }    
         }]).then((dialogo)=>{
+            document.getElementById("cargando").style.display = "none";
             exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (!exp_email.test(dir_email)) {
                 alerta("Email incorrecto.", "ERROR");
@@ -540,6 +551,7 @@ function panelEnvioEmail(dir_email) {
             });
     })
     .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -547,8 +559,10 @@ function panelEnvioEmail(dir_email) {
 
 
 function eliminaUsuario(id, nom) {
+    document.getElementById("cargando").style.display = "inherit";
     cargaHTML("html/secretaria_usu.htm", "div_elimina_usuario","ELIMINACIÓN DE USUARIO",550,500)
     .then((dialogo)=>{
+        document.getElementById("cargando").style.display = "none";
         document.getElementById("t_cod_seg").value = "";
         cod_seg = Math.floor(Math.random() * 1000).toString();
         document.getElementById("nie_eliminar").value = id;
@@ -563,6 +577,7 @@ function eliminaUsuario(id, nom) {
         document.getElementById("cod_seg").innerHTML = cod_seg;
     })
     .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -594,6 +609,7 @@ function confirmadoEliminarUsuario(nie_borrar,obj) {
 }
 
 function panelModUsu(id) {
+    document.getElementById("cargando").style.display = "inherit";
     cargaHTML("html/secretaria_usu.htm", "div_modif_datos_usu","TITULO",550,500,"","",[],null,
         function(){
             $("#dat_fecha_nac").datepicker("destroy");
@@ -617,6 +633,7 @@ function panelModUsu(id) {
             return $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, () => {}, "json");
         });
         prom3 = prom2.then((resp) => {
+            document.getElementById("cargando").style.display = "none";
             if (resp.error == "ok") {
                 for (e in resp.datos) {
                     if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
@@ -639,7 +656,6 @@ function panelModUsu(id) {
                 form_modif_datos_usu.dat_telef_tut2.value = resp.datos.tlf_tutor2;
                 form_modif_datos_usu.dat_email_tut2.value = resp.datos.email_tutor2;
             }
-            document.getElementById("cargando").style.display = 'none';
 
             $("#dat_fecha_nac").datepicker({
                 changeMonth: true,
@@ -712,6 +728,7 @@ function panelModUsu(id) {
            
     })
     .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     }); 
@@ -743,8 +760,10 @@ function modUsu(obj) {
 
 
 function subeDocExpediente(id, nom) {
+    document.getElementById("cargando").style.display = 'inherit';
     cargaHTML("html/secretaria_usu.htm", "div_sube_docs","SUBIR DOCUMENTOS A EXPEDIENTE",600,600)
     .then((dialogo)=>{
+            document.getElementById("cargando").style.display = "none";
             generaSelectCurso(document.getElementById("curso_doc"));
             validFormSubeDoc = $("#form_sube_doc").validate({
                 rules: {
@@ -788,6 +807,7 @@ function subeDocExpediente(id, nom) {
             }
     })
     .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });    
@@ -1020,8 +1040,10 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
     if (procedimiento=="convalidaciones_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE CONVALIDACIÓN";
     else if(procedimiento=="exencion_fct_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE EXENCIÓN DE PFE";
     else titulo="";
+    document.getElementById("cargando").style.display = 'inherit';
     cargaHTML("html/secretaria_usu.htm", "div_borra_adjuntosconvalid",titulo,550,500,"center center","center center")
     .then((dialogo)=>{
+            document.getElementById("cargando").style.display = 'none';
             _del_ruta = "../" + ruta;
             document.getElementById("doc_cod_seg").value = "";
             document.getElementById("del_ruta").value = _del_ruta;
@@ -1040,6 +1062,7 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
             document.getElementById("doc_cod_seg").innerHTML = cod_seg;
     })
     .catch (error=>{
+        document.getElementById("cargando").style.display = 'none';
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
