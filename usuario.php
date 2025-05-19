@@ -31,7 +31,7 @@
         </div>
         <div id="apartados">
             <ul>
-                <li><a href="#misgestiones">Mis Gestiones</a></li>
+                <li><a href="#misgestiones" onclick="listaSolicitudes()">Mis Gestiones</a></li>
                 <li><a href="#impresos">Solicitudes</a></li>
             </ul>
             
