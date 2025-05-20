@@ -3055,7 +3055,11 @@ function cancelaOPeracionDepartamentos(obj,div_padre){
     gestionSeleccionDpto();
     obj.parentNode.parentNode.style.visibility='hidden';
     //$('#'+div_padre).parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
-    $('#div_departamentos').parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
+    $('#div_departamentos')
+  .closest('.ui-dialog')
+  .find('.ui-dialog-buttonpane button')
+  .prop('disabled', false);
+
     alert(document.getElementById("div_departamentos").innerHTML)
     document.getElementById("div_desc_operacion").style.visibility='hidden';
     document.getElementById("dpto_nombre").previousElementSibling.innerHTML="";
