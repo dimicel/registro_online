@@ -3032,6 +3032,7 @@ function gestionDptos(){
             }
         ]
     ).then((dialogo)=>{
+        alert(dialogo);
         document.getElementById("cargando").style.display = "none";
         gestionSeleccionDpto();
         document.getElementById("dpto_select").selectedIndex=0;
