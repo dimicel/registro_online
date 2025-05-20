@@ -344,14 +344,12 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
             return;
         }
         $("#"+_d).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
-            alert(status);
             if (status == "error") {
-                alert(6666);
                 var msg = "Error: ";
                 $("#"+_d).html(msg + xhr.status + " " + xhr.statusText);
                 reject(new Error(msg + xhr.status + " " + xhr.statusText));
             } else {
-                if(ancho>0 && alto>0){
+                if(ancho>0 && alto>0){alert(88888);
                     $("#"+_d).dialog({
                         autoOpen: true,
                         modal: true,
