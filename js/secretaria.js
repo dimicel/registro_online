@@ -1093,10 +1093,10 @@ function verRegAdjuntosExencFCT(reg){
     },"json");
 }
 
-function verRegistro(obj) {
+function verRegistro(registro) {
     ancho = 700;
-    registro=obj
     form1 = document.getElementById("tipo_form").value;
+    var dialogo=generaDivDialog();
     if (form1 == "prematricula") {
         form="premat_"+document.getElementById("curso_pre_mat").value;
     }
@@ -1111,21 +1111,11 @@ function verRegistro(obj) {
     else if (form1 == "matricula_fpb") form = "mat_fpb";
     else form = form1;
 
-    //Buscamos la posición de Nº Registro en encabezado para usarla como índice del registro en la tabla de los datos
-    /*var _enc = $("#encabezado_docs td");
-    for (i = 0; i < _enc.length; i++) {
-        if (_enc[i].innerHTML.substring(0, 11) == "Nº Registro") {
-            registro = obj.children[i].innerHTML;
-        }
-        else if (_enc[i].innerHTML.substring(0,3) == "NIE") {
-            _id_nie = obj.children[i].innerHTML;
-        }
-    }*/
     formulario = form; //esta asignación es necesaria para que funcione en botones, botón Guardar
     botones = "<div style='text-align:right'>";
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(registro,formulario,document.getElementById(\"incidencias_text\").value)'/>";
-    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#"+dialogo+"\").dialog(\"destroy\").remove();'/>";
     botones += "</div>";
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_recuperaregistro.php", { formulario: form, registro: registro }, function(resp) {
@@ -1156,7 +1146,7 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
-                document.getElementById("verRegistro_div").innerHTML = contenido;
+                document.getElementById(dialogo).innerHTML = contenido;
             } else if (form == "revision_calificacion") {
                 contenido += "<span class='verReg_label'>ID de Usuario: </span><span class='verReg_campo'>" + resp.registro.id_nif + "</span><br>";
                 contenido += "<span class='verReg_label'>Teléfono: </span><span class='verReg_campo'>" + resp.registro.telefono + "</span><br>";
@@ -1178,7 +1168,7 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
-                document.getElementById("verRegistro_div").innerHTML = contenido;
+                document.getElementById(dialogo).innerHTML = contenido;
             }  else if (form1 == "prematricula" || form1 == "matricula") {
                 if (form1 == "matricula") {
                     if (resp.registro.consolida_premat == "Si") {
@@ -1358,7 +1348,7 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
-                document.getElementById("verRegistro_div").innerHTML = contenido;
+                document.getElementById(dialogo).innerHTML = contenido;
             } else if (form1 == "matricula_ciclos") {
                 contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie + "</span><br>";
                 if(resp.registro.al_nuevo_otracomunidad.length>0)contenido += "<span class='verReg_label'>Nuevo de otra comunidad: </span><span class='verReg_campo'>" + resp.registro.al_nuevo_otracomunidad + "</span>";
@@ -1381,7 +1371,7 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
-                document.getElementById("verRegistro_div").innerHTML = contenido;
+                document.getElementById(dialogo).innerHTML = contenido;
             } else if (form1 == "matricula_fpb") {
                 contenido += "<span class='verReg_label'>NIF/NIE: </span><span class='verReg_campo'>" + resp.registro.nif_nie + "</span><br>";
                 if(resp.registro.al_nuevo_otracomunidad.length>0) contenido += "<span class='verReg_label'>Nuevo de otra comunidad: </span><span class='verReg_campo'>" + resp.registro.al_nuevo_otracomunidad + "</span>";
@@ -1397,10 +1387,9 @@ function verRegistro(obj) {
                 contenido += "<span class='verReg_label'>INCIDENCIAS DE LA SOLICITUD: </span><br>";
                 contenido += "<textarea id='incidencias_text' style='width:95%' onchange='javascript:actualizar=true;' class='verReg_campo'>" + resp.registro.incidencias + "</textarea>";
                 contenido += botones;
-                document.getElementById("verRegistro_div").innerHTML = contenido;
+                document.getElementById(dialogo).innerHTML = contenido;
             }
-            //document.getElementById("verRegistro_div").innerHTML = contenido;
-            $("#verRegistro_div").dialog({
+            $("#"+dialogo).dialog({
                 autoOpen: true,
                 dialogClass: "no-close",
                 modal: true,
@@ -1412,7 +1401,6 @@ function verRegistro(obj) {
                 width: ancho,
                 position: { my: "center top", at: "center top", of: window }
             });
-            //$("#verRegistro_div").dialog("open");
         }
     }, "json");
 
