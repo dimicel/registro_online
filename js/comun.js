@@ -350,6 +350,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                 reject(new Error(msg + xhr.status + " " + xhr.statusText));
             } else {
                 if(ancho>0 && alto>0){
+                    alert(555555555);
                     $("#"+_d.id).dialog({
                         autoOpen: true,
                         modal: true,
