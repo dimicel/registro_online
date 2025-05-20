@@ -2944,20 +2944,9 @@ function eliminaPrematriculas(){
 
 
 function gestionDptos(){
-    document.getElementById("dpto_select").selectedIndex=0;
-    gestionSeleccionDpto();
-    $("#div_departamentos").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "GESTIÓN DE DEPARTAMENTOS DE FP",
-        width: 800,
-        position: { my: "center", at: "center", of: window },
-        buttons: [
+    document.getElementById("cargando").style.display = "inherit";
+    cargaHTML("html/secretaria.htm", "div_departamentos","GESTIÓN DE DEPARTAMENTOS DE FP",800,2000,"center center","center center",
+        [
             {
                 class: "btn btn-success textoboton btn-sm",
                 text: "Nuevo",
@@ -3038,10 +3027,17 @@ function gestionDptos(){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Salir",
                 click: function() {
-                    $("#div_departamentos").dialog("close");
-                    $("#div_departamentos").dialog("destroy");
+                    $(this).dialog("destroy").remove();
                 }
             }]
+    ).then((dialogo)=>{
+        document.getElementById("cargando").style.display = "none";
+        gestionSeleccionDpto();
+        document.getElementById("dpto_select").selectedIndex=0;
+    }).catch (error=>{
+        document.getElementById("cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
 }
 
