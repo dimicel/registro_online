@@ -3051,22 +3051,16 @@ function gestionSeleccionDpto(){
     document.getElementById("dpto_abreviatura").readOnly=true;
 }
 
-function cancelaOPeracionDepartamentos(obj,div_padre){
+function cancelaOPeracionDepartamentos(obj){
     gestionSeleccionDpto();
     obj.parentNode.parentNode.style.visibility='hidden';
-    //$('#'+div_padre).parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
-    $('#div_departamentos')
-  .closest('.ui-dialog')
-  .find('.ui-dialog-buttonpane button')
-  .prop('disabled', false);
-
-    alert(document.getElementById("div_departamentos").innerHTML)
+    $('#div_departamentos').closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
     document.getElementById("div_desc_operacion").style.visibility='hidden';
     document.getElementById("dpto_nombre").previousElementSibling.innerHTML="";
     document.getElementById("dpto_abreviatura").previousElementSibling.innerHTML="";
 }
 
-function guardaAnadeDpto(obj,div_padre){
+function guardaAnadeDpto(obj){
     texttextBoton=obj.innerHTML;
     if (document.getElementById("dpto_nombre").value.trim().length==0 || document.getElementById("dpto_abreviatura").value.trim().length==0){
             alerta("Los campos 'Nombre del Departamento' y 'Abreviatura' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
@@ -3142,7 +3136,7 @@ function guardaAnadeDpto(obj,div_padre){
     div_boton_guardar_cambios.style.visibility="hidden";
     document.getElementById("dpto_nombre").readOnly=true;
     document.getElementById("dpto_abreviatura").readOnly=true;
-    $("#"+div_padre).parent().find(".ui-dialog-buttonpane button").prop("disabled", false);
+    $('#div_departamentos').closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
     document.getElementById("div_desc_operacion").style.visibility='hidden';
 }
 
