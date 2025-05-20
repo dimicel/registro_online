@@ -357,6 +357,8 @@
     
     <div id="div_dialogs_adjuntosconvalid" class="ui-widget-header ui-corner-all alertas"></div>
     
+    <!-- FORMULARIOS PARA DESCARGAR CSVs _______________________________________________________________-->
+    <!--______________________________________________________________________________________________-->
     <div id="formulario_descargar_csv" style="display:none">
         <form id="descarga_csv_premat" action="php/secret_csv_prematricula.php" method="POST" target="_self">
             <input type="hidden" id="premat_csv" name="premat_csv" />
@@ -420,6 +422,9 @@
             <input type="hidden" id="usuario" name="usuario" />
         </form>
     </div>
+    <!-- FIN FORMULARIOS PARA DESCARGAR CSVs _______________________________________________________________-->
+    <!--____________________________________________________________________________________________________-->
+    
 
     <div id="formulario_datos_centro" style="display:none">
         <form id="datos_centro" >
