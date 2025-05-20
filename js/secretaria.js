@@ -3031,11 +3031,12 @@ function gestionDptos(){
                 }
             }
         ]
-    ).then((dialogo)=>{alert(dialogo.innerHTML);
+    ).then((dialogo)=>{
         document.getElementById("cargando").style.display = "none";
         generaSelectsDepartamentos();
         document.getElementById("dpto_select").selectedIndex=0;
         gestionSeleccionDpto();
+        if(document.getElementById("div_departamentos"))alert("esta");
     }).catch (error=>{
         document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
