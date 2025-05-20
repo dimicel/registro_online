@@ -1097,7 +1097,6 @@ function verRegistro(registro) {
     ancho = 700;
     form1 = document.getElementById("tipo_form").value;
     var dialogo=generaDivDialog();
-    alert(dialogo);
     if (form1 == "prematricula") {
         form="premat_"+document.getElementById("curso_pre_mat").value;
     }
