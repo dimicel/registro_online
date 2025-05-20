@@ -349,7 +349,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                 $("#"+_d).html(msg + xhr.status + " " + xhr.statusText);
                 reject(new Error(msg + xhr.status + " " + xhr.statusText));
             } else {
-                if(ancho>0 && alto>0){alert(88888);
+                if(ancho>0 && alto>0){
                     $("#"+_d).dialog({
                         autoOpen: true,
                         modal: true,
