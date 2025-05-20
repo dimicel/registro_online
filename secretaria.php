@@ -351,7 +351,6 @@
         </div>
     </div>
     
-    <div id="div_dialogs_adjuntosconvalid" class="ui-widget-header ui-corner-all alertas"></div>
     
     <!-- FORMULARIOS PARA DESCARGAR CSVs _______________________________________________________________-->
     <!--______________________________________________________________________________________________-->

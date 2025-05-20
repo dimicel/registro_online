@@ -1013,6 +1013,11 @@ function adjuntosConvalid(registro,procedimiento){
                 contenido += "<br>";            
             }
         }
+        di=document.createElement('div');
+        di.id='div_dialogs_adjuntosconvalid';
+        di.classList.add('ui-widget-header', 'ui-corner-all', 'alertas');
+        di.style.overflow='hidden';
+        document.body.appendChild(di);
         document.getElementById("div_dialogs_adjuntosconvalid").innerHTML=contenido;
         $("#div_dialogs_adjuntosconvalid").dialog({
             autoOpen: true,
@@ -1028,8 +1033,7 @@ function adjuntosConvalid(registro,procedimiento){
                 class: "btn btn-success textoboton",
                 text: "Cerrar",
                 click: function() {
-                    $("#div_dialogs_adjuntosconvalid").dialog("close");
-                    $("#div_dialogs_adjuntosconvalid").dialog("destroy");
+                    $("#div_dialogs_adjuntosconvalid").dialog("destroy").remove();
                 }
             }]
         });
