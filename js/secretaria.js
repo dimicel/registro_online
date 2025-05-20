@@ -390,7 +390,7 @@ function generaSelectCursoTurnoGMGS(c){
 
 function generaSelectsDepartamentos(){
     document.getElementById("departamento").innerHTML="";
-    document.getElementById("config_dpto").innerHTML="";
+    if (document.getElementById("config_dpto"))document.getElementById("config_dpto").innerHTML="";
     document.getElementById("dpto_select").innerHTML="";
     opt=document.createElement("option");
     opt.value="Todos";
@@ -400,12 +400,12 @@ function generaSelectsDepartamentos(){
     opt=document.createElement("option");
     opt.value="";
     opt.textContent="Seleccione departamento ...";
-    document.getElementById("config_dpto").appendChild(opt);
+    if (document.getElementById("config_dpto"))document.getElementById("config_dpto").appendChild(opt);
     for(i=0;i<departamentos.length;i++){
         opt=document.createElement("option");
         opt.value=departamentos[i][0];
         opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
-        document.getElementById("config_dpto").appendChild(opt);
+        if (document.getElementById("config_dpto"))document.getElementById("config_dpto").appendChild(opt);
         opt=document.createElement("option");
         opt.value=departamentos[i][0];
         opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
