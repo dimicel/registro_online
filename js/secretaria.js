@@ -2207,6 +2207,7 @@ function adjuntaDocAdicional(_id_nie,registro){
     //Para convalidaciones
     __ministerio=0;
     __consejeria=0;
+    var dialogo=generaDivDialog();
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_ver_procesado_organismo.php",{registro:registro},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
@@ -2227,9 +2228,9 @@ function adjuntaDocAdicional(_id_nie,registro){
             c+="<div class='col-6'><input type='text' class='form-control' id='doc_adic_conval' readonly placeholder='Seleccionar documento' onclick='document.getElementById(\"conval_doc_adicional\").click()'/></div>";
             c+="</div>";
             c+="<input type='file' id='conval_doc_adicional' name='conval_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById(\"doc_adic_conval\").value=this.files[0].name'/>";
-            document.getElementById("div_dialogs2").innerHTML=c;   
+            document.getElementById(dialogo).innerHTML=c;   
             
-            $("#div_dialogs2").dialog({
+            $("#"+dialogo).dialog({
                 autoOpen: true,
                 dialogClass: "no-close",
                 modal: true,
@@ -2306,16 +2307,15 @@ function adjuntaDocAdicional(_id_nie,registro){
                                         }
                                         //document.getElementById("cargando").style.display = 'inherit';
                                        
-                                        document.getElementById("div_dialogs2").innerHTML="";
-                                        $("#div_dialogs2").dialog("close");
-                                        $("#div_dialogs2").dialog("destroy");
+                                        //document.getElementById("div_dialogs2").innerHTML="";
+                                        //$("#div_dialogs2").dialog("close");
+                                        $("#"+dialogo).dialog("destroy").remove();
                                     },
                                     error: function(xhr, status, error) {
                                         document.getElementById("cargando").style.display = 'none';
                                         alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                                        document.getElementById("div_dialogs2").innerHTML="";
-                                        $("#div_dialogs2").dialog("close");
-                                        $("#div_dialogs2").dialog("destroy");
+                                        //document.getElementById("div_dialogs2").innerHTML="";
+                                        $("#"+dialogo).dialog("destroy").remove();
                                     }
                                 });
                             }
@@ -2326,9 +2326,8 @@ function adjuntaDocAdicional(_id_nie,registro){
                     class: "btn btn-success textoboton",
                     text: "Cancelar",
                     click: function() {
-                        document.getElementById("div_dialogs2").innerHTML="";
-                        $("#div_dialogs2").dialog("close");
-                        $("#div_dialogs2").dialog("destroy");
+                        //document.getElementById("div_dialogs2").innerHTML="";
+                        $("#"+dialogo).dialog("destroy").remove();
                     }
                     }]
             });
