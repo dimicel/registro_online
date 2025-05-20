@@ -342,7 +342,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
         if (!_d) {
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
-        }
+        }alert(_d);
         $("#"+_d.id).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
             if (status == "error") {
                 var msg = "Error: ";
