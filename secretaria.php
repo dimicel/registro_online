@@ -340,7 +340,6 @@
 
 
     <div id="verRegistro_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
-    <div id="verModulosConvalidaciones_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
     <div id="verInfoUsu_div" style="display:none; font-size:0.85em !important;" class="ui-widget-header ui-corner-all alertas"></div>
     <div id="cargando" style="display:none; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('recursos/espera.gif') no-repeat center center; opacity: .7;z-index:9999;text-align:center;">
         <!--<label id="progreso_php" style="color:brown;vertical-align:middle;"></label>-->
@@ -424,7 +423,7 @@
     </div>
     <!-- FIN FORMULARIOS PARA DESCARGAR CSVs _______________________________________________________________-->
     <!--____________________________________________________________________________________________________-->
-    
+
 
     <div id="formulario_datos_centro" style="display:none">
         <form id="datos_centro" >
