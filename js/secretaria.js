@@ -1540,11 +1540,12 @@ function verRegistroExencionFCT(num_registro,rutaInforme,rutaResolucion){
 function verPanelResolver(id_nie,registro){
     ancho=1000;
     salir=false;
+    var dialogo=generaDivDialog();
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
         document.getElementById("cargando").style.display = 'none';
         if (resp["error"]=="ok"){
-            panel=document.getElementById("verModulosConvalidaciones_div");
+            panel=document.getElementById(dialogo);
             cont="<form id='form_relacion_modulos_convalid'><input type='hidden' name='registro' value='"+registro+"'/><input type='hidden' name='genera_resolucion' id='genera_resolucion' value=''/><div class='container'><div class='form-group form-row'>";
             cont+="<div class='col-5'><label>Módulo</label></div>";
             cont+="<div class='col-2'><label>Estado</label></div>";
@@ -1570,8 +1571,8 @@ function verPanelResolver(id_nie,registro){
                 cont+="</div>";
             }
             cont+="</div></form>";
-            document.getElementById("verModulosConvalidaciones_div").innerHTML=cont;
-            $("#verModulosConvalidaciones_div").dialog({
+            document.getElementById(dialogo).innerHTML=cont;
+            $("#"+dialogo).dialog({
                 autoOpen: true,
                 dialogClass: "no-close",
                 modal: true,
@@ -1603,7 +1604,7 @@ function verPanelResolver(id_nie,registro){
                                 else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
                                 else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
                                 listaRegistros(_orden_campo, _orden_direccion);
-                                $("#verModulosConvalidaciones_div").dialog("destroy");
+                                $(this).dialog("destroy").remove();
                             });
                         }
                     },
@@ -1627,7 +1628,7 @@ function verPanelResolver(id_nie,registro){
                                 else if(resp=="ok_consejeria_ministerio") alerta("No se genera notificación para el alumno. Resuelve el MINISTERIO y CONSEJERIA.","RESUELVE MINISTERIO Y CONSEJERIA");
                                 else if(resp=="elementos_sin_resolver") alerta("No se habían resuelto todos los módulos. Se ha cambiado el estado de los que sí lo estaban.","RESOLUCIÓN PARCIAL");
                                 listaRegistros(_orden_campo, _orden_direccion);
-                                $("#verModulosConvalidaciones_div").dialog("destroy");
+                                $(this).dialog("destroy").remove();
                             });
                         }
                     },
@@ -1636,7 +1637,7 @@ function verPanelResolver(id_nie,registro){
                         text:"Cancelar",
                         click:function(){
                             listaRegistros(_orden_campo, _orden_direccion);
-                            $("#verModulosConvalidaciones_div").dialog("destroy");
+                            $(this).dialog("destroy").remove();
                         }
                     }
                 ]
