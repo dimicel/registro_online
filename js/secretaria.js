@@ -2443,14 +2443,13 @@ function parametrosCentro(){
                                 else{
                                     alerta(resp,"ERROR");
                                 }
-                                $(this).dialog("destroy").remove();
                             },
                             error: function(xhr, status, error) {
                                 document.getElementById("cargando").style.display = 'none';
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                                $(this).dialog("destroy").remove();
                             }
                         });
+                        $(this).dialog("destroy").remove();
                     }
                     
                 }
@@ -2464,7 +2463,6 @@ function parametrosCentro(){
         }]
     )
     .then((dialogo)=>{
-        alert(888);
         $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
             document.getElementById("cargando").style.display = 'none';
             if (resp.error=="ok"){
