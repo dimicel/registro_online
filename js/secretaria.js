@@ -3054,7 +3054,6 @@ function gestionSeleccionDpto(){
 function cancelaOPeracionDepartamentos(obj){
     gestionSeleccionDpto();
     obj.parentNode.parentNode.style.visibility='hidden';
-    //$('#div_departamentos').closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
     $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
     document.getElementById("div_desc_operacion").style.visibility='hidden';
     document.getElementById("dpto_nombre").previousElementSibling.innerHTML="";
@@ -3137,7 +3136,7 @@ function guardaAnadeDpto(obj){
     div_boton_guardar_cambios.style.visibility="hidden";
     document.getElementById("dpto_nombre").readOnly=true;
     document.getElementById("dpto_abreviatura").readOnly=true;
-    $('#div_departamentos').closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
+    $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
     document.getElementById("div_desc_operacion").style.visibility='hidden';
 }
 
