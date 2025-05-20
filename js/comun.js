@@ -334,21 +334,11 @@ function validateBIC(bic) {
 function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",botones=[],funcAbrir=null,funcCerrar=null) {
     return new Promise((resolve, reject) => {
         //Si ancho y alto son 0, se genera el div, se carga el contenido HTML pero no se genera ni se abre el diálogo
-        var _d="";
+        var _d=generaDivDialog();
         if(ancho==0) ancho=600;
         if(alto==0) alto=400;
         if (posicion_my=='') posicion_my="center top";
         if (posicion_at=='') posicion_at="center top";
-        for (let i=0; i < 1000; i++) {
-            if (document.getElementById('div_dialogs' + i) == null) {
-                _d=document.createElement('div');
-                _d.id='div_dialogs' + i;
-                _d.classList.add('ui-widget-header', 'ui-corner-all', 'alertas');
-                _d.style.overflow='hidden';
-                document.body.appendChild(_d);
-                break;
-            }
-        }
         if (!_d) {
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
@@ -387,6 +377,21 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
             }
         });
     });
+}
+
+function generaDivDialog(){
+    let di="";
+    for (let i=0; i < 1000; i++) {
+        if (document.getElementById('div_dialogs' + i) == null) {
+            di=document.createElement('div');
+            di.id='div_dialogs' + i;
+            di.classList.add('ui-widget-header', 'ui-corner-all', 'alertas');
+            di.style.overflow='hidden';
+            document.body.appendChild(di);
+            break;
+        }
+    }
+    return di.id;
 }
 
 
