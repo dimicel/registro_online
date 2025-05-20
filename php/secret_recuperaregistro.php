@@ -30,6 +30,13 @@ if ($res->num_rows==0){
 $data["error"]="ok";
 $data["registro"]=array();
 while ($reg=$res->fetch_assoc()){
+    $data["registro"]=$reg;
+    if (isset($data["registro"]["fecha_nac"])) $data["registro"]["fecha_nac"]=date("d/m/Y",strtotime($reg['fecha_nac']));
+}
+exit(json_encode($data));
+
+//ANTIGUO BLOQUE DE PROGRAMACIÓN
+/*
     if ($tabla=="revision_examen"){
         $data["registro"]["id_nif"]= $reg["id_nif"];
         $data["registro"]["nombre"]=$reg["nombre"];
@@ -90,7 +97,7 @@ while ($reg=$res->fetch_assoc()){
     } 
     elseif($tabla=="exencion_fct"){
         $data["registro"]=$reg;
-        /*$data["registro"]["id_nie"]= $reg["id_nie"];
+        $data["registro"]["id_nie"]= $reg["id_nie"];
         $data["registro"]["id_nif"]= $reg["id_nif"];
         $data["registro"]["nombre"]=$reg["nombre"];
         $data["registro"]["apellidos"]=$reg["apellidos"];
@@ -100,7 +107,7 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["procesado"]=$reg["procesado"];
         $data["registro"]["resolucion"]=$reg["resolucion"];
         $data["registro"]["incidencias"]=$reg["incidencias"];
-        $data["registro"]["motivo"]=$reg["motivo"];*/
+        $data["registro"]["motivo"]=$reg["motivo"];
     }
     elseif(substr($tabla,0,7)=="premat_" || (substr($tabla,0,4)=="mat_" && $tabla!="mat_ciclos" && $tabla!="mat_fpb")){
         if (substr($tabla,0,4)=="mat_"){
@@ -307,5 +314,4 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["incidencias"]=$reg["incidencias"]; 
         $data["registro"]["al_nuevo_otracomunidad"]= $reg["al_nuevo_otracomunidad"];
     }
-}
-exit(json_encode($data));
+    */
