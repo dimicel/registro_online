@@ -136,18 +136,6 @@ $(function() {
         
     });
 
-    $("#div_nie_registrado").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "NIE REGISTRADO",
-        maxHeight: 500,
-        width: 550
-    });
-
     habilitaMenu(false, false); 
 
     $('#registros_docs').contextMenu({
