@@ -2601,6 +2601,25 @@ function parametrosCentro(){
 
 
 function logosFirmaSello(){
+    document.getElementById("cargando").style.display = "inherit";
+    cargaHTML("html/secretaria.htm", "div_carga_logos_sellofirma","CAMBIO DE LOGOS Y SELLO Y FIRMA DEL DIRECTOR",1000,2000,"center center","center center",
+        [{
+            class: "btn btn-success textoboton",
+            text: "Terminar",
+            click: function() {
+                $(this).dialog("destroy").remove();
+            }
+        }]
+    )
+    .then((dialogo)=>{
+        document.getElementById("cargando").style.display = "none";
+    })
+    .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+    /*
     $("#div_carga_logos_sellofirma").dialog({
         autoOpen: true,
         dialogClass: "no-close",
@@ -2621,7 +2640,7 @@ function logosFirmaSello(){
                 $("#div_carga_logos_sellofirma").dialog("destroy");
             }
         }]
-    });
+    });*/
 }
 
 function JefesDepartamento(){
