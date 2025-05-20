@@ -346,6 +346,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
         $("#"+_d).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
             alert(status);
             if (status == "error") {
+                alert(6666);
                 var msg = "Error: ";
                 $("#"+_d).html(msg + xhr.status + " " + xhr.statusText);
                 reject(new Error(msg + xhr.status + " " + xhr.statusText));
