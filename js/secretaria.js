@@ -1728,7 +1728,6 @@ function reasignarPassword() {
             alerta("Ha habido un fallo en el servidor y no se ha podido cambiar la contraseña. Inténtelo más tarde.", "ERROR DE SERVIDOR");
         } else if (resp == "ok") {
             alerta("Contraseña cambiada con éxito.", "Alta OK");
-            $('#div_nie_registrado').closest(".ui-dialog-content").dialog('destroy').remove();
         } else if (resp == "email") {
             alerta("Contraseña cambiada con éxito. Se han enviado sus credenciales por el correo indicado.", "Alta y envío OK");
         } else if (resp == "envio") {
