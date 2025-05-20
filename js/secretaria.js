@@ -3029,7 +3029,8 @@ function gestionDptos(){
                 click: function() {
                     $(this).dialog("destroy").remove();
                 }
-            }]
+            }
+        ]
     ).then((dialogo)=>{
         document.getElementById("cargando").style.display = "none";
         gestionSeleccionDpto();
