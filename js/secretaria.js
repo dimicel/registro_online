@@ -2421,115 +2421,9 @@ function descargaCSVelearningFctProy(){
 }
 
 function parametrosCentro(){
-    volver=false;
-    document.getElementById("cargando").style.display = 'inherit';
-    $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
-        document.getElementById("cargando").style.display = 'none';
-        if (resp.error=="ok"){
-            document.getElementById("director").value=resp.registro.director;
-            document.getElementById("centro").value=resp.registro.centro;
-            document.getElementById("cp").value=resp.registro.cp_centro;
-            document.getElementById("direccion").value=resp.registro.direccion_centro;
-            document.getElementById("localidad").value=resp.registro.localidad_centro;
-            document.getElementById("provincia").value=resp.registro.provincia_centro;
-            document.getElementById("tlf_centro").value=resp.registro.tlf_centro;
-            document.getElementById("fax_centro").value=resp.registro.fax_centro;
-            document.getElementById("email_centro").value=resp.registro.email_centro;
-            document.getElementById("email_jef_res").value=resp.registro.email_jefe_residencia;
-            document.getElementById("finza_bonif").value=resp.registro.residencia_fianza_bonificados;
-            document.getElementById("finza_nobonif").value=resp.registro.residencia_fianza_no_bonificados;
-        }
-        else if (resp.datos=="server"){
-            alerta("Error en servidor. No se pueden editar los datos asociados al centro","ERROR SERVIDOR");
-            volver=true;
-        }
-    },"json");
-    if (volver) return;
-
-    $("#datos_centro").validate({
-        rules: {
-            director: {
-                required: true
-            },
-            centro: {
-                required: true
-            },
-            direccion:{
-               required: true
-            },
-            cp: {
-                required: true
-            },
-            localidad: {
-                required:true
-            },
-            provincia: {
-                required:true
-            },
-            tlf_centro: {
-                required:true
-            },
-            email_jef_res: {
-                email:true,
-                required:true
-            },
-            finza_bonif: {
-                required:true
-            },
-            finza_nobonif: {
-                required:true
-            }
-        },
-        messages: {
-            director: {
-                required: "Complete el campo"
-            },
-            centro: {
-                required: "Complete el campo"
-            },
-            direccion: {
-                required: "Complete el campo"
-            },
-            cp: {
-                required: "Complete el campo"
-            },
-            localidad: {
-                required: "Complete el campo"
-            },
-            provincia: {
-                required: "Complete el campo"
-            },
-            tlf_centro: {
-                required: "Complete el campo"
-            },
-            email_jef_res:{
-                email:"Dirección no válida",
-                required: "Complete el campo"
-            },
-            finza_bonif: {
-                required: "Complete el campo"
-            },
-            finza_nobonif: {
-                required: "Complete el campo"
-            }
-        },
-        errorPlacement: function(error, element) {
-            $(element).prev().prev($('.errorTxt')).html(error);
-        }
-    });
-
-    $("#formulario_datos_centro").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "EDICIÓN DATOS ASOCIADOS AL CENTRO",
-        width: 700,
-        position: { my: "center", at: "center", of: window },
-        buttons: [
+    document.getElementById("cargando").style.display = "inherit";
+    cargaHTML("html/secretaria.htm", "formulario_datos_centro","EDICIÓN DATOS ASOCIADOS AL CENTRO",700,2000,"center center","center center",
+         [
             {
                 class: "btn btn-success textoboton",
                 text: "Guardar Cambios",
@@ -2549,14 +2443,12 @@ function parametrosCentro(){
                                 else{
                                     alerta(resp,"ERROR");
                                 }
-                                $("#formulario_datos_centro").dialog("close");
-                                $("#formulario_datos_centro").dialog("destroy");
+                                $(this).dialog("destroy").remove();
                             },
                             error: function(xhr, status, error) {
                                 document.getElementById("cargando").style.display = 'none';
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                                $("#formulario_datos_centro").dialog("close");
-                                $("#formulario_datos_centro").dialog("destroy");
+                                $(this).dialog("destroy").remove();
                             }
                         });
                     }
@@ -2567,12 +2459,110 @@ function parametrosCentro(){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#formulario_datos_centro").dialog("close");
-                $("#formulario_datos_centro").dialog("destroy");
+                $(this).dialog("destroy").remove();
             }
         }]
-    });
-    
+    )
+    .then((dialogo)=>{
+        $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
+            document.getElementById("cargando").style.display = 'none';
+            if (resp.error=="ok"){
+                document.getElementById("director").value=resp.registro.director;
+                document.getElementById("centro").value=resp.registro.centro;
+                document.getElementById("cp").value=resp.registro.cp_centro;
+                document.getElementById("direccion").value=resp.registro.direccion_centro;
+                document.getElementById("localidad").value=resp.registro.localidad_centro;
+                document.getElementById("provincia").value=resp.registro.provincia_centro;
+                document.getElementById("tlf_centro").value=resp.registro.tlf_centro;
+                document.getElementById("fax_centro").value=resp.registro.fax_centro;
+                document.getElementById("email_centro").value=resp.registro.email_centro;
+                document.getElementById("email_jef_res").value=resp.registro.email_jefe_residencia;
+                document.getElementById("finza_bonif").value=resp.registro.residencia_fianza_bonificados;
+                document.getElementById("finza_nobonif").value=resp.registro.residencia_fianza_no_bonificados;
+
+                $("#datos_centro").validate({
+                    rules: {
+                        director: {
+                            required: true
+                        },
+                        centro: {
+                            required: true
+                        },
+                        direccion:{
+                        required: true
+                        },
+                        cp: {
+                            required: true
+                        },
+                        localidad: {
+                            required:true
+                        },
+                        provincia: {
+                            required:true
+                        },
+                        tlf_centro: {
+                            required:true
+                        },
+                        email_jef_res: {
+                            email:true,
+                            required:true
+                        },
+                        finza_bonif: {
+                            required:true
+                        },
+                        finza_nobonif: {
+                            required:true
+                        }
+                    },
+                    messages: {
+                        director: {
+                            required: "Complete el campo"
+                        },
+                        centro: {
+                            required: "Complete el campo"
+                        },
+                        direccion: {
+                            required: "Complete el campo"
+                        },
+                        cp: {
+                            required: "Complete el campo"
+                        },
+                        localidad: {
+                            required: "Complete el campo"
+                        },
+                        provincia: {
+                            required: "Complete el campo"
+                        },
+                        tlf_centro: {
+                            required: "Complete el campo"
+                        },
+                        email_jef_res:{
+                            email:"Dirección no válida",
+                            required: "Complete el campo"
+                        },
+                        finza_bonif: {
+                            required: "Complete el campo"
+                        },
+                        finza_nobonif: {
+                            required: "Complete el campo"
+                        }
+                    },
+                    errorPlacement: function(error, element) {
+                        $(element).prev().prev($('.errorTxt')).html(error);
+                    }
+                });
+            }
+            else if (resp.datos=="server"){
+                alerta("Error en servidor. No se pueden editar los datos asociados al centro","ERROR SERVIDOR");
+                $("#"+dialogo).dialog("destroy").remove();
+            }
+        },"json");  
+    })
+    .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });    
 }
 
 
