@@ -1409,11 +1409,12 @@ function verRegistro(registro) {
 
 function verRegistroConvalidaciones(num_registro){
     ancho = 700;
+    var dialogo=generaDivDialog();
     formulario="convalidaciones"
     botones = "<div style='text-align:right'>";
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(\""+num_registro+"\",\"convalidaciones\",document.getElementById(\"incidencias_text\").value)'/>";
-    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#"+dialogo+"\").dialog(\"destroy\").remove();'/>";
     botones += "</div>";
     contenido="";
     document.getElementById("cargando").style.display = 'inherit';
@@ -1448,11 +1449,11 @@ function verRegistroConvalidaciones(num_registro){
             contenido += "<br><span class='verReg_label'>OBSERVACIONES/ESTADO DEL TRÁMITE: </span><br>";
             contenido += "<textarea id='incidencias_text' style='width:100%' onchange='javascript:actualizar=true;' class='verReg_campo form-control'>" + resp.registro.incidencias + "</textarea><br>";
             contenido += botones;
-            document.getElementById("verRegistro_div").innerHTML = contenido;
+            document.getElementById(dialogo).innerHTML = contenido;
             //document.getElementById("ver_docs_resol").value=resp.registro.resolucion;
             verRegAdjuntosConvalid(num_registro);
 
-            $("#verRegistro_div").dialog({
+            $("#"+dialogo).dialog({
                 autoOpen: true,
                 dialogClass: "no-close",
                 modal: true,
