@@ -342,18 +342,18 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
         if (!_d) {
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
-        }alert(_d);
-        $("#"+_d.id).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
+        }
+        $("#"+_d).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
             alert(status);
             if (status == "error") {
                 var msg = "Error: ";
-                $("#"+_d.id).html(msg + xhr.status + " " + xhr.statusText);
+                $("#"+_d).html(msg + xhr.status + " " + xhr.statusText);
                 reject(new Error(msg + xhr.status + " " + xhr.statusText));
             } else {
                 alert(ancho +"    "+alto);
                 if(ancho>0 && alto>0){
                     alert(555555555);
-                    $("#"+_d.id).dialog({
+                    $("#"+_d).dialog({
                         autoOpen: true,
                         modal: true,
                         draggable: false,
@@ -373,7 +373,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
                         },
                         close:function(event, ui) {
                             funcCerrar && funcCerrar();
-                            $("#"+_d.id).dialog("destroy").remove();
+                            $("#"+_d).dialog("destroy").remove();
                         }
                     });
                 }
