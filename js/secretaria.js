@@ -2587,57 +2587,9 @@ function logosFirmaSello(){
 }
 
 function JefesDepartamento(){
-    $("#config_departamentos").validate({
-        rules: {
-            config_dpto: {
-                required: true
-            },
-            config_nombre_jd: {
-                required: true
-            },
-            config_email_jd: {
-                required: true,
-                email: true
-            },
-            config_password_jd: {
-                required:false,
-                minlength: 8,
-                password2:true
-            }
-        },
-        messages: {
-            config_dpto: {
-                required: "Seleccione un departamento"
-            },
-            config_nombre_jd: {
-                required: "Complete el campo"
-            },
-            config_email_jd: {
-                required: "Complete el campo",
-                email: "Formato de email incorrecto"
-            },
-            config_password_jd:{
-                minlength: "Longitud mínima es de 8 caracteres",
-                password2: "No cumple los requisitos."
-            }
-        },
-        errorPlacement: function(error, element) {
-            $(element).prev($('.errorTxt')).html(error);
-        }
-    });
-
-    $("#div_config_departamentos").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "DATOS ASOCIADOS A LOS DEPARTAMENTOS",
-        width: 800,
-        position: { my: "center", at: "center", of: window },
-        buttons: [
+    document.getElementById("cargando").style.display = "inherit";
+    cargaHTML("html/secretaria.htm", "div_config_departamentos","DATOS ASOCIADOS A LOS DEPARTAMENTOS",800,2000,"center center","center center",
+        [
             {
                 class: "btn btn-success textoboton",
                 text: "Guardar Cambios",
@@ -2671,8 +2623,6 @@ function JefesDepartamento(){
                                 document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
                                 document.getElementById("config_nombre_jd").readOnly=true;
                                 document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";
-                                //$("#div_config_departamentos").dialog("close");
-                                //$("#div_config_departamentos").dialog("destroy");
                             },
                             error: function(xhr, status, error) {
                                 document.getElementById("cargando").style.display = 'none';
@@ -2687,8 +2637,6 @@ function JefesDepartamento(){
                                 document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
                                 document.getElementById("config_nombre_jd").readOnly=true;
                                 document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";
-                                //$("#div_config_departamentos").dialog("close");
-                                //$("#div_config_departamentos").dialog("destroy");
                             }
                         });
                     }
@@ -2699,8 +2647,6 @@ function JefesDepartamento(){
             class: "btn btn-success textoboton",
             text: "Salir",
             click: function() {
-                //$("#config_departamentos").validate().resetForm();
-                //document.getElementById("config_departamentos").reset();
                 document.getElementById("config_dpto").value="";
                 document.getElementById("config_nombre_jd").value="";
                 document.getElementById("config_email_jd").value="";
@@ -2711,12 +2657,55 @@ function JefesDepartamento(){
                 document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
                 document.getElementById("config_nombre_jd").readOnly=true;
                 document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";        
-                $("#div_config_departamentos").dialog("close");
-                $("#div_config_departamentos").dialog("destroy");
+                $(this).dialog("destroy").remove();
             }
-        }]
+    }])
+    .then((dialogo)=>{
+        document.getElementById("cargando").style.display = "none";
+        $("#config_departamentos").validate({
+            rules: {
+                config_dpto: {
+                    required: true
+                },
+                config_nombre_jd: {
+                    required: true
+                },
+                config_email_jd: {
+                    required: true,
+                    email: true
+                },
+                config_password_jd: {
+                    required:false,
+                    minlength: 8,
+                    password2:true
+                }
+            },
+            messages: {
+                config_dpto: {
+                    required: "Seleccione un departamento"
+                },
+                config_nombre_jd: {
+                    required: "Complete el campo"
+                },
+                config_email_jd: {
+                    required: "Complete el campo",
+                    email: "Formato de email incorrecto"
+                },
+                config_password_jd:{
+                    minlength: "Longitud mínima es de 8 caracteres",
+                    password2: "No cumple los requisitos."
+                }
+            },
+            errorPlacement: function(error, element) {
+                $(element).prev($('.errorTxt')).html(error);
+            }
+        });
+    })
+    .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
-    
 }
 
 function selDptoConfigDpto(obj){
