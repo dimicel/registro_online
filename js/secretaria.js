@@ -3031,7 +3031,7 @@ function gestionDptos(){
                 }
             }
         ]
-    ).then((dialogo)=>{
+    ).then((dialogo)=>{alert(dialog.innerHTML)
         document.getElementById("cargando").style.display = "none";
         generaSelectsDepartamentos();
         document.getElementById("dpto_select").selectedIndex=0;
