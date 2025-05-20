@@ -3062,7 +3062,7 @@ function cancelaOPeracionDepartamentos(obj,div_padre){
     document.getElementById("dpto_abreviatura").previousElementSibling.innerHTML="";
 }
 
-function guardaAnadeDpto(obj){
+function guardaAnadeDpto(obj,div_padre){
     texttextBoton=obj.innerHTML;
     if (document.getElementById("dpto_nombre").value.trim().length==0 || document.getElementById("dpto_abreviatura").value.trim().length==0){
             alerta("Los campos 'Nombre del Departamento' y 'Abreviatura' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
@@ -3138,7 +3138,7 @@ function guardaAnadeDpto(obj){
     div_boton_guardar_cambios.style.visibility="hidden";
     document.getElementById("dpto_nombre").readOnly=true;
     document.getElementById("dpto_abreviatura").readOnly=true;
-    $("#div_departamentos").parent().find(".ui-dialog-buttonpane button").prop("disabled", false);
+    $("#"+div_padre).parent().find(".ui-dialog-buttonpane button").prop("disabled", false);
     document.getElementById("div_desc_operacion").style.visibility='hidden';
 }
 
