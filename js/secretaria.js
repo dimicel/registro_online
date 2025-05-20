@@ -1690,27 +1690,27 @@ function altaUsuario() {
                 cargaHTML("html/secretaria.htm", "div_nie_registrado","NIE REGISTRADO",550,500)
                 .then((dialogo)=>{
                     document.getElementById("cargando").style.display = "none";
+                    $("[data-alta='usuario'").css("display", "inherit");
+                    $("[data-alta='registrado'").css("display", "none");
                 })
                 .catch (error=>{
                     document.getElementById("cargando").style.display = "none";
                     var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
                     alerta(msg,"ERROR DE CARGA");
                 });
-                $("[data-alta='usuario'").css("display", "inherit");
-                $("[data-alta='registrado'").css("display", "none");
             } else if (resp == "registrado") {
                 document.getElementById("cargando").style.display = "inherit";
                 cargaHTML("html/secretaria.htm", "div_nie_registrado","NIE REGISTRADO",550,500)
                 .then((dialogo)=>{
                     document.getElementById("cargando").style.display = "none";
+                    $("[data-alta='usuario'").css("display", "none");
+                    $("[data-alta='registrado'").css("display", "inherit");
                 })
                 .catch (error=>{
                     document.getElementById("cargando").style.display = "none";
                     var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
                     alerta(msg,"ERROR DE CARGA");
                 });
-                $("[data-alta='usuario'").css("display", "none");
-                $("[data-alta='registrado'").css("display", "inherit");
             } else if (resp == "email") {
                 alerta("Nuevo usuario creado con éxito. Se han enviado sus credenciales por el correo indicado.", "Alta y envío OK");
             } else if (resp.indexOf("envio") == 0) {
