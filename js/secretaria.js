@@ -3036,7 +3036,6 @@ function gestionDptos(){
         generaSelectsDepartamentos();
         document.getElementById("dpto_select").selectedIndex=0;
         gestionSeleccionDpto();
-        if(document.getElementById("div_departamentos"))alert("esta");
     }).catch (error=>{
         document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
@@ -3056,7 +3055,8 @@ function cancelaOPeracionDepartamentos(obj,div_padre){
     gestionSeleccionDpto();
     obj.parentNode.parentNode.style.visibility='hidden';
     //$('#'+div_padre).parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
-    $(obj).closest('.ui-dialog-buttonset').find('button').prop('disabled', false);
+    if(document.getElementById("div_departamentos"))alert(55555)
+    $('#div_departamentos').parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
     document.getElementById("div_desc_operacion").style.visibility='hidden';
     document.getElementById("dpto_nombre").previousElementSibling.innerHTML="";
     document.getElementById("dpto_abreviatura").previousElementSibling.innerHTML="";
