@@ -2305,16 +2305,12 @@ function adjuntaDocAdicional(_id_nie,registro){
                                             } 
                                             verRegAdjuntosConvalid(registro);
                                         }
-                                        //document.getElementById("cargando").style.display = 'inherit';
-                                       
-                                        //document.getElementById("div_dialogs2").innerHTML="";
-                                        //$("#div_dialogs2").dialog("close");
+                                
                                         $("#"+dialogo).dialog("destroy").remove();
                                     },
                                     error: function(xhr, status, error) {
                                         document.getElementById("cargando").style.display = 'none';
                                         alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                                        //document.getElementById("div_dialogs2").innerHTML="";
                                         $("#"+dialogo).dialog("destroy").remove();
                                     }
                                 });
@@ -2326,7 +2322,6 @@ function adjuntaDocAdicional(_id_nie,registro){
                     class: "btn btn-success textoboton",
                     text: "Cancelar",
                     click: function() {
-                        //document.getElementById("div_dialogs2").innerHTML="";
                         $("#"+dialogo).dialog("destroy").remove();
                     }
                     }]
@@ -2346,6 +2341,7 @@ function adjuntaDocAdicional(_id_nie,registro){
 
 
 function adjuntaDocAdicionalExencFCT(_id_nie,registro){
+    var dialogo=generaDivDialog();
     c="<div class='row'>";
     c+="<div class='col-5'><label for='desc_adic_exenc_fct' class='col-form-label'>Descripción: </label></div>";
     c+="<div class='col-7'><label for='doc_adic_exenc_fct' class='col-form-label'>Documento: </label></div>";
@@ -2355,9 +2351,9 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
     c+="<div class='col-7'><input type='text' class='form-control' id='doc_adic_exenc_fct' readonly placeholder='Seleccionar documento' onclick='document.getElementById(\"exenc_fct_doc_adicional\").click()'/></div>";
     c+="</div>";
     c+="<input type='file' id='exenc_fct_doc_adicional' name='exenc_fct_doc_adicional' multiple='false' accept='application/pdf' style='position:absolute;left:-9999px' onchange='document.getElementById(\"doc_adic_exenc_fct\").value=this.files[0].name'/>";
-    document.getElementById("div_dialogs2").innerHTML=c;   
+    document.getElementById(dialogo).innerHTML=c;   
     
-    $("#div_dialogs2").dialog({
+    $("#"+dialogo).dialog({
         autoOpen: true,
         dialogClass: "no-close",
         modal: true,
@@ -2390,36 +2386,28 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
                             contentType: false,
                             processData: false,
                             success: function(resp) {
-                                //document.getElementById("cargando").style.display = 'none';
+                                document.getElementById("cargando").style.display = 'none';
                                 if (resp == "servidor"){
-                                    document.getElementById("cargando").style.display = 'none';
                                     alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 } 
                                 else if (resp == "database") {
-                                    document.getElementById("cargando").style.display = 'none';
                                     alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
                                 }
                                 else if (resp == "error_subida") {
-                                    document.getElementById("cargando").style.display = 'none';
                                     alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
                                 }
                                 else if (resp == "ok"){
-                                    document.getElementById("cargando").style.display = 'none';
                                     alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
                                     verRegAdjuntosExencFCT(registro);
                                 }
-                                //document.getElementById("cargando").style.display = 'inherit';
+                                
                                
-                                document.getElementById("div_dialogs2").innerHTML="";
-                                $("#div_dialogs2").dialog("close");
-                                $("#div_dialogs2").dialog("destroy");
+                                $("#"+dialogo).dialog("destroy").remove();
                             },
                             error: function(xhr, status, error) {
                                 document.getElementById("cargando").style.display = 'none';
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                                document.getElementById("div_dialogs2").innerHTML="";
-                                $("#div_dialogs2").dialog("close");
-                                $("#div_dialogs2").dialog("destroy");
+                                $("#"+dialogo).dialog("destroy").remove();
                             }
                         });
                     }
@@ -2430,9 +2418,7 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                document.getElementById("div_dialogs2").innerHTML="";
-                $("#div_dialogs2").dialog("close");
-                $("#div_dialogs2").dialog("destroy");
+                $("#"+dialogo).dialog("destroy").remove();
             }
             }]
     });
