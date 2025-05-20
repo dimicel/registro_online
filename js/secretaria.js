@@ -3053,16 +3053,17 @@ function gestionSeleccionDpto(){
     document.getElementById("dpto_abreviatura").readOnly=true;
 }
 
-function cancelaOPeracionDepartamentos(obj){
+function cancelaOPeracionDepartamentos(obj,div_padre){
     gestionSeleccionDpto();
     obj.parentNode.parentNode.style.visibility='hidden';
-    $('#div_departamentos').parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
+    $('#'+div_padre).parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
     document.getElementById("div_desc_operacion").style.visibility='hidden';
     document.getElementById("dpto_nombre").previousElementSibling.innerHTML="";
     document.getElementById("dpto_abreviatura").previousElementSibling.innerHTML="";
 }
 
-function guardaAnadeDpto(textBoton){
+function guardaAnadeDpto(obj){
+    texttextBoton=obj.innerHTML;
     if (document.getElementById("dpto_nombre").value.trim().length==0 || document.getElementById("dpto_abreviatura").value.trim().length==0){
             alerta("Los campos 'Nombre del Departamento' y 'Abreviatura' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
             return;
