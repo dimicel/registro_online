@@ -421,41 +421,6 @@
     <!-- FIN FORMULARIOS PARA DESCARGAR CSVs _______________________________________________________________-->
     <!--____________________________________________________________________________________________________-->
 
-    <div class="container alertas" id="div_departamentos">
-        <form id="form_departamentos">
-            <input type="hidden" id="backup_dpto_nombre" name="backup_dpto_nombre" value="">
-            <input type="hidden" id="backup_dpto_abreviatura" name="backup_dpto_abreviatura" value="">
-            <div class="row">
-                <div class="col-6">
-                    <label for="dpto_select">Departamentos</label>
-                    <select id="dpto_select" name="dpto_select" class="form-control" size=4 onchange="gestionSeleccionDpto()"></select>
-                </div>
-                <div class="col-6 d-flex align-items-center" id="div_desc_operacion" style="visibility:hidden">
-                    <h4 id="desc_operacion" style="text-align:center;color:brown;"></h4>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-5">
-                    <label for="dpto_nombre">Nombre del Departamento</label>
-                    <span class="errorTxt" style="font-size: 0.75em;"></span>
-                    <input type="text" id="dpto_nombre" name="dpto_nombre" class="form-control" maxlength="255" readonly onkeyup="compruebaDuplicadoDpto(this)" onchange="compruebaDuplicadoDpto(this)">
-                </div>
-                <div class="col-3">
-                    <label for="dpto_abreviatura">Abreviatura</label>
-                    <span class="errorTxt" style="font-size: 0.75em;"></span>
-                    <input type="text" id="dpto_abreviatura" name="dpto_abreviatura" class="form-control" maxlength="4" readonly onkeyup="compruebaDuplicadoDpto(this)" onchange="compruebaDuplicadoDpto(this)"> 
-                </div>
-                <div class="col-4 d-flex flex-column justify-content-end" style="text-align: center;visibility:hidden" id="div_boton_guardar_cambios">
-                    <div class="w-100 d-flex justify-content-end">
-                        <button type="button" id="btn_nuevo_dpto" class="btn btn-success btn-sm" onclick="guardaAnadeDpto(this,'div_departamentos')">Guardar Cambios</button>
-                        <button type="button" id="btn_cancela_nuevo_dpto" class="btn btn-danger btn-sm ml-2" onclick="cancelaOPeracionDepartamentos(this,'div_departamentos')">Cancelar</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
