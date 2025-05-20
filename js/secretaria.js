@@ -3032,7 +3032,6 @@ function gestionDptos(){
             }
         ]
     ).then((dialogo)=>{
-        alert(dialogo.innerHTML);
         document.getElementById("cargando").style.display = "none";
         gestionSeleccionDpto();
         document.getElementById("dpto_select").selectedIndex=0;
@@ -3043,7 +3042,7 @@ function gestionDptos(){
     });
 }
 
-function gestionSeleccionDpto(){
+function gestionSeleccionDpto(){return;
     obj=document.getElementById("dpto_select");
     document.getElementById("dpto_nombre").value=obj.value;
     document.getElementById("dpto_abreviatura").value=obj.options[obj.selectedIndex].dataset.abreviatura;
