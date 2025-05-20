@@ -1676,6 +1676,7 @@ function panelNuevoUsuario() {
 
 
 function altaUsuario() {
+    
     if (document.getElementById("form_alta_usuario").checkValidity()) {
         document.getElementById("cargando").style.display = 'inherit';
         $.post("php/secret_nuevousuario.php", $("#form_alta_usuario").serialize(), function(resp) {
@@ -1685,11 +1686,29 @@ function altaUsuario() {
             } else if (resp == "ok") {
                 alerta("Nuevo usuario creado con éxito.", "Alta OK");
             } else if (resp == "usuario") {
-                $('#div_nie_registrado').dialog('open');
+                document.getElementById("cargando").style.display = "inherit";
+                cargaHTML("html/secretaria.htm", "div_nie_registrado","NIE REGISTRADO",550,500)
+                .then((dialogo)=>{
+                    document.getElementById("cargando").style.display = "none";
+                })
+                .catch (error=>{
+                    document.getElementById("cargando").style.display = "none";
+                    var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+                    alerta(msg,"ERROR DE CARGA");
+                });
                 $("[data-alta='usuario'").css("display", "inherit");
                 $("[data-alta='registrado'").css("display", "none");
             } else if (resp == "registrado") {
-                $('#div_nie_registrado').dialog('open');
+                document.getElementById("cargando").style.display = "inherit";
+                cargaHTML("html/secretaria.htm", "div_nie_registrado","NIE REGISTRADO",550,500)
+                .then((dialogo)=>{
+                    document.getElementById("cargando").style.display = "none";
+                })
+                .catch (error=>{
+                    document.getElementById("cargando").style.display = "none";
+                    var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+                    alerta(msg,"ERROR DE CARGA");
+                });
                 $("[data-alta='usuario'").css("display", "none");
                 $("[data-alta='registrado'").css("display", "inherit");
             } else if (resp == "email") {

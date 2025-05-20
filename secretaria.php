@@ -315,29 +315,6 @@
     </div>
     <!--______________________________________________________________________________________________-->
 
-
-    <!-- REASIGNACIÓN DE PASSWORD _____________________________________________________________________-->
-    <!--__No se carga desde fichero externo por la complejidad de implementarlo en javascript. Aparece en demasidos sitios con demasiados condicionantes__-->
-    <div id="div_nie_registrado" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
-        <div id="div_usuario" data-alta="usuario">
-            <span>El NIE está dupliado, pero el usuario todavía no se ha habilitado como usuario del sistema.</span><br>
-            <span>Si el motivo del alta ha sido olvido de contraseña, o simplemente quiere reasignar la contraseña generada, pulse 'Continuar'</span>
-        </div>
-        <div id="div_registrado" data-alta="registrado">
-            <span>El usuario ya se ha habilitado como usuario del sistema.</span>
-            <span>Si pulsa 'Continuar', al usuario se le asignará otra contraseña.</span><br>
-            <span>IMPORTANTE: Es conveniente verificar que la identidad de quien solicita la renovación de contraseña coincide con el titular del Nº de Identificación Escolar.</span><br>
-        </div>
-        <div style="text-align: center;">
-            <br>
-            <input type="button" value="Continuar" class="btn btn-success textoboton" onclick="reasignarPassword();$('#div_nie_registrado').dialog('close');" />
-            <input type="button" value="Cancelar" class="btn btn-success textoboton" onclick="$('#div_nie_registrado').dialog('close');" />
-        </div>
-    </div>
-    <!-- FIN REASIGNACIÓN DE PASSWORD _________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-
-
     <div id="cargando" style="display:none; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('recursos/espera.gif') no-repeat center center; opacity: .7;z-index:9999;text-align:center;"></div>
     <div id="progreso" style="display:none; justify-content:center; align-items:center; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white; opacity: .7;z-index:9999;text-align:center;">
         <div class="progress" style="width:50%; height:40px;margin-top:25%;margin-left:25%">
