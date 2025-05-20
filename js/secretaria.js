@@ -3056,7 +3056,7 @@ function cancelaOPeracionDepartamentos(obj,div_padre){
     obj.parentNode.parentNode.style.visibility='hidden';
     //$('#'+div_padre).parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
     $('#div_departamentos').parent().find('.ui-dialog-buttonpane button').prop('disabled', false);
-    alert($('#div_departamentos').parent().find('.ui-dialog-buttonpane button').html())
+    if($('#div_departamentos').parent().find('.ui-dialog-buttonpane button'))alert("Botones habilitados");
     document.getElementById("div_desc_operacion").style.visibility='hidden';
     document.getElementById("dpto_nombre").previousElementSibling.innerHTML="";
     document.getElementById("dpto_abreviatura").previousElementSibling.innerHTML="";
