@@ -2991,12 +2991,12 @@ function gestionDptos(){
                                 if(confirmacion2){
                                     document.getElementById("cargando").style.display = '';
                                     $.post("php/secret_elimina_departamento.php",{dpto:document.getElementById("dpto_select").value},(resp)=>{
-                                        document.getElementById("cargando").style.visibility="hidden";
+                                        document.getElementById("cargando").style.display="none";
                                         if (resp=="ok"){
                                             alerta("Departamento eliminado correctamente.","ELIMINACIÓN CORRECTA");
                                             document.getElementById("cargando").style.display = '';
                                             $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
-                                                document.getElementById("cargando").style.visibility="hidden";
+                                                document.getElementById("cargando").style.display="none";
                                                 if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
                                                 else {
                                                     departamentos=[];
