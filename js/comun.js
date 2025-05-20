@@ -344,6 +344,7 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
             return;
         }alert(_d);
         $("#"+_d.id).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
+            alert(status);
             if (status == "error") {
                 var msg = "Error: ";
                 $("#"+_d.id).html(msg + xhr.status + " " + xhr.statusText);
