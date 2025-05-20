@@ -89,7 +89,8 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["incidencias"]=$reg["incidencias"];
     } 
     elseif($tabla=="exencion_fct"){
-        $data["registro"]["id_nie"]= $reg["id_nie"];
+        $data["registro"]=$reg;
+        /*$data["registro"]["id_nie"]= $reg["id_nie"];
         $data["registro"]["id_nif"]= $reg["id_nif"];
         $data["registro"]["nombre"]=$reg["nombre"];
         $data["registro"]["apellidos"]=$reg["apellidos"];
@@ -99,7 +100,7 @@ while ($reg=$res->fetch_assoc()){
         $data["registro"]["procesado"]=$reg["procesado"];
         $data["registro"]["resolucion"]=$reg["resolucion"];
         $data["registro"]["incidencias"]=$reg["incidencias"];
-        $data["registro"]["motivo"]=$reg["motivo"];
+        $data["registro"]["motivo"]=$reg["motivo"];*/
     }
     elseif(substr($tabla,0,7)=="premat_" || (substr($tabla,0,4)=="mat_" && $tabla!="mat_ciclos" && $tabla!="mat_fpb")){
         if (substr($tabla,0,4)=="mat_"){
