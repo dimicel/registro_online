@@ -1095,6 +1095,7 @@ function verRegAdjuntosExencFCT(reg){
 
 function verRegistro(obj) {
     ancho = 700;
+    registro=obj
     form1 = document.getElementById("tipo_form").value;
     if (form1 == "prematricula") {
         form="premat_"+document.getElementById("curso_pre_mat").value;
@@ -1111,7 +1112,7 @@ function verRegistro(obj) {
     else form = form1;
 
     //Buscamos la posición de Nº Registro en encabezado para usarla como índice del registro en la tabla de los datos
-    var _enc = $("#encabezado_docs td");alert(obj)
+    /*var _enc = $("#encabezado_docs td");
     for (i = 0; i < _enc.length; i++) {
         if (_enc[i].innerHTML.substring(0, 11) == "Nº Registro") {
             registro = obj.children[i].innerHTML;
@@ -1119,7 +1120,7 @@ function verRegistro(obj) {
         else if (_enc[i].innerHTML.substring(0,3) == "NIE") {
             _id_nie = obj.children[i].innerHTML;
         }
-    }
+    }*/
     formulario = form; //esta asignación es necesaria para que funcione en botones, botón Guardar
     botones = "<div style='text-align:right'>";
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
