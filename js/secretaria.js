@@ -2662,6 +2662,7 @@ function JefesDepartamento(){
     }])
     .then((dialogo)=>{
         document.getElementById("cargando").style.display = "none";
+        generaSelectsDepartamentos();
         $("#config_departamentos").validate({
             rules: {
                 config_dpto: {
