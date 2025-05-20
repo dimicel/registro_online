@@ -3034,8 +3034,8 @@ function gestionDptos(){
     ).then((dialogo)=>{
         document.getElementById("cargando").style.display = "none";
         generaSelectsDepartamentos();
-        gestionSeleccionDpto();
         document.getElementById("dpto_select").selectedIndex=0;
+        gestionSeleccionDpto();
     }).catch (error=>{
         document.getElementById("cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
