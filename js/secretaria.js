@@ -2619,28 +2619,6 @@ function logosFirmaSello(){
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
-    /*
-    $("#div_carga_logos_sellofirma").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "CAMBIO DE LOGOS Y SELLO Y FIRMA DEL DIRECTOR",
-        width: 1000,
-        position: { my: "center", at: "center", of: window },
-        buttons: [
-            {
-            class: "btn btn-success textoboton",
-            text: "Terminar",
-            click: function() {
-                $("#div_carga_logos_sellofirma").dialog("close");
-                $("#div_carga_logos_sellofirma").dialog("destroy");
-            }
-        }]
-    });*/
 }
 
 function JefesDepartamento(){
