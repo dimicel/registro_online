@@ -2464,6 +2464,7 @@ function parametrosCentro(){
         }]
     )
     .then((dialogo)=>{
+        alert(888);
         $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
             document.getElementById("cargando").style.display = 'none';
             if (resp.error=="ok"){
