@@ -1895,10 +1895,6 @@ function descargaCSVpremat() {
             }
         }
     );
-    /*
-    document.getElementById("premat_csv").value = "premat_" + document.getElementById("curso_pre_mat").value;
-    document.getElementById("curso_csv").value = document.getElementById("curso").value;
-    document.getElementById("descarga_csv_premat").submit();*/
 }
 
 
@@ -1979,8 +1975,13 @@ function verDocsMatricula(id, edad) {
 }
 
 function descargaCSVtransporte() {
-    document.getElementById("curso_csv_transporte").value = document.getElementById("curso").value;
-    document.getElementById("descarga_csv_transporte").submit();
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_transporte.php",
+            datos:{
+                curso_csv_transporte:document.getElementById("curso").value
+            }
+        });
 }
 
 function listaMatriculas() {
@@ -2014,8 +2015,13 @@ function descargaCSVmatriculas() {
 
 
 function descargaFotos() {
-    document.getElementById("usuario").value = "secretaria";
-    document.getElementById("descarga_fotos_alumnos").submit();
+    enviarFormularioSubmit(
+    {
+        url:"php/secret_descargafotos.php",
+        datos:{
+            usuario:"secretaria"
+        }
+    });
 }
 
 
@@ -2026,12 +2032,18 @@ function verListaUsuarios() {
 
 
 function listadoSeguroEscolarCiclos() {
-    document.getElementById("curso_csv_seguro").value = _curso;
-    document.getElementById("descarga_csv_segurociclos").submit();
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_segurociclos.php",
+            datos:{
+                curso_csv_seguro:_curso
+            }
+        });
+
 }
 
 function listadoNumSS(){
-    document.getElementById("descarga_csv_num_ss").submit();
+    enviarFormularioSubmit({url:"php/secret_csv_fct_num_ss.php"});
 }
 
 //Oculta los cursos que no deben aparecer en función del año por los cambios de la ley
@@ -2107,23 +2119,47 @@ function actualizaProgreso(){
 }
 
 function descargaCSVnuevosOtraCom(){
-    document.getElementById("curso_csv_nuevosotracomunidad").value = document.getElementById("curso").value;
-    document.getElementById("descarga_csv_nuevosotracomunidad").submit();
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_nuevosotracomunidad.php",
+            datos:{
+                curso_csv_nuevosotracomunidad:document.getElementById("curso").value
+            }
+        }
+    );
 }
 
 function descargaCSVAlNuevos(){
-    document.getElementById("curso_csv_nuevos_eso_bach").value = document.getElementById("curso").value;
-    document.getElementById("descarga_csv_nuevos_eso_bach").submit();
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_nuevos_eso_bach.php",
+            datos:{
+                curso_csv_nuevos_eso_bach:document.getElementById("curso").value
+            }
+        }
+    );
 }
 
 function descargaCSVProgLing(){
-    document.getElementById("curso_csv_prog_ling").value = document.getElementById("curso").value;
-    document.getElementById("descarga_csv_prog_ling").submit();
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_programaling.php",
+            datos:{
+                curso_csv_prog_ling:document.getElementById("curso").value
+            }
+        }
+    );
 }
 
 function descargaCSVconsolPremat(){
-    document.getElementById("curso_csv_consolidaprematricula").value = document.getElementById("curso").value;
-    document.getElementById("descarga_csv_consolidaprematricula").submit();
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_consolidaprematricula.php",
+            datos:{
+                curso_csv_consolidaprematricula:document.getElementById("curso").value
+            }
+        }
+    );
 }
 
 function verCertificado(id){
@@ -2432,8 +2468,13 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
 }
 
 function descargaCSVelearningFctProy(){
-    document.getElementById("curso_csv_elearning_fctproyecto").value = document.getElementById("curso").value;
-    document.getElementById("descarga_csv_elearning_fctproyecto").submit();
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_elearning_fctproyecto.php",
+            datos:{
+                curso_csv_elearning_fctproyecto:document.getElementById("curso").value
+            }
+        });
 }
 
 function parametrosCentro(){
@@ -2808,8 +2849,13 @@ function subeLogo(obj, imagen){
 
 
 function listadoAutorUsoImag(){
-    document.getElementById("curso_csv_autor_uso_imagenes").value=curso_actual;
-    document.getElementById("descarga_csv_autor_uso_imagenes").submit();
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_autor_uso_imagenes.php",
+            datos:{
+                curso_csv_autor_uso_imagenes:curso_actual
+            }
+        });
 }
 
 
