@@ -310,9 +310,6 @@
     <!--_______________________________________________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
 
-    <div id="cargando" style="z-index:9999;display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('recursos/espera.gif') no-repeat center center; opacity: .7;"></div>
-    <div id="div_aviso_inicio_mat" class="alertas">
-    </div>
     <!-- FORMULARIO AUXILIAR PARA VISUALIZACIÓN/DESCARGA DE DOCUMENTOS ________________________________-->
     <!--_______________________________________________________________________________________________-->
     <div id="formulario_descarga_documento" style="display:none">

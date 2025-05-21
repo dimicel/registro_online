@@ -20,7 +20,7 @@ var primera_carga=true;
 
 
 $(function() {
-    document.getElementById("cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
     else document.getElementById("servidor_pruebas").style.display="none";
     $("#dat_fecha_nac").datepicker({
@@ -160,8 +160,8 @@ $(function() {
         if (resp.error != "ok" || (resp.datos.direccion=="" && resp.datos.localidad=="" && resp.datos.provincia=="")){
             datos_usu_vacios=true;
         }
-       
-        document.getElementById("cargando").style.display = "none";
+
+        ocultarPantallaEspera();
         if (datos_usu_vacios && primera_carga)alerta("Es recomendable cumplimentar los datos en 'Mis datos', en la parte superior del menú.<br>Le facilitará el trabajo a la hora de cumplimentar los formularios.","SUGERENCIA");
         listaSolicitudes();
     });
@@ -223,35 +223,7 @@ $(function() {
     });
 
 
-    $("#div_aviso_inicio_mat").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "¡¡¡IMPORTANTE!!!",
-        maxHeight: 850,
-        width: 850,
-        buttons: [{
-            class: "btn btn-success textoboton",
-            text: "Continuar",
-            click: function() {
-                $("#div_aviso_inicio_mat").dialog("close");
-                if (tipo_matricula == "eso") {
-                    window.open("impresos/matriculas/mat_eso.php?q=" + Date.now().toString(), "_self");
-                } else if (tipo_matricula == "bach") {
-                    window.open("impresos/matriculas/mat_bach.php?q=" + Date.now().toString(), "_self");
-                } else if (tipo_matricula == "ciclos") {
-                    window.open("impresos/matriculas/mat_ciclos.php?q=" + Date.now().toString(), "_self");
-                } else if (tipo_matricula == "fpb") {
-                    window.open("impresos/matriculas/mat_fpb.php?q=" + Date.now().toString(), "_self");
-                } else if (tipo_matricula == "ciclos-e") {
-                    window.open("impresos/matriculas/mat_ciclos-e.php?q=" + Date.now().toString(), "_self");
-                } 
-            }
-        }]
-    });
+
 
     $("#div_subida_archivos_usu").dialog({
         autoOpen: false,
@@ -510,7 +482,7 @@ function USUsubeFoto(obj) {
     datos = new FormData();
     datos.append("foto", obj.files[0]);
     datos.append("id_nie", id_nie);
-    document.getElementById("cargando").style.display = 'inline-block';
+    mostrarPantallaEspera();
     $.ajax({
             url: "impresos/matriculas/php/sube_foto.php",
             type: 'POST',
@@ -520,7 +492,7 @@ function USUsubeFoto(obj) {
             cache: false
         })
         .done(function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp == "archivo") {
                 alerta("Ha habido un error al subir el archivo.", "Error carga");
                 obj.value = null;
@@ -544,7 +516,7 @@ function USUsubeSeguro(obj) {
     datos.append("seguro", obj.files[0]);
     datos.append("id_nie", id_nie);
     datos.append("anno_curso", anno_curso_usu);
-    document.getElementById("cargando").style.display = 'inline-block';
+    mostrarPantallaEspera();
     $.ajax({
             url: "impresos/matriculas/php/sube_seguro.php",
             type: 'POST',
@@ -554,7 +526,7 @@ function USUsubeSeguro(obj) {
             cache: false
         })
         .done(function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp == "archivo") {
                 alerta("Ha habido un error al subir el archivo.", "Error carga");
                 obj.value = null;
@@ -578,7 +550,7 @@ function USUsubeDNI(obj, parte) {
     datos.append("dni", obj.files[0]);
     datos.append("id_nie", id_nie);
     datos.append("parte", parte); //Anverso -> A   Reverso-> R
-    document.getElementById("cargando").style.display = 'inline-block';
+    mostrarPantallaEspera();
     $.ajax({
             url: "impresos/matriculas/php/sube_dni.php",
             type: 'POST',
@@ -588,7 +560,7 @@ function USUsubeDNI(obj, parte) {
             cache: false
         })
         .done(function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp == "archivo") {
                 alerta("Ha habido un error al subir el archivo.", "Error carga");
                 obj.value = null;
@@ -615,7 +587,7 @@ function USUsubeCertificado(obj) {
     datos.append("certificado", obj.files[0]);
     datos.append("id_nie", id_nie);
     datos.append("anno_curso", anno_curso_usu);
-    document.getElementById("cargando").style.display = 'inline-block';
+    mostrarPantallaEspera();
     $.ajax({
             url: "impresos/matriculas/php/sube_certificado.php",
             type: 'POST',
@@ -625,7 +597,7 @@ function USUsubeCertificado(obj) {
             cache: false
         })
         .done(function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp == "archivo") {
                 alerta("Ha habido un error al subir el archivo.", "Error carga");
                 obj.value = null;
@@ -670,6 +642,7 @@ function ocultaDivsSubeDocs(panel) {
 
 function lanzaAvisoMatricula(nivel_educ) {
     tipo_matricula=nivel_educ;
+    dialogo_id=generaDivDialog();
     if(nivel_educ=="eso"){
         mensaje = "<p>Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul>";
@@ -711,8 +684,36 @@ function lanzaAvisoMatricula(nivel_educ) {
         mensaje += "</ul>";
         mensaje += "</p>";            
     }
-    document.getElementById("div_aviso_inicio_mat").innerHTML = mensaje;
-    $('#div_aviso_inicio_mat').dialog('open');
+    document.getElementById(dialogo_id).innerHTML = mensaje;
+    $("#"+dialogo_id).dialog({
+    autoOpen: true,
+    dialogClass: "alert no-close",
+    modal: true,
+    hide: { effect: "fade", duration: 0 },
+    resizable: false,
+    show: { effect: "fade", duration: 0 },
+    title: "¡¡¡IMPORTANTE!!!",
+    maxHeight: 850,
+    width: 850,
+    buttons: [{
+        class: "btn btn-success textoboton",
+        text: "Continuar",
+        click: function() {
+            $(this).closest(".ui-dialog-content").dialog("destroy").remove();
+            if (tipo_matricula == "eso") {
+                window.open("impresos/matriculas/mat_eso.php?q=" + Date.now().toString(), "_self");
+            } else if (tipo_matricula == "bach") {
+                window.open("impresos/matriculas/mat_bach.php?q=" + Date.now().toString(), "_self");
+            } else if (tipo_matricula == "ciclos") {
+                window.open("impresos/matriculas/mat_ciclos.php?q=" + Date.now().toString(), "_self");
+            } else if (tipo_matricula == "fpb") {
+                window.open("impresos/matriculas/mat_fpb.php?q=" + Date.now().toString(), "_self");
+            } else if (tipo_matricula == "ciclos-e") {
+                window.open("impresos/matriculas/mat_ciclos-e.php?q=" + Date.now().toString(), "_self");
+            } 
+        }
+    }]
+});
 }
 
 function muestraEditor_usu(_file,tipo){
@@ -810,7 +811,7 @@ function muestraEditor_usu(_file,tipo){
                         if (tipo=="dni_anverso")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
                         if(tipo=="seguro") formData.append("anno_curso", anno_curso_usu);
-                        document.getElementById("cargando").style.display = 'inherit';
+                        mostrarPantallaEspera();
                         $.ajax({
                             url: url,
                             type: 'POST',
@@ -820,7 +821,7 @@ function muestraEditor_usu(_file,tipo){
                             cache: false
                         })
                         .done(function(resp) {
-                            document.getElementById("cargando").style.display = 'none';
+                            ocultarPantallaEspera();
                             if (resp == "archivo") {
                                 alerta("Ha habido un error al subir el archivo.", "Error carga");
                                 obj.value = null;
