@@ -481,5 +481,52 @@ function enviarFormularioSubmit(opciones) {
   document.body.removeChild(form);
 }
 
+function mostrarPantallaEspera(mensaje = "Procesando...") {
+  if (document.getElementById("pantalla-espera")) return; // ya está activo
 
-  
+  // Crear overlay
+  const overlay = document.createElement("div");
+  overlay.id = "pantalla-espera";
+  Object.assign(overlay.style, {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    width: "100vw",
+    height: "100vh",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: "9999",
+    color: "white",
+    fontFamily: "Arial, sans-serif",
+    fontSize: "18px"
+  });
+
+  // Imagen GIF
+  const gif = document.createElement("img");
+  gif.src = "recursos/espera.gif";
+  gif.alt = "Cargando...";
+  Object.assign(gif.style, {
+    width: "64px",
+    height: "64px",
+    marginBottom: "12px"
+  });
+
+  // Mensaje
+  const texto = document.createElement("div");
+  texto.textContent = mensaje;
+  Object.assign(texto.style, {
+    textAlign: "center"
+  });
+
+  overlay.appendChild(gif);
+  overlay.appendChild(texto);
+  document.body.appendChild(overlay);
+}
+
+function ocultarPantallaEspera() {
+  const overlay = document.getElementById("pantalla-espera");
+  if (overlay) overlay.remove();
+}
