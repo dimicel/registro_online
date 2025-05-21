@@ -415,71 +415,9 @@ function estadoBonificado(__registro,celda){
 }
 
 function altaBaja(__registro,celda){
-    if (celda.innerHTML=="NO"){
-        mensaje="<form id='form_baja'><p>El residente causa BAJA en la residencia.</p>";
-        mensaje+="<div class='form-row '>";
-        mensaje+="<div class='col-12 form-group' style='display: flex;align-items: center;'><label style='margin-right: 10px;' for='fech_baja'>Fecha baja <small>(dd/mm/aaaa)</small>:</label><span class='errorTxt' style='font-size: 1em;'></span>";
-        mensaje+="<input type='text' name='fech_baja' id='fech_baja' class='form-control' maxlength='10' size='15'  placeholder='Ej. 02/05/2000'></div></div></form>";
-        baja=1;
-    }
-    else{
-        mensaje="<p>El residente vuelve a estar de ALTA en la residencia.</p>";
-        baja=0;
-    }
-    document.getElementById("res_div_dialogs").innerHTML=mensaje;
-    if (celda.innerHTML=="NO"){
-        $("#form_baja").validate({
-            rules: {
-                fech_baja: {
-                    required: true
-                }
-            },
-            messages: {
-                fech_baja: {
-                    required: "Falta fecha de baja"
-                }
-            },
-            errorPlacement: function(error, element) {
-                $(element).prev($('.errorTxt')).html(error);
-            }
-        });
-        $("#fech_baja").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: "dd/mm/yy",
-            dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
-            firstDay: 1,
-            monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-            monthNameShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-            showButtonPanel: true,
-            currentText: "Hoy",
-            closeText: "Cerrar",
-            minDate: new Date(2000, 0, 1),
-            maxDate: "0y",
-            nextText: "Siguiente",
-            prevText: "Previo"
-        });
-        var today = new Date();
-        var day = String(today.getDate()).padStart(2, '0');
-        var month = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0
-        var year = today.getFullYear();
-
-        var todayFormatted = day + '/' + month + '/' + year;
-        document.getElementById('fech_baja').value = todayFormatted;
-    }
-    
-    $("#res_div_dialogs").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "ALTA/BAJA DE RESIDENTE",
-        width: 400,
-        position: { my: "center", at: "center", of: window },
-        buttons: [
+    document.getElementById("res_cargando").style.display = "inherit";
+    cargaHTML("","","ALTA/BAJA DE RESIDENTE",400,2000,"center center","center center",
+        [
             {
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
@@ -502,14 +440,12 @@ function altaBaja(__registro,celda){
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $(this).closest(".ui-dialog-content").dialog("destroy").remove();
                         },
                         error: function(xhr, status, error) {
                             document.getElementById("res_cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $(this).closest(".ui-dialog-content").dialog("destroy").remove();
                         }
                     });
                 }
@@ -518,10 +454,66 @@ function altaBaja(__registro,celda){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#res_div_dialogs").dialog("close");
-                $("#res_div_dialogs").dialog("destroy");
+                $(this).closest(".ui-dialog-content").dialog("destroy").remove();
             }
-        }]
+        }]).then((dialogo)=>{
+            document.getElementById("res_cargando").style.display = "none";
+            if (celda.innerHTML=="NO"){
+                mensaje="<form id='form_baja'><p>El residente causa BAJA en la residencia.</p>";
+                mensaje+="<div class='form-row '>";
+                mensaje+="<div class='col-12 form-group' style='display: flex;align-items: center;'><label style='margin-right: 10px;' for='fech_baja'>Fecha baja <small>(dd/mm/aaaa)</small>:</label><span class='errorTxt' style='font-size: 1em;'></span>";
+                mensaje+="<input type='text' name='fech_baja' id='fech_baja' class='form-control' maxlength='10' size='15'  placeholder='Ej. 02/05/2000'></div></div></form>";
+                baja=1;
+            }
+            else{
+                mensaje="<p>El residente vuelve a estar de ALTA en la residencia.</p>";
+                baja=0;
+            }
+            dialogo.innerHTML=mensaje;
+            if (celda.innerHTML=="NO"){
+                $("#form_baja").validate({
+                    rules: {
+                        fech_baja: {
+                            required: true
+                        }
+                    },
+                    messages: {
+                        fech_baja: {
+                            required: "Falta fecha de baja"
+                        }
+                    },
+                    errorPlacement: function(error, element) {
+                        $(element).prev($('.errorTxt')).html(error);
+                    }
+                });
+                $("#fech_baja").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: "dd/mm/yy",
+                    dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                    firstDay: 1,
+                    monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    monthNameShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                    showButtonPanel: true,
+                    currentText: "Hoy",
+                    closeText: "Cerrar",
+                    minDate: new Date(2000, 0, 1),
+                    maxDate: "0y",
+                    nextText: "Siguiente",
+                    prevText: "Previo"
+                });
+                var today = new Date();
+                var day = String(today.getDate()).padStart(2, '0');
+                var month = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0
+                var year = today.getFullYear();
+
+                var todayFormatted = day + '/' + month + '/' + year;
+                document.getElementById('fech_baja').value = todayFormatted;
+            }
+        }).catch (error=>{
+            document.getElementById("res_cargando").style.display = "none";
+            var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+            alerta(msg,"ERROR DE CARGA");
     });
 }
 
