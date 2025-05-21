@@ -367,10 +367,6 @@
     <script src=<?php echo "js/usuario.js?q=".time(); ?> type="text/javascript"></script>
     <script src=<?php echo "js/comun.js?q=".time(); ?> type="text/javascript"></script>
     <script src=<?php echo "js/croppie/croppie.min.js?q=".time();?> type="text/javascript"></script>
-
-    <script type="text/javascript">
-        $("#apartados").tabs();
-    </script>
 </body>
 
 </html>
