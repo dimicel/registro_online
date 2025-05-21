@@ -520,28 +520,15 @@ function altaBaja(__registro,celda){
 
 
 function fianza(__registro,celda){
-    _ff=celda.innerText;
-    mensaje="<div class='form-row'><div class='col form-group'>";
-    mensaje+="<label for='_fianz'>Fianza (€):</label>";
-    mensaje+="<input type='number' name='_fianz' id='_fianz' class='form-control' value='"+celda.innerText+"' step='0.01' min='0' /></div></div>";
-    document.getElementById("res_div_dialogs").innerHTML=mensaje;
-    $("#res_div_dialogs").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "FIANZA ASIGNADA PARA SER DEVUELTA",
-        width: 400,
-        position: { my: "center", at: "center", of: window },
-        buttons: [
+    document.getElementById("res_cargando").style.display = "inherit";
+    cargaHTML("","","CAMBIO DE FIANZA",400,2000,"center center","center center",
+    [
             {
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
                     document.getElementById("res_cargando").style.display = 'inherit';
+                    obj=this
                     $.post({
                         url:"php/residencia_cambio_fianza.php" ,
                         data: {registro:__registro,fianza:document.getElementById("_fianz").value},
@@ -556,14 +543,12 @@ function fianza(__registro,celda){
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         },
                         error: function(xhr, status, error) {
                             document.getElementById("res_cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         }
                     });
                 }
@@ -572,10 +557,19 @@ function fianza(__registro,celda){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#res_div_dialogs").dialog("close");
-                $("#res_div_dialogs").dialog("destroy");
+                $(this).closest(".ui-dialog-content").dialog("destroy").remove();
             }
-        }]
+        }]    
+    ).then((dialogo)=>{
+        _ff=celda.innerText;
+        mensaje="<div class='form-row'><div class='col form-group'>";
+        mensaje+="<label for='_fianz'>Fianza (€):</label>";
+        mensaje+="<input type='number' name='_fianz' id='_fianz' class='form-control' value='"+celda.innerText+"' step='0.01' min='0' /></div></div>";
+        dialogo.innerHTML=mensaje;
+    }).catch (error=>{
+        document.getElementById("res_cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
 }
 
