@@ -94,7 +94,7 @@ function muestraEditor(_file,tipo){
                         if (tipo=="dni_anverso")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
                         if(tipo=="seguro") formData.append("anno_curso", anno_curso);
-                        document.getElementById("cargando").style.display = 'inherit';
+                        mostrarPantallaEspera();
                         $.ajax({
                             url: url,
                             type: 'POST',
@@ -104,7 +104,7 @@ function muestraEditor(_file,tipo){
                             cache: false
                         })
                         .done(function(resp) {
-                            document.getElementById("cargando").style.display = 'none';
+                            ocultarPantallaEspera();
                             if (resp == "archivo") {
                                 alerta("Ha habido un error al subir el archivo.", "Error carga");
                                 obj.value = null;
@@ -157,7 +157,7 @@ function subeCertificado(obj) {
     datos.append("certificado", obj.files[0]);
     datos.append("id_nie", id_nie);
     datos.append("anno_curso", anno_curso);
-    document.getElementById("cargando").style.display = 'inline-block';
+    mostrarPantallaEspera();
     $.ajax({
             url: "php/sube_certificado.php",
             type: 'POST',
@@ -167,7 +167,7 @@ function subeCertificado(obj) {
             cache: false
         })
         .done(function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp == "archivo") {
                 alerta("Ha habido un error al subir el archivo.", "Error carga");
                 obj.value = null;

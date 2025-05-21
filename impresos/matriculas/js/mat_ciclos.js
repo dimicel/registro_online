@@ -302,7 +302,7 @@ function registraMatricula() {
     f.appendChild(f5.tutor);
     f.appendChild(f5.autor_fotos);
 
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
 
     var pet = $.ajax({
         url: f.action,
@@ -310,7 +310,7 @@ function registraMatricula() {
         data: $("#mat_ciclos").serialize()
     });
     $.when(pet).done(function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
             alerta(mensaje, "Error de servidor", true);

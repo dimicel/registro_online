@@ -9,7 +9,7 @@ var formData = new FormData();
 
 $(document).ready(function() {
     document.body.style.overflowY = "scroll";
-    document.getElementById("cargando").style.display = '';
+    mostrarPantallaEspera();
     
 
     dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, function(resp) {
@@ -66,7 +66,7 @@ $(document).ready(function() {
             } else {
                 alerta("Los datos de Ciclos Formativos no se han podido recuperar. El formulario no se podrá cumplimentar.","ERROR RECUPERACIÓN DATOS");
             }
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
         }, "json");
     });
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
@@ -325,7 +325,7 @@ function activaErrorEnTabla(i){
 
 
 function generaImpreso() {
-    document.getElementById("cargando").style.display = '';
+    mostrarPantallaEspera();
     document.getElementById("subido_por").value="usuario";
     formData.append("id_nie", id_nie);
     formData.append("anno_curso", curso);
@@ -348,14 +348,14 @@ function generaImpreso() {
     }
 
     urlPHP="php/generapdf.php";
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post({
         url:urlPHP ,
         data: formData,
         contentType: false,
         processData: false,
         success: function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
             else if (resp.substring(0, 8) == "database") alerta("Hay un problema en la base de datos.Error:"+resp+"<br> Inténtelo más tarde.", "ERROR DB");
             else if (resp == "error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.", "ERROR UPLOAD");
@@ -366,7 +366,7 @@ function generaImpreso() {
             //window.history.back();
         },
         error: function(xhr, status, error) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
             document.getElementById('exenc').reset();
             //window.history.back();

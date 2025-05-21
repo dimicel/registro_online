@@ -7,7 +7,7 @@ var titular_iban="", iban="", bic="";
 
 
 $(document).ready(function() {
-    document.getElementById("cargando").style.display = '';
+    mostrarPantallaEspera();
 
     dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
     dat2 = dat1.then((res1) => {
@@ -56,7 +56,7 @@ $(document).ready(function() {
         else if(resp.error=="bonificado"){
             alerta("El residente es BONIFICADO, y por lo tanto no necesita crear una orden SEPA.","RESIDENTE BONIFICADO",true);
         }
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
     });
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
@@ -66,13 +66,13 @@ $(document).ready(function() {
 function registraSolicitud() {
     if (!$("#sepa").valid()) return;
     document.getElementById('firma_sepa').value = encodeURIComponent(canvas_upload);
-    document.getElementById("cargando").style.display = '';
+    mostrarPantallaEspera();
     $.ajax({
             url: 'php/generapdf.php',
             method: 'POST',
             data: $("#sepa").serialize(),
             success: function(response) {
-                document.getElementById("cargando").style.display = 'none';
+                ocultarPantallaEspera();
                 if (response === 'ok') {
                     alerta("Orden SEPA generada correctamente.","OK",true);
                 }
@@ -88,7 +88,7 @@ function registraSolicitud() {
                 
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                document.getElementById("cargando").style.display = 'none';
+                ocultarPantallaEspera();
                 alerta("Ha ocurrido algún problema y no se ha podido hacer el registro. Error "+textStatus+"/"+errorThrown,"ERROR REGISTRO",true);
                 console.error('Error:', textStatus, errorThrown);
             }

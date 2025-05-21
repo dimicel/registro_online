@@ -20,7 +20,7 @@ var primera_vez_pag_5=true;
 
 
 $(document).ready(function() {
-    document.getElementById("cargando").style.display = '';
+    mostrarPantallaEspera();
     $("#pagina_1").load("res_html/pagina1.html?q="+Date.now().toString(), function() {
         creaValidatorPagina1();
         $("#pagina_1").show();
@@ -103,7 +103,7 @@ $(document).ready(function() {
         });
         
         dat4.then((r)=>{
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             existe_res=(r=="ok")?true:false;
             if (existe_res) {
                 mensajeNuevaMat = "Ya existe una inscripción de residente registrada.<br>Si continúa el proceso, se eliminará la que tenga ya creada y se sustituirá por ésta.";
@@ -305,14 +305,14 @@ function registraSolicitud() {
         f.appendChild(inputFirma);
     }
 
-    document.getElementById("cargando").style.display = '';
+    mostrarPantallaEspera();
     $.ajax({
             url: 'php/generapdf.php',
             method: 'POST',
             data: $("#residencia").serialize(),
             dataType: 'json',
             success: function(response) {
-                document.getElementById("cargando").style.display = 'none';
+                ocultarPantallaEspera();
                 if (response.status === 'ok') {
                     var pdfBase64 = response.pdf;
                     var pdfData = atob(pdfBase64); // Decodificar base64
@@ -348,7 +348,7 @@ function registraSolicitud() {
                 
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                document.getElementById("cargando").style.display = 'none';
+                ocultarPantallaEspera();
                 alerta("Ha ocurrido algún problema y no se ha podido hacer el registro. Error "+textStatus+"/"+errorThrown,"ERROR REGISTRO",true);
                 console.error('Error:', textStatus, errorThrown);
             }
@@ -446,7 +446,7 @@ function muestraEditor(_file,tipo){
                             formData.append("tarjeta_sanitaria", blob, "ts_"+nombre_fichero);
                             document.getElementById("nombre_tarjeta").value="ts_"+nombre_fichero;
                         }
-                        document.getElementById("cargando").style.display = 'inherit';
+                        mostrarPantallaEspera();
                         $.ajax({
                             url: _url,
                             type: 'POST',
@@ -455,7 +455,7 @@ function muestraEditor(_file,tipo){
                             processData: false,
                             cache: false
                         }).done(function(resp) {
-                            document.getElementById("cargando").style.display = 'none';
+                            ocultarPantallaEspera();
                             if (resp == "archivo") {
                                 alerta("Ha habido un error al subir la imagen.", "Error carga");
                             } else if (resp == "almacenar") {

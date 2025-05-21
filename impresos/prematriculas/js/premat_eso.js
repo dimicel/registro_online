@@ -406,7 +406,7 @@ function registraMatricula() {
     f.appendChild(f3.tutor2);
     f.appendChild(f3.email_tutor2);
     f.appendChild(f3.tlf_tutor2);
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     //f.submit();
     var pet = $.ajax({
         url: f.action,
@@ -414,7 +414,7 @@ function registraMatricula() {
         data: $("#matricula_eso").serialize()
     });
     $.when(pet).done(function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
             alerta(mensaje, "Error de servidor", true);

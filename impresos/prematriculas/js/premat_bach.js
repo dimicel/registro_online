@@ -317,7 +317,7 @@ function registraMatricula() {
     f.appendChild(f4.sel_curso_act);
     f.appendChild(f4.sel_grupo_curso_act);
 
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     //f.submit();
     var pet = $.ajax({
         url: f.action,
@@ -325,7 +325,7 @@ function registraMatricula() {
         data: $("#matricula_bach").serialize()
     });
     $.when(pet).done(function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
             alerta(mensaje, "Error de servidor", true);

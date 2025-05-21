@@ -614,14 +614,14 @@ function registraForm() {
         
         
         urlPHP="php/registraformulario.php";
-        document.getElementById("cargando").style.display = 'inherit';
+        mostrarPantallaEspera();
         $.post({
             url:urlPHP ,
             data: formData,
             contentType: false,
             processData: false,
             success: function(resp) {
-                document.getElementById("cargando").style.display = 'none';
+                ocultarPantallaEspera();
                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                 else if (resp.substring(0, 8) == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
                 else if (resp == "error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.", "ERROR UPLOAD");
@@ -630,7 +630,7 @@ function registraForm() {
                 }
             },
             error: function(xhr, status, error) {
-                document.getElementById("cargando").style.display = 'none';
+                ocultarPantallaEspera();
                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
             }
         });

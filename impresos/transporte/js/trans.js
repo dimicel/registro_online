@@ -184,9 +184,9 @@ function registraSolicitud() {
     f._t_aut_acred_iden.value = retornaValRadioButton(f5.acred_iden);
     f._t_aut_acred_domic.value = retornaValRadioButton(f5.acred_domic);
 
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/generapdf.php",$("#transporte").serialize(),(r2)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (r2.indexOf("envio_ok") != -1) {
             mensaje = "Proceso finalizado correctamente.<br>";
             mensaje += "Puede descargar el impreso de solicitud de transporte escolar registrado desde el panel de control del usuario.";

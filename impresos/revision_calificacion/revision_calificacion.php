@@ -85,7 +85,6 @@
 
     </div>
 
-    <div id="cargando" style="z-index:9999; display:none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('../../recursos/espera.gif') no-repeat center center; opacity: .7;"></div>
     
     <script src=<?php echo "../../js/jquery-1.12.1.min.js?q=".time();?></script> type="text/javascript"></script>
     <script src=<?php echo "../../jqueryui/jquery-ui.min.js?q=".time();?></script>></script>

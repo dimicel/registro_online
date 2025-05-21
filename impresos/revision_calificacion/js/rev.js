@@ -77,14 +77,14 @@ function validaDatos() {
 
 
 function generaImpreso() {
-    document.getElementById("cargando").style.display = 'inline-block'; 
+    mostrarPantallaEspera(); 
     var pet = $.ajax({
         url: "php/generapdf.php",
         type: "POST",
         data: $("#rev_cal").serialize()
     });
     $.when(pet).done(function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de su solicitud.<br>Por favor, vuelva a intentarlo más tarde.<br>";
             mensaje += "Si ve que el problema persiste, puede cumplimentar el formulario y presentarlo en ventanilla accediendo por Secretaría->Impresos de Secretaría->Para presentar en Ventanilla.";
