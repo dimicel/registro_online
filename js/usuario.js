@@ -404,7 +404,7 @@ function modificaPass() {
             if (resp == "ok") {
                 alerta("La contraseña ha sido cambiada.", "Operación OK");
             } else alerta("Ha ocurrido un problema y la contraseñano se ha podido cambiar.<br>Inténtelo en otro momento.", "FALLO EN OPERACIÓN");
-            document.getElementById("form_cambioPass").closest(".ui-dialog-content").dialog("destroy").remove();
+            $("#div_mod_pass").closest(".ui-dialog-content").dialog("destroy").remove();
         });
     }
 }
