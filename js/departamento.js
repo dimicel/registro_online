@@ -202,18 +202,18 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "<span class='verReg_label'>Alumno: </span><span class='verReg_campo'>" + resp.registro.apellidos +", "+resp.registro.nombre+ "</span><br>";
             contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>"+resp.registro.curso_ciclo+" de Grado " + resp.registro.grado + " "+resp.registro.ciclo+"</span><br>";
             contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
-            contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
-            contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
-            contenido +="<div class='col-4 d-flex justify-content-end'>";
-            contenido +="<label>Valoración del informe:</label>";
-            contenido +="</div>";
-            contenido +="<div class='col-5' >";
-            contenido +="<select id='valoracion_informe' class='form-control' onchange='seleccionValoracion(this.value)'/>";
-            contenido +="<option value=''>Seleccione una...</option>";
-            contenido +="<option value='exento'>EXENTO</option>";
-            contenido +="<option value='parcialmente exento'>PARCIALMENTE EXENTO</option>";
-            contenido +="<option value='no exento'>NO EXENTO</option>";
-            contenido +="</select>";
+            contenido += "<div id='ver_reg_ajuntosExencFCT'></div>"
+            contenido += "<div class='container' style='margin-top:20px'><div class='row'>";
+            contenido += "<div class='col-4 d-flex justify-content-end'>";
+            contenido += "<label>Valoración del informe:</label>";
+            contenido += "</div>";
+            contenido += "<div class='col-5' >";
+            contenido += "<select id='valoracion_informe' class='form-control' onchange='seleccionValoracion(this.value)'/>";
+            contenido += "<option value=''>Seleccione una...</option>";
+            contenido += "<option value='exento'>EXENTO</option>";
+            contenido += "<option value='parcialmente exento'>PARCIALMENTE EXENTO</option>";
+            contenido += "<option value='no exento'>NO EXENTO</option>";
+            contenido += "</select>";
             contenido += "</div></div>";
             contenido += "<div class='row mt-3' id='div_motivo' style='display:none'><div class='col'>"
             contenido += "<span id='rotulo_motivo' class='verReg_label'>MOTIVO NO EXENCIÓN O EXENCIÓN PARCIAL (1000/1000): </span>";
