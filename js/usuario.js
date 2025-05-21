@@ -468,12 +468,6 @@ function listaSolicitudes() {
     }, "json");
 }
 
-function extraeFechaDeRegistro(registro) {
-    f = registro.substr(registro.length - 17 - 1, 8);
-    fecha = f.substr(0, 2) + "-" + f.substr(2, 2) + "-" + f.substr(4, 4);
-    return fecha;
-}
-
 
 /*
 function USUsubeFoto(obj) {
