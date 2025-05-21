@@ -18,7 +18,7 @@ $(function() {
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
     else document.getElementById("servidor_pruebas").style.display="none";
    
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "jefe departamento" },()=>{},"json"));
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
@@ -58,7 +58,7 @@ $(function() {
             $('#navegacion_usus_bottom a').addClass('page-link');
 
             listaUsus();
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
         } 
     });
 
@@ -110,9 +110,9 @@ function listaUsus() {
         curso:document.getElementById("curso").value,
         departamento:departamento
     }
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/departamento_listausuarios.php", datos, function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "sin_registros") {
             document.getElementById("div_notabla_usus").style.display = "";
@@ -191,9 +191,9 @@ function cierrasesion() {
 
 function verPanelProcesamiento(reg,dirReg){
     
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_recuperaregistro.php", { formulario: "exencion_fct", registro: reg }, function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         dialogo_id=generaDivDialog();
         ancho = 700;
         contenido="";
@@ -276,9 +276,9 @@ function seleccionValoracion(v){
 
 function verRegAdjuntosExencFCT(reg){
     _div="";
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_exencion_fct_adjuntos.php",{registro:reg,listarResolucion:false},(resp2)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
@@ -328,7 +328,7 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
         datosFormulario.append("nombre_ap_jd", nombre_ap_jd);
         // Aquí va la firma
         datosFormulario.append("firma", encodeURIComponent(canvas_upload)); // ¡importante!
-        document.getElementById("cargando").style.display = 'inherit';
+        mostrarPantallaEspera();
         $.ajax({
             url: "php/departamento_genera_informe_resolucion.php",
             type: "POST",
@@ -336,7 +336,7 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
             processData: false,
             contentType: false,
             success: function(resp) {
-                document.getElementById("cargando").style.display = 'none';
+                ocultarPantallaEspera();
                 if (resp == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
                 else if (resp == "ok") {
                     alerta("Informe generado correctamente.","INFORME GENERADO");
