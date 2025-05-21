@@ -212,7 +212,7 @@ function res_ordenUsus() {
 
 
 function res_panelEnvioEmail(dir_email) {
-    document.getElementById("cargando").style.display = "inherit";
+    document.getElementById("res_cargando").style.display = "inherit";
     cargaHTML("html/secretaria_usu.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
         [{text:"Cancelar",
             class: "textoboton btn btn-success btn-sm",
@@ -227,16 +227,16 @@ function res_panelEnvioEmail(dir_email) {
                 mensaje = document.getElementById("usu_cuerpo_email").value;
                 const _dialog = $(this).closest('.ui-dialog-content');
                 if (validFormEmail.form()) {
-                    document.getElementById("cargando").style.display = "inherit";
+                    document.getElementById("res_cargando").style.display = "inherit";
                     $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
-                        document.getElementById("cargando").style.display = "none";
+                        document.getElementById("res_cargando").style.display = "none";
                         alerta("Correo electrónico enviado.", "EMAIL");
                         _dialog.dialog("close");
                     });
                 }
             }    
         }]).then((dialogo)=>{
-            document.getElementById("cargando").style.display = "none";
+            document.getElementById("res_cargando").style.display = "none";
             exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (!exp_email.test(dir_email)) {
                 alerta("Email incorrecto.", "ERROR");
@@ -265,7 +265,7 @@ function res_panelEnvioEmail(dir_email) {
             });
     })
     .catch (error=>{
-        document.getElementById("cargando").style.display = "none";
+        document.getElementById("res_cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
