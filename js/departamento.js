@@ -352,6 +352,4 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
                 $("#valoracion_informe").closest('.ui-dialog-content').dialog("destroy").remove();
             }});
     }
-
-
 }
