@@ -290,7 +290,7 @@ function res_panelEnvioEmail(dir_email) {
 function cambioEmailJefeRes(){
     document.getElementById("res_cargando").style.display = "inherit";
     cargaHTML("html/residencia.htm", "div_cambio_email_jef_res","CAMBIO DE DATO",500,2000,"center center","center center",
-[
+        [
             {
                 class: "btn btn-success textoboton",
                 text: "Guardar Cambios",
@@ -355,31 +355,14 @@ function cambioEmailJefeRes(){
             }
             else if (resp.datos=="server"){
                 alerta("Error en servidor. No se puede cambiar el email del Jefe de Residencia","ERROR SERVIDOR");
+                $(dialogo).dialog("destroy").remove();
             }
         },"json");
-        
     })
     .catch (error=>{
         document.getElementById("res_cargando").style.display = "none";
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
-    });
-    
-
-    
-
-    $("#div_cambio_email_jef_res").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "CAMBIO DE DATO",
-        width: 500,
-        position: { my: "center", at: "center", of: window },
-        buttons: 
     });
 }
 
