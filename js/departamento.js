@@ -190,11 +190,13 @@ function cierrasesion() {
 }
 
 function verPanelProcesamiento(reg,dirReg){
-    ancho = 700;
-    contenido="";
+    
     document.getElementById("cargando").style.display = 'inherit';
     $.post("php/secret_recuperaregistro.php", { formulario: "exencion_fct", registro: reg }, function(resp) {
         document.getElementById("cargando").style.display = 'none';
+        dialogo_id=generaDivDialog();
+        ancho = 700;
+        contenido="";
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
         else if (resp.error == "ok") {
@@ -224,9 +226,9 @@ function verPanelProcesamiento(reg,dirReg){
             contenido += "</div></div><hr>";
             contenido += "<div class='row'><div class='col' style='text-align:right'>"
             contenido += "<input id='btn_generar_informe' style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Generar Informe' onclick='generaInforme(\""+reg+"\",\""+dirReg+"\",\""+resp.registro.id_nie+"\",\""+resp.registro.apellidos+"\",\""+resp.registro.nombre+"\",\""+resp.registro.id_nif+"\",\""+resp.registro.curso_ciclo+"\",\""+resp.registro.grado +"\",\""+resp.registro.ciclo+"\")'/>";
-            contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#verRegistro_div\").dialog(\"close\");$(\"#verRegistro_div\").dialog(\"destroy\");'/>";
+            contenido += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#"+dialogo_id+"\").dialog(\"destroy\").remove();'/>";
             contenido += "</div></div></div>";
-            document.getElementById("verRegistro_div").innerHTML = contenido;
+            document.getElementById(dialogo_id).innerHTML = contenido;
             if (resp.registro.resolucion!="PENDIENTE" && resp.registro.resolucion!="") document.getElementById("valoracion_informe").value=resp.registro.resolucion;
             document.getElementById("motivo").value=resp.registro.motivo;
             limiteCaracteres(document.getElementById("motivo"));
@@ -240,8 +242,7 @@ function verPanelProcesamiento(reg,dirReg){
             }
             verRegAdjuntosExencFCT(reg);
             
-
-            $("#verRegistro_div").dialog({
+            $("#"+dialogo_id).dialog({
                 autoOpen: true,
                 dialogClass: "no-close",
                 modal: true,
@@ -348,8 +349,7 @@ function generaInforme(_registro,_dirReg,_id_nie,_apellidos,_nombre,_id_nif,_cur
                 else {
                     alerta(resp,"ERROR ACTUALIZACIÓN");
                 }
-                $("#verRegistro_div").dialog("close");
-                $("#verRegistro_div").dialog("destroy");
+                $("#valoracion_informe").closest('.ui-dialog-content').dialog("destroy").remove();
             }});
     }
 
