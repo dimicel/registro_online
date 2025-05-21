@@ -212,12 +212,31 @@ function res_ordenUsus() {
 
 
 function res_panelEnvioEmail(dir_email) {
-    $("#res_div_dialogs").load("html/secretaria.htm?q="+Date.now()+" #div_email_usuario", function(response,status,xhr){
-        if ( status == "error" ) {
-            var msg = "Error en la carga de procedimiento: " + xhr.status + " " + xhr.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        }
-        else{
+    document.getElementById("cargando").style.display = "inherit";
+    cargaHTML("html/secretaria_usu.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
+        [{text:"Cancelar",
+            class: "textoboton btn btn-success btn-sm",
+            click:function(){
+                $(this).closest('.ui-dialog-content').dialog("close");
+            }
+        }, 
+        {text:"Enviar",
+            class: "textoboton btn btn-success btn-sm",
+            click:function() {
+                asunto = document.getElementById("usu_asunto_email").value;
+                mensaje = document.getElementById("usu_cuerpo_email").value;
+                const _dialog = $(this).closest('.ui-dialog-content');
+                if (validFormEmail.form()) {
+                    document.getElementById("cargando").style.display = "inherit";
+                    $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
+                        document.getElementById("cargando").style.display = "none";
+                        alerta("Correo electrónico enviado.", "EMAIL");
+                        _dialog.dialog("close");
+                    });
+                }
+            }    
+        }]).then((dialogo)=>{
+            document.getElementById("cargando").style.display = "none";
             exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (!exp_email.test(dir_email)) {
                 alerta("Email incorrecto.", "ERROR");
@@ -244,44 +263,11 @@ function res_panelEnvioEmail(dir_email) {
                     $(element).prev().prev().html(error);
                 }
             });
-            $("#res_div_dialogs").dialog({
-                autoOpen: true,
-                dialogClass: "alert no-close",
-                modal: true,
-                hide: { effect: "fade", duration: 0 },
-                resizable: false,
-                show: { effect: "fade", duration: 0 },
-                title: "ENVÍO DE CORREO ELECTRÓNICO",
-                width: 750,
-                buttons: [{
-                        class: "btn btn-success textoboton",
-                        text: "Enviar",
-                        click: function() {
-                            asunto = document.getElementById("usu_asunto_email").value;
-                            mensaje = document.getElementById("usu_cuerpo_email").value;
-                            if (validFormEmail.form()) {
-                                document.getElementById("res_cargando").style.display = "inherit";
-                                $.post("php/residencia_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
-                                    document.getElementById("res_cargando").style.display = "none";
-                                    alerta("Correo electrónico enviado.", "EMAIL");
-                                    $("#res_div_dialogs").dialog("close");
-                                });
-                            }
-                        }
-                    },
-                    {
-                        class: "btn btn-success textoboton",
-                        text: "Cancelar",
-                        click: function() {
-                            $("#res_div_dialogs").dialog("close");
-                        }
-                    }
-                ],
-                close: function(event, ui) {
-                    $("#res_div_dialogs").dialog("destroy");
-                }
-            });
-        }
+    })
+    .catch (error=>{
+        document.getElementById("cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
 
 }
