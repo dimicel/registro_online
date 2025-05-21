@@ -47,7 +47,7 @@
                                 <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: cambioDatosPers();">Mis Datos</a>
                             </li>
                             <li class="nav-item" id="menu2">
-                                <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: $('#div_mod_pass').dialog('open');">Cambiar Contraseña</a>
+                                <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: cambioPassword();">Cambiar Contraseña</a>
                             </li>
                             
                             <li class="nav-item dropdown">

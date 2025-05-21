@@ -390,6 +390,10 @@ function modificaDatos() {
 }
 
 
+function cambioPassword(){
+    $('#div_mod_pass').dialog('open')
+}
+
 function modificaPass() {
     if ($("#form_cambioPass").valid()) {
         $.post("php/usu_modificausu.php", {
@@ -853,3 +857,5 @@ function muestraEditor_usu(_file,tipo){
         ]
     });
 }
+
+
