@@ -561,6 +561,7 @@ function fianza(__registro,celda){
             }
         }]    
     ).then((dialogo)=>{
+        document.getElementById("res_cargando").style.display = 'none';
         _ff=celda.innerText;
         mensaje="<div class='form-row'><div class='col form-group'>";
         mensaje+="<label for='_fianz'>Fianza (€):</label>";
