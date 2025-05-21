@@ -362,6 +362,7 @@ function estadoBonificado(__registro,celda){
                 text: "Confirmar cambio",
                 click: function() {
                     document.getElementById("res_cargando").style.display = 'inherit';
+                    obj=this;
                     $.post({
                         url:"php/residencia_cambio_estado_bonificado.php" ,
                         data: {registro:__registro,bonificado:bonificado},
@@ -376,12 +377,12 @@ function estadoBonificado(__registro,celda){
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $(this).closest(".ui-dialog-content").dialog("destroy");
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         },
                         error: function(xhr, status, error) {
                             document.getElementById("res_cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $(this).closest(".ui-dialog-content").dialog("destroy");
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         }
                     });
                 }
