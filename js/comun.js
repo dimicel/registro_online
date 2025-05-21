@@ -518,7 +518,8 @@ function mostrarPantallaEspera(mensaje = "Procesando...") {
   const texto = document.createElement("div");
   texto.textContent = mensaje;
   Object.assign(texto.style, {
-    textAlign: "center"
+    textAlign: "center",
+    color:"grey"
   });
 
   overlay.appendChild(gif);
