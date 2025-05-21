@@ -289,7 +289,7 @@ function res_panelEnvioEmail(dir_email) {
 
 function cambioEmailJefeRes(){
     document.getElementById("res_cargando").style.display = "inherit";
-    cargaHTML("html/residencia.htm", "div_cambio_email_jef_res","CAMBIO DE DATO",500,2000,"center center","center center",
+    cargaHTML("html/residencia.htm", "div_cambio_email_jef_res","CAMBIO DE DATO",600,2000,"center center","center center",
         [
             {
                 class: "btn btn-success textoboton",
