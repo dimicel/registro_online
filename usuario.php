@@ -285,33 +285,6 @@
     <!--_______________________________________________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
 
-    <!--CAMBIO DE CONTRASEÑA __________________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-    <div id="div_mod_pass" name="nuevaPass_div" style="display: none;  padding: 5px;" class="ui-widget-header ui-corner-all alertas">
-        <form id="form_cambioPass" class="needs-validation" style="margin:10px" novalidate>
-            <div class="form-group">
-                <label for="p1" class="etiquetas">Contraseña: </label>
-                <input type="password" name="p1" id="p1" class="form-control" size="40" maxlength="40" style="color:#00F" required>
-            </div>
-            <div class="form-group">
-                <label for="p2" class="etiquetas">Repita Contraseña: </label>
-                <input type="password" name="p2" id="p2" class="form-control" size="40" maxlength="40" style="color:#00F" required>
-            </div>
-        </form>
-        <div style="clear:both"></div>
-        <p class="etiquetas" style="font-size: 0.75em !important; margin-left: 35px;">La contraseña debe:
-            <ul class="etiquetas" style="font-size: 0.75em !important;">
-                <li>Tener 8 caracteres de longitud como mínimo.</li>
-                <li>Contener al menos un número.</li>
-                <li>Contener al menos una mayúscula y una minúscula.</li>
-            </ul>
-        </p>
-    </div>
-    <!--_______________________________________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-
-
-
     <!-- FORMULARIO AUXILIAR PARA SUBIDA DE DOCUMENTOS ________________________________________________-->
     <!--_______________________________________________________________________________________________-->
     <div id="div_subida_archivos_usu" style="display:none">

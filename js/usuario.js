@@ -195,35 +195,6 @@ $(function() {
         ]
     });
 
-    $("#div_mod_pass").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "MODIFICACIÓN CONTRASEÑA",
-        maxHeight: 500,
-        width: 400,
-        buttons: [{
-                class: "btn btn-success textoboton",
-                text: "Aceptar",
-                click: function() {
-                    modificaPass();
-                }
-            },
-            {
-                class: "btn btn-success textoboton",
-                text: "Cancelar",
-                click: function() {
-                    $(this).dialog("close");
-                }
-            }
-        ]
-    });
-
-
-
 
     $("#div_subida_archivos_usu").dialog({
         autoOpen: false,
@@ -391,23 +362,50 @@ function modificaDatos() {
 
 
 function cambioPassword(){
-    $('#div_mod_pass').dialog('open')
+    mostrarPantallaEspera();
+    cargaHTML("html/usuario.htm", "div_mod_pass","CAMBIO DE CONTRASEÑA",500,400,"center center","center center",
+        [{
+                class: "btn btn-success textoboton",
+                text: "Aceptar",
+                click: function() {
+                    modificaPass();
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
+            }
+        ]
+    )
+    .then((dialogo)=>{
+            ocultarPantallaEspera();
+            
+    })
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 }
 
 function modificaPass() {
     if ($("#form_cambioPass").valid()) {
+        mostrarPantallaEspera();
         $.post("php/usu_modificausu.php", {
-                procedimiento: "password",
-                password: $("#p1").val(),
-                id_nie: id_nie
-            },
-            function(resp) {
-                if (resp == "ok") {
-                    document.getElementById("form_cambioPass").reset();
-                    alerta("La contraseña ha sido cambiada.", "Operación OK");
-                    $("#div_mod_pass").dialog("close");
-                } else alerta("Ha ocurrido un problema y la contraseñano se ha podido cambiar.<br>Inténtelo en otro momento.", "FALLO EN OPERACIÓN");
-            });
+            procedimiento: "password",
+            password: $("#p1").val(),
+            id_nie: id_nie
+        },
+        function(resp) {
+            ocultarPantallaEspera();
+            if (resp == "ok") {
+                alerta("La contraseña ha sido cambiada.", "Operación OK");
+            } else alerta("Ha ocurrido un problema y la contraseñano se ha podido cambiar.<br>Inténtelo en otro momento.", "FALLO EN OPERACIÓN");
+            document.getElementById("div_mod_pass").closest(".ui-dialog-content").dialog("destroy").remove();
+        });
     }
 }
 
