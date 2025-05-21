@@ -17,7 +17,7 @@ $(function() {
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
     else document.getElementById("servidor_pruebas").style.display="none";
    
-    document.getElementById("res_cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "residencia" },()=>{},"json"));
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
@@ -61,7 +61,7 @@ $(function() {
             $('#res_navegacion_usus_bottom a').addClass('page-link');
 
             res_listaUsus();
-            document.getElementById("res_cargando").style.display = 'none';
+            ocultarPantallaEspera();
         } 
     });
 
@@ -212,7 +212,7 @@ function res_ordenUsus() {
 
 
 function res_panelEnvioEmail(dir_email) {
-    document.getElementById("res_cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria_usu.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
         [{text:"Cancelar",
             class: "textoboton btn btn-success btn-sm",
@@ -227,16 +227,16 @@ function res_panelEnvioEmail(dir_email) {
                 mensaje = document.getElementById("usu_cuerpo_email").value;
                 const _dialog = $(this).closest('.ui-dialog-content');
                 if (validFormEmail.form()) {
-                    document.getElementById("res_cargando").style.display = "inherit";
+                    mostrarPantallaEspera();
                     $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
-                        document.getElementById("res_cargando").style.display = "none";
+                        ocultarPantallaEspera();
                         alerta("Correo electrónico enviado.", "EMAIL");
                         _dialog.dialog("close");
                     });
                 }
             }    
         }]).then((dialogo)=>{
-            document.getElementById("res_cargando").style.display = "none";
+            ocultarPantallaEspera();
             exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (!exp_email.test(dir_email)) {
                 alerta("Email incorrecto.", "ERROR");
@@ -265,7 +265,7 @@ function res_panelEnvioEmail(dir_email) {
             });
     })
     .catch (error=>{
-        document.getElementById("res_cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -274,7 +274,7 @@ function res_panelEnvioEmail(dir_email) {
 
 
 function cambioEmailJefeRes(){
-    document.getElementById("res_cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("html/residencia.htm", "div_cambio_email_jef_res","CAMBIO DE DATO",600,2000,"center center","center center",
         [
             {
@@ -282,12 +282,12 @@ function cambioEmailJefeRes(){
                 text: "Guardar Cambios",
                 click: function() {
                     if ($("#cambio_email_jef_res").valid()){
-                        document.getElementById("res_cargando").style.display = 'inherit';
+                        mostrarPantallaEspera();
                         $.post({
                             url:"php/residencia_actualiza_email_jr.php" ,
                             data: $("#cambio_email_jef_res").serialize(),
                             success: function(resp) {
-                                document.getElementById("res_cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                                 else if (resp == "ok"){
@@ -299,7 +299,7 @@ function cambioEmailJefeRes(){
                                 $(this).closest('.ui-dialog-content').dialog("destroy").remove();
                             },
                             error: function(xhr, status, error) {
-                                document.getElementById("res_cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                                 $(this).closest('.ui-dialog-content').dialog("destroy").remove();
                             }
@@ -318,7 +318,7 @@ function cambioEmailJefeRes(){
     )
     .then((dialogo)=>{
         $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
-            document.getElementById("res_cargando").style.display = "none";
+            ocultarPantallaEspera();
             if (resp.error=="ok"){
                 document.getElementById("email_jr").value=resp.registro.email_jefe_residencia;
                 $("#cambio_email_jef_res").validate({
@@ -346,7 +346,7 @@ function cambioEmailJefeRes(){
         },"json");
     })
     .catch (error=>{
-        document.getElementById("res_cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -354,20 +354,20 @@ function cambioEmailJefeRes(){
 
 
 function estadoBonificado(__registro,celda){
-    document.getElementById("res_cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("","","CAMBIO ESTADO BONIFICADO/NO BONIFICADO",600,2000,"center center","center center",
         [
             {
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
-                    document.getElementById("res_cargando").style.display = 'inherit';
+                    mostrarPantallaEspera();
                     obj=this;
                     $.post({
                         url:"php/residencia_cambio_estado_bonificado.php" ,
                         data: {registro:__registro,bonificado:bonificado},
                         success: function(resp) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            ocultarPantallaEspera();
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
@@ -380,7 +380,7 @@ function estadoBonificado(__registro,celda){
                             $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         },
                         error: function(xhr, status, error) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            ocultarPantallaEspera();
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                             $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         }
@@ -395,7 +395,7 @@ function estadoBonificado(__registro,celda){
             }
         }]
     ).then((dialogo)=>{
-            document.getElementById("res_cargando").style.display = "none";
+            ocultarPantallaEspera();
             if (celda.innerHTML=="NO"){
                 mensaje="<p>Va a cambiar el estado del residente de NO BONIFICADO a BONIFICADO.</p>";
                 bonificado=1;
@@ -407,7 +407,7 @@ function estadoBonificado(__registro,celda){
             dialogo.innerHTML=mensaje;
     })
     .catch (error=>{
-        document.getElementById("res_cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -415,7 +415,7 @@ function estadoBonificado(__registro,celda){
 }
 
 function altaBaja(__registro,celda){
-    document.getElementById("res_cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("","","ALTA/BAJA DE RESIDENTE",400,2000,"center center","center center",
         [
             {
@@ -425,13 +425,13 @@ function altaBaja(__registro,celda){
                     if (baja==1) if (!$("#form_baja").valid()) return;
                     if (baja==1) fecha_baja=document.getElementById('fech_baja').value;
                     else fecha_baja="";
-                    document.getElementById("res_cargando").style.display = 'inherit';
+                    mostrarPantallaEspera();
                     obj=this
                     $.post({
                         url:"php/residencia_alta_baja.php",
                         data: {registro:__registro,baja:baja,fecha_baja:fecha_baja},
                         success: function(resp) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            ocultarPantallaEspera();
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
@@ -444,7 +444,7 @@ function altaBaja(__registro,celda){
                             $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         },
                         error: function(xhr, status, error) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            ocultarPantallaEspera();
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                             $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         }
@@ -458,7 +458,7 @@ function altaBaja(__registro,celda){
                 $(this).closest(".ui-dialog-content").dialog("destroy").remove();
             }
         }]).then((dialogo)=>{
-            document.getElementById("res_cargando").style.display = "none";
+            ocultarPantallaEspera();
             if (celda.innerHTML=="NO"){
                 mensaje="<form id='form_baja'><p>El residente causa BAJA en la residencia.</p>";
                 mensaje+="<div class='form-row '>";
@@ -512,7 +512,7 @@ function altaBaja(__registro,celda){
                 document.getElementById('fech_baja').value = todayFormatted;
             }
         }).catch (error=>{
-            document.getElementById("res_cargando").style.display = "none";
+            ocultarPantallaEspera();
             var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
             alerta(msg,"ERROR DE CARGA");
     });
@@ -520,20 +520,20 @@ function altaBaja(__registro,celda){
 
 
 function fianza(__registro,celda){
-    document.getElementById("res_cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("","","CAMBIO DE FIANZA",400,2000,"center center","center center",
     [
             {
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
-                    document.getElementById("res_cargando").style.display = 'inherit';
+                    mostrarPantallaEspera();
                     obj=this
                     $.post({
                         url:"php/residencia_cambio_fianza.php" ,
                         data: {registro:__registro,fianza:document.getElementById("_fianz").value},
                         success: function(resp) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            ocultarPantallaEspera();
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                             else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                             else if (resp == "ok"){
@@ -546,7 +546,7 @@ function fianza(__registro,celda){
                             $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         },
                         error: function(xhr, status, error) {
-                            document.getElementById("res_cargando").style.display = 'none';
+                            ocultarPantallaEspera();
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                             $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         }
@@ -561,14 +561,14 @@ function fianza(__registro,celda){
             }
         }]    
     ).then((dialogo)=>{
-        document.getElementById("res_cargando").style.display = 'none';
+        ocultarPantallaEspera();
         _ff=celda.innerText;
         mensaje="<div class='form-row'><div class='col form-group'>";
         mensaje+="<label for='_fianz'>Fianza (€):</label>";
         mensaje+="<input type='number' name='_fianz' id='_fianz' class='form-control' value='"+celda.innerText+"' step='0.01' min='0' /></div></div>";
         dialogo.innerHTML=mensaje;
     }).catch (error=>{
-        document.getElementById("res_cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
