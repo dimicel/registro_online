@@ -331,7 +331,7 @@ function validateBIC(bic) {
 }
 
 
-function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",botones=[],funcAbrir=null,funcCerrar=null) {
+function cargaHTML(url="",contenido="",titulo="",ancho=600,alto=400,posicion_my="center top",posicion_at="center top",botones=[],funcAbrir=null,funcCerrar=null) {
     return new Promise((resolve, reject) => {
         //Si ancho y alto son 0, se genera el div, se carga el contenido HTML pero no se genera ni se abre el diálogo
         var _d=generaDivDialog();
@@ -343,39 +343,68 @@ function cargaHTML(url,contenido,titulo="",ancho=600,alto=400,posicion_my="cente
             reject(new Error("No se pudo crear el diálogo, límite alcanzado"));
             return;
         }
-        $("#"+_d).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
-            if (status == "error") {
-                var msg = "Error: ";
-                $("#"+_d).html(msg + xhr.status + " " + xhr.statusText);
-                reject(new Error(msg + xhr.status + " " + xhr.statusText));
-            } else {
-                if(ancho>0 && alto>0){
-                    $("#"+_d).dialog({
-                        autoOpen: true,
-                        modal: true,
-                        draggable: false,
-                        resizable: false,
-                        title: titulo,
-                        dialogClass: "alertas no-close",
-                        width: ancho,
-                        maxHeight: alto,
-                        show: { effect: "fade", duration: 0 },
-                        hide: { effect: "fade", duration: 0 },
-                        position: { my: posicion_my, at: posicion_at, of: window },
-                        buttons: botones,
-                        open: function(event, ui) {
-                            $(this).css("overflow", "hidden");
-                            funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
-                            resolve(this);
-                        },
-                        close:function(event, ui) {
-                            funcCerrar && funcCerrar();
-                            $("#"+_d).dialog("destroy").remove();
-                        }
-                    });
+        if(url!=""){
+            $("#"+_d).load(url+"?q="+Date.now()+" #"+contenido,function(response, status, xhr) {
+                if (status == "error") {
+                    var msg = "Error: ";
+                    $("#"+_d).html(msg + xhr.status + " " + xhr.statusText);
+                    reject(new Error(msg + xhr.status + " " + xhr.statusText));
+                } else {
+                    if(ancho>0 && alto>0){
+                        $("#"+_d).dialog({
+                            autoOpen: true,
+                            modal: true,
+                            draggable: false,
+                            resizable: false,
+                            title: titulo,
+                            dialogClass: "alertas no-close",
+                            width: ancho,
+                            maxHeight: alto,
+                            show: { effect: "fade", duration: 0 },
+                            hide: { effect: "fade", duration: 0 },
+                            position: { my: posicion_my, at: posicion_at, of: window },
+                            buttons: botones,
+                            open: function(event, ui) {
+                                $(this).css("overflow", "hidden");
+                                funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
+                                resolve(this);
+                            },
+                            close:function(event, ui) {
+                                funcCerrar && funcCerrar();
+                                $("#"+_d).dialog("destroy").remove();
+                            }
+                        });
+                    }
                 }
+            });
+        }
+        else{
+            if(ancho>0 && alto>0){
+                $("#"+_d).dialog({
+                    autoOpen: true,
+                    modal: true,
+                    draggable: false,
+                    resizable: false,
+                    title: titulo,
+                    dialogClass: "alertas no-close",
+                    width: ancho,
+                    maxHeight: alto,
+                    show: { effect: "fade", duration: 0 },
+                    hide: { effect: "fade", duration: 0 },
+                    position: { my: posicion_my, at: posicion_at, of: window },
+                    buttons: botones,
+                    open: function(event, ui) {
+                        $(this).css("overflow", "hidden");
+                        funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
+                        resolve(this);
+                    },
+                    close:function(event, ui) {
+                        funcCerrar && funcCerrar();
+                        $("#"+_d).dialog("destroy").remove();
+                    }
+                });
             }
-        });
+        }
     });
 }
 
