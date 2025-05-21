@@ -1886,9 +1886,19 @@ function subeExcel(obj) {
 }
 
 function descargaCSVpremat() {
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_prematricula.php",
+            datos:{
+                premat_csv:"premat_" + document.getElementById("curso_pre_mat").value,
+                curso_csv:document.getElementById("curso").value,
+            }
+        }
+    );
+    /*
     document.getElementById("premat_csv").value = "premat_" + document.getElementById("curso_pre_mat").value;
     document.getElementById("curso_csv").value = document.getElementById("curso").value;
-    document.getElementById("descarga_csv_premat").submit();
+    document.getElementById("descarga_csv_premat").submit();*/
 }
 
 

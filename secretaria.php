@@ -329,12 +329,12 @@
     
     <!-- FORMULARIOS PARA DESCARGAR CSVs _______________________________________________________________-->
     <!--______________________________________________________________________________________________-->
-    <div id="formulario_descargar_csv" style="display:none">
+    <!--<div id="formulario_descargar_csv" style="display:none">
         <form id="descarga_csv_premat" action="php/secret_csv_prematricula.php" method="POST" target="_self">
             <input type="hidden" id="premat_csv" name="premat_csv" />
             <input type="hidden" id="curso_csv" name="curso_csv" />
         </form>
-    </div>
+    </div>-->
     <!--
     <div id="formulario_descargar_csv_matricula" style="display:none">
         <form id="descarga_csv_matricula" action="php/secret_csv_matricula.php" method="POST" target="_self">

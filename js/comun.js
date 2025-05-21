@@ -422,4 +422,35 @@ function generaPass() {
     return matriz.join('');
 }
 
+function enviarFormularioSubmit(opciones) {
+  const {
+    url,
+    metodo = "POST",
+    datos = {},//puede ser FormData o un objeto JSON, o array bidimensional [["clave", "valor"], ["clave2", "valor2"]]
+    target = null // por si quieres abrir en otra pestaña
+  } = opciones;
+
+  const form = document.createElement("form");
+  form.action = url;
+  form.method = metodo.toUpperCase();
+  if (target) form.target = target;
+  form.style.display = "none";
+
+  const esFormData = datos instanceof FormData;
+  const entradas = esFormData ? datos.entries() : Object.entries(datos);
+
+  for (const [clave, valor] of entradas) {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = clave;
+    input.value = valor;
+    form.appendChild(input);
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+}
+
+
   
