@@ -426,6 +426,7 @@ function altaBaja(__registro,celda){
                     if (baja==1) fecha_baja=document.getElementById('fech_baja').value;
                     else fecha_baja="";
                     document.getElementById("res_cargando").style.display = 'inherit';
+                    obj=this
                     $.post({
                         url:"php/residencia_alta_baja.php",
                         data: {registro:__registro,baja:baja,fecha_baja:fecha_baja},
@@ -440,12 +441,12 @@ function altaBaja(__registro,celda){
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $(this).closest(".ui-dialog-content").dialog("destroy").remove();
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         },
                         error: function(xhr, status, error) {
                             document.getElementById("res_cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $(this).closest(".ui-dialog-content").dialog("destroy").remove();
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
                         }
                     });
                 }
