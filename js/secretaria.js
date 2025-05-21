@@ -22,7 +22,7 @@ $(function() {
     generaSelectCurso_pre_mat();
     generaSelectCurso_mat();
     
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "secretaria" },()=>{},"json"));
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
@@ -67,7 +67,7 @@ $(function() {
         
     });
     prom5=prom4.then((resp)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp.error=="ok"){
             generaSelectTipo_form(resp.datos);
         }
@@ -198,12 +198,12 @@ function generaSelectCurso(obj){
 }
 
 function obtenRegSinProcesar(){
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_num_reg_sinrevisar.php", {curso:document.getElementById("curso").value},(resp)=>{
         if (resp.error=="ok"){
             generaSelectTipo_form(resp.datos);
         }
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
     },"json")
 }
 
@@ -769,9 +769,9 @@ function listaRegistros(orden_campo, orden_direccion) {
         }
     }
     
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_listaregsecretaria.php", datos, function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registros") {
             document.getElementById("div_notabla").style.display = "block";
@@ -991,9 +991,9 @@ function ordenListado(obj) {
 function procesadoConvalidaciones(obj, organismo, num_registro){
     var proc=0;
     if (obj.checked)proc=1;
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_convalid_procesado_organismo.php",{registro:num_registro,organismo:organismo,estado_procesado:proc},(resp)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if(resp=="ok") alerta("Estado procesado cambiado correctamente.", "OK");
         else {
             alerta("No se ha podido cambiar el estado del proceso por algún error interno o de la base de datos.", "ERROR");
@@ -1006,16 +1006,16 @@ function formularioProcesado(obj){
     if (tipo_formulario!="convalidaciones") num_reg=obj.parentNode.parentNode.parentNode.children[3].innerHTML;
     else num_reg=obj.dataset.registro;
     
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     p1=Promise.resolve($.post("php/secret_cambia_estado_procesado.php",{registro:num_reg,tabla:tipo_formulario,estado:(obj.checked)?1:0}));
     p2=p1.then((resp)=>{
         if (resp=="server"){
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             alerta("Error de servidor. Vuelva a intentarlo en otro momento.","ERROR SERVIDOR");
             obj.checked=!obj.checked;
         }
         else if(resp=="errordb"){
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             alerta("Hay un problema en la base de datos. Vuelva a intentarlo en otro momento.","ERROR DB");
             obj.checked=!obj.checked;
         }
@@ -1024,7 +1024,7 @@ function formularioProcesado(obj){
         }
     });
     p3=p2.then((resp)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp.error=="ok"){
             generaSelectTipo_form(resp.datos);
         }
@@ -1038,9 +1038,9 @@ function formularioProcesado(obj){
 
 function verRegAdjuntosConvalid(reg){
     _div="";
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_convalid_adjuntos.php",{registro:reg},(resp2)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
@@ -1061,9 +1061,9 @@ function verRegAdjuntosConvalid(reg){
 
 function verRegAdjuntosExencFCT(reg){
     _div="";
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_exencion_fct_adjuntos.php",{registro:reg},(resp2)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if(resp2.error=="server") _div += "<span class='verReg_label'>Hay un problema en sel servidor y no se han podido recuperar los documentos adjuntos.</span>";
         else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
@@ -1105,9 +1105,9 @@ function verRegistro(registro) {
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(registro,formulario,document.getElementById(\"incidencias_text\").value)'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#"+dialogo+"\").dialog(\"destroy\").remove();'/>";
     botones += "</div>";
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_recuperaregistro.php", { formulario: form, registro: registro }, function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
         else if (resp.error == "ok") {
@@ -1405,9 +1405,9 @@ function verRegistroConvalidaciones(num_registro){
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#"+dialogo+"\").dialog(\"destroy\").remove();'/>";
     botones += "</div>";
     contenido="";
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_recuperaregistro.php", { formulario: formulario, registro: num_registro }, function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
         else if (resp.error == "ok") {
@@ -1467,9 +1467,9 @@ function verRegistroExencionFCT(num_registro,rutaInforme,rutaResolucion){
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#"+dialogo+"\").dialog(\"destroy\");'/>";
     botones += "</div>";
     contenido="";
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_recuperaregistro.php", { formulario: formulario, registro: num_registro }, function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
         else if (resp.error == "no_tabla" || resp.error == "sin_registro") alerta("El registro no se encuentra en el servidor.", "No encontrado");
         else if (resp.error == "ok") {
@@ -1519,9 +1519,9 @@ function verPanelResolver(id_nie,registro){
     ancho=1000;
     salir=false;
     var dialogo=generaDivDialog();
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_convalid_modulos.php",{registro:registro},(resp)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp["error"]=="ok"){
             panel=document.getElementById(dialogo);
             cont="<form id='form_relacion_modulos_convalid'><input type='hidden' name='registro' value='"+registro+"'/><input type='hidden' name='genera_resolucion' id='genera_resolucion' value=''/><div class='container'><div class='form-group form-row'>";
@@ -1566,10 +1566,10 @@ function verPanelResolver(id_nie,registro){
                         class: "btn btn-success textoboton btn-sm",
                         text:"Resolver",
                         click:function(){
-                            document.getElementById("cargando").style.display = 'inherit';
+                            mostrarPantallaEspera();
                             document.getElementById("genera_resolucion").value=1;
                             $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
-                                document.getElementById("cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
                                 else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
                                 else if(resp=="ok"){
@@ -1590,10 +1590,10 @@ function verPanelResolver(id_nie,registro){
                         class: "btn btn-success textoboton btn-sm",
                         text:"Grabar Datos",
                         click:function(){
-                            document.getElementById("cargando").style.display = 'inherit';
+                            mostrarPantallaEspera();
                             document.getElementById("genera_resolucion").value=0;
                             $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
-                                document.getElementById("cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
                                 else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
                                 else if(resp=="ok"){
@@ -1634,9 +1634,9 @@ function verPanelResolver(id_nie,registro){
 
 
 function actualizaIncidencias(registro, form, incidencias) {
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_actualizaIncidencias.php", { registro: registro, formulario: form, incidencias: incidencias, aviso_incidencia_solventada: incidencia_si }, function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp == "ok"){
             alerta("Registro actualizado", "OK");
             listaRegistros(_orden_campo, _orden_direccion);
@@ -1648,14 +1648,14 @@ function actualizaIncidencias(registro, form, incidencias) {
 }
 
 function panelNuevoUsuario() { 
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria.htm", "div_nuevo_registro","NUEVAS ALTAS",550,2000)
     .then ((dialogo)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         document.getElementById('nr_password').value=generaPass();
     })
     .catch (error=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -1666,36 +1666,36 @@ function panelNuevoUsuario() {
 function altaUsuario() {
     
     if (document.getElementById("form_alta_usuario").checkValidity()) {
-        document.getElementById("cargando").style.display = 'inherit';
+        mostrarPantallaEspera();
         $.post("php/secret_nuevousuario.php", $("#form_alta_usuario").serialize(), function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp == "server" || resp == "fallo_cambio") {
                 alerta("Ha habido un fallo en el servidor y no se ha podido registrar el nuevo usuario. Inténtelo más tarde.", "ERROR DE SERVIDOR");
             } else if (resp == "ok") {
                 alerta("Nuevo usuario creado con éxito.", "Alta OK");
             } else if (resp == "usuario") {
-                document.getElementById("cargando").style.display = "inherit";
+                mostrarPantallaEspera();
                 cargaHTML("html/secretaria.htm", "div_nie_registrado","NIE REGISTRADO",550,500)
                 .then((dialogo)=>{
-                    document.getElementById("cargando").style.display = "none";
+                    ocultarPantallaEspera();
                     $("[data-alta='usuario'").css("display", "inherit");
                     $("[data-alta='registrado'").css("display", "none");
                 })
                 .catch (error=>{
-                    document.getElementById("cargando").style.display = "none";
+                    ocultarPantallaEspera();
                     var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
                     alerta(msg,"ERROR DE CARGA");
                 });
             } else if (resp == "registrado") {
-                document.getElementById("cargando").style.display = "inherit";
+                mostrarPantallaEspera();
                 cargaHTML("html/secretaria.htm", "div_nie_registrado","NIE REGISTRADO",550,500)
                 .then((dialogo)=>{
-                    document.getElementById("cargando").style.display = "none";
+                    ocultarPantallaEspera();
                     $("[data-alta='usuario'").css("display", "none");
                     $("[data-alta='registrado'").css("display", "inherit");
                 })
                 .catch (error=>{
-                    document.getElementById("cargando").style.display = "none";
+                    ocultarPantallaEspera();
                     var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
                     alerta(msg,"ERROR DE CARGA");
                 });
@@ -1709,9 +1709,9 @@ function altaUsuario() {
 }
 
 function reasignarPassword() {
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_cambiopassword.php", $("#form_alta_usuario").serialize(), function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp == "server" || resp == "fallo_alta") {
             alerta("Ha habido un fallo en el servidor y no se ha podido cambiar la contraseña. Inténtelo más tarde.", "ERROR DE SERVIDOR");
         } else if (resp == "ok") {
@@ -1747,10 +1747,10 @@ function habilitaMenu(m2, m3) {
 
 
 function registrosAPdf(tipo_listado) {
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria_usu.htm", "formulario_descargar_solicitudes","",0,0)
     .then ((dialogo)=>{
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             //tipo_listado=>seleccionadas, no listadas, listadas, todas, ''
             if (tipo_listado == '') {
                 if (document.getElementById("listadas_seleccionadas").checked) tipo_listado = "seleccionadas";
@@ -1822,7 +1822,7 @@ function registrosAPdf(tipo_listado) {
         }
     )
     .catch (error=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -1836,18 +1836,18 @@ function cierrasesion() {
 }
 
 function cambiaEstadoPrematricula(obj, nivel) {
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post('php/secret_prematricula.php', { matricula: nivel, peticion: 'write', estado: obj.checked }, function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
     });
 }
 
 function cambiaEstadoMatricula(obj, nivel) {
     if (obj.checked) estado=1;
     else estado=0;
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post('php/secret_matricula.php', { matricula: nivel, peticion: 'write', estado: estado }, function(resp) {
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
     });
 }
 
@@ -1859,7 +1859,7 @@ function subeExcel(obj) {
     }
     datos = new FormData();
     datos.append("csv", obj.files[0]);
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.ajax({
             url: "php/secret_csv_nuevosusus.php",
             type: 'POST',
@@ -1869,7 +1869,7 @@ function subeExcel(obj) {
             cache: false
         })
         .done(function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (typeof parseInt(resp) == "number" && parseInt(resp) >= 0) {
                 window.location.assign("php/excel/" + obj.files[0].name);
                 if (parseInt(resp) == 0) alerta("Usuarios dados de alta correctamente", "Alta OK");
@@ -1899,7 +1899,7 @@ function descargaCSVpremat() {
 
 
 function verDocsMatricula(id, edad) {
-    document.getElementById("cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000,"center center","center center")
     .then ((dialogo)=>{
             _curso = document.getElementById("curso").value;
@@ -1951,7 +1951,7 @@ function verDocsMatricula(id, edad) {
                 return $.post("php/secret_compruebafoto.php", { url: "../docs/fotos/" + id });
             });
             d4.then((resp4) => {
-                document.getElementById("cargando").style.display = 'none';
+                ocultarPantallaEspera();
                 if (resp4 != "no_existe") {
                     _dir="docs/fotos/" + id + resp4 + "?q=" + Date.now();
                     document.getElementById("doc_mat_foto").src = _dir;
@@ -1968,7 +1968,7 @@ function verDocsMatricula(id, edad) {
         }
     )
     .catch (error=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -1985,10 +1985,10 @@ function descargaCSVtransporte() {
 }
 
 function listaMatriculas() {
-    document.getElementById("cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria.htm", "div_listadoMatriculas","MATRÍCULAS: SELECCIÓN TIPO LISTADO",900,2000)
     .then ((dialogo)=>{
-            document.getElementById("cargando").style.display = "none";
+            ocultarPantallaEspera();
             if (document.getElementById("tipo_form").value == "matricula") {
                 document.getElementById("div_consolidadas").style.display = "inherit";
             } else if (document.getElementById("tipo_form").value == "matricula_ciclos") {
@@ -1999,7 +1999,7 @@ function listaMatriculas() {
         }
     )
     .catch (error=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -2079,9 +2079,7 @@ function subeMatDelphos(obj){
     datos.append("acotacampos",document.getElementById('acotacampos').value);
     datos.append("curso_actual",curso_mat);
     datos.append("curso_premat",curso_premat);
-    //document.getElementById("cargando").style.display = 'inline-block';
     //background: white url('recursos/espera.gif') no-repeat center center
-    //document.getElementById("cargando").style.background="white";
     document.getElementById("progreso").style.display = 'flex';
     lecturaProg=setInterval(actualizaProgreso,1500);
     $.ajax({
@@ -2096,7 +2094,6 @@ function subeMatDelphos(obj){
         clearInterval(lecturaProg);
         //document.getElementById("progreso_php").innerHTML="";
         document.getElementById("progreso").style.display = 'none';
-        //document.getElementById("cargando").style.background="white url('recursos/espera.gif') no-repeat center center";
         if (resp.indexOf("excel/")>-1) window.location.assign("php/"+resp);
         else if (resp == "archivo") alerta("Ha habido un error al subir el archivo.", "Error carga");
         else if (resp == "almacenar") alerta("Ha habido un error al copiar el archivo.", "Error copia");
@@ -2163,9 +2160,9 @@ function descargaCSVconsolPremat(){
 }
 
 function verCertificado(id){
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_existe_certificado.php",{id_nie:id, curso:document.getElementById("curso").value},(r)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (r=="ok") window.open("docs/"+id+"/certificado_notas/"+document.getElementById("curso").value+"/"+id+".pdf","_blank");
         else alerta("El alumno no tiene certificado de notas para el curso escolar seleccionado.", "NO EXISTE EL DOCUMENTO");
     });
@@ -2174,13 +2171,13 @@ function verCertificado(id){
 
 
 function subirMatDelphos(){
-    document.getElementById("cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria.htm", "formulario_subir_mat_delphos","SUBIDA CSV MATRÍCULA DELPHOS",600,2000,"center center","center center")
     .then ((dialogo)=>{
-            document.getElementById("cargando").style.display = "none";
+            ocultarPantallaEspera();
     })
     .catch (error=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -2194,14 +2191,14 @@ function adjuntaResolucion(_id_nie,registro,doc_res){
     datos.append("registro",encodeURIComponent(registro));
     datos.append("resolucion",doc_res.files[0]);
     datos.append("curso",encodeURIComponent(document.getElementById("curso").value));
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post({
         url:"php/secret_convalid_suberes.php" ,
         data: datos,
         contentType: false,
         processData: false,
         success: function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
             else if (resp == "database") alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
             else if (resp == "error_subida") alerta("No se ha podido subir correctamente la resolución. Debe intentarlo en otro momento o revisar el formato del documento.", "ERROR SUBIDA");
@@ -2211,16 +2208,16 @@ function adjuntaResolucion(_id_nie,registro,doc_res){
             } 
         },
         error: function(xhr, status, error) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
         }
     });
 }
 
 function cambiaEstadoResolucionConvalidaciones(_rr,obj){
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_convalid_estado_resol.php",{registro:_rr,estado:obj.value},(resp)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if(resp=="server") alerta("Estado convalidación no cambiado. Hay un problema en el servidor.","ERROR SERVIDOR");
         else if(resp=="config_centro") alerta("No se han podido recuperar datos del centro.","ERROR DB");
         else if(resp=="no_registro")alerta("Estado convalidación no cambiado. No se ha encontrado el registro.","ERROR DB");
@@ -2251,9 +2248,9 @@ function adjuntaDocAdicional(_id_nie,registro){
     __ministerio=0;
     __consejeria=0;
     var dialogo=generaDivDialog();
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_convalid_ver_procesado_organismo.php",{registro:registro},(resp)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if(resp.error=='ok'){
             __ministerio=resp.ministerio;
             __consejeria=resp.consejeria;
@@ -2299,24 +2296,24 @@ function adjuntaDocAdicional(_id_nie,registro){
                                 datos.append("descripcion",encodeURIComponent(document.getElementById("desc_adic_conval").value));
                                 datos.append("documento",document.getElementById("conval_doc_adicional").files[0]);
                                 datos.append("curso",encodeURIComponent(document.getElementById("curso").value));
-                                document.getElementById("cargando").style.display = 'inherit';
+                                mostrarPantallaEspera();
                                 $.post({
                                     url:"php/secret_convalid_subedocadic.php" ,
                                     data: datos,
                                     contentType: false,
                                     processData: false,
                                     success: function(resp) {
-                                        //document.getElementById("cargando").style.display = 'none';
+                                        //ocultarPantallaEspera();
                                         if (resp == "servidor"){
-                                            document.getElementById("cargando").style.display = 'none';
+                                            ocultarPantallaEspera();
                                             alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                         } 
                                         else if (resp == "database") {
-                                            document.getElementById("cargando").style.display = 'none';
+                                            ocultarPantallaEspera();
                                             alerta("Hay un problema en la base de datos. Inténtelo más tarde.", "ERROR DB");
                                         }
                                         else if (resp == "error_subida") {
-                                            document.getElementById("cargando").style.display = 'none';
+                                            ocultarPantallaEspera();
                                             alerta("No se ha podido subir correctamente el documento. Debe intentarlo en otro momento o revisar el formato del archivo.", "ERROR SUBIDA");
                                         }
                                         else if (resp == "ok"){
@@ -2328,7 +2325,7 @@ function adjuntaDocAdicional(_id_nie,registro){
                                                     organismo="consejeria";
                                                 }
                                                 $.post("php/secret_convalid_procesado_organismo.php",{registro:registro,organismo:organismo,estado_procesado:1},(resp)=>{
-                                                    document.getElementById("cargando").style.display = 'none';
+                                                    ocultarPantallaEspera();
                                                     if(resp=="ok"){
                                                         alerta("Estado procesado cambiado correctamente y resolución adjuntada.", "OK");
                                                     }
@@ -2343,7 +2340,7 @@ function adjuntaDocAdicional(_id_nie,registro){
                                                 });
                                             }
                                             else{
-                                                document.getElementById("cargando").style.display = 'none';
+                                                ocultarPantallaEspera();
                                                 alerta("Documento adjuntado correctamente.","SUBIDA CORRECTA");
                                             } 
                                             verRegAdjuntosConvalid(registro);
@@ -2352,7 +2349,7 @@ function adjuntaDocAdicional(_id_nie,registro){
                                         $("#"+dialogo).dialog("destroy").remove();
                                     },
                                     error: function(xhr, status, error) {
-                                        document.getElementById("cargando").style.display = 'none';
+                                        ocultarPantallaEspera();
                                         alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                                         $("#"+dialogo).dialog("destroy").remove();
                                     }
@@ -2422,14 +2419,14 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
                         datos.append("descripcion",encodeURIComponent(document.getElementById("desc_adic_exenc_fct").value));
                         datos.append("documento",document.getElementById("exenc_fct_doc_adicional").files[0]);
                         datos.append("curso",encodeURIComponent(document.getElementById("curso").value));
-                        document.getElementById("cargando").style.display = 'inherit';
+                        mostrarPantallaEspera();
                         $.post({
                             url:"php/secret_exencion_fct_subedocadic.php" ,
                             data: datos,
                             contentType: false,
                             processData: false,
                             success: function(resp) {
-                                document.getElementById("cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 if (resp == "servidor"){
                                     alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 } 
@@ -2448,7 +2445,7 @@ function adjuntaDocAdicionalExencFCT(_id_nie,registro){
                                 $("#"+dialogo).dialog("destroy").remove();
                             },
                             error: function(xhr, status, error) {
-                                document.getElementById("cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                                 $("#"+dialogo).dialog("destroy").remove();
                             }
@@ -2478,7 +2475,7 @@ function descargaCSVelearningFctProy(){
 }
 
 function parametrosCentro(){
-    document.getElementById("cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria.htm", "formulario_datos_centro","EDICIÓN DATOS ASOCIADOS AL CENTRO",700,2000,"center center","center center",
          [
             {
@@ -2486,12 +2483,12 @@ function parametrosCentro(){
                 text: "Guardar Cambios",
                 click: function() {
                     if ($("#datos_centro").valid()){
-                        document.getElementById("cargando").style.display = 'inherit';
+                        mostrarPantallaEspera();
                         $.post({
                             url:"php/secret_actualiza_param_centro.php" ,
                             data: $("#datos_centro").serialize(),
                             success: function(resp) {
-                                document.getElementById("cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                                 else if (resp == "ok"){
@@ -2502,7 +2499,7 @@ function parametrosCentro(){
                                 }
                             },
                             error: function(xhr, status, error) {
-                                document.getElementById("cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                             }
                         });
@@ -2521,7 +2518,7 @@ function parametrosCentro(){
     )
     .then((dialogo)=>{
         $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp.error=="ok"){
                 document.getElementById("director").value=resp.registro.director;
                 document.getElementById("centro").value=resp.registro.centro;
@@ -2615,7 +2612,7 @@ function parametrosCentro(){
         },"json");  
     })
     .catch (error=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });    
@@ -2623,7 +2620,7 @@ function parametrosCentro(){
 
 
 function logosFirmaSello(){
-    document.getElementById("cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria.htm", "div_carga_logos_sellofirma","CAMBIO DE LOGOS Y SELLO Y FIRMA DEL DIRECTOR",1000,2000,"center center","center center",
         [{
             class: "btn btn-success textoboton",
@@ -2634,17 +2631,17 @@ function logosFirmaSello(){
         }]
     )
     .then((dialogo)=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
     })
     .catch (error=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
 }
 
 function JefesDepartamento(){
-    document.getElementById("cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria.htm", "div_config_departamentos","DATOS ASOCIADOS A LOS DEPARTAMENTOS",800,2000,"center center","center center",
         [
             {
@@ -2652,12 +2649,12 @@ function JefesDepartamento(){
                 text: "Guardar Cambios",
                 click: function() {
                     if ($("#config_departamentos").valid()){
-                        document.getElementById("cargando").style.display = 'inherit';
+                        mostrarPantallaEspera();
                         $.post({
                             url:"php/secret_actualiza_param_departamentos.php" ,
                             data: $("#config_departamentos").serialize(),
                             success: function(resp) {
-                                document.getElementById("cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
                                 else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                                 else if (resp == "ok"){
@@ -2682,7 +2679,7 @@ function JefesDepartamento(){
                                 document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";
                             },
                             error: function(xhr, status, error) {
-                                document.getElementById("cargando").style.display = 'none';
+                                ocultarPantallaEspera();
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
                                 document.getElementById("config_dpto").value="";
                                 document.getElementById("config_nombre_jd").value="";
@@ -2718,7 +2715,7 @@ function JefesDepartamento(){
             }
     }])
     .then((dialogo)=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
         generaSelectsDepartamentos();
         $("#config_departamentos").validate({
             rules: {
@@ -2760,7 +2757,7 @@ function JefesDepartamento(){
         });
     })
     .catch (error=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -2779,9 +2776,9 @@ function selDptoConfigDpto(obj){
         document.getElementById("config_password_jd").placeholder="Seleccione un departamento";
     }
     else {
-        document.getElementById("cargando").style.display = 'inherit';
+        mostrarPantallaEspera();
         $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if(resp.error!="ok") alerta ("No se han podido consultar los datos de los departamentos.","ERROR DB/SERVER");
             else {
                 for (i=0; i<resp.registro.length;i++){
@@ -2813,7 +2810,7 @@ function subeLogo(obj, imagen){
     datos = new FormData();
     datos.append("archivo", obj.files[0]);
     datos.append("tipo",imagen);
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.ajax({
             url: "php/secret_logo_firma.php",
             type: 'POST',
@@ -2823,7 +2820,7 @@ function subeLogo(obj, imagen){
             cache: false
         })
         .done(function(resp) {
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp == "archivo") {
                 alerta("Ha habido un error al subir el archivo.", "Error carga");
                 obj.value = null;
@@ -2875,9 +2872,9 @@ function avisarJefesDpto(){
         emails.push(desp.options[desp.selectedIndex].dataset.email);
         departamentos_email.push(desp.options[desp.selectedIndex].value);
     } 
-    document.getElementById("cargando").style.display = 'inherit';
+    mostrarPantallaEspera();
     $.post("php/secret_exencion_fct_email_jd.php",{emails:emails,departamentos:departamentos_email},(resp)=>{
-        document.getElementById("cargando").style.display = 'none';
+        ocultarPantallaEspera();
         if (resp=='ok'){
             alerta("Se ha realizado correctamente el aviso a los Jefes de Departamanto.","ENVÍO COMUNICACIÓN OK");
         }
@@ -2896,9 +2893,9 @@ function resolucionExencionFCT(registro,dialogo){
 confirmar("Se va a generar la resolución.", "RESOLUCIÓN")
 .then(function(confirmacion) {
     if (confirmacion) {
-        document.getElementById("cargando").style.display = 'inherit';
+        mostrarPantallaEspera();
         $.post("php/secret_exencion_fct_resolucion.php",{registro:registro},(resp)=>{
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp=="ok"){
                 alerta("La resolución ha sido generada con éxito.","RESOLUCIÓN OK");
                 listaRegistros();
@@ -2931,9 +2928,9 @@ function invalidaInformeJDExencionFCT(registro){
     confirmar("¿Está seguro de que desea invalidar el informe del Jefe de Departamento?<br>Si acepta se relaizarán lsa siguientes acciones:<ul><li>Eliminará el informe del Jefe de Departamento</li><li>Eliminará la resolución (si la hubiera)</li><li>Pondrá el registro en estado NO PROCESADO</li>", "INFORME JD")
     .then(function(confirmacion) {
         if (confirmacion) {
-            document.getElementById("cargando").style.display = 'inherit';
+            mostrarPantallaEspera();
             $.post("php/secret_exencion_fct_invalida_informe_jd.php",{registro:registro},(resp)=>{
-                document.getElementById("cargando").style.display = 'none';
+                ocultarPantallaEspera();
                 if (resp=="ok"){
                     alerta("Informe de Jefe de Departamento invalidado correctamente.","INFORME INVALIDADO");
                     verRegAdjuntosExencFCT(registro);
@@ -2976,9 +2973,9 @@ function eliminaPrematriculas(){
             confirmar("Por favor, confirme otra vez que desea eliminar todas las prematríclas.<br>¡¡¡RECUERDE QUE ESTE PROCEDIMIENTO ES IRREVERSIBLE!!!","CONFIRMAR ELIMINACIÓN",400)
             .then(function(confirmacion2) {
                 if(confirmacion2){
-                    document.getElementById("cargando").style.display = 'inherit';
+                    mostrarPantallaEspera();
                     $.post("php/secret_elimina_prematriculas.php",{},(resp)=>{
-                        document.getElementById("cargando").style.display = 'none';
+                        ocultarPantallaEspera();
                         if (resp=="ok"){
                             alerta("Prematrículas eliminadas correctamente.","ELIMINACIÓN CORRECTA");
                         }
@@ -3006,7 +3003,7 @@ function eliminaPrematriculas(){
 
 
 function gestionDptos(){
-    document.getElementById("cargando").style.display = "inherit";
+    mostrarPantallaEspera();
     cargaHTML("html/secretaria.htm", "div_departamentos","GESTIÓN DE DEPARTAMENTOS DE FP",800,2000,"center center","center center",
         [
             {
@@ -3051,14 +3048,14 @@ function gestionDptos(){
                             confirmar("Por favor, confirme otra vez que desea eliminar el departamento seleccionado.","CONFIRMAR ELIMINACIÓN")
                             .then(function(confirmacion2) {
                                 if(confirmacion2){
-                                    document.getElementById("cargando").style.display = '';
+                                    mostrarPantallaEspera();;
                                     $.post("php/secret_elimina_departamento.php",{dpto:document.getElementById("dpto_select").value},(resp)=>{
-                                        document.getElementById("cargando").style.display="none";
+                                        ocultarPantallaEspera();
                                         if (resp=="ok"){
                                             alerta("Departamento eliminado correctamente.","ELIMINACIÓN CORRECTA");
-                                            document.getElementById("cargando").style.display = '';
+                                            mostrarPantallaEspera();;
                                             $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
-                                                document.getElementById("cargando").style.display="none";
+                                                ocultarPantallaEspera();
                                                 if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
                                                 else {
                                                     departamentos=[];
@@ -3094,12 +3091,12 @@ function gestionDptos(){
             }
         ]
     ).then((dialogo)=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
         generaSelectsDepartamentos();
         document.getElementById("dpto_select").selectedIndex=0;
         gestionSeleccionDpto();
     }).catch (error=>{
-        document.getElementById("cargando").style.display = "none";
+        ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
@@ -3133,14 +3130,14 @@ function guardaAnadeDpto(obj){
         return;
     }
     if (textBoton=="Añadir"){
-        document.getElementById("cargando").style.display = '';
+        mostrarPantallaEspera();;
         $.post("php/secret_anade_departamento.php",{dpto_nombre:document.getElementById("dpto_nombre").value,dpto_abreviatura:document.getElementById("dpto_abreviatura").value},(resp)=>{
-            document.getElementById("cargando").style.display = 'none';
+            ocultarPantallaEspera();
             if (resp=="ok"){
                 alerta("Departamento añadido correctamente.","ALTA CORRECTA");
-                document.getElementById("cargando").style.display = '';
+                mostrarPantallaEspera();;
                 $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
-                    document.getElementById("cargando").style.visibility="hidden";
+                    ocultarPantallaEspera();
                     if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
                     else {
                         departamentos=[];
@@ -3173,9 +3170,9 @@ function guardaAnadeDpto(obj){
             $.post("php/secret_modifica_departamento.php",{dpto_nombre:nom_dpto,dpto_abreviatura:abr_dpto, dpto_id:id_dpto},(resp)=>{  
                 if (resp=="ok"){
                     alerta("Departamento modificado correctamente.","MODIFICACIÓN CORRECTA");
-                    document.getElementById("cargando").style.display = '';
+                    mostrarPantallaEspera();;
                     $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
-                        document.getElementById("cargando").style.visibility="hidden";
+                        ocultarPantallaEspera();
                         if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
                         else {
                             departamentos=[];
@@ -3215,9 +3212,9 @@ function compruebaDuplicadoDpto(obj){
         accion="modifica";  
     }
     if (id=="dpto_nombre"){
-        //document.getElementById("cargando").style.display = '';
+        //mostrarPantallaEspera();;
         $.post("php/secret_comprueba_duplicado_dpto.php",{valor:valor, tipo_input:"nombre",accion:accion,id:id_dpto},(resp)=>{
-            //document.getElementById("cargando").style.display = 'none';
+            //ocultarPantallaEspera();
             if (resp=="duplicado" || resp=="duplicado_normalizado"){
                 obj.previousElementSibling.innerHTML="Nombre duplicado";
             }
@@ -3227,9 +3224,9 @@ function compruebaDuplicadoDpto(obj){
         }); 
     }
     else if (id=="dpto_abreviatura"){
-        //document.getElementById("cargando").style.display = '';
+        //mostrarPantallaEspera();;
         $.post("php/secret_comprueba_duplicado_dpto.php",{valor:valor, tipo_input:"abreviatura",accion:accion,id:id_dpto},(resp)=>{
-            //document.getElementById("cargando").style.display = 'none';
+            //ocultarPantallaEspera();
             if (resp=="duplicado" || resp=="duplicado_normalizado"){
                 obj.previousElementSibling.innerHTML="Duplicada";
             }
