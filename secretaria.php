@@ -315,7 +315,6 @@
     </div>
     <!--______________________________________________________________________________________________-->
 
-    <div id="cargando" style="display:none; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('recursos/espera.gif') no-repeat center center; opacity: .7;z-index:9999;text-align:center;"></div>
     <div id="progreso" style="display:none; justify-content:center; align-items:center; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white; opacity: .7;z-index:9999;text-align:center;">
         <div class="progress" style="width:50%; height:40px;margin-top:25%;margin-left:25%">
             <div id="bar_prog" class="progress-bar progress-bar-striped progress-bar-animated bg-success"  style="width: 0%;"></div>
