@@ -513,9 +513,11 @@ function panelEnvioEmail(dir_email) {
                 mensaje = document.getElementById("usu_cuerpo_email").value;
                 const _dialog = $(this).closest('.ui-dialog-content');
                 if (validFormEmail.form()) {
-                    document.getElementById("cargando").style.display = "inherit";
+                    //document.getElementById("cargando").style.display = "inherit";
+                    mostrarPantallaEspera("Enviando correo electrónico...");
                     $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
-                        document.getElementById("cargando").style.display = "none";
+                        //document.getElementById("cargando").style.display = "none";
+                        ocultarPantallaEspera();
                         alerta("Correo electrónico enviado.", "EMAIL");
                         _dialog.dialog("close");
                     });
