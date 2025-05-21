@@ -123,22 +123,7 @@
     <div id="res_cargando" style="display:none; font-size:4em; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white url('recursos/espera.gif') no-repeat center center; opacity: .7;z-index:9999;text-align:center;">
     </div>
     <div id="res_div_dialogs" class="ui-widget-header ui-corner-all alertas"></div>
-    <div id="div_cambio_email_jef_res" class="ui-widget-header ui-corner-all alertas">
-        <form id="cambio_email_jef_res">
-            <div class="form-row">
-                <div class="form-group col">
-                    <span class="errorTxt" style="font-size: 1em;"></span>
-                    <label for="email_jr">Email del Jefe de Residencia:</label>
-                    <input type="text" name="email_jr" id="email_jr" class="form-control" maxlength="255"/>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div id="div_csv_remesas" style="display:none">
-        <form id="descarga_csv_remesas" action="php/residencia_csv_remesas.php" method="POST" target="_self">
-            <input type="hidden" id="curso_csv_remesas" name="curso_csv_remesas" />
-        </form>
-    </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
