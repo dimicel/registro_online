@@ -273,33 +273,6 @@ $(function() {
         return document.getElementById("email").value === value ? true : false;
     });*/
 
-    $("#form_cambioPass").validate({
-        rules: {
-            p1: {
-                required: true,
-                minlength: 8,
-                password: true
-            },
-            p2: {
-                required: true,
-                rep_password: true
-            }
-        },
-        messages: {
-            p1: {
-                required: "Debe completar el campo.",
-                minlength: "Debe contener 8 caracteres como mínimo.",
-                password: "Debe contener, al menos, una minúscula, una mayúscula y un número."
-            },
-            p2: {
-                required: "Debe completar el campo.",
-                rep_password: "Las contraseñas no coinciden."
-            }
-        },
-        errorPlacement: function(error, element) {
-            $(element).prev($('.errorTxt')).html(error);
-        }
-    });
 
     /*document.getElementById("rep_email").onpaste = function(e) {
         e.preventDefault();
@@ -381,7 +354,34 @@ function cambioPassword(){
         ]
     )
     .then((dialogo)=>{
-            ocultarPantallaEspera();
+        ocultarPantallaEspera();
+        $("#form_cambioPass").validate({
+            rules: {
+                p1: {
+                    required: true,
+                    minlength: 8,
+                    password: true
+                },
+                p2: {
+                    required: true,
+                    rep_password: true
+                }
+            },
+            messages: {
+                p1: {
+                    required: "Debe completar el campo.",
+                    minlength: "Debe contener 8 caracteres como mínimo.",
+                    password: "Debe contener, al menos, una minúscula, una mayúscula y un número."
+                },
+                p2: {
+                    required: "Debe completar el campo.",
+                    rep_password: "Las contraseñas no coinciden."
+                }
+            },
+            errorPlacement: function(error, element) {
+                $(element).prev($('.errorTxt')).html(error);
+            }
+        });
             
     })
     .catch (error=>{
