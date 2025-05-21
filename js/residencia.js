@@ -354,27 +354,9 @@ function cambioEmailJefeRes(){
 
 
 function estadoBonificado(__registro,celda){
-    if (celda.innerHTML=="NO"){
-        mensaje="<p>Va a cambiar el estado del residente de NO BONIFICADO a BONIFICADO.</p>";
-        bonificado=1;
-    }
-    else{
-        mensaje="<p>Va a cambiar el estado del residente de BONIFICADO a NO BONIFICADO.</p>";
-        bonificado=0;
-    }
-    document.getElementById("res_div_dialogs").innerHTML=mensaje;
-    $("#res_div_dialogs").dialog({
-        autoOpen: true,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "CAMBIO ESTADO BONIFICADO/NO BONIFICADO",
-        width: 700,
-        position: { my: "center", at: "center", of: window },
-        buttons: [
+    document.getElementById("res_cargando").style.display = "inherit";
+    cargaHTML("","","CAMBIO ESTADO BONIFICADO/NO BONIFICADO",600,2000,"center center","center center",
+        [
             {
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
@@ -394,14 +376,12 @@ function estadoBonificado(__registro,celda){
                             else{
                                 alerta(resp,"ERROR");
                             }
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $(this).closest(".ui-dialog-content").dialog("destroy");
                         },
                         error: function(xhr, status, error) {
                             document.getElementById("res_cargando").style.display = 'none';
                             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                            $("#res_div_dialogs").dialog("close");
-                            $("#res_div_dialogs").dialog("destroy");
+                            $(this).closest(".ui-dialog-content").dialog("destroy");
                         }
                     });
                 }
@@ -410,11 +390,27 @@ function estadoBonificado(__registro,celda){
             class: "btn btn-success textoboton",
             text: "Cancelar",
             click: function() {
-                $("#res_div_dialogs").dialog("close");
-                $("#res_div_dialogs").dialog("destroy");
+                $(this).closest(".ui-dialog-content").dialog("destroy");
             }
         }]
+    ).then((dialogo)=>{
+            document.getElementById("res_cargando").style.display = "none";
+            if (celda.innerHTML=="NO"){
+                mensaje="<p>Va a cambiar el estado del residente de NO BONIFICADO a BONIFICADO.</p>";
+                bonificado=1;
+            }
+            else{
+                mensaje="<p>Va a cambiar el estado del residente de BONIFICADO a NO BONIFICADO.</p>";
+                bonificado=0;
+            }
+            dialogo.innerHTML=mensaje;
+    })
+    .catch (error=>{
+        document.getElementById("res_cargando").style.display = "none";
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
+    
 }
 
 function altaBaja(__registro,celda){
