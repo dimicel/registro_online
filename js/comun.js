@@ -493,7 +493,7 @@ function mostrarPantallaEspera(mensaje = "Procesando...") {
     left: "0",
     width: "100vw",
     height: "100vh",
-    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    backgroundColor: "rgba(255, 250, 250, 0.7)",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -509,8 +509,8 @@ function mostrarPantallaEspera(mensaje = "Procesando...") {
   gif.src = "recursos/espera.gif";
   gif.alt = "Cargando...";
   Object.assign(gif.style, {
-    width: "64px",
-    height: "64px",
+    width: "128px",
+    height: "128px",
     marginBottom: "12px"
   });
 
