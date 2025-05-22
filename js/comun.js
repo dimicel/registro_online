@@ -336,8 +336,6 @@ function cargaHTML(url="",contenido="",titulo="",ancho=600,alto=400,posicion_my=
     return new Promise((resolve, reject) => {
         //Si ancho y alto son 0, se genera el div, se carga el contenido HTML pero no se genera ni se abre el diálogo
         var _d=generaDivDialog();
-        if(ancho==0) ancho=600;
-        if(alto==0) alto=400;
         if (posicion_my=='') posicion_my="center top";
         if (posicion_at=='') posicion_at="center top";
         if (!_d) {
