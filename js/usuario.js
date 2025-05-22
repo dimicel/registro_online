@@ -714,7 +714,7 @@ function lanzaAvisoMatricula(nivel_educ) {
 
 function muestraEditor_usu(_file,tipo){
     mostrarPantallaEspera();
-    cargaHTML("html/usuario.htm", "div_edita_imagen_usu","EDICIÓN IMAGEN",550,500,"center center","center center",
+    cargaHTML("html/usuario.htm", "div_edita_imagen_usu","EDICIÓN IMAGEN",600,2000,"center center","center center",
         [
             {
                 class: "btn btn-success textoboton",
