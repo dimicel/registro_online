@@ -400,9 +400,6 @@ function selTablaListaMod(obj) {
 function anadeDoc(e) {
     e.preventDefault();
     creaInputs();  
-    if (subidoDocIdent) $("#div_doc_identificacion").hide();
-    else $("#div_doc_identificacion").show();
-
     mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/convalidaciones.htm", "anade_documento","AÑADIR DOCUMENTO ADJUNTO",700,2000,"center center","center center",
         [
@@ -442,6 +439,8 @@ function anadeDoc(e) {
     )
     .then ((dialogo)=>{
             ocultarPantallaEspera();
+            if (subidoDocIdent) $("#div_doc_identificacion").hide();
+            else $("#div_doc_identificacion").show();
         }
     )
     .catch (error=>{
