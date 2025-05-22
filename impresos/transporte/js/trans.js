@@ -266,7 +266,6 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
                 class: "btn btn-success textoboton",
                 text: botonAceptar,
                 click: function() {
-                    if (existe_premat) confirmaConsolidarPremat(mensaje_consol, "PREMATRÍCULA EXISTENTE");
                     $(this).dialog("destroy").remove();
                 }
             },
