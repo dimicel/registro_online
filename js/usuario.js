@@ -179,24 +179,10 @@ $(function() {
     });
 
 
-
-    /*jQuery.validator.addMethod("password", function(value, element) {
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value);
-    });*/
-
     jQuery.validator.addMethod("rep_password", function(value, element) {
         return document.getElementById("p1").value === value ? true : false;
     });
 
-    /*jQuery.validator.addMethod("rep_email", function(value, element) {
-        return document.getElementById("email").value === value ? true : false;
-    });*/
-
-
-    /*document.getElementById("rep_email").onpaste = function(e) {
-        e.preventDefault();
-        alerta('Esta acción está prohibida. Introduzca manualmente el email.', 'PEGAR');
-    }*/
 
     $("#apartados").tabs({
         active: 0
@@ -440,111 +426,6 @@ function listaSolicitudes() {
     }, "json");
 }
 
-
-/*
-function USUsubeFoto(obj) {
-    if (obj.files[0].type != "image/jpeg") {
-        alerta("Formato de archivo no válido", "NO VÁLIDO");
-        obj.value = null;
-        return;
-    }
-
-    datos = new FormData();
-    datos.append("foto", obj.files[0]);
-    datos.append("id_nie", id_nie);
-    mostrarPantallaEspera();
-    $.ajax({
-            url: "impresos/matriculas/php/sube_foto.php",
-            type: 'POST',
-            data: datos,
-            contentType: false,
-            processData: false,
-            cache: false
-        })
-        .done(function(resp) {
-            ocultarPantallaEspera();
-            if (resp == "archivo") {
-                alerta("Ha habido un error al subir el archivo.", "Error carga");
-                obj.value = null;
-            } else if (resp == "almacenar") {
-                alerta("Ha habido un error al copiar el archivo.", "Error copia");
-                obj.value = null;
-            } else if (resp == "ok") alerta("Fotografía subida.", "OK");
-
-        });
-}
-
-
-function USUsubeSeguro(obj) {
-    if (obj.files[0].type != "image/jpeg") {
-        obj.value = null;
-        alerta("Formato de archivo no válido", "NO VÁLIDO");
-        return;
-    }
-
-    datos = new FormData();
-    datos.append("seguro", obj.files[0]);
-    datos.append("id_nie", id_nie);
-    datos.append("anno_curso", anno_curso_usu);
-    mostrarPantallaEspera();
-    $.ajax({
-            url: "impresos/matriculas/php/sube_seguro.php",
-            type: 'POST',
-            data: datos,
-            contentType: false,
-            processData: false,
-            cache: false
-        })
-        .done(function(resp) {
-            ocultarPantallaEspera();
-            if (resp == "archivo") {
-                alerta("Ha habido un error al subir el archivo.", "Error carga");
-                obj.value = null;
-            } else if (resp == "almacenar") {
-                alerta("Ha habido un error al copiar el archivo.", "Error copia");
-                obj.value = null;
-            } else if (resp == "ok") {
-                alerta("Resguardo de seguro escolar subido.", "OK");
-            }
-        });
-}
-
-
-function USUsubeDNI(obj, parte) {
-    if (obj.files[0].type != "image/jpeg") {
-        obj.value = null;
-        alerta("Formato de archivo no válido", "NO VÁLIDO");
-        return;
-    }
-    datos = new FormData();
-    datos.append("dni", obj.files[0]);
-    datos.append("id_nie", id_nie);
-    datos.append("parte", parte); //Anverso -> A   Reverso-> R
-    mostrarPantallaEspera();
-    $.ajax({
-            url: "impresos/matriculas/php/sube_dni.php",
-            type: 'POST',
-            data: datos,
-            contentType: false,
-            processData: false,
-            cache: false
-        })
-        .done(function(resp) {
-            ocultarPantallaEspera();
-            if (resp == "archivo") {
-                alerta("Ha habido un error al subir el archivo.", "Error carga");
-                obj.value = null;
-            } else if (resp == "almacenar") {
-                alerta("Ha habido un error al copiar el archivo.", "Error copia");
-                obj.value = null;
-            } else if (resp == "ok") {
-                if (parte == "A") mm = "Anverso de documento subido.";
-                else mm = "Reverso de documento subido.";
-                alerta(mm, "OK");
-            }
-        });
-}
-*/
 
 function USUsubeCertificado(obj) {
     if (obj.files[0].type != "application/pdf") {
