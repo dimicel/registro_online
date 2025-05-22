@@ -206,7 +206,7 @@ function condiciones(){
                 text:"Cerrar",
                 class: "textoboton btn btn-success btn-sm",
                 click:function(){
-                    $(this).closest('.ui-dialog-content').dialog("close");
+                    $(this).dialog("destroy").remove();
                 }
             }
         ]
