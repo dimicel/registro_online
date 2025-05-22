@@ -70,7 +70,7 @@
         <div id="pagina_6" class="ui-widget-header ui-corner-all col-10 offset-1 justify-content-center flex-column" style="display:none"></div>
     </div>
 
-    <div id="confirmarnuevaMat_div" class="alertas"></div>
+    
     <div id="div_ayuda_docs" class="alertas">
 
     <div id="div_edita_imagen" style="display:none; text-align:center">
