@@ -62,77 +62,6 @@ $(function() {
         return _nif_duplicado;
     });
 
-    $("#form_nuevoUsuario").validate({
-        rules: {
-            nu_nif: {
-                numero_nif: true,
-                nif_noduplicado: true
-            },
-            nu_nombre: {
-                required: true
-            },
-            nu_apellidos: {
-                required: true
-            },
-            nu_email: {
-                required: true,
-                email: true
-            },
-            nu_repemail: {
-                required: true,
-                rep_email: true
-            },
-            nu_password: {
-                required: true,
-                minlength: 8,
-                password: true
-            },
-            nu_reppassword: {
-                required: true,
-                rep_password: true
-            }/*,
-            nu_condiciones: {
-                required: true
-            }*/
-        },
-        messages: {
-            nu_nif: {
-                numero_nif: "NIF incorrecto.",
-                nif_noduplicado: "NIF ya registrado."
-            },
-            nu_nombre: {
-                required: "Debe completar el campo."
-            },
-            nu_apellidos: {
-                required: "Debe completar el campo."
-            },
-            nu_email: {
-                required: "Debe completar el campo.",
-                email: "No es una dirección de correo electrónico."
-            },
-            nu_repemail: {
-                required: "Debe completar el campo.",
-                rep_email: "Los email no coinciden."
-            },
-            nu_password: {
-                required: "Debe completar el campo.",
-                minlength: "Debe contener 8 caracteres como mínimo.",
-                password: "Debe contener, al menos, una minúscula, una mayúscula y un número."
-            },
-            nu_reppassword: {
-                required: "Debe completar el campo.",
-                rep_password: "Las contraseñas no coinciden."
-            }/*,
-            nu_condiciones: {
-                required: "Debe aceptar las condiciones de uso."
-            }*/
-        },
-        errorPlacement: function(error, element) {
-            $(element).prev($('.errorTxt')).html(error);
-            /*if ($(element).attr('id') != 'nu_condiciones') $(element).prev($('.errorTxt')).html(error);
-            else $(element).next().next($('.errorTxt')).html(error);*/
-        }
-    });
 
     document.getElementById("nu_repemail").onpaste = function(e) {
         e.preventDefault();
@@ -148,9 +77,7 @@ $(function() {
 
 function entra() {
     if (document.getElementById("form_login").checkValidity()) {
-        mostrarPantallaEspera();
-        cargaHTML("html/index.htm","nuevoUsuario_div","COMPLETE O REVISE SUS DATOS INICIALES",650,2000)
-        .then((dialogo)=>{
+            mostrarPantallaEspera();
             $.post("php/index_login.php", $("#form_login").serialize(), function(resp) {
                 ocultarPantallaEspera();
                 if (resp.error == "server") alerta("Fallo de conexión al servidor", "ERROR SERVIDOR");
@@ -158,28 +85,117 @@ function entra() {
                 else if (resp.error == "nousu") alerta("El usuario no existe. Consulte en la Secretaría del Centro.", "ERROR USUARIO");
                 else if(resp.error=="inhabilitado") alerta("El usuario se ha inhabilitado por decisión del mismo, o por no ser ya alumno del centro. No podrá operar ni recibirá notificaciones.", "USUARIO INHABILITADO");
                 else if (resp.error == "primera_vez") {
-                    document.getElementById("nu_nie").value = document.getElementById("usuario").value;
-                    document.getElementById("nu_apellidos").value=resp.datos.apellidos;
-                    document.getElementById("nu_nombre").value=resp.datos.nombre;
-                    document.getElementById("nu_email").value=resp.datos.email;
-                    document.getElementById("nu_repemail").value=resp.datos.email;
-                    document.getElementById("nu_nif").value=resp.datos.id_nif;
+                    mostrarPantallaEspera("Cargando ...");
+                    cargaHTML("html/index.htm","nuevoUsuario_div","COMPLETE O REVISE SUS DATOS INICIALES",650,2000)
+                    .then((dialogo)=>{
+                        ocultarPantallaEspera();
+                        $("#form_nuevoUsuario").validate({
+                            rules: {
+                                nu_nif: {
+                                    numero_nif: true,
+                                    nif_noduplicado: true
+                                },
+                                nu_nombre: {
+                                    required: true
+                                },
+                                nu_apellidos: {
+                                    required: true
+                                },
+                                nu_email: {
+                                    required: true,
+                                    email: true
+                                },
+                                nu_repemail: {
+                                    required: true,
+                                    rep_email: true
+                                },
+                                nu_password: {
+                                    required: true,
+                                    minlength: 8,
+                                    password: true
+                                },
+                                nu_reppassword: {
+                                    required: true,
+                                    rep_password: true
+                                }/*,
+                                nu_condiciones: {
+                                    required: true
+                                }*/
+                            },
+                            messages: {
+                                nu_nif: {
+                                    numero_nif: "NIF incorrecto.",
+                                    nif_noduplicado: "NIF ya registrado."
+                                },
+                                nu_nombre: {
+                                    required: "Debe completar el campo."
+                                },
+                                nu_apellidos: {
+                                    required: "Debe completar el campo."
+                                },
+                                nu_email: {
+                                    required: "Debe completar el campo.",
+                                    email: "No es una dirección de correo electrónico."
+                                },
+                                nu_repemail: {
+                                    required: "Debe completar el campo.",
+                                    rep_email: "Los email no coinciden."
+                                },
+                                nu_password: {
+                                    required: "Debe completar el campo.",
+                                    minlength: "Debe contener 8 caracteres como mínimo.",
+                                    password: "Debe contener, al menos, una minúscula, una mayúscula y un número."
+                                },
+                                nu_reppassword: {
+                                    required: "Debe completar el campo.",
+                                    rep_password: "Las contraseñas no coinciden."
+                                }/*,
+                                nu_condiciones: {
+                                    required: "Debe aceptar las condiciones de uso."
+                                }*/
+                            },
+                            errorPlacement: function(error, element) {
+                                $(element).prev($('.errorTxt')).html(error);
+                                /*if ($(element).attr('id') != 'nu_condiciones') $(element).prev($('.errorTxt')).html(error);
+                                else $(element).next().next($('.errorTxt')).html(error);*/
+                            }
+                        });
+                        document.getElementById("nu_nie").value = document.getElementById("usuario").value;
+                        document.getElementById("nu_apellidos").value=resp.datos.apellidos;
+                        document.getElementById("nu_nombre").value=resp.datos.nombre;
+                        document.getElementById("nu_email").value=resp.datos.email;
+                        document.getElementById("nu_repemail").value=resp.datos.email;
+                        document.getElementById("nu_nif").value=resp.datos.id_nif;
+                    })
+                    .catch (error=>{
+                        ocultarPantallaEspera();
+                        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+                        alerta(msg,"ERROR DE CARGA");
+                    });
                 } else if (resp.error == "ok") {
                     document.location = resp.pagina;
                 } else if(resp.error == "nodpto"){
                     alerta ("No existe ningún Jefe de Departamento con esas credenciales.","ERROR USUARIO");
                 }
-
             }, "json");
-            
-        })
-        .catch (error=>{
-            ocultarPantallaEspera();
-            var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        });
-
     } else document.getElementById("form_login").classList.add("was-validated");
+}
+
+function solicitaRegistro() {
+    if ($("#form_nuevoUsuario").valid()) {
+        mostrarPantallaEspera("Registrando usuario...");
+        $.post("php/index_nuevousuario.php", $("#form_nuevoUsuario").serialize(), function(resp) {
+            ocultarPantallaEspera();
+            if (resp == "server") alerta("Problemas de conexión con el servidor. Inténtelo más tarde.", "Error de servidor");
+            else if (resp == "registrado") alerta("Ya hay un usuario operando con este NIE (Número de Identificación Escolar). Por favor, póngase en contacto con la secretaría del centro.", "Usuario duplicado");
+            else if (resp == "fallo_alta") alerta("No se han podido grabar los datos por un problema en el servidor. Inténtelo más tarde.", "Error de servidor");
+            else if (resp == "ok") {
+                alerta("Los datos se han grabado correctamente. Ya puede acceder al sistema.", "Proceso Correcto");
+            }
+            $("#nuevoUsuario_div").closest('.ui-dialog-content').dialog('destroy').remove();
+            document.getElementById("form_login").reset();
+        });
+    }
 }
 
 
@@ -243,20 +259,3 @@ function generaContrasena() {
 }
 
 
-
-
-function solicitaRegistro() {
-    if ($("#form_nuevoUsuario").valid()) {
-        $.post("php/index_nuevousuario.php", $("#form_nuevoUsuario").serialize(), function(resp) {
-            if (resp == "server") alerta("Problemas de conexión con el servidor. Inténtelo más tarde.", "Error de servidor");
-            else if (resp == "registrado") alerta("Ya hay un usuario operando con este NIE (Número de Identificación Escolar). Por favor, póngase en contacto con la secretaría del centro.", "Usuario duplicado");
-            else if (resp == "fallo_alta") alerta("No se han podido grabar los datos por un problema en el servidor. Inténtelo más tarde.", "Error de servidor");
-            else if (resp == "ok") {
-                alerta("Los datos se han grabado correctamente. Ya puede acceder al sistema.", "Proceso Correcto");
-                document.getElementById("form_nuevoUsuario").reset();
-                $("#nuevoUsuario_div").dialog('close');
-                document.getElementById("form_login").reset();
-            }
-        });
-    }
-}

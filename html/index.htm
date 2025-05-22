@@ -58,3 +58,69 @@
 </div>
 <!--_______________________________________________________________________________________________-->
 <!--_______________________________________________________________________________________________-->
+
+<!--REGISTRO DE DATOS DEL NUEVO USUARIO ___________________________________________________________-->
+<!--_______________________________________________________________________________________________-->
+<div id="nuevoUsuario_div" name="nuevoUsuario_div" style="padding: 20px;" class="ui-widget-header ui-corner-all">
+    <form id="form_nuevoUsuario" class="needs-validation" novalidate>
+        <div class="form-group">
+            <div style="display: inline-block;">
+                <label for="nu_nie">NIE <small>(Nº Identificación Escolar)</small>:</label>
+                <input type="text" name="nu_nie" id="nu_nie" class="form-control" readonly>
+            </div>
+            <div style="display: inline-block; margin-left:20px">
+                <label for="nu_nif">NIF/NIE del alumno:</label>
+                <span class="errorTxt"></span>
+                <input type="text" name="nu_nif" id="nu_nif" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" onblur="revisaNIF(this)" placeholder="(No rellene si no tiene)">
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:-10px">
+            <div style="display:inline-block;">
+                <label for="nu_nombre">NOMBRE DEL ALUMNO:</label>
+                <span class="errorTxt"></span>
+                <input type="text" style="margin-top:-5px" name="nu_nombre" id="nu_nombre" class="form-control" required maxlength="25">
+            </div>
+            <div style="display: inline-block; margin-left:20px">
+                <label for="nu_apellidos">APELLIDOS DEL ALUMNO:</label>
+                <span class="errorTxt"></span>
+                <input type="text" style="margin-top:-5px" name="nu_apellidos" id="nu_apellidos" class="form-control" required maxlength="40" size="38">
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:-10px">
+            <label for="nu_email">CORREO ELECTRÓNICO <small>(Para recuperación de contraseña y notificaciones)</small>:</label>
+            <span class="errorTxt"></span>
+            <input type="email" style="margin-top:-5px" name="nu_email" id="nu_email" class="form-control" required maxlength="40">
+        </div>
+        <div class="form-group" style="margin-top:-10px">
+            <label for="nu_repemail">REPITA EL CORREO ELECTRÓNICO:</label>
+            <span class="errorTxt"></span>
+            <input type="email" style="margin-top:-5px" name="nu_repemail" id="nu_repemail" class="form-control" required maxlength="40">
+        </div>
+        <div class="form-group" style="margin-top:-10px">
+            <label for="nu_password">CONTRASEÑA:</label>
+            <span class="errorTxt"></span>
+            <input type="password" style="margin-top:-5px" name="nu_password" id="nu_password" class="form-control" required maxlength="40">
+        </div>
+        <div class="form-group" style="margin-top:-10px">
+            <label for="nu_reppassword">REPITA LA CONTRASEÑA:</label>
+            <span class="errorTxt"></span>
+            <input type="password" style="margin-top:-5px" name="nu_reppassword" id="nu_reppassword" class="form-control" required maxlength="40">
+        </div>
+        <div style="margin-top:-10px">
+            <!--<label for="nu_reppassword">Acepto las condiciones:</label>
+            <input type="checkbox" style="margin-top:-5px" name="nu_condiciones" id="nu_condiciones" required>-->
+            <a href="javascript:condiciones();" style="margin-left:10px; font-size: 0.7em;">Ver condiciones</a>
+            <span class="errorTxt"></span>
+        </div>
+        <div class="justify-content-center" style="margin-top:10px">
+            <label>Por su comodidad a la hora de cumplimentar los formularios disponibles, complete sus datos en el panel del usuario (botón 'Mis Datos').</label>
+        </div>
+
+        <div style="text-align: center;">
+            <input type="button" value="Complete el registro" class="btn btn-success textoboton" onclick="solicitaRegistro();" />
+            <input type="button" value="Cancelar" class="btn btn-success textoboton" onclick="$('#nuevoUsuario_div').closest('.ui-dialog-content').dialog('destroy').remove();" />
+        </div>
+    </form>
+</div>
+<!--_______________________________________________________________________________________________-->
+<!--_______________________________________________________________________________________________-->
