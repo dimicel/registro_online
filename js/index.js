@@ -32,18 +32,6 @@ $(function() {
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
     else document.getElementById("servidor_pruebas").style.display="none";
 
-    $("#nuevaPass_div").dialog({
-        autoOpen: false,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "RECUPERAR CONTRASEÑA",
-        width: 275
-    });
-
     $("#nuevoUsuario_div").dialog({
         autoOpen: false,
         dialogClass: "no-close",
@@ -195,7 +183,16 @@ function entra() {
 
 
 function recuperaPass() {
-    $("#nuevaPass_div").dialog('open');
+    mostrarPantallaEspera();
+    cargaHTML("html/index.htm", "nuevaPass_div","RECUPERAR CONTRASEÑA",275,2000,"center center","center center")
+    .then((dialogo)=>{
+        ocultarPantallaEspera();
+    })
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 }
 
 function condiciones(){

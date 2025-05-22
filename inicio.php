@@ -74,24 +74,7 @@
     <!--_______________________________________________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
 
-    <!--RECUPERACIÓN CONTRASEÑA _______________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-    <div id="nuevaPass_div" name="nuevaPass_div" style="display: none;  padding: 20px;" class="ui-widget-header ui-corner-all alertas">
-        <form id="form_solicitaPass" class="needs-validation" novalidate>
-            <div class="form-group">
-                <label for="np_nif" class="control-label">NIE<small> (Nº de Identificación Escolar)</small></label>
-                <input type="text" name="np_nie" id="np_nie" class="form-control" required>
-                <div class="invalid-feedback">Complete el campo</div>
-                <div class="valid-feedback"></div>
-            </div>
-            <div style="text-align: center;">
-                <input type="button" value="Solicitar" class="btn btn-success textoboton" onclick="if (generaContrasena()) $('#nuevaPass_div').dialog('close');" />
-                <input type="button" value="Cancelar" class="btn btn-success textoboton" onclick="$('#nuevaPass_div').dialog('close');" />
-            </div>
-        </form>
-    </div>
-    <!--_______________________________________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
+
 
     <!--REGISTRO DE DATOS DEL NUEVO USUARIO ___________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
