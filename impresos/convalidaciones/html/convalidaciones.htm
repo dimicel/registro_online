@@ -1,0 +1,42 @@
+
+<!-- EDICIÓN DE IMAGEN ---------------------------------------------------->
+<!-- ----------------------------------------------------------------------> 
+<div id="div_edita_imagen" style="display:none; text-align:center">
+    <label><small id="texto_editor_imagen">Rota, haz zoom (con la rueda del ratón) y mueve las imágenes para ajustar el documento al recuadro</small></label>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col" id="div_imagen_anverso">
+                        <!--<img id="imagen_anverso" style="display:none">-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <input type="button" class="btn btn-success textoboton" value="-90º" onclick="_crop1.rotate(90);"/>
+                    </div>
+                    <div class="col-3">
+                        <input type="button" class="btn btn-success textoboton" value="+90º" onclick="_crop1.rotate(-90);"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" id="doc_ident_reverso">
+                <div class="row">
+                    <div class="col"  id="div_imagen_reverso">
+                        <!--<img id="imagen_reverso" style="display:none">-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                            <input type="button" class="btn btn-success textoboton" value="-90º" onclick="_crop2.rotate(90);"/>
+                        </div>
+                        <div class="col-3">
+                            <input type="button" class="btn btn-success textoboton" value="+90º" onclick="_crop2.rotate(-90);"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<!-- ---------------------------------------------------------------------->

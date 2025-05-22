@@ -680,49 +680,11 @@ function selArchConsej(){
 
 }
 
-
-
-
 function muestraEditor(_ev){
-    _tipoSelecc=document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value;
-    _crop1=new Croppie(document.getElementById("div_imagen_anverso"), {
-        viewport: { width: 300, height: 190 },
-        boundary: { width: 450, height: 255 },
-        showZoomer: false,
-        enableOrientation: true
-    });
-    _crop1.bind({
-        url: URL.createObjectURL(_ev.target.files[0]),
-        orientation: 1
-    });
-   
-    if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
-        __ancho=500;
-    } 
-    else{
-        __ancho=1000;
-        _crop2=new Croppie(document.getElementById("div_imagen_reverso"), {
-            viewport: { width: 300, height: 190 },
-            boundary: { width: 450, height: 255 },
-            showZoomer: false,
-            enableOrientation: true
-        });
-        _crop2.bind({
-            url: URL.createObjectURL(_ev.target.files[1]),
-            orientation: 1
-        });
-    } 
-
-    $("#div_edita_imagen").dialog({
-        autoOpen: true,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "EDICIÓN IMAGEN",
-        width: __ancho,
-        buttons: [{
+    mostrarPantallaEspera("Cargando ...");
+    cargaHTML("html/convalidaciones.htm", "div_edita_imagen","EDICIÓN IMAGEN",550,2000,"","",
+        [
+            {
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
@@ -762,13 +724,51 @@ function muestraEditor(_ev){
                 }
             }
         ]
+    )
+    .then ((dialogo)=>{
+            ocultarPantallaEspera();
+            _tipoSelecc=document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value;
+            _crop1=new Croppie(document.getElementById("div_imagen_anverso"), {
+                viewport: { width: 300, height: 190 },
+                boundary: { width: 450, height: 255 },
+                showZoomer: false,
+                enableOrientation: true
+            });
+            _crop1.bind({
+                url: URL.createObjectURL(_ev.target.files[0]),
+                orientation: 1
+            });
+        
+            if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
+                $(dialogo).dialog("options","width",500);
+            } 
+            else{
+                $(dialogo).dialog("options","width",1000);
+                _crop2=new Croppie(document.getElementById("div_imagen_reverso"), {
+                    viewport: { width: 300, height: 190 },
+                    boundary: { width: 450, height: 255 },
+                    showZoomer: false,
+                    enableOrientation: true
+                });
+                _crop2.bind({
+                    url: URL.createObjectURL(_ev.target.files[1]),
+                    orientation: 1
+                });
+            } 
+            if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
+                $("#doc_ident_reverso").hide();
+            }
+            else if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
+                $("#doc_ident_reverso").show();
+            }             
+        }
+    )
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
-    if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
-        $("#doc_ident_reverso").hide();
-    }
-    else if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
-        $("#doc_ident_reverso").show();
-    }
+
 }
 
 
