@@ -506,8 +506,9 @@ function mostrarPantallaEspera(mensaje = "Procesando...") {
   });
 
   // Imagen GIF
+  const basePath = window.location.pathname.split("/registro_online")[0] + "/registro_online";
   const gif = document.createElement("img");
-  gif.src = "/recursos/espera.gif";
+  gif.src = basePath+'/recursos/espera.gif';
   gif.alt = "Procesando...";
   Object.assign(gif.style, {
     width: "128px",
