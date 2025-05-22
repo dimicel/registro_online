@@ -735,7 +735,6 @@ function muestraEditor_usu(_file,tipo){
                 click: function() {
                     _crop1.destroy();
                     $(this).dialog("destroy").remove();
-                    $("#div_subida_archivos_usu").closest(".ui-dialog-content").dialog("destroy").remove();
                 }
             },
             {
@@ -791,6 +790,7 @@ function muestraEditor_usu(_file,tipo){
                     });
                     _crop1.destroy();
                     $(this).dialog("destroy").remove();
+                    $("#div_subida_archivos_usu").closest(".ui-dialog-content").dialog("destroy").remove();
                 }
             }
         ]
