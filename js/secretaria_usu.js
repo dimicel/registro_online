@@ -737,7 +737,7 @@ function panelModUsu(id) {
 }
 
 
-function modUsu(obj) {
+function modUsu() {
     var r1, r2;
     if ($("#form_modif_datos_usu").valid()) {
         prom1 = Promise.resolve($.post("php/secret_usu_modifdatos.php", $("#form_modif_datos_usu").serialize()));
@@ -753,7 +753,7 @@ function modUsu(obj) {
             else if (r2 == "server" && r1 == "server") alerta("No se han podido modificar los datos del usuario.", "ERROR BASE DE DATOS");
             else if (r1 == "fallo") alerta("La modificación del usuario no ha sido posible en todas las tablas.", "FALLO MODIFICACIÓN TABLA USUARIOS");
             else alerta(r2, "FALLO EN TABLA USUARIOS_DAT")
-            $(obj).closest('.ui-dialog-content').dialog('close');
+            $("#form_modif_datos_usu").closest('.ui-dialog-content').dialog('close');
             listaUsus();
             listaRegistros(_orden_campo, _orden_direccion);
         });
