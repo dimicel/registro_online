@@ -738,10 +738,10 @@ function muestraEditor(_ev){
             });
         
             if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
-                $(dialogo).dialog("options","width",500);
+                //$(dialogo).dialog("options","width",500);
             } 
             else{
-                $(dialogo).dialog("options","width",1000);
+                //$(dialogo).dialog("options","width",1000);
                 _crop2=new Croppie(document.getElementById("div_imagen_reverso"), {
                     viewport: { width: 300, height: 190 },
                     boundary: { width: 450, height: 255 },
