@@ -18,7 +18,6 @@ var existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=fal
 
 var primera_vez_pag_2=true;
 var primera_vez_pag_3=true;
-var mensaje_docs;
 
 let ciclos_gm= new Array();
 let ciclos_gs= new Array();
@@ -47,16 +46,7 @@ $(document).ready(function() {
         document.getElementById("email").value = email;
         if (id_nie.trim() == "" || anno_ini_curso.toString().trim() == "") {
             document.write("Error datos. Por favor, inténtelo más tarde.");
-        }
-        mensaje_docs = "<p>Los documentos y sus formatos son los siguientes:";
-        mensaje_docs += "<ul>";
-        mensaje_docs += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='../../recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
-        mensaje_docs += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
-        mensaje_docs += "    <li>EXCEPTO nacidos antes del 31/12/" + (anno_ini_curso-27) + ", una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
-        mensaje_docs += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
-        mensaje_docs += "</ul>";
-        mensaje_docs += "</p>";            
-
+        }         
 
         return $.post("../../php/usu_recdatospers.php", {id_nie:id_nie }, () => {}, "json");
     });
@@ -472,8 +462,19 @@ function mayor28() {
 }
 
 
-$("#div_ayuda_docs").dialog({
-    autoOpen: false,
+function muestraAyudaDocs(){
+    var mensaje_docs = "<p>Los documentos y sus formatos son los siguientes:";
+    mensaje_docs += "<ul>";
+    mensaje_docs += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='../../recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
+    mensaje_docs += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
+    mensaje_docs += "    <li>EXCEPTO nacidos antes del 31/12/" + (anno_ini_curso-27) + ", una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
+    mensaje_docs += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
+    mensaje_docs += "</ul>";
+    mensaje_docs += "</p>";   
+    var dialogo_id=generaDivDialog();
+    document.getElementById(dialogo_id).innerHTML = mensaje_docs;
+    $("#"+dialogo_id).dialog({
+    autoOpen: true,
     dialogClass: "alert no-close",
     modal: true,
     hide: { effect: "fade", duration: 0 },
@@ -486,14 +487,9 @@ $("#div_ayuda_docs").dialog({
         class: "btn btn-success textoboton",
         text: "Cerrar",
         click: function() {
-            $("#div_ayuda_docs").dialog("close");
+            $(this).dialog("destroy").remove(); 
         }
     }]
 });
-
-
-function muestraAyudaDocs(){
-    document.getElementById("div_ayuda_docs").innerHTML = mensaje_docs;
-    $('#div_ayuda_docs').dialog('open');
 }
 

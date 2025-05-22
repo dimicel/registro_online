@@ -22,14 +22,7 @@ var primera_vez_pag_3=true;
 var existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false;
 var premat_prog_ling;
 var existe_mat=false;
-var mensaje_docs = "<p>Los documentos y sus formatos son los siguientes:";
-mensaje_docs += "<ul>";
-mensaje_docs += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='../../recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
-mensaje_docs += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. Los alumnos de 1º, 2º y 2º PMAR de ESO podrán subir las imágenes del documento si disponen de él, no siendo obligatorio en estos casos. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
-mensaje_docs += "    <li>Si la matrícula es para 3º de ESO, 3º de ESO DIVERSIFICACIÓN o 4º de ESO, fotografías (en format JPEG) del resguardo del pago del seguro escolar.</li>";
-mensaje_docs += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
-mensaje_docs += "</ul>";
-mensaje_docs += "</p>";  
+
 
 
 $(document).ready(function() {
@@ -487,8 +480,19 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
 }
 
 
-$("#div_ayuda_docs").dialog({
-    autoOpen: false,
+function muestraAyudaDocs(){
+    var mensaje_docs = "<p>Los documentos y sus formatos son los siguientes:";
+    mensaje_docs += "<ul>";
+    mensaje_docs += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='../../recursos/foto_carne.jpg'  style='width:128px;'></center></li>";
+    mensaje_docs += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. Los alumnos de 1º, 2º y 2º PMAR de ESO podrán subir las imágenes del documento si disponen de él, no siendo obligatorio en estos casos. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
+    mensaje_docs += "    <li>Si la matrícula es para 3º de ESO, 3º de ESO DIVERSIFICACIÓN o 4º de ESO, fotografías (en format JPEG) del resguardo del pago del seguro escolar.</li>";
+    mensaje_docs += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
+    mensaje_docs += "</ul>";
+    mensaje_docs += "</p>";  
+    var dialogo_id=generaDivDialog();
+    document.getElementById(dialogo_id).innerHTML = mensaje_docs;
+    $("#"+dialogo_id).dialog({
+    autoOpen: true,
     dialogClass: "alert no-close",
     modal: true,
     hide: { effect: "fade", duration: 0 },
@@ -501,14 +505,9 @@ $("#div_ayuda_docs").dialog({
         class: "btn btn-success textoboton",
         text: "Cerrar",
         click: function() {
-            $("#div_ayuda_docs").dialog("close");
+            $(this).dialog("destroy").remove(); 
         }
     }]
 });
-
-
-function muestraAyudaDocs(){
-    document.getElementById("div_ayuda_docs").innerHTML = mensaje_docs;
-    $('#div_ayuda_docs').dialog('open');
 }
 
