@@ -221,7 +221,7 @@ function condiciones(){
 
 function generaContrasena() {
     if (document.getElementById("form_solicitaPass").checkValidity()) {
-        muestrarPantallaEspera();
+        mostrarPantallaEspera();
         $.post("php/index_generapass.php", { nie: $("#np_nie").val().miTrim() }, function(resp) {
             ocultarPantallaEspera();
             if (resp == "server") alerta("Problemas de conexión con el servidor. Inténtelo más tarde.", "Error de servidor");
