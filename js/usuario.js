@@ -140,22 +140,6 @@ $(function() {
             for (e in resp.datos) {
                 if (typeof(resp.datos[e]) == "undefined" || resp.datos[e]==null) resp.datos[e] = "";
             }
-            /*f_nac = resp.datos.fecha_nac;
-            if (f_nac!="") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
-            form_mod_datos.dat_sexo.value = resp.datos.sexo;
-            form_mod_datos.dat_fecha_nac.value = f_nac;
-            form_mod_datos.dat_telefono.value = resp.datos.telef_alumno;
-            form_mod_datos.dat_email.value = resp.datos.email;
-            form_mod_datos.dat_direccion.value = resp.datos.direccion;
-            form_mod_datos.dat_cp.value = resp.datos.cp;
-            form_mod_datos.dat_localidad.value = resp.datos.localidad;
-            form_mod_datos.dat_provincia.value = resp.datos.provincia;
-            form_mod_datos.dat_tutor1.value = resp.datos.tutor1;
-            form_mod_datos.dat_telef_tut1.value = resp.datos.tlf_tutor1;
-            form_mod_datos.dat_email_tut1.value = resp.datos.email_tutor1;
-            form_mod_datos.dat_tutor2.value = resp.datos.tutor2;
-            form_mod_datos.dat_telef_tut2.value = resp.datos.tlf_tutor2;
-            form_mod_datos.dat_email_tut2.value = resp.datos.email_tutor2;*/
         }
         if (resp.error != "ok" || (resp.datos.direccion=="" && resp.datos.localidad=="" && resp.datos.provincia=="")){
             datos_usu_vacios=true;
