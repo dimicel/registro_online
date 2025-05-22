@@ -51,7 +51,7 @@
             <div class="valid-feedback"></div>
         </div>
         <div style="text-align: center;">
-            <input type="button" value="Solicitar" class="btn btn-success textoboton" onclick="if (generaContrasena()) $('#nuevaPass_div').closest('.ui-dialog-content').dialog('destroy').remove();" />
+            <input type="button" value="Solicitar" class="btn btn-success textoboton" onclick="generaContrasena()" />
             <input type="button" value="Cancelar" class="btn btn-success textoboton" onclick="$('#nuevaPass_div').closest('.ui-dialog-content').dialog('destroy').remove();" />
         </div>
     </form>

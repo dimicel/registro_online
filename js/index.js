@@ -234,11 +234,10 @@ function generaContrasena() {
                 alerta("Se ha enviado al correo asociado al NIE la nueva contraseña.<br>Si no la recibe, por favor, compruebe la carpeta 'spam' de su cuenta de correo", "Password enviada");
             }
             else alerta(resp,"ERROR");
-            return true;
+            $('#nuevaPass_div').closest('.ui-dialog-content').dialog('destroy').remove();
         });
     } else {
         document.getElementById("form_solicitaPass").classList.add("was-validated");
-        return false;
     }
 }
 
