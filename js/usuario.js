@@ -196,26 +196,6 @@ $(function() {
     });
 
 
-    $("#div_subida_archivos_usu").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "SUBIDA DE DOCUMENTOS",
-        maxHeight: 500,
-        width: 600,
-        buttons: [{
-            class: "btn btn-success textoboton",
-            text: "Cerrar",
-            click: function() {
-                document.getElementById("subida_doc").reset();
-                $("#div_subida_archivos_usu").dialog("close");
-            }
-        }]
-    });
-
     jQuery.validator.addMethod("nif_noduplicado", function(value, element) {
         if (value.miTrim() == '') return true;
         $.ajaxSetup({ async: false });
@@ -608,31 +588,50 @@ function USUsubeCertificado(obj) {
 
 
 function ocultaDivsSubeDocs(panel) {
-    if (panel == "foto") {
-        document.getElementById("div_fotografia").style.display = "inherit";
-        document.getElementById("div_resguardo_seguro_escolar").style.display = "none";
-        document.getElementById("div_anverso_dni").style.display = "none";
-        document.getElementById("div_reverso_dni").style.display = "none";
-        document.getElementById("div_certificado").style.display = "none";
-    } else if (panel == "seguro") {
-        document.getElementById("div_fotografia").style.display = "none";
-        document.getElementById("div_resguardo_seguro_escolar").style.display = "inherit";
-        document.getElementById("div_anverso_dni").style.display = "none";
-        document.getElementById("div_reverso_dni").style.display = "none";
-        document.getElementById("div_certificado").style.display = "none";
-    } else if (panel == "dni") {
-        document.getElementById("div_fotografia").style.display = "none";
-        document.getElementById("div_resguardo_seguro_escolar").style.display = "none";
-        document.getElementById("div_anverso_dni").style.display = "inherit";
-        document.getElementById("div_reverso_dni").style.display = "inherit";
-        document.getElementById("div_certificado").style.display = "none";
-    } else if (panel == "certificado") {
-        document.getElementById("div_fotografia").style.display = "none";
-        document.getElementById("div_resguardo_seguro_escolar").style.display = "none";
-        document.getElementById("div_anverso_dni").style.display = "none";
-        document.getElementById("div_reverso_dni").style.display = "none";
-        document.getElementById("div_certificado").style.display = "inherit";
-    }
+    mostrarPantallaEspera();
+    cargaHTML("html/usuario.htm", "div_subida_archivos_usu","SUBIDA DE DOCUMENTOS",500,600,"center center","center center",
+         [{
+            class: "btn btn-success textoboton",
+            text: "Cerrar",
+            click: function() {
+                $(this).dialog("destroy").remove();
+            }
+        }]
+    )
+    .then((dialogo)=>{
+            ocultarPantallaEspera();
+            if (panel == "foto") {
+                document.getElementById("div_fotografia").style.display = "inherit";
+                document.getElementById("div_resguardo_seguro_escolar").style.display = "none";
+                document.getElementById("div_anverso_dni").style.display = "none";
+                document.getElementById("div_reverso_dni").style.display = "none";
+                document.getElementById("div_certificado").style.display = "none";
+            } else if (panel == "seguro") {
+                document.getElementById("div_fotografia").style.display = "none";
+                document.getElementById("div_resguardo_seguro_escolar").style.display = "inherit";
+                document.getElementById("div_anverso_dni").style.display = "none";
+                document.getElementById("div_reverso_dni").style.display = "none";
+                document.getElementById("div_certificado").style.display = "none";
+            } else if (panel == "dni") {
+                document.getElementById("div_fotografia").style.display = "none";
+                document.getElementById("div_resguardo_seguro_escolar").style.display = "none";
+                document.getElementById("div_anverso_dni").style.display = "inherit";
+                document.getElementById("div_reverso_dni").style.display = "inherit";
+                document.getElementById("div_certificado").style.display = "none";
+            } else if (panel == "certificado") {
+                document.getElementById("div_fotografia").style.display = "none";
+                document.getElementById("div_resguardo_seguro_escolar").style.display = "none";
+                document.getElementById("div_anverso_dni").style.display = "none";
+                document.getElementById("div_reverso_dni").style.display = "none";
+                document.getElementById("div_certificado").style.display = "inherit";
+            }
+    })
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+
 }
 
 
