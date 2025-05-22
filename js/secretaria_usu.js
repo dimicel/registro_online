@@ -503,7 +503,7 @@ function panelEnvioEmail(dir_email) {
         [{text:"Cancelar",
             class: "textoboton btn btn-success btn-sm",
             click:function(){
-                $(this).closest('.ui-dialog-content').dialog("close");
+                $(this).dialog("destroy").remove();
             }
         }, 
         {text:"Enviar",
@@ -519,7 +519,7 @@ function panelEnvioEmail(dir_email) {
                         //ocultarPantallaEspera();
                         ocultarPantallaEspera();
                         alerta("Correo electrónico enviado.", "EMAIL");
-                        _dialog.dialog("close");
+                        _dialog.dialog("destroy").remove();
                     });
                 }
             }    

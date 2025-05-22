@@ -56,17 +56,6 @@ $(function() {
         width: 650
     });
 
-    $("#condiciones_div").dialog({
-        autoOpen: false,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "CONDICIONES DE USO",
-        width: 600
-    });
 
 
     /*jQuery.validator.addMethod("numero_nif", function(value, element) {
@@ -207,6 +196,29 @@ function entra() {
 
 function recuperaPass() {
     $("#nuevaPass_div").dialog('open');
+}
+
+function condiciones(){
+    mostrarPantallaEspera();
+    cargaHTML("html/index.htm", "condiciones_div","CONDICIONES DE USO",600,2000,"center center","center center",
+        [
+            {
+                text:"Cerrar",
+                class: "textoboton btn btn-success btn-sm",
+                click:function(){
+                    $(this).closest('.ui-dialog-content').dialog("close");
+                }
+            }
+        ]
+    )
+    .then((dialogo)=>{
+            ocultarPantallaEspera();
+    })
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 }
 
 

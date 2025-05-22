@@ -143,7 +143,7 @@
             <div style="margin-top:-10px">
                 <!--<label for="nu_reppassword">Acepto las condiciones:</label>
                 <input type="checkbox" style="margin-top:-5px" name="nu_condiciones" id="nu_condiciones" required>-->
-                <a href="javascript:$('#condiciones_div').dialog('open');" style="margin-left:10px; font-size: 0.7em;">Ver condiciones</a>
+                <a href="javascript:condiciones();" style="margin-left:10px; font-size: 0.7em;">Ver condiciones</a>
                 <span class="errorTxt"></span>
             </div>
             <div class="justify-content-center" style="margin-top:10px">
@@ -159,49 +159,7 @@
     <!--_______________________________________________________________________________________________-->
     <!--_______________________________________________________________________________________________-->
 
-    <!--CONDICIONES ___________________________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
-    <div id="condiciones_div" style="display: none;  padding: 20px; font-size:0.8em" class="ui-widget-header ui-corner-all">
-        <div>
-            <ul>
-                <li>
-                    <p><bold style="color:black;text-decoration: underline;">Responsable: </bold>Instituto Educacion Secundaria Universidad Laboral – Toledo.</p>
-                </li>
-                <li>
-                    <p><bold style="color:black;text-decoration: underline;">Finalidad: </bold>Gestión administrativa de la comunidad educativa del IES Universidad Laboral de Toledo.</p>
-                </li>
-                <li>
-                    <p><bold style="color:black;text-decoration: underline;">Legitimación: </bold>6.1.e) Misión en interés público o ejercicio de poderes públicos del Reglamento General de Protección de Datos. Ley Orgánica 2/2006, de 3 de mayo, de Educación</p>
-                </li>
-                <li>
-                    <p><bold style="color:black;text-decoration: underline;">Origen de los datos: </bold>El Propio Interesado o su Representante Legal; Administraciones Públicas.</p>
-                </li>
-                <li>
-                    <p><bold style="color:black;text-decoration: underline;">Categoría de los datos: </bold>Datos de carácter identificativo: NIF/DNI, nombre y apellidos, dirección, teléfono, correo electrónico, imagen. Características personales: nacionalidad, fecha nacimiento, sexo. Datos académicos.</p>
-                </li>
-                <li>
-                    <p><bold style="color:black;text-decoration: underline;">Destinatario: </bold>No existe cesión de datos.</p>
-                </li>
-                <li>
-                    <p><bold style="color:black;text-decoration: underline;">Derechos: </bold>Puede ejercer los derechos de acceso, rectificación o supresión de sus datos, así como otros derechos, tal y como se explica en la información adicional.</p>
-                </li>
-                <li>
-                    <p><bold style="color:black;text-decoration: underline;">Información adicional: </bold>Disponible en la dirección electrónica: <a href="https://rat.castillalamancha.es/info/2018" target="_blank">https://rat.castillalamancha.es/info/2018</a></p>
-                </li>
-                <li>
-                    <p>
-                        <bold style="color:black;text-decoration: underline;">Consentimiento: </bold>Consiento que mis datos sean tratados conforme a las características del tratamiento previamente descrito.<br> Puede retirar este consentimiento solicitándolo en el siguiente correo electrónico: <a href="mailto:protecciondatos@jccm.es"
-                            target="_blank">protecciondatos@jccm.es</a> o <a href="mailto:protecciondedatos.educacion@jccm.es" target="_blank">protecciondedatos.educacion@jccm.es</a>
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div style="text-align: center;">
-            <input type="button" value="Cerrar" class="btn btn-success textoboton" onclick="javascript:$('#condiciones_div').dialog('close');" />
-        </div>
-    </div>
-    <!--_______________________________________________________________________________________________-->
-    <!--_______________________________________________________________________________________________-->
+
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
