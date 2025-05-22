@@ -706,7 +706,7 @@ function muestraEditor(_ev){
                         formData.append(_fname_ajax, blob, _f_ajax);
                     });
                     _crop1.destroy();
-                    if(__ancho==1000){
+                    if(_tipoSelecc=="Documento de identificación (DNI/NIE)"){
                         _crop2.result({
                             type: 'blob'
                         }).then(function (blob) {
@@ -738,10 +738,10 @@ function muestraEditor(_ev){
             });
         
             if (_tipoSelecc=="Documento de identificación (Pasaporte)"){
-                //$(dialogo).dialog("options","width",500);
+                $(dialogo).dialog("option","width",500);
             } 
             else{
-                //$(dialogo).dialog("options","width",1000);
+                $(dialogo).dialog("option","width",1000);
                 _crop2=new Croppie(document.getElementById("div_imagen_reverso"), {
                     viewport: { width: 300, height: 190 },
                     boundary: { width: 450, height: 255 },
