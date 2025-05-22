@@ -399,55 +399,56 @@ function selTablaListaMod(obj) {
 
 function anadeDoc(e) {
     e.preventDefault();
-    creaInputs();
-        
-        if (subidoDocIdent) $("#div_doc_identificacion").hide();
-        else $("#div_doc_identificacion").show();
-        $("#anade_documento").dialog({
-            autoOpen: true,
-            dialogClass: "alert no-close",
-            modal: true,
-            hide: { effect: "fade", duration: 0 },
-            resizable: false,
-            show: { effect: "fade", duration: 0 },
-            title: "AÑADIR DOCUMENTO ADJUNTO",
-            width: 700,
-            buttons: [{
-                    class: "btn btn-success textoboton",
-                    text: "Aceptar",
-                    click: function() {
-                        if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked").length == 0 || 
-                            document.getElementById("archivo_con").value.trim().length == 0){
-                                alerta("Debe seleccionar un tipo de documento y un archivo.", "FALTAN DATOS");
+    creaInputs();  
+    if (subidoDocIdent) $("#div_doc_identificacion").hide();
+    else $("#div_doc_identificacion").show();
+
+    mostrarPantallaEspera("Cargando ...");
+    cargaHTML("html/convalidaciones.htm", "anade_documento","AÑADIR DOCUMENTO ADJUNTO",700,2000,"","",
+        [
+            {
+                class: "btn btn-success textoboton",
+                text: "Aceptar",
+                click: function() {
+                    if (document.querySelectorAll("#anade_documento input[name=tipo_con]:checked").length == 0 || 
+                        document.getElementById("archivo_con").value.trim().length == 0){
+                            alerta("Debe seleccionar un tipo de documento y un archivo.", "FALTAN DATOS");
+                            return;
+                    }
+                    else if(document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Otro" &&
+                            document.getElementById("den_otro_con").value.trim().length == 0){
+                                alerta("Debe especificar qué tipo de documento va a adjuntar.", "FALTAN DATOS");
                                 return;
-                        }
-                        else if(document.querySelectorAll("#anade_documento input[name=tipo_con]:checked")[0].value=="Otro" &&
-                                document.getElementById("den_otro_con").value.trim().length == 0){
-                                    alerta("Debe especificar qué tipo de documento va a adjuntar.", "FALTAN DATOS");
-                                    return;
-                        }
-                        actualizaTablaListaDocs();
-                        if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1)subidoDocIdent=true;
-                        document.getElementById("form_anade_documento").reset();
-                        $('#div_den_otro_con').hide();
-                        $("#anade_documento").dialog("close");
-                        $("#anade_documento").dialog("destroy");
                     }
-                },
-                {
-                    class: "btn btn-success textoboton",
-                    text: "Cancelar",
-                    click: function() {
-                        document.getElementById("form_anade_documento").reset();
-                        $('#div_den_otro_con').hide();
-                        selUltimoFile().remove();
-                        selUltimoHidden().remove();
-                        $("#anade_documento").dialog("close");
-                        $("#anade_documento").dialog("destroy");
-                    }
+                    actualizaTablaListaDocs();
+                    if (document.querySelectorAll("input[name=tipo_con]:checked")[0].value.indexOf("Documento de identificación")>-1)subidoDocIdent=true;
+                    document.getElementById("form_anade_documento").reset();
+                    $('#div_den_otro_con').hide();
+                    $(this).dialog("destroy").remove();
                 }
-            ]
-        });
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    document.getElementById("form_anade_documento").reset();
+                    $('#div_den_otro_con').hide();
+                    selUltimoFile().remove();
+                    selUltimoHidden().remove();
+                    $(this).dialog("destroy").remove();
+                }
+            }
+        ]
+    )
+    .then ((dialogo)=>{
+            ocultarPantallaEspera();
+        }
+    )
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 }
 
 
