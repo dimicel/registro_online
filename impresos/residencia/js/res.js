@@ -129,10 +129,11 @@ jQuery.validator.addMethod("existe_imagen", function(value, element) {
 
 
 function confirmarnuevaInsc(mensaje, titulo, botonAceptar) {
-    document.getElementById('confirmarnuevaInsc_div').innerHTML = mensaje;
-    $("#confirmarnuevaInsc_div").dialog({
+    dialogo_id=generaDivDialog();
+    document.getElementById(dialogo_id).innerHTML = mensaje;
+    $("#"+dialogo_id).dialog({
         title: titulo,
-        autoOpen: false,
+        autoOpen: true,
         dialogClass: "alert no-close",
         modal: true,
         hide: { effect: "fade", duration: 0 },
@@ -142,21 +143,20 @@ function confirmarnuevaInsc(mensaje, titulo, botonAceptar) {
                 class: "btn btn-success textoboton",
                 text: botonAceptar,
                 click: function() {
-                    $(this).dialog("close");
+                    $(this).dialog("destroy").remove();
                 }
             },
             {
                 class: "btn btn-success textoboton",
                 text: "Cancelar",
                 click: function() {
-                    $(this).dialog("close");
+                    $(this).dialog("destroy").remove();
                     window.history.back();
                 }
             }
         ]
     });
 
-    $("#confirmarnuevaInsc_div").dialog('open');
 }
 
 
