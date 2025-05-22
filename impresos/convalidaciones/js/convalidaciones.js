@@ -404,7 +404,7 @@ function anadeDoc(e) {
     else $("#div_doc_identificacion").show();
 
     mostrarPantallaEspera("Cargando ...");
-    cargaHTML("html/convalidaciones.htm", "anade_documento","AÑADIR DOCUMENTO ADJUNTO",700,2000,"","",
+    cargaHTML("html/convalidaciones.htm", "anade_documento","AÑADIR DOCUMENTO ADJUNTO",700,2000,"center center","center center",
         [
             {
                 class: "btn btn-success textoboton",
