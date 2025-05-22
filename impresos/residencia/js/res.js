@@ -369,7 +369,7 @@ function cargaFoto(){
 
 function muestraEditor(_file,tipo){
     mostrarPantallaEspera("Cargando...");
-    cargaHTML("html/residencia.htm", "div_edita_imagen","EDICIÓN IMAGEN",700,2000,"center center","center center",
+    cargaHTML("html/residencia.htm", "div_edita_imagen","EDICIÓN IMAGEN",700,2000,"","",
         [
             {
                 class: "btn btn-success textoboton",
