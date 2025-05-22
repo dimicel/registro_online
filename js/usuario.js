@@ -167,35 +167,6 @@ $(function() {
     });
 
 
-    $("#div_mod_datos").dialog({
-        autoOpen: false,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "MODIFICACIÓN DATOS ALUMNO",
-        maxHeight: 800,
-        width: 800,
-        buttons: [{
-                class: "btn btn-success textoboton",
-                text: "Aceptar",
-                click: function() {
-                    modificaDatos();
-                }
-            },
-            {
-                class: "btn btn-success textoboton",
-                text: "Cancelar",
-                click: function() {
-                    $(this).dialog("close");
-                    $("#form_mod_datos").trigger("reset");
-                }
-            }
-        ]
-    });
-
-
     jQuery.validator.addMethod("nif_noduplicado", function(value, element) {
         if (value.miTrim() == '') return true;
         $.ajaxSetup({ async: false });
@@ -207,39 +178,7 @@ $(function() {
         return _nif_duplicado;
     });
 
-    $("#form_mod_datos").validate({
-        rules: {
-            nif_nie: {
-                numero_nif: true
-            },
-            dat_email: {
-                email: true
-            },
-            dat_email_tut1: {
-                email: true
-            },
-            dat_email_tut2: {
-                email: true
-            }
-        },
-        messages: {
-            nif_nie: {
-                numero_nif: "NIF incorrecto."
-            },
-            dat_email: {
-                email: "No es una dirección de correo electrónico."
-            },
-            dat_email_tut1: {
-                email: "No es una dirección de correo electrónico."
-            },
-            dat_email_tut2: {
-                email: "No es una dirección de correo electrónico."
-            }
-        },
-        errorPlacement: function(error, element) {
-            $(element).prev($('.errorTxt')).html(error);
-        }
-    });
+
 
     /*jQuery.validator.addMethod("password", function(value, element) {
         return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value);
@@ -267,50 +206,105 @@ $(function() {
 
 
 function cambioDatosPers() {
-    $.post("php/usu_recdatospers.php", { id_nie: id_nie }, (resp) => {
-        if (resp.error == "ok") {
-            for (e in resp.datos) {
-                if (typeof(resp.datos[e]) == "undefined" || resp.datos[e]==null) resp.datos[e] = "";
+    mostrarPantallaEspera();
+    cargaHTML("html/usuario.htm", "div_mod_datos","MODIFICACIÓN DATOS ALUMNO",800,800,"center center","center center",
+        [
+            {
+                class: "btn btn-success textoboton",
+                text: "Aceptar",
+                click: function() {
+                    document.getElementById("dat_idnie").value = id_nie;
+                    mostrarPantallaEspera();
+                    if ($("#form_mod_datos").valid()) {
+                        $.post("php/usu_moddatospers.php", $("#form_mod_datos").serialize(), function(resp) {
+                            ocultarPantallaEspera();
+                            if (resp === "ok") {
+                                alerta("Los cambios se han realizado con éxito.", "Operación OK");
+                                $("#div_mod_datos").closest(".ui-dialog-content").dialog("destroy").remove();
+                            } else alerta("Ha ocurrido un problema y los cambios no se han podido realizar.<br>Inténtelo en otro momento.", "FALLO EN OPERACIÓN");
+                        });
+                    }
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
             }
-            f_nac = resp.datos.fecha_nac;
-            if (f_nac!="") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
-            form_mod_datos.dat_sexo.value = resp.datos.sexo;
-            form_mod_datos.dat_fecha_nac.value = f_nac;
-            form_mod_datos.dat_telefono.value = resp.datos.telef_alumno;
-            form_mod_datos.dat_email.value = resp.datos.email;
-            form_mod_datos.dat_nss.value = resp.datos.num_ss;
-            form_mod_datos.dat_direccion.value = resp.datos.direccion;
-            form_mod_datos.dat_cp.value = resp.datos.cp;
-            form_mod_datos.dat_localidad.value = resp.datos.localidad;
-            form_mod_datos.dat_provincia.value = resp.datos.provincia;
-            form_mod_datos.dat_tutor1.value = resp.datos.tutor1;
-            form_mod_datos.dat_telef_tut1.value = resp.datos.tlf_tutor1;
-            form_mod_datos.dat_email_tut1.value = resp.datos.email_tutor1;
-            form_mod_datos.dat_tutor2.value = resp.datos.tutor2;
-            form_mod_datos.dat_telef_tut2.value = resp.datos.tlf_tutor2;
-            form_mod_datos.dat_email_tut2.value = resp.datos.email_tutor2;
-            $("#div_mod_datos").dialog("open");
-        } else if (resp.error == "server") {
-            alerta("No se han podido recuperar los datos del usuario.", "ERROR BASE DE DATOS");
-        } 
-        else if(resp.error == "no_usuarios"){
-            $("#div_mod_datos").dialog("open");
-        }
-    }, "json");
+        ]
+    )
+    .then((dialogo)=>{
+            $.post("php/usu_recdatospers.php", { id_nie: id_nie }, (resp) => {
+                ocultarPantallaEspera();
+                if (resp.error == "ok") {
+                    for (e in resp.datos) {
+                        if (typeof(resp.datos[e]) == "undefined" || resp.datos[e]==null) resp.datos[e] = "";
+                    }
+                    f_nac = resp.datos.fecha_nac;
+                    if (f_nac!="") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
+                    form_mod_datos.dat_sexo.value = resp.datos.sexo;
+                    form_mod_datos.dat_fecha_nac.value = f_nac;
+                    form_mod_datos.dat_telefono.value = resp.datos.telef_alumno;
+                    form_mod_datos.dat_email.value = resp.datos.email;
+                    form_mod_datos.dat_nss.value = resp.datos.num_ss;
+                    form_mod_datos.dat_direccion.value = resp.datos.direccion;
+                    form_mod_datos.dat_cp.value = resp.datos.cp;
+                    form_mod_datos.dat_localidad.value = resp.datos.localidad;
+                    form_mod_datos.dat_provincia.value = resp.datos.provincia;
+                    form_mod_datos.dat_tutor1.value = resp.datos.tutor1;
+                    form_mod_datos.dat_telef_tut1.value = resp.datos.tlf_tutor1;
+                    form_mod_datos.dat_email_tut1.value = resp.datos.email_tutor1;
+                    form_mod_datos.dat_tutor2.value = resp.datos.tutor2;
+                    form_mod_datos.dat_telef_tut2.value = resp.datos.tlf_tutor2;
+                    form_mod_datos.dat_email_tut2.value = resp.datos.email_tutor2;
+                } else if (resp.error == "server") {
+                    alerta("No se han podido recuperar los datos del usuario.", "ERROR BASE DE DATOS");
+                    $("#div_mod_datos").closest(".ui-dialog-content").dialog("destroy").remove();
+                } 
 
-}
+                $("#form_mod_datos").validate({
+                    rules: {
+                        nif_nie: {
+                            numero_nif: true
+                        },
+                        dat_email: {
+                            email: true
+                        },
+                        dat_email_tut1: {
+                            email: true
+                        },
+                        dat_email_tut2: {
+                            email: true
+                        }
+                    },
+                    messages: {
+                        nif_nie: {
+                            numero_nif: "NIF incorrecto."
+                        },
+                        dat_email: {
+                            email: "No es una dirección de correo electrónico."
+                        },
+                        dat_email_tut1: {
+                            email: "No es una dirección de correo electrónico."
+                        },
+                        dat_email_tut2: {
+                            email: "No es una dirección de correo electrónico."
+                        }
+                    },
+                    errorPlacement: function(error, element) {
+                        $(element).prev($('.errorTxt')).html(error);
+                    }
+                });
+            }, "json");           
+    })
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 
-
-function modificaDatos() {
-    document.getElementById("dat_idnie").value = id_nie;
-    if ($("#form_mod_datos").valid()) {
-        $.post("php/usu_moddatospers.php", $("#form_mod_datos").serialize(), function(resp) {
-            if (resp === "ok") {
-                alerta("Los cambios se han realizado con éxito.", "Operación OK");
-                $("#div_mod_datos").dialog("close");
-            } else alerta("Ha ocurrido un problema y los cambios no se han podido realizar.<br>Inténtelo en otro momento.", "FALLO EN OPERACIÓN");
-        });
-    }
 }
 
 
