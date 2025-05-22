@@ -32,17 +32,7 @@ $(function() {
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
     else document.getElementById("servidor_pruebas").style.display="none";
 
-    $("#nuevoUsuario_div").dialog({
-        autoOpen: false,
-        dialogClass: "no-close",
-        modal: true,
-        draggable: false,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "COMPLETE O REVISE SUS DATOS INICIALES",
-        width: 650
-    });
+    
 
 
 
@@ -158,26 +148,37 @@ $(function() {
 
 function entra() {
     if (document.getElementById("form_login").checkValidity()) {
-        $.post("php/index_login.php", $("#form_login").serialize(), function(resp) {
-            if (resp.error == "server") alerta("Fallo de conexión al servidor", "ERROR SERVIDOR");
-            else if (resp.error == "password") alerta("Contraseña inválida", "ERROR PASSWORD");
-            else if (resp.error == "nousu") alerta("El usuario no existe. Consulte en la Secretaría del Centro.", "ERROR USUARIO");
-            else if(resp.error=="inhabilitado") alerta("El usuario se ha inhabilitado por decisión del mismo, o por no ser ya alumno del centro. No podrá operar ni recibirá notificaciones.", "USUARIO INHABILITADO");
-            else if (resp.error == "primera_vez") {
-                document.getElementById("nu_nie").value = document.getElementById("usuario").value;
-                document.getElementById("nu_apellidos").value=resp.datos.apellidos;
-                document.getElementById("nu_nombre").value=resp.datos.nombre;
-                document.getElementById("nu_email").value=resp.datos.email;
-                document.getElementById("nu_repemail").value=resp.datos.email;
-                document.getElementById("nu_nif").value=resp.datos.id_nif;
-                $("#nuevoUsuario_div").dialog('open');
-            } else if (resp.error == "ok") {
-                document.location = resp.pagina;
-            } else if(resp.error == "nodpto"){
-                alerta ("No existe ningún Jefe de Departamento con esas credenciales.","ERROR USUARIO");
-            }
+        mostrarPantallaEspera();
+        cargaHTML("html/index.htm","nuevoUsuario_div","COMPLETE O REVISE SUS DATOS INICIALES",650,2000)
+        .then((dialogo)=>{
+            $.post("php/index_login.php", $("#form_login").serialize(), function(resp) {
+                ocultarPantallaEspera();
+                if (resp.error == "server") alerta("Fallo de conexión al servidor", "ERROR SERVIDOR");
+                else if (resp.error == "password") alerta("Contraseña inválida", "ERROR PASSWORD");
+                else if (resp.error == "nousu") alerta("El usuario no existe. Consulte en la Secretaría del Centro.", "ERROR USUARIO");
+                else if(resp.error=="inhabilitado") alerta("El usuario se ha inhabilitado por decisión del mismo, o por no ser ya alumno del centro. No podrá operar ni recibirá notificaciones.", "USUARIO INHABILITADO");
+                else if (resp.error == "primera_vez") {
+                    document.getElementById("nu_nie").value = document.getElementById("usuario").value;
+                    document.getElementById("nu_apellidos").value=resp.datos.apellidos;
+                    document.getElementById("nu_nombre").value=resp.datos.nombre;
+                    document.getElementById("nu_email").value=resp.datos.email;
+                    document.getElementById("nu_repemail").value=resp.datos.email;
+                    document.getElementById("nu_nif").value=resp.datos.id_nif;
+                } else if (resp.error == "ok") {
+                    document.location = resp.pagina;
+                } else if(resp.error == "nodpto"){
+                    alerta ("No existe ningún Jefe de Departamento con esas credenciales.","ERROR USUARIO");
+                }
 
-        }, "json");
+            }, "json");
+            
+        })
+        .catch (error=>{
+            ocultarPantallaEspera();
+            var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        });
+
     } else document.getElementById("form_login").classList.add("was-validated");
 }
 
