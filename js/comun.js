@@ -188,6 +188,7 @@ jQuery.validator.addMethod("password", function(value, element) {
     return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value);
 });
 
+//Permite que el pasaporte esté en blanco
 jQuery.validator.addMethod("password2", function(value, element) {
     if (value.length==0) return true;
     return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value);
