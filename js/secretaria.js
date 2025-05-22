@@ -1648,7 +1648,7 @@ function actualizaIncidencias(registro, form, incidencias) {
 }
 
 function panelNuevoUsuario() { 
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_nuevo_registro","NUEVAS ALTAS",550,2000)
     .then ((dialogo)=>{
         ocultarPantallaEspera();
@@ -1674,7 +1674,7 @@ function altaUsuario() {
             } else if (resp == "ok") {
                 alerta("Nuevo usuario creado con éxito.", "Alta OK");
             } else if (resp == "usuario") {
-                mostrarPantallaEspera();
+                mostrarPantallaEspera("Cargando ...");
                 cargaHTML("html/secretaria.htm", "div_nie_registrado","NIE REGISTRADO",550,500)
                 .then((dialogo)=>{
                     ocultarPantallaEspera();
@@ -1687,7 +1687,7 @@ function altaUsuario() {
                     alerta(msg,"ERROR DE CARGA");
                 });
             } else if (resp == "registrado") {
-                mostrarPantallaEspera();
+                mostrarPantallaEspera("Cargando ...");
                 cargaHTML("html/secretaria.htm", "div_nie_registrado","NIE REGISTRADO",550,500)
                 .then((dialogo)=>{
                     ocultarPantallaEspera();
@@ -1747,7 +1747,7 @@ function habilitaMenu(m2, m3) {
 
 
 function registrosAPdf(tipo_listado) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "formulario_descargar_solicitudes","",0,0)
     .then ((dialogo)=>{
             ocultarPantallaEspera();
@@ -1899,7 +1899,7 @@ function descargaCSVpremat() {
 
 
 function verDocsMatricula(id, edad) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000,"center center","center center")
     .then ((dialogo)=>{
             _curso = document.getElementById("curso").value;
@@ -1985,7 +1985,7 @@ function descargaCSVtransporte() {
 }
 
 function listaMatriculas() {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_listadoMatriculas","MATRÍCULAS: SELECCIÓN TIPO LISTADO",900,2000)
     .then ((dialogo)=>{
             ocultarPantallaEspera();
@@ -2171,7 +2171,7 @@ function verCertificado(id){
 
 
 function subirMatDelphos(){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "formulario_subir_mat_delphos","SUBIDA CSV MATRÍCULA DELPHOS",600,2000,"center center","center center")
     .then ((dialogo)=>{
             ocultarPantallaEspera();
@@ -2475,7 +2475,7 @@ function descargaCSVelearningFctProy(){
 }
 
 function parametrosCentro(){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "formulario_datos_centro","EDICIÓN DATOS ASOCIADOS AL CENTRO",700,2000,"center center","center center",
          [
             {
@@ -2620,7 +2620,7 @@ function parametrosCentro(){
 
 
 function logosFirmaSello(){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_carga_logos_sellofirma","CAMBIO DE LOGOS Y SELLO Y FIRMA DEL DIRECTOR",1000,2000,"center center","center center",
         [{
             class: "btn btn-success textoboton",
@@ -2641,7 +2641,7 @@ function logosFirmaSello(){
 }
 
 function JefesDepartamento(){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_config_departamentos","DATOS ASOCIADOS A LOS DEPARTAMENTOS",800,2000,"center center","center center",
         [
             {
@@ -3003,7 +3003,7 @@ function eliminaPrematriculas(){
 
 
 function gestionDptos(){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_departamentos","GESTIÓN DE DEPARTAMENTOS DE FP",800,2000,"center center","center center",
         [
             {

@@ -200,7 +200,7 @@ function solicitaRegistro() {
 
 
 function recuperaPass() {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/index.htm", "nuevaPass_div","RECUPERAR CONTRASEÑA",275,2000,"center center","center center")
     .then((dialogo)=>{
         ocultarPantallaEspera();
@@ -213,7 +213,7 @@ function recuperaPass() {
 }
 
 function condiciones(){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/index.htm", "condiciones_div","CONDICIONES DE USO",600,2000,"center center","center center",
         [
             {

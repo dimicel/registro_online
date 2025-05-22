@@ -339,7 +339,7 @@ function obtieneDocsExpediente() {
 
 
 function borraDocExp(obj) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_borra_doc","BORRADO DE DOCUMENTO DEL EXPEDIENTE",550,500,"center center","center center")
     .then ((dialogo)=>{
             ocultarPantallaEspera();
@@ -395,7 +395,7 @@ function confirmadoBorradoDoc(obj) {
 
 
 function cambiaNomDocExp(obj) {
-    document
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_camb_nom_doc","CAMBIO DE NOMBRE DE DODUMENTO DEL EXPEDIENTE",550,500,"center center","center center")
     .then ((dialogo)=>{
             ocultarPantallaEspera();
@@ -466,7 +466,7 @@ function confirmaCambioNombreDoc(obj) {
 
 
 function panelExpedienteUsuario(id_nie,nom) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_expediente_usuario","EXPEDIENTE DEL USUARIO",800,2000,"","",
         [{text:"Cerrar",
           class: "textoboton btn btn-success btn-sm",
@@ -498,7 +498,7 @@ function panelExpedienteUsuario(id_nie,nom) {
 
 
 function panelEnvioEmail(dir_email) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
         [{text:"Cancelar",
             class: "textoboton btn btn-success btn-sm",
@@ -561,7 +561,7 @@ function panelEnvioEmail(dir_email) {
 
 
 function eliminaUsuario(id, nom) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_elimina_usuario","ELIMINACIÓN DE USUARIO",550,500)
     .then((dialogo)=>{
         ocultarPantallaEspera();
@@ -611,7 +611,7 @@ function confirmadoEliminarUsuario(nie_borrar,obj) {
 }
 
 function panelModUsu(id) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_modif_datos_usu","TITULO",1000,2000,"","",[],null,
         function(){
             $("#dat_fecha_nac").datepicker("destroy");
@@ -762,7 +762,7 @@ function modUsu(obj) {
 
 
 function subeDocExpediente(id, nom) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_sube_docs","SUBIR DOCUMENTOS A EXPEDIENTE",600,600)
     .then((dialogo)=>{
             ocultarPantallaEspera();
@@ -1046,7 +1046,7 @@ function borraAdjuntos(procedimiento,ruta,descripcion,registro,refrescaDocs){
     if (procedimiento=="convalidaciones_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE CONVALIDACIÓN";
     else if(procedimiento=="exencion_fct_docs") titulo="BORRADO DE DOCUMENTO ADJUNTO DE EXENCIÓN DE PFE";
     else titulo="";
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_borra_adjuntosconvalid",titulo,550,500,"center center","center center")
     .then((dialogo)=>{
             ocultarPantallaEspera();

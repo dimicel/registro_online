@@ -212,7 +212,7 @@ function res_ordenUsus() {
 
 
 function res_panelEnvioEmail(dir_email) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
         [{text:"Cancelar",
             class: "textoboton btn btn-success btn-sm",
@@ -274,7 +274,7 @@ function res_panelEnvioEmail(dir_email) {
 
 
 function cambioEmailJefeRes(){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/residencia.htm", "div_cambio_email_jef_res","CAMBIO DE DATO",600,2000,"center center","center center",
         [
             {
@@ -354,7 +354,7 @@ function cambioEmailJefeRes(){
 
 
 function estadoBonificado(__registro,celda){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("","","CAMBIO ESTADO BONIFICADO/NO BONIFICADO",600,2000,"center center","center center",
         [
             {
@@ -415,7 +415,7 @@ function estadoBonificado(__registro,celda){
 }
 
 function altaBaja(__registro,celda){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("","","ALTA/BAJA DE RESIDENTE",400,2000,"center center","center center",
         [
             {
@@ -520,7 +520,7 @@ function altaBaja(__registro,celda){
 
 
 function fianza(__registro,celda){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("","","CAMBIO DE FIANZA",400,2000,"center center","center center",
     [
             {

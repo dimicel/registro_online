@@ -192,7 +192,7 @@ $(function() {
 
 
 function cambioDatosPers() {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/usuario.htm", "div_mod_datos","MODIFICACIÓN DATOS ALUMNO",800,800,"center center","center center",
         [
             {
@@ -295,7 +295,7 @@ function cambioDatosPers() {
 
 
 function cambioPassword(){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/usuario.htm", "div_mod_pass","CAMBIO DE CONTRASEÑA",500,400,"center center","center center",
         [{
                 class: "btn btn-success textoboton",
@@ -463,7 +463,7 @@ function USUsubeCertificado(obj) {
 
 
 function ocultaDivsSubeDocs(panel) {
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/usuario.htm", "div_subida_archivos_usu","SUBIDA DE DOCUMENTOS",500,600,"center center","center center",
          [{
             class: "btn btn-success textoboton",
@@ -587,7 +587,7 @@ function lanzaAvisoMatricula(nivel_educ) {
 }
 
 function muestraEditor_usu(_file,tipo){
-    mostrarPantallaEspera();
+    mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/usuario.htm", "div_edita_imagen_usu","EDICIÓN IMAGEN",600,2000,"","",
         [
             {
