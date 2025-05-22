@@ -221,7 +221,9 @@ function condiciones(){
 
 function generaContrasena() {
     if (document.getElementById("form_solicitaPass").checkValidity()) {
+        muestrarPantallaEspera();
         $.post("php/index_generapass.php", { nie: $("#np_nie").val().miTrim() }, function(resp) {
+            ocultarPantallaEspera();
             if (resp == "server") alerta("Problemas de conexión con el servidor. Inténtelo más tarde.", "Error de servidor");
             else if (resp == "envio") alerta("Fallo de envío.<br>El correo electrónico puede no ser correcto", "Error email");
             else if (resp == "usuario") alerta("El NIE no corresponde a ningún usuario registrado.", "Error usuario");
@@ -232,8 +234,6 @@ function generaContrasena() {
                 alerta("Se ha enviado al correo asociado al NIE la nueva contraseña.<br>Si no la recibe, por favor, compruebe la carpeta 'spam' de su cuenta de correo", "Password enviada");
             }
             else alerta(resp,"ERROR");
-            document.getElementById('np_nie').value = "";
-            $("#nuevaPass_div").dialog('close');
             return true;
         });
     } else {
