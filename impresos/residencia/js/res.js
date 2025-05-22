@@ -368,43 +368,8 @@ function cargaFoto(){
 
 
 function muestraEditor(_file,tipo){
-    if(tipo=='foto'){
-        tipo='foto';
-        _crop1=new Croppie(document.getElementById("div_imagen"), {
-            viewport: { width: 190, height: 255 },
-            boundary: { width: 300, height: 450 },
-            showZoomer: false,
-            enableOrientation: true
-        });
-        _url="../matriculas/php/sube_foto.php";
-    }
-    else{
-        tipo='tarjeta';
-        _crop1=new Croppie(document.getElementById("div_imagen"), {
-            viewport: { width: 450, height: 285 },
-            boundary: { width: 675, height: 383 },
-            showZoomer: false,
-            enableOrientation: true
-        });
-        _url="php/subetarjeta.php";
-    }
-    
-    
-    _crop1.bind({
-        url: URL.createObjectURL(_file),
-        orientation: 1
-    });
-
-    $("#div_edita_imagen").dialog({
-        autoOpen: true,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "EDICIÓN IMAGEN",
-        width: 700,
-        buttons: [
+    cargaHTML("html/residencia.htm", "div_edita_imagen","EDICIÓN IMAGEN",700,2000,"center center","center center",
+        [
             {
                 class: "btn btn-success textoboton",
                 text: "Girar +90º",
@@ -424,8 +389,7 @@ function muestraEditor(_file,tipo){
                 text: "Cancelar",
                 click: function() {
                     _crop1.destroy();
-                    $("#div_edita_imagen").dialog("close");
-                    $("#div_edita_imagen").dialog("destroy");
+                    $(this).dialog("destroy").remove();
                 }
             },
             {
@@ -469,11 +433,44 @@ function muestraEditor(_file,tipo){
 
                     });
                    _crop1.destroy();
-                    $("#div_edita_imagen").dialog("close");
-                    $("#div_edita_imagen").dialog("destroy");
+                    $(this).dialog("destroy").remove();
                 }
             }   
         ]
+    )
+    .then ((dialogo)=>{
+            ocultarPantallaEspera();
+            if(tipo=='foto'){
+                tipo='foto';
+                _crop1=new Croppie(document.getElementById("div_imagen"), {
+                    viewport: { width: 190, height: 255 },
+                    boundary: { width: 300, height: 450 },
+                    showZoomer: false,
+                    enableOrientation: true
+                });
+                _url="../matriculas/php/sube_foto.php";
+            }
+            else{
+                tipo='tarjeta';
+                _crop1=new Croppie(document.getElementById("div_imagen"), {
+                    viewport: { width: 450, height: 285 },
+                    boundary: { width: 675, height: 383 },
+                    showZoomer: false,
+                    enableOrientation: true
+                });
+                _url="php/subetarjeta.php";
+            }
+            
+            _crop1.bind({
+                url: URL.createObjectURL(_file),
+                orientation: 1
+            });
+        }
+    )
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
 }
 
