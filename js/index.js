@@ -62,16 +62,6 @@ $(function() {
         return _nif_duplicado;
     });
 
-
-    document.getElementById("nu_repemail").onpaste = function(e) {
-        e.preventDefault();
-        alerta('Esta acción está prohibida. Introduzca manualmente el email.', 'PEGAR');
-    }
-
-    document.getElementById("nu_reppassword").onpaste = function(e) {
-        e.preventDefault();
-        alerta('Esta acción está prohibida. Introduzca manualmente la contraseña.', 'PEGAR');
-    }
 });
 
 
@@ -89,6 +79,15 @@ function entra() {
                     cargaHTML("html/index.htm","nuevoUsuario_div","COMPLETE O REVISE SUS DATOS INICIALES",650,2000)
                     .then((dialogo)=>{
                         ocultarPantallaEspera();
+                        document.getElementById("nu_repemail").onpaste = function(e) {
+                            e.preventDefault();
+                            alerta('Esta acción está prohibida. Introduzca manualmente el email.', 'PEGAR');
+                        }
+
+                        document.getElementById("nu_reppassword").onpaste = function(e) {
+                            e.preventDefault();
+                            alerta('Esta acción está prohibida. Introduzca manualmente la contraseña.', 'PEGAR');
+                        }
                         $("#form_nuevoUsuario").validate({
                             rules: {
                                 nu_nif: {
