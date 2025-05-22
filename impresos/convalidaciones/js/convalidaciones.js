@@ -688,15 +688,14 @@ function muestraEditor(_ev){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
-                    
-                   if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
-                        _fname_ajax="dni_anverso";
-                        _f_ajax="dni_anverso.jpg";
-                   }
-                   else {
-                        _fname_ajax="pasaporte";
-                        _f_ajax="pasaporte.jpg";
-                   }
+                    if (_tipoSelecc=="Documento de identificación (DNI/NIE)"){
+                            _fname_ajax="dni_anverso";
+                            _f_ajax="dni_anverso.jpg";
+                    }
+                    else {
+                            _fname_ajax="pasaporte";
+                            _f_ajax="pasaporte.jpg";
+                    }
                     _crop1.result({
                         type: 'blob'
                     }).then(function (blob) {
@@ -706,8 +705,8 @@ function muestraEditor(_ev){
                     }).then(function (blob) {
                         formData.append(_fname_ajax, blob, _f_ajax);
                     });
-                   _crop1.destroy();
-                   if(__ancho==1000){
+                    _crop1.destroy();
+                    if(__ancho==1000){
                         _crop2.result({
                             type: 'blob'
                         }).then(function (blob) {
@@ -718,9 +717,8 @@ function muestraEditor(_ev){
                             formData.append('dni_reverso', blob,'dni_anverso.jpg');
                         });
                         _crop2.destroy();
-                   }
-                    $("#div_edita_imagen").dialog("close");
-                    $("#div_edita_imagen").dialog("destroy");
+                    }
+                    $(this).dialog("destroy").remove();
                 }
             }
         ]
