@@ -125,12 +125,11 @@ $dr=$concov->fetch_assoc();
 
 // Cerrar conexión
 $mysqli->close();
-exit($genera_resolucion);
 if($genera_resolucion==0) exit("ok");
 //Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
 $Yinicio=70;
 $margen_derecho=20;
-if($res_fav>0 || $res_nofav>0){
+if($res_fav>0 || $res_nofav>0 || $res_noproc>0){
     class MYPDF extends TCPDF {
 
         //Page header
