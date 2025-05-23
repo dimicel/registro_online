@@ -3237,3 +3237,104 @@ function compruebaDuplicadoDpto(obj){
     }
 }
 
+
+function gestionModulosFP(){
+    mostrarPantallaEspera("Cargando ...");
+    cargaHTML("html/secretaria.htm", "div_departamentos","GESTIÓN DE DEPARTAMENTOS DE FP",800,2000,"center center","center center",
+        [
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Nuevo",
+                click: function() {
+                    document.getElementById("dpto_nombre").value="";
+                    document.getElementById("dpto_abreviatura").value="";
+                    document.getElementById("dpto_nombre").readOnly=false;
+                    document.getElementById("dpto_abreviatura").readOnly=false;
+                    div_boton_guardar_cambios.style.visibility="visible";
+                    //Inhabilita los botones del dialog
+                    $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
+                    document.getElementById("div_desc_operacion").style.visibility='visible';
+                    document.getElementById("desc_operacion").innerHTML="ALTA DE NUEVO DEPARTAMENTO";
+                    document.getElementById("btn_nuevo_dpto").innerHTML="Añadir";
+                }
+            },
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Modificar",
+                click: function() {
+                    div_boton_guardar_cambios.style.visibility="visible";
+                    document.getElementById("dpto_nombre").readOnly=false;
+                    document.getElementById("dpto_abreviatura").readOnly=false;
+                    //Inhabilita los botones del dialog
+                    $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
+                    document.getElementById("div_desc_operacion").style.visibility='visible';
+                    document.getElementById("desc_operacion").innerHTML="MODIFICACIÓN DE DEPARTAMENTO";
+                    document.getElementById("btn_nuevo_dpto").innerHTML="Guardar";
+                    document.getElementById("backup_dpto_nombre").value=document.getElementById("dpto_nombre").value;
+                    document.getElementById("backup_dpto_abreviatura").value=document.getElementById("dpto_abreviatura").value;
+                }
+            },
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Borrar",
+                click: function() {
+                    confirmar("¿Está seguro de que desea eliminar el departamento seleccionado?.","ELIMINAR DEPARTAMENTO")
+                    .then(function(confirmacion) {
+                        if(confirmacion){
+                            confirmar("Por favor, confirme otra vez que desea eliminar el departamento seleccionado.","CONFIRMAR ELIMINACIÓN")
+                            .then(function(confirmacion2) {
+                                if(confirmacion2){
+                                    mostrarPantallaEspera();;
+                                    $.post("php/secret_elimina_departamento.php",{dpto:document.getElementById("dpto_select").value},(resp)=>{
+                                        ocultarPantallaEspera();
+                                        if (resp=="ok"){
+                                            alerta("Departamento eliminado correctamente.","ELIMINACIÓN CORRECTA");
+                                            mostrarPantallaEspera();;
+                                            $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
+                                                ocultarPantallaEspera();
+                                                if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
+                                                else {
+                                                    departamentos=[];
+                                                    for(i=0; i<resp.registro.length;i++){
+                                                        departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
+                                                    }
+                                                    generaSelectsDepartamentos();
+                                                    document.getElementById("dpto_select").selectedIndex=0;
+                                                    document.getElementById("dpto_nombre").value=departamentos[0][0];
+                                                    document.getElementById("dpto_abreviatura").value=departamentos[0][1];
+                                                }
+                                            },"json");
+                                        }
+                                        else if (resp=="server"){
+                                            alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+                                        }
+                                        else{
+                                            alerta(resp,"ERROR DB/SERVIDOR");
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            },
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Salir",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
+            }
+        ]
+    ).then((dialogo)=>{
+        ocultarPantallaEspera();
+        generaSelectsDepartamentos();
+        document.getElementById("dpto_select").selectedIndex=0;
+        gestionSeleccionDpto();
+    }).catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+}
+
