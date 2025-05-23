@@ -482,10 +482,11 @@ function seleccionCursoActual(c) {
 }
 
 function confirmarnuevaPrem(mensaje, titulo, botonAceptar) {
-    document.getElementById('confirmarnuevaPrem_div').innerHTML = mensaje;
-    $("#confirmarnuevaPrem_div").dialog({
+    dialogo_id=generaDivDialog();
+    document.getElementById(dialogo_id).innerHTML = mensaje;
+    $("#"+dialogo_id).dialog({
         title: titulo,
-        autoOpen: false,
+        autoOpen: true,
         dialogClass: "alert no-close",
         modal: true,
         hide: { effect: "fade", duration: 0 },
@@ -495,19 +496,17 @@ function confirmarnuevaPrem(mensaje, titulo, botonAceptar) {
                 class: "btn btn-success textoboton",
                 text: botonAceptar,
                 click: function() {
-                    $(this).dialog("close");
+                    $(this).dialog("destroy").remove();
                 }
             },
             {
                 class: "btn btn-success textoboton",
                 text: "Cancelar",
                 click: function() {
-                    $(this).dialog("close");
+                    $(this).dialog("destroy").remove();
                     window.history.back();
                 }
             }
         ]
     });
-
-    $("#confirmarnuevaPrem_div").dialog('open');
 }
