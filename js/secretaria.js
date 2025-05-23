@@ -3419,11 +3419,14 @@ function gestionModulosFP(){
 }
 
 
-function seleccionaModuloFP(fila){
-    let filas=document.querySelectorAll("#tbody_modulos td");
+function seleccionaModuloFP(fila) {
+    let filas = document.getElementById("tbody_modulos").querySelectorAll("tr");
     filas.forEach(f => {
-        f.classList.add("filanoseleccionada");
+        f.classList.remove("selected");
+        f.classList.add("deselected");
     });
-    fila.classList.add("filaseleccionada");
+    fila.classList.remove("deselected");
+    fila.classList.add("selected");
 }
+
 
