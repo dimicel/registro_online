@@ -3321,14 +3321,14 @@ function gestionModulosFP(){
                                                 ocultarPantallaEspera();
                                                 if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
                                                 else {
-                                                    departamentos=[];
+                                                    //departamentos=[];
                                                     for(i=0; i<resp.registro.length;i++){
-                                                        departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
+                                                        //departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
                                                     }
                                                     generaTablaModulosFP();
-                                                    document.getElementById("dpto_select").selectedIndex=0;
-                                                    document.getElementById("dpto_nombre").value=departamentos[0][0];
-                                                    document.getElementById("dpto_abreviatura").value=departamentos[0][1];
+                                                    //document.getElementById("dpto_select").selectedIndex=0;
+                                                    //document.getElementById("dpto_nombre").value=departamentos[0][0];
+                                                    //document.getElementById("dpto_abreviatura").value=departamentos[0][1];
                                                 }
                                             },"json");
                                         }
@@ -3356,8 +3356,6 @@ function gestionModulosFP(){
     ).then((dialogo)=>{
         ocultarPantallaEspera();
         generaTablaModulosFP();
-        document.getElementById("dpto_select").selectedIndex=0;
-        gestionSeleccionDpto();
     }).catch (error=>{
         ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
