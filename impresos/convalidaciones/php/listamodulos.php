@@ -16,10 +16,10 @@ $curso=$_POST["curso"];
 
 
 if ($curso=="Virtual_Modular"){
-    $c=$mysqli->query("SELECT materias_ciclos.codigo,materias_ciclos.materia,materias_ciclos.curso FROM ciclos JOIN materias_ciclos ON ciclos.id=materias_ciclos.id WHERE ciclos.grado='$grado' AND ciclos.denominacion='$ciclo' ORDER BY materias_ciclos.materia");
+    $c=$mysqli->query("SELECT ciclos_modulos.codigo,ciclos_modulos.materia,ciclos_modulos.curso FROM ciclos JOIN ciclos_modulos ON ciclos.id=ciclos_modulos.id WHERE ciclos.grado='$grado' AND ciclos.denominacion='$ciclo' ORDER BY ciclos_modulos.materia");
 }
 else {
-    $c=$mysqli->query("SELECT materias_ciclos.codigo,materias_ciclos.materia,materias_ciclos.curso FROM ciclos JOIN materias_ciclos ON ciclos.id=materias_ciclos.id WHERE ciclos.grado='$grado' AND ciclos.denominacion='$ciclo' AND materias_ciclos.curso='$curso' ORDER BY materias_ciclos.materia");
+    $c=$mysqli->query("SELECT ciclos_modulos.codigo,ciclos_modulos.materia,ciclos_modulos.curso FROM ciclos JOIN ciclos_modulos ON ciclos.id=ciclos_modulos.id WHERE ciclos.grado='$grado' AND ciclos.denominacion='$ciclo' AND ciclos_modulos.curso='$curso' ORDER BY ciclos_modulos.materia");
 }
 
 if ($mysqli->errno>0){
