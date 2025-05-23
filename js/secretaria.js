@@ -1647,6 +1647,7 @@ function verPanelResolver(id_nie,registro){
                             mostrarPantallaEspera();
                             document.getElementById("genera_resolucion").value=1;
                             $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
+                                alert(resp)
                                 ocultarPantallaEspera();
                                 if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
                                 else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
@@ -1671,6 +1672,7 @@ function verPanelResolver(id_nie,registro){
                             mostrarPantallaEspera();
                             document.getElementById("genera_resolucion").value=0;
                             $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
+                                alert(resp)
                                 ocultarPantallaEspera();
                                 if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
                                 else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");

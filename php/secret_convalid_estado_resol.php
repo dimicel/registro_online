@@ -125,6 +125,7 @@ $dr=$concov->fetch_assoc();
 
 // Cerrar conexión
 $mysqli->close();
+exit($genera_resolucion);
 if($genera_resolucion==0) exit("ok");
 //Se genera el pdf para el alumno si están todos los módulos resueltos y, al menos, hay uno que resuelve el centro
 $Yinicio=70;
