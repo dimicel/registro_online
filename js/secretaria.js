@@ -3240,22 +3240,22 @@ function compruebaDuplicadoDpto(obj){
 
 function gestionModulosFP(){
     mostrarPantallaEspera("Cargando ...");
-    cargaHTML("html/secretaria.htm", "div_departamentos","GESTIÓN DE DEPARTAMENTOS DE FP",800,2000,"center center","center center",
+    cargaHTML("html/secretaria.htm", "div_modulosfp","GESTIÓN DE MÓDULOS FORMATIVOS DE FP",1000,2000,"center center","center center",
         [
             {
                 class: "btn btn-success textoboton btn-sm",
                 text: "Nuevo",
                 click: function() {
-                    document.getElementById("dpto_nombre").value="";
-                    document.getElementById("dpto_abreviatura").value="";
-                    document.getElementById("dpto_nombre").readOnly=false;
-                    document.getElementById("dpto_abreviatura").readOnly=false;
+                    document.getElementById("modulo_codigo").value="";
+                    document.getElementById("modulo_descripcion").value="";
+                    document.getElementById("modulo_codigo").readOnly=false;
+                    document.getElementById("modulo_descripcion").readOnly=false;
                     div_boton_guardar_cambios.style.visibility="visible";
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                     document.getElementById("div_desc_operacion").style.visibility='visible';
-                    document.getElementById("desc_operacion").innerHTML="ALTA DE NUEVO DEPARTAMENTO";
-                    document.getElementById("btn_nuevo_dpto").innerHTML="Añadir";
+                    document.getElementById("desc_operacion").innerHTML="ALTA DE NUEVO MÓDULO FORMATIVO";
+                    document.getElementById("btn_nuevo_modulo").innerHTML="Añadir";
                 }
             },
             {
@@ -3263,25 +3263,25 @@ function gestionModulosFP(){
                 text: "Modificar",
                 click: function() {
                     div_boton_guardar_cambios.style.visibility="visible";
-                    document.getElementById("dpto_nombre").readOnly=false;
-                    document.getElementById("dpto_abreviatura").readOnly=false;
+                    document.getElementById("modulo_codigo").readOnly=false;
+                    document.getElementById("modulo_descripcion").readOnly=false;
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                     document.getElementById("div_desc_operacion").style.visibility='visible';
-                    document.getElementById("desc_operacion").innerHTML="MODIFICACIÓN DE DEPARTAMENTO";
-                    document.getElementById("btn_nuevo_dpto").innerHTML="Guardar";
-                    document.getElementById("backup_dpto_nombre").value=document.getElementById("dpto_nombre").value;
-                    document.getElementById("backup_dpto_abreviatura").value=document.getElementById("dpto_abreviatura").value;
+                    document.getElementById("desc_operacion").innerHTML="MODIFICACIÓN DE MÓDULO FORMATIVO";
+                    document.getElementById("btn_nuevo_modulo").innerHTML="Guardar";
+                    document.getElementById("backup_descripcion").value=document.getElementById("modulo_descripcion").value;
+                    document.getElementById("backup_codigo").value=document.getElementById("modulo_codigo").value;
                 }
             },
             {
                 class: "btn btn-success textoboton btn-sm",
                 text: "Borrar",
                 click: function() {
-                    confirmar("¿Está seguro de que desea eliminar el departamento seleccionado?.","ELIMINAR DEPARTAMENTO")
+                    confirmar("¿Está seguro de que desea eliminar el Módulo Formativo seleccionado?.","ELIMINAR MÓDULO FORMATIVO")
                     .then(function(confirmacion) {
                         if(confirmacion){
-                            confirmar("Por favor, confirme otra vez que desea eliminar el departamento seleccionado.","CONFIRMAR ELIMINACIÓN")
+                            confirmar("Por favor, confirme otra vez que desea eliminar el Módulo Formativo seleccionado.","CONFIRMAR ELIMINACIÓN")
                             .then(function(confirmacion2) {
                                 if(confirmacion2){
                                     mostrarPantallaEspera();;
