@@ -3333,8 +3333,8 @@ function gestionModulosFP(){
                     document.getElementById("modulo_descripcion").value="";
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
-                    document.getElementById("div_desc_operacion").style.visibility='visible';
-                    document.getElementById("desc_operacion").innerHTML="ALTA DE NUEVO MÓDULO FORMATIVO";
+                    document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
+                    document.getElementById("desc_operacion_modulos").innerHTML="ALTA DE NUEVO MÓDULO FORMATIVO";
                     document.getElementById("btn_nuevo_modulo").innerHTML="Añadir";
                 }
             },
@@ -3345,8 +3345,8 @@ function gestionModulosFP(){
                     div_modulos_panel_casillas.style.display='';
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
-                    document.getElementById("div_desc_operacion").style.visibility='visible';
-                    document.getElementById("desc_operacion").innerHTML="MODIFICACIÓN DE MÓDULO FORMATIVO MARCADO";
+                    document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
+                    document.getElementById("desc_operacion_modulos").innerHTML="MODIFICACIÓN DE MÓDULO FORMATIVO MARCADO";
                     document.getElementById("btn_nuevo_modulo").innerHTML="Guardar";
                     _codigo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
                     _modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
