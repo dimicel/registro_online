@@ -3347,6 +3347,10 @@ function gestionModulosFP(){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Modificar",
                 click: function() {
+                    if (document.getElementById("tbody_modulos").querySelectorAll("tr.selected").length==0){
+                        alerta("No se ha seleccionado ningún módulo formativo.","NINGÚN MÓDULO SELECCIONADO");
+                        return;
+                    }
                     div_modulos_panel_casillas.style.display='';
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
