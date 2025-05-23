@@ -3322,7 +3322,7 @@ function compruebaDuplicadoDpto(obj){
 
 function gestionModulosFP(){
     mostrarPantallaEspera("Cargando ...");
-    cargaHTML("html/secretaria.htm", "div_modulosfp","GESTIÓN DE MÓDULOS FORMATIVOS DE FP",1000,2000,"center center","center center",
+    cargaHTML("html/secretaria.htm", "div_modulosfp","GESTIÓN DE MÓDULOS FORMATIVOS DE FP",1000,2000,"","",
         [
             {
                 class: "btn btn-success textoboton btn-sm",
