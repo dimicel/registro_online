@@ -3431,6 +3431,8 @@ function seleccionaModuloFP(fila) {
 
 function cancelaOPeracionModulos(obj){
     $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
+    div_modulos_panel_casillas.style.display='none';
+    document.getElementById("div_desc_operacion_modulos").style.visibility='hidden';
 }
 
 
