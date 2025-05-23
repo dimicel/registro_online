@@ -430,7 +430,7 @@ function generaTablaModulosFP() {
             const thead = document.querySelector("#tabla_modulos thead");
             thead.style.position = "sticky";
             thead.style.top = "0";
-            thead.style.backgroundColor = "#343a40";
+            thead.style.backgroundColor = "#8A8A7B";
             thead.style.color = "white";
             thead.style.zIndex = "2";
             thead.style.display = "table";
