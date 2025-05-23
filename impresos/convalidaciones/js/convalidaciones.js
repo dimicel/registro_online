@@ -336,7 +336,7 @@ function selModulos(e) {
             t="<center><label><small>Haz clic sobre los módulos que desees seleccionar. Si quieres quitar uno, tanbién haz clic sobre él</small></label></center><br>";
             t += "<center><table id='tab_lista_modulos'><tr><td><b>Código</b></td><td><b>Módulo</b></td></tr>";
             for (i = 0; i < resp["datos"].length; i++) {
-                t += "<tr onclick='selTablaListaMod(this)'><td>" + resp["datos"][i]["codigo"] + "</td><td>" + resp["datos"][i]["materia"] + "</td></tr>";
+                t += "<tr onclick='selTablaListaMod(this)'><td>" + resp["datos"][i]["codigo"] + "</td><td>" + resp["datos"][i]["modulo"] + "</td></tr>";
             }
             t += "</table></center>";
             document.getElementById("sMod").innerHTML = t;

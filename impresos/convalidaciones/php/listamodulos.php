@@ -16,10 +16,10 @@ $curso=$_POST["curso"];
 
 
 if ($curso=="Virtual_Modular"){
-    $c=$mysqli->query("SELECT ciclos_modulos.codigo,ciclos_modulos.materia,ciclos_modulos.curso FROM ciclos JOIN ciclos_modulos ON ciclos.id=ciclos_modulos.id WHERE ciclos.grado='$grado' AND ciclos.denominacion='$ciclo' ORDER BY ciclos_modulos.materia");
+    $c=$mysqli->query("SELECT ciclos_modulos.codigo,ciclos_modulos.modulo,ciclos_modulos.curso FROM ciclos JOIN ciclos_modulos ON ciclos.id=ciclos_modulos.id WHERE ciclos.grado='$grado' AND ciclos.denominacion='$ciclo' ORDER BY ciclos_modulos.modulo");
 }
 else {
-    $c=$mysqli->query("SELECT ciclos_modulos.codigo,ciclos_modulos.materia,ciclos_modulos.curso FROM ciclos JOIN ciclos_modulos ON ciclos.id=ciclos_modulos.id WHERE ciclos.grado='$grado' AND ciclos.denominacion='$ciclo' AND ciclos_modulos.curso='$curso' ORDER BY ciclos_modulos.materia");
+    $c=$mysqli->query("SELECT ciclos_modulos.codigo,ciclos_modulos.modulo,ciclos_modulos.curso FROM ciclos JOIN ciclos_modulos ON ciclos.id=ciclos_modulos.id WHERE ciclos.grado='$grado' AND ciclos.denominacion='$ciclo' AND ciclos_modulos.curso='$curso' ORDER BY ciclos_modulos.modulo");
 }
 
 if ($mysqli->errno>0){
@@ -34,7 +34,7 @@ else {
     $cont=0;
     while($r=$c->fetch_assoc()){
         $resp["datos"][$cont]["codigo"]=$r["codigo"];
-        $resp["datos"][$cont]["materia"]=$r["materia"];
+        $resp["datos"][$cont]["modulo"]=$r["modulo"];
         $cont++;
     }
     $resp["error"]="ok";
