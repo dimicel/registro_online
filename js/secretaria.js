@@ -3421,8 +3421,8 @@ function gestionModulosFP(){
 
 function seleccionaModuloFP(fila){
     let filas=document.querySelector("#tabla_modulos td");
-    filas.forEach((f)=>{
-        f.classList.remove("filaseleccionada");
+    filas.forEach(f => {
+        f.classList.add("filanoseleccionada");
     });
     fila.classList.add("filaseleccionada");
 }
