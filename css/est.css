@@ -145,25 +145,6 @@ th {
     cursor: default;
 }
 
-.filaseleccionada {
-    color: #966 !important;
-    background-color: #FF9 !important;
-}
-
-.filaseleccionada a {
-    color: #966 !important;
-}
-
-.filanoseleccionada {
-    /*color: #0070c1 !important;*/
-    /*background-color: #FFFFFF !important;*/
-    color: white !important;
-    background-color: green !important;
-}
-
-.filanoseleccionada a {
-    color: white !important;
-}
 
 label.error {
     float: none;

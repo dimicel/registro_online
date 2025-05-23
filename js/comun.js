@@ -117,27 +117,6 @@ function borraTecla() {
     tecla = 0;
 }
 
-//Devuelve un array con las filas seleccionadas de una tabla
-function devuelveSeleccionados(obj) {
-    var listado = new Array();
-    for (i = 0; i < obj.rows.length; i++) {
-        if (obj.rows[i].className == "filaseleccionada") {
-            listado.push(obj.rows[i]);
-        }
-    }
-    return listado;
-}
-
-function numElemSelecc(obj) {
-    num_selecc = 0;
-    for (i = 0; i < obj.rows.length; i++) {
-        if (obj.rows[i].className == "filaseleccionada") {
-            num_selecc++;
-        }
-    }
-    return num_selecc;
-}
-
 
 function retornaValRadioButton(obj) {
     for (i = 0; i < obj.length; i++) {
