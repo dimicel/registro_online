@@ -136,17 +136,10 @@ function cambiaTipoForm(sel){
 function anadeDoc(e) {
     e.preventDefault();
     creaInputs();
-    activaErrorEnTabla(false);
-    $("#anade_documento").dialog({
-        autoOpen: true,
-        dialogClass: "alert no-close",
-        modal: true,
-        hide: { effect: "fade", duration: 0 },
-        resizable: false,
-        show: { effect: "fade", duration: 0 },
-        title: "AÑADIR DOCUMENTO ADJUNTO",
-        width: 700,
-        buttons: [{
+    mostrarPantallaEspera("Cargando ...");
+    cargaHTML("html/exencion_fct.htm", "anade_documento","AÑADIR DOCUMENTO ADJUNTO",700,2000,"center center","center center",
+        [
+            {
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
@@ -163,8 +156,7 @@ function anadeDoc(e) {
                     actualizaTablaListaDocs();
                     document.getElementById("form_anade_documento").reset();
                     $('#div_den_otro_con').hide();
-                    $("#anade_documento").dialog("close");
-                    $("#anade_documento").dialog("destroy");
+                    $(this).dialog("destroy").remove();
                 }
             },
             {
@@ -175,12 +167,22 @@ function anadeDoc(e) {
                     $('#div_den_otro_con').hide();
                     selUltimoFile().remove();
                     selUltimoHidden().remove();
-                    $("#anade_documento").dialog("close");
-                    $("#anade_documento").dialog("destroy");
+                    $(this).dialog("destroy").remove();
                 }
             }
         ]
+    )
+    .then ((dialogo)=>{
+            ocultarPantallaEspera();
+            activaErrorEnTabla(false);
+        }
+    )
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
     });
+
 }
 
 
