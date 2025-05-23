@@ -10,6 +10,12 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
+$buscar=trim($_POST["buscar"]);
+if ($buscar!="") {
+    $res=$mysqli->query("select * from modulosfp where modulo like '%$buscar%' or codigo like '%$buscar%' order by modulo ASC, codigo ASC");
+} else {
+    $res=$mysqli->query("select * from modulosfp order by modulo ASC, codigo ASC");
+}
 
 $res=$mysqli->query("select * from modulosfp order by modulo ASC, codigo ASC");
 
