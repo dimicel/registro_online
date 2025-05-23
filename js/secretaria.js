@@ -414,7 +414,7 @@ function generaTablaModulosFP() {
     mostrarPantallaEspera();
     ancho_codigo="10%"; 
     ancho_descripcion="90%";    
-    $.post("php/secret_recupera_modulosfp.php", {}, (resp) => {
+    $.post("php/secret_recupera_modulosfp.php", {buscar:document.getElementById("modulo_buscar").value}, (resp) => {
         ocultarPantallaEspera();
 
         if (resp.error === "ok") {
