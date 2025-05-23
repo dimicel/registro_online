@@ -408,6 +408,10 @@ function generaSelectsDepartamentos(){
     }
 }
 
+function generaSelectModulosFP(){
+    
+}
+
 
 
 function listaRegistros(orden_campo, orden_direccion) {
@@ -3298,7 +3302,7 @@ function gestionModulosFP(){
                                                     for(i=0; i<resp.registro.length;i++){
                                                         departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
                                                     }
-                                                    generaSelectsDepartamentos();
+                                                    generaSelectModulosFP();
                                                     document.getElementById("dpto_select").selectedIndex=0;
                                                     document.getElementById("dpto_nombre").value=departamentos[0][0];
                                                     document.getElementById("dpto_abreviatura").value=departamentos[0][1];
@@ -3328,7 +3332,7 @@ function gestionModulosFP(){
         ]
     ).then((dialogo)=>{
         ocultarPantallaEspera();
-        generaSelectsDepartamentos();
+        generaSelectModulosFP();
         document.getElementById("dpto_select").selectedIndex=0;
         gestionSeleccionDpto();
     }).catch (error=>{
