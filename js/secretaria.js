@@ -436,20 +436,44 @@ function generaSelectsDepartamentos(){
     
 }*/
 
-function generaTablaModulosFP(){
+function generaTablaModulosFP() {
     mostrarPantallaEspera();
-    $.post("php/secret_recupera_modulosfp.php", {ordenCampo: "modulo", ordenDireccion: "ASC"}, (resp) => {
+    $.post("php/secret_recupera_modulosfp.php", { ordenCampo: "modulo", ordenDireccion: "ASC" }, (resp) => {
         ocultarPantallaEspera();
+
         if (resp.error === "ok") {
             const cont = document.getElementById("tbody_modulos");
-            cont.innerHTML = ""; // limpia tbody
+            cont.innerHTML = ""; // Limpia el contenido previo
 
-            // Aplica estilos necesarios para el scroll solo desde JS
+            // Aplica estilos al tbody para scroll
             cont.style.display = "block";
             cont.style.maxHeight = "250px";
             cont.style.overflowY = "auto";
             cont.style.width = "100%";
+            cont.style.borderTop = "1px solid #aaa";
 
+            // Aplica estilos al thead para mantenerlo fijo
+            const thead = document.querySelector("#tabla_modulos thead");
+            thead.style.position = "sticky";
+            thead.style.top = "0";
+            thead.style.backgroundColor = "#343a40";
+            thead.style.color = "white";
+            thead.style.zIndex = "2";
+            thead.style.display = "table";
+            thead.style.width = "100%";
+            thead.style.tableLayout = "fixed";
+
+            // Estilo de cada th (50% ancho)
+            const ths = thead.querySelectorAll("th");
+            ths.forEach(th => {
+                th.style.width = "50%";
+                th.style.boxSizing = "border-box";
+                th.style.overflow = "hidden";
+                th.style.textOverflow = "ellipsis";
+                th.style.whiteSpace = "nowrap";
+            });
+
+            // Añadir filas al tbody
             for (let i = 0; i < resp.registro.length; i++) {
                 const fila = document.createElement("tr");
                 fila.setAttribute("id", resp.registro[i].id);
@@ -484,7 +508,6 @@ function generaTablaModulosFP(){
         }
     }, "json");
 }
-
 
 
 
