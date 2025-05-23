@@ -410,7 +410,7 @@ function generaSelectsDepartamentos(){
 
 function generaTablaModulosFP(){
     mostrarPantallaEspera();
-    $.post("php/secret_recupera_modulos_fp.php", {ordenCampo:"modulo",ordenDireccion:"ASC"},(resp)=>{
+    $.post("php/secret_recupera_modulosfp.php", {ordenCampo:"modulo",ordenDireccion:"ASC"},(resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
             cont=document.getElementById("tbody_modulos");
