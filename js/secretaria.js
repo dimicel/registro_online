@@ -3384,21 +3384,7 @@ function gestionModulosFP(){
                                         ocultarPantallaEspera();
                                         if (resp=="ok"){
                                             alerta("Departamento eliminado correctamente.","ELIMINACIÓN CORRECTA");
-                                            mostrarPantallaEspera();;
-                                            $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
-                                                ocultarPantallaEspera();
-                                                if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
-                                                else {
-                                                    //departamentos=[];
-                                                    for(i=0; i<resp.registro.length;i++){
-                                                        //departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
-                                                    }
-                                                    generaTablaModulosFP();
-                                                    //document.getElementById("dpto_select").selectedIndex=0;
-                                                    //document.getElementById("dpto_nombre").value=departamentos[0][0];
-                                                    //document.getElementById("dpto_abreviatura").value=departamentos[0][1];
-                                                }
-                                            },"json");
+                                            generaTablaModulosFP();
                                         }
                                         else if (resp=="server"){
                                             alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
