@@ -438,7 +438,7 @@ function generaSelectsDepartamentos(){
 
 function generaTablaModulosFP() {
     mostrarPantallaEspera();
-    $.post("php/secret_recupera_modulosfp.php", { ordenCampo: "modulo", ordenDireccion: "ASC" }, (resp) => {
+    $.post("php/secret_recupera_modulosfp.php", {}, (resp) => {
         ocultarPantallaEspera();
 
         if (resp.error === "ok") {

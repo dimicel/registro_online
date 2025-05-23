@@ -10,14 +10,8 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-$ordenCampo=$_POST["ordenCampo"];
-$ordenDireccion=$_POST["ordenDireccion"];
 
-$ordenSQL="";
-if ($ordenCampo=="codigo") $ordenSQL.=" codigo ".$ordenDireccion.", modulo ASC";
-else $ordenSQL.=" modulo ".$ordenDireccion.", codigo ASC";
-
-$res=$mysqli->query("select * from modulosfp order by ".$ordenSQL);
+$res=$mysqli->query("select * from modulosfp order by modulo ASC, codigo ASC");
 
 $data["error"]="ok";
 $data["registro"]=array();
