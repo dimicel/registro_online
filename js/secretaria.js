@@ -3420,6 +3420,10 @@ function gestionModulosFP(){
 
 
 function seleccionaModuloFP(fila){
-    
+    let filas=document.querySelector("#tabla_modulos td");
+    filas.forEach((f)=>{
+        f.classList.remove("filaseleccionada");
+    });
+    fila.classList.add("filaseleccionada");
 }
 
