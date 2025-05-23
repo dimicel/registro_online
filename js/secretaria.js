@@ -408,7 +408,7 @@ function generaSelectsDepartamentos(){
     }
 }
 
-function generaTablaModulosFP(){
+/*function generaTablaModulosFP(){
     mostrarPantallaEspera();
     $.post("php/secret_recupera_modulosfp.php",{ordenCampo:"modulo",ordenDireccion:"ASC"},(resp)=>{
         ocultarPantallaEspera();
@@ -421,7 +421,7 @@ function generaTablaModulosFP(){
                 fila.setAttribute("onclick","seleccionaModuloFP(this)");
                 celda=document.createElement("td");
                 celda.innerHTML=resp.registro[i].codigo;
-                celda.setAttribute("style","width:20%");
+                celda.setAttribute("width","20%");
                 fila.appendChild(celda);
                 celda=document.createElement("td");
                 celda.innerHTML=resp.registro[i].modulo;
@@ -434,7 +434,57 @@ function generaTablaModulosFP(){
         }
     },"json");
     
+}*/
+
+function generaTablaModulosFP(){
+    mostrarPantallaEspera();
+    $.post("php/secret_recupera_modulosfp.php", {ordenCampo: "modulo", ordenDireccion: "ASC"}, (resp) => {
+        ocultarPantallaEspera();
+        if (resp.error === "ok") {
+            const cont = document.getElementById("tbody_modulos");
+            cont.innerHTML = ""; // limpia tbody
+
+            // Aplica estilos necesarios para el scroll solo desde JS
+            cont.style.display = "block";
+            cont.style.maxHeight = "250px";
+            cont.style.overflowY = "auto";
+            cont.style.width = "100%";
+
+            for (let i = 0; i < resp.registro.length; i++) {
+                const fila = document.createElement("tr");
+                fila.setAttribute("id", resp.registro[i].id);
+                fila.setAttribute("title", resp.registro[i].modulo);
+                fila.setAttribute("onclick", "seleccionaModuloFP(this)");
+                fila.style.display = "table";
+                fila.style.width = "100%";
+                fila.style.tableLayout = "fixed";
+
+                const celdaCodigo = document.createElement("td");
+                celdaCodigo.innerHTML = resp.registro[i].codigo;
+                celdaCodigo.style.width = "50%";
+                celdaCodigo.style.boxSizing = "border-box";
+                celdaCodigo.style.overflow = "hidden";
+                celdaCodigo.style.textOverflow = "ellipsis";
+                celdaCodigo.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaCodigo);
+
+                const celdaDescripcion = document.createElement("td");
+                celdaDescripcion.innerHTML = resp.registro[i].modulo;
+                celdaDescripcion.style.width = "50%";
+                celdaDescripcion.style.boxSizing = "border-box";
+                celdaDescripcion.style.overflow = "hidden";
+                celdaDescripcion.style.textOverflow = "ellipsis";
+                celdaDescripcion.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaDescripcion);
+
+                cont.appendChild(fila);
+            }
+        } else if (resp.error === "server") {
+            alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
+        }
+    }, "json");
 }
+
 
 
 
