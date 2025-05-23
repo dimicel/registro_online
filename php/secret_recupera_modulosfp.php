@@ -17,8 +17,6 @@ if ($buscar!="") {
     $res=$mysqli->query("select * from modulosfp order by modulo ASC, codigo ASC");
 }
 
-$res=$mysqli->query("select * from modulosfp order by modulo ASC, codigo ASC");
-
 $data["error"]="ok";
 $data["registro"]=array();
 $contador=0;
