@@ -26,7 +26,5 @@ while ($reg=$res->fetch_assoc()){
     $data["registro"][$contador]= $reg;
     $contador++;
 }
-
-
 exit(json_encode($data));
 

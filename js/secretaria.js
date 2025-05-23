@@ -409,7 +409,29 @@ function generaSelectsDepartamentos(){
 }
 
 function generaTablaModulosFP(){
-
+    mostrarPantallaEspera();
+    $.post("php/secret_recupera_modulos_fp.php", {ordenCampo:"modulo",ordenDireccion:"ASC"},(resp)=>{
+        ocultarPantallaEspera();
+        if (resp.error=="ok"){
+            cont=document.getElementById("tbody_modulos");
+            for (let i=0;i<resp.registro.length;i++){
+                fila=document.createElement("tr");
+                fila.setAttribute("id",resp.registro[i].id);
+                fila.setAttribute("title",resp.registro[i].modulo);
+                fila.setAttribute("onclick","seleccionaModuloFP(this)");
+                celda=document.createElement("td");
+                celda.innerHTML=resp.registro[i].codigo;
+                fila.appendChild(celda);
+                celda=document.createElement("td");
+                celda.innerHTML=resp.registro[i].modulo;
+                fila.appendChild(celda);
+                cont.appendChild(fila);
+            }
+        }
+        else if(resp.error="server"){
+            alerta("Error en base de datos. La aplicación no funcionará correctamente.","ERROR DB");
+        }
+    });
     
 }
 
