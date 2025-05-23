@@ -3379,11 +3379,13 @@ function gestionModulosFP(){
                             confirmar("Por favor, confirme otra vez que desea eliminar el Módulo Formativo seleccionado.","CONFIRMAR ELIMINACIÓN")
                             .then(function(confirmacion2) {
                                 if(confirmacion2){
-                                    mostrarPantallaEspera();;
-                                    $.post("php/secret_elimina_departamento.php",{dpto:document.getElementById("dpto_select").value},(resp)=>{
+                                    mostrarPantallaEspera();
+                                    elim_codigo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
+                                    elim_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
+                                    $.post("php/secret_elimina_modulofp.php",{codigo:elim_codigo,modulo:elim_modulo},(resp)=>{
                                         ocultarPantallaEspera();
                                         if (resp=="ok"){
-                                            alerta("Departamento eliminado correctamente.","ELIMINACIÓN CORRECTA");
+                                            alerta("Módulo Formativo eliminado correctamente.","ELIMINACIÓN CORRECTA");
                                             generaTablaModulosFP();
                                         }
                                         else if (resp=="server"){
