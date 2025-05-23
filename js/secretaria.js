@@ -3346,8 +3346,12 @@ function gestionModulosFP(){
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                     document.getElementById("div_desc_operacion").style.visibility='visible';
-                    document.getElementById("desc_operacion").innerHTML="MODIFICACIÓN DE MÓDULO FORMATIVO";
+                    document.getElementById("desc_operacion").innerHTML="MODIFICACIÓN DE MÓDULO FORMATIVO MARCADO";
                     document.getElementById("btn_nuevo_modulo").innerHTML="Guardar";
+                    _codigo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
+                    _modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
+                    document.getElementById("modulo_codigo").value=_codigo;
+                    document.getElementById("modulo_descripcion").value=_modulo;
                     document.getElementById("backup_descripcion").value=document.getElementById("modulo_descripcion").value;
                     document.getElementById("backup_codigo").value=document.getElementById("modulo_codigo").value;
                 }
@@ -3423,6 +3427,10 @@ function seleccionaModuloFP(fila) {
     });
     fila.classList.remove("deselected");
     fila.classList.add("selected");
+}
+
+function cancelaOPeracionModulos(obj){
+    $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
 }
 
 
