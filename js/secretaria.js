@@ -3328,10 +3328,9 @@ function gestionModulosFP(){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Nuevo",
                 click: function() {
+                    div_modulos_panel_casillas.style.display='';
                     document.getElementById("modulo_codigo").value="";
                     document.getElementById("modulo_descripcion").value="";
-                    document.getElementById("modulo_codigo").readOnly=false;
-                    document.getElementById("modulo_descripcion").readOnly=false;
                     div_boton_guardar_cambios.style.visibility="visible";
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
@@ -3344,9 +3343,8 @@ function gestionModulosFP(){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Modificar",
                 click: function() {
+                    div_modulos_panel_casillas.style.display='';
                     div_boton_guardar_cambios.style.visibility="visible";
-                    document.getElementById("modulo_codigo").readOnly=false;
-                    document.getElementById("modulo_descripcion").readOnly=false;
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                     document.getElementById("div_desc_operacion").style.visibility='visible';
