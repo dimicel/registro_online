@@ -431,7 +431,7 @@ function generaTablaModulosFP() {
             thead.style.position = "sticky";
             thead.style.top = "0";
             thead.style.backgroundColor = "#8A8A7B";
-            thead.style.color = "#FFF";
+            thead.style.color = "white";
             thead.style.zIndex = "2";
             thead.style.display = "table";
             thead.style.width = "100%";
@@ -448,6 +448,7 @@ function generaTablaModulosFP() {
                 th.style.overflow = "hidden";
                 th.style.textOverflow = "ellipsis";
                 th.style.whiteSpace = "nowrap";
+                th.style.color = "white";
             });
 
             // Añadir filas al tbody
