@@ -412,6 +412,8 @@ function generaSelectsDepartamentos(){
 
 function generaTablaModulosFP() {
     mostrarPantallaEspera();
+    ancho_codigo="10%"; 
+    ancho_descripcion="90%";    
     $.post("php/secret_recupera_modulosfp.php", {}, (resp) => {
         ocultarPantallaEspera();
 
@@ -440,8 +442,8 @@ function generaTablaModulosFP() {
             // Estilo de cada th: 20% para código, 80% para descripción
             const ths = thead.querySelectorAll("th");
             if (ths.length === 2) {
-                ths[0].style.width = "20%";
-                ths[1].style.width = "80%";
+                ths[0].style.width = ancho_codigo;
+                ths[1].style.width = ancho_descripcion;
             }
             ths.forEach(th => {
                 th.style.boxSizing = "border-box";
@@ -463,7 +465,7 @@ function generaTablaModulosFP() {
 
                 const celdaCodigo = document.createElement("td");
                 celdaCodigo.innerHTML = resp.registro[i].codigo;
-                celdaCodigo.style.width = "20%";
+                celdaCodigo.style.width = ancho_codigo;
                 celdaCodigo.style.boxSizing = "border-box";
                 celdaCodigo.style.overflow = "hidden";
                 celdaCodigo.style.textOverflow = "ellipsis";
@@ -472,7 +474,7 @@ function generaTablaModulosFP() {
 
                 const celdaDescripcion = document.createElement("td");
                 celdaDescripcion.innerHTML = resp.registro[i].modulo;
-                celdaDescripcion.style.width = "80%";
+                celdaDescripcion.style.width = ancho_descripcion;
                 celdaDescripcion.style.boxSizing = "border-box";
                 celdaDescripcion.style.overflow = "hidden";
                 celdaDescripcion.style.textOverflow = "ellipsis";
@@ -3414,5 +3416,10 @@ function gestionModulosFP(){
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
+}
+
+
+function seleccionaModuloFP(fila){
+    
 }
 

@@ -107,17 +107,6 @@ function confirmar(mensaje, titulo, ancho) {
 }
 
 
-function pinchaFila(x) {
-    if (tecla != 17) {
-        var numfilas = document.getElementById('listausus').rows.length;
-        for (i = 0; i < numfilas; i++) {
-            document.getElementById('listausus').rows[i].className = "filanoseleccionada";
-        }
-    }
-    if (tecla == 17 && x.className == "filaseleccionada") x.className = "filanoseleccionada";
-    else x.className = "filaseleccionada";
-}
-
 function pulsaTecla(evnt) {
     var ev = (evnt) ? evnt : event;
     tecla = (ev.which) ? ev.which : event.keyCode;
