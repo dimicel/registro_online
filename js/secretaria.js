@@ -421,6 +421,7 @@ function generaTablaModulosFP(){
                 fila.setAttribute("onclick","seleccionaModuloFP(this)");
                 celda=document.createElement("td");
                 celda.innerHTML=resp.registro[i].codigo;
+                celda.setAttribute("style","width:20%");
                 fila.appendChild(celda);
                 celda=document.createElement("td");
                 celda.innerHTML=resp.registro[i].modulo;
