@@ -194,16 +194,6 @@ jQuery.validator.addMethod("email_no_obligatorio", function(value, element) {
     return emailPattern.test(value);
 });
 
-function revisaNIF_Pasaporte(obj){
-    var aux="";
-    for (i=0; i<obj.value.length;i++){
-        if ((obj.value.charAt(i)>="a" && obj.value.charAt(i)<="z") || (obj.value.charAt(i)>="A" && obj.value.charAt(i)<="Z") || (obj.value.charAt(i)>="0" && obj.value.charAt(i)<="9")){
-            aux+=obj.value.charAt(i);
-        }
-    }
-    obj.value=aux;
-}
-
 
 //Limita un grupo de checkbox a que puedan activar si hay menos de un número de ellos activo
 function limitCheckboxes(selector, maxCount) {
