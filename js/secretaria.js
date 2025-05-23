@@ -432,7 +432,7 @@ function generaTablaModulosFP(){
         else if(resp.error="server"){
             alerta("Error en base de datos. La aplicación no funcionará correctamente.","ERROR DB");
         }
-    });
+    },"json");
     
 }
 
