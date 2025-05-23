@@ -13,7 +13,6 @@
     <link rel="stylesheet" href=<?php echo "../../css/est.css?q=".time();?> type="text/css">
     <link rel="stylesheet" href=<?php echo "../../js/croppie/croppie.css?q=".time();?> type="text/css">
     <link rel="stylesheet" href=<?php echo "../../jqueryui/jquery-ui.min.css?q=".time();?>>
-    <link rel="stylesheet" href=<?php echo "css/convalidaciones.css?q=".time();?>>
     <title>CONVALIDACIONES</title>
 </head>
 

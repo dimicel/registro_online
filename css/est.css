@@ -173,3 +173,13 @@ select.error {
 .mi-checkbox .custom-control-input:checked~.custom-control-label::before {
 	background-color:green;
 }
+
+tr.selected {
+    background-color: yellow;
+    color: brown;
+  }
+  
+tr.deselected {
+    background-color: #f4f3e5;
+    color: #312e25;
+}
