@@ -3336,6 +3336,11 @@ function gestionModulosFP(){
                     document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
                     document.getElementById("desc_operacion_modulos").innerHTML="ALTA DE NUEVO MÓDULO FORMATIVO";
                     document.getElementById("btn_nuevo_modulo").innerHTML="Añadir";
+                    let filas = document.getElementById("tbody_modulos").querySelectorAll("tr");
+                    filas.forEach(f => {
+                        f.classList.remove("selected");
+                        f.classList.add("deselected");
+                    });
                 }
             },
             {
