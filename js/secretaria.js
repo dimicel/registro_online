@@ -3490,11 +3490,13 @@ function guardaAnadeModulo(obj){
 }
 
 function compruebaDuplicadoModuloFP(){
+    var accion="";
     var modulo=document.getElementById("modulo_descripcion").value;
     var codigo=document.getElementById("modulo_codigo").value;
-    var id_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].id;
-    var accion="";
-    
+    if(document.getElementById("tbody_modulos").querySelectorAll("tr.selected").length==0){
+        var id_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].id;
+    }
+    else var id_modulo=-1;
     if(document.getElementById("btn_nuevo_modulo").innerHTML=="Añadir"){
         accion="alta";
     }
