@@ -3489,4 +3489,28 @@ function guardaAnadeModulo(obj){
     document.getElementById("div_desc_operacion_modulos").style.visibility='hidden';
 }
 
+function compruebaDuplicadoModuloFP(){
+    var modulo=document.getElementById("modulo_descripcion").value;
+    var codigo=document.getElementById("modulo_codigo").value;
+    var id_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].id;
+    var accion="";
+    
+    if(document.getElementById("btn_nuevo_modulo").innerHTML=="Añadir"){
+        accion="alta";
+    }
+    else if(document.getElementById("btn_nuevo_modulo").innerHTML=="Guardar"){
+        accion="modifica";  
+    }
+    $.post("php/secret_comprueba_duplicado_modulofp.php",{modulo:modulo,codigo:codigo,accion:accion,id:id_modulo},(resp)=>{
+        //ocultarPantallaEspera();
+        if (resp=="duplicado" || resp=="duplicado_normalizado"){
+            document.getElementById("div_modulo_duplicado").style.visibility='visible';
+        }
+        else{
+            document.getElementById("div_modulo_duplicado").style.visibility='hidden';
+        }
+    }); 
+}
+
+
 
