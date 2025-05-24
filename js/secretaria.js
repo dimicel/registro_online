@@ -3454,7 +3454,7 @@ function guardaAnadeModulo(obj){
         $.post("php/secret_anade_modulofp.php",{modulo:document.getElementById("modulo_descripcion").value,codigo:document.getElementById("modulo_codigo").value},(resp)=>{
             ocultarPantallaEspera();
             if (resp=="ok"){
-                alerta("Departamento añadido correctamente.","ALTA CORRECTA");
+                alerta("Módulo Formativo añadido correctamente.","ALTA CORRECTA");
                 generaTablaModulosFP();
             }
             else if (resp=="server"){
@@ -3475,7 +3475,7 @@ function guardaAnadeModulo(obj){
             id_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].id;
             $.post("php/secret_modifica_modulofp.php",{codigo:codigo,modulo:modulo, id_modulo:id_modulo},(resp)=>{  
                 if (resp=="ok"){
-                    alerta("Departamento modificado correctamente.","MODIFICACIÓN CORRECTA");
+                    alerta("Módulo Formativo modificado correctamente.","MODIFICACIÓN CORRECTA");
                     generaTablaModulosFP();
                     mostrarPantallaEspera();
                 }
