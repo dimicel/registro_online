@@ -3491,7 +3491,7 @@ function guardaAnadeModulo(obj){
 
 function compruebaDuplicadoModuloFP(){
     if (document.getElementById("div_modulo_duplicado").style.visibility=='visible'){
-        alerta("Ya existe otro Módulo Fiormativo con el mismo código y la misma descripción.","MÓDULO DUPLICADO");
+        alerta("Ya existe otro Módulo Formativo con el mismo código y la misma descripción.","MÓDULO DUPLICADO");
         return;
     }
     var accion="";
