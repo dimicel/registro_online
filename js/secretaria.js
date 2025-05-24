@@ -3421,7 +3421,7 @@ function gestionModulosFP(){
 
 
 function seleccionaModuloFP(fila) {
-    if (document.getElementById("div_desc_operacion").style.visibility=='visible'){
+    if (document.getElementById("div_desc_operacion_modulos").style.visibility=='visible'){
         return;
     }
     let filas = document.getElementById("tbody_modulos").querySelectorAll("tr");
@@ -3486,7 +3486,7 @@ function guardaAnadeModulo(obj){
     }
     div_modulos_panel_casillas.style.display='';
     $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
-    document.getElementById("div_desc_operacion").style.visibility='hidden';
+    document.getElementById("div_desc_operacion_modulos").style.visibility='hidden';
 }
 
 
