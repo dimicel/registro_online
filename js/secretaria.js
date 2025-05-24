@@ -3329,11 +3329,11 @@ function gestionModulosFP(){
                 text: "Nuevo",
                 click: function() {
                     div_modulos_panel_casillas.style.display='';
+                    document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
                     document.getElementById("modulo_codigo").value="";
                     document.getElementById("modulo_descripcion").value="";
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
-                    document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
                     document.getElementById("desc_operacion_modulos").innerHTML="ALTA DE NUEVO MÓDULO FORMATIVO";
                     document.getElementById("btn_nuevo_modulo").innerHTML="Añadir";
                     let filas = document.getElementById("tbody_modulos").querySelectorAll("tr");
@@ -3352,9 +3352,9 @@ function gestionModulosFP(){
                         return;
                     }
                     div_modulos_panel_casillas.style.display='';
+                    document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
-                    document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
                     document.getElementById("desc_operacion_modulos").innerHTML="MODIFICACIÓN DE MÓDULO FORMATIVO MARCADO";
                     document.getElementById("btn_nuevo_modulo").innerHTML="Guardar";
                     _codigo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
@@ -3488,7 +3488,7 @@ function guardaAnadeModulo(obj){
             }); 
         }
     }
-    div_modulos_panel_casillas.style.display='';
+    div_modulos_panel_casillas.style.display='none';
     $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
     document.getElementById("div_desc_operacion_modulos").style.visibility='hidden';
 }
