@@ -3469,7 +3469,7 @@ function guardaAnadeModulo(obj){
             codigo=document.getElementById("modulo_codigo").value;
             modulo=document.getElementById("modulo_descripcion").value;
             id_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].id;
-            $.post("php/secret_modifica_modulofp.php",{codigo:nom_dpto,modulo:abr_dpto, id_modulo:id_dpto},(resp)=>{  
+            $.post("php/secret_modifica_modulofp.php",{codigo:codigo,modulo:modulo, id_modulo:id_modulo},(resp)=>{  
                 if (resp=="ok"){
                     alerta("Departamento modificado correctamente.","MODIFICACIÓN CORRECTA");
                     generaTablaModulosFP();
