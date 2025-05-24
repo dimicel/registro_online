@@ -3448,7 +3448,7 @@ function guardaAnadeModulo(obj){
             alerta("Los campos 'Código' y 'Descripción' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
             return;
     }
-    texttextBoton=obj.innerHTML;
+    textBoton=obj.innerHTML;
     if (textBoton=="Añadir"){
         mostrarPantallaEspera();;
         $.post("php/secret_anade_modulofp.php",{modulo:document.getElementById("modulo_descripcion").value,codigo:document.getElementById("modulo_codigo").value},(resp)=>{
