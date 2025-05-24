@@ -3493,7 +3493,7 @@ function compruebaDuplicadoModuloFP(){
     var accion="";
     var modulo=document.getElementById("modulo_descripcion").value;
     var codigo=document.getElementById("modulo_codigo").value;
-    if(document.getElementById("tbody_modulos").querySelectorAll("tr.selected").length==0){
+    if(document.getElementById("tbody_modulos").querySelectorAll("tr.selected").length>0){
         var id_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].id;
     }
     else var id_modulo=-1;
