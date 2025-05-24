@@ -410,12 +410,12 @@ function generaSelectsDepartamentos(){
 
 
 
-function generaTablaModulosFP() {
-    mostrarPantallaEspera();
+function generaTablaModulosFP(pantallaEspera=true) {
+    if (pantallaEspera) mostrarPantallaEspera();
     ancho_codigo="10%"; 
     ancho_descripcion="90%";    
     $.post("php/secret_recupera_modulosfp.php", {buscar:document.getElementById("modulo_buscar").value}, (resp) => {
-        ocultarPantallaEspera();
+        if (pantallaEspera) ocultarPantallaEspera();
 
         if (resp.error === "ok") {
             const cont = document.getElementById("tbody_modulos");
