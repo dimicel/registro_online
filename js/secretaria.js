@@ -3252,7 +3252,7 @@ function guardaAnadeDpto(obj){
             $.post("php/secret_modifica_departamento.php",{dpto_nombre:nom_dpto,dpto_abreviatura:abr_dpto, dpto_id:id_dpto},(resp)=>{  
                 if (resp=="ok"){
                     alerta("Departamento modificado correctamente.","MODIFICACIÓN CORRECTA");
-                    mostrarPantallaEspera();;
+                    mostrarPantallaEspera();
                     $.post("php/secret_recupera_departamentos.php",{},(resp)=>{
                         ocultarPantallaEspera();
                         if(resp.error!="ok") alerta ("No se han podido regenerar los selectores de los departamentos.","ERROR DB/SERVER");
@@ -3421,6 +3421,9 @@ function gestionModulosFP(){
 
 
 function seleccionaModuloFP(fila) {
+    if (document.getElementById("div_desc_operacion").style.visibility=='visible'){
+        return;
+    }
     let filas = document.getElementById("tbody_modulos").querySelectorAll("tr");
     filas.forEach(f => {
         f.classList.remove("selected");
@@ -3434,6 +3437,56 @@ function cancelaOPeracionModulos(obj){
     $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
     div_modulos_panel_casillas.style.display='none';
     document.getElementById("div_desc_operacion_modulos").style.visibility='hidden';
+}
+
+function guardaAnadeModulo(obj){
+    texttextBoton=obj.innerHTML;
+    if (document.getElementById("modulo_codigo").value.trim().length==0 || document.getElementById("modulo_descripcion").value.trim().length==0){
+            alerta("Los campos 'Código' y 'Descripción' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
+            return;
+    }
+    if (textBoton=="Añadir"){
+        mostrarPantallaEspera();;
+        $.post("php/secret_anade_modulofp.php",{modulo:document.getElementById("modulo_descripcion").value,codigo:document.getElementById("modulo_codigo").value},(resp)=>{
+            ocultarPantallaEspera();
+            if (resp=="ok"){
+                alerta("Departamento añadido correctamente.","ALTA CORRECTA");
+                generaTablaModulosFP();
+            }
+            else if (resp=="server"){
+                alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+            }
+            else{
+                alerta(resp,"ERROR DB/SERVIDOR");
+            }
+        });
+    }
+    else if(textBoton=="Guardar"){
+        if (document.getElementById("modulo_descripcion").value==document.getElementById("backup_descripcion").value && document.getElementById("modulo_codigo").value==document.getElementById("backup_codigo").value){
+            alerta("No se han realizado cambios en el departamento. No se realizará ninguna acción.","SIN CAMBIOS");
+        }
+        else{
+            codigo=document.getElementById("modulo_codigo").value;
+            modulo=document.getElementById("modulo_descripcion").value;
+            id_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].id;
+            $.post("php/secret_modifica_modulofp.php",{codigo:nom_dpto,modulo:abr_dpto, id_modulo:id_dpto},(resp)=>{  
+                if (resp=="ok"){
+                    alerta("Departamento modificado correctamente.","MODIFICACIÓN CORRECTA");
+                    generaTablaModulosFP();
+                    mostrarPantallaEspera();
+                }
+                else if (resp=="server"){
+                    alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+                }
+                else{
+                    alerta(resp,"ERROR DB/SERVIDOR");
+                }
+            }); 
+        }
+    }
+    div_modulos_panel_casillas.style.display='';
+    $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
+    document.getElementById("div_desc_operacion").style.visibility='hidden';
 }
 
 
