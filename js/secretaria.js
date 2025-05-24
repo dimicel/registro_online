@@ -3440,11 +3440,15 @@ function cancelaOPeracionModulos(obj){
 }
 
 function guardaAnadeModulo(obj){
-    texttextBoton=obj.innerHTML;
+    if (document.getElementById("div_modulo_duplicado").style.visibility=='visible'){
+        alerta("Ya existe otro Módulo Formativo con el mismo código y la misma descripción.","MÓDULO DUPLICADO");
+        return;
+    }
     if (document.getElementById("modulo_codigo").value.trim().length==0 || document.getElementById("modulo_descripcion").value.trim().length==0){
             alerta("Los campos 'Código' y 'Descripción' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
             return;
     }
+    texttextBoton=obj.innerHTML;
     if (textBoton=="Añadir"){
         mostrarPantallaEspera();;
         $.post("php/secret_anade_modulofp.php",{modulo:document.getElementById("modulo_descripcion").value,codigo:document.getElementById("modulo_codigo").value},(resp)=>{
@@ -3490,10 +3494,6 @@ function guardaAnadeModulo(obj){
 }
 
 function compruebaDuplicadoModuloFP(){
-    if (document.getElementById("div_modulo_duplicado").style.visibility=='visible'){
-        alerta("Ya existe otro Módulo Formativo con el mismo código y la misma descripción.","MÓDULO DUPLICADO");
-        return;
-    }
     var accion="";
     var modulo=document.getElementById("modulo_descripcion").value;
     var codigo=document.getElementById("modulo_codigo").value;
