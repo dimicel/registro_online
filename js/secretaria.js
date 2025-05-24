@@ -3490,6 +3490,10 @@ function guardaAnadeModulo(obj){
 }
 
 function compruebaDuplicadoModuloFP(){
+    if (document.getElementById("div_modulo_duplicado").style.visibility=='visible'){
+        alerta("Ya existe otro Módulo Fiormativo con el mismo código y la misma descripción.","MÓDULO DUPLICADO");
+        return;
+    }
     var accion="";
     var modulo=document.getElementById("modulo_descripcion").value;
     var codigo=document.getElementById("modulo_codigo").value;
