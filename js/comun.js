@@ -492,11 +492,11 @@ function ocultarPantallaEspera() {
 
 function habilitarContextMenuTactil(contenedor, objetivo = 'tr', delay = 600) {
     // Solo en dispositivos táctiles
-    //if (!('ontouchstart' in window)) return;
+    if (!('ontouchstart' in window)) return;
 
     let pressTimer;
 
-    $(contenedor).on('touchstart', objetivo, function(e) {
+    $("#"+contenedor).on('touchstart', objetivo, function(e) {
         const elem = this;
         const touch = e.originalEvent.touches[0];
 
