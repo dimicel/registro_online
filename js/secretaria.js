@@ -140,7 +140,7 @@ $(function() {
 
     $('#registros_docs').contextMenu({
         selector: 'tr',
-        trigger:'right,touchstart',
+        trigger:'right',
         callback: function(key, options) {
             if ($("#encabezado_docs tr td:first").html() == "NIE") {
                 id = $(this).children("td:first").html();
