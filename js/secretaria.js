@@ -184,20 +184,7 @@ $(function() {
         }
     });
 
-    // Soporte para pulsación larga en pantallas táctiles
-    let pressTimer;
-    $('#registros_docs').on('touchstart', 'tr', function(e) {
-        const tr = this;
-        pressTimer = setTimeout(function() {
-            const touch = e.originalEvent.touches[0];
-            $(tr).contextMenu({
-                x: touch.clientX,
-                y: touch.clientY
-            });
-        }, 600); // milisegundos para considerar "pulsación larga"
-    }).on('touchend touchcancel', function() {
-        clearTimeout(pressTimer);
-    });
+    habilitarContextMenuTactil('registros_docs');
 });
 
 function generaSelectCurso(obj){

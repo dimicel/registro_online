@@ -41,6 +41,8 @@ $(function() {
         }
     });
 
+    habilitarContextMenuTactil('registros_usus');
+
     $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
         total: 1,
         page: pagina,
