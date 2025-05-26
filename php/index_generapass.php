@@ -4,6 +4,7 @@ header("Content-Type: text/html;charset=utf-8");
 include("mail.php");
 include("conexion.php");
 $nie=strtoupper($_POST['nie']);
+
 if (substr($nie, 0, 9)=="S4500175G") exit("reservado");
 $a_medias=false;
 $envio=false;
@@ -14,6 +15,16 @@ if ($mysqli->errno>0){
 
 $acentos = $mysqli->query("SET NAMES 'utf8'");
 
+$consulta=$mysqli->query("select admin_maestro from config_centro");
+if ($consulta->num_rows>0){
+	$admin=$consulta->fetch_array(MYSQLI_ASSOC);
+	$admin_maestro=$admin['admin_maestro'];
+	$consulta->free();
+	if (substr($nie,0 , mb_strlen($admin_maestro))=="S4500175G") exit("reservado");
+}
+else{
+	exit("server");
+}
 
 $usu=$mysqli->query("select * from usuarios where id_nie='$nie'");
 if ($usu->num_rows<=0){

@@ -25,7 +25,18 @@ else {
 	$contrasena=$_POST['password'];
 
 	$mysqli->set_charset("utf8");
-	
+	$consulta=$mysqli->query("select admin_maestro from config_centro");
+	if ($consulta->num_rows>0){
+		$admin=$consulta->fetch_array(MYSQLI_ASSOC);
+		$admin_maestro=$admin['admin_maestro'];
+		$consulta->free();
+	}
+	else{
+		$dat["error"]="server";
+		exit(json_encode($dat));
+	}
+
+
 	if ($usuario==$admin_maestro){
 		$consulta=$mysqli->query("select * from departamentos");
 		if ($consulta->num_rows>0){
