@@ -2748,7 +2748,7 @@ function JefesDepartamento(){
                                     alerta("Datos del Jefe de Departamento actualizados correctamente.","ACTUALIZACIÓN CORRECTA");
                                 }
                                 else if(resp=="password_duplicada"){
-                                    alerta("La contraseña está asignada a otro Jefe de Departamento. Sólo se ha grabado el email.<br>Si desea asignar o cambiar la contraseña, introduzca una nueva que cumpla los requisitos.","PASSWORD DUPLICADA");
+                                    alerta("La contraseña está asignada a otro Jefe de Departamento. El resto de datos se han actualizado.<br>Si desea asignar o cambiar la contraseña, introduzca una nueva que cumpla los requisitos.","PASSWORD DUPLICADA");
                                 }
                                 else{
                                     alerta(resp,"ERROR");
