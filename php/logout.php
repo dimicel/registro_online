@@ -8,4 +8,5 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 $_SESSION=array();
 session_regenerate_id(true);
+session_unset();   
 session_destroy();

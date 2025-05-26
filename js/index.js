@@ -34,13 +34,6 @@ $(function() {
 
     
 
-
-
-    /*jQuery.validator.addMethod("numero_nif", function(value, element) {
-        if (value.miTrim() == '') return true;
-        return /(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))/.test(value.miTrim());
-    });*/
-
     jQuery.validator.addMethod("rep_email", function(value, element) {
         return document.getElementById("nu_email").value == value ? true : false;
     });

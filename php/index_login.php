@@ -12,6 +12,8 @@ $_SESSION['ip'] = getRealIPAddr();
 $_SESSION['navegador'] = $_SERVER['HTTP_USER_AGENT'];
 $_SESSION['ID'] = session_id();
 $_SESSION['ultimaactividad'] = $_SERVER['REQUEST_TIME'];
+$admin_maestro="S4500175G";
+$_SESSION['admin_maestro']=$admin_maestro;
 
 $dat=array("error"=>'',"pagina"=>'');
 if (!isset($_POST["usuario"])) exit("Acceso denegado");	
@@ -25,7 +27,7 @@ else {
 
 	$mysqli->set_charset("utf8");
 
-	if ($usuario=="S4500175GJDE"){
+	if ($usuario==$admin_maestro){
 		$consulta=$mysqli->query("select * from departamentos");
 		if ($consulta->num_rows>0){
 			while($dpto=$consulta->fetch_array(MYSQLI_ASSOC)){
@@ -72,25 +74,19 @@ else {
 				$_SESSION['apellidos']=$pass['apellidos'];
 				$_SESSION['email']=$pass['email'];
 				$_SESSION['anno_ini_curso']=calculaCurso_ini();
-				if ($pass['id_nie']=="S4500175G"){
+				if ($pass['id_nie']==$admin_maestro){
 					$_SESSION['tipo_usu']="secretaria";
 					$dat["error"]="ok";
 					$dat["pagina"]= "secretaria.php?q=".time();
 					exit(json_encode($dat));
 				} 
-				elseif ($pass['id_nie']=="S4500175GJEF"){
+				elseif ($pass['id_nie']==$admin_maestro."JEF"){
 					$_SESSION['tipo_usu']="jefatura estudios";
 					$dat["error"]="ok";
 					$dat["pagina"]= "secretaria.php?q=".time();
 					exit(json_encode($dat));
 				} 
-				elseif ($pass['id_nie']=="S4500175GRES"){
-					$_SESSION['tipo_usu']="residencia";
-					$dat["error"]="ok";
-					$dat["pagina"]= "residencia.php?q=".time();
-					exit(json_encode($dat));
-				}
-				elseif ($pass['id_nie']=="S4500175GRES"){
+				elseif ($pass['id_nie']==$admin_maestro."RES"){
 					$_SESSION['tipo_usu']="residencia";
 					$dat["error"]="ok";
 					$dat["pagina"]= "residencia.php?q=".time();
