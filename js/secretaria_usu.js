@@ -6,67 +6,72 @@ var orden_direccion_usu = "🡅";
 var validFormSubeDoc;
 var registro_adjuntos_convalid="";
 var registro_adjuntos_exenc_fct="";
+var admin_maestro="";
 //var alto_tabla_usus=480;
 
 $(function() {
-    $('#registros_usus').contextMenu({
-        selector: 'tr',
-        callback: function(key, options) {
-            id = $(this).children("td:first").html();
-            nom = $(this).children("td:nth-child(2)").html();
-            if (key == "edit") {
-                panelModUsu(id);
-            } else if (key == "delete") {
-                eliminaUsuario(id, nom);
-            } else if (key == "upload") {
-                subeDocExpediente(id, nom);
+    $.post("php/sesion.php", { tipo_usu: "secretaria" },(resp)=>{
+        admin_maestro=resp["admin_maestro"];
+        $('#registros_usus').contextMenu({
+            selector: 'tr',
+            callback: function(key, options) {
+                id = $(this).children("td:first").html();
+                nom = $(this).children("td:nth-child(2)").html();
+                if (key == "edit") {
+                    panelModUsu(id);
+                } else if (key == "delete") {
+                    eliminaUsuario(id, nom);
+                } else if (key == "upload") {
+                    subeDocExpediente(id, nom);
+                }
+                else if(key=="inhabilitar"){
+                    inhabilitaUsuario(id,$(this));
+                }
+                else if(key=="pdf_evau"){
+                    pdfEVAU(id,nom);
+                }
+                else if(key=="download"){
+                    descargarExpediente(id,nom);
+                }
+            },
+            items: {
+                "edit": { name: "Ver/Modificar Datos" },
+                "upload": { name: "Subir un documento a Expediente" },
+                "download":{name: "Descargar Expediente"},
+                "inhabilitar":{name: "Inhabilitar/Habilitar usuario"},
+                "pdf_evau":{name: "Generar PDF NIF/NIE para EVAU"},
+                "delete": { name: "Eliminar" }
             }
-            else if(key=="inhabilitar"){
-                inhabilitaUsuario(id,$(this));
-            }
-            else if(key=="pdf_evau"){
-                pdfEVAU(id,nom);
-            }
-            else if(key=="download"){
-                descargarExpediente(id,nom);
-            }
-        },
-        items: {
-            "edit": { name: "Ver/Modificar Datos" },
-            "upload": { name: "Subir un documento a Expediente" },
-            "download":{name: "Descargar Expediente"},
-            "inhabilitar":{name: "Inhabilitar/Habilitar usuario"},
-            "pdf_evau":{name: "Generar PDF NIF/NIE para EVAU"},
-            "delete": { name: "Eliminar" }
-        }
-    });
+        });
 
-    habilitarContextMenuTactil('registros_usus');
+        habilitarContextMenuTactil('registros_usus');
 
-    $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
-        total: 1,
-        page: pagina,
-        maxVisible: 10,
-        leaps: true,
-        firstLastUse: true,
-        first: '←',
-        last: '→',
-        wrapClass: 'pagination',
-        activeClass: 'active',
-        disabledClass: 'disabled',
-        nextClass: 'next',
-        prevClass: 'prev',
-        lastClass: 'last',
-        firstClass: 'first'
-    }).on("page", function(event, num) {
-        pagina = num;
-        listaUsus();
-    });
-    $('#navegacion_usus_top li').addClass('page-item');
-    $('#navegacion_usus_top a').addClass('page-link');
-    $('#navegacion_usus_bottom li').addClass('page-item');
-    $('#navegacion_usus_bottom a').addClass('page-link');
-    listaUsus();    
+        $('#navegacion_usus_top,#navegacion_usus_bottom').bootpag({
+            total: 1,
+            page: pagina,
+            maxVisible: 10,
+            leaps: true,
+            firstLastUse: true,
+            first: '←',
+            last: '→',
+            wrapClass: 'pagination',
+            activeClass: 'active',
+            disabledClass: 'disabled',
+            nextClass: 'next',
+            prevClass: 'prev',
+            lastClass: 'last',
+            firstClass: 'first'
+        }).on("page", function(event, num) {
+            pagina = num;
+            listaUsus();
+        });
+        $('#navegacion_usus_top li').addClass('page-item');
+        $('#navegacion_usus_top a').addClass('page-link');
+        $('#navegacion_usus_bottom li').addClass('page-item');
+        $('#navegacion_usus_bottom a').addClass('page-link');
+        listaUsus();    
+    },"json");
+
 });
 
 function inhabilitaUsuario(_ID,obj){
