@@ -2736,6 +2736,7 @@ function JefesDepartamento(){
                 click: function() {
                     if ($("#config_departamentos").valid()){
                         mostrarPantallaEspera();
+                        __Diag=this;
                         $.post({
                             url:"php/secret_actualiza_param_departamentos.php" ,
                             data: $("#config_departamentos").serialize(),
@@ -2767,16 +2768,7 @@ function JefesDepartamento(){
                             error: function(xhr, status, error) {
                                 ocultarPantallaEspera();
                                 alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
-                                document.getElementById("config_dpto").value="";
-                                document.getElementById("config_nombre_jd").value="";
-                                document.getElementById("config_email_jd").value="";
-                                document.getElementById("config_password_jd").value=""; 
-                                document.getElementById("config_password_jd").readOnly=true;
-                                document.getElementById("config_password_jd").placeholder="Seleccione un departamento";
-                                document.getElementById("config_email_jd").readOnly=true;
-                                document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
-                                document.getElementById("config_nombre_jd").readOnly=true;
-                                document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";
+                                $(__Diag).dialog("destroy").remove();
                             }
                         });
                     }
@@ -2786,17 +2778,7 @@ function JefesDepartamento(){
             {
             class: "btn btn-success textoboton",
             text: "Salir",
-            click: function() {
-                document.getElementById("config_dpto").value="";
-                document.getElementById("config_nombre_jd").value="";
-                document.getElementById("config_email_jd").value="";
-                document.getElementById("config_password_jd").value=""; 
-                document.getElementById("config_password_jd").readOnly=true;
-                document.getElementById("config_password_jd").placeholder="Seleccione un departamento";
-                document.getElementById("config_email_jd").readOnly=true;
-                document.getElementById("config_email_jd").placeholder="Seleccione un departamento";
-                document.getElementById("config_nombre_jd").readOnly=true;
-                document.getElementById("config_nombre_jd").placeholder="Seleccione un departamento";        
+            click: function() {       
                 $(this).dialog("destroy").remove();
             }
     }])

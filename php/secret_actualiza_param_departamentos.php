@@ -56,11 +56,10 @@ if (strlen($password) > 0) {
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
-        if($pass_asignada) cerrar_y_salir($mysqli, $stmt, "password_duplicada");
-        else cerrar_y_salir($mysqli, $stmt, "ok");
-    } else {
         cerrar_y_salir($mysqli, $stmt, "database");
     }
+    if($pass_asignada) cerrar_y_salir($mysqli, $stmt, "password_duplicada");
+    else cerrar_y_salir($mysqli, $stmt, "ok");
 } else {
     cerrar_y_salir($mysqli, $stmt, "Error al actualizar el registro: " . $stmt->error);
 }
