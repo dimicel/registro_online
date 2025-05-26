@@ -5,7 +5,6 @@ include("mail.php");
 include("conexion.php");
 $nie=strtoupper($_POST['nie']);
 
-if (substr($nie, 0, 9)=="S4500175G") exit("reservado");
 $a_medias=false;
 $envio=false;
 
@@ -20,7 +19,7 @@ if ($consulta->num_rows>0){
 	$admin=$consulta->fetch_array(MYSQLI_ASSOC);
 	$admin_maestro=$admin['admin_maestro'];
 	$consulta->free();
-	if (substr($nie,0 , mb_strlen($admin_maestro))=="S4500175G") exit("reservado");
+	if (substr($nie,0 , mb_strlen($admin_maestro))==$admin_maestro) exit("reservado");
 }
 else{
 	exit("server");
