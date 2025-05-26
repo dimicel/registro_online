@@ -37,7 +37,7 @@ else {
 	}
 
 
-	if ($usuario==$admin_maestro){
+	if ($usuario==$admin_maestro."JDE"){
 		$consulta=$mysqli->query("select * from departamentos");
 		if ($consulta->num_rows>0){
 			while($dpto=$consulta->fetch_array(MYSQLI_ASSOC)){
