@@ -35,7 +35,6 @@ else {
 		$dat["error"]="server";
 		exit(json_encode($dat));
 	}
-exit(7777);
 
 	if ($usuario==$admin_maestro."JDE"){
 		$consulta=$mysqli->query("select * from departamentos");
