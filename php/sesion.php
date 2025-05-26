@@ -52,8 +52,8 @@ if ($respuesta["error"]=="ok"){
 		$consulta->free();
 	}
 	else{
-		$dat["error"]="server";
-		exit(json_encode($dat));
+		$respuesta["error"]="server";
+		exit(json_encode($respuesta));
 	}    
     $respuesta["id_nif"]=$_SESSION['id_nif'];
     $respuesta["id_nie"]=$_SESSION['id_nie'];
