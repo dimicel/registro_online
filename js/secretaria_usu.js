@@ -128,6 +128,7 @@ function listaUsus() {
             document.getElementById("div_tabla_usus").style.display = "inline-block";
             data = "";
             data_array = resp["registros"];
+            alert(admin_maestro);
             for (i = 0; i < data_array.length; i++) {
                 n_reg="";
                 if (data_array[i]["id_nie"].substring(0,admin_maestro.length) == admin_maestro) continue;
