@@ -56,7 +56,8 @@ if (strlen($password) > 0) {
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows == 0) {
-        cerrar_y_salir($mysqli, $stmt, "database");
+        if($pass_asignada) cerrar_y_salir($mysqli, $stmt, "password_duplicada_ri");
+        else cerrar_y_salir($mysqli, $stmt, "database");
     }
     else{
         if($pass_asignada) cerrar_y_salir($mysqli, $stmt, "password_duplicada");
