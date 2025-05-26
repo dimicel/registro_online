@@ -25,7 +25,7 @@ $nombre_ap_jd= $_POST['config_nombre_jd'];
 
 
 if (strlen($password) > 0) {
-    //Verifica antes que la contraseña no esté asignadav a otro jefe de departamento
+    //Verifica antes que la contraseña no esté asignada a otro jefe de departamento
     $consulta=$mysqli->query("select * from departamentos");
     $pass_asignada=false;
     if ($consulta->num_rows>0){
