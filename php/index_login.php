@@ -12,8 +12,7 @@ $_SESSION['ip'] = getRealIPAddr();
 $_SESSION['navegador'] = $_SERVER['HTTP_USER_AGENT'];
 $_SESSION['ID'] = session_id();
 $_SESSION['ultimaactividad'] = $_SERVER['REQUEST_TIME'];
-$admin_maestro="S4500175G";
-$_SESSION['admin_maestro']=$admin_maestro;
+
 
 $dat=array("error"=>'',"pagina"=>'');
 if (!isset($_POST["usuario"])) exit("Acceso denegado");	
@@ -26,7 +25,7 @@ else {
 	$contrasena=$_POST['password'];
 
 	$mysqli->set_charset("utf8");
-
+	
 	if ($usuario==$admin_maestro){
 		$consulta=$mysqli->query("select * from departamentos");
 		if ($consulta->num_rows>0){
