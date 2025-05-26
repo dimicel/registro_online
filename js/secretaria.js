@@ -15,6 +15,7 @@ var ciclos_gm=new Array();
 var ciclos_gm_gs=new Array();
 var ciclos_gs=new Array();
 var departamentos=new Array();
+var admin_maestro="";
 
 $(function() {
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
@@ -33,6 +34,7 @@ $(function() {
                 document.getElementById("borra_premat").style.display="";
                 document.getElementById("divider_borra_premat").style.display="";
             }
+            admin_maestro=resp["admin_maestro"];
             anno_ini_curso = resp["anno_ini_curso"];
             anno_ini_curso_docs = resp["anno_ini_curso_docs"];
             mes = resp["mes"];

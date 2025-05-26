@@ -10,6 +10,7 @@ var res_num_reg_pagina = 25;
 var res_numero_paginas;
 var res_pagina = 1;
 var res_orden_direccion_usu = "🡅";
+var admin_maestro="";
 
 
 
@@ -35,6 +36,7 @@ $(function() {
             res_curso_actual=_curso;
             res_generaSelectCurso();
             document.getElementById("res_curso").value = _curso;
+            admin_maestro=resp["admin_maestro"];
 
             $('#res_navegacion_usus_top,#res_navegacion_usus_bottom').bootpag({
                 total: 1,
@@ -151,7 +153,7 @@ function res_listaUsus() {
             data = "";
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
-                if (data_array[i]["id_nie"].substring(0,9) == "S4500175G") continue;
+                if (data_array[i]["id_nie"].substring(0,admin_maestro.length) == admin_maestro) continue;
                 data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'><a href='docs/"+data_array[i]["id_nie"]+"/residencia/"+document.getElementById("res_curso").value+"/"+data_array[i]["registro"]+".pdf' target='_blank'>" + data_array[i]["nombre"] + "</a></td>";

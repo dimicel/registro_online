@@ -130,7 +130,7 @@ function listaUsus() {
             data_array = resp["registros"];
             for (i = 0; i < data_array.length; i++) {
                 n_reg="";
-                if (data_array[i]["id_nie"].substring(0,9) == "S4500175G") continue;
+                if (data_array[i]["id_nie"].substring(0,admin_maestro.length) == admin_maestro) continue;
                 if (data_array[i]["habilitado"]==0)data += "<tr style='background-color:red'>";
                 else data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
