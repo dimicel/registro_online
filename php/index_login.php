@@ -39,6 +39,7 @@ else {
 	if ($usuario==$admin_maestro."JDE"){
 		$consulta=$mysqli->query("select * from departamentos");
 		if ($consulta->num_rows>0){
+			$dat["error"]="password";
 			while($dpto=$consulta->fetch_array(MYSQLI_ASSOC)){
 				if(password_verify($contrasena,$dpto['password'])){
 					$_SESSION['acceso_logueado']="correcto";
@@ -48,9 +49,9 @@ else {
 					$_SESSION['email_jd']=$dpto['email_jd'];
 					$dat["error"]="ok";
 					$dat["pagina"]= "departamento.php?q=".time();
-					exit(json_encode($dat));
 				}
 			}
+			exit(json_encode($dat));
 		}
 		else{
 			$consulta->free();
