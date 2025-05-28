@@ -31,8 +31,6 @@ else {
 		if (password_verify($contrasena,$admin['password'])){
 			$_SESSION['tipo_usu']=$admin["nivel"];
 			$dat["pagina"]= $admin["pagina"]."?q=".time();
-			$dat["nivel"]=$admin["nivel"];
-			$dat["p"]=$admin["pagina"];
 			$dat["error"]="ok";
 			$consulta->free();
 			exit(json_encode($dat));
