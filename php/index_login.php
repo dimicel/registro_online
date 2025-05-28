@@ -30,7 +30,7 @@ else {
 		$admin=$consulta->fetch_array(MYSQLI_ASSOC);
 		if (password_verify($contrasena,$admin['password'])){
 			$_SESSION['tipo_usu']=$admin["nivel"];
-			$dat["pagina"]= $admin["pagina"]+"?q=".time();
+			$dat["pagina"]= $admin["pagina"]."?q=".time();
 			$dat["nivel"]=$admin["nivel"];
 			$dat["p"]=$admin["pagina"];
 			$dat["error"]="ok";
