@@ -45,17 +45,7 @@ elseif($_POST['tipo_usu']=="jefe departamento" && $_SESSION['tipo_usu']=="jefe d
 }
 else $respuesta["error"]="ok";
 
-if ($respuesta["error"]=="ok"){
-	$consulta=$mysqli->query("select admin_maestro from config_centro");
-	if ($consulta->num_rows>0){
-		$admin=$consulta->fetch_array(MYSQLI_ASSOC);
-		$respuesta["admin_maestro"]=$admin['admin_maestro'];
-		$consulta->free();
-	}
-	else{
-		$respuesta["error"]="server";
-		exit(json_encode($respuesta));
-	}    
+if ($respuesta["error"]=="ok"){ 
     $respuesta["id_nif"]=$_SESSION['id_nif'];
     $respuesta["id_nie"]=$_SESSION['id_nie'];
     $respuesta["nombre"]=$_SESSION['nombre'];
