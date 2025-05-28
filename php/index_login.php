@@ -29,6 +29,7 @@ else {
 	if ($consulta->num_rows>0){
 		$admin=$consulta->fetch_array(MYSQLI_ASSOC);
 		if (password_verify($contrasena,$admin['password'])){
+			$_SESSION['acceso_logueado']="correcto";
 			$_SESSION['tipo_usu']=$admin["nivel"];
 			$_SESSION['id_nie']=$admin["id_nie"];
 			$_SESSION['id_nif']="";
