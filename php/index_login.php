@@ -30,8 +30,8 @@ else {
 		$admin=$consulta->fetch_array(MYSQLI_ASSOC);
 		if (password_verify($contrasena,$admin['password'])){
 			$_SESSION['tipo_usu']=$admin["nivel"];
-			$dat["error"]="ok";
 			$dat["pagina"]= $admin["pagina"]+"?q=".time();
+			$dat["error"]="ok";
 			$consulta->free();
 			exit(json_encode($dat));
 		}
