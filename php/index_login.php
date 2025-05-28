@@ -25,9 +25,16 @@ else {
 	$contrasena=$_POST['password'];
 
 	$mysqli->set_charset("utf8");
-	$consulta=$mysqli->query("select admin_maestro from config_centro");
+	$consulta=$mysqli->query("select * from usuarios_admin where id_nie='$usuario'");
 	if ($consulta->num_rows>0){
 		$admin=$consulta->fetch_array(MYSQLI_ASSOC);
+		if (password_verify($contrasena,$admin['password'])){
+			$_SESSION['tipo_usu']=$admin["nivel"];
+			$dat["error"]="ok";
+			$dat["pagina"]= $admin["pagina"]+"?q=".time();
+			exit(json_encode($dat));
+		}
+		
 		$admin_maestro=$admin['admin_maestro'];
 		$consulta->free();
 	}
