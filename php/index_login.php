@@ -32,18 +32,16 @@ else {
 			$_SESSION['tipo_usu']=$admin["nivel"];
 			$dat["error"]="ok";
 			$dat["pagina"]= $admin["pagina"]+"?q=".time();
+			$consulta->free();
 			exit(json_encode($dat));
 		}
-		
-		$admin_maestro=$admin['admin_maestro'];
+		else{
+			$dat["error"]="password";
+			exit(json_encode($dat));
+		}
+	}
+	if ($consulta->num_rows==0){
 		$consulta->free();
-	}
-	else{
-		$dat["error"]="server";
-		exit(json_encode($dat));
-	}
-
-	if ($usuario==$admin_maestro."JDE"){
 		$consulta=$mysqli->query("select * from departamentos");
 		if ($consulta->num_rows>0){
 			$dat["error"]="password";
@@ -60,13 +58,9 @@ else {
 			}
 			exit(json_encode($dat));
 		}
-		else{
-			$consulta->free();
-			$dat["error"]="nodpto";
-			exit(json_encode($dat));
-		}
 	}
-	else{
+	if ($consulta->num_rows==0){
+		$consulta->free();
 		$consulta=$mysqli->query("select * from usuarios where id_nie='$usuario'");
 		if ($consulta->num_rows>0){
 			$pass=$consulta->fetch_array(MYSQLI_ASSOC);
@@ -77,44 +71,20 @@ else {
 					$dat["error"]="inhabilitado";
 					exit(json_encode($dat));
 				}
-				if ($pass['no_ha_entrado']){
-					$dat["error"]="primera_vez";
-					$dat["datos"]["id_nif"]=$pass['id_nif'];
-					$dat["datos"]["nombre"]=$pass['nombre'];
-					$dat["datos"]["apellidos"]=$pass['apellidos'];
-					$dat["datos"]["email"]=$pass['email'];
-					exit(json_encode($dat));
-				} 
-				$_SESSION['id_nie']=$pass['id_nie'];
 				$_SESSION['id_nif']=$pass['id_nif'];
 				$_SESSION['nombre']=$pass['nombre'];
 				$_SESSION['apellidos']=$pass['apellidos'];
 				$_SESSION['email']=$pass['email'];
+				if ($pass['no_ha_entrado']){
+					$dat["error"]="primera_vez";
+					exit(json_encode($dat));
+				} 
+				$_SESSION['id_nie']=$pass['id_nie'];
 				$_SESSION['anno_ini_curso']=calculaCurso_ini();
-				if ($pass['id_nie']==$admin_maestro){
-					$_SESSION['tipo_usu']="secretaria";
-					$dat["error"]="ok";
-					$dat["pagina"]= "secretaria.php?q=".time();
-					exit(json_encode($dat));
-				} 
-				elseif ($pass['id_nie']==$admin_maestro."JEF"){
-					$_SESSION['tipo_usu']="jefatura estudios";
-					$dat["error"]="ok";
-					$dat["pagina"]= "secretaria.php?q=".time();
-					exit(json_encode($dat));
-				} 
-				elseif ($pass['id_nie']==$admin_maestro."RES"){
-					$_SESSION['tipo_usu']="residencia";
-					$dat["error"]="ok";
-					$dat["pagina"]= "residencia.php?q=".time();
-					exit(json_encode($dat));
-				}
-				else{
-					$_SESSION['tipo_usu']="usuario";
-					$dat["error"]="ok";
-					$dat["pagina"]= "usuario.php?q=".time();
-					exit(json_encode($dat));
-				} 
+				$_SESSION['tipo_usu']="usuario";
+				$dat["pagina"]= "usuario.php?q=".time();
+				$dat["error"]="ok";
+				exit(json_encode($dat));
 			}
 			else{
 				$dat["error"]="password";
