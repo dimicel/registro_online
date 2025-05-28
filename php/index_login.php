@@ -30,6 +30,11 @@ else {
 		$admin=$consulta->fetch_array(MYSQLI_ASSOC);
 		if (password_verify($contrasena,$admin['password'])){
 			$_SESSION['tipo_usu']=$admin["nivel"];
+			$_SESSION['id_nie']=$admin["id_nie"];
+			$_SESSION['id_nif']="";
+			$_SESSION['nombre']=$admin["nombre"];
+			$_SESSION['apellidos']="";
+			$_SESSION['email']="";
 			$dat["pagina"]= $admin["pagina"]."?q=".time();
 			$dat["error"]="ok";
 			$consulta->free();
