@@ -13,17 +13,17 @@ if ($mysqli->errno>0) {
 $mysqli->set_charset("utf8");
 
 $pass=password_hash('#online@Ulab0ral#',PASSWORD_BCRYPT);
-$conCadena="update usuarios set password='$pass' where id_nie='S4500175G'";
+$conCadena="update usuarios_admin set password='$pass' where id_nie='S4500175G'";
 if ($mysqli->query($conCadena)===TRUE) echo "ok secretaría<br>";
 else echo "error secretaría<br>";
 
 $pass=password_hash('#Res@Ulab0ral#',PASSWORD_BCRYPT);
-$conCadena="update usuarios set password='$pass' where id_nie='S4500175GRES'";
+$conCadena="update usuarios_admin set password='$pass' where id_nie='S4500175GRES'";
 if ($mysqli->query($conCadena)===TRUE) echo "ok residencia<br>";
 else echo "error residencia<br>";
 
 $pass=password_hash('#Jef@Ulab0ral#',PASSWORD_BCRYPT);
-$conCadena="update usuarios set password='$pass' where id_nie='S4500175GJEF'";
+$conCadena="update usuarios_admin set password='$pass' where id_nie='S4500175GJEF'";
 if ($mysqli->query($conCadena)===TRUE) echo "ok jefatura";
 else echo "error jefatura";
 
