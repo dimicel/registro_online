@@ -165,7 +165,7 @@ function entra() {
                         alerta(msg,"ERROR DE CARGA");
                     });
                 } else if (resp.error == "ok") {
-                    //document.location = resp.pagina;
+                    document.location = resp.pagina;
                 } else if(resp.error == "nodpto"){
                     alerta ("No existe ningún Jefe de Departamento con esas credenciales.","ERROR USUARIO");
                 }
