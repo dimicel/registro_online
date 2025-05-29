@@ -39,6 +39,7 @@ else {
 			$dat["pagina"]= $admin["pagina"]."?q=".time();
 			$dat["error"]="ok";
 			$consulta->free();
+			$dat["prueba"]="jefe";
 			exit(json_encode($dat));
 		}
 		else{
@@ -60,6 +61,7 @@ else {
 					$_SESSION['email_jd']=$dpto['email_jd'];
 					$dat["error"]="ok";
 					$dat["pagina"]= "departamento.php?q=".time();
+					$dat["prueba"]="departamento";
 				}
 			}
 			exit(json_encode($dat));
@@ -72,6 +74,7 @@ else {
 			$pass=$consulta->fetch_array(MYSQLI_ASSOC);
 			$consulta->free();
 			if (password_verify($contrasena,$pass['password'])){
+				$dat["prueba"]="usuario";
 				$_SESSION['acceso_logueado']="correcto";
 				if($pass['habilitado']==0){
 					$dat["error"]="inhabilitado";
