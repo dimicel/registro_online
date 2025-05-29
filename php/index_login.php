@@ -22,6 +22,7 @@ if ($mysqli->errno>0) {
 }
 else {
 	$usuario=$_POST['usuario']; 
+	$usuario_mayus=strtoupper($usuario);
 	$contrasena=$_POST['password'];
 	$mysqli->set_charset("utf8");
 
@@ -53,7 +54,7 @@ else {
 	}
 	$consulta->free();
 
-	$consulta=$mysqli->query("select * from departamentos where id_nie='$usuario'");
+	$consulta=$mysqli->query("select * from departamentos where id_nie='$usuario_mayus'");
 	if ($consulta->num_rows>0){
 		$dat["error"]="password";
 		while($dpto=$consulta->fetch_array(MYSQLI_ASSOC)){
