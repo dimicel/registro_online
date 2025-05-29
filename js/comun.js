@@ -438,7 +438,7 @@ function enviarFormularioSubmit(opciones) {
   document.body.removeChild(form);
 }
 
-function mostrarPantallaEspera(mensaje = "Procesando...") {
+/*function mostrarPantallaEspera(mensaje = "Procesando...") {
   if (document.getElementById("pantalla-espera")) return; // ya está activo
 
   // Crear overlay
@@ -483,7 +483,57 @@ function mostrarPantallaEspera(mensaje = "Procesando...") {
   overlay.appendChild(gif);
   overlay.appendChild(texto);
   document.body.appendChild(overlay);
+}*/
+
+function mostrarPantallaEspera(mensaje = "Procesando...") {
+  if (document.getElementById("pantalla-espera")) return;
+
+  // Crear overlay
+  const overlay = document.createElement("div");
+  overlay.id = "pantalla-espera";
+  Object.assign(overlay.style, {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    width: "100vw",
+    height: "100vh",
+    backgroundColor: "rgba(255, 250, 250, 0.7)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: "9999",
+    fontFamily: "Arial, sans-serif",
+    fontSize: "18px"
+  });
+
+  // Ruta al script actual y base
+  const currentScript = document.currentScript || document.querySelector('script[src*="comun.js"]');
+  const scriptBase = new URL('..', currentScript.src).pathname;
+
+  // Imagen GIF
+  const gif = document.createElement("img");
+  gif.src = scriptBase + 'recursos/espera.gif';
+  gif.alt = "Procesando...";
+  Object.assign(gif.style, {
+    width: "128px",
+    height: "128px",
+    marginBottom: "12px"
+  });
+
+  // Mensaje
+  const texto = document.createElement("div");
+  texto.textContent = mensaje;
+  Object.assign(texto.style, {
+    textAlign: "center",
+    color: "grey"
+  });
+
+  overlay.appendChild(gif);
+  overlay.appendChild(texto);
+  document.body.appendChild(overlay);
 }
+
 
 function ocultarPantallaEspera() {
   const overlay = document.getElementById("pantalla-espera");
