@@ -140,14 +140,11 @@ function validaDNI_NIE(dni) {
         letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
         letra = letra.substring(numero, numero + 1);
         if (letra != le) {
-            //alert('Dni erroneo, la letra del NIF no se corresponde');
             return false;
         } else {
-            //alert('Dni correcto');
             return true;
         }
     } else {
-        //alert('Dni erroneo, formato no válido');
         return false;
     }
 }
