@@ -62,6 +62,7 @@ else {
 					$dat["error"]="ok";
 					$dat["pagina"]= "departamento.php?q=".time();
 					$dat["prueba"]="departamento";
+					$dat["wwwww"]=22222222222;
 				}
 			}
 			exit(json_encode($dat));
