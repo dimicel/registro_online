@@ -48,9 +48,6 @@ else {
 				exit(json_encode($dat));
 			}
 		}
-		else{
-			$jefe_dpto=true;
-		}
 	}
 	$consulta->free();
 
