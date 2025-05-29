@@ -435,52 +435,6 @@ function enviarFormularioSubmit(opciones) {
   document.body.removeChild(form);
 }
 
-/*function mostrarPantallaEspera(mensaje = "Procesando...") {
-  if (document.getElementById("pantalla-espera")) return; // ya está activo
-
-  // Crear overlay
-  const overlay = document.createElement("div");
-  overlay.id = "pantalla-espera";
-  Object.assign(overlay.style, {
-    position: "fixed",
-    top: "0",
-    left: "0",
-    width: "100vw",
-    height: "100vh",
-    backgroundColor: "rgba(255, 250, 250, 0.7)",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: "9999",
-    color: "white",
-    fontFamily: "Arial, sans-serif",
-    fontSize: "18px"
-  });
-
-  // Imagen GIF
-  const basePath = window.location.pathname.split("/registro_online")[0] + "/registro_online";
-  const gif = document.createElement("img");
-  gif.src = basePath+'/recursos/espera.gif';
-  gif.alt = "Procesando...";
-  Object.assign(gif.style, {
-    width: "128px",
-    height: "128px",
-    marginBottom: "12px"
-  });
-
-  // Mensaje
-  const texto = document.createElement("div");
-  texto.textContent = mensaje;
-  Object.assign(texto.style, {
-    textAlign: "center",
-    color:"grey"
-  });
-
-  overlay.appendChild(gif);
-  overlay.appendChild(texto);
-  document.body.appendChild(overlay);
-}*/
 
 function mostrarPantallaEspera(mensaje = "Procesando...") {
   if (document.getElementById("pantalla-espera")) return;
