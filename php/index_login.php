@@ -95,7 +95,7 @@ else {
 			exit(json_encode($dat));
 		}
 		else{
-			$dat["error"]="password";
+			$dat["error"]="passwordddd";
 			exit(json_encode($dat));
 		}
 	}
