@@ -62,7 +62,6 @@ function entra() {
     if (document.getElementById("form_login").checkValidity()) {
             mostrarPantallaEspera();
             $.post("php/index_login.php", $("#form_login").serialize(), function(resp) {
-                alert(resp.pagina);
                 ocultarPantallaEspera();
                 if (resp.error == "server") alerta("Fallo de conexión al servidor", "ERROR SERVIDOR");
                 else if (resp.error == "password") alerta("Contraseña inválida", "ERROR PASSWORD");
