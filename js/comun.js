@@ -439,7 +439,6 @@ function enviarFormularioSubmit(opciones) {
 }
 
 function mostrarPantallaEspera(mensaje = "Procesando...") {
-    alert(window.location.pathname+"    "+window.location.pathname.split("/registro_online")[0])
   if (document.getElementById("pantalla-espera")) return; // ya está activo
 
   // Crear overlay
