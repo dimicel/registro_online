@@ -23,8 +23,8 @@ if ($mysqli->errno>0) {
 else {
 	$usuario=$_POST['usuario']; 
 	$contrasena=$_POST['password'];
-	$jefe_dpto=false;
 	$mysqli->set_charset("utf8");
+
 	$consulta=$mysqli->query("select * from usuarios_admin where id_nie='$usuario'");
 	if ($consulta->num_rows>0){
 		$admin=$consulta->fetch_array(MYSQLI_ASSOC);
@@ -53,61 +53,58 @@ else {
 	}
 	$consulta->free();
 
-	if($jefe_dpto){
-		$consulta=$mysqli->query("select * from departamentos ");
-		if ($consulta->num_rows>0){
-			$dat["error"]="password";
-			while($dpto=$consulta->fetch_array(MYSQLI_ASSOC)){
-				if(password_verify($contrasena,$dpto['password'])){
-					$_SESSION['acceso_logueado']="correcto";
-					$_SESSION['tipo_usu']="jefe departamento";
-					$_SESSION['departamento']=$dpto['departamento'];
-					$_SESSION['nombre_ap_jd']=$dpto['nombre_ap_jd'];
-					$_SESSION['email_jd']=$dpto['email_jd'];
-					$dat["error"]="ok";
-					$dat["pagina"]= "departamento.php?q=".time();
-				}
-			}
-			exit(json_encode($dat));
-		}
-		$consulta->free();
-	}
-	else{	
-		$consulta=$mysqli->query("select * from usuarios where id_nie='$usuario'");
-		if ($consulta->num_rows>0){
-			$pass=$consulta->fetch_array(MYSQLI_ASSOC);
-			$consulta->free();
-			if (password_verify($contrasena,$pass['password'])){
+	$consulta=$mysqli->query("select * from departamentos where id_nie='$usuario'");
+	if ($consulta->num_rows>0){
+		$dat["error"]="password";
+		while($dpto=$consulta->fetch_array(MYSQLI_ASSOC)){
+			if(password_verify($contrasena,$dpto['password'])){
 				$_SESSION['acceso_logueado']="correcto";
-				if($pass['habilitado']==0){
-					$dat["error"]="inhabilitado";
-					exit(json_encode($dat));
-				}
-				$_SESSION['id_nif']=$pass['id_nif'];
-				$_SESSION['nombre']=$pass['nombre'];
-				$_SESSION['apellidos']=$pass['apellidos'];
-				$_SESSION['email']=$pass['email'];
-				if ($pass['no_ha_entrado']){
-					$dat["error"]="primera_vez";
-					exit(json_encode($dat));
-				} 
-				$_SESSION['id_nie']=$pass['id_nie'];
-				$_SESSION['anno_ini_curso']=calculaCurso_ini();
-				$_SESSION['tipo_usu']="usuario";
-				$dat["pagina"]= "usuario.php?q=".time();
+				$_SESSION['tipo_usu']="jefe departamento";
+				$_SESSION['departamento']=$dpto['departamento'];
+				$_SESSION['nombre_ap_jd']=$dpto['nombre_ap_jd'];
+				$_SESSION['email_jd']=$dpto['email_jd'];
 				$dat["error"]="ok";
+				$dat["pagina"]= "departamento.php?q=".time();
+			}
+		}
+		exit(json_encode($dat));
+	}
+	$consulta->free();
+	
+	$consulta=$mysqli->query("select * from usuarios where id_nie='$usuario'");
+	if ($consulta->num_rows>0){
+		$pass=$consulta->fetch_array(MYSQLI_ASSOC);
+		$consulta->free();
+		if (password_verify($contrasena,$pass['password'])){
+			$_SESSION['acceso_logueado']="correcto";
+			if($pass['habilitado']==0){
+				$dat["error"]="inhabilitado";
 				exit(json_encode($dat));
 			}
-			else{
-				$dat["error"]="password";
+			$_SESSION['id_nif']=$pass['id_nif'];
+			$_SESSION['nombre']=$pass['nombre'];
+			$_SESSION['apellidos']=$pass['apellidos'];
+			$_SESSION['email']=$pass['email'];
+			if ($pass['no_ha_entrado']){
+				$dat["error"]="primera_vez";
 				exit(json_encode($dat));
-			}
+			} 
+			$_SESSION['id_nie']=$pass['id_nie'];
+			$_SESSION['anno_ini_curso']=calculaCurso_ini();
+			$_SESSION['tipo_usu']="usuario";
+			$dat["pagina"]= "usuario.php?q=".time();
+			$dat["error"]="ok";
+			exit(json_encode($dat));
 		}
 		else{
-			$consulta->free();
-			$dat["error"]="nousu";
+			$dat["error"]="password";
 			exit(json_encode($dat));
 		}
+	}
+	else{
+		$consulta->free();
+		$dat["error"]="nousu";
+		exit(json_encode($dat));
 	}
 }
 
