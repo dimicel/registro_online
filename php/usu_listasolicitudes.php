@@ -177,7 +177,7 @@ if ($consulta->num_rows>0){
     }
 }
 $consulta->free();
-exit();
+
 $consulta=$mysqli->query("select * from mat_1bach_c where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
     $data["error"]="ok";
@@ -280,7 +280,7 @@ if ($consulta->num_rows>0){
     }
 }
 $consulta->free();
-
+exit();
 
 $contador=0;
 $consulta=$mysqli->query("select * from transporte where id_nie='$id_nie' order by curso,fecha_registro, registro");
