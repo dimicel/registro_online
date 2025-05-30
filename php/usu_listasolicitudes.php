@@ -243,7 +243,7 @@ if ($consulta->num_rows>0){
     }
 }
 $consulta->free();
-
+exit();
 $contador=0;
 $consulta=$mysqli->query("select * from mat_ciclos where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
@@ -280,7 +280,7 @@ if ($consulta->num_rows>0){
     }
 }
 $consulta->free();
-exit();
+
 
 $contador=0;
 $consulta=$mysqli->query("select * from transporte where id_nie='$id_nie' order by curso,fecha_registro, registro");
