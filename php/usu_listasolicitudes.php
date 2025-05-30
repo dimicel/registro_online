@@ -232,7 +232,7 @@ if ($consulta->num_rows>0){
     }
 }
 $consulta->free();
-exit();
+exit(json_encode($data));
 $consulta=$mysqli->query("select * where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
     $data["error"]="ok";
@@ -243,7 +243,7 @@ if ($consulta->num_rows>0){
     }
 }
 $consulta->free();
-//exit();
+exit(json_encode($data));
 $contador=0;
 $consulta=$mysqli->query("select * from mat_ciclos where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
