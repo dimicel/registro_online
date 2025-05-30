@@ -66,13 +66,9 @@ if ($consulta->num_rows>0){
     $data["error"]="ok";
     $contador=0;
     while ($reg=$consulta->fetch_assoc()){
-        $data["proceso"]["Exención Formación en Empresas"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["proceso"]["Exención Formación en Empresas"][$contador]["registro"]=$reg["registro"];
-        $data["proceso"]["Exención Formación en Empresas"][$contador]["curso"]=$reg["curso"];
-        $data["proceso"]["Exención Formación en Empresas"][$contador]["resolucion"]=$reg["resolucion"];
-        $data["proceso"]["Exención Formación en Empresas"][$contador]["incidencias"]=$reg["incidencias"];
+        $data["proceso"]["Exención Formación en Empresas"][$contador]=$reg;
         $data["proceso"]["Exención Formación en Empresas"][$contador]["dir"]="exencion_form_emp";
-        $data["proceso"]["Exención Formación en Empresas"][$contador]["procesado"]=$reg["procesado"];
+        
         $contador++;
     }
 }
