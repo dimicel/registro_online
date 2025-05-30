@@ -232,7 +232,7 @@ if ($consulta->num_rows>0){
     }
 }
 $consulta->free();
-exit(json_encode($data));
+//exit(json_encode($data));
 $consulta=$mysqli->query("select * where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
     $data["error"]="ok";
