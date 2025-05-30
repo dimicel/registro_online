@@ -98,7 +98,7 @@ if ($consulta->num_rows>0){
 }
 $consulta->free();
 
-exit();
+
 
 $consulta=$mysqli->query("select*  from premat_bach where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
@@ -177,7 +177,7 @@ if ($consulta->num_rows>0){
     }
 }
 $consulta->free();
-
+exit();
 $consulta=$mysqli->query("select * from mat_1bach_c where id_nie='$id_nie' order by curso,fecha_registro, registro");
 if ($consulta->num_rows>0){
     $data["error"]="ok";
