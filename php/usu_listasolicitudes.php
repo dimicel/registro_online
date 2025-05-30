@@ -66,6 +66,29 @@ if ($consulta->num_rows>0){
     $data["error"]="ok";
     $contador=0;
     while ($reg=$consulta->fetch_assoc()){
+        
+        $registro = $reg["registro"];
+        // 1. Extraer la parte desde la fecha hasta el final
+        preg_match('/_(\d{8}_.+)$/', $registro, $matches);
+        $parteDesdeFecha = $matches[1] ?? '';
+
+        // 2. Extraer la fecha y convertirla a día, mes y año
+        preg_match('/_(\d{2})(\d{2})(\d{4})_/', $registro, $fechaMatches);
+        $dia = (int)($fechaMatches[1] ?? 0);
+        $mes = (int)($fechaMatches[2] ?? 0);
+        $anio = (int)($fechaMatches[3] ?? 0);
+
+        // 3. Calcular el curso escolar
+        $curso = '';
+        if (($mes >= 7 && $mes <= 12)) {
+            $curso = $anio . '-' . ($anio + 1);
+        } elseif ($mes >= 1 && $mes <= 6) {
+            $curso = ($anio - 1) . '-' . $anio;
+        }
+        
+        
+        if (is_file("../docs/".$id_nie."/exencion_form_emp"."/".$curso."/".$parteDesdeFecha."/docs/resolucion/resolucion.pdf"))$reg["procesado"]=1;
+        else $reg["procesado"]=0;
         $data["proceso"]["Exención Formación en Empresas"][$contador]=$reg;
         $data["proceso"]["Exención Formación en Empresas"][$contador]["dir"]="exencion_form_emp";
         
