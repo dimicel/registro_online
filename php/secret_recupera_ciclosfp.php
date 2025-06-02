@@ -19,7 +19,7 @@ $elearning=$_POST['elearning'];
 
 $filtro="";
 $primero=true;
-if ($diurno!=="") {
+if ($diurno) {
     if ($primero) {
         if ($diurno==1) $filtro.="diurno=$diurno";
         $primero=false;
@@ -27,7 +27,7 @@ if ($diurno!=="") {
         $filtro.=" and diurno=$diurno";
     }
 }
-if ($vespertino!=="") {
+if ($vespertino) {
     if ($primero) {
         if ($vespertino==1) $filtro.="vespertino=$vespertino";
         $primero=false;
@@ -35,7 +35,7 @@ if ($vespertino!=="") {
         $filtro.=" and vespertino=$vespertino";
     }
 }
-if ($nocturno!=="") {
+if ($nocturno) {
     if ($primero) {
         if ($nocturno==1) $filtro.="nocturno=$nocturno";
         $primero=false;
@@ -43,7 +43,7 @@ if ($nocturno!=="") {
         $filtro.=" and nocturno=$nocturno";
     }
 }
-if ($elearning!=="") {
+if ($elearning) {
     if ($primero) {
         if ($elearning==1) $filtro.="elearning=$elearning";
         $primero=false;
