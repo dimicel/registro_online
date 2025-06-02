@@ -392,7 +392,7 @@ function generaSelectsDepartamentos(){
     document.getElementById("departamento").appendChild(opt);
     opt.value="";
     opt.textContent="Todos";
-    document.getElementById("ciclos_filtro_dpto").appendChild(opt);
+    if (document.getElementById("ciclos_filtro_dpto"))document.getElementById("ciclos_filtro_dpto").appendChild(opt);
     opt=document.createElement("option");
     opt.value="";
     opt.textContent="Seleccione departamento ...";
