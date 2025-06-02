@@ -18,32 +18,32 @@ $nocturno=$_POST['nocturno'];
 $elearning=$_POST['elearning'];
 
 $filtro=1;
-if ($diurno) {
+if ($diurno===true) {
     if ($filtro===1) {
-        $filtro="diurno=$diurno";
+        $filtro="diurno=true";
     } else {
-        $filtro.=" and diurno=$diurno";
+        $filtro.=" and diurno=true";
     }
 }
-if ($vespertino) {
+if ($vespertino===true) {
     if ($filtro===1) {
-        $filtro="vespertino=$vespertino";
+        $filtro="vespertino=true";
     } else {
-        $filtro.=" and vespertino=$vespertino";
+        $filtro.=" and vespertino=true";
     }
 }
-if ($nocturno) {
+if ($nocturno===true) {
     if ($filtro===1) {
-        $filtro="nocturno=$nocturno";
+        $filtro="nocturno=true";
     } else {
-        $filtro.=" and nocturno=$nocturno";
+        $filtro.=" and nocturno=true";
     }
 }
-if ($elearning) {
+if ($elearning===true) {
     if ($filtro===1) {
-        $filtro="elearning=$elearning";
+        $filtro="elearning=true";
     } else {
-        $filtro.=" and elearning=$elearning";
+        $filtro.=" and elearning=true";
     }
 }
 if ($dpto!=="") {
