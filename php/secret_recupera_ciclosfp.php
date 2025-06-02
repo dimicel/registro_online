@@ -62,7 +62,7 @@ if ($grado!=="") {
 }
 
 $consulta="select * from ciclos where " . $filtro . " order by descripcion ASC, grado ASC";
-$data["consulta"]=$consulta;    
+$data["consulta"]=$diurno."    ".$vespertino."    ".$nocturno."    ".$elearning."    ".$dpto."    ".$grado;    
 exit(json_encode($data));
 
 $res=$mysqli->query($consulta);
