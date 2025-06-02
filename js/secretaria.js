@@ -506,7 +506,7 @@ function generaTablaModulosFP(pantallaEspera=true) {
 
 function generaTablaCiclosFP(pantallaEspera=true) {
     if (pantallaEspera) mostrarPantallaEspera();
-    ancho_dpto="30%"; 
+    ancho_dpto="20%"; 
     ancho_grado="20%";
     ancho_ciclo="60%";
     ancho_diurno="5%";
