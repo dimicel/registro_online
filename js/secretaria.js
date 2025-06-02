@@ -384,11 +384,16 @@ function generaSelectsDepartamentos(){
     document.getElementById("departamento").innerHTML="";
     if (document.getElementById("config_dpto"))document.getElementById("config_dpto").innerHTML="";
     if (document.getElementById("dpto_select"))document.getElementById("dpto_select").innerHTML="";
+    if (document.getElementById("ciclos_filtro_dpto"))document.getElementById("ciclos_filtro_dpto").innerHTML="";
     opt=document.createElement("option");
     opt.value="Todos";
     opt.textContent="Todos";
     opt.dataset.email="todos";
     document.getElementById("departamento").appendChild(opt);
+    opt.value="Todos";
+    opt.textContent="Todos";
+    opt.dataset.email="todos";
+    document.getElementById("ciclos_filtro_dpto").appendChild(opt);
     opt=document.createElement("option");
     opt.value="";
     opt.textContent="Seleccione departamento ...";
@@ -409,6 +414,12 @@ function generaSelectsDepartamentos(){
         opt.dataset.id=departamentos[i][3];
         opt.dataset.abreviatura=departamentos[i][1];
         if (document.getElementById("dpto_select"))document.getElementById("dpto_select").appendChild(opt);
+        opt=document.createElement("option");
+        opt.value=departamentos[i][0];
+        opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
+        opt.dataset.id=departamentos[i][3];
+        opt.dataset.abreviatura=departamentos[i][1];
+        if (document.getElementById("ciclos_filtro_dpto"))document.getElementById("ciclos_filtro_dpto").appendChild(opt);
     }
 }
 
