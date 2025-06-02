@@ -506,13 +506,13 @@ function generaTablaModulosFP(pantallaEspera=true) {
 
 function generaTablaCiclosFP(pantallaEspera=true) {
     if (pantallaEspera) mostrarPantallaEspera();
-    ancho_dpto="10%"; 
+    ancho_dpto="5%"; 
     ancho_grado="20%";
-    ancho_ciclo="72%";
-    ancho_diurno="7%";
-    ancho_vespertino="7%";
-    ancho_nocturno="7%";
-    ancho_elearning="7%";
+    ancho_ciclo="63%";
+    ancho_diurno="3%";
+    ancho_vespertino="3%";
+    ancho_nocturno="3%";
+    ancho_elearning="3%";
     f_grado=document.getElementById("ciclos_filtro_grado").value;
     f_dpto=document.getElementById("ciclos_filtro_dpto").value;
     f_diurno=document.getElementById("ciclos_filtro_diurno").checked;
