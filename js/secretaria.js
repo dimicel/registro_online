@@ -506,13 +506,13 @@ function generaTablaModulosFP(pantallaEspera=true) {
 
 function generaTablaCiclosFP(pantallaEspera=true) {
     if (pantallaEspera) mostrarPantallaEspera();
-    ancho_dpto="5%"; 
+    ancho_dpto="30%"; 
     ancho_grado="20%";
     ancho_ciclo="60%";
-    ancho_diurno="3%";
-    ancho_vespertino="3%";
-    ancho_nocturno="3%";
-    ancho_elearning="3%";
+    ancho_diurno="5%";
+    ancho_vespertino="5%";
+    ancho_nocturno="5%";
+    ancho_elearning="5%";
     f_grado=document.getElementById("ciclos_filtro_grado").value;
     f_dpto=document.getElementById("ciclos_filtro_dpto").value;
     f_diurno=document.getElementById("ciclos_filtro_diurno").checked;
@@ -549,7 +549,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             if (ths.length === 7) {
                 ths[0].style.width = ancho_dpto;
                 ths[1].style.width = ancho_grado;
-                ths[2].style.width = ancho_ciclo;
+                //ths[2].style.width = ancho_ciclo;
                 ths[3].style.width = ancho_diurno;
                 ths[4].style.width = ancho_vespertino;
                 ths[5].style.width = ancho_nocturno;
@@ -593,7 +593,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaCiclo = document.createElement("td");
                 celdaCiclo.innerHTML = resp.registro[i].denominacion;
-                celdaCiclo.style.width = ancho_ciclo;
+                //celdaCiclo.style.width = ancho_ciclo;
                 celdaCiclo.style.boxSizing = "border-box";
                 celdaCiclo.style.overflow = "hidden";
                 celdaCiclo.style.textOverflow = "ellipsis";
