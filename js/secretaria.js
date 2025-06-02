@@ -606,9 +606,9 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaDiurno = document.createElement("td");
                 if (resp.registro[i].diurno == 1) {
-                    celdaDiurno.innerHTML = "<i class='fas fa-check'></i>";
+                    celdaDiurno.innerHTML = "X";
                 } else {
-                    celdaDiurno.innerHTML = "<i class='fas fa-times'></i>"; 
+                    celdaDiurno.innerHTML = ""; 
                 }
                 celdaDiurno.style.width = ancho_diurno;
                 celdaDiurno.style.textAlign = 'center';
@@ -620,9 +620,9 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaVespertino = document.createElement("td");
                 if (resp.registro[i].vespertino == 1) {
-                    celdaVespertino.innerHTML = "<i class='fas fa-check'></i>";
+                    celdaVespertino.innerHTML = "X";
                 } else {    
-                    celdaVespertino.innerHTML = "<i class='fas fa-times'></i>"; 
+                    celdaVespertino.innerHTML = ""; 
                 }   
                 celdaVespertino.style.width = ancho_vespertino;
                 celdaVespertino.style.textAlign = 'center';
@@ -634,9 +634,9 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaNocturno = document.createElement("td");
                 if (resp.registro[i].nocturno == 1) {  
-                    celdaNocturno.innerHTML = "<i class='fas fa-check'></i>";
+                    celdaNocturno.innerHTML = "X";
                 } else {
-                    celdaNocturno.innerHTML = "<i class='fas fa-times'></i>";
+                    celdaNocturno.innerHTML = "";
                 }
                 celdaNocturno.style.width = ancho_nocturno;
                 celdaNocturno.style.textAlign = 'center';
@@ -648,9 +648,9 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaElearning = document.createElement("td");
                 if (resp.registro[i]["e-learning"] == 1) {
-                    celdaElearning.innerHTML = "<i class='fas fa-check'></i>";
+                    celdaElearning.innerHTML = "X";
                 } else {
-                    celdaElearning.innerHTML = "<i class='fas fa-times'></i>";
+                    celdaElearning.innerHTML = "";
                 }
                 celdaElearning.style.width = ancho_elearning;
                 celdaElearning.style.textAlign = 'center';
