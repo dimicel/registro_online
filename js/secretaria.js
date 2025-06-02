@@ -551,9 +551,13 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                 ths[1].style.width = ancho_grado;
                 //ths[2].style.width = ancho_ciclo;
                 ths[3].style.width = ancho_diurno;
+                ths[3].style.textAlign = 'center';
                 ths[4].style.width = ancho_vespertino;
+                ths[4].style.textAlign = 'center';
                 ths[5].style.width = ancho_nocturno;
+                ths[5].style.textAlign = 'center';
                 ths[6].style.width = ancho_elearning;
+                ths[6].style.textAlign = 'center';
             }
             ths.forEach(th => {
                 th.style.boxSizing = "border-box";
@@ -607,6 +611,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                     celdaDiurno.innerHTML = "<i class='fas fa-times'></i>"; 
                 }
                 celdaDiurno.style.width = ancho_diurno;
+                celdaDiurno.style.textAlign = 'center';
                 celdaDiurno.style.boxSizing = "border-box";
                 celdaDiurno.style.overflow = "hidden";
                 celdaDiurno.style.textOverflow = "ellipsis";
@@ -620,6 +625,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                     celdaVespertino.innerHTML = "<i class='fas fa-times'></i>"; 
                 }   
                 celdaVespertino.style.width = ancho_vespertino;
+                celdaVespertino.style.textAlign = 'center';
                 celdaVespertino.style.boxSizing = "border-box";
                 celdaVespertino.style.overflow = "hidden";
                 celdaVespertino.style.textOverflow = "ellipsis";
@@ -633,6 +639,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                     celdaNocturno.innerHTML = "<i class='fas fa-times'></i>";
                 }
                 celdaNocturno.style.width = ancho_nocturno;
+                celdaNocturno.style.textAlign = 'center';
                 celdaNocturno.style.boxSizing = "border-box";
                 celdaNocturno.style.overflow = "hidden";
                 celdaNocturno.style.textOverflow = "ellipsis";
@@ -646,6 +653,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                     celdaElearning.innerHTML = "<i class='fas fa-times'></i>";
                 }
                 celdaElearning.style.width = ancho_elearning;
+                celdaElearning.style.textAlign = 'center';
                 celdaElearning.style.boxSizing = "border-box";
                 celdaElearning.style.overflow = "hidden";
                 celdaElearning.style.textOverflow = "ellipsis";
