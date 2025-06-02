@@ -592,7 +592,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                 fila.appendChild(celdaGrado);
 
                 const celdaCiclo = document.createElement("td");
-                celdaCiclo.innerHTML = resp.registro[i].descripcion;
+                celdaCiclo.innerHTML = resp.registro[i].denominacion;
                 celdaCiclo.style.width = ancho_ciclo;
                 celdaCiclo.style.boxSizing = "border-box";
                 celdaCiclo.style.overflow = "hidden";
