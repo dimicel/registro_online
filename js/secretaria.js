@@ -519,7 +519,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
     f_vespertino=document.getElementById("ciclos_filtro_vespertino").checked;
     f_nocturno=document.getElementById("ciclos_filtro_nocturno").checked;
     f_elearning=document.getElementById("ciclos_filtro_elearning").checked;    
-    $.post("php/secret_recupera_ciclosfp.php", {grado:f_grado,dpto:f_dpto,diurno:f_diurno,vespertino:f_vespertino,nocturno:f_nocturno,elearnign:f_elearning}, (resp) => {
+    $.post("php/secret_recupera_ciclosfp.php", {grado:f_grado,dpto:f_dpto,diurno:f_diurno,vespertino:f_vespertino,nocturno:f_nocturno,elearning:f_elearning}, (resp) => {
         if (pantallaEspera) ocultarPantallaEspera();
 
         if (resp.error === "ok") {
