@@ -48,9 +48,9 @@ if ($elearning===true) {
 }
 if ($dpto!=="") {
     if ($filtro===1) {
-        $filtro="dpto='$dpto'";
+        $filtro="departamento='$dpto'";
     } else {
-        $filtro.=" and dpto='$dpto'";
+        $filtro.=" and departamento='$dpto'";
     }
 }
 if ($grado!=="") {
@@ -62,8 +62,6 @@ if ($grado!=="") {
 }
 
 $consulta="select * from ciclos where " . $filtro . " order by descripcion ASC, grado ASC";
-$data["consulta"]=$consulta;   
-exit(json_encode($data));
 
 $res=$mysqli->query($consulta);
 
