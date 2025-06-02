@@ -385,14 +385,13 @@ function generaSelectsDepartamentos(){
     if (document.getElementById("config_dpto"))document.getElementById("config_dpto").innerHTML="";
     if (document.getElementById("dpto_select"))document.getElementById("dpto_select").innerHTML="";
     if (document.getElementById("ciclos_filtro_dpto"))document.getElementById("ciclos_filtro_dpto").innerHTML="";
-    opt=document.createElement("option");
+    var opt=document.createElement("option");
     opt.value="Todos";
     opt.textContent="Todos";
     opt.dataset.email="todos";
     document.getElementById("departamento").appendChild(opt);
-    opt.value="Todos";
+    opt.value="";
     opt.textContent="Todos";
-    opt.dataset.email="todos";
     document.getElementById("ciclos_filtro_dpto").appendChild(opt);
     opt=document.createElement("option");
     opt.value="";
@@ -499,6 +498,163 @@ function generaTablaModulosFP(pantallaEspera=true) {
                 cont.appendChild(fila);
             }
         } else if (resp.error === "server") {
+            alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
+        }
+    }, "json");
+}
+
+
+function generaTablaCiclosFP(pantallaEspera=true) {
+    if (pantallaEspera) mostrarPantallaEspera();
+    ancho_dpto="10%"; 
+    ancho_grado="20%";
+    ancho_ciclo="72%";
+    ancho_diurno="7%";
+    ancho_vespertino="7%";
+    ancho_nocturno="7%";
+    ancho_elearning="7%";
+    f_grado=document.getElementById("ciclos_filtro_grado").value;
+    f_dpto=document.getElementById("ciclos_filtro_dpto").value;
+    f_diurno=document.getElementById("ciclos_filtro_diurno").checked;
+    f_vespertino=document.getElementById("ciclos_filtro_vespertino").checked;
+    f_nocturno=document.getElementById("ciclos_filtro_nocturno").checked;
+    f_elearning=document.getElementById("ciclos_filtro_elearning").checked;    
+    $.post("php/secret_recupera_ciclosfp.php", {grado:f_grado,dpto:f_dpto,diurno:f_diurno,vespertino:f_vespertino,nocturno:f_nocturno,elearnign:f_elearning}, (resp) => {
+        if (pantallaEspera) ocultarPantallaEspera();
+
+        if (resp.error === "ok") {
+            const cont = document.getElementById("tbody_ciclos");
+            cont.innerHTML = ""; // Limpia el contenido previo
+
+            // Aplica estilos al tbody para scroll
+            cont.style.display = "block";
+            cont.style.maxHeight = "250px";
+            cont.style.overflowY = "auto";
+            cont.style.width = "100%";
+            cont.style.borderTop = "1px solid #aaa";
+
+            // Aplica estilos al thead para mantenerlo fijo
+            const thead = document.querySelector("#tabla_ciclos thead");
+            thead.style.position = "sticky";
+            thead.style.top = "0";
+            thead.style.backgroundColor = "#8A8A7B";
+            thead.style.color = "white";
+            thead.style.zIndex = "2";
+            thead.style.display = "table";
+            thead.style.width = "100%";
+            thead.style.tableLayout = "fixed";
+
+            // Estilo de cada th: 20% para código, 80% para descripción
+            const ths = thead.querySelectorAll("th");
+            if (ths.length === 2) {
+                ths[0].style.width = ancho_dpto;
+                ths[1].style.width = ancho_grado;
+                ths[2].style.width = ancho_ciclo;
+                ths[3].style.width = ancho_diurno;
+                ths[4].style.width = ancho_vespertino;
+                ths[5].style.width = ancho_nocturno;
+                ths[6].style.width = ancho_elearning;
+            }
+            ths.forEach(th => {
+                th.style.boxSizing = "border-box";
+                th.style.overflow = "hidden";
+                th.style.textOverflow = "ellipsis";
+                th.style.whiteSpace = "nowrap";
+                th.style.color = "white";
+            });
+
+            // Añadir filas al tbody
+            for (let i = 0; i < resp.registro.length; i++) {
+                const fila = document.createElement("tr");
+                fila.setAttribute("id", resp.registro[i].id);
+                fila.setAttribute("title", resp.registro[i].denominacion);
+                fila.setAttribute("onclick", "seleccionaCicloFP(this)");
+                fila.style.display = "table";
+                fila.style.width = "100%";
+                fila.style.tableLayout = "fixed";
+
+                const celdaDpto = document.createElement("td");
+                celdaDpto.innerHTML = resp.registro[i].departamento;
+                celdaDpto.style.width = ancho_dpto;
+                celdaDpto.style.boxSizing = "border-box";
+                celdaDpto.style.overflow = "hidden";
+                celdaDpto.style.textOverflow = "ellipsis";
+                celdaDpto.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaDpto);
+
+                const celdaGrado = document.createElement("td");
+                celdaGrado.innerHTML = resp.registro[i].grado;
+                celdaGrado.style.width = ancho_grado;
+                celdaGrado.style.boxSizing = "border-box";
+                celdaGrado.style.overflow = "hidden";
+                celdaGrado.style.textOverflow = "ellipsis";
+                celdaGrado.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaGrado);
+
+                const celdaCiclo = document.createElement("td");
+                celdaCiclo.innerHTML = resp.registro[i].descripcion;
+                celdaCiclo.style.width = ancho_ciclo;
+                celdaCiclo.style.boxSizing = "border-box";
+                celdaCiclo.style.overflow = "hidden";
+                celdaCiclo.style.textOverflow = "ellipsis";
+                celdaCiclo.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaCiclo);
+
+                const celdaDiurno = document.createElement("td");
+                if (resp.registro[i].diurno == 1) {
+                    celdaDiurno.innerHTML = "<i class='fas fa-check'></i>";
+                } else {
+                    celdaDiurno.innerHTML = "<i class='fas fa-times'></i>"; 
+                }
+                celdaDiurno.style.width = ancho_diurno;
+                celdaDiurno.style.boxSizing = "border-box";
+                celdaDiurno.style.overflow = "hidden";
+                celdaDiurno.style.textOverflow = "ellipsis";
+                celdaDiurno.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaDiurno);
+
+                const celdaVespertino = document.createElement("td");
+                if (resp.registro[i].vespertino == 1) {
+                    celdaVespertino.innerHTML = "<i class='fas fa-check'></i>";
+                } else {    
+                    celdaVespertino.innerHTML = "<i class='fas fa-times'></i>"; 
+                }   
+                celdaVespertino.style.width = ancho_vespertino;
+                celdaVespertino.style.boxSizing = "border-box";
+                celdaVespertino.style.overflow = "hidden";
+                celdaVespertino.style.textOverflow = "ellipsis";
+                celdaVespertino.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaVespertino);
+
+                const celdaNocturno = document.createElement("td");
+                if (resp.registro[i].nocturno == 1) {  
+                    celdaNocturno.innerHTML = "<i class='fas fa-check'></i>";
+                } else {
+                    celdaNocturno.innerHTML = "<i class='fas fa-times'></i>";
+                }
+                celdaNocturno.style.width = ancho_nocturno;
+                celdaNocturno.style.boxSizing = "border-box";
+                celdaNocturno.style.overflow = "hidden";
+                celdaNocturno.style.textOverflow = "ellipsis";
+                celdaNocturno.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaNocturno);
+
+                const celdaElearning = document.createElement("td");
+                if (resp.registro[i]["e-learning"] == 1) {
+                    celdaElearning.innerHTML = "<i class='fas fa-check'></i>";
+                } else {
+                    celdaElearning.innerHTML = "<i class='fas fa-times'></i>";
+                }
+                celdaElearning.style.width = ancho_elearning;
+                celdaElearning.style.boxSizing = "border-box";
+                celdaElearning.style.overflow = "hidden";
+                celdaElearning.style.textOverflow = "ellipsis";
+                celdaElearning.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaElearning);
+
+                cont.appendChild(fila);
+            }
+        } else {
             alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
         }
     }, "json");
@@ -3355,7 +3511,7 @@ function gestionModulosFP(){
                     document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
-                    document.getElementById("desc_operacion_modulos").innerHTML="MODIFICACIÓN DE MÓDULO FORMATIVO MARCADO";
+                    document.getElementById("desc_operacion_modulos").innerHTML="MODIFICACIÓN DE MÓDULO FORMATIVO SELECCIONADO";
                     document.getElementById("btn_nuevo_modulo").innerHTML="Guardar";
                     _codigo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
                     _modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
@@ -3519,4 +3675,102 @@ function compruebaDuplicadoModuloFP(){
 }
 
 
-
+function gestionCiclosFP(){
+    mostrarPantallaEspera("Cargando ...");
+    cargaHTML("html/secretaria.htm", "div_ciclos","GESTIÓN DE CICLOS DE FP",1000,2000,"","",
+        [
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Nuevo",
+                click: function() {
+                    div_modulos_panel_casillas.style.display='';
+                    document.getElementById("div_desc_operacion_ciclos").style.visibility='visible';
+                    document.getElementById("modulo_codigo").value="";
+                    document.getElementById("modulo_descripcion").value="";
+                    //Inhabilita los botones del dialog
+                    $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
+                    document.getElementById("div_desc_operacion_ciclos").innerHTML="ALTA DE NUEVO CICLO DE FP";
+                    document.getElementById("btn_nuevo_modulo").innerHTML="Añadir";
+                    let filas = document.getElementById("tbody_ciclos").querySelectorAll("tr");
+                    filas.forEach(f => {
+                        f.classList.remove("selected");
+                        f.classList.add("deselected");
+                    });
+                }
+            },
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Modificar",
+                click: function() {
+                    if (document.getElementById("tbody_ciclos").querySelectorAll("tr.selected").length==0){
+                        alerta("No se ha seleccionado ningún módulo formativo.","NINGÚN MÓDULO SELECCIONADO");
+                        return;
+                    }
+                    div_modulos_panel_casillas.style.display='';
+                    document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
+                    //Inhabilita los botones del dialog
+                    $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
+                    document.getElementById("div_desc_operacion_ciclos").innerHTML="MODIFICACIÓN DE CICLO DE FP SELECCIONADO";
+                    document.getElementById("btn_nuevo_modulo").innerHTML="Guardar";
+                    _codigo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
+                    _modulo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
+                    document.getElementById("modulo_codigo").value=_codigo;
+                    document.getElementById("modulo_descripcion").value=_modulo;
+                    document.getElementById("backup_descripcion").value=document.getElementById("modulo_descripcion").value;
+                    document.getElementById("backup_codigo").value=document.getElementById("modulo_codigo").value;
+                }
+            },
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Borrar",
+                click: function() {
+                    if (document.getElementById("tbody_ciclos").querySelectorAll("tr.selected").length==0){
+                        alerta("No se ha seleccionado ningún Ciclo de FP.","NINGÚN CICLO DE FP SELECCIONADO");
+                        return;
+                    }
+                    confirmar("¿Está seguro de que desea eliminar el Ciclo de FP seleccionado?.","ELIMINAR CICLO DE FP")
+                    .then(function(confirmacion) {
+                        if(confirmacion){
+                            confirmar("Por favor, confirme otra vez que desea eliminar el Ciclo de FP seleccionado.","CONFIRMAR ELIMINACIÓN")
+                            .then(function(confirmacion2) {
+                                if(confirmacion2){
+                                    mostrarPantallaEspera();
+                                    elim_codigo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
+                                    elim_modulo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
+                                    $.post("php/secret_elimina_modulofp.php",{codigo:elim_codigo,modulo:elim_modulo},(resp)=>{
+                                        ocultarPantallaEspera();
+                                        if (resp=="ok"){
+                                            alerta("Ciclo de FP eliminado correctamente.","ELIMINACIÓN CORRECTA");
+                                            generaTablaModulosFP();
+                                        }
+                                        else if (resp=="server"){
+                                            alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+                                        }
+                                        else{
+                                            alerta(resp,"ERROR DB/SERVIDOR");
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            },
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Salir",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
+            }
+        ]
+    ).then((dialogo)=>{
+        ocultarPantallaEspera();
+        generaTablaCiclosFP();
+        generaSelectsDepartamentos();
+    }).catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+}

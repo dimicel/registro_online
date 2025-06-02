@@ -10,12 +10,25 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-$buscar=trim($_POST["buscar"]);
-if ($buscar!="") {
-    $res=$mysqli->query("select * from modulosfp where modulo like '%$buscar%' or codigo like '%$buscar%' order by modulo ASC, codigo ASC");
-} else {
-    $res=$mysqli->query("select * from modulosfp order by modulo ASC, codigo ASC");
+$dpto=$_POST['dpto'];
+$grado=$_POST['grado'];
+$diurno=$_POST['diurno'];
+$vespertino=$_POST['vespertino'];
+$nocturno=$_POST['nocturno'];
+$elearning=$_POST['elearning'];
+
+$filtro="";
+$filtro="diurno=$diurno and vespertino=$vespertino and nocturno=$nocturno and e-learning=$elearning"; 
+if ($dpto!=="") {
+    $filtro.=" and departamento='$dpto'";
 }
+if ($grado!=="") {
+    $filtro.=" and grado='$grado'";
+}
+
+
+$res=$mysqli->query("select * from ciclos where " . $filtro . " order by descripcion ASC, grado ASC");
+
 if ($mysqli->errno>0) {
     $data["error"]="server";
     exit(json_encode($data));
