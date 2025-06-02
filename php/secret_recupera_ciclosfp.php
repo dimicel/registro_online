@@ -68,8 +68,11 @@ if ($grado!=="") {
     }
 }
 
+$consulta="select * from ciclos where " . $filtro . " order by descripcion ASC, grado ASC";
+$data["consulta"]=$consulta;    
+exit(json_encode($data));
 
-$res=$mysqli->query("select * from ciclos where " . $filtro . " order by descripcion ASC, grado ASC");
+$res=$mysqli->query($consulta);
 
 if ($mysqli->errno>0) {
     $data["error"]="server";
