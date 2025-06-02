@@ -544,9 +544,9 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             thead.style.width = "100%";
             thead.style.tableLayout = "fixed";
 
-            // Estilo de cada th: 20% para código, 80% para descripción
+            // Estilo de cada th
             const ths = thead.querySelectorAll("th");
-            if (ths.length === 2) {
+            if (ths.length === 7) {
                 ths[0].style.width = ancho_dpto;
                 ths[1].style.width = ancho_grado;
                 ths[2].style.width = ancho_ciclo;
