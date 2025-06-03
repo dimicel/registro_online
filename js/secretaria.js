@@ -508,7 +508,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
     if (pantallaEspera) mostrarPantallaEspera();
     ancho_dpto="20%"; 
     ancho_grado="20%";
-    ancho_ciclo="60%";
+    ancho_ciclo="calc(60% - 17px)";
     ancho_diurno="5%";
     ancho_vespertino="5%";
     ancho_nocturno="5%";
@@ -549,7 +549,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             if (ths.length === 7) {
                 ths[0].style.width = ancho_dpto;
                 ths[1].style.width = ancho_grado;
-                //ths[2].style.width = ancho_ciclo;
+                ths[2].style.width = ancho_ciclo;
                 ths[3].style.width = ancho_diurno;
                 ths[3].style.textAlign = 'center';
                 ths[4].style.width = ancho_vespertino;
@@ -597,7 +597,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaCiclo = document.createElement("td");
                 celdaCiclo.innerHTML = resp.registro[i].denominacion;
-                //celdaCiclo.style.width = ancho_ciclo;
+                celdaCiclo.style.width = ancho_ciclo;
                 celdaCiclo.style.boxSizing = "border-box";
                 celdaCiclo.style.overflow = "hidden";
                 celdaCiclo.style.textOverflow = "ellipsis";
