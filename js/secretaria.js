@@ -3888,10 +3888,19 @@ function guardaAnadeCicloFP(obj){
         var campos=["dpto","grado","ciclo","cursos","diurno","vespertino","nocturno","elearning"];
         var modificado=false;
         for (var i=0;i<campos.length;i++){
-            if (document.getElementById("ciclo_"+campos[i]).value!=document.getElementById("backup_"+campos[i]).value){
-                modificado=true;
-                break;
+            if( document.getElementById("ciclo_"+campos[i]).type=="checkbox"){
+                if (document.getElementById("ciclo_"+campos[i]).checked!=document.getElementById("backup_"+campos[i]).value){
+                    modificado=true;
+                    break;
+                }
             }
+            else{
+                if (document.getElementById("ciclo_"+campos[i]).value!=document.getElementById("backup_"+campos[i]).value){
+                    modificado=true;
+                    break;
+                }
+            }
+            
         }
         alert("modificado: "+modificado);return;
         if (!modificado){
