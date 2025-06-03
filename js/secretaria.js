@@ -422,7 +422,7 @@ function generaSelectsDepartamentos(){
         opt=document.createElement("option");
         opt.value=departamentos[i][0];
         opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
-        if (document.getElementById("ciclos_dpto"))document.getElementById("ciclos_dpto").appendChild(opt);
+        if (document.getElementById("ciclo_dpto"))document.getElementById("ciclo_dpto").appendChild(opt);
     }
 }
 
