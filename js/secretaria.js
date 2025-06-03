@@ -3757,7 +3757,7 @@ function gestionCiclosFP(){
                 text: "Borrar",
                 click: function() {
                     if (document.getElementById("tbody_ciclos").querySelectorAll("tr.selected").length==0){
-                        alerta("No se ha seleccionado ningún Ciclo de FP.","NINGÚN CICLO DE FP SELECCIONADO");
+                        alerta("No se ha seleccionado ningún Ciclo de Formación Profesional.","NINGÚN CICLO DE FP SELECCIONADO");
                         return;
                     }
                     confirmar("¿Está seguro de que desea eliminar el Ciclo de FP seleccionado?.","ELIMINAR CICLO DE FP")
