@@ -529,7 +529,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             // Aplica estilos al tbody para scroll
             cont.style.display = "block";
             cont.style.maxHeight = "250px";
-            cont.style.overflowY = "hidden";
+            cont.style.overflowY = "auto";
             cont.style.width = "100%";
             cont.style.borderTop = "1px solid #aaa";
 
