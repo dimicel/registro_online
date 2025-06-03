@@ -523,6 +523,8 @@ function generaTablaCiclosFP(pantallaEspera=true) {
         if (pantallaEspera) ocultarPantallaEspera();
 
         if (resp.error === "ok") {
+            document.getElementById("tabla_ciclos").style.tableLayout = "fixed";////////////
+            document.getElementById("tabla_ciclos").style.width = "100%";///////////////////
             const cont = document.getElementById("tbody_ciclos");
             cont.innerHTML = ""; // Limpia el contenido previo
 
@@ -541,6 +543,8 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             thead.style.backgroundColor = "#8A8A7B";
             thead.style.color = "white";
             thead.style.zIndex = "2";
+            thead.style.display = "block";////////////
+            thead.style.width = "100%";//////////////
             //thead.style.display = "table";
             //thead.style.width = "100%";
             //thead.style.tableLayout = "fixed";
@@ -577,6 +581,8 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                 //fila.style.display = "table";
                 //fila.style.width = "100%";
                 fila.style.tableLayout = "fixed";
+                fila.style.display = "table";////////////////
+                fila.style.width = "100%";////////////////////////
 
                 const celdaDpto = document.createElement("td");
                 celdaDpto.innerHTML = resp.registro[i].departamento;
