@@ -531,7 +531,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             cont.style.maxHeight = "250px";
             cont.style.overflowY = "auto";
             cont.style.width = "100%";
-            cont.style.borderTop = "1px solid #aaa";
+            cont.style.borderTop = "3px solid #aaa";
 
             // Aplica estilos al thead para mantenerlo fijo
             const thead = document.querySelector("#tabla_ciclos thead");
