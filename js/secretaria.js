@@ -532,6 +532,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             cont.style.overflowY = "auto";
             cont.style.width = "100%";
             cont.style.borderTop = "1px solid #aaa";
+            cont.style.tableLayout = "fixed";
 
             // Aplica estilos al thead para mantenerlo fijo
             const thead = document.querySelector("#tabla_ciclos thead");
@@ -540,9 +541,9 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             thead.style.backgroundColor = "#8A8A7B";
             thead.style.color = "white";
             thead.style.zIndex = "2";
-            thead.style.display = "table";
-            thead.style.width = "100%";
-            thead.style.tableLayout = "fixed";
+            //thead.style.display = "table";
+            //thead.style.width = "100%";
+            //thead.style.tableLayout = "fixed";
 
             // Estilo de cada th
             const ths = thead.querySelectorAll("th");
@@ -573,8 +574,8 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                 fila.setAttribute("id", resp.registro[i].id);
                 fila.setAttribute("title", resp.registro[i].denominacion);
                 fila.setAttribute("onclick", "seleccionaCicloFP(this)");
-                fila.style.display = "table";
-                fila.style.width = "100%";
+                //fila.style.display = "table";
+                //fila.style.width = "100%";
                 fila.style.tableLayout = "fixed";
 
                 const celdaDpto = document.createElement("td");
