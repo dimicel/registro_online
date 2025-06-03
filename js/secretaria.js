@@ -3891,12 +3891,14 @@ function guardaAnadeCicloFP(obj){
             if( document.getElementById("ciclo_"+campos[i]).type=="checkbox"){
                 if (document.getElementById("ciclo_"+campos[i]).checked!=document.getElementById("backup_"+campos[i]).value){
                     modificado=true;
+                    alert(0);
                     break;
                 }
             }
             else{
                 if (document.getElementById("ciclo_"+campos[i]).value!=document.getElementById("backup_"+campos[i]).value){
                     modificado=true;
+                    alert(1);
                     break;
                 }
             }
