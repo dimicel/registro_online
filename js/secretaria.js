@@ -3744,6 +3744,7 @@ function gestionCiclosFP(){
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                     document.getElementById("desc_operacion_ciclos").innerHTML="MODIFICACIÓN DE CICLO DE FP SELECCIONADO";
                     document.getElementById("btn_nuevo_ciclo").innerHTML="Guardar";
+                    _id=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id;
                     _dpto=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
                     _grado=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
                     _ciclos=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[2].innerHTML;
@@ -3752,6 +3753,7 @@ function gestionCiclosFP(){
                     _vespertino=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[5].innerHTML=='X'?true:false;
                     _nocturno=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[6].innerHTML=='X'?true:false;
                     _elearning=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[7].innerHTML=='X'?true:false;
+                    document.getElementById("ciclo_id").value=_id;
                     document.getElementById("ciclo_dpto").value=_dpto;
                     document.getElementById("ciclo_grado").value=_grado;
                     document.getElementById("ciclo_ciclo").value=_ciclos;
@@ -3846,18 +3848,26 @@ function cancelaOPeracionCiclosFP(obj){
 
 
 function guardaAnadeCicloFP(obj){
-    if (document.getElementById("div_modulo_duplicado").style.visibility=='visible'){
-        alerta("Ya existe otro Módulo Formativo con el mismo código y la misma descripción.","MÓDULO DUPLICADO");
+    if (document.getElementById("div_ciclo_duplicado").style.visibility=='visible'){
+        alerta("Ya existe otro Ciclo de FP con el mismo código y la misma descripción.","CICLO DE FP DUPLICADO");
         return;
     }
-    if (document.getElementById("modulo_codigo").value.trim().length==0 || document.getElementById("modulo_descripcion").value.trim().length==0){
-            alerta("Los campos 'Código' y 'Descripción' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
+    if (document.getElementById("ciclo_dpto").value.trim().length==0 || document.getElementById("ciclo_grado").value.trim().length==0 || document.getElementById("ciclo_ciclo").value.trim().length==0 || document.getElementById("ciclo_cursos").value.trim().length==0){
+            alerta("Faltan campos por rellenar.","FALTAN CAMPOS OBLIGATORIOS");
             return;
+    }
+    if (document.getElementById("ciclo_cursos").value==0){
+        alerta("El número de cursos debe ser mayor que 0.","NÚMERO DE CURSOS ERRÓNEO");
+        return;
+    }
+    if (document.getElementById("ciclo_diurno").checked==false && document.getElementById("ciclo_vespertino").checked==false && document.getElementById("ciclo_nocturno").checked==false && document.getElementById("ciclo_elearning").checked==false){
+        alerta("Debe seleccionar al menos un turno para el Ciclo de FP.","NINGÚN TURNO SELECCIONADO");
+        return;
     }
     textBoton=obj.innerHTML;
     if (textBoton=="Añadir"){
-        mostrarPantallaEspera();;
-        $.post("php/secret_anade_modulofp.php",{modulo:document.getElementById("modulo_descripcion").value,codigo:document.getElementById("modulo_codigo").value},(resp)=>{
+        mostrarPantallaEspera();
+        $.post("php/secret_anade_modulofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{
             ocultarPantallaEspera();
             if (resp=="ok"){
                 alerta("Módulo Formativo añadido correctamente.","ALTA CORRECTA");
@@ -3872,14 +3882,20 @@ function guardaAnadeCicloFP(obj){
         });
     }
     else if(textBoton=="Guardar"){
-        if (document.getElementById("modulo_descripcion").value==document.getElementById("backup_descripcion").value && document.getElementById("modulo_codigo").value==document.getElementById("backup_codigo").value){
-            alerta("No se han realizado cambios en el departamento. No se realizará ninguna acción.","SIN CAMBIOS");
+        var campos=["dpto","grado","ciclo","cursos","diurno","vespertino","nocturno","elearning"];
+        var modificado=false;
+        for (var i=0;i<campos.length;i++){
+            if (document.getElementById("ciclo_"+campos[i]).value!=document.getElementById("backup_"+campos[i]).value){
+                modificado=true;
+                break;
+            }
+        }
+        if (!modificado){
+            alerta("No se han realizado cambios en el Ciclo de FP. No se realizará ninguna acción.","SIN CAMBIOS");
+            return;
         }
         else{
-            codigo=document.getElementById("modulo_codigo").value;
-            modulo=document.getElementById("modulo_descripcion").value;
-            id_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].id;
-            $.post("php/secret_modifica_modulofp.php",{codigo:codigo,modulo:modulo, id_modulo:id_modulo},(resp)=>{  
+            $.post("php/secret_modifica_modulofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{  
                 if (resp=="ok"){
                     alerta("Módulo Formativo modificado correctamente.","MODIFICACIÓN CORRECTA");
                     generaTablaModulosFP();
