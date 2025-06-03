@@ -3819,3 +3819,9 @@ function seleccionaCicloFP(obj) {
     obj.classList.remove("deselected");
     obj.classList.add("selected");
 }
+
+function cancelaOPeracionCiclosFP(obj){
+    $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
+    div_ciclos_panel_casillas.style.display='none';
+    document.getElementById("div_desc_operacion_ciclos").style.visibility='hidden';
+}
