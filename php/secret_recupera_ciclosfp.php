@@ -62,7 +62,7 @@ if ($grado!=="") {
 }
 
 $consulta="select * from ciclos where " . $filtro . " order by grado ASC, denominacion ASC";
-
+$data["consulta"]=$consulta;
 $res=$mysqli->query($consulta);
 
 if ($mysqli->errno>0) {
