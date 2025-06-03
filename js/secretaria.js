@@ -3869,7 +3869,7 @@ function guardaAnadeCicloFP(obj){
     textBoton=obj.innerHTML;
     if (textBoton=="Añadir"){
         mostrarPantallaEspera();
-        $.post("php/secret_anade_modulofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{
+        $.post("php/secret_anade_ciclofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{
             ocultarPantallaEspera();
             if (resp=="ok"){
                 alerta("Ciclo de Formación Profesional añadido correctamente.","ALTA CORRECTA");
@@ -3903,13 +3903,12 @@ function guardaAnadeCicloFP(obj){
             }
             
         }
-        alert("modificado: "+modificado);return;
         if (!modificado){
             alerta("No se han realizado cambios en el Ciclo de FP. No se realizará ninguna acción.","SIN CAMBIOS");
             return;
         }
         else{
-            $.post("php/secret_modifica_modulofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{  
+            $.post("php/secret_modifica_ciclofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{  
                 if (resp=="ok"){
                     alerta("Ciclo de Formación Profesional modificado correctamente.","MODIFICACIÓN CORRECTA");
                     mostrarPantallaEspera();
