@@ -543,11 +543,11 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             thead.style.backgroundColor = "#8A8A7B";
             thead.style.color = "white";
             thead.style.zIndex = "2";
-            thead.style.display = "block";////////////
-            thead.style.width = "100%";//////////////
-            //thead.style.display = "table";
-            //thead.style.width = "100%";
-            //thead.style.tableLayout = "fixed";
+            //thead.style.display = "block";////////////
+            //thead.style.width = "100%";//////////////
+            thead.style.display = "table";
+            thead.style.width = "100%";
+            thead.style.tableLayout = "fixed";
 
             // Estilo de cada th
             const ths = thead.querySelectorAll("th");
