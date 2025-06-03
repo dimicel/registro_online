@@ -18,28 +18,28 @@ $nocturno=$_POST['nocturno'];
 $elearning=$_POST['elearning'];
 
 $filtro=1;
-if ($diurno===true) {
-    if ($filtro===1) {
+if ($diurno==true) {
+    if ($filtro==1) {
         $filtro="diurno=true";
     } else {
         $filtro.=" and diurno=true";
     }
 }
-if ($vespertino===true) {
-    if ($filtro===1) {
+if ($vespertino==true) {
+    if ($filtro==1) {
         $filtro="vespertino=true";
     } else {
         $filtro.=" and vespertino=true";
     }
 }
-if ($nocturno===true) {
-    if ($filtro===1) {
+if ($nocturno==true) {
+    if ($filtro==1) {
         $filtro="nocturno=true";
     } else {
         $filtro.=" and nocturno=true";
     }
 }
-if ($elearning===true) {
+if ($elearning==true) {
     if ($filtro===1) {
         $filtro="elearning=true";
     } else {
@@ -47,14 +47,14 @@ if ($elearning===true) {
     }
 }
 if ($dpto!=="") {
-    if ($filtro===1) {
+    if ($filtro==1) {
         $filtro="departamento='$dpto'";
     } else {
         $filtro.=" and departamento='$dpto'";
     }
 }
 if ($grado!=="") {
-    if ($filtro===1) {
+    if ($filtro==1) {
         $filtro="grado='$grado'";
     } else {
         $filtro.=" and grado='$grado'";
