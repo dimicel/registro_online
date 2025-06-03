@@ -419,6 +419,10 @@ function generaSelectsDepartamentos(){
         opt.dataset.id=departamentos[i][3];
         opt.dataset.abreviatura=departamentos[i][1];
         if (document.getElementById("ciclos_filtro_dpto"))document.getElementById("ciclos_filtro_dpto").appendChild(opt);
+        opt=document.createElement("option");
+        opt.value=departamentos[i][0];
+        opt.textContent=departamentos[i][0] +" ("+departamentos[i][1]+")";
+        if (document.getElementById("ciclos_dpto"))document.getElementById("ciclos_dpto").appendChild(opt);
     }
 }
 
