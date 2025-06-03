@@ -3927,3 +3927,24 @@ function guardaAnadeCicloFP(obj){
     $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
     document.getElementById("div_desc_operacion_ciclos").style.visibility='hidden';
 }
+
+
+function compruebaDuplicadoCicloFP(){
+    var accion="";
+    if(document.getElementById("btn_nuevo_ciclo").innerHTML=="Añadir"){
+        accion="alta";
+    }
+    else if(document.getElementById("btn_nuevo_ciclo").innerHTML=="Guardar"){
+        accion="modifica";  
+    }
+    $.post("php/secret_comprueba_duplicado_ciclofp.php",document.getElementById('form_nuevo_ciclo').serialize(),(resp)=>{
+        //ocultarPantallaEspera();
+        if (resp=="duplicado" || resp=="duplicado_normalizado"){
+            document.getElementById("div_ciclo_duplicado").style.visibility='visible';
+        }
+        else{
+            document.getElementById("div_ciclo_duplicado").style.visibility='hidden';
+        }
+    }); 
+}
+
