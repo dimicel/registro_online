@@ -529,7 +529,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             // Aplica estilos al tbody para scroll
             cont.style.display = "block";
             cont.style.maxHeight = "250px";
-            cont.style.overflowY = "auto";
+            cont.style.overflowY = "hidden";
             cont.style.width = "100%";
             cont.style.borderTop = "1px solid #aaa";
 
@@ -549,7 +549,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             if (ths.length === 7) {
                 ths[0].style.width = ancho_dpto;
                 ths[1].style.width = ancho_grado;
-                ths[2].style.width = "37%";
+                ths[2].style.width = ancho_ciclo;
                 ths[3].style.width = ancho_diurno;
                 ths[3].style.textAlign = 'center';
                 ths[4].style.width = ancho_vespertino;
