@@ -3637,6 +3637,7 @@ function guardaAnadeModulo(obj){
             ocultarPantallaEspera();
             if (resp=="ok"){
                 alerta("Módulo Formativo añadido correctamente.","ALTA CORRECTA");
+                mostrarPantallaEspera();
                 generaTablaModulosFP();
             }
             else if (resp=="server"){
@@ -3658,8 +3659,9 @@ function guardaAnadeModulo(obj){
             $.post("php/secret_modifica_modulofp.php",{codigo:codigo,modulo:modulo, id_modulo:id_modulo},(resp)=>{  
                 if (resp=="ok"){
                     alerta("Módulo Formativo modificado correctamente.","MODIFICACIÓN CORRECTA");
-                    generaTablaModulosFP();
                     mostrarPantallaEspera();
+                    generaTablaModulosFP();
+                   
                 }
                 else if (resp=="server"){
                     alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
@@ -3870,8 +3872,9 @@ function guardaAnadeCicloFP(obj){
         $.post("php/secret_anade_modulofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{
             ocultarPantallaEspera();
             if (resp=="ok"){
-                alerta("Módulo Formativo añadido correctamente.","ALTA CORRECTA");
-                generaTablaModulosFP();
+                alerta("Ciclo de Formación Profesional añadido correctamente.","ALTA CORRECTA");
+                mostrarPantallaEspera();
+                generaTablaCiclosFP();
             }
             else if (resp=="server"){
                 alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
@@ -3897,9 +3900,10 @@ function guardaAnadeCicloFP(obj){
         else{
             $.post("php/secret_modifica_modulofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{  
                 if (resp=="ok"){
-                    alerta("Módulo Formativo modificado correctamente.","MODIFICACIÓN CORRECTA");
-                    generaTablaModulosFP();
+                    alerta("Ciclo de Formación Profesional modificado correctamente.","MODIFICACIÓN CORRECTA");
                     mostrarPantallaEspera();
+                    generaTablaCiclosFP();
+                    
                 }
                 else if (resp=="server"){
                     alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
@@ -3910,7 +3914,7 @@ function guardaAnadeCicloFP(obj){
             }); 
         }
     }
-    div_modulos_panel_casillas.style.display='none';
+    div_ciclos_panel_casillas.style.display='none';
     $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
-    document.getElementById("div_desc_operacion_modulos").style.visibility='hidden';
+    document.getElementById("div_desc_operacion_ciclos").style.visibility='hidden';
 }
