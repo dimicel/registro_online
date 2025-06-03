@@ -611,6 +611,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                 const celdaCursos = document.createElement("td");
                 celdaCursos.innerHTML = resp.registro[i].cursos;
                 celdaCursos.style.width = ancho_cursos;
+                celdaCursos.style.textAlign = 'center';
                 celdaCursos.style.boxSizing = "border-box";
                 celdaCursos.style.overflow = "hidden";
                 celdaCursos.style.textOverflow = "ellipsis";
