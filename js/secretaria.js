@@ -3796,3 +3796,16 @@ function gestionCiclosFP(){
         alerta(msg,"ERROR DE CARGA");
     });
 }
+
+function seleccionaCicloFP(obj) {
+    if (document.getElementById("div_desc_operacion_ciclos").style.visibility=='visible'){
+        return;
+    }
+    let filas = document.getElementById("tbody_ciclos").querySelectorAll("tr");
+    filas.forEach(f => {
+        f.classList.remove("selected");
+        f.classList.add("deselected");
+    });
+    obj.classList.remove("deselected");
+    obj.classList.add("selected");
+}
