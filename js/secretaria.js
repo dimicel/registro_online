@@ -3893,6 +3893,7 @@ function guardaAnadeCicloFP(obj){
                 break;
             }
         }
+        alert("modificado: "+modificado);return;
         if (!modificado){
             alerta("No se han realizado cambios en el Ciclo de FP. No se realizará ninguna acción.","SIN CAMBIOS");
             return;
