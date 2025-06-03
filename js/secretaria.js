@@ -509,10 +509,11 @@ function generaTablaCiclosFP(pantallaEspera=true) {
     ancho_dpto="20%"; 
     ancho_grado="20%";
     ancho_ciclo="40%";
-    ancho_diurno="5%";
-    ancho_vespertino="5%";
-    ancho_nocturno="5%";
-    ancho_elearning="5%";
+    ancho_cursos="4%";
+    ancho_diurno="4%";
+    ancho_vespertino="4%";
+    ancho_nocturno="4%";
+    ancho_elearning="4%";
     f_grado=document.getElementById("ciclos_filtro_grado").value;
     f_dpto=document.getElementById("ciclos_filtro_dpto").value;
     f_diurno=document.getElementById("ciclos_filtro_diurno").checked;
@@ -547,18 +548,20 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
             // Estilo de cada th
             const ths = thead.querySelectorAll("th");
-            if (ths.length === 7) {
+            if (ths.length === 8) {
                 ths[0].style.width = ancho_dpto;
                 ths[1].style.width = ancho_grado;
                 ths[2].style.width = ancho_ciclo;
-                ths[3].style.width = ancho_diurno;
+                ths[3].style.width = ancho_cursos
                 ths[3].style.textAlign = 'center';
-                ths[4].style.width = ancho_vespertino;
+                ths[4].style.width = ancho_diurno;
                 ths[4].style.textAlign = 'center';
-                ths[5].style.width = ancho_nocturno;
+                ths[5].style.width = ancho_vespertino;
                 ths[5].style.textAlign = 'center';
-                ths[6].style.width = ancho_elearning;
+                ths[6].style.width = ancho_nocturno;
                 ths[6].style.textAlign = 'center';
+                ths[7].style.width = ancho_elearning;
+                ths[7].style.textAlign = 'center';
             }
             ths.forEach(th => {
                 th.style.boxSizing = "border-box";
@@ -604,6 +607,15 @@ function generaTablaCiclosFP(pantallaEspera=true) {
                 celdaCiclo.style.textOverflow = "ellipsis";
                 celdaCiclo.style.whiteSpace = "nowrap";
                 fila.appendChild(celdaCiclo);
+
+                const celdaCursos = document.createElement("td");
+                celdaCursos.innerHTML = resp.registro[i].cursos;
+                celdaCursos.style.width = ancho_ciclo;
+                celdaCursos.style.boxSizing = "border-box";
+                celdaCursos.style.overflow = "hidden";
+                celdaCursos.style.textOverflow = "ellipsis";
+                celdaCursos.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaCursos);
 
                 const celdaDiurno = document.createElement("td");
                 if (resp.registro[i].diurno == 1) {
