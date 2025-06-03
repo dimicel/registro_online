@@ -3789,9 +3789,8 @@ function gestionCiclosFP(){
                             .then(function(confirmacion2) {
                                 if(confirmacion2){
                                     mostrarPantallaEspera();
-                                    elim_codigo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
-                                    elim_modulo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
-                                    $.post("php/secret_elimina_modulofp.php",{codigo:elim_codigo,modulo:elim_modulo},(resp)=>{
+                                    elim_id=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id;
+                                    $.post("php/secret_elimina_ciclofp.php",{id:elim_id},(resp)=>{
                                         ocultarPantallaEspera();
                                         if (resp=="ok"){
                                             alerta("Ciclo de FP eliminado correctamente.","ELIMINACIÓN CORRECTA");
