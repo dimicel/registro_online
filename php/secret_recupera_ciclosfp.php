@@ -41,9 +41,9 @@ if ($nocturno==true) {
 }
 if ($elearning==true) {
     if ($filtro===1) {
-        $filtro="elearning=true";
+        $filtro="e-learning=true";
     } else {
-        $filtro.=" and elearning=true";
+        $filtro.=" and e-learning=true";
     }
 }
 if ($dpto!=="") {
