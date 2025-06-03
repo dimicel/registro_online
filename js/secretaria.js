@@ -3703,7 +3703,7 @@ function compruebaDuplicadoModuloFP(){
 
 function gestionCiclosFP(){
     mostrarPantallaEspera("Cargando ...");
-    cargaHTML("html/secretaria.htm", "div_ciclos","GESTIÓN DE CICLOS DE FP",1100,2000,"","",
+    cargaHTML("html/secretaria.htm", "div_ciclos","GESTIÓN DE CICLOS DE FP",1000,2000,"","",
         [
             {
                 class: "btn btn-success textoboton btn-sm",
