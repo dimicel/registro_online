@@ -3705,7 +3705,7 @@ function gestionCiclosFP(){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Nuevo",
                 click: function() {
-                    div_modulos_panel_casillas.style.display='';
+                    div_ciclos_panel_casillas.style.display='';
                     document.getElementById("div_desc_operacion_ciclos").style.visibility='visible';
                     document.getElementById("modulo_codigo").value="";
                     document.getElementById("modulo_descripcion").value="";
@@ -3728,7 +3728,7 @@ function gestionCiclosFP(){
                         alerta("No se ha seleccionado ningún módulo formativo.","NINGÚN MÓDULO SELECCIONADO");
                         return;
                     }
-                    div_modulos_panel_casillas.style.display='';
+                    div_ciclos_panel_casillas.style.display='';
                     document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
