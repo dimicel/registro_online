@@ -542,7 +542,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
             thead.style.color = "white";
             thead.style.zIndex = "2";
             thead.style.display = "table";
-            thead.style.width = "98%";
+            thead.style.width = "calc(98%-17px)";
             thead.style.tableLayout = "fixed";
 
             // Estilo de cada th
