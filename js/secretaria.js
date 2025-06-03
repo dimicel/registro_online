@@ -579,7 +579,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaDpto = document.createElement("td");
                 celdaDpto.innerHTML = resp.registro[i].departamento;
-                celdaDpto.style.width = ancho_dpto;
+                celdaDpto.style.width = "21%"
                 celdaDpto.style.boxSizing = "border-box";
                 celdaDpto.style.overflow = "hidden";
                 celdaDpto.style.textOverflow = "ellipsis";
