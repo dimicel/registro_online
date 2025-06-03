@@ -3722,7 +3722,7 @@ function gestionCiclosFP(){
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                     document.getElementById("desc_operacion_ciclos").innerHTML="ALTA DE NUEVO CICLO DE FP";
-                    document.getElementById("btn_nuevo_modulo").innerHTML="Añadir";
+                    document.getElementById("btn_nuevo_ciclo").innerHTML="Añadir";
                     let filas = document.getElementById("tbody_ciclos").querySelectorAll("tr");
                     filas.forEach(f => {
                         f.classList.remove("selected");
@@ -3735,15 +3735,15 @@ function gestionCiclosFP(){
                 text: "Modificar",
                 click: function() {
                     if (document.getElementById("tbody_ciclos").querySelectorAll("tr.selected").length==0){
-                        alerta("No se ha seleccionado ningún módulo formativo.","NINGÚN MÓDULO SELECCIONADO");
+                        alerta("No se ha seleccionado ningún Ciclo de Formación Profesional.","NINGÚN CICLO DE FP SELECCIONADO");
                         return;
                     }
                     div_ciclos_panel_casillas.style.display='';
-                    document.getElementById("div_desc_operacion_modulos").style.visibility='visible';
+                    document.getElementById("div_desc_operacion_ciclos").style.visibility='visible';
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
-                    document.getElementById("div_desc_operacion_ciclos").innerHTML="MODIFICACIÓN DE CICLO DE FP SELECCIONADO";
-                    document.getElementById("btn_nuevo_modulo").innerHTML="Guardar";
+                    document.getElementById("desc_operacion_ciclos").innerHTML="MODIFICACIÓN DE CICLO DE FP SELECCIONADO";
+                    document.getElementById("btn_nuevo_ciclo").innerHTML="Guardar";
                     _codigo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
                     _modulo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
                     document.getElementById("modulo_codigo").value=_codigo;
