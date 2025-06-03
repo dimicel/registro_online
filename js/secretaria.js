@@ -3843,3 +3843,58 @@ function cancelaOPeracionCiclosFP(obj){
     div_ciclos_panel_casillas.style.display='none';
     document.getElementById("div_desc_operacion_ciclos").style.visibility='hidden';
 }
+
+
+function guardaAnadeCicloFP(obj){
+    if (document.getElementById("div_modulo_duplicado").style.visibility=='visible'){
+        alerta("Ya existe otro Módulo Formativo con el mismo código y la misma descripción.","MÓDULO DUPLICADO");
+        return;
+    }
+    if (document.getElementById("modulo_codigo").value.trim().length==0 || document.getElementById("modulo_descripcion").value.trim().length==0){
+            alerta("Los campos 'Código' y 'Descripción' son obligatorios.","FALTAN CAMPOS OBLIGATORIOS");
+            return;
+    }
+    textBoton=obj.innerHTML;
+    if (textBoton=="Añadir"){
+        mostrarPantallaEspera();;
+        $.post("php/secret_anade_modulofp.php",{modulo:document.getElementById("modulo_descripcion").value,codigo:document.getElementById("modulo_codigo").value},(resp)=>{
+            ocultarPantallaEspera();
+            if (resp=="ok"){
+                alerta("Módulo Formativo añadido correctamente.","ALTA CORRECTA");
+                generaTablaModulosFP();
+            }
+            else if (resp=="server"){
+                alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+            }
+            else{
+                alerta(resp,"ERROR DB/SERVIDOR");
+            }
+        });
+    }
+    else if(textBoton=="Guardar"){
+        if (document.getElementById("modulo_descripcion").value==document.getElementById("backup_descripcion").value && document.getElementById("modulo_codigo").value==document.getElementById("backup_codigo").value){
+            alerta("No se han realizado cambios en el departamento. No se realizará ninguna acción.","SIN CAMBIOS");
+        }
+        else{
+            codigo=document.getElementById("modulo_codigo").value;
+            modulo=document.getElementById("modulo_descripcion").value;
+            id_modulo=document.getElementById("tbody_modulos").querySelectorAll("tr.selected")[0].id;
+            $.post("php/secret_modifica_modulofp.php",{codigo:codigo,modulo:modulo, id_modulo:id_modulo},(resp)=>{  
+                if (resp=="ok"){
+                    alerta("Módulo Formativo modificado correctamente.","MODIFICACIÓN CORRECTA");
+                    generaTablaModulosFP();
+                    mostrarPantallaEspera();
+                }
+                else if (resp=="server"){
+                    alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+                }
+                else{
+                    alerta(resp,"ERROR DB/SERVIDOR");
+                }
+            }); 
+        }
+    }
+    div_modulos_panel_casillas.style.display='none';
+    $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
+    document.getElementById("div_desc_operacion_modulos").style.visibility='hidden';
+}
