@@ -12,10 +12,11 @@ if ($mysqli->errno>0) {
 
 $dpto=$_POST['dpto'];
 $grado=$_POST['grado'];
-$diurno=$_POST['diurno'];
-$vespertino=$_POST['vespertino'];
-$nocturno=$_POST['nocturno'];
-$elearning=$_POST['elearning'];
+$diurno = isset($_POST['diurno']) ? filter_var($_POST['diurno'], FILTER_VALIDATE_BOOLEAN) : false;
+$vespertino = isset($_POST['vespertino']) ? filter_var($_POST['vespertino'], FILTER_VALIDATE_BOOLEAN) : false;
+$nocturno = isset($_POST['nocturno']) ? filter_var($_POST['nocturno'], FILTER_VALIDATE_BOOLEAN) : false;
+$elearning = isset($_POST['elearning']) ? filter_var($_POST['elearning'], FILTER_VALIDATE_BOOLEAN) : false;
+
 
 $filtro=1;
 if ($diurno==true) {
