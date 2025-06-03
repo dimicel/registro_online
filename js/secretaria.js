@@ -3711,11 +3711,17 @@ function gestionCiclosFP(){
                 click: function() {
                     div_ciclos_panel_casillas.style.display='';
                     document.getElementById("div_desc_operacion_ciclos").style.visibility='visible';
-                    document.getElementById("modulo_codigo").value="";
-                    document.getElementById("modulo_descripcion").value="";
+                    document.getElementById("ciclo_dpto").value="";
+                    document.getElementById("ciclo_grado").value="";
+                    document.getElementById("ciclo_ciclo").value="";
+                    document.getElementById("ciclo_cursos").value="";
+                    document.getElementById("ciclo_diurno").checked=false;
+                    document.getElementById("ciclo_vespertino").checked=false;
+                    document.getElementById("ciclo_nocturno").checked=false;
+                    document.getElementById("ciclo_elearning").checked=false;
                     //Inhabilita los botones del dialog
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
-                    document.getElementById("div_desc_operacion_ciclos").innerHTML="ALTA DE NUEVO CICLO DE FP";
+                    document.getElementById("desc_operacion_ciclos").innerHTML="ALTA DE NUEVO CICLO DE FP";
                     document.getElementById("btn_nuevo_modulo").innerHTML="Añadir";
                     let filas = document.getElementById("tbody_ciclos").querySelectorAll("tr");
                     filas.forEach(f => {
