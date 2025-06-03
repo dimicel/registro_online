@@ -3744,12 +3744,30 @@ function gestionCiclosFP(){
                     $(this).parent().find(".ui-dialog-buttonpane button").prop("disabled", true);
                     document.getElementById("desc_operacion_ciclos").innerHTML="MODIFICACIÓN DE CICLO DE FP SELECCIONADO";
                     document.getElementById("btn_nuevo_ciclo").innerHTML="Guardar";
-                    _codigo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
-                    _modulo=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
-                    document.getElementById("modulo_codigo").value=_codigo;
-                    document.getElementById("modulo_descripcion").value=_modulo;
-                    document.getElementById("backup_descripcion").value=document.getElementById("modulo_descripcion").value;
-                    document.getElementById("backup_codigo").value=document.getElementById("modulo_codigo").value;
+                    _dpto=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[0].innerHTML;
+                    _grado=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[1].innerHTML;
+                    _ciclos=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[2].innerHTML;
+                    _cursos=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML;
+                    _diurno=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[4].innerHTML=='X'?true:false;
+                    _vespertino=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[5].innerHTML=='X'?true:false;
+                    _nocturno=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[6].innerHTML=='X'?true:false;
+                    _elearning=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[7].innerHTML=='X'?true:false;
+                    document.getElementById("ciclo_dpto").value=_dpto;
+                    document.getElementById("ciclo_grado").value=_grado;
+                    document.getElementById("ciclo_ciclo").value=_ciclos;
+                    document.getElementById("ciclo_cursos").value=_cursos;
+                    document.getElementById("ciclo_diurno").checked=_diurno;
+                    document.getElementById("ciclo_vespertino").checked=_vespertino;
+                    document.getElementById("ciclo_nocturno").checked=_nocturno;
+                    document.getElementById("ciclo_elearning").checked=_elearning;
+                    document.getElementById("backup_dpto").value=_dpto;
+                    document.getElementById("backup_grado").value=_grado;
+                    document.getElementById("backup_ciclo").value=_ciclos;
+                    document.getElementById("backup_cursos").value=_cursos;
+                    document.getElementById("backup_diurno").value=_diurno;
+                    document.getElementById("backup_vespertino").value=_vespertino;
+                    document.getElementById("backup_nocturno").value=_nocturno;
+                    document.getElementById("backup_elearning").value=_elearning;
                 }
             },
             {
