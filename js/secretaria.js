@@ -579,7 +579,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaDpto = document.createElement("td");
                 celdaDpto.innerHTML = resp.registro[i].departamento;
-                celdaDpto.style.width = "19%"
+                celdaDpto.style.width = ancho_dpto;
                 celdaDpto.style.boxSizing = "border-box";
                 celdaDpto.style.overflow = "hidden";
                 celdaDpto.style.textOverflow = "ellipsis";
@@ -588,7 +588,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaGrado = document.createElement("td");
                 celdaGrado.innerHTML = resp.registro[i].grado;
-                celdaGrado.style.width = "21%";
+                celdaGrado.style.width = ancho_grado;
                 celdaGrado.style.boxSizing = "border-box";
                 celdaGrado.style.overflow = "hidden";
                 celdaGrado.style.textOverflow = "ellipsis";
