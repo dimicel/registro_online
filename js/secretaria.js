@@ -588,7 +588,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
 
                 const celdaGrado = document.createElement("td");
                 celdaGrado.innerHTML = resp.registro[i].grado;
-                celdaGrado.style.width = "calc(20% + 5px)";
+                celdaGrado.style.width = "21%";
                 celdaGrado.style.boxSizing = "border-box";
                 celdaGrado.style.overflow = "hidden";
                 celdaGrado.style.textOverflow = "ellipsis";
