@@ -3889,7 +3889,7 @@ function guardaAnadeCicloFP(obj){
         var modificado=false;
         for (var i=0;i<campos.length;i++){
             if( document.getElementById("ciclo_"+campos[i]).type=="checkbox"){
-                if (document.getElementById("ciclo_"+campos[i]).checked!=document.getElementById("backup_"+campos[i]).value==="true"){
+                if (document.getElementById("ciclo_"+campos[i]).checked!=document.getElementById("backup_"+campos[i]).value=="true"?true:false){
                     modificado=true;
                     break;
                 }
@@ -3897,7 +3897,6 @@ function guardaAnadeCicloFP(obj){
             else{
                 if (document.getElementById("ciclo_"+campos[i]).value!=document.getElementById("backup_"+campos[i]).value){
                     modificado=true;
-                    alert(1);
                     break;
                 }
             }
