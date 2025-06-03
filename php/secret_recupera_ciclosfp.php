@@ -39,13 +39,13 @@ if ($nocturno==true) {
         $filtro.=" and nocturno=true";
     }
 }
-/*if ($elearning==true) {
+if ($elearning==true) {
     if ($filtro===1) {
-        $filtro="e-learning=true";
+        $filtro="'e-learning'=true";
     } else {
-        $filtro.=" and e-learning=true";
+        $filtro.=" and 'e-learning'=true";
     }
-}*/
+}
 if ($dpto!=="") {
     if ($filtro==1) {
         $filtro="departamento='$dpto'";
