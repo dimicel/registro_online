@@ -3889,7 +3889,8 @@ function guardaAnadeCicloFP(obj){
         var modificado=false;
         for (var i=0;i<campos.length;i++){
             if( document.getElementById("ciclo_"+campos[i]).type=="checkbox"){
-                if (document.getElementById("ciclo_"+campos[i]).checked!=document.getElementById("backup_"+campos[i]).value=="true"?true:false){
+                _comp=document.getElementById("backup_"+campos[i]).value=="true"?true:false;
+                if (document.getElementById("ciclo_"+campos[i]).checked!=_comp){
                     modificado=true;
                     break;
                 }
