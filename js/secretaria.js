@@ -508,7 +508,7 @@ function generaTablaCiclosFP(pantallaEspera=true) {
     if (pantallaEspera) mostrarPantallaEspera();
     ancho_dpto="20%"; 
     ancho_grado="20%";
-    ancho_ciclo="calc(60% - 17px)";
+    ancho_ciclo="calc(60% - 25px)";
     ancho_diurno="5%";
     ancho_vespertino="5%";
     ancho_nocturno="5%";
