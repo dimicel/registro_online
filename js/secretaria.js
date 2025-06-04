@@ -3841,6 +3841,7 @@ function gestionCiclosFP(){
                         }
                         document.getElementById("div_asignacion_modulos").style.maxHeight=num_cursos*150+"px";
                         generaTablaAsignaModulosFP();
+                        generaTablasCursosFP();
                     }).catch (error=>{
                         ocultarPantallaEspera();
                         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
@@ -4097,4 +4098,14 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
             alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
         }
     }, "json");
+}
+
+
+function generaTablasCursosFP(){
+    var id_ciclo=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id);
+    //var cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
+    mostrarPantallaEspera();
+    $.post("php/secret_recupera_modulos_cursosfp.php",{id:id_ciclo},(resp)=>{
+
+    },"json");
 }
