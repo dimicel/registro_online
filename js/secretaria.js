@@ -4109,7 +4109,7 @@ function generaTablasCursosFP(){
         ocultarPantallaEspera();
         if (resp.error=="ok"){
             for (var i=1;i<=cursos;i++){
-                const cont = document.getElementById("tbody_modulos"+i);
+                const cont = document.getElementById("tbody_modulos_"+i);
                 cont.innerHTML = ""; // Limpia el contenido previo
 
                 // Aplica estilos al tbody para scroll
