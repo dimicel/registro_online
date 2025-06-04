@@ -4122,7 +4122,6 @@ function generaTablasCursosFP(){
                     cod=resp["registro"][i+"º"][j]["codigo"];
                     mod=resp["registro"][i+"º"][j]["modulo"];
                     const fila = document.createElement("tr");
-                    fila.setAttribute("id", resp.registro[i].id);
                     fila.setAttribute("title", resp.registro[i].modulo);
                     fila.setAttribute("onclick", "seleccionaModuloFP(this)");
                     fila.style.display = "table";
