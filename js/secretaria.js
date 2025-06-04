@@ -3817,7 +3817,7 @@ function gestionCiclosFP(){
                         alerta("No se ha seleccionado ningún Ciclo de Formación Profesional.","NINGÚN CICLO DE FP SELECCIONADO");
                         return;
                     }
-                    cargaHTML("html/secretaria.htm", "div_modulosfp","ASIGNACIÓN DE MÓDULOS FORMATIVOS",1000,2000,"","",
+                    cargaHTML("html/secretaria.htm", "div_asignamodulosfp","ASIGNACIÓN DE MÓDULOS FORMATIVOS",1000,2000,"","",
                     [{
                         class: "btn btn-success textoboton btn-sm",
                         text: "Asignar",
