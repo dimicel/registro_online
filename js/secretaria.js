@@ -4168,7 +4168,7 @@ function quitaModulosYaEnCursos(){
             mod_c=tabla_curso.rows[j].cells[1];
             for(let k=0;k<tabla.rows.length;k++){
                 if (tabla.rows[k].cells[0]==cod_c && tabla.rows[k].cells[1]==mod_c){
-                    
+                    tabla.deleteRow(k);
                 }
             }
         }
