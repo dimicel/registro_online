@@ -19,7 +19,7 @@ $nocturno = (int)isset($_POST['ciclo_nocturno']) ? filter_var($_POST['ciclo_noct
 $elearning = (int)isset($_POST['ciclo_elearning']) ? filter_var($_POST['ciclo_elearning'], FILTER_VALIDATE_BOOLEAN) : false;
 
 $con=$mysqli->prepare("UPDATE ciclos SET grado=?, denominacion=?,departamento=?,cursos=?,diurno=?,vespertino=?,nocturno=?,`e-learning`=? WHERE id=?");
-$con->bind_param("sssiiiii",$grado,$ciclo,$dpto,$cursos,$diurno,$vespertino,$nocturno,$elearning,$id);
+$con->bind_param("sssiiiiii",$grado,$ciclo,$dpto,$cursos,$diurno,$vespertino,$nocturno,$elearning,$id);
 $con->execute();
 if ($mysqli->errno>0){
 	exit("fallo_modificacion");		
