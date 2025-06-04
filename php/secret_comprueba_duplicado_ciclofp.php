@@ -11,7 +11,7 @@ if ($mysqli->errno>0) {
 }
 
 
-$ciclo=$_POST['ciclo'];
+$ciclo=$_POST['ciclo_ciclo'];
 $accion=$_POST['accion'];
 $id=$_POST['id'];
 $ciclo_normalizado = normalizar_nombre($ciclo);
