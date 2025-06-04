@@ -4060,17 +4060,6 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
             cont.style.width = "100%";
             cont.style.borderTop = "1px solid #aaa";
 
-            // Aplica estilos al thead para mantenerlo fijo
-            const thead = document.querySelector("#tabla_modulos thead");
-            thead.style.position = "sticky";
-            thead.style.top = "0";
-            thead.style.backgroundColor = "#8A8A7B";
-            thead.style.color = "white";
-            thead.style.zIndex = "2";
-            thead.style.display = "table";
-            thead.style.width = "100%";
-            thead.style.tableLayout = "fixed";
-
             // Añadir filas al tbody
             for (let i = 0; i < resp.registro.length; i++) {
                 const fila = document.createElement("tr");
