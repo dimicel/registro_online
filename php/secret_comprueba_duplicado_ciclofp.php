@@ -20,9 +20,9 @@ $mysqli->set_charset("utf8");
 
 
 if ($accion=="alta") {
-    $sql="SELECT * FROM ciclos WHERE descripcion='$ciclo'";
+    $sql="SELECT * FROM ciclos WHERE denominacion='$ciclo'";
 } elseif ($accion=="modifica") {
-    $sql="SELECT * FROM modulosfp WHERE descripcion='$ciclo' AND id!='$id'";
+    $sql="SELECT * FROM modulosfp WHERE denominacion='$ciclo' AND id!='$id'";
 }
 
 $resultado=$mysqli->query($sql);
@@ -45,7 +45,7 @@ if ($mysqli->errno>0) {
 }
 if ($resultado->num_rows>0) {
     while ($row = $resultado->fetch_assoc()) {
-        if (normalizar_nombre($row['descripcion']) == $ciclo_normalizado) {
+        if (normalizar_nombre($row['denominacion']) == $ciclo_normalizado) {
             $coincidencia = "duplicado_normalizado";
             break;
         }

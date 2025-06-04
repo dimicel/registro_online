@@ -10,7 +10,7 @@ if ($mysqli->errno>0) {
     exit($data);
 }
 
-$id=$_POST['id'];
+$id=(int)$_POST['id'];
 
 $mysqli->set_charset("utf8");
 $sql="DELETE FROM ciclos WHERE id='$id";
