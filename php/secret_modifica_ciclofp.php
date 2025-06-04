@@ -8,7 +8,7 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 
-$ley='LOE';
+$id=(int)$_POST['ciclo_id'];
 $dpto=$_POST['ciclo_dpto'];
 $grado=$_POST['ciclo_grado'];
 $ciclo=$_POST['ciclo_ciclo'];
@@ -17,15 +17,14 @@ $diurno = (int)isset($_POST['ciclo_diurno']) ? filter_var($_POST['ciclo_diurno']
 $vespertino = (int)isset($_POST['ciclo_vespertino']) ? filter_var($_POST['ciclo_vespertino'], FILTER_VALIDATE_BOOLEAN) : false;
 $nocturno = (int)isset($_POST['ciclo_nocturno']) ? filter_var($_POST['ciclo_nocturno'], FILTER_VALIDATE_BOOLEAN) : false;
 $elearning = (int)isset($_POST['ciclo_elearning']) ? filter_var($_POST['ciclo_elearning'], FILTER_VALIDATE_BOOLEAN) : false;
-$bilingue=0;
-$dualizable=0;
 
-$stmt = $mysqli->prepare("INSERT INTO ciclos (ley, grado, denominacion, departamento, cursos, diurno, vespertino, nocturno, `e-learning`, dual_en_empresas, bilingue)
-                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssiiiiiss", $ley, $grado, $ciclo, $dpto, $cursos, $diurno, $vespertino, $nocturno, $elearning, $dualizable, $bilingue);
-$stmt->execute();
-
+$con=$mysqli->prepare("UPDATE ciclos SET grado=?, descripcion=?,departamento=?,cursos=?,diurno=?,vespertino=?,nocturno=?,`e-learning`=? WHERE id=?");
+$con->bind_param("sssiiiii",$grado,$ciclo,$dpto,$cursos,$diurno,$vespertino,$nocturno,$elearning,$id);
+$con->execute();
 if ($mysqli->errno>0){
-	exit("fallo_alta");		
+	exit("fallo_modificacion");		
+}
+elseif ($mysqli->affected_rows==0) {
+    exit("no_modificado");
 }
 exit("ok"); 

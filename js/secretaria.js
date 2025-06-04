@@ -3872,7 +3872,6 @@ function guardaAnadeCicloFP(obj){
             ocultarPantallaEspera();
             if (resp=="ok"){
                 alerta("Ciclo de Formación Profesional añadido correctamente.","ALTA CORRECTA");
-                mostrarPantallaEspera();
                 generaTablaCiclosFP();
             }
             else if (resp=="server"){
@@ -3910,7 +3909,6 @@ function guardaAnadeCicloFP(obj){
             $.post("php/secret_modifica_ciclofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{  
                 if (resp=="ok"){
                     alerta("Ciclo de Formación Profesional modificado correctamente.","MODIFICACIÓN CORRECTA");
-                    mostrarPantallaEspera();
                     generaTablaCiclosFP();
                     
                 }
