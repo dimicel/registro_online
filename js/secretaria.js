@@ -4162,7 +4162,7 @@ function quitaModulosYaEnCursos(){
     var cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
     tabla=document.getElementById("tbody_modulos");
     for(let i=1;i<=cursos;i++){
-        tabla_curso=document.getElementById("tabla_modulos_"+i);
+        tabla_curso=document.getElementById("tbody_modulos_"+i);
         for (let j=0; j<tabla_curso.rows.length;j++){
             cod_c=tabla_curso.rows[j].cells[0];
             mod_c=tabla_curso.rows[j].cells[1];
