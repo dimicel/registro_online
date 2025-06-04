@@ -3822,7 +3822,7 @@ function gestionCiclosFP(){
                         class: "btn btn-success textoboton btn-sm",
                         text: "Asignar",
                         click: function() {
-
+                            $(this).dialog("destroy").remove();
                         }
                     },
                     {
@@ -3836,6 +3836,7 @@ function gestionCiclosFP(){
                         for (let k=1; k<=num_cursos;k++){
                             document.getElementById("curso"+k).style.display='inherit';
                         }
+                        document.getElementById("div_asignacion_modulos").style.maxHeight=num_cursos*150+"px";
                         generaTablaModulosFP();
                     }).catch (error=>{
                         ocultarPantallaEspera();
