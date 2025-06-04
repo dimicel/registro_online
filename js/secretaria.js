@@ -3935,7 +3935,7 @@ function compruebaDuplicadoCicloFP(){
     else if(document.getElementById("btn_nuevo_ciclo").innerHTML=="Guardar"){
         accion="modifica";  
     }
-    $.post("php/secret_comprueba_duplicado_ciclofp.php",$("#form_nuevo_ciclo").serialize(),(resp)=>{
+    $.post("php/secret_comprueba_duplicado_ciclofp.php",{accion:accion,id:$("#ciclo_id").val(),ciclo:$("#ciclo_ciclo").val()},(resp)=>{
         //ocultarPantallaEspera();
         if (resp=="duplicado" || resp=="duplicado_normalizado"){
             document.getElementById("div_ciclo_duplicado").style.visibility='visible';

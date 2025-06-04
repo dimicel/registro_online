@@ -11,9 +11,9 @@ if ($mysqli->errno>0) {
 }
 
 
-$ciclo=$_POST['ciclo_ciclo'];
+$ciclo=$_POST['ciclo'];
 $accion=$_POST['accion'];
-$id=$_POST['id'];
+$id=(int)$_POST['id'];
 $ciclo_normalizado = normalizar_nombre($ciclo);
 
 $mysqli->set_charset("utf8");
