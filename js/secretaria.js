@@ -3837,7 +3837,7 @@ function gestionCiclosFP(){
                             document.getElementById("curso"+k).style.display='inherit';
                         }
                         document.getElementById("div_asignacion_modulos").style.maxHeight=num_cursos*150+"px";
-                        generaTablaModulosFP();
+                        generaTablaAsignaModulosFP();
                     }).catch (error=>{
                         ocultarPantallaEspera();
                         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
@@ -4041,3 +4041,68 @@ function generaTablaModulosCursosFP(curso,pantallaEspera=true) {
     }, "json");
 }
 
+
+function generaTablaAsignaModulosFP(pantallaEspera=true) {
+    if (pantallaEspera) mostrarPantallaEspera();
+    ancho_codigo="10%"; 
+    ancho_descripcion="90%";    
+    $.post("php/secret_recupera_modulosfp.php", {buscar:document.getElementById("modulo_buscar").value}, (resp) => {
+        if (pantallaEspera) ocultarPantallaEspera();
+
+        if (resp.error === "ok") {
+            const cont = document.getElementById("tbody_modulos");
+            cont.innerHTML = ""; // Limpia el contenido previo
+
+            // Aplica estilos al tbody para scroll
+            cont.style.display = "block";
+            cont.style.maxHeight = "250px";
+            cont.style.overflowY = "auto";
+            cont.style.width = "100%";
+            cont.style.borderTop = "1px solid #aaa";
+
+            // Aplica estilos al thead para mantenerlo fijo
+            const thead = document.querySelector("#tabla_modulos thead");
+            thead.style.position = "sticky";
+            thead.style.top = "0";
+            thead.style.backgroundColor = "#8A8A7B";
+            thead.style.color = "white";
+            thead.style.zIndex = "2";
+            thead.style.display = "table";
+            thead.style.width = "100%";
+            thead.style.tableLayout = "fixed";
+
+            // Añadir filas al tbody
+            for (let i = 0; i < resp.registro.length; i++) {
+                const fila = document.createElement("tr");
+                fila.setAttribute("id", resp.registro[i].id);
+                fila.setAttribute("title", resp.registro[i].modulo);
+                fila.setAttribute("onclick", "seleccionaModuloFP(this)");
+                fila.style.display = "table";
+                fila.style.width = "100%";
+                fila.style.tableLayout = "fixed";
+
+                const celdaCodigo = document.createElement("td");
+                celdaCodigo.innerHTML = resp.registro[i].codigo;
+                celdaCodigo.style.width = ancho_codigo;
+                celdaCodigo.style.boxSizing = "border-box";
+                celdaCodigo.style.overflow = "hidden";
+                celdaCodigo.style.textOverflow = "ellipsis";
+                celdaCodigo.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaCodigo);
+
+                const celdaDescripcion = document.createElement("td");
+                celdaDescripcion.innerHTML = resp.registro[i].modulo;
+                celdaDescripcion.style.width = ancho_descripcion;
+                celdaDescripcion.style.boxSizing = "border-box";
+                celdaDescripcion.style.overflow = "hidden";
+                celdaDescripcion.style.textOverflow = "ellipsis";
+                celdaDescripcion.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaDescripcion);
+
+                cont.appendChild(fila);
+            }
+        } else if (resp.error === "server") {
+            alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
+        }
+    }, "json");
+}
