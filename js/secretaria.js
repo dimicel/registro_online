@@ -3850,7 +3850,7 @@ function cancelaOPeracionCiclosFP(obj){
 
 function guardaAnadeCicloFP(obj){
     if (document.getElementById("div_ciclo_duplicado").style.visibility=='visible'){
-        alerta("Ya existe otro Ciclo de FP con el mismo código y la misma descripción.","CICLO DE FP DUPLICADO");
+        alerta("Ya existe otro Ciclo de FP con la misma denominación.","CICLO DE FP DUPLICADO");
         return;
     }
     if (document.getElementById("ciclo_dpto").value.trim().length==0 || document.getElementById("ciclo_grado").value.trim().length==0 || document.getElementById("ciclo_ciclo").value.trim().length==0 || document.getElementById("ciclo_cursos").value.trim().length==0){
