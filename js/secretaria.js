@@ -3602,8 +3602,8 @@ function gestionModulosFP(){
 }
 
 
-function seleccionaModuloFP(fila) {
-    if (document.getElementById("div_desc_operacion_modulos").style.visibility=='visible'){
+function seleccionaModuloFP(fila,asignar=false) {
+    if (document.getElementById("div_desc_operacion_modulos").style.visibility=='visible' && asignar==false){
         return;
     }
     let filas = document.getElementById("tbody_modulos").querySelectorAll("tr");
@@ -4065,7 +4065,7 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
                 const fila = document.createElement("tr");
                 fila.setAttribute("id", resp.registro[i].id);
                 fila.setAttribute("title", resp.registro[i].modulo);
-                fila.setAttribute("onclick", "seleccionaModuloFP(this)");
+                fila.setAttribute("onclick", "seleccionaModuloFP(this,true)");
                 fila.style.display = "table";
                 fila.style.width = "100%";
                 fila.style.tableLayout = "fixed";
