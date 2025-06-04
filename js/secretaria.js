@@ -3842,6 +3842,7 @@ function gestionCiclosFP(){
                         document.getElementById("div_asignacion_modulos").style.maxHeight=num_cursos*150+"px";
                         generaTablaAsignaModulosFP();
                         generaTablasCursosFP();
+                        quitaModulosYaEnCursos();
                     }).catch (error=>{
                         ocultarPantallaEspera();
                         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
@@ -4155,4 +4156,8 @@ function generaTablasCursosFP(){
         }
 
     },"json");
+}
+
+function quitaModulosYaEnCursos(){
+    var cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
 }
