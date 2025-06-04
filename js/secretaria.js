@@ -3790,6 +3790,7 @@ function gestionCiclosFP(){
                                 if(confirmacion2){
                                     mostrarPantallaEspera();
                                     elim_id=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id;
+                                    alert(elim_id);return;
                                     $.post("php/secret_elimina_ciclofp.php",{id:elim_id},(resp)=>{
                                         ocultarPantallaEspera();
                                         if (resp=="ok"){
