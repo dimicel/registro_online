@@ -4108,6 +4108,7 @@ function generaTablasCursosFP(){
     $.post("php/secret_recupera_modulos_cursosfp.php",{id:id_ciclo},(resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
+            alert(cursos)
             for (var i=1;i<=cursos;i++){
                 const cont = document.getElementById("tbody_modulos_"+i);
                 cont.innerHTML = ""; // Limpia el contenido previo
@@ -4121,7 +4122,6 @@ function generaTablasCursosFP(){
                 for(var j=0;j<resp["registro"][i+"º"].length;j++){
                     cod=resp["registro"][i+"º"][j]["codigo"];
                     mod=resp["registro"][i+"º"][j]["modulo"];
-                    alert("Curso:"+i+"  "+cod+"   "+mod)
                     const fila = document.createElement("tr");
                     fila.setAttribute("title", mod);
                     fila.setAttribute("onclick", "seleccionaModuloFP(this)");
