@@ -3832,7 +3832,11 @@ function gestionCiclosFP(){
                             $(this).dialog("destroy").remove();
                         }
                     }]).then((dialogo)=>{
-                        num_cursos=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML;
+                        num_cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
+                        for (let k=1; k<=num_cursos;k++){
+                            document.getElementById("curso"+k).style.display='inherit';
+                        }
+                        generaTablaModulosFP();
                     }).catch (error=>{
                         ocultarPantallaEspera();
                         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
