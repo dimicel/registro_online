@@ -4108,7 +4108,7 @@ function generaTablasCursosFP(){
     $.post("php/secret_recupera_modulos_cursosfp.php",{id:id_ciclo},(resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
-            alert(cursos)
+            var desplazamiento=0;
             for (var i=1;i<=cursos;i++){
                 const cont = document.getElementById("tbody_modulos_"+i);
                 cont.innerHTML = ""; // Limpia el contenido previo
@@ -4119,7 +4119,7 @@ function generaTablasCursosFP(){
                 cont.style.overflowY = "auto";
                 cont.style.width = "100%";
                 cont.style.borderTop = "1px solid #aaa";
-                for(var j=0;j<resp["registro"][i+"º"].length;j++){
+                for(var j=0+(desplazamiento-1);j<resp["registro"][i+"º"].length+(desplazamiento-1);j++){
                     cod=resp["registro"][i+"º"][j]["codigo"];
                     mod=resp["registro"][i+"º"][j]["modulo"];
                     const fila = document.createElement("tr");
@@ -4149,6 +4149,7 @@ function generaTablasCursosFP(){
 
                     cont.appendChild(fila);
                 }
+                desplazamiento+=resp["registro"][i+"º"].length;
             }
         }
         else {
