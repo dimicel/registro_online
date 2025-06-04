@@ -3845,6 +3845,7 @@ function cancelaOPeracionCiclosFP(obj){
     $(obj).closest('.ui-dialog').find('.ui-dialog-buttonpane button').prop('disabled', false);
     div_ciclos_panel_casillas.style.display='none';
     document.getElementById("div_desc_operacion_ciclos").style.visibility='hidden';
+    document.getElementById("div_ciclo_duplicado").style.visibility='hidden';
 }
 
 
