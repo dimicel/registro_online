@@ -3948,3 +3948,60 @@ function compruebaDuplicadoCicloFP(){
     }); 
 }
 
+
+function generaTablaModulosCursosFP(curso,pantallaEspera=true) {
+    if (pantallaEspera) mostrarPantallaEspera();
+    ancho_codigo="10%"; 
+    ancho_descripcion="90%";    
+    $.post("php/secret_recupera_modulosfp_porcurso.php", {id_ciclo:document.getElementById("id_ciclo").value}, (resp) => {
+        if (pantallaEspera) ocultarPantallaEspera();
+
+        if (resp.error === "ok") {
+            const cont = document.getElementById("tbody_modulos"+curso);
+            cont.innerHTML = ""; // Limpia el contenido previo
+
+            // Aplica estilos al tbody para scroll
+            cont.style.display = "block";
+            cont.style.maxHeight = "250px";
+            cont.style.overflowY = "auto";
+            cont.style.width = "100%";
+            cont.style.borderTop = "1px solid #aaa";
+
+            // Añadir filas al tbody
+            for (let i = 0; i < resp.registro.length; i++) {
+                for (let j=0;j < resp.registro.curso.length; j++){
+                    const fila = document.createElement("tr");
+                    fila.setAttribute("id", resp.registro[i].curso[j].id);
+                    fila.setAttribute("title", resp.registro[i].curso[j].modulo);
+                    fila.setAttribute("onclick", "seleccionaModuloFP(this)");
+                    fila.style.display = "table";
+                    fila.style.width = "100%";
+                    fila.style.tableLayout = "fixed";
+
+                    const celdaCodigo = document.createElement("td");
+                    celdaCodigo.innerHTML = resp.registro[i].curso[j].codigo;
+                    celdaCodigo.style.width = ancho_codigo;
+                    celdaCodigo.style.boxSizing = "border-box";
+                    celdaCodigo.style.overflow = "hidden";
+                    celdaCodigo.style.textOverflow = "ellipsis";
+                    celdaCodigo.style.whiteSpace = "nowrap";
+                    fila.appendChild(celdaCodigo);
+
+                    const celdaDescripcion = document.createElement("td");
+                    celdaDescripcion.innerHTML = resp.registro[i].curso[j].modulo;
+                    celdaDescripcion.style.width = ancho_descripcion;
+                    celdaDescripcion.style.boxSizing = "border-box";
+                    celdaDescripcion.style.overflow = "hidden";
+                    celdaDescripcion.style.textOverflow = "ellipsis";
+                    celdaDescripcion.style.whiteSpace = "nowrap";
+                    fila.appendChild(celdaDescripcion);
+
+                    cont.appendChild(fila);
+                }
+            }
+        } else if (resp.error === "server") {
+            alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
+        }
+    }, "json");
+}
+
