@@ -4121,6 +4121,7 @@ function generaTablasCursosFP(){
                 for(var j=0;j<resp["registro"][i+"º"].length;j++){
                     cod=resp["registro"][i+"º"][j]["codigo"];
                     mod=resp["registro"][i+"º"][j]["modulo"];
+                    alert("Curso:"+i+"  "+cod+"   "+mod)
                     const fila = document.createElement("tr");
                     fila.setAttribute("title", mod);
                     fila.setAttribute("onclick", "seleccionaModuloFP(this)");
