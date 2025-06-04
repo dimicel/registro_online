@@ -4103,9 +4103,51 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
 
 function generaTablasCursosFP(){
     var id_ciclo=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id);
-    //var cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
+    var cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
     mostrarPantallaEspera();
     $.post("php/secret_recupera_modulos_cursosfp.php",{id:id_ciclo},(resp)=>{
+        ocultarPantallaEspera();
+        for (var i=1;i<=cursos;i++){
+            const cont = document.getElementById("tbody_modulos"+i);
+            cont.innerHTML = ""; // Limpia el contenido previo
 
+            // Aplica estilos al tbody para scroll
+            cont.style.display = "block";
+            cont.style.maxHeight = "250px";
+            cont.style.overflowY = "auto";
+            cont.style.width = "100%";
+            cont.style.borderTop = "1px solid #aaa";
+            for(var j=0;j<resp["registro"][i+"º"].length;j++){
+                cod=resp["registro"][i+"º"][j]["codigo"];
+                mod=resp["registro"][i+"º"][j]["modulo"];
+                const fila = document.createElement("tr");
+                fila.setAttribute("id", resp.registro[i].id);
+                fila.setAttribute("title", resp.registro[i].modulo);
+                fila.setAttribute("onclick", "seleccionaModuloFP(this)");
+                fila.style.display = "table";
+                fila.style.width = "100%";
+                fila.style.tableLayout = "fixed";
+
+                const celdaCodigo = document.createElement("td");
+                celdaCodigo.innerHTML = cod;
+                celdaCodigo.style.width = "20%";
+                celdaCodigo.style.boxSizing = "border-box";
+                celdaCodigo.style.overflow = "hidden";
+                celdaCodigo.style.textOverflow = "ellipsis";
+                celdaCodigo.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaCodigo);
+
+                const celdaDescripcion = document.createElement("td");
+                celdaDescripcion.innerHTML = mod;
+                celdaDescripcion.style.width = "80%";
+                celdaDescripcion.style.boxSizing = "border-box";
+                celdaDescripcion.style.overflow = "hidden";
+                celdaDescripcion.style.textOverflow = "ellipsis";
+                celdaDescripcion.style.whiteSpace = "nowrap";
+                fila.appendChild(celdaDescripcion);
+
+                cont.appendChild(fila);
+            }
+        }
     },"json");
 }
