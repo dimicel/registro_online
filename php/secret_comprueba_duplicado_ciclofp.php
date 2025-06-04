@@ -22,7 +22,7 @@ $mysqli->set_charset("utf8");
 if ($accion=="alta") {
     $sql="SELECT * FROM ciclos WHERE denominacion='$ciclo'";
 } elseif ($accion=="modifica") {
-    $sql="SELECT * FROM modulosfp WHERE denominacion='$ciclo' AND id!='$id'";
+    $sql="SELECT * FROM ciclos WHERE denominacion='$ciclo' AND id!='$id'";
 }
 
 $resultado=$mysqli->query($sql);
