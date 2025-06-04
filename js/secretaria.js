@@ -3868,7 +3868,7 @@ function guardaAnadeCicloFP(obj){
     textBoton=obj.innerHTML;
     if (textBoton=="Añadir"){
         mostrarPantallaEspera();
-        $.post("php/secret_anade_ciclofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{
+        $.post("php/secret_anade_ciclofp.php",$("#form_nuevo_ciclo").serialize(),(resp)=>{
             ocultarPantallaEspera();
             if (resp=="ok"){
                 alerta("Ciclo de Formación Profesional añadido correctamente.","ALTA CORRECTA");
@@ -3906,7 +3906,7 @@ function guardaAnadeCicloFP(obj){
             return;
         }
         else{
-            $.post("php/secret_modifica_ciclofp.php",document.getElementById("form_nuevo_ciclo").serialize(),(resp)=>{  
+            $.post("php/secret_modifica_ciclofp.php",$("#form_nuevo_ciclo").serialize(),(resp)=>{  
                 if (resp=="ok"){
                     alerta("Ciclo de Formación Profesional modificado correctamente.","MODIFICACIÓN CORRECTA");
                     generaTablaCiclosFP();
@@ -3935,7 +3935,7 @@ function compruebaDuplicadoCicloFP(){
     else if(document.getElementById("btn_nuevo_ciclo").innerHTML=="Guardar"){
         accion="modifica";  
     }
-    $.post("php/secret_comprueba_duplicado_ciclofp.php",document.getElementById('form_nuevo_ciclo').serialize(),(resp)=>{
+    $.post("php/secret_comprueba_duplicado_ciclofp.php",$("#form_nuevo_ciclo").serialize(),(resp)=>{
         //ocultarPantallaEspera();
         if (resp=="duplicado" || resp=="duplicado_normalizado"){
             document.getElementById("div_ciclo_duplicado").style.visibility='visible';
