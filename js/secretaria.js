@@ -3794,7 +3794,7 @@ function gestionCiclosFP(){
                                         ocultarPantallaEspera();
                                         if (resp=="ok"){
                                             alerta("Ciclo de FP eliminado correctamente.","ELIMINACIÓN CORRECTA");
-                                            generaTablaModulosFP();
+                                            generaTablaCiclosFP();
                                         }
                                         else if (resp=="server"){
                                             alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
