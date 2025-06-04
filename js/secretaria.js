@@ -3811,6 +3811,37 @@ function gestionCiclosFP(){
             },
             {
                 class: "btn btn-success textoboton btn-sm",
+                text: "Asignar módulos",
+                click: function() {
+                    if (document.getElementById("tbody_ciclos").querySelectorAll("tr.selected").length==0){
+                        alerta("No se ha seleccionado ningún Ciclo de Formación Profesional.","NINGÚN CICLO DE FP SELECCIONADO");
+                        return;
+                    }
+                    cargaHTML("html/secretaria.htm", "div_modulosfp","ASIGNACIÓN DE MÓDULOS FORMATIVOS",1000,2000,"","",
+                    [{
+                        class: "btn btn-success textoboton btn-sm",
+                        text: "Asignar",
+                        click: function() {
+
+                        }
+                    },
+                    {
+                        class: "btn btn-success textoboton btn-sm",
+                        text: "Cancelar",
+                        click: function() {
+                            $(this).dialog("destroy").remove();
+                        }
+                    }]).then((dialogo)=>{
+                        num_cursos=document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML;
+                    }).catch (error=>{
+                        ocultarPantallaEspera();
+                        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+                        alerta(msg,"ERROR DE CARGA");
+                    });
+                }
+            },
+            {
+                class: "btn btn-success textoboton btn-sm",
                 text: "Salir",
                 click: function() {
                     $(this).dialog("destroy").remove();
