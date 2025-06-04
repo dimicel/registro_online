@@ -27,7 +27,7 @@ if ($accion=="alta") {
 
 $resultado=$mysqli->query($sql);
 if ($mysqli->errno>0) {
-    exit("server");
+    exit("server1");
 }
 if ($resultado->num_rows>0) {
     exit("duplicado");
@@ -41,7 +41,7 @@ if ($accion=="alta") {
 $coincidencia="";
 $resultado=$mysqli->query($sql);   
 if ($mysqli->errno>0) {
-    exit("server");
+    exit("server2");
 }
 if ($resultado->num_rows>0) {
     while ($row = $resultado->fetch_assoc()) {
