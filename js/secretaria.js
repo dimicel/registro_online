@@ -4160,4 +4160,17 @@ function generaTablasCursosFP(){
 
 function quitaModulosYaEnCursos(){
     var cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
+    tabla=document.getElementById("tbody_modulos");
+    for(let i=1;i<=cursos;i++){
+        tabla_curso=document.getElementById("tabla_modulos_"+i);
+        for (let j=0; j<tabla_curso.rows.length;j++){
+            cod_c=tabla_curso.rows[j].cells[0];
+            mod_c=tabla_curso.rows[j].cells[1];
+            for(let k=0;k<tabla.rows.length;k++){
+                if (tabla.rows[k].cells[0]==cod_c && tabla.rows[k].cells[1]==mod_c){
+                    
+                }
+            }
+        }
+    }
 }
