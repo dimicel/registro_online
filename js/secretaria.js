@@ -4164,8 +4164,8 @@ function quitaModulosYaEnCursos(){
     for(let i=1;i<=cursos;i++){
         tabla_curso=document.getElementById("tbody_modulos_"+i);
         for (let j=0; j<tabla_curso.rows.length;j++){
-            cod_c=tabla_curso.rows[j].cells[0];
-            mod_c=tabla_curso.rows[j].cells[1];
+            cod_c=tabla_curso.rows[j].cells[0].textContent;
+            mod_c=tabla_curso.rows[j].cells[1].textContent;
             for(let k=0;k<tabla.rows.length;k++){
                 if (tabla.rows[k].cells[0].textContent==cod_c && tabla.rows[k].cells[1].textContent==mod_c){
                     tabla.deleteRow(k);
