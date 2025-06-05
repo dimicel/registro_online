@@ -129,6 +129,14 @@ th {
     color: #966;
 }
 
+tr[draggable="true"] {
+  cursor: move;
+}
+
+.fila-dragging {
+  opacity: 0.5;
+}
+
 .noseleccionable {
     -moz-user-select: -moz-none;
     -khtml-user-select: none;

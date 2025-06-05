@@ -4073,6 +4073,11 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
                 fila.style.display = "table";
                 fila.style.width = "100%";
                 fila.style.tableLayout = "fixed";
+                fila.draggable=true;
+                fila.addEventListener("dragstart", function(e) {
+                    e.dataTransfer.setData("text/plain", this.outerHTML);
+                    this.classList.add("fila-dragging");
+                });
 
                 const celdaCodigo = document.createElement("td");
                 celdaCodigo.innerHTML = resp.registro[i].codigo;
@@ -4128,6 +4133,12 @@ function generaTablasCursosFP(){
                     fila.style.display = "table";
                     fila.style.width = "100%";
                     fila.style.tableLayout = "fixed";
+                    fila.draggable=true;
+                    fila.addEventListener("dragstart", function(e) {
+                        e.dataTransfer.setData("text/plain", this.outerHTML);
+                        this.classList.add("fila-dragging");
+                    });
+
 
                     const celdaCodigo = document.createElement("td");
                     celdaCodigo.innerHTML = cod;
@@ -4151,6 +4162,23 @@ function generaTablasCursosFP(){
                 }
             }
             quitaModulosYaEnCursos();
+            document.querySelectorAll("table tbody").forEach(tbody => {
+                tbody.addEventListener("dragover", function (e) {
+                    e.preventDefault(); // Necesario para permitir el drop
+                    e.dataTransfer.dropEffect = "move";
+                });
+
+                tbody.addEventListener("drop", function (e) {
+                    e.preventDefault();
+                    const html = e.dataTransfer.getData("text/plain");
+                    this.insertAdjacentHTML("beforeend", html);
+
+                    // Elimina la fila original
+                    const original = document.querySelector(".fila-dragging");
+                    if (original) original.remove();
+                });
+            });
+
         }
         else {
             alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
