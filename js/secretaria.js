@@ -4158,20 +4158,27 @@ function generaTablasCursosFP(){
     },"json");
 }
 
-function quitaModulosYaEnCursos(){
-    var cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
-    tabla=document.getElementById("tbody_modulos");
-    for(let i=1;i<=cursos;i++){
-        tabla_curso=document.getElementById("tbody_modulos_"+i);
-        for (let j=0; j<tabla_curso.rows.length;j++){
-            cod_c=tabla_curso.rows[j].cells[0].textContent;
-            mod_c=tabla_curso.rows[j].cells[1].textContent;
-            for(let k=0;k<tabla.rows.length;k++){
-                if (tabla.rows[k].cells[0].textContent==cod_c && tabla.rows[k].cells[1].textContent==mod_c){
-                    tabla.deleteRow(k);
-                    break;
-                }
-            }
+function quitaModulosYaEnCursos() {
+  const cursos = parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
+  const tabla = document.getElementById("tbody_modulos");
+
+  for (let i = 1; i <= cursos; i++) {
+    const tabla_curso = document.getElementById("tbody_modulos_" + i);
+
+    for (let j = 0; j < tabla_curso.rows.length; j++) {
+      const cod_c = tabla_curso.rows[j].cells[0].textContent;
+      const mod_c = tabla_curso.rows[j].cells[1].textContent;
+
+      for (let k = tabla.rows.length - 1; k >= 0; k--) {
+        const cod_m = tabla.rows[k].cells[0].textContent;
+        const mod_m = tabla.rows[k].cells[1].textContent;
+
+        if (cod_m === cod_c && mod_m === mod_c) {
+          tabla.deleteRow(k);
+          break;
         }
+      }
     }
+  }
 }
+
