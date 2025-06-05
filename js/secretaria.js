@@ -4171,7 +4171,7 @@ function quitaModulosYaEnCursos() {
       for (let k = tabla.rows.length - 1; k >= 0; k--) {
         const cod_m = tabla.rows[k].cells[0].textContent;
         const mod_m = tabla.rows[k].cells[1].textContent;
-        //alert(cod_c.length+"  "+mod_c.length+"   "+cod_m.length+"   "+mod_m.length);break;
+        alert(cod_c+"  "+mod_c+"   "+cod_m+"   "+mod_m);break;
         if (cod_m == cod_c && mod_m == mod_c) {
           tabla.deleteRow(k);
           break;
