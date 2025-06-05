@@ -4078,8 +4078,15 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
                 fila.style.tableLayout = "fixed";
                 fila.draggable=true;
                 fila.addEventListener("dragstart", function(e) {
-                    e.dataTransfer.setData("text/plain", this.outerHTML);
+                    const cod = this.cells[0].textContent;
+                    const nombre = this.cells[1].textContent;
+                    const datos = JSON.stringify({ cod, nombre });
+                    e.dataTransfer.setData("text/plain", datos);
+                    //e.dataTransfer.setData("text/plain", this.outerHTML);
                     this.classList.add("fila-dragging");
+                });
+                fila.addEventListener("dragend", function(e) {
+                    this.remove(); // opcional: elimina la fila de origen
                 });
 
                 const celdaCodigo = document.createElement("td");
@@ -4138,8 +4145,15 @@ function generaTablasCursosFP(){
                     fila.style.tableLayout = "fixed";
                     fila.draggable=true;
                     fila.addEventListener("dragstart", function(e) {
-                        e.dataTransfer.setData("text/plain", this.outerHTML);
+                        const cod = this.cells[0].textContent;
+                        const nombre = this.cells[1].textContent;
+                        const datos = JSON.stringify({ cod, nombre });
+                        e.dataTransfer.setData("text/plain", datos);
+                        //e.dataTransfer.setData("text/plain", this.outerHTML);
                         this.classList.add("fila-dragging");
+                    });
+                    fila.addEventListener("dragend", function(e) {
+                        this.remove(); // opcional: elimina la fila de origen
                     });
 
 
@@ -4173,12 +4187,25 @@ function generaTablasCursosFP(){
 
                 tbody.addEventListener("drop", function (e) {
                     e.preventDefault();
-                    const html = e.dataTransfer.getData("text/plain");
-                    this.insertAdjacentHTML("beforeend", html);
+                    const datos = JSON.parse(e.dataTransfer.getData("text/plain"));
+
+                    const filaNueva = document.createElement("tr");
+                    filaNueva.setAttribute("draggable", "true"); // para que también se pueda volver a arrastrar si quieres
+                    filaNueva.innerHTML = `<td>${datos.cod}</td><td>${datos.nombre}</td>`;
+
+                    // Puedes volver a añadir el mismo listener de dragstart si lo necesitas
+                    filaNueva.addEventListener("dragstart", function(e) {
+                        e.dataTransfer.setData("text/plain", JSON.stringify(datos));
+                    });
+
+                    this.appendChild(filaNueva);
+                    //e.preventDefault();
+                    //const html = e.dataTransfer.getData("text/plain");
+                    //this.insertAdjacentHTML("beforeend", html);
 
                     // Elimina la fila original
-                    const original = document.querySelector(".fila-dragging");
-                    if (original) original.remove();
+                    //const original = document.querySelector(".fila-dragging");
+                    //if (original) original.remove();
                 });
             });
 
