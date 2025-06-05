@@ -4069,7 +4069,7 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
                 const fila = document.createElement("tr");
                 fila.setAttribute("id", resp.registro[i].id);
                 fila.setAttribute("title", resp.registro[i].modulo);
-                fila.setAttribute("onclick", "seleccionaModuloFP(this)");
+                fila.setAttribute("onclick", "");
                 fila.style.display = "table";
                 fila.style.width = "100%";
                 fila.style.tableLayout = "fixed";
@@ -4124,7 +4124,7 @@ function generaTablasCursosFP(){
                     mod=resp["registro"][i+"º"][j]["modulo"];
                     const fila = document.createElement("tr");
                     fila.setAttribute("title", mod);
-                    fila.setAttribute("onclick", "seleccionaModuloFP(this)");
+                    fila.setAttribute("onclick", "");
                     fila.style.display = "table";
                     fila.style.width = "100%";
                     fila.style.tableLayout = "fixed";
