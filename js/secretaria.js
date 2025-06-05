@@ -4047,9 +4047,7 @@ function generaTablaModulosCursosFP(curso,pantallaEspera=true) {
 
 
 function generaTablaAsignaModulosFP(pantallaEspera=true) {
-    if (pantallaEspera) mostrarPantallaEspera();
-    ancho_codigo="10%"; 
-    ancho_descripcion="90%";    
+    if (pantallaEspera) mostrarPantallaEspera();   
     $.post("php/secret_recupera_modulosfp.php", {buscar:document.getElementById("modulo_buscar").value}, (resp) => {
         if (pantallaEspera) ocultarPantallaEspera();
 
@@ -4081,7 +4079,7 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
 
                 const celdaCodigo = document.createElement("td");
                 celdaCodigo.innerHTML = resp.registro[i].codigo;
-                celdaCodigo.style.width = ancho_codigo;
+                celdaCodigo.style.width = "20%";
                 celdaCodigo.style.boxSizing = "border-box";
                 celdaCodigo.style.overflow = "hidden";
                 celdaCodigo.style.textOverflow = "ellipsis";
@@ -4090,7 +4088,7 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
 
                 const celdaDescripcion = document.createElement("td");
                 celdaDescripcion.innerHTML = resp.registro[i].modulo;
-                celdaDescripcion.style.width = ancho_descripcion;
+                celdaDescripcion.style.width = "80%";
                 celdaDescripcion.style.boxSizing = "border-box";
                 celdaDescripcion.style.overflow = "hidden";
                 celdaDescripcion.style.textOverflow = "ellipsis";
