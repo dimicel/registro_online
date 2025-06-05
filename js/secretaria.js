@@ -4017,6 +4017,11 @@ function generaTablaModulosCursosFP(curso,pantallaEspera=true) {
                     fila.style.display = "table";
                     fila.style.width = "100%";
                     fila.style.tableLayout = "fixed";
+                    fila.draggable=true;
+                    fila.addEventListener("dragstart", function(e) {
+                        e.dataTransfer.setData("text/plain", this.outerHTML);
+                        this.classList.add("fila-dragging");
+                    });
 
                     const celdaCodigo = document.createElement("td");
                     celdaCodigo.innerHTML = resp.registro[i].curso[j].codigo;
