@@ -4164,7 +4164,6 @@ function quitaModulosYaEnCursos() {
 
   for (let i = 1; i <= cursos; i++) {
     const tabla_curso = document.getElementById("tbody_modulos_" + i);
-alert(3);
     for (let j = 0; j < tabla_curso.rows.length; j++) {
       const cod_c = tabla_curso.rows[j].cells[0].textContent;
       const mod_c = tabla_curso.rows[j].cells[1].textContent;
@@ -4173,13 +4172,12 @@ alert(3);
         const cod_m = tabla.rows[k].cells[0].textContent;
         const mod_m = tabla.rows[k].cells[1].textContent;
 
-        if (cod_m === cod_c && mod_m === mod_c) {alert(0);
+        if (cod_m === cod_c && mod_m === mod_c) {
           tabla.deleteRow(k);
           break;
         }
       }
     }
   }
-  alert("fin")
 }
 
