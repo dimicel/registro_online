@@ -4208,17 +4208,6 @@ function generaTablasCursosFP(){
                         // Si no hay fila destino (por ejemplo, se suelta en un hueco vacío), va al final
                         this.appendChild(filaNueva);
                     }
-
-                    //this.appendChild(filaNueva);
-                    
-                    
-                    //e.preventDefault();
-                    //const html = e.dataTransfer.getData("text/plain");
-                    //this.insertAdjacentHTML("beforeend", html);
-
-                    // Elimina la fila original
-                    //const original = document.querySelector(".fila-dragging");
-                    //if (original) original.remove();
                 });
             });
 
