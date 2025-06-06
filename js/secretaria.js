@@ -3839,7 +3839,7 @@ function gestionCiclosFP(){
                         for (let k=1; k<=num_cursos;k++){
                             document.getElementById("curso"+k).style.display='inherit';
                         }
-                        document.getElementById("div_asignacion_modulos").style.height=num_cursos*150+"px";
+                        document.getElementById("tabla_modulos").style.height=num_cursos*150+"px";
                         generaTablaAsignaModulosFP();
                         
                     }).catch (error=>{
