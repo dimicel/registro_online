@@ -4252,7 +4252,7 @@ function generaTablasCursosFP(){
                         }
                     }
                     for (let i=1;i<=cursos;i++){
-                        alert(888);
+                        alert(document.getElementById("tbody_modulos_"+i).rows.length);
                         if (document.getElementById("tbody_modulos_"+i).rows.length==0){
                             const filaNueva = document.createElement("tr");
                             filaNueva.style.display="table";
