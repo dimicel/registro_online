@@ -3826,6 +3826,7 @@ function gestionCiclosFP(){
                         text: "Asignar",
                         click: function() {
                             $(this).dialog("destroy").remove();
+                            asignaModulosACiclos();
                         }
                     },
                     {
@@ -4293,5 +4294,9 @@ function quitaModulosYaEnCursos() {
       }
     }
   }
+}
+
+function asignaModulosACiclos(){
+    
 }
 
