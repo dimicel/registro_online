@@ -4231,7 +4231,6 @@ function generaTablasCursosFP(){
                     });
                     filaNueva.addEventListener("dragend", function(e) {
                         this.remove(); // opcional: elimina la fila de origen
-                        alert(document.getElementById("tbody_modulos_1").rows.length+" "+document.getElementById("tbody_modulos_2").rows.length+" "+document.getElementById("tbody_modulos_3").rows.length)
                         for (let i=1;i<=cursos;i++){
                             _cuerpo=document.getElementById("tbody_modulos_"+i);
                             if (_cuerpo.rows.length==0){
