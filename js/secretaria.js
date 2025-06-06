@@ -4248,7 +4248,7 @@ function generaTablasCursosFP(){
                             }
                         }
                     }
-                    if (tbody.rows.length==0){
+                    if (tbody.rows.length==0){alert(88888);
                         const filaNueva = document.createElement("tr");
                         filaNueva.style.display="table";
                         filaNueva.style.width="100%";
