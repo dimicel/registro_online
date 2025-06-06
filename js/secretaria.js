@@ -4150,7 +4150,6 @@ function generaTablasCursosFP(){
                         const nombre = this.cells[1].textContent;
                         const datos = JSON.stringify({ cod, nombre });
                         e.dataTransfer.setData("text/plain", datos);
-                        //e.dataTransfer.setData("text/plain", this.outerHTML);
                         this.classList.add("fila-dragging");
                     });
                     fila.addEventListener("dragend", function(e) {
@@ -4200,7 +4199,15 @@ function generaTablasCursosFP(){
 
                     // Puedes volver a añadir el mismo listener de dragstart si lo necesitas
                     filaNueva.addEventListener("dragstart", function(e) {
-                        e.dataTransfer.setData("text/plain", JSON.stringify(datos));
+                        //e.dataTransfer.setData("text/plain", JSON.stringify(datos));
+                        const cod = this.cells[0].textContent;
+                        const nombre = this.cells[1].textContent;
+                        const datos = JSON.stringify({ cod, nombre });
+                        e.dataTransfer.setData("text/plain", datos);
+                        this.classList.add("fila-dragging");
+                    });
+                    filaNueva.addEventListener("dragend", function(e) {
+                        this.remove(); // opcional: elimina la fila de origen
                     });
 
                     // Encontrar la fila sobre la que se ha hecho drop
