@@ -4251,13 +4251,15 @@ function generaTablasCursosFP(){
                             }
                         }
                     }
-                    if (tbody.rows.length==0){alert(88888);
-                        const filaNueva = document.createElement("tr");
-                        filaNueva.style.display="table";
-                        filaNueva.style.width="100%";
-                        filaNueva.style.tableLayout="fixed";
-                        filaNueva.innerHTML = `<td width="20%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></td><td width="80%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">NO HAY MÓDULOS ASIGNADOS A ESTE CURSO</td>`;
-                        this.appendChild(filaNueva);
+                    for (let i=1;i<=cursos;i++){
+                        if (document.getElementById("tbody_modulos_"+i).rows.length==0){
+                            const filaNueva = document.createElement("tr");
+                            filaNueva.style.display="table";
+                            filaNueva.style.width="100%";
+                            filaNueva.style.tableLayout="fixed";
+                            filaNueva.innerHTML = `<td width="20%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></td><td width="80%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">NO HAY MÓDULOS ASIGNADOS A ESTE CURSO</td>`;
+                            document.getElementById("tbody_modulos_"+i).appendChild(filaNueva);
+                        }
                     }
                 });
             });
