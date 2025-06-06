@@ -4243,11 +4243,18 @@ function generaTablasCursosFP(){
                     if (tbody.rows.length==2){
                         for (let i=0;i<tbody.rows.length;i++){
                             if(tbody.rows[i].cells[0].innerHTML=="" && tbody.rows[i].cells[1].innerHTML=="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO"){
-                                alert(888);
                                 tbody.rows[i].remove();
                                 break;
                             }
                         }
+                    }
+                    if (tbody.rows.length==0){
+                        const filaNueva = document.createElement("tr");
+                        filaNueva.style.display="table";
+                        filaNueva.style.width="100%";
+                        filaNueva.style.tableLayout="fixed";
+                        filaNueva.innerHTML = `<td width="20%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></td><td width="80%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">NO HAY MÓDULOS ASIGNADOS A ESTE CURSO</td>`;
+                        this.appendChild(filaNueva);
                     }
                 });
             });
