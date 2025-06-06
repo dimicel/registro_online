@@ -4080,7 +4080,8 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
                 fila.addEventListener("dragstart", function(e) {
                     const cod = this.cells[0].textContent;
                     const nombre = this.cells[1].textContent;
-                    const datos = JSON.stringify({ cod, nombre });
+                    //const datos = JSON.stringify({ cod, nombre });
+                    const datos="<td width'20%'>cod</td><td width='80%'>nombre</td>";
                     e.dataTransfer.setData("text/plain", datos);
                     //e.dataTransfer.setData("text/plain", this.outerHTML);
                     this.classList.add("fila-dragging");
