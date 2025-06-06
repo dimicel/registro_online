@@ -4081,7 +4081,6 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
                     const cod = this.cells[0].textContent;
                     const nombre = this.cells[1].textContent;
                     const datos = JSON.stringify({ cod, nombre });
-                    //const datos="<td width'20%'>cod</td><td width='80%'>nombre</td>";
                     e.dataTransfer.setData("text/plain", datos);
                     //e.dataTransfer.setData("text/plain", this.outerHTML);
                     this.classList.add("fila-dragging");
@@ -4092,7 +4091,7 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
 
                 const celdaCodigo = document.createElement("td");
                 celdaCodigo.innerHTML = resp.registro[i].codigo;
-                //celdaCodigo.style.width = "20%";
+                celdaCodigo.style.width = "20%";
                 celdaCodigo.style.boxSizing = "border-box";
                 celdaCodigo.style.overflow = "hidden";
                 celdaCodigo.style.textOverflow = "ellipsis";
@@ -4101,7 +4100,7 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
 
                 const celdaDescripcion = document.createElement("td");
                 celdaDescripcion.innerHTML = resp.registro[i].modulo;
-                //celdaDescripcion.style.width = "80%";
+                celdaDescripcion.style.width = "80%";
                 celdaDescripcion.style.boxSizing = "border-box";
                 celdaDescripcion.style.overflow = "hidden";
                 celdaDescripcion.style.textOverflow = "ellipsis";
@@ -4149,7 +4148,6 @@ function generaTablasCursosFP(){
                         const cod = this.cells[0].textContent;
                         const nombre = this.cells[1].textContent;
                         const datos = JSON.stringify({ cod, nombre });
-                        //const datos="<td width'20%'>cod</td><td width='80%'>nombre</td>";
                         e.dataTransfer.setData("text/plain", datos);
                         //e.dataTransfer.setData("text/plain", this.outerHTML);
                         this.classList.add("fila-dragging");
@@ -4161,7 +4159,7 @@ function generaTablasCursosFP(){
 
                     const celdaCodigo = document.createElement("td");
                     celdaCodigo.innerHTML = cod;
-                    //celdaCodigo.style.width = "20%";
+                    celdaCodigo.style.width = "20%";
                     celdaCodigo.style.boxSizing = "border-box";
                     celdaCodigo.style.overflow = "hidden";
                     celdaCodigo.style.textOverflow = "ellipsis";
@@ -4170,7 +4168,7 @@ function generaTablasCursosFP(){
 
                     const celdaDescripcion = document.createElement("td");
                     celdaDescripcion.innerHTML = mod;
-                    //celdaDescripcion.style.width = "80%";
+                    celdaDescripcion.style.width = "80%";
                     celdaDescripcion.style.boxSizing = "border-box";
                     celdaDescripcion.style.overflow = "hidden";
                     celdaDescripcion.style.textOverflow = "ellipsis";
