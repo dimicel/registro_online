@@ -4198,7 +4198,20 @@ function generaTablasCursosFP(){
                         e.dataTransfer.setData("text/plain", JSON.stringify(datos));
                     });
 
-                    this.appendChild(filaNueva);
+                    // 🔍 Encontrar la fila sobre la que se ha hecho drop
+                    const filaDestino = e.target.closest("tr");
+
+                    // Si se soltó sobre una fila, insertamos antes de ella
+                    if (filaDestino && this.contains(filaDestino)) {
+                        this.insertBefore(filaNueva, filaDestino);
+                    } else {
+                        // Si no hay fila destino (por ejemplo, se suelta en un hueco vacío), va al final
+                        this.appendChild(filaNueva);
+                    }
+
+                    //this.appendChild(filaNueva);
+                    
+                    
                     //e.preventDefault();
                     //const html = e.dataTransfer.getData("text/plain");
                     //this.insertAdjacentHTML("beforeend", html);
