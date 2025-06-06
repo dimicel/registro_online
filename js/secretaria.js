@@ -4240,6 +4240,14 @@ function generaTablasCursosFP(){
                         // Si no hay fila destino (por ejemplo, se suelta en un hueco vacío), va al final
                         this.appendChild(filaNueva);
                     }
+                    if (tbody.rows.length==2){
+                        for (let i=0;i<tbody.rows.length;i++){
+                            if(tbody.rows[i].cells[0].innerHTML=="" && tbody.rows[i].cells[0].innerHTML=="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO"){
+                                tbody.rows[i].remove();
+                                break;
+                            }
+                        }
+                    }
                 });
             });
 
