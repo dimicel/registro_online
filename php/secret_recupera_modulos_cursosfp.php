@@ -21,6 +21,7 @@ if ($mysqli->errno>0) {
 $data["error"]="ok";
 $contador=0;
 $curso_old="";
+$data["registro"]=array();
 while ($reg=$res->fetch_assoc()){
     if ($curso_old!=$reg["curso"]){
         $contador=0;
