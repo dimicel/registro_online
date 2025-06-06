@@ -4135,7 +4135,8 @@ function generaTablasCursosFP(){
                 cont.style.overflowY = "auto";
                 cont.style.width = "100%";
                 cont.style.borderTop = "1px solid #aaa";
-                const num_reg=resp["registro"][i+"º"].length==0?1:resp["registro"][i+"º"].length;
+                var num_reg=resp["registro"][i+"º"].length==0?1:resp["registro"][i+"º"].length;
+                alert(num_reg);
                 for(var j=0;j<num_reg;j++){
                     if (resp["registro"][i+"º"].length>0){
                         cod=resp["registro"][i+"º"][j]["codigo"];
