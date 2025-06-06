@@ -4231,6 +4231,18 @@ function generaTablasCursosFP(){
                     });
                     filaNueva.addEventListener("dragend", function(e) {
                         this.remove(); // opcional: elimina la fila de origen
+                        alert(document.getElementById("tbody_modulos_1").rows.length+" "+document.getElementById("tbody_modulos_2").rows.length+" "+document.getElementById("tbody_modulos_3").rows.length)
+                        for (let i=1;i<=cursos;i++){
+                            _cuerpo=document.getElementById("tbody_modulos_"+i);
+                            if (_cuerpo.rows.length==0){
+                                const filaNueva = document.createElement("tr");
+                                filaNueva.style.display="table";
+                                filaNueva.style.width="100%";
+                                filaNueva.style.tableLayout="fixed";
+                                filaNueva.innerHTML = `<td width="20%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></td><td width="80%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">NO HAY MÓDULOS ASIGNADOS A ESTE CURSO</td>`;
+                                document.getElementById("tbody_modulos_"+i).appendChild(filaNueva);
+                            }
+                        }
                     });
 
                     // Encontrar la fila sobre la que se ha hecho drop
@@ -4249,18 +4261,6 @@ function generaTablasCursosFP(){
                                 tbody.rows[i].remove();
                                 break;
                             }
-                        }
-                    }
-                    alert(document.getElementById("tbody_modulos_1").rows.length+" "+document.getElementById("tbody_modulos_2").rows.length+" "+document.getElementById("tbody_modulos_3").rows.length)
-                    for (let i=1;i<=cursos;i++){
-                        _cuerpo=document.getElementById("tbody_modulos_"+i);
-                        if (_cuerpo.rows.length==0){
-                            const filaNueva = document.createElement("tr");
-                            filaNueva.style.display="table";
-                            filaNueva.style.width="100%";
-                            filaNueva.style.tableLayout="fixed";
-                            filaNueva.innerHTML = `<td width="20%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></td><td width="80%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">NO HAY MÓDULOS ASIGNADOS A ESTE CURSO</td>`;
-                            document.getElementById("tbody_modulos_"+i).appendChild(filaNueva);
                         }
                     }
                 });
