@@ -4192,6 +4192,10 @@ function generaTablasCursosFP(){
 
                     const filaNueva = document.createElement("tr");
                     filaNueva.setAttribute("draggable", "true"); // para que también se pueda volver a arrastrar si quieres
+                    filaNueva.setAttribute("title",datos.nombre);
+                    filaNueva.style.display="table";
+                    filaNueva.style.width="100%";
+                    filaNueva.style.tableLayout="fixed";
                     filaNueva.innerHTML = `<td width="20%">${datos.cod}</td><td width="80%">${datos.nombre}</td>`;
 
                     // Puedes volver a añadir el mismo listener de dragstart si lo necesitas
