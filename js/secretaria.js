@@ -3839,7 +3839,7 @@ function gestionCiclosFP(){
                         for (let k=1; k<=num_cursos;k++){
                             document.getElementById("curso"+k).style.display='inherit';
                         }
-                        document.getElementById("tabla_modulos").style.height=num_cursos*150+"px";
+                        document.getElementById("div_asignacion_modulos").style.height=num_cursos*150+"px";
                         generaTablaAsignaModulosFP();
                         
                     }).catch (error=>{
@@ -4062,7 +4062,7 @@ function generaTablaAsignaModulosFP(pantallaEspera=true,teclaPulsada=false) {
 
             // Aplica estilos al tbody para scroll
             cont.style.display = "block";
-            cont.style.maxHeight = "250px";
+            //cont.style.maxHeight = "250px";
             cont.style.overflowY = "auto";
             cont.style.width = "100%";
             cont.style.borderTop = "1px solid #aaa";
