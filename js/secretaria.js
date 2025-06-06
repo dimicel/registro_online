@@ -4217,12 +4217,6 @@ function generaTablasCursosFP(){
                     filaNueva.style.tableLayout="fixed";
                     filaNueva.innerHTML = `<td width="20%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${datos.cod}</td><td width="80%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${datos.nombre}</td>`;
 
-                     celdaCodigo.style.width = "20%";
-                celdaCodigo.style.boxSizing = "border-box";
-                celdaCodigo.style.overflow = "hidden";
-                celdaCodigo.style.textOverflow = "ellipsis";
-                celdaCodigo.style.whiteSpace = "nowrap";
-
                     // Puedes volver a añadir el mismo listener de dragstart si lo necesitas
                     filaNueva.addEventListener("dragstart", function(e) {
                         //e.dataTransfer.setData("text/plain", JSON.stringify(datos));
