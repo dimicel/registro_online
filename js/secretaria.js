@@ -4072,7 +4072,6 @@ function generaTablaAsignaModulosFP(pantallaEspera=true,teclaPulsada=false) {
                 const fila = document.createElement("tr");
                 fila.setAttribute("id", resp.registro[i].id);
                 fila.setAttribute("title", resp.registro[i].modulo);
-                fila.setAttribute("onclick", "");
                 fila.style.display = "table";
                 fila.style.width = "100%";
                 fila.style.tableLayout = "fixed";
@@ -4144,6 +4143,7 @@ function generaTablasCursosFP(){
                     num_reg=1;
                 }
                 for(var j=0;j<num_reg;j++){
+                    var hay_modulos=true;
                     if(i<=num_cursos){
                         if (resp["registro"][i+"º"].length>0){
                             cod=resp["registro"][i+"º"][j]["codigo"];
@@ -4151,30 +4151,33 @@ function generaTablasCursosFP(){
                         }
                         else {
                             cod="";
-                            mod="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO";                        
+                            mod="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO";   
+                            hay_modulos=false;                     
                         }
                     }
                     else {
                         cod="";
-                        mod="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO";                        
+                        mod="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO";   
+                        hay_modulos=false;                     
                     }
                     const fila = document.createElement("tr");
-                    fila.setAttribute("title", mod);
-                    fila.setAttribute("onclick", "");
+                    if (hay_modulos) fila.setAttribute("title", mod);
                     fila.style.display = "table";
                     fila.style.width = "100%";
                     fila.style.tableLayout = "fixed";
-                    fila.draggable=true;
-                    fila.addEventListener("dragstart", function(e) {
-                        const cod = this.cells[0].textContent;
-                        const nombre = this.cells[1].textContent;
-                        const datos = JSON.stringify({ cod, nombre });
-                        e.dataTransfer.setData("text/plain", datos);
-                        this.classList.add("fila-dragging");
-                    });
-                    fila.addEventListener("dragend", function(e) {
-                        this.remove(); // opcional: elimina la fila de origen
-                    });
+                    if (hay_modulos) {
+                        fila.draggable=true;
+                        fila.addEventListener("dragstart", function(e) {
+                            const cod = this.cells[0].textContent;
+                            const nombre = this.cells[1].textContent;
+                            const datos = JSON.stringify({ cod, nombre });
+                            e.dataTransfer.setData("text/plain", datos);
+                            this.classList.add("fila-dragging");
+                        });
+                        fila.addEventListener("dragend", function(e) {
+                            this.remove(); // opcional: elimina la fila de origen
+                        });
+                    }
 
 
                     const celdaCodigo = document.createElement("td");
