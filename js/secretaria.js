@@ -4135,9 +4135,16 @@ function generaTablasCursosFP(){
                 cont.style.overflowY = "auto";
                 cont.style.width = "100%";
                 cont.style.borderTop = "1px solid #aaa";
-                for(var j=0;j<resp["registro"][i+"º"].length;j++){
-                    cod=resp["registro"][i+"º"][j]["codigo"];
-                    mod=resp["registro"][i+"º"][j]["modulo"];
+                const num_reg=resp["registro"][i+"º"].length==0?1:resp["registro"][i+"º"].length;
+                for(var j=0;j<num_reg;j++){
+                    if (resp["registro"][i+"º"].length>0){
+                        cod=resp["registro"][i+"º"][j]["codigo"];
+                        mod=resp["registro"][i+"º"][j]["modulo"];
+                    }
+                    else {
+                        cod="";
+                        mod="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO";                        
+                    }
                     const fila = document.createElement("tr");
                     fila.setAttribute("title", mod);
                     fila.setAttribute("onclick", "");
