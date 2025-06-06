@@ -4051,7 +4051,7 @@ function generaTablaModulosCursosFP(curso,pantallaEspera=true) {
 }
 
 
-function generaTablaAsignaModulosFP(pantallaEspera=true) {
+function generaTablaAsignaModulosFP(pantallaEspera=true,teclaPulsada=false) {
     if (pantallaEspera) mostrarPantallaEspera();   
     $.post("php/secret_recupera_modulosfp.php", {buscar:document.getElementById("modulo_buscar").value}, (resp) => {
         if (pantallaEspera) ocultarPantallaEspera();
@@ -4109,7 +4109,8 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
 
                 cont.appendChild(fila);
             }
-            generaTablasCursosFP();
+            if(!teclaPulsada) generaTablasCursosFP();
+            else quitaModulosYaEnCursos();
         } else if (resp.error === "server") {
             alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
         }
@@ -4198,7 +4199,7 @@ function generaTablasCursosFP(){
                         e.dataTransfer.setData("text/plain", JSON.stringify(datos));
                     });
 
-                    // 🔍 Encontrar la fila sobre la que se ha hecho drop
+                    // Encontrar la fila sobre la que se ha hecho drop
                     const filaDestino = e.target.closest("tr");
 
                     // Si se soltó sobre una fila, insertamos antes de ella
