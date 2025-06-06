@@ -4252,13 +4252,16 @@ function generaTablasCursosFP(){
                         }
                     }
                     for (let i=1;i<=cursos;i++){
-                        if (document.getElementById("tbody_modulos_"+i).rows.length==1){
-                            const filaNueva = document.createElement("tr");
-                            filaNueva.style.display="table";
-                            filaNueva.style.width="100%";
-                            filaNueva.style.tableLayout="fixed";
-                            filaNueva.innerHTML = `<td width="20%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></td><td width="80%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">NO HAY MÓDULOS ASIGNADOS A ESTE CURSO</td>`;
-                            document.getElementById("tbody_modulos_"+i).appendChild(filaNueva);
+                        _cuerpo=document.getElementById("tbody_modulos_"+i);
+                        if (_cuerpo.rows.length==1){
+                            if(_cuerpo.rows[0].cells[0].innerHTML!="" && _cuerpo.rows[0].cells[0].innerHTML!="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO"){
+                                const filaNueva = document.createElement("tr");
+                                filaNueva.style.display="table";
+                                filaNueva.style.width="100%";
+                                filaNueva.style.tableLayout="fixed";
+                                filaNueva.innerHTML = `<td width="20%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></td><td width="80%" style="box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">NO HAY MÓDULOS ASIGNADOS A ESTE CURSO</td>`;
+                                document.getElementById("tbody_modulos_"+i).appendChild(filaNueva);
+                            }
                         }
                     }
                 });
