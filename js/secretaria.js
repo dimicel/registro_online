@@ -4092,7 +4092,7 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
 
                 const celdaCodigo = document.createElement("td");
                 celdaCodigo.innerHTML = resp.registro[i].codigo;
-                celdaCodigo.style.width = "20%";
+                //celdaCodigo.style.width = "20%";
                 celdaCodigo.style.boxSizing = "border-box";
                 celdaCodigo.style.overflow = "hidden";
                 celdaCodigo.style.textOverflow = "ellipsis";
@@ -4101,7 +4101,7 @@ function generaTablaAsignaModulosFP(pantallaEspera=true) {
 
                 const celdaDescripcion = document.createElement("td");
                 celdaDescripcion.innerHTML = resp.registro[i].modulo;
-                celdaDescripcion.style.width = "80%";
+                //celdaDescripcion.style.width = "80%";
                 celdaDescripcion.style.boxSizing = "border-box";
                 celdaDescripcion.style.overflow = "hidden";
                 celdaDescripcion.style.textOverflow = "ellipsis";
@@ -4161,7 +4161,7 @@ function generaTablasCursosFP(){
 
                     const celdaCodigo = document.createElement("td");
                     celdaCodigo.innerHTML = cod;
-                    celdaCodigo.style.width = "20%";
+                    //celdaCodigo.style.width = "20%";
                     celdaCodigo.style.boxSizing = "border-box";
                     celdaCodigo.style.overflow = "hidden";
                     celdaCodigo.style.textOverflow = "ellipsis";
@@ -4170,7 +4170,7 @@ function generaTablasCursosFP(){
 
                     const celdaDescripcion = document.createElement("td");
                     celdaDescripcion.innerHTML = mod;
-                    celdaDescripcion.style.width = "80%";
+                    //celdaDescripcion.style.width = "80%";
                     celdaDescripcion.style.boxSizing = "border-box";
                     celdaDescripcion.style.overflow = "hidden";
                     celdaDescripcion.style.textOverflow = "ellipsis";
