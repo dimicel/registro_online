@@ -30,7 +30,7 @@ while ($reg=$res->fetch_assoc()){
     $data["registro"][$reg["curso"]][$contador]= $reg;
     $contador++;
 }
-$data["contador"]=$contador;
+
 
 exit(json_encode($data));
 
