@@ -4306,5 +4306,15 @@ function asignaModulosACiclos(){
             lista.push([i+"º",t.rows[j].cells[0],t.rows[j].cells[1]]);
         }
     }
+    mostrarPantallaEspera();
+    $.post("php/secret_asigna_mods_ciclos.php",{id:id_ciclo,lista_mods:lista},(resp)=>{
+        ocultarPantallaEspera();
+        if(resp=="server"){
+            alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
+        }
+        else if(resp=="ok"){
+            alerta("Asignación de módulos al ciclo efectuada correctamente","ASIGNACIÓN OK")
+        }
+    });
 }
 
