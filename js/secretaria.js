@@ -1847,7 +1847,6 @@ function verPanelResolver(id_nie,registro){
                             mostrarPantallaEspera();
                             document.getElementById("genera_resolucion").value=1;
                             $.post("php/secret_convalid_estado_resol.php",$("#form_relacion_modulos_convalid").serialize(),(resp)=>{
-                                alert(resp)
                                 ocultarPantallaEspera();
                                 if (resp=="server") alerta("Error en el servidor. No se puede resolver la convalidación","ERROR EN SERVIDOR");
                                 else if(resp=="error_db") alerta("Error en base de datos. No se puede resolver la convalidación","ERROR DB");
@@ -4120,11 +4119,11 @@ function generaTablaAsignaModulosFP(pantallaEspera=true,teclaPulsada=false) {
 function generaTablasCursosFP(){
     var id_ciclo=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id);
     var cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
-    alert(id_ciclo)
     mostrarPantallaEspera();
     $.post("php/secret_recupera_modulos_cursosfp.php",{id:id_ciclo},(resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
+            var num_cursos=resp["registro"].length;
             for (var i=1;i<=cursos;i++){
                 const cont = document.getElementById("tbody_modulos_"+i);
                 cont.innerHTML = ""; // Limpia el contenido previo
@@ -4136,13 +4135,13 @@ function generaTablasCursosFP(){
                 cont.style.width = "100%";
                 cont.style.borderTop = "1px solid #aaa";
                 var num_reg=0;
-                var num_cursos=resp["registro"].length;
                 if (i<=num_cursos){
                     num_reg=resp["registro"][i+"º"].length==0?1:resp["registro"][i+"º"].length;
                 }
                 else{
                     num_reg=1;
                 }
+                alert(num_reg)
                 for(var j=0;j<num_reg;j++){
                     var hay_modulos=true;
                     if(i<=num_cursos){
