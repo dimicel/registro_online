@@ -4312,7 +4312,6 @@ function asignaModulosACiclos(dialogo){
         alerta("No hay módulos que asignar al ciclo.","LISTA VACÍA");
         return;
     } 
-    alert(lista_generada);return;
     mostrarPantallaEspera();
     $.post("php/secret_asigna_mods_ciclos.php",{id:id_ciclo,lista_mods:JSON.stringify(lista)},(resp)=>{
         ocultarPantallaEspera();
