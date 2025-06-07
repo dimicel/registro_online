@@ -3825,8 +3825,7 @@ function gestionCiclosFP(){
                         class: "btn btn-success textoboton btn-sm",
                         text: "Asignar",
                         click: function() {
-                            $(this).dialog("destroy").remove();
-                            asignaModulosACiclos();
+                            asignaModulosACiclos(this);
                         }
                     },
                     {
@@ -4296,7 +4295,7 @@ function quitaModulosYaEnCursos() {
   }
 }
 
-function asignaModulosACiclos(){
+function asignaModulosACiclos(dialogo){
     const cursos = parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
     const id_ciclo=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id);
     var lista=new Array();
@@ -4328,6 +4327,7 @@ function asignaModulosACiclos(){
         else{
             alerta("Ha habido un problema en la asignación de módulos al ciclo seleccionado.","FALLO ASIGNACIÓN")
         }
+        dialogo.dialog("destroy").remove();
     });
 }
 
