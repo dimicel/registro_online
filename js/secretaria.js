@@ -4300,13 +4300,19 @@ function asignaModulosACiclos(){
     const cursos = parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
     const id_ciclo=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id);
     var lista=new Array();
+    lista_generada=false;
     for (var i=1;i<=cursos;i++){
         t=document.getElementById("tbody_modulos_"+i);
         for (var j=0;j<t.rows.length;j++){
             if (t.rows.length==1 && t.rows[0].cells[0]=="" && t.rows[0].cells[0]=="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO") break;
             lista.push([i+"º",t.rows[j].cells[0],t.rows[j].cells[1]]);
+            lista_generada=true;
         }
     }
+    if (!lista_generada){
+        alerta("No hay módulos que asignar al ciclo.","LISTA VACÍA");
+        return;
+    } 
     mostrarPantallaEspera();
     $.post("php/secret_asigna_mods_ciclos.php",{id:id_ciclo,lista_mods:JSON.stringify(lista)},(resp)=>{
         ocultarPantallaEspera();
