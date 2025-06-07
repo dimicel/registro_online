@@ -4303,6 +4303,7 @@ function asignaModulosACiclos(){
     for (var i=1;i<=cursos;i++){
         t=document.getElementById("tbody_modulos_"+i);
         for (var j=0;j<t.rows.length;j++){
+            if (t.rows.length==1 && t.rows[0].cells[0]=="" && t.rows[0].cells[0]=="NO HAY MÓDULOS ASIGNADOS A ESTE CURSO") break;
             lista.push([i+"º",t.rows[j].cells[0],t.rows[j].cells[1]]);
         }
     }
