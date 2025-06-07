@@ -4297,6 +4297,14 @@ function quitaModulosYaEnCursos() {
 }
 
 function asignaModulosACiclos(){
-    
+    const cursos = parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
+    const id_ciclo=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id);
+    var lista=new Array();
+    for (var i=1;i<=cursos;i++){
+        t=document.getElementById("tbody_modulos_"+i);
+        for (var j=0;j<t.rows.length;j++){
+            lista.push([i+"º",t.rows[j].cells[0],t.rows[j].cells[1]]);
+        }
+    }
 }
 
