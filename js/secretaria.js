@@ -4141,7 +4141,7 @@ function generaTablasCursosFP(){
                 else{
                     num_reg=1;
                 }
-                alert(num_reg)
+                alert(num_cursos)
                 for(var j=0;j<num_reg;j++){
                     var hay_modulos=true;
                     if(i<=num_cursos){
