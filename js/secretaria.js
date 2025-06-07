@@ -4307,13 +4307,19 @@ function asignaModulosACiclos(){
         }
     }
     mostrarPantallaEspera();
-    $.post("php/secret_asigna_mods_ciclos.php",{id:id_ciclo,lista_mods:lista},(resp)=>{
+    $.post("php/secret_asigna_mods_ciclos.php",{id:id_ciclo,lista_mods:JSON.stringify(lista)},(resp)=>{
         ocultarPantallaEspera();
         if(resp=="server"){
             alerta("Error en el servidor. Inténtelo más tarde.","ERROR SERVIDOR");
         }
         else if(resp=="ok"){
-            alerta("Asignación de módulos al ciclo efectuada correctamente","ASIGNACIÓN OK")
+            alerta("Asignación de módulos al ciclo efectuada correctamente.","ASIGNACIÓN OK");
+        }
+        else if(resp=="datos_invalidos"){
+            alerta("La liosta de módulos se ha enviado en un formato inválido.","DATOS INVÁLIDOS");
+        }
+        else{
+            alerta("Ha habido un problema en la asignación de módulos al ciclo seleccionado.","FALLO ASIGNACIÓN")
         }
     });
 }
