@@ -4123,7 +4123,7 @@ function generaTablasCursosFP(){
     $.post("php/secret_recupera_modulos_cursosfp.php",{id:id_ciclo},(resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
-            var num_cursos=resp.registro.length;
+            var num_cursos=resp["registro"]["1º"].length;
             for (var i=1;i<=cursos;i++){
                 const cont = document.getElementById("tbody_modulos_"+i);
                 cont.innerHTML = ""; // Limpia el contenido previo
