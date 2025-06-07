@@ -4120,9 +4120,10 @@ function generaTablaAsignaModulosFP(pantallaEspera=true,teclaPulsada=false) {
 function generaTablasCursosFP(){
     var id_ciclo=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].id);
     var cursos=parseInt(document.getElementById("tbody_ciclos").querySelectorAll("tr.selected")[0].cells[3].innerHTML);
+    alert(id_ciclo)
     mostrarPantallaEspera();
     $.post("php/secret_recupera_modulos_cursosfp.php",{id:id_ciclo},(resp)=>{
-        ocultarPantallaEspera();alert(8888);
+        ocultarPantallaEspera();
         if (resp.error=="ok"){
             for (var i=1;i<=cursos;i++){
                 const cont = document.getElementById("tbody_modulos_"+i);
