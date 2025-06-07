@@ -32,6 +32,5 @@ while ($reg=$res->fetch_assoc()){
     $contador++;
 }
 
-$data["registro"] = array_values($data["registro"]);
 exit(json_encode($data));
 
