@@ -4,32 +4,41 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="corr
 include("conexion.php");
 header("Content-Type: text/html;charset=utf-8");
 
-$data=array();
 if ($mysqli->errno>0) {
-    $data="server";
-    exit($data);
+    exit("server");
 }
 
-$id=$_POST['id'];
+$id=(int)$_POST['id'];
 
 $mysqli->set_charset("utf8");
-$sql="DELETE FROM ciclos WHERE id=$id";
-$result=$mysqli->query($sql);
-if ($mysqli->errno>0) {
-    $data="server";
-    exit($data);
+$mysqli->begin_transaction();
+
+try {
+    // Eliminar de ciclos_modulos
+    $stmt1 = $mysqli->prepare("DELETE FROM ciclos_modulos WHERE id = ?");
+    $stmt1->bind_param("i", $id);
+    $stmt1->execute();
+    $modulosEliminados = $stmt1->affected_rows;
+
+    // Eliminar de ciclos
+    $stmt2 = $mysqli->prepare("DELETE FROM ciclos WHERE id = ?");
+    $stmt2->bind_param("i", $id);
+    $stmt2->execute();
+    $ciclosEliminados = $stmt2->affected_rows;
+
+    $mysqli->commit();
+
+    if ($ciclosEliminados==0) exit("no");
+    exit("ok");
+
+    //echo "Eliminados: $modulosEliminados en ciclos_modulos, $ciclosEliminados en ciclos.";
+
+} catch (Exception $e) {
+    $mysqli->rollback();
+    exit("Error al eliminar registros: " . $e->getMessage());
 }
-if ($mysqli->affected_rows==0) {
-    $data="no";
-    exit($data);
-}  
-if ($result==true) {
-    $data="ok";
-    exit($data);
-} else {
-    $data="error";
-    exit($data);
-}
+
+
 
 
 
