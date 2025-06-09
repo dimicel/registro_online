@@ -55,6 +55,10 @@ $(function() {
         return _nif_duplicado;
     });
 
+    $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
+        document.getElementById("centro").innerHTML=resp["registro"]["centro"].toUpperCase();
+    },"json");
+
 });
 
 
