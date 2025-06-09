@@ -15,7 +15,7 @@
     <title>Tramitación online de documentación - IES UNIVERSIDAD LABORAL</title>
 </head>
 
-<body onkeyup="javascript:if(event.keyCode=='13')entra();">
+<body onkeyup="javascript:if(event.keyCode=='13')entra();" style="overflow: hidden;">
    
     <!-- LOGIN ___________________________________________________________-->
     <!--__________________________________________________________________-->
