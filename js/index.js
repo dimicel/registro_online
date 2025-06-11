@@ -262,3 +262,10 @@ function compruebaEsResidente(){
         else document.getElementById("comedor").style.display="none";
     });
 }
+
+function comedor(){
+    if (document.getElementById("password").value.trim()==""){
+        alerta("Debe introducir su contraseña de usuario.","NO PASSWORD");
+        return;
+    }
+}
