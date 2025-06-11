@@ -18,6 +18,10 @@ $(function() {
     else document.getElementById("servidor_pruebas").style.display="none";
    
     mostrarPantallaEspera();
+    $.post("php/secret_recupera_nombre_centro.php",{},(resp)=>{
+        document.getElementById("centro").innerHTML=resp["registro"]["centro"].toUpperCase();
+        document.getElementById("titulo").innerHTML+=resp["registro"]["centro"].toUpperCase();
+    },"json");
     prom1=Promise.resolve($.post("php/sesion.php", { tipo_usu: "residencia" },()=>{},"json"));
     prom2=prom1.then((resp)=> {
         if (resp["error"] != "ok") document.write(resp["error"]);
