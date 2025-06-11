@@ -14,7 +14,7 @@ if ($mysqli->errno>0) {
 
 $id_nie=$_POST["usuario"];
 $curso=calculaCurso_ini();
-$curso=$curso . "-" . $curso+1;
+$curso=(string)$curso . "-" . (string)($curso+1);
 exit($curso);
 $consulta=$mysqli->query("select * from residentes where id_nie='$id_nie' and curso='$curso'");
 if ($consulta->num_rows>0){
