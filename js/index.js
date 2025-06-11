@@ -270,11 +270,14 @@ function comedor(){
     }
     mostrarPantallaEspera();
     $.post("php/index_login_comedor.php",{id_nie:document.getElementById("usuario").value,pass:document.getElementById("password").value},(resp)=>{
-        if (resp=="ok"){
+        if (resp.error=="ok"){
             
         }
-        else if(resp=="pass"){
+        else if(resp.error=="password"){
             alerta("Contraseña incorrecta.","FALLO PASS");
+        }
+        else if(resp.error=="nousu"){
+            alerta("El usuario no existe.","ERROR USUARIO");
         }
         else {
             alerta("Error en base de datos. Inténtelo en otro momento.","ERROR DB");
