@@ -268,4 +268,16 @@ function comedor(){
         alerta("Debe introducir su contraseña de usuario.","NO PASSWORD");
         return;
     }
+    mostrarPantallaEspera();
+    $.post("php/index_login_comedor.php",{id_nie:document.getElementById("usuario").value,pass:document.getElementById("password").value},(resp)=>{
+        if (resp=="ok"){
+            
+        }
+        else if(resp=="pass"){
+            alerta("Contraseña incorrecta.","FALLO PASS");
+        }
+        else {
+            alerta("Error en base de datos. Inténtelo en otro momento.","ERROR DB");
+        }
+    });
 }
