@@ -39,6 +39,11 @@ $(function() {
         nextText: "Siguiente",
         prevText: "Previo"
     });
+    
+    $.post("php/secret_recupera_nombre_centro.php",{},(resp)=>{
+        document.getElementById("centro").innerHTML=resp["registro"]["centro"].toUpperCase();
+        document.getElementById("titulo").innerHTML+=resp["registro"]["centro"].toUpperCase();
+    },"json");
 
     dat1 = Promise.resolve($.post("php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
     dat2=dat1.then((resp)=> {

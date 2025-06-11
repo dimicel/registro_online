@@ -13,7 +13,7 @@
     <link rel="stylesheet" href=<?php echo "css/est.css?q=".time();?> type="text/css">
     <link rel="stylesheet" href=<?php echo "jqueryui/jquery-ui.min.css?q=".time();?> />
     <link rel="stylesheet" href=<?php echo "js/croppie/croppie.css?q=".time();?> type="text/css">
-    <title>Tramitación online de documentación - IES UNIVERSIDAD LABORAL</title>
+    <title id="titulo">Tramitación online de documentación - </title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         </div>
         <div style="display:table-cell; height: 105px; vertical-align: middle; padding-left: 20px">
             <h1 style="color:red;display:none" id="servidor_pruebas" ><strong>¡¡¡SERVIDOR DE PRUEBAS!!!</strong></h1>
-            <h3>IES UNIVERSIDAD LABORAL</h3>
+            <h3 id="centro"></h3>
             <h4>TRAMITACIÓN ONLINE DE SOLICITUDES</h4>
             <h5 style="color:brown">PANEL DE CONTROL DEL USUARIO</h5>
         </div>
