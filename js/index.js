@@ -270,6 +270,7 @@ function comedor(){
     }
     mostrarPantallaEspera();
     $.post("php/index_login_comedor.php",{id_nie:document.getElementById("usuario").value,pass:document.getElementById("password").value},(resp)=>{
+        ocultarPantallaEspera();
         if (resp.error=="ok"){
             
         }
