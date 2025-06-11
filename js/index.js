@@ -327,6 +327,6 @@ function comedor(){
             alerta("Error en base de datos. Inténtelo en otro momento.","ERROR DB");
         }
         ocultarPantallaEspera();
-    });
+    },"json");
 }
 
