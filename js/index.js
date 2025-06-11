@@ -270,9 +270,52 @@ function comedor(){
     }
     mostrarPantallaEspera();
     $.post("php/index_login_comedor.php",{id_nie:document.getElementById("usuario").value,pass:document.getElementById("password").value},(resp)=>{
-        ocultarPantallaEspera();
         if (resp.error=="ok"){
-            
+            cargaHTML("html/index.htm","residencia_comedor","SELECCIÓN DE DÍAS NO ASISTENCIA A COMEDOR",600,400,"center center","center center",
+                [
+                    {
+                        class: "btn btn-success textoboton",
+                        text: "Guardar Selección",
+                        click: function() {
+                            mostrarPantallaEspera();
+                            $.post({
+                                url:"php/secret_actualiza_param_centro.php" ,
+                                data: $("#datos_centro").serialize(),
+                                success: function(resp) {
+                                    ocultarPantallaEspera();
+                                    if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                                    else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                                    else if (resp == "ok"){
+                                        alerta("Datos del centro actualizados correctamente.","ACTUALIZACIÓN CORRECTA");
+                                    }
+                                    else{
+                                        alerta(resp,"ERROR");
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    ocultarPantallaEspera();
+                                    alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                                }
+                            });
+                            $(this).dialog("destroy").remove();
+                        }
+                    },
+                    {
+                        class: "btn btn-success textoboton",
+                        text: "Cancelar",
+                        click: function() {
+                            $(this).dialog("destroy").remove();
+                        }
+                    }
+                ]
+            ).then((dialogo)=>{
+                ocultarPantallaEspera();
+
+            }).catch (error=>{
+                ocultarPantallaEspera();
+                var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+                alerta(msg,"ERROR DE CARGA");
+            });
         }
         else if(resp.error=="password"){
             alerta("Contraseña incorrecta.","FALLO PASS");
@@ -283,6 +326,7 @@ function comedor(){
         else {
             alerta("Error en base de datos. Inténtelo en otro momento.","ERROR DB");
         }
+        ocultarPantallaEspera();
     });
 }
 
