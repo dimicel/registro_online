@@ -14,7 +14,7 @@ $_SESSION['ID'] = session_id();
 $_SESSION['ultimaactividad'] = $_SERVER['REQUEST_TIME'];
 
 
-$dat=array("error"=>'',"pagina"=>'');
+$dat=array("error"=>'');
 if (!isset($_POST["id_nie"])) exit("Acceso denegado");	
 if ($mysqli->errno>0) {
 	$dat["error"]="server";
