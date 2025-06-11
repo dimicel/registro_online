@@ -14,7 +14,7 @@ if ($mysqli->errno>0) {
 
 $id_nie=$_POST["usuario"];
 
-$consulta=$mysqli->query("select * from usuarios where id_nie='$id_nie'");
+$consulta=$mysqli->query("select * from residentes where id_nie='$id_nie'");
 if ($consulta->num_rows>0){
     $consulta->free();
     exit("si");
