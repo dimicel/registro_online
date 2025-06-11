@@ -37,7 +37,7 @@
                     <div class="form-group row">
                         <div class="col-lg-12">
                             <label for="usuario" class="col-lg-12 control-label ">NIE<small> (Nº de Identificación Escolar)</small></label>
-                            <input name="usuario" type="text" id="usuario" class="form-control" tabindex="1" required>
+                            <input name="usuario" type="text" id="usuario" class="form-control" tabindex="1" required onkeyup="compruebaEsResidente()">
                             <div class="invalid-feedback">Complete el campo</div>
                             <div class="valid-feedback"></div>
                         </div>
@@ -63,6 +63,9 @@
                     <div style="margin-top:5px; margin-bottom:5px">
                         <span>
                             <a href="javascript:recuperaPass()"  class="etiquetas">Recuperar contraseña</a>
+                        </span>
+                        <span id="comedor" style="display:none">
+                            <a href="javascript:comedor()"  class="etiquetas">Asistencia a comedor</a>
                         </span>
                     </div>
                 </center>

@@ -256,3 +256,9 @@ function generaContrasena() {
 }
 
 
+function compruebaEsResidente(){
+    $.post("php/index_esresidente.php",{usuario:document.getElementById("usuario").value},(resp)=>{
+        if (resp=="si") document.getElementById("comedor").style.display="inherit";
+        else document.getElementById("comedor").style.display="none";
+    });
+}
