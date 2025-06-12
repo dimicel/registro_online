@@ -26,6 +26,24 @@ else {
 
 	$consulta=$mysqli->query("select * from usuarios where id_nie='$usuario'");
 	if ($consulta->num_rows>0){
+		$hoy = date('Y-m-d');
+		$dia_semana = date('w'); // 0=domingo, 1=lunes, ..., 6=sábado
+
+		// Calcular días hasta el próximo lunes
+		$dias_hasta_lunes = (8 - $dia_semana) % 7;
+		if ($dias_hasta_lunes == 0) $dias_hasta_lunes = 7; // Si hoy es lunes, ir al siguiente lunes
+
+		$fechas = array();
+		for ($i = 0; $i < 5; $i++) {
+			$fecha = strtotime("+".($dias_hasta_lunes + $i)." days");
+			$fechas[] = array(
+				'dia' => date('d', $fecha),
+				'mes' => date('m', $fecha),
+				'anio' => date('Y', $fecha),
+				'fecha' => date('Y-m-d', $fecha)
+			);
+		}
+
 		$pass=$consulta->fetch_array(MYSQLI_ASSOC);
 		$consulta->free();
 		if (password_verify($contrasena,$pass['password'])){
@@ -33,7 +51,7 @@ else {
 			$_SESSION['id_nie']=$pass['id_nie'];
 			$dat["error"]="ok";
 			$dat["dia"]=(int)date('w');
-			$dat["dia"]=0;
+			$dat["fechas"]=$fechas;
 			exit(json_encode($dat));
 		}
 		else{
