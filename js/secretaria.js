@@ -2813,6 +2813,7 @@ function parametrosCentro(){
                 document.getElementById("tlf_centro").value=resp.registro.tlf_centro;
                 document.getElementById("fax_centro").value=resp.registro.fax_centro;
                 document.getElementById("email_centro").value=resp.registro.email_centro;
+                alert(document.getElementById("centro").value);
 
                 $("#datos_centro").validate({
                     rules: {
