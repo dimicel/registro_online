@@ -270,7 +270,7 @@ function comedor(){
     }
     mostrarPantallaEspera();
     $.post("php/index_login_comedor.php",{id_nie:document.getElementById("usuario").value,pass:document.getElementById("password").value},(resp)=>{
-        if (resp.error=="ok"){
+        if (resp.error=="ok" && resp.dia>=1 && resp.dia<=4){
             cargaHTML("html/index.htm","residencia_comedor","SELECCIÓN DE DÍAS NO ASISTENCIA A COMEDOR",600,400,"center center","center center",
                 [
                     {
@@ -322,6 +322,9 @@ function comedor(){
         }
         else if(resp.error=="nousu"){
             alerta("El usuario no existe.","ERROR USUARIO");
+        }
+        else if(resp.dia<1 || resp.dia>4){
+            alerta("La selección de días en los que el usuario no hará uso del comedor en la semana siguiente sólo está permitIda de LUNES a JUEVES.","NO PERMITIDO");
         }
         else {
             alerta("Error en base de datos. Inténtelo en otro momento.","ERROR DB");

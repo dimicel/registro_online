@@ -32,6 +32,7 @@ else {
 			$_SESSION['acceso_logueado']="correcto";
 			$_SESSION['id_nie']=$pass['id_nie'];
 			$dat["error"]="ok";
+			$dat["dia"]=date('w');
 			exit(json_encode($dat));
 		}
 		else{
