@@ -312,7 +312,7 @@ function comedor(){
                 ocultarPantallaEspera();
                 tabla_com="<tr>";
                 for (let i=0; i<5;i++){
-                    tabla_com+="<td width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color=\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";alert(0);}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";alert(1)}'>";
+                    tabla_com+="<td width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color=\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";alert(this.style.color);}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";alert(1)}'>";
                     tabla_com+=resp.fechas[i].dia_sem+"<br>"+resp.fechas[i].dia+"/"+resp.fechas[i].mes;
                     tabla_com+="</td>";
                 }
