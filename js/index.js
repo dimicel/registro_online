@@ -278,15 +278,20 @@ function comedor(){
                         text: "Guardar Selección",
                         click: function() {
                             mostrarPantallaEspera();
+                            let fechas_semana_no_comedor=[];
+                            let _t=document.getElementById("comedor_dias").rows[0].cells;
+                            for (let i=0; i<5;i++){
+                                if(_t[i].style.color=="brown") fechas_semana_no_comedor.push([_t[i].id,1]);
+                                else fechas_semana_no_comedor.push([_t[i].id,0]);   
+                            }
                             $.post({
-                                url:"php/secret_actualiza_param_centro.php" ,
+                                url:"php/index_comedor_graba_fechas.php" ,
                                 data: $("#datos_centro").serialize(),
                                 success: function(resp) {
                                     ocultarPantallaEspera();
                                     if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
-                                    else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
                                     else if (resp == "ok"){
-                                        alerta("Datos del centro actualizados correctamente.","ACTUALIZACIÓN CORRECTA");
+                                        alerta("Fechas grabadas correctamente.","FECHAS GUARDADAS");
                                     }
                                     else{
                                         alerta(resp,"ERROR");
@@ -317,15 +322,15 @@ function comedor(){
                             let fecha_elegida= new Date(resp.fechas_no_comedor[j]);
                             let fecha_calendario=new Date(resp.fechas[i].fecha);
                             if (fecha_elegida==fecha_calendario){
-                                tabla_com+="<td width='20%' style='text-align:center;text-size:0.5em;color:brown;background-color:yellow;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
+                                tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:brown;background-color:yellow;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
                             }
                             else{
-                                tabla_com+="<td width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
+                                tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
                             }
                         }
                     }
                     else{
-                        tabla_com+="<td width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
+                        tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
                     }
                     tabla_com+=resp.fechas[i].dia_sem+"<br>"+resp.fechas[i].dia+"/"+resp.fechas[i].mes;
                     tabla_com+="</td>";
