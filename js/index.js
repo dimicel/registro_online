@@ -312,8 +312,8 @@ function comedor(){
                 ocultarPantallaEspera();
                 tabla_com="<tr>";
                 for (let i=0; i<5;i++){
-                    tabla_com+="<td width='20%' style='text-align:center;text-size:0.5em;' onclick='this.style.color=\"yellow\"?(this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";):(this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";)'>";
-                    tabla_com+=resp.dia_sem+"<br>"+resp.dia+"/"+resp.mes;
+                    tabla_com+="<td width='20%' style='text-align:center;text-size:0.5em;' onclick='this.style.color=\"yellow\"?this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";:this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";'>";
+                    tabla_com+=resp.fechas[i].dia_sem+"<br>"+resp.fechas[i].dia+"/"+resp.fechas[i].mes;
                     tabla_com+="</td>";
                 }
                 tabla_com+="</tr>";
