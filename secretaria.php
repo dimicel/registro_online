@@ -118,6 +118,7 @@
                         <a class="nav-link dropdown-toggle" id="menu_configuracion" href="#" data-toggle="dropdown">Configuración</a>
                         <div class="dropdown-menu" >
                             <a id="param_centro" class="dropdown-item small" href="#" onclick="parametrosCentro()">Parámetros asociados al centro</a>
+                            <a id="param_residencia" class="dropdown-item small" href="#" onclick="parametrosResidencia()">Parámetros asociados a la residencia</a>
                             <a id="logos_firma_sello" class="dropdown-item small" href="#" onclick="logosFirmaSello()">Logos - Firma y sello</a>
                             <a id="config_modulos" class="dropdown-item small" href="#" onclick="gestionDptos()">Departamentos FP</a>
                             <a id="config_ciclos" class="dropdown-item small" href="#" onclick="gestionCiclosFP()">Ciclos Formativos</a>

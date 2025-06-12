@@ -2924,7 +2924,6 @@ function parametrosResidencia(){
         $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
             ocultarPantallaEspera();
             if (resp.error=="ok"){
-                document.getElementById("email_centro").value=resp.registro.email_centro;
                 document.getElementById("email_jef_res").value=resp.registro.email_jefe_residencia;
                 document.getElementById("finza_bonif").value=resp.registro.residencia_fianza_bonificados;
                 document.getElementById("finza_nobonif").value=resp.registro.residencia_fianza_no_bonificados;
