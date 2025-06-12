@@ -191,3 +191,13 @@ tr.deselected {
     background-color: #f4f3e5;
     color: #312e25;
 }
+
+td.selected {
+    background-color: yellow;
+    color: brown;
+  }
+  
+td.deselected {
+    background-color: #f4f3e5;
+    color: #312e25;
+}
