@@ -286,7 +286,7 @@ function comedor(){
                             }
                             $.post({
                                 url:"php/index_comedor_graba_fechas.php" ,
-                                data: {lista_fechas: JSON.stringify(fechas_semana_no_comedor)},
+                                data: {lista_fechas: JSON.stringify(fechas_semana_no_comedor),id_nie:document.getElementById("usuario").value},
                                 success: function(resp) {
                                     ocultarPantallaEspera();
                                     if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
