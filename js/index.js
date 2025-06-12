@@ -329,18 +329,22 @@ function comedor(){
                 tabla_com="<tr>";
                 for (let i=0; i<5;i++){
                     if(resp.fechas_no_comedor.length>0){
+                        let encontrado=false;
                         for(let j=0;j<resp.fechas_no_comedor.length;j++){
                             //let fecha_elegida= new Date(resp.fechas_no_comedor[j]);
                             //let fecha_calendario=new Date(resp.fechas[i].fecha);
                             let fecha_elegida= resp.fechas_no_comedor[j];
                             let fecha_calendario=resp.fechas[i].fecha;
                             if (fecha_elegida==fecha_calendario){
-                                tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:brown;background-color:yellow;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
+                                encontrado=true;
                                 break;
                             }
-                            else{
-                                tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
-                            }
+                        }
+                        if (encontrado){
+                            tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:brown;background-color:yellow;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
+                        }
+                        else{
+                            tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
                         }
                     }
                     else{
