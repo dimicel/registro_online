@@ -272,6 +272,7 @@ function compruebaEsResidente(){
 
 function comedor(){
     alerta("Funcionalidad en desarrollo.","WORKING...");
+    return;
     if (document.getElementById("password").value.trim()==""){
         alerta("Debe introducir su contraseña de usuario.","NO PASSWORD");
         return;
