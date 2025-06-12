@@ -23,7 +23,7 @@ if ($mysqli->errno>0) {
 else {
 	$usuario=$_POST['id_nie']; 
 	$contrasena=$_POST['pass'];
-
+	$meses[]=array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
 	$consulta=$mysqli->query("select * from usuarios where id_nie='$usuario'");
 	if ($consulta->num_rows>0){
 		$hoy = date('Y-m-d');
@@ -38,7 +38,7 @@ else {
 			$fecha = strtotime("+".($dias_hasta_lunes + $i)." days");
 			$fechas[] = array(
 				'dia' => date('d', $fecha),
-				'mes' => date('m', $fecha),
+				'mes' => $meses[date('m', $fecha)-1],
 				'anio' => date('Y', $fecha),
 				'fecha' => date('Y-m-d', $fecha)
 			);
