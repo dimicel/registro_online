@@ -49,6 +49,17 @@ else {
 		$pass=$consulta->fetch_array(MYSQLI_ASSOC);
 		$consulta->free();
 		if (password_verify($contrasena,$pass['password'])){
+			$fecha_lun=$fechas[0]["fecha"];
+			$fecha_vie=$fechas[4]["fecha"];
+			$consulta_fechas=$mysqli->query("select * from residentes_comedor where fecha_no_comedor>='$fechas_lun' AND fecha_no_comedor<='$fecha_vie'");
+			$dat["fechas_no_comedor"]=array();
+			if($consulta_fechas->num_rows>0){
+				$cont_fech=0;
+				while($reg_fecha=$consulta_fechas->fetch_array(MYSQLI_ASSOC)){
+					$dat["fechas_no_comedor"][$cont_fech]=$reg_fecha["fecha_no_comedor"];
+				}
+			}
+			$consulta_fechas->free();
 			$_SESSION['acceso_logueado']="correcto";
 			$_SESSION['id_nie']=$pass['id_nie'];
 			$dat["error"]="ok";
