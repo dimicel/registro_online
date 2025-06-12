@@ -2812,9 +2812,6 @@ function parametrosCentro(){
                 document.getElementById("tlf_centro").value=resp.registro.tlf_centro;
                 document.getElementById("fax_centro").value=resp.registro.fax_centro;
                 document.getElementById("email_centro").value=resp.registro.email_centro;
-                document.getElementById("email_jef_res").value=resp.registro.email_jefe_residencia;
-                document.getElementById("finza_bonif").value=resp.registro.residencia_fianza_bonificados;
-                document.getElementById("finza_nobonif").value=resp.registro.residencia_fianza_no_bonificados;
 
                 $("#datos_centro").validate({
                     rules: {
@@ -2837,16 +2834,6 @@ function parametrosCentro(){
                             required:true
                         },
                         tlf_centro: {
-                            required:true
-                        },
-                        email_jef_res: {
-                            email:true,
-                            required:true
-                        },
-                        finza_bonif: {
-                            required:true
-                        },
-                        finza_nobonif: {
                             required:true
                         }
                     },
@@ -2871,16 +2858,6 @@ function parametrosCentro(){
                         },
                         tlf_centro: {
                             required: "Complete el campo"
-                        },
-                        email_jef_res:{
-                            email:"Dirección no válida",
-                            required: "Complete el campo"
-                        },
-                        finza_bonif: {
-                            required: "Complete el campo"
-                        },
-                        finza_nobonif: {
-                            required: "Complete el campo"
                         }
                     },
                     errorPlacement: function(error, element) {
@@ -2900,6 +2877,101 @@ function parametrosCentro(){
         alerta(msg,"ERROR DE CARGA");
     });    
 }
+
+function parametrosResidencia(){
+    mostrarPantallaEspera("Cargando ...");
+    cargaHTML("html/secretaria.htm", "formulario_datos_residencia","EDICIÓN DATOS ASOCIADOS A LA RESIDENCIA",700,2000,"center center","center center",
+         [
+            {
+                class: "btn btn-success textoboton",
+                text: "Guardar Cambios",
+                click: function() {
+                    if ($("#datos_residencia").valid()){
+                        mostrarPantallaEspera();
+                        $.post({
+                            url:"php/secret_actualiza_param_centro.php" ,
+                            data: $("#datos_residencia").serialize(),
+                            success: function(resp) {
+                                ocultarPantallaEspera();
+                                if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                                else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                                else if (resp == "ok"){
+                                    alerta("Datos de la residencia actualizados correctamente.","ACTUALIZACIÓN CORRECTA");
+                                }
+                                else{
+                                    alerta(resp,"ERROR");
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                ocultarPantallaEspera();
+                                alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                            }
+                        });
+                        $(this).dialog("destroy").remove();
+                    }
+                    
+                }
+            },
+            {
+            class: "btn btn-success textoboton",
+            text: "Cancelar",
+            click: function() {
+                $(this).dialog("destroy").remove();
+            }
+        }]
+    )
+    .then((dialogo)=>{
+        $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
+            ocultarPantallaEspera();
+            if (resp.error=="ok"){
+                document.getElementById("email_centro").value=resp.registro.email_centro;
+                document.getElementById("email_jef_res").value=resp.registro.email_jefe_residencia;
+                document.getElementById("finza_bonif").value=resp.registro.residencia_fianza_bonificados;
+                document.getElementById("finza_nobonif").value=resp.registro.residencia_fianza_no_bonificados;
+
+                $("#datos_residencia").validate({
+                    rules: {
+                        email_jef_res: {
+                            email:true,
+                            required:true
+                        },
+                        finza_bonif: {
+                            required:true
+                        },
+                        finza_nobonif: {
+                            required:true
+                        }
+                    },
+                    messages: {
+                        email_jef_res:{
+                            email:"Dirección no válida",
+                            required: "Complete el campo"
+                        },
+                        finza_bonif: {
+                            required: "Complete el campo"
+                        },
+                        finza_nobonif: {
+                            required: "Complete el campo"
+                        }
+                    },
+                    errorPlacement: function(error, element) {
+                        $(element).prev().prev($('.errorTxt')).html(error);
+                    }
+                });
+            }
+            else if (resp.datos=="server"){
+                alerta("Error en servidor. No se pueden editar los datos asociados a la residencia","ERROR SERVIDOR");
+                $("#"+dialogo).dialog("destroy").remove();
+            }
+        },"json");  
+    })
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });    
+}
+
 
 
 function logosFirmaSello(){
