@@ -311,8 +311,13 @@ function comedor(){
             ).then((dialogo)=>{
                 ocultarPantallaEspera();
                 tabla_com="<tr>";
-                tabla_com+="<td width='20%' style='text-align:center' onclick='this.style.color=\"yellow\"?(this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";):(this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";)'>";
-                tabla_com+=resp
+                for (let i=0; i<5;i++){
+                    tabla_com+="<td width='20%' style='text-align:center;text-size:0.5em;' onclick='this.style.color=\"yellow\"?(this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";):(this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";)'>";
+                    tabla_com+=resp.dia_sem+"<br>"+resp.dia+"/"+resp.mes;
+                    tabla_com+="</td>";
+                }
+                tabla_com+="</tr>";
+                document.getElementById("comedor_dias").innerHTML=tabla_com;
 
             }).catch (error=>{
                 ocultarPantallaEspera();
