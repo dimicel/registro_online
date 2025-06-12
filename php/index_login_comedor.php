@@ -57,6 +57,7 @@ else {
 				$cont_fech=0;
 				while($reg_fecha=$consulta_fechas->fetch_array(MYSQLI_ASSOC)){
 					$dat["fechas_no_comedor"][$cont_fech]=$reg_fecha["fecha_no_comedor"];
+					$cont_fech++;
 				}
 			}
 			$consulta_fechas->free();
