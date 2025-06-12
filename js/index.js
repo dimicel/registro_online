@@ -271,7 +271,7 @@ function comedor(){
     mostrarPantallaEspera();
     $.post("php/index_login_comedor.php",{id_nie:document.getElementById("usuario").value,pass:document.getElementById("password").value},(resp)=>{
         if (resp.error=="ok" && resp.dia>=1 && resp.dia<=4){
-            cargaHTML("html/index.htm","residencia_comedor","SELECCIÓN DE DÍAS NO ASISTENCIA A COMEDOR",600,400,"center center","center center",
+            cargaHTML("html/index.htm","residencia_comedor","SELECCIÓN DE DÍAS NO ASISTENCIA A COMEDOR",500,400,"center center","center center",
                 [
                     {
                         class: "btn btn-success textoboton",
