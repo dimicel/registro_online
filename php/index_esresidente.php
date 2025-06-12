@@ -18,8 +18,11 @@ $curso=(string)$curso . "-" . (string)($curso+1);
 
 $consulta=$mysqli->query("select * from residentes where id_nie='$id_nie' and curso='$curso'");
 if ($consulta->num_rows>0){
+    $res=$consulta->fetch_assoc(MYSQLI_ASSOC);
+    $baja=$res["baja"];
     $consulta->free();
-    exit("si");
+    if ($baja==0) exit("si");
+    else exit("baja");
 } 
 else{
     $consulta->free();

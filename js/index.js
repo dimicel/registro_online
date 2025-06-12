@@ -1,4 +1,5 @@
 var _nif_duplicado;
+var residente_baja=false;
 
 $(function() {
     /*
@@ -258,14 +259,24 @@ function generaContrasena() {
 
 function compruebaEsResidente(){
     $.post("php/index_esresidente.php",{usuario:document.getElementById("usuario").value},(resp)=>{
-        if (resp=="si") document.getElementById("comedor").style.display="inherit";
-        else document.getElementById("comedor").style.display="none";
+        if (resp=="si" || resp=="baja"){
+            document.getElementById("comedor").style.display="inherit";
+            if(resp=="baja")residente_baja=true;
+            else residente_baja=false;
+        } 
+        else{
+            document.getElementById("comedor").style.display="none";
+        } 
     });
 }
 
 function comedor(){
     if (document.getElementById("password").value.trim()==""){
         alerta("Debe introducir su contraseña de usuario.","NO PASSWORD");
+        return;
+    }
+    if (residente_baja){
+        alerta("El usuario causó baja en la residencia. Si cree que hay un error, póngase en contacto con el Jefe de Residencia para que proceda a subsanarlo lo antes posible.","BAJA");
         return;
     }
     mostrarPantallaEspera();
