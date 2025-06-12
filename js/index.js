@@ -311,7 +311,8 @@ function comedor(){
             ).then((dialogo)=>{
                 ocultarPantallaEspera();
                 tabla_com="<tr>";
-                tabla_com+="<td width='20%' onclick='this.classList.contains(\"selected\")?'"
+                tabla_com+="<td width='20%' style='text-align:center' onclick='this.style.color=\"yellow\"?(this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";):(this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";)'>";
+                tabla_com+=resp
 
             }).catch (error=>{
                 ocultarPantallaEspera();
