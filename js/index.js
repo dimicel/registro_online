@@ -324,7 +324,7 @@ function comedor(){
             alerta("El usuario no existe.","ERROR USUARIO");
         }
         else if(resp.dia<1 || resp.dia>4){
-            alerta("La selección de días en los que el usuario no hará uso del comedor en la semana siguiente sólo está permitIda de LUNES a JUEVES.","NO PERMITIDO");
+            alerta("La selección de días en los que el usuario no hará uso del comedor en la semana siguiente sólo está permitida de LUNES a JUEVES.","NO PERMITIDO");
         }
         else {
             alerta("Error en base de datos. Inténtelo en otro momento.","ERROR DB");
