@@ -25,7 +25,7 @@ $(function() {
     
     mostrarPantallaEspera();
     $.post("php/secret_recupera_nombre_centro.php",{},(resp)=>{
-        document.getElementById("centro").innerHTML=resp["registro"]["centro"].toUpperCase();
+        document.getElementById("rot_centro").innerHTML=resp["registro"]["centro"].toUpperCase();
         document.getElementById("titulo").innerHTML+=resp["registro"]["centro"].toUpperCase();
     },"json");
     
