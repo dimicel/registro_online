@@ -51,7 +51,7 @@ else {
 		if (password_verify($contrasena,$pass['password'])){
 			$fecha_lun=$fechas[0]["fecha"];
 			$fecha_vie=$fechas[4]["fecha"];
-			$consulta_fechas=$mysqli->query("select * from residentes_comedor where fecha_no_comedor>='$fechas_lun' AND fecha_no_comedor<='$fecha_vie'");
+			$consulta_fechas=$mysqli->query("select * from residentes_comedor where fecha_no_comedor>='$fechas_lun' AND fecha_no_comedor<='$fecha_vie' AND id_nie='$usuario'");
 			$dat["fechas_no_comedor"]=array();
 			if($consulta_fechas->num_rows>0){
 				$cont_fech=0;
