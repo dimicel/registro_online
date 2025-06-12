@@ -310,6 +310,8 @@ function comedor(){
                 ]
             ).then((dialogo)=>{
                 ocultarPantallaEspera();
+                tabla_com="<tr>";
+                tabla_com+="<td width='20%' onclick='this.classList.contains(\"selected\")?'"
 
             }).catch (error=>{
                 ocultarPantallaEspera();
