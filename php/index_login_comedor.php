@@ -23,7 +23,7 @@ if ($mysqli->errno>0) {
 else {
 	$usuario=$_POST['id_nie']; 
 	$contrasena=$_POST['pass'];
-	$meses[]=array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
+	$meses=array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
 	$consulta=$mysqli->query("select * from usuarios where id_nie='$usuario'");
 	if ($consulta->num_rows>0){
 		$hoy = date('Y-m-d');
