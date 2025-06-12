@@ -36,7 +36,7 @@ else {
 		$fechas = array();
 		for ($i = 0; $i < 5; $i++) {
 			$fecha = strtotime("+".($dias_hasta_lunes + $i)." days");
-			$fechas[] = array(
+			$fechas = array(
 				'dia' => date('d', $fecha),
 				'mes' => $meses[(int)date('m', $fecha)-1],
 				'anio' => date('Y', $fecha),
