@@ -33,7 +33,7 @@ else {
 			$_SESSION['id_nie']=$pass['id_nie'];
 			$dat["error"]="ok";
 			$dat["dia"]=(int)date('w');
-			//$dat["dia"]=0;
+			$dat["dia"]=0;
 			exit(json_encode($dat));
 		}
 		else{
