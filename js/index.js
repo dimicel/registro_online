@@ -336,6 +336,7 @@ function comedor(){
                             let fecha_calendario=resp.fechas[i].fecha;
                             if (fecha_elegida==fecha_calendario){
                                 tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:brown;background-color:yellow;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
+                                break;
                             }
                             else{
                                 tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
