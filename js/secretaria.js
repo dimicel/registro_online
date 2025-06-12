@@ -2822,7 +2822,7 @@ function parametrosCentro(){
                             required: true
                         },
                         direccion:{
-                        required: true
+                            required: true
                         },
                         cp: {
                             required: true
