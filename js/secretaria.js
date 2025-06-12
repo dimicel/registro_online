@@ -2803,7 +2803,6 @@ function parametrosCentro(){
         $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
             ocultarPantallaEspera();
             if (resp.error=="ok"){
-                alert(resp.registro.centro);
                 document.getElementById("director").value=resp.registro.director;
                 document.getElementById("centro").value=resp.registro.centro;
                 document.getElementById("cp").value=resp.registro.cp_centro;
@@ -2813,7 +2812,6 @@ function parametrosCentro(){
                 document.getElementById("tlf_centro").value=resp.registro.tlf_centro;
                 document.getElementById("fax_centro").value=resp.registro.fax_centro;
                 document.getElementById("email_centro").value=resp.registro.email_centro;
-                alert(document.getElementById("centro").value);
 
                 $("#datos_centro").validate({
                     rules: {
