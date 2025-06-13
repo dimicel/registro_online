@@ -670,9 +670,12 @@ function res_listadoRevisionAsistencia(){
                 else "<tr>";
                 _lt+="<td width='20%'>"+resp.registros[i].id_nie+"</td>";
                 _lt+="<td width='65%'>"+resp.registros[i].nombre+"</td>";
-                _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
-                _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
-                _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
+                if (resp.resgistros[i].desayuno==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
+                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'>X</td>";
+                if (resp.resgistros[i].comida==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
+                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'>X</td>";
+                if (resp.resgistros[i].cena==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
+                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'>X</td>";
                 _lt+="</tr>";
             }
             document.getElementById("asistencia_comedor").innerHTML=_lt;
