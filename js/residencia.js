@@ -596,7 +596,7 @@ function remesasBanco() {
 
 function res_GestionComedor(){
     mostrarPantallaEspera();
-    cargaHTML("html/residencia.htm","div_cambio_email_jef_res","ASISTENCIA AL COMEDOR",800,2000,
+    cargaHTML("html/residencia.htm","div_cambio_email_jef_res","ASISTENCIA AL COMEDOR",800,2000,"center_top","center_top",
         [{
             class: "btn btn-success textoboton",
             text: "Confirmar cambio",
