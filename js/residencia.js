@@ -605,7 +605,6 @@ function res_GestionComedor(){
             }
         }]
     ).then((dialogo)=>{
-        ocultarPantallaEspera();
         $("#fecha_lista_comedor").datepicker({
             changeMonth: true,
             changeYear: true,
@@ -629,6 +628,19 @@ function res_GestionComedor(){
 
         var todayFormatted = day + '/' + month + '/' + year;
         document.getElementById('fecha_lista_comedor').value = todayFormatted;
+        $.post("php/residencia_comedor_listado.php",{},(resp)=>{
+            ocultarPantallaEspera();
+            if (resp.error=="ok"){
+
+            }
+            else if (resp.error == "server"){
+                alerta("Hay un problema en el servidor.", "ERROR DE SERVIDOR");
+            } 
+            else{
+                alerta("Error en la base de datos.", "ERROR DB");
+            }
+
+        },"json");
     }).catch (error=>{
         ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
