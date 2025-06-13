@@ -25,6 +25,16 @@ if ($con_avisos->num_rows>0){
 }
 $con_avisos->free();
 
+$lista_dia="select * from residentes_comedor where fecha_comedor='$fecha_mysql'";
+$con_dia=$mysqli->query($lista_dia);
+$list_dia=array();
+if ($con_avisos->num_rows>0){
+    while($d=$con_dia->fetch_assoc(MYSQLI_ASSOC)){
+        $list_dia[]=[$d["id_nie"],$d["desayuno"],$d["comida"],$d["cena"]];
+    }
+}
+$con_dia->free();
+
 $consulta="SELECT * FROM residentes  where curso='$curso' and baja=0 ";
 $res=$mysqli->query($consulta);
 
@@ -39,8 +49,25 @@ $data["registros"]=array();
 while ($reg=$res->fetch_assoc()){
     if (in_array($reg["id_nie"],$list_avisos)) $data["registros"][$contador]["avisado"]=1;
     else $data["registros"][$contador]["avisado"]=0;
+    $indice = false;
+    foreach ($list_dia as $i => $subarray) {
+        if (isset($subarray[0]) && $subarray[0] == $reg["id_nie"]) {
+            $indice = $i;
+            break;
+        }
+    }
     $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
     $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["apellidos"])).", ".ucwords(strtolower($reg["nombre"]));
+    if($indice!==false){
+        $data["registros"][$contador]["desayuno"]=$list_dia[$indice][1];
+        $data["registros"][$contador]["comida"]=$list_dia[$indice][2];
+        $data["registros"][$contador]["cena"]=$list_dia[$indice][3];
+    }
+    else{
+        $data["registros"][$contador]["desayuno"]=0;
+        $data["registros"][$contador]["comida"]=0;
+        $data["registros"][$contador]["cena"]=0;
+    }
     $contador++;
 }
 $res->free();
