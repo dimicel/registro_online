@@ -82,7 +82,7 @@
                     </select>
                 </div>
                 <div class="col-2">
-                    <input type="button" class="textoboton btn btn-success" onclick="residenciaGestionComedor()">
+                    <input type="button" class="textoboton btn btn-success" onclick="residenciaGestionComedor()" value="comedor">
                 </div>
             </div>
             <div class="row">
