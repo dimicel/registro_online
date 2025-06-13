@@ -15,7 +15,7 @@
     <link rel="stylesheet" href=<?php echo "jqueryui/jquery-ui.min.css?q=".time();?> >
     <link rel="stylesheet" href=<?php echo "js/context_menu/jquery.contextMenu.min.css?q=".time();?>>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title id="titulo">GESTIÓN DEL REGISTRO ONLINE - SECRETARIA DEL </title>
+    <title id="titulo">GESTIÓN DEL REGISTRO ONLINE - RESIDENCIA DEL </title>
 </head>
 
 <body>
