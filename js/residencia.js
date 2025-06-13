@@ -661,8 +661,12 @@ function res_listadoRevisionAsistencia(){
                 else "<tr>";
                 _lt+="<td>"+resp.registros[i].id_nie+"</td>";
                 _lt+="<td>"+resp.registros[i].nombre+"</td>";
+                _lt+="<td style='text-align:center' onclick='if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
+                _lt+="<td style='text-align:center' onclick='if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
+                _lt+="<td style='text-align:center' onclick='if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
                 _lt+="</tr>";
             }
+            document.getElementById("asistencia_comedor").innerHTML=_lt;
         }
         else if (resp.error == "server"){
             alerta("Hay un problema en el servidor.", "ERROR DE SERVIDOR");
