@@ -70,7 +70,7 @@
             
             <div class="row" style="margin-top:15px">
                 <label class="col-form-label col-1" style="margin-left:20px">Buscar: </label>
-                <div class="col-7" style="margin-left:-35px">
+                <div class="col-6" style="margin-left:-35px">
                     <input type="text" id="res_busqueda_usus" maxlength="255" class="form-control" onkeyup="res_listaUsus()">
                 </div>
                 <label class="col-form-label col-1" style="margin-left:20px">Filtro: </label>
@@ -81,7 +81,7 @@
                         <option value=1>Bajas</option>
                     </select>
                 </div>
-                <div class="col-1">
+                <div class="col-2">
                     <input type="button" class="textoboton btn btn-success" onclick="residenciaGestionComedor()">
                 </div>
             </div>
