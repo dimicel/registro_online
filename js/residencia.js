@@ -593,3 +593,22 @@ function remesasBanco() {
         }
     );
 }
+
+function res_GestionComedor(){
+    mostrarPantallaEspera();
+    cargaHTML("html/residencia.htm","div_cambio_email_jef_res","ASISTENCIA AL COMEDOR",800,2000,
+        [{
+            class: "btn btn-success textoboton",
+                text: "Confirmar cambio",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
+        }]
+    ).then((dialogo)=>{
+        ocultarPantallaEspera();
+    }).catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+}
