@@ -12,9 +12,10 @@ if ($mysqli->errno>0) {
 
 
 $curso=$_POST["curso"];
-$fecha=$_POST["fecha"];
-$consulta="SELECT * FROM residentes  where curso='$curso' and baja=0 ";
+$fecha=DateTime::createFromFormat('d/m/Y', $_POST["fecha"]);
+$fecha_mysql = $fecha->format('Y-m-d');
 
+$consulta="SELECT * FROM residentes  where curso='$curso' and baja=0 ";
 $res=$mysqli->query($consulta);
 
 if ($res->num_rows==0){
