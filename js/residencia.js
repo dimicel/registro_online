@@ -596,10 +596,10 @@ function remesasBanco() {
 
 function res_GestionComedor(){
     mostrarPantallaEspera();
-    cargaHTML("html/residencia.htm","div_lista_comedor","ASISTENCIA AL COMEDOR",800,2000,"center_top","center_top",
+    cargaHTML("html/residencia.htm","div_lista_comedor","ASISTENCIA AL COMEDOR",800,2000,"center top","center top",
         [{
             class: "btn btn-success textoboton",
-            text: "Confirmar cambio",
+            text: "Salir",
             click: function() {
                 $(this).dialog("destroy").remove();
             }
