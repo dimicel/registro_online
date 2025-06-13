@@ -606,6 +606,29 @@ function res_GestionComedor(){
         }]
     ).then((dialogo)=>{
         ocultarPantallaEspera();
+        $("#fecha_lista_comedor").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "dd/mm/yy",
+            dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+            firstDay: 1,
+            monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            monthNameShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+            showButtonPanel: true,
+            currentText: "Hoy",
+            closeText: "Cerrar",
+            minDate: new Date(2000, 0, 1),
+            maxDate: "0y",
+            nextText: "Siguiente",
+            prevText: "Previo"
+        });
+        var today = new Date();
+        var day = String(today.getDate()).padStart(2, '0');
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0
+        var year = today.getFullYear();
+
+        var todayFormatted = day + '/' + month + '/' + year;
+        document.getElementById('fecha_lista_comedor').value = todayFormatted;
     }).catch (error=>{
         ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
