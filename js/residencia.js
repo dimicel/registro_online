@@ -597,13 +597,22 @@ function remesasBanco() {
 function res_GestionComedor(){
     mostrarPantallaEspera();
     cargaHTML("html/residencia.htm","div_lista_comedor","ASISTENCIA AL COMEDOR",800,2000,"center top","center top",
-        [{
-            class: "btn btn-success textoboton",
-            text: "Salir",
-            click: function() {
-                $(this).dialog("destroy").remove();
+        [
+            {
+                class: "btn btn-success textoboton",
+                text: "Guardar listado",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
+            },
+            {
+                class: "btn btn-danger textoboton",
+                text: "Salir",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
             }
-        }]
+        ]
     ).then((dialogo)=>{
         $("#fecha_lista_comedor").datepicker({
             changeMonth: true,
