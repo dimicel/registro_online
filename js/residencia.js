@@ -659,7 +659,9 @@ function res_listadoRevisionAsistencia(){
             for (let i=0;i<resp.registros.length;i++){
                 if (resp.registros[i].avisado==1) _lt+="<tr style='background-color:\"yellow\";color:\"brown\";'>";
                 else "<tr>";
-                _lt+="<td>"
+                _lt+="<td>"+resp.registros[i].id_nie+"</td>";
+                _lt+="<td>"+resp.registros[i].nombre+"</td>";
+                _lt+="</tr>";
             }
         }
         else if (resp.error == "server"){
