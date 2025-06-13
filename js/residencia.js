@@ -655,7 +655,11 @@ function res_listadoRevisionAsistencia(){
     $.post("php/residencia_comedor_listado.php",{curso:document.getElementById("res_curso").value,fecha:fechaStr},(resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
-
+            _lt="";
+            for (let i=0;i<resp.registros.length;i++){
+                _lt+="<tr>";
+                _lt+="<td>"
+            }
         }
         else if (resp.error == "server"){
             alerta("Hay un problema en el servidor.", "ERROR DE SERVIDOR");
