@@ -599,10 +599,10 @@ function res_GestionComedor(){
     cargaHTML("html/residencia.htm","div_cambio_email_jef_res","ASISTENCIA AL COMEDOR",800,2000,
         [{
             class: "btn btn-success textoboton",
-                text: "Confirmar cambio",
-                click: function() {
-                    $(this).dialog("destroy").remove();
-                }
+            text: "Confirmar cambio",
+            click: function() {
+                $(this).dialog("destroy").remove();
+            }
         }]
     ).then((dialogo)=>{
         ocultarPantallaEspera();
