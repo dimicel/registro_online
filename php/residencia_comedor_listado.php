@@ -15,6 +15,12 @@ $curso=$_POST["curso"];
 $fecha=DateTime::createFromFormat('d/m/Y', $_POST["fecha"]);
 $fecha_mysql = $fecha->format('Y-m-d');
 
+$lista_avisos="select * from residentes_comedor where fecha_no_comedor='$fecha_mysql'";
+$con_avisos=$mysqli->query($lista_avisos);
+if ($con_avisos->num_rows>0){
+    
+}
+
 $consulta="SELECT * FROM residentes  where curso='$curso' and baja=0 ";
 $res=$mysqli->query($consulta);
 
