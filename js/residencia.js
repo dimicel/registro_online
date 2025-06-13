@@ -639,8 +639,20 @@ function res_GestionComedor(){
 
 
 function res_listadoRevisionAsistencia(){
+    //Verifica que la fecha es valida y si no no se hace la consulta
+    // formato esperado: dd/mm/yyyy
+    var fechaStr=document.getElementById("fecha_lista_comedor").value;
+    const partes = fechaStr.split('/');
+    if (partes.length !== 3) return false;
+    const dia = parseInt(partes[0], 10);
+    const mes = parseInt(partes[1], 10) - 1; // Mes en JS: 0-11
+    const anio = parseInt(partes[2], 10);
+
+    const fecha = new Date(anio, mes, dia);
+    var validez=fecha.getFullYear() === anio && fecha.getMonth() === mes && fecha.getDate() === dia
+    if (!validez) return;
     mostrarPantallaEspera();
-    $.post("php/residencia_comedor_listado.php",{curso:document.getElementById("res_curso").value,fecha:document.getElementById("fecha_lista_comedor").value},(resp)=>{
+    $.post("php/residencia_comedor_listado.php",{curso:document.getElementById("res_curso").value,fecha:fechaStr},(resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
 

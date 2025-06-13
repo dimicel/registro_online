@@ -12,6 +12,7 @@ if ($mysqli->errno>0) {
 
 
 $curso=$_POST["curso"];
+$fecha=$_POST["fecha"];
 $consulta="SELECT * FROM residentes  where curso='$curso' and baja=0 ";
 
 $res=$mysqli->query($consulta);
