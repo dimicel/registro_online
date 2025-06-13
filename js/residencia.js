@@ -670,7 +670,7 @@ function res_listadoRevisionAsistencia(){
                 else "<tr>";
                 _lt+="<td width='20%'>"+resp.registros[i].id_nie+"</td>";
                 _lt+="<td width='65%'>"+resp.registros[i].nombre+"</td>";
-                _lt+="<td width='5%' style='text-align:center' onclick='javascript:alert(8);if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
+                _lt+="<td width='5%' style='text-align:center' onclick='javascript:alert(this.innerHTML);if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'>X</td>";
                 _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
                 _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
                 _lt+="</tr>";
