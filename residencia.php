@@ -81,6 +81,9 @@
                         <option value=1>Bajas</option>
                     </select>
                 </div>
+                <div class="col-1">
+                    <input type="button" class="textoboton btn btn-success" onclick="residenciaGestionComedor()">
+                </div>
             </div>
             <div class="row">
                 <div class="col-12 text-center">
