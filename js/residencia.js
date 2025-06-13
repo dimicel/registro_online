@@ -628,22 +628,32 @@ function res_GestionComedor(){
 
         var todayFormatted = day + '/' + month + '/' + year;
         document.getElementById('fecha_lista_comedor').value = todayFormatted;
-        $.post("php/residencia_comedor_listado.php",{},(resp)=>{
-            ocultarPantallaEspera();
-            if (resp.error=="ok"){
-
-            }
-            else if (resp.error == "server"){
-                alerta("Hay un problema en el servidor.", "ERROR DE SERVIDOR");
-            } 
-            else{
-                alerta("Error en la base de datos.", "ERROR DB");
-            }
-
-        },"json");
+        ocultarPantallaEspera();
+        res_listadoRevisionAsistencia();
     }).catch (error=>{
         ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
+}
+
+
+function res_listadoRevisionAsistencia(){
+    mostrarPantallaEspera();
+    $.post("php/residencia_comedor_listado.php",{curso:document.getElementById("res_curso").value,fecha:document.getElementById("fecha_lista_comedor").value},(resp)=>{
+        ocultarPantallaEspera();
+        if (resp.error=="ok"){
+
+        }
+        else if (resp.error == "server"){
+            alerta("Hay un problema en el servidor.", "ERROR DE SERVIDOR");
+        } 
+        else if (resp.error == "sin_registros"){
+            alerta("La lista de residentes está vacía.", "SIN REGISTROS");
+        }
+        else{
+            alerta("Error en la base de datos.", "ERROR DB");
+        }
+
+    },"json");
 }
