@@ -668,11 +668,11 @@ function res_listadoRevisionAsistencia(){
             for (let i=0;i<resp.registros.length;i++){
                 if (resp.registros[i].avisado==1) _lt+="<tr style='background-color:\"yellow\";color:\"brown\";'>";
                 else "<tr>";
-                _lt+="<td>"+resp.registros[i].id_nie+"</td>";
-                _lt+="<td>"+resp.registros[i].nombre+"</td>";
-                _lt+="<td style='text-align:center' onclick='if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
-                _lt+="<td style='text-align:center' onclick='if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
-                _lt+="<td style='text-align:center' onclick='if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
+                _lt+="<td width='20%'>"+resp.registros[i].id_nie+"</td>";
+                _lt+="<td width='65%'>"+resp.registros[i].nombre+"</td>";
+                _lt+="<td width='5%' style='text-align:center' onclick='if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
+                _lt+="<td width='5%' style='text-align:center' onclick='if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
+                _lt+="<td width='5%' style='text-align:center' onclick='if(this.innerHTML==\"X\")this.innerHTML=\"X\";else this.innerHTML=\"\";'></td>";
                 _lt+="</tr>";
             }
             document.getElementById("asistencia_comedor").innerHTML=_lt;
