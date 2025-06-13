@@ -657,7 +657,8 @@ function res_listadoRevisionAsistencia(){
         if (resp.error=="ok"){
             _lt="";
             for (let i=0;i<resp.registros.length;i++){
-                _lt+="<tr>";
+                if (resp.registros[i].avisado==1) _lt+="<tr style='background-color:\"yellow\";color:\"brown\";'>";
+                else "<tr>";
                 _lt+="<td>"
             }
         }
