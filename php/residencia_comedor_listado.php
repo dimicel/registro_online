@@ -51,6 +51,7 @@ while ($reg=$res->fetch_assoc()){
     else $data["registros"][$contador]["avisado"]=0;
     $indice = false;
     $data["test"] = ""; // Initialize test variable
+    $data["long"] =count($list_dia); 
     for ($i = 0; $i < count($list_dia); $i++) {
         $data["test"].= $list_dia[$i][0];
         if (isset($list_dia[$i][0]) && $list_dia[$i][0] == $reg["id_nie"]) {
