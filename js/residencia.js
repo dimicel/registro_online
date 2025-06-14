@@ -697,6 +697,7 @@ function res_listadoRevisionAsistencia(){
 function res_actualizaListadoAsistenciaComedor() {
     mostrarPantallaEspera();
     let fecha = document.getElementById("fecha_lista_comedor").value;
+    let curso=document.getElementById("res_curso").value;
     let asistencias = [];
     let filas = document.querySelectorAll("#asistencia_comedor tr");
     filas.forEach((fila) => {
@@ -710,7 +711,7 @@ function res_actualizaListadoAsistenciaComedor() {
         }
     });
 
-    $.post("php/residencia_comedor_actualiza.php", { fecha: fecha, asistencias: JSON.stringify(asistencias) }, function(resp) {
+    $.post("php/residencia_comedor_actualiza.php", { curso:curso,fecha: fecha, asistencias: JSON.stringify(asistencias) }, function(resp) {
         ocultarPantallaEspera();
         if (resp.error == "ok") {
             alerta("Listado de asistencia actualizado correctamente.", "ACTUALIZACIÓN CORRECTA");
