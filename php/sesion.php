@@ -43,6 +43,11 @@ elseif($_POST['tipo_usu']=="jefe departamento" && $_SESSION['tipo_usu']=="jefe d
     $respuesta["anno_ini_curso"]=calculaCurso_ini();
     exit (json_encode($respuesta));
 }
+elseif($_POST['tipo_usu']=="comedor" && $_SESSION['tipo_usu']=="comedor"){
+    $respuesta["error"]="ok";
+    $respuesta["tipo_usu"]="comedor";
+    exit (json_encode($respuesta));
+}
 else $respuesta["error"]="ok";
 
 if ($respuesta["error"]=="ok"){ 
