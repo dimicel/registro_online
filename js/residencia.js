@@ -670,8 +670,8 @@ function res_listadoRevisionAsistencia(){
                 else "<tr>";
                 _lt+="<td width='20%'>"+resp.registros[i].id_nie+"</td>";
                 _lt+="<td width='65%'>"+resp.registros[i].nombre+"</td>";
-                if (resp.registros[i].desayuno==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchend='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
-                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchend='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'>X</td>";
+                if (resp.registros[i].desayuno==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ></td>";
+                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' >X</td>";
                 if (resp.registros[i].comida==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
                 else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'>X</td>";
                 if (resp.registros[i].cena==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";' ontouchstart='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
