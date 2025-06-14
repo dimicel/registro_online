@@ -662,7 +662,7 @@ function res_listadoRevisionAsistencia(){
     var validez=fecha.getFullYear() === anio && fecha.getMonth() === mes && fecha.getDate() === dia
     if (!validez) return;
     mostrarPantallaEspera();
-    $.post("php/residencia_comedor_listado.php",{curso:document.getElementById("res_curso").value,fecha:fechaStr},(resp)=>{
+    $.post("php/residencia_comedor_listado.php",{fecha:fechaStr},(resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
             _lt="";
@@ -697,7 +697,6 @@ function res_listadoRevisionAsistencia(){
 function res_actualizaListadoAsistenciaComedor() {
     mostrarPantallaEspera();
     let fecha = document.getElementById("fecha_lista_comedor").value;
-    let curso=document.getElementById("res_curso").value;
     let asistencias = [];
     let filas = document.querySelectorAll("#asistencia_comedor tr");
     filas.forEach((fila) => {
@@ -711,7 +710,7 @@ function res_actualizaListadoAsistenciaComedor() {
         }
     });
 
-    $.post("php/residencia_comedor_actualiza.php", { curso:curso,fecha: fecha, asistencias: JSON.stringify(asistencias) }, function(resp) {
+    $.post("php/residencia_comedor_actualiza.php", {fecha: fecha, asistencias: JSON.stringify(asistencias) }, function(resp) {
         ocultarPantallaEspera();
         if (resp == "ok") {
             alerta("Listado de asistencia actualizado correctamente.", "ACTUALIZACIÓN CORRECTA");

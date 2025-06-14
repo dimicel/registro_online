@@ -8,7 +8,6 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 
-$curso=$_POST["curso"];
 $fecha=DateTime::createFromFormat('d/m/Y', $_POST["fecha"]);
 $fecha = $fecha->format('Y-m-d');
 $asistencias = json_decode($_POST["asistencias"], true);
