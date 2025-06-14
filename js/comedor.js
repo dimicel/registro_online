@@ -1,4 +1,4 @@
-
+var curso="";
 
 $(function() {
     mostrarPantallaEspera();
@@ -6,6 +6,7 @@ $(function() {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else{
             ocultarPantallaEspera();
+            curso=resp.anno_ini_curso+"-"+resp.anno_ini_curso+1;
             $("#fecha_lista_comedor").datepicker({
                 changeMonth: true,
                 changeYear: true,
@@ -39,7 +40,6 @@ function res_listadoRevisionAsistencia(){
     //Verifica que la fecha es valida y si no no se hace la consulta
     // formato esperado: dd/mm/yyyy
     var fechaStr=document.getElementById("fecha_lista_comedor").value;
-    var curso= document.getElementById("res_curso").value;
     const partes = fechaStr.split('/');
     if (partes.length !== 3) return false;
     const dia = parseInt(partes[0], 10);

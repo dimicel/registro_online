@@ -31,7 +31,7 @@
        
         <!-- LISTADO USUARIOS _____________________________________________________________________-->
         <!--_______________________________________________________________________________________-->
-        <div id="div_lista_comedor" class="ui-widget-header ui-corner-all container" style="padding-top:10px;padding-bottom: 10px;">
+        <div id="div_lista_comedor" class="ui-widget-header ui-corner-all container" style="padding-top:10px;padding-bottom: 10px;margin-top:20px">
             <div class="row">
                 <div class="col-1">
                     <label>Fecha:</label>
