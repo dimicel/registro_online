@@ -713,9 +713,9 @@ function res_actualizaListadoAsistenciaComedor() {
 
     $.post("php/residencia_comedor_actualiza.php", { curso:curso,fecha: fecha, asistencias: JSON.stringify(asistencias) }, function(resp) {
         ocultarPantallaEspera();
-        if (resp.error == "ok") {
+        if (resp == "ok") {
             alerta("Listado de asistencia actualizado correctamente.", "ACTUALIZACIÓN CORRECTA");
-        } else if (resp.error == "server") {
+        } else if (resp == "server") {
             alerta("Hay un problema en el servidor. Haga el control a mano, y páselo al sistema más tarde.", "ERROR DE SERVIDOR");
         } else {
             alerta("Error al actualizar el listado de asistencia. Haga el control a mano, y páselo al sistema más tarde.", "ERROR");
