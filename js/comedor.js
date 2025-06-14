@@ -6,7 +6,8 @@ $(function() {
         if (resp["error"] != "ok") document.write(resp["error"]);
         else{
             ocultarPantallaEspera();
-            curso=resp.anno_ini_curso+"-"+parseInt(resp.anno_ini_curso)+1;
+            curso=resp.anno_ini_curso+"-"+(parseInt(resp.anno_ini_curso)+1);
+            alert(curso);
             $("#fecha_lista_comedor").datepicker({
                 changeMonth: true,
                 changeYear: true,
