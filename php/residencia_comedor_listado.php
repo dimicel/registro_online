@@ -30,7 +30,7 @@ $con_dia=$mysqli->query($lista_dia);
 $data["test2"] = $con_dia->num_rows; 
 $list_dia=array();
 if ($con_dia->num_rows>0){
-    while($d=$con_dia->fetch_assoc(MYSQLI_ASSOC)){
+    while($d=$con_dia->fetch_assoc()){
         $list_dia[]=[$d["id_nie"],$d["desayuno"],$d["comida"],$d["cena"]];
     }
 }
