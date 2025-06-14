@@ -10,7 +10,7 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-
+$curso=$_POST["curso"];
 $fecha=DateTime::createFromFormat('d/m/Y', $_POST["fecha"]);
 $fecha_mysql = $fecha->format('Y-m-d');
 

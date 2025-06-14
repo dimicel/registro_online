@@ -652,6 +652,7 @@ function res_listadoRevisionAsistencia(){
     //Verifica que la fecha es valida y si no no se hace la consulta
     // formato esperado: dd/mm/yyyy
     var fechaStr=document.getElementById("fecha_lista_comedor").value;
+    var curso= document.getElementById("res_curso").value;
     const partes = fechaStr.split('/');
     if (partes.length !== 3) return false;
     const dia = parseInt(partes[0], 10);
@@ -662,7 +663,7 @@ function res_listadoRevisionAsistencia(){
     var validez=fecha.getFullYear() === anio && fecha.getMonth() === mes && fecha.getDate() === dia
     if (!validez) return;
     mostrarPantallaEspera();
-    $.post("php/residencia_comedor_listado.php",{fecha:fechaStr},(resp)=>{
+    $.post("php/residencia_comedor_listado.php",{curso:curso,fecha:fechaStr},(resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
             _lt="";
