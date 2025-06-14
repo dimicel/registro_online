@@ -17,6 +17,7 @@ $fecha_mysql = $fecha->format('Y-m-d');
 $lista_avisos="select * from residentes_comedor where fecha_no_comedor='$fecha_mysql'";
 $con_avisos=$mysqli->query($lista_avisos);
 $list_avisos=array();
+
 if ($con_avisos->num_rows>0){
     while($d=$con_avisos->fetch_assoc(MYSQLI_ASSOC)){
         $list_avisos[]=$d["id_nie"];
@@ -27,7 +28,7 @@ $con_avisos->free();
 $lista_dia="select * from residentes_comedor where fecha_comedor='$fecha_mysql'";
 $con_dia=$mysqli->query($lista_dia);
 $list_dia=array();
-if ($con_avisos->num_rows>0){
+if ($con_dia->num_rows>0){
     while($d=$con_dia->fetch_assoc(MYSQLI_ASSOC)){
         $list_dia[]=[$d["id_nie"],$d["desayuno"],$d["comida"],$d["cena"]];
     }
