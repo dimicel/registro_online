@@ -16,10 +16,10 @@ $asistencias = json_decode($_POST["asistencias"], true);
 $mysqli->begin_transaction();
 try {
     foreach ($asistencias as $asistencia) {
-        $id_nie = $asistencia[0];
-        $desayuno = $asistencia[1];
-        $comida = $asistencia[2];
-        $cena = $asistencia[3];
+        $id_nie = $asistencia['id_nie'];
+        $desayuno = $asistencia['desayuno'];
+        $comida = $asistencia['comida'];
+        $cena = $asistencia['cena'];
 
         // De momento conservo el día elegido por el usuario para no ir al comedor, aunque haya asistido.
         // El código comentado eliminaba ese registro si el usuario, pese haber marcado que no iba al comedor se presenta.
