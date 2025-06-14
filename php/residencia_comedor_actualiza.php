@@ -61,7 +61,7 @@ try {
     exit("ok");
 } catch (Exception $e) {
     $mysqli->rollback();
-    exit("fallo_alta");
+    exit("fallo");
 }
 
 

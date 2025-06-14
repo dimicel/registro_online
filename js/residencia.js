@@ -716,9 +716,9 @@ function res_actualizaListadoAsistenciaComedor() {
         if (resp.error == "ok") {
             alerta("Listado de asistencia actualizado correctamente.", "ACTUALIZACIÓN CORRECTA");
         } else if (resp.error == "server") {
-            alerta("Hay un problema en el servidor. Inténtelo más tarde.", "ERROR DE SERVIDOR");
+            alerta("Hay un problema en el servidor. Haga el control a mano, y páselo al sistema más tarde.", "ERROR DE SERVIDOR");
         } else {
-            alerta("Error al actualizar el listado de asistencia.", "ERROR");
+            alerta("Error al actualizar el listado de asistencia. Haga el control a mano, y páselo al sistema más tarde.", "ERROR");
         }
     });
 }
