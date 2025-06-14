@@ -668,7 +668,7 @@ function res_listadoRevisionAsistencia(){
         if (resp.error=="ok"){
             _lt="";
             for (let i=0;i<resp.registros.length;i++){
-                if (resp.registros[i].avisado==1) _lt+="<tr style='background-color:\"yellow\";color:\"brown\";'>";
+                if (resp.registros[i].avisado==1){_lt+="<tr style='background-color:\"yellow\";color:\"brown\";'>";alert(6)} 
                 else "<tr>";
                 _lt+="<td width='20%'>"+resp.registros[i].id_nie+"</td>";
                 _lt+="<td width='65%'>"+resp.registros[i].nombre+"</td>";
