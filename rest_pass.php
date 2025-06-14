@@ -24,8 +24,13 @@ else echo "error residencia<br>";
 
 $pass=password_hash('#Jef@Ulab0ral#',PASSWORD_BCRYPT);
 $conCadena="update usuarios_admin set password='$pass' where id_nie='S4500175GJEF'";
-if ($mysqli->query($conCadena)===TRUE) echo "ok jefatura";
-else echo "error jefatura";
+if ($mysqli->query($conCadena)===TRUE) echo "ok jefatura<br>";
+else echo "error jefatura<br>";
+
+$pass=password_hash('#comedor@Ulab0ral#',PASSWORD_BCRYPT);
+$conCadena="update usuarios_admin set password='$pass' where id_nie='comedor'";
+if ($mysqli->query($conCadena)===TRUE) echo "ok comedor";
+else echo "error comedor";
 
 //S4500175GJDE ES USUARIO COMÚN PARA TODOS LOS JEFES DE DPTO. LA CONTRASEÑA SE RESTAURA DESDE LA APLICACIÓN ENTRANDO COMO SECRETARIO
 //MENU CONFIGURACIÓN->DEPARTAMENTOS
