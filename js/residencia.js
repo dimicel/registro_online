@@ -602,6 +602,7 @@ function res_GestionComedor(){
                 class: "btn btn-success textoboton",
                 text: "Guardar listado",
                 click: function() {
+                    res_actualizaListadoAsistenciaComedor();
                     $(this).dialog("destroy").remove();
                 }
             },
@@ -691,4 +692,32 @@ function res_listadoRevisionAsistencia(){
         }
 
     },"json");
+}
+
+function res_actualizaListadoAsistenciaComedor() {
+    mostrarPantallaEspera();
+    let fecha = document.getElementById("fecha_lista_comedor").value;
+    let asistencias = [];
+    let filas = document.querySelectorAll("#asistencia_comedor tr");
+    filas.forEach((fila) => {
+        let celdas = fila.querySelectorAll("td");
+        if (celdas.length > 0) {
+            let id_nie = celdas[0].innerText.trim();
+            let desayuno = celdas[2].innerText.trim() === "X" ? 1 : 0;
+            let comida = celdas[3].innerText.trim() === "X" ? 1 : 0;
+            let cena = celdas[4].innerText.trim() === "X" ? 1 : 0;
+            asistencias.push({ id_nie, desayuno, comida, cena });
+        }
+    });
+
+    $.post("php/residencia_comedor_actualiza.php", { fecha: fecha, asistencias: JSON.stringify(asistencias) }, function(resp) {
+        ocultarPantallaEspera();
+        if (resp.error == "ok") {
+            alerta("Listado de asistencia actualizado correctamente.", "ACTUALIZACIÓN CORRECTA");
+        } else if (resp.error == "server") {
+            alerta("Hay un problema en el servidor. Inténtelo más tarde.", "ERROR DE SERVIDOR");
+        } else {
+            alerta("Error al actualizar el listado de asistencia.", "ERROR");
+        }
+    }, "json");
 }
