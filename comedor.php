@@ -59,8 +59,8 @@
             </div>
             <div class="row mt-3">
                 <div class="col text-center">
-                    <button id="btn_actualiza_comedor" class="btn btn-primary" onclick="res_actualizaListadoAsistenciaComedor()">Actualizar asistencia</button>
-                    <button id="btn_salir" class="btn btn-secondary" onclick="cierrasesion()">Imprimir asistencia</button>
+                    <button id="btn_actualiza_comedor" class="btn btn-success" onclick="res_actualizaListadoAsistenciaComedor()">Actualizar asistencia</button>
+                    <button id="btn_salir" class="btn btn-danger" onclick="cierrasesion()">Cerrar Sesión</button>
                 </div>
         </div>
         <!-- FIN LISTADO DE USUARIOS__________________________________________________________________-->
