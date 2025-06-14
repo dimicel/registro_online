@@ -58,6 +58,7 @@ while ($reg=$res->fetch_assoc()){
             break;
         }
     }
+    $data["indice"] = $indice; // Store the index for debugging 
     //foreach ($list_dia as $i => $subarray) {
         
     //    if (isset($subarray[0]) && $subarray[0] == $reg["id_nie"]) {
