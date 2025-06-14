@@ -10,7 +10,7 @@ if ($mysqli->errno>0) {
 
 $curso=$_POST["curso"];
 $fecha=DateTime::createFromFormat('d/m/Y', $_POST["fecha"]);
-$fecha_mysql = $fecha->format('Y-m-d');
+$fecha = $fecha->format('Y-m-d');
 $asistencias = json_decode($_POST["asistencias"], true);
 
 $mysqli->begin_transaction();
