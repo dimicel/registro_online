@@ -720,5 +720,5 @@ function res_actualizaListadoAsistenciaComedor() {
         } else {
             alerta("Error al actualizar el listado de asistencia.", "ERROR");
         }
-    }, "json");
+    });
 }
