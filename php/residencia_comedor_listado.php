@@ -19,7 +19,7 @@ $con_avisos=$mysqli->query($lista_avisos);
 $list_avisos=array();
 
 if ($con_avisos->num_rows>0){
-    while($d=$con_avisos->fetch_assoc(MYSQLI_ASSOC)){
+    while($d=$con_avisos->fetch_assoc()){
         $list_avisos[]=$d["id_nie"];
     }
 }
@@ -27,7 +27,6 @@ $con_avisos->free();
 
 $lista_dia="select * from residentes_comedor where fecha_comedor='$fecha_mysql'";
 $con_dia=$mysqli->query($lista_dia);
-$data["test2"] = $con_dia->num_rows; 
 $list_dia=array();
 if ($con_dia->num_rows>0){
     while($d=$con_dia->fetch_assoc()){
@@ -35,7 +34,6 @@ if ($con_dia->num_rows>0){
     }
 }
 $con_dia->free();
-var_dump($list_dia); exit;
 
 $consulta="SELECT * FROM residentes  where curso='$curso' and baja=0 ";
 $res=$mysqli->query($consulta);
@@ -52,23 +50,12 @@ while ($reg=$res->fetch_assoc()){
     if (in_array($reg["id_nie"],$list_avisos)) $data["registros"][$contador]["avisado"]=1;
     else $data["registros"][$contador]["avisado"]=0;
     $indice = false;
-    $data["test"] = ""; // Initialize test variable
-    $data["long"] =count($list_dia); 
     for ($i = 0; $i < count($list_dia); $i++) {
-        $data["test"].= $list_dia[$i][0];
         if (isset($list_dia[$i][0]) && $list_dia[$i][0] == $reg["id_nie"]) {
             $indice = $i;
             break;
         }
     }
-    $data["indice"] = $indice; // Store the index for debugging 
-    //foreach ($list_dia as $i => $subarray) {
-        
-    //    if (isset($subarray[0]) && $subarray[0] == $reg["id_nie"]) {
-    //        $indice = $i;
-    //        break;
-    //    }
-    //}
     $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
     $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["apellidos"])).", ".ucwords(strtolower($reg["nombre"]));
     if($indice!==false){
