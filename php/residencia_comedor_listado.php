@@ -28,7 +28,6 @@ $con_avisos->free();
 $lista_dia="select * from residentes_comedor where fecha_comedor='$fecha_mysql'";
 $con_dia=$mysqli->query($lista_dia);
 $list_dia=array();
-$data["comedor"]=$con_dia->num_rows;
 if ($con_dia->num_rows>0){
     while($d=$con_dia->fetch_assoc(MYSQLI_ASSOC)){
         $list_dia[]=[$d["id_nie"],$d["desayuno"],$d["comida"],$d["cena"]];
@@ -51,7 +50,9 @@ while ($reg=$res->fetch_assoc()){
     if (in_array($reg["id_nie"],$list_avisos)) $data["registros"][$contador]["avisado"]=1;
     else $data["registros"][$contador]["avisado"]=0;
     $indice = false;
+    $data["test"] = ""; // Initialize test variable
     foreach ($list_dia as $i => $subarray) {
+        $data["test"].= $subarray[0];
         if (isset($subarray[0]) && $subarray[0] == $reg["id_nie"]) {
             $indice = $i;
             break;
