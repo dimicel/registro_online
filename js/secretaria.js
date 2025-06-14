@@ -391,7 +391,7 @@ function generaSelectsDepartamentos(){
     if (document.getElementById("dpto_select"))document.getElementById("dpto_select").innerHTML="";
     if (document.getElementById("ciclos_filtro_dpto"))document.getElementById("ciclos_filtro_dpto").innerHTML="";
     var opt=document.createElement("option");
-    opt.value="Todos";
+    opt.value="";
     opt.textContent="Todos";
     opt.dataset.email="todos";
     document.getElementById("departamento").appendChild(opt);

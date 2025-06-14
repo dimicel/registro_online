@@ -81,7 +81,7 @@ else {
 $coletilla="";
 if ($tabla=="convalidaciones" || $tabla=="exencion_fct"){
     if ($tabla=="exencion_fct"){
-        if ($departamento!="Todos"){
+        if ($departamento!=""){
             $coletilla.=" departamento='$departamento' and ";
         }
         if ($visto==0){
