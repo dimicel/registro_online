@@ -35,6 +35,7 @@ if ($con_dia->num_rows>0){
     }
 }
 $con_dia->free();
+var_dump($list_dia); exit;
 
 $consulta="SELECT * FROM residentes  where curso='$curso' and baja=0 ";
 $res=$mysqli->query($consulta);
