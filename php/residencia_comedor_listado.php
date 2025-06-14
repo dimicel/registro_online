@@ -51,13 +51,20 @@ while ($reg=$res->fetch_assoc()){
     else $data["registros"][$contador]["avisado"]=0;
     $indice = false;
     $data["test"] = ""; // Initialize test variable
-    foreach ($list_dia as $i => $subarray) {
-        $data["test"].= $subarray[0];
-        if (isset($subarray[0]) && $subarray[0] == $reg["id_nie"]) {
+    for ($i = 0; $i < count($list_dia); $i++) {
+        $data["test"].= $list_dia[$i][0];
+        if (isset($list_dia[$i][0]) && $list_dia[$i][0] == $reg["id_nie"]) {
             $indice = $i;
             break;
         }
     }
+    //foreach ($list_dia as $i => $subarray) {
+        
+    //    if (isset($subarray[0]) && $subarray[0] == $reg["id_nie"]) {
+    //        $indice = $i;
+    //        break;
+    //    }
+    //}
     $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
     $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["apellidos"])).", ".ucwords(strtolower($reg["nombre"]));
     if($indice!==false){
