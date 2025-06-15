@@ -10,7 +10,7 @@ var res_num_reg_pagina = 25;
 var res_numero_paginas;
 var res_pagina = 1;
 var res_orden_direccion_usu = "🡅";
-
+var cambio_listado_comedor=false;
 
 
 $(function() {
@@ -672,12 +672,12 @@ function res_listadoRevisionAsistencia(){
                 else "<tr>";
                 _lt+="<td width='20%'>"+resp.registros[i].id_nie+"</td>";
                 _lt+="<td width='65%'>"+resp.registros[i].nombre+"</td>";
-                if (resp.registros[i].desayuno==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
-                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'>X</td>";
-                if (resp.registros[i].comida==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
-                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'>X</td>";
-                if (resp.registros[i].cena==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'></td>";
-                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";'>X</td>";
+                if (resp.registros[i].desayuno==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";cambio_listado_comedor=true;'></td>";
+                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";cambio_listado_comedor=true;'>X</td>";
+                if (resp.registros[i].comida==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";cambio_listado_comedor=true;'></td>";
+                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";cambio_listado_comedor=true;'>X</td>";
+                if (resp.registros[i].cena==0)_lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";cambio_listado_comedor=true;'></td>";
+                else _lt+="<td width='5%' style='text-align:center' onclick='javascript:if(this.innerHTML==\"X\")this.innerHTML=\"\";else this.innerHTML=\"X\";cambio_listado_comedor=true;'>X</td>";
                 _lt+="</tr>";
             }
             document.getElementById("asistencia_comedor").innerHTML=_lt;
@@ -720,5 +720,6 @@ function res_actualizaListadoAsistenciaComedor() {
         } else {
             alerta("Error al actualizar el listado de asistencia. Haga el control a mano, y páselo al sistema más tarde.", "ERROR");
         }
+        cambio_listado_comedor=false;
     });
 }
