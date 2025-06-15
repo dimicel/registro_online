@@ -114,7 +114,7 @@ function res_actualizaListadoAsistenciaComedor() {
 
 function cierrasesion() {
     if (cambio_listado_comedor) {
-        confirmar("Hay cambios sin guardar. ¿Desea salir sin guardar?").then((confirmacion)=>{
+        confirmar("Hay cambios sin guardar. ¿Desea salir sin guardar?","CIERRE DE SESIÓN").then((confirmacion)=>{
             if (confirmacion) {
                salir();
             }
