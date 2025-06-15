@@ -31,7 +31,7 @@ $(function() {
                 document.getElementById("csv_remesas").style.display='';
                 document.getElementById("boton_salir").style.display='none';
             }
-            else if (resp["tipo_usu"]=="residencia"){
+            else {
                 document.getElementById("secretaria").style.display='none';
                 document.getElementById("csv_remesas").style.display='none';
                 document.getElementById("boton_salir").style.display='';
