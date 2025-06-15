@@ -602,15 +602,24 @@ function res_GestionComedor(){
                 class: "btn btn-success textoboton",
                 text: "Guardar listado",
                 click: function() {
-                    res_actualizaListadoAsistenciaComedor();
-                    $(this).dialog("destroy").remove();
+                    res_actualizaListadoAsistenciaComedor(this);
                 }
             },
             {
                 class: "btn btn-danger textoboton",
                 text: "Salir",
                 click: function() {
-                    $(this).dialog("destroy").remove();
+                    if (cambio_listado_comedor) {
+                        confirmar("Hay cambios sin guardar. ¿Desea salir de la gestión de asistencia a comedor sin guardar los cambios?","SALIR DE COMEDOR").then((confirmacion)=>{
+                            if (confirmacion) {
+                                $(this).dialog("destroy").remove();
+                            }
+                        });
+                    }
+                    else {
+                        $(this).dialog("destroy").remove();
+                    }
+                    
                 }
             }
         ]
@@ -695,7 +704,7 @@ function res_listadoRevisionAsistencia(){
     },"json");
 }
 
-function res_actualizaListadoAsistenciaComedor() {
+function res_actualizaListadoAsistenciaComedor(obj) {
     mostrarPantallaEspera();
     let fecha = document.getElementById("fecha_lista_comedor").value;
     let asistencias = [];
@@ -721,5 +730,6 @@ function res_actualizaListadoAsistenciaComedor() {
             alerta("Error al actualizar el listado de asistencia. Haga el control a mano, y páselo al sistema más tarde.", "ERROR");
         }
         cambio_listado_comedor=false;
+        $(obj).dialog("destroy").remove();
     });
 }
