@@ -52,11 +52,14 @@
                 <div class="col-3">
                     <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
                 </div>
+                <div class="col-3">
+                    <input type="button" class="textoboton btn btn-success" onclick="res_GestionComedor()" value="Comedor">
+                    <input type="button" class="textoboton btn btn-success" onclick="res_InformesComedor()" value="Informes Comedor">
+                </div>
                 <div class="col-2" style="display:none" id="csv_remesas">
                     <input type="button" class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">
                 </div>
-                <div class="col-1">
-                </div>
+                
                 <!--
                 <div class="col-1">
                     <label class="col-form-label" style="margin-left:20px; ">Mostrar: </label>
@@ -84,9 +87,6 @@
                         <option value=0>Altas</option>
                         <option value=1>Bajas</option>
                     </select>
-                </div>
-                <div class="col-2">
-                    <input type="button" class="textoboton btn btn-success" onclick="res_GestionComedor()" value="Comedor">
                 </div>
             </div>
             <div class="row">

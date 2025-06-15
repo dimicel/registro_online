@@ -738,3 +738,8 @@ function res_actualizaListadoAsistenciaComedor(obj) {
         $(obj).dialog("destroy").remove();
     });
 }
+
+
+function res_InformesComedor(){
+    
+}
