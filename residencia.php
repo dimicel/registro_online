@@ -35,7 +35,11 @@
             <div class="row" style="margin-top:15px;margin-left:20px;display:none" id="secretaria" >
                 <div class="col-5">
                     <input type="button" class="textoboton btn btn-success" value="Volver a Secretaría" onclick="document.location='secretaria.php?q='+Date.now()">
-                    <input type="button" id="boton_salir"  class="textoboton btn btn-success" value="SALIR" onclick="javascript: res_cierrasesion();">
+                </div>
+            </div>
+            <div class="row" style="margin-top:15px;margin-left:20px;display:none" id="boton_salir" >
+                <div class="col-5">
+                    <input type="button"  class="textoboton btn btn-success" value="SALIR" onclick="javascript: res_cierrasesion();">
                 </div>
             </div>
             <div class="row" style="margin-top:15px">
