@@ -108,6 +108,7 @@ function res_actualizaListadoAsistenciaComedor() {
         } else {
             alerta("Error al actualizar el listado de asistencia. Haga el control a mano, y páselo al sistema más tarde.", "ERROR");
         }
+        cambio_listado_comedor = false;
     });
 }
 
