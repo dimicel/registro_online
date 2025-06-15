@@ -69,7 +69,7 @@ function confirmar(mensaje, titulo, ancho) {
     if (typeof ancho !== 'number') ancho = 300;
     let $div = $("#mensaje_div");
     if ($div.length === 0) {
-        $("body").append("<div id='mensaje_div'></div>");
+        $("body").append("<div id='mensaje_div' class='alertas'></div>");
         $div = $("#mensaje_div");
     }
     mensaje+="<hr><div class='mt-3' style='text-align: right;'>";
