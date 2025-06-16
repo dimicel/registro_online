@@ -1,5 +1,5 @@
-res_campos = new Array();
-res_encabezamiento = new Array();
+var res_campos = new Array();
+var res_encabezamiento = new Array();
 var res_anno_ini_curso = 0;
 var res_mes;
 var res_orden_campo;
@@ -741,5 +741,48 @@ function res_actualizaListadoAsistenciaComedor(obj) {
 
 
 function res_InformesComedor(){
-    
+    mostrarPantallaEspera();
+    cargaHTML("html/residencia.htm","div_informes_comedor","INFORMES DE COMEDOR",800,2000,"center top","center top",
+        [
+            {
+                class: "btn btn-success textoboton",
+                text: "Generar informe",
+                click: function() {
+                    let mes = document.getElementById("mes_informe").value;
+                    let curso = res_curso_actual;
+                    let tipo_informe = document.getElementById("tipo_informe_comedor").value;
+                    if (tipo_informe=="" || mes=="") {
+                        alerta("Debe seleccionar un mes y un tipo de informe.", "FALTAN DATOS");
+                        return;
+                    }
+                    if (tipo_informe=="1") {
+                        const url = "php/csv_res_ausencias_com.php";
+                    }
+                    else if(tipo_informe=="2") {
+                        const url = "php/csv_res_ausencias_asistencias_com.php";
+                    }
+                    else if(tipo_informe=="3") {
+                        const url = "php/csv_res_resumen_serv_com.php";
+                    }
+                    else if(tipo_informe=="4") {
+                        const url = "php/csv_res_serv_totales_dia_com.php";
+                    }
+                    
+                }
+            },
+            {
+                class: "btn btn-danger textoboton",
+                text: "Salir",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
+            }
+        ]
+    ).then((dialogo)=>{
+        ocultarPantallaEspera();
+    }).catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 }
