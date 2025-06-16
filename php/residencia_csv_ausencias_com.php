@@ -8,8 +8,8 @@ include("conexion.php");
 if ($mysqli->errno>0) $error="Error en servidor.";
 
 $curso=$_POST["comedor_curso"];
-$mes=$_POST["mes_informe"];exit();
-$anno_1=$substr($curso, 0, 4);
+$mes=$_POST["mes_informe"];
+$anno_1=$substr($curso, 0, 4);exit();
 $anno_2=$substr($curso, -4);
 $array_meses=array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
 $array_dias_mes=array(31,29,31,30,31,30,31,31,30,31,30,31);
