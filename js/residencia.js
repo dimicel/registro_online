@@ -768,10 +768,9 @@ function res_InformesComedor(){
                     else if(tipo_informe=="4") {
                         url = "php/residencia_csv_serv_totales_dia_com.php";
                     }
-                    alert(tipo_informe+"   "+url)
                     mostrarPantallaEspera();
-                    document.getElementById("form_informe_comedor").action = url;
-                    document.getElementById("form_informe_comedor").submit();
+                    document.getElementById("form_informes_comedor").action = url;
+                    document.getElementById("form_informes_comedor").submit();
                     ocultarPantallaEspera();
                 }
             },
