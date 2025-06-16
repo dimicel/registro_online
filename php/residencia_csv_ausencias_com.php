@@ -2,23 +2,13 @@
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") exit("Acceso denegado");
 
-//$is_ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
-$is_ajax=false;
 $error = "";
 $Datos = "\xEF\xBB\xBF"; // Añadir BOM para UTF-8 para que Excel lo reconozca
 
 include("conexion.php");
 if ($mysqli->errno > 0) {
-    $error = "Error en servidor.";
-    if ($is_ajax) {
-        header('Content-Type: application/json');
-        echo json_encode(["ok" => false, "mensaje" => $error]);
-    } else {
-        //echo $error;
-        http_response_code(500);
-        echo "Error en servidor.";
-        exit;
-    }
+    http_response_code(500);
+    echo "Error en servidor.";
     exit;
 }
 
@@ -26,15 +16,8 @@ $curso = $_POST["comedor_curso"] ?? "";
 $mes = $_POST["mes_informe"] ?? "";
 
 if ($curso === "" || $mes === "") {
-    $error = "Faltan datos del curso o mes.";
-    if ($is_ajax) {
-        header('Content-Type: application/json');
-        echo json_encode(["ok" => false, "mensaje" => $error]);
-    } else {
-        http_response_code(500);
-        echo "Faltan datos del curso o mes.";
-        exit;
-    }
+    http_response_code(500);
+    echo "Faltan datos del curso o mes.";
     exit;
 }
 
@@ -57,15 +40,8 @@ if ($mes_num >= 7 && $mes_num <= 12) {
     $fecha_inicio = $anno_2 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-01";
     $fecha_fin = $anno_2 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-" . $array_dias_mes[$mes_num - 1];
 } else {
-    $error = "Mes no válido.";
-    if ($is_ajax) {
-        header('Content-Type: application/json');
-        echo json_encode(["ok" => false, "mensaje" => $error]);
-    } else {
-        http_response_code(500);
-        echo "Mes no válido.";
-        exit;
-    }
+    http_response_code(500);
+    echo "Mes no válido.";
     exit;
 }
 
@@ -94,15 +70,8 @@ $sql = "
 
 $stmt = $mysqli->prepare($sql);
 if ($stmt === false) {
-    $error = "Error en la preparación de la consulta.";
-    if ($is_ajax) {
-        header('Content-Type: application/json');
-        echo json_encode(["ok" => false, "mensaje" => $error]);
-    } else {
-        http_response_code(500);
-        echo "Error en la preparación de la consulta.";
-        exit;
-    }
+    http_response_code(500);
+    echo "Error en la preparación de la consulta.";
     exit;
 }
 
@@ -124,18 +93,6 @@ while ($row = $result->fetch_assoc()) {
 $stmt->close();
 $mysqli->close();
 
-// Si es AJAX, devolver JSON con el contenido y nombre del archivo
-if ($is_ajax) {
-    header('Content-Type: application/json');
-    echo json_encode([
-        "ok" => true,
-        "nombre" => $Name,
-        "datos" => $Datos
-    ]);
-    exit;
-}
-
-// Si no es AJAX, descarga directa
 header('Expires: 0');
 header('Cache-control: private');
 header('Content-Type: application/octet-stream;charset=utf-8');
