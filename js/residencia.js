@@ -819,30 +819,6 @@ function res_InformesComedor(){
                     .finally(() => {
                         ocultarPantallaEspera();
                     });
-                    /*let mes = document.getElementById("mes_informe").value;
-                    document.getElementById("comedor_curso").value= res_curso_actual;
-                    let tipo_informe = document.getElementById("tipo_informe_comedor").value;
-                    let url="";
-                    if (tipo_informe=="" || mes=="") {
-                        alerta("Debe seleccionar un mes y un tipo de informe.", "FALTAN DATOS");
-                        return;
-                    }
-                    if (tipo_informe=="1") {
-                        url = "php/residencia_csv_ausencias_com.php";
-                    }
-                    else if(tipo_informe=="2") {
-                        url = "php/residencia_csv_ausencias_asistencias_com.php";
-                    }
-                    else if(tipo_informe=="3") {
-                        url = "php/residencia_csv_resumen_serv_com.php";
-                    }
-                    else if(tipo_informe=="4") {
-                        url = "php/residencia_csv_serv_totales_dia_com.php";
-                    }
-                    mostrarPantallaEspera();
-                    document.getElementById("form_informes_comedor").action = url;
-                    document.getElementById("form_informes_comedor").submit();
-                    ocultarPantallaEspera();*/
                 }
             },
             {
