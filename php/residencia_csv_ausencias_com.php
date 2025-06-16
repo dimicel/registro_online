@@ -79,7 +79,7 @@ $sql = "
           SELECT 1
           FROM residentes_comedor rc2
           WHERE rc2.id_nie = rc.id_nie
-            AND rc2.fechas_no_comedor = rc.fecha_comedor
+            AND rc2.fecha_no_comedor = rc.fecha_comedor
       )
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
