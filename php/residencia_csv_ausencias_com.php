@@ -40,7 +40,7 @@ header('Content-Description: File Transfer');
 header('Last-Modified: '.date('D, d M Y H:i:s'));
 header('Content-Disposition: attachment; filename="'.$Name.'"');
 header("Content-Transfer-Encoding: binary");
-
+exit();
 
 // Consulta para obtener los registros de no asistencia no comunicada
 $sql = "
