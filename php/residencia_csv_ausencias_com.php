@@ -2,7 +2,8 @@
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") exit("Acceso denegado");
 
-$is_ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+//$is_ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+$is_ajax=false;
 $error = "";
 $Datos = "\xEF\xBB\xBF"; // Añadir BOM para UTF-8 para que Excel lo reconozca
 
@@ -13,7 +14,10 @@ if ($mysqli->errno > 0) {
         header('Content-Type: application/json');
         echo json_encode(["ok" => false, "mensaje" => $error]);
     } else {
-        echo $error;
+        //echo $error;
+        http_response_code(500);
+        echo "Error en servidor.";
+        exit;
     }
     exit;
 }
@@ -27,7 +31,9 @@ if ($curso === "" || $mes === "") {
         header('Content-Type: application/json');
         echo json_encode(["ok" => false, "mensaje" => $error]);
     } else {
-        echo $error;
+        http_response_code(500);
+        echo "Faltan datos del curso o mes.";
+        exit;
     }
     exit;
 }
@@ -56,7 +62,9 @@ if ($mes_num >= 7 && $mes_num <= 12) {
         header('Content-Type: application/json');
         echo json_encode(["ok" => false, "mensaje" => $error]);
     } else {
-        echo $error;
+        http_response_code(500);
+        echo "Mes no válido.";
+        exit;
     }
     exit;
 }
@@ -91,7 +99,9 @@ if ($stmt === false) {
         header('Content-Type: application/json');
         echo json_encode(["ok" => false, "mensaje" => $error]);
     } else {
-        echo $error;
+        http_response_code(500);
+        echo "Error en la preparación de la consulta.";
+        exit;
     }
     exit;
 }

@@ -796,9 +796,15 @@ function res_InformesComedor(){
                         body: formData
                     })
                     .then(response => {
-                        const contentType = response.headers.get("Content-Type") || "";
+                        /*const contentType = response.headers.get("Content-Type") || "";
                         if (contentType.includes("application/json")) {
                             return response.json().then(json => { throw new Error(json.error || "Error desconocido"); });
+                        }
+                        return response.blob();*/
+                        if (!response.ok) {
+                            return response.text().then(text => {
+                                throw new Error(text || "Error desconocido");
+                            });
                         }
                         return response.blob();
                     })
