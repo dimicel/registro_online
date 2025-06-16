@@ -770,6 +770,20 @@ function res_InformesComedor(){
                         url = "php/residencia_csv_serv_totales_dia_com.php";
                     }
 
+                    let array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+                    let anno_1 = curso.substr(0,4);
+                    let anno_2 = curso.substr(curso.length - 4);
+                    let mes_anno = "";
+                    let m = parseInt(mes, 10);
+
+                    if(m >= 7 && m <= 12) {
+                        mes_anno = array_meses[m-1] + "/" + anno_1;
+                    } else if (m >= 1 && m <= 6) {
+                        mes_anno = array_meses[m-1] + "/" + anno_2;
+                    }
+
+                    let nombreArchivo = "informe_no_asistencia_comedor_" + mes_anno + ".csv";
+
                     const formData = new FormData(document.getElementById("form_informes_comedor"));
                     mostrarPantallaEspera();
 
@@ -788,7 +802,7 @@ function res_InformesComedor(){
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement("a");
                         a.href = url;
-                        a.download = "informe_comedor.csv";
+                        a.download = nombreArchivo;
                         document.body.appendChild(a);
                         a.click();
                         document.body.removeChild(a);
