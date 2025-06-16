@@ -751,11 +751,11 @@ function res_InformesComedor(){
                     let mes = document.getElementById("mes_informe").value;
                     document.getElementById("comedor_curso").val= res_curso_actual;
                     let tipo_informe = document.getElementById("tipo_informe_comedor").value;
+                    let url="";
                     if (tipo_informe=="" || mes=="") {
                         alerta("Debe seleccionar un mes y un tipo de informe.", "FALTAN DATOS");
                         return;
                     }
-                    let url="";
                     if (tipo_informe=="1") {
                         url = "php/residencia_csv_ausencias_com.php";
                     }
@@ -768,6 +768,7 @@ function res_InformesComedor(){
                     else if(tipo_informe=="4") {
                         url = "php/residencia_csv_serv_totales_dia_com.php";
                     }
+                    alert(tipo_informe+"   "+url)
                     mostrarPantallaEspera();
                     document.getElementById("form_informe_comedor").action = url;
                     document.getElementById("form_informe_comedor").submit();
