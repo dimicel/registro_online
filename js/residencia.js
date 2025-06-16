@@ -812,7 +812,7 @@ function res_InformesComedor(){
                         a.click();
                         document.body.removeChild(a);
                         URL.revokeObjectURL(url);
-                        alerta("Informe generado correctamente.", "Proceso finalizado");
+                        alerta("Informe generado correctamente.", "PROCESO TERMINADO");
                     })
                     .catch(error => {
                         alerta("Error al generar informe: " + error.message, "ERROR");
