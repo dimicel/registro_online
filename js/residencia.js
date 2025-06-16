@@ -749,7 +749,7 @@ function res_InformesComedor(){
                 text: "Generar informe",
                 click: function() {
                     let mes = document.getElementById("mes_informe").value;
-                    let curso = res_curso_actual;
+                    document.getElementById("comedor_curso").val= res_curso_actual;
                     let tipo_informe = document.getElementById("tipo_informe_comedor").value;
                     if (tipo_informe=="" || mes=="") {
                         alerta("Debe seleccionar un mes y un tipo de informe.", "FALTAN DATOS");
