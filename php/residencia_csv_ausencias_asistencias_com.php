@@ -47,7 +47,7 @@ if ($mes_num >= 7 && $mes_num <= 12) {
 
 $Name = 'informe_no_asistencia_comedor_' . $mes_anno . '.csv';
 
-$Datos .= "INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS - " . strtoupper($mes_anno) . PHP_EOL;
+$Datos .= "INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " . strtoupper($mes_anno) . PHP_EOL;
 $Datos .= 'NIE;APELLIDOS;NOMBRE;CURSO_ACTUAL;FECHA' . PHP_EOL;
 
 // Consulta SQL
