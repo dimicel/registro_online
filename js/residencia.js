@@ -749,6 +749,59 @@ function res_InformesComedor(){
                 text: "Generar informe",
                 click: function() {
                     let mes = document.getElementById("mes_informe").value;
+                    document.getElementById("comedor_curso").value = res_curso_actual;
+                    let tipo_informe = document.getElementById("tipo_informe_comedor").value;
+
+                    if (tipo_informe === "" || mes === "") {
+                        alerta("Debe seleccionar un mes y un tipo de informe.", "FALTAN DATOS");
+                        return;
+                    }
+
+                    if (tipo_informe=="1") {
+                        url = "php/residencia_csv_ausencias_com.php";
+                    }
+                    else if(tipo_informe=="2") {
+                        url = "php/residencia_csv_ausencias_asistencias_com.php";
+                    }
+                    else if(tipo_informe=="3") {
+                        url = "php/residencia_csv_resumen_serv_com.php";
+                    }
+                    else if(tipo_informe=="4") {
+                        url = "php/residencia_csv_serv_totales_dia_com.php";
+                    }
+
+                    const formData = new FormData(document.getElementById("form_informes_comedor"));
+                    mostrarPantallaEspera();
+
+                    fetch(url, {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(response => {
+                        const contentType = response.headers.get("Content-Type") || "";
+                        if (contentType.includes("application/json")) {
+                            return response.json().then(json => { throw new Error(json.error || "Error desconocido"); });
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.download = "informe_comedor.csv";
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        alerta("Informe generado correctamente.", "Proceso finalizado");
+                    })
+                    .catch(error => {
+                        alerta("Error al generar informe: " + error.message, "ERROR");
+                    })
+                    .finally(() => {
+                        ocultarPantallaEspera();
+                    });
+                    /*let mes = document.getElementById("mes_informe").value;
                     document.getElementById("comedor_curso").value= res_curso_actual;
                     let tipo_informe = document.getElementById("tipo_informe_comedor").value;
                     let url="";
@@ -771,7 +824,7 @@ function res_InformesComedor(){
                     mostrarPantallaEspera();
                     document.getElementById("form_informes_comedor").action = url;
                     document.getElementById("form_informes_comedor").submit();
-                    ocultarPantallaEspera();
+                    ocultarPantallaEspera();*/
                 }
             },
             {

@@ -1,54 +1,72 @@
 <?php
 session_start();
-if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
-$error="";
-$Datos="\xEF\xBB\xBF"; // Añadir BOM para UTF-8 para que Excel reconozca el archivo como UTF-8
+if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") exit("Acceso denegado");
+
+$is_ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+$error = "";
+$Datos = "\xEF\xBB\xBF"; // Añadir BOM para UTF-8 para que Excel lo reconozca
+
 include("conexion.php");
-if ($mysqli->errno>0) {
-    $error="Error en servidor.";
+if ($mysqli->errno > 0) {
+    $error = "Error en servidor.";
+    if ($is_ajax) {
+        header('Content-Type: application/json');
+        echo json_encode(["ok" => false, "mensaje" => $error]);
+    } else {
+        echo $error;
+    }
     exit;
 }
 
-$curso=$_POST["comedor_curso"];
-$mes=$_POST["mes_informe"];
-$anno_1=substr($curso, 0, 4);
-$anno_2=substr($curso, -4);
-$array_meses=array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
-$array_dias_mes=array(31,29,31,30,31,30,31,31,30,31,30,31);
-$mes_anno="";
-$fecha_inicio="";
-$fecha_fin="";
-if ((int)$mes>=7 && (int)$mes<=12) {
-    $mes_anno=$array_meses[(int)$mes-1]."/".$anno_1;
-    $fecha_inicio = $anno_1."-".str_pad($mes, 2, "0", STR_PAD_LEFT)."-01";
-    $fecha_fin = $anno_1."-".str_pad($mes, 2, "0", STR_PAD_LEFT)."-".$array_dias_mes[(int)$mes-1];
-}
-elseif((int)$mes>=1 && (int)$mes<=6) {
-    $mes_anno=$array_meses[(int)$mes-1]."/".$anno_2;
-    $fecha_inicio = $anno_2."-".str_pad($mes, 2, "0", STR_PAD_LEFT)."-01";
-    $fecha_fin = $anno_2."-".str_pad($mes, 2, "0", STR_PAD_LEFT)."-".$array_dias_mes[(int)$mes-1];
-}
+$curso = $_POST["comedor_curso"] ?? "";
+$mes = $_POST["mes_informe"] ?? "";
 
-$Name = 'informe_no_asistencia_comedor_'.$mes_anno.'.csv';
-$FileName = "./$Name";
-$Datos="INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS ".$mes_anno.PHP_EOL;
-$Datos.='NIE;APELLIDOS;NOMBRE;CURSO_ACTUAL;FECHA'.PHP_EOL;
-
-header('Expires: 0');
-header('Cache-control: private');
-header('Content-Type: application/x-octet-stream;charset=utf-8'); // Archivo de Excel
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Content-Description: File Transfer');
-header('Last-Modified: '.date('D, d M Y H:i:s'));
-header('Content-Disposition: attachment; filename="'.$Name.'"');
-header("Content-Transfer-Encoding: binary");
-
-if($error!=="") {
-    echo $error;
+if ($curso === "" || $mes === "") {
+    $error = "Faltan datos del curso o mes.";
+    if ($is_ajax) {
+        header('Content-Type: application/json');
+        echo json_encode(["ok" => false, "mensaje" => $error]);
+    } else {
+        echo $error;
+    }
     exit;
 }
 
-// Consulta para obtener los registros de no asistencia no comunicada
+$anno_1 = substr($curso, 0, 4);
+$anno_2 = substr($curso, -4);
+$array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+$array_dias_mes = [31,29,31,30,31,30,31,31,30,31,30,31];
+
+$mes_anno = "";
+$fecha_inicio = "";
+$fecha_fin = "";
+$mes_num = (int)$mes;
+
+if ($mes_num >= 7 && $mes_num <= 12) {
+    $mes_anno = $array_meses[$mes_num - 1] . "/" . $anno_1;
+    $fecha_inicio = $anno_1 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-01";
+    $fecha_fin = $anno_1 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-" . $array_dias_mes[$mes_num - 1];
+} elseif ($mes_num >= 1 && $mes_num <= 6) {
+    $mes_anno = $array_meses[$mes_num - 1] . "/" . $anno_2;
+    $fecha_inicio = $anno_2 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-01";
+    $fecha_fin = $anno_2 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-" . $array_dias_mes[$mes_num - 1];
+} else {
+    $error = "Mes no válido.";
+    if ($is_ajax) {
+        header('Content-Type: application/json');
+        echo json_encode(["ok" => false, "mensaje" => $error]);
+    } else {
+        echo $error;
+    }
+    exit;
+}
+
+$Name = 'informe_no_asistencia_comedor_' . $mes_anno . '.csv';
+
+$Datos .= "INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS $mes_anno" . PHP_EOL;
+$Datos .= 'NIE;APELLIDOS;NOMBRE;CURSO_ACTUAL;FECHA' . PHP_EOL;
+
+// Consulta SQL
 $sql = "
     SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
     FROM residentes r
@@ -68,7 +86,13 @@ $sql = "
 
 $stmt = $mysqli->prepare($sql);
 if ($stmt === false) {
-    echo "Error en la preparación de la consulta.";
+    $error = "Error en la preparación de la consulta.";
+    if ($is_ajax) {
+        header('Content-Type: application/json');
+        echo json_encode(["ok" => false, "mensaje" => $error]);
+    } else {
+        echo $error;
+    }
     exit;
 }
 
@@ -89,6 +113,27 @@ while ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 $mysqli->close();
+
+// Si es AJAX, devolver JSON con el contenido y nombre del archivo
+if ($is_ajax) {
+    header('Content-Type: application/json');
+    echo json_encode([
+        "ok" => true,
+        "nombre" => $Name,
+        "datos" => $Datos
+    ]);
+    exit;
+}
+
+// Si no es AJAX, descarga directa
+header('Expires: 0');
+header('Cache-control: private');
+header('Content-Type: application/octet-stream;charset=utf-8');
+header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+header('Content-Description: File Transfer');
+header('Last-Modified: ' . date('D, d M Y H:i:s'));
+header('Content-Disposition: attachment; filename="' . $Name . '"');
+header("Content-Transfer-Encoding: binary");
 
 echo $Datos;
 exit;
