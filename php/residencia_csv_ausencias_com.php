@@ -9,11 +9,22 @@ if ($mysqli->errno>0) $error="Error en servidor.";
 
 $curso=$_POST["comedor_curso"];
 $mes=$_POST["mes_informe"];
-
-$res=$mysqli->query("select * from residentes where curso='$curso' order by apellidos,nombre");
-
-if ($res->num_rows==0){
-    $error="No hay inscripciones en residencia.";
+$anno_1=$substr($curso, 0, 4);
+$anno_2=$substr($curso, -4);
+$array_meses=array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
+$array_dias_mes=array(31,29,31,30,31,30,31,31,30,31,30,31);
+$mes_anno="";
+$fecha_inicio="";
+$fecha_fin="";
+if ((int)$mes>=7 && (int)$mes<=12) {
+    $mes_anno=$array_meses[(int)$mes-1]."/".$anno_1;
+    $fecha_inicio = $anno_1."-".str_pad($mes, 2, "0", STR_PAD_LEFT)."-01";
+    $fecha_fin = $anno_1."-".str_pad($mes, 2, "0", STR_PAD_LEFT)."-".$array_dias_mes[(int)$mes-1];
+}
+elseif((int)$mes>=1 && (int)$mes<=6) {
+    $mes_anno=$array_meses[(int)$mes-1]."/".$anno_2;
+    $fecha_inicio = $anno_2."-".str_pad($mes, 2, "0", STR_PAD_LEFT)."-01";
+    $fecha_fin = $anno_2."-".str_pad($mes, 2, "0", STR_PAD_LEFT)."-".$array_dias_mes[(int)$mes-1];
 }
 
 $Name = 'informe_no_asistencia_comedor_'.$mes_anno.'.csv';
@@ -30,29 +41,47 @@ header('Last-Modified: '.date('D, d M Y H:i:s'));
 header('Content-Disposition: attachment; filename="'.$Name.'"');
 header("Content-Transfer-Encoding: binary");
 
-if ($error!="") {
-    echo $error;
-    exit();
+
+// Consulta para obtener los registros de no asistencia no comunicada
+$sql = "
+    SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
+    FROM residentes r
+    INNER JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
+    WHERE rc.fecha_comedor BETWEEN ? AND ?
+      AND rc.desayuno = 0
+      AND rc.comida = 0
+      AND rc.cena = 0
+      AND NOT EXISTS (
+          SELECT 1
+          FROM residentes_comedor rc2
+          WHERE rc2.id_nie = rc.id_nie
+            AND rc2.fechas_no_comedor = rc.fecha_comedor
+      )
+    ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
+";
+
+$stmt = $mysqli->prepare($sql);
+if ($stmt === false) {
+    exit("Error en la preparación de la consulta.");
 }
-while($r=$res->fetch_array(MYSQLI_ASSOC)){
-    if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
-    $Datos.="'".utf8_decode($r["id_nie"])."'".";";
-    $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["nombre"])).";");
-    $Datos.=utf8_decode($r["curso"].";");
-    $Datos.=utf8_decode($r["direccion"].";");
-    $Datos.=utf8_decode($r["cp"].";");
-    $Datos.=utf8_decode($r["localidad"].";");
-    $Datos.=utf8_decode($r["provincia"].";");
-    $Datos.=utf8_decode($r["titular_cuenta"].";");
-    $Datos.=utf8_decode($r["iban"].";");
-    if($r["baja"]==1)$Datos.="SI;";
-    else $Datos.="NO;";	
-    $Datos.=utf8_decode($r["fecha_baja"].";");
-    if($r["bonificado"]==1)$Datos.="SI;";
-    else $Datos.="NO;";
-    $Datos.=$r["fianza"].PHP_EOL;
+
+$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
+$stmt->execute();
+$result = $stmt->get_result();
+
+while ($row = $result->fetch_assoc()) {
+    $linea = [
+        $row['id_nie'],
+        $row['apellidos'],
+        $row['nombre'],
+        $curso,
+        $row['fecha_comedor']
+    ];
+    $Datos .= implode(';', $linea) . PHP_EOL;
 }
+
+$stmt->close();
+$mysqli->close();
 
 echo $Datos;
-
+exit;
