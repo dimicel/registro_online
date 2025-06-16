@@ -759,15 +759,19 @@ function res_InformesComedor(){
 
                     if (tipo_informe=="1") {
                         url = "php/residencia_csv_ausencias_com.php";
+                        na="informe_no_asistencia_comedor_";
                     }
                     else if(tipo_informe=="2") {
                         url = "php/residencia_csv_ausencias_asistencias_com.php";
+                        na="informe_ausencias_asistencias_comedor_";
                     }
                     else if(tipo_informe=="3") {
                         url = "php/residencia_csv_resumen_serv_com.php";
+                        na="resumen_servicios_comedor_";
                     }
                     else if(tipo_informe=="4") {
                         url = "php/residencia_csv_serv_totales_dia_com.php";
+                        na="informe_servicios_totales_dia_comedor_";
                     }
 
                     let array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
@@ -782,7 +786,7 @@ function res_InformesComedor(){
                         mes_anno = array_meses[m-1] + "/" + anno_2;
                     }
 
-                    let nombreArchivo = "informe_no_asistencia_comedor_" + mes_anno + ".csv";
+                    let nombreArchivo = na + mes_anno + ".csv";
 
                     const formData = new FormData(document.getElementById("form_informes_comedor"));
                     mostrarPantallaEspera();
