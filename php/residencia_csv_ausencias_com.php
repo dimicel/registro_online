@@ -2,10 +2,12 @@
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 $error="";
-$Datos="";
-
+$Datos="\xEF\xBB\xBF"; // Añadir BOM para UTF-8 para que Excel reconozca el archivo como UTF-8
 include("conexion.php");
-if ($mysqli->errno>0) $error="Error en servidor.";
+if ($mysqli->errno>0) {
+    $error="Error en servidor.";
+    exit;
+}
 
 $curso=$_POST["comedor_curso"];
 $mes=$_POST["mes_informe"];
@@ -41,6 +43,11 @@ header('Last-Modified: '.date('D, d M Y H:i:s'));
 header('Content-Disposition: attachment; filename="'.$Name.'"');
 header("Content-Transfer-Encoding: binary");
 
+if($error!=="") {
+    echo $error;
+    exit;
+}
+
 // Consulta para obtener los registros de no asistencia no comunicada
 $sql = "
     SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
@@ -61,7 +68,8 @@ $sql = "
 
 $stmt = $mysqli->prepare($sql);
 if ($stmt === false) {
-    exit("Error en la preparación de la consulta.");
+    echo "Error en la preparación de la consulta.";
+    exit;
 }
 
 $stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
