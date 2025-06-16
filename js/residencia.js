@@ -756,16 +756,16 @@ function res_InformesComedor(){
                         return;
                     }
                     if (tipo_informe=="1") {
-                        const url = "php/csv_res_ausencias_com.php";
+                        const url = "php/residencia_csv_ausencias_com.php";
                     }
                     else if(tipo_informe=="2") {
-                        const url = "php/csv_res_ausencias_asistencias_com.php";
+                        const url = "php/residencia_csv_ausencias_asistencias_com.php";
                     }
                     else if(tipo_informe=="3") {
-                        const url = "php/csv_res_resumen_serv_com.php";
+                        const url = "php/residencia_csv_resumen_serv_com.php";
                     }
                     else if(tipo_informe=="4") {
-                        const url = "php/csv_res_serv_totales_dia_com.php";
+                        const url = "php/residencia_csv_serv_totales_dia_com.php";
                     }
                     mostrarPantallaEspera();
                     document.getElementById("form_informe_comedor").action = url;
