@@ -15,7 +15,7 @@ $array_meses=array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","
 $array_dias_mes=array(31,29,31,30,31,30,31,31,30,31,30,31);
 $mes_anno="";
 $fecha_inicio="";
-$fecha_fin="";
+$fecha_fin="";exit();
 if ((int)$mes>=7 && (int)$mes<=12) {
     $mes_anno=$array_meses[(int)$mes-1]."/".$anno_1;
     $fecha_inicio = $anno_1."-".str_pad($mes, 2, "0", STR_PAD_LEFT)."-01";
