@@ -767,7 +767,10 @@ function res_InformesComedor(){
                     else if(tipo_informe=="4") {
                         const url = "php/csv_res_serv_totales_dia_com.php";
                     }
-                    
+                    mostrarPantallaEspera();
+                    document.getElementById("form_informe_comedor").action = url;
+                    document.getElementById("form_informe_comedor").submit();
+                    ocultarPantallaEspera();
                 }
             },
             {
