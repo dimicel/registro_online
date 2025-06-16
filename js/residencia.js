@@ -748,7 +748,7 @@ function res_InformesComedor(){
                 class: "btn btn-success textoboton",
                 text: "Generar informe",
                 click: function() {
-                    let mes = document.getElementById("mes_informe").value;
+                    let mes = document.getElementById("mes_informe").value;alert(res_curso_actual)
                     document.getElementById("comedor_curso").val= res_curso_actual;
                     let tipo_informe = document.getElementById("tipo_informe_comedor").value;
                     let url="";
