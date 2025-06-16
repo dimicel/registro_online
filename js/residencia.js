@@ -742,7 +742,7 @@ function res_actualizaListadoAsistenciaComedor(obj) {
 
 function res_InformesComedor(){
     mostrarPantallaEspera();
-    cargaHTML("html/residencia.htm","div_informes_comedor","INFORMES DE COMEDOR",800,2000,"center top","center top",
+    cargaHTML("html/residencia.htm","div_informes_comedor","INFORMES DE COMEDOR",800,2000,"center center","center center",
         [
             {
                 class: "btn btn-success textoboton",
@@ -755,17 +755,18 @@ function res_InformesComedor(){
                         alerta("Debe seleccionar un mes y un tipo de informe.", "FALTAN DATOS");
                         return;
                     }
+                    let url="";
                     if (tipo_informe=="1") {
-                        const url = "php/residencia_csv_ausencias_com.php";
+                        url = "php/residencia_csv_ausencias_com.php";
                     }
                     else if(tipo_informe=="2") {
-                        const url = "php/residencia_csv_ausencias_asistencias_com.php";
+                        url = "php/residencia_csv_ausencias_asistencias_com.php";
                     }
                     else if(tipo_informe=="3") {
-                        const url = "php/residencia_csv_resumen_serv_com.php";
+                        url = "php/residencia_csv_resumen_serv_com.php";
                     }
                     else if(tipo_informe=="4") {
-                        const url = "php/residencia_csv_serv_totales_dia_com.php";
+                        url = "php/residencia_csv_serv_totales_dia_com.php";
                     }
                     mostrarPantallaEspera();
                     document.getElementById("form_informe_comedor").action = url;
