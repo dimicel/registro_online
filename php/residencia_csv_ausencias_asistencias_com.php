@@ -104,7 +104,7 @@ while ($row = $result->fetch_assoc()) {
     $line = [
         $row['id_nie'],
         '"'.$row['apellidos'].", ".$row['nombre'].'"',
-        date("d/m/Y", strtotime($row['fecha_no_comedor']))
+        date("d/m/Y", strtotime($row['fecha_comedor']))
     ];
     $Datos .= implode(",", $line) . $eol;
 }
