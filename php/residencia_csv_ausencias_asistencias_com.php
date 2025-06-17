@@ -4,6 +4,7 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "co
 
 $error = "";
 $Datos = "\xEF\xBB\xBF"; // Añadir BOM para UTF-8 para que Excel lo reconozca
+$eol = PHP_EOL;
 
 include("conexion.php");
 if ($mysqli->errno > 0) {
@@ -47,51 +48,61 @@ if ($mes_num >= 7 && $mes_num <= 12) {
 
 $Name = 'informe_no_asistencia_comedor_' . $mes_anno . '.csv';
 
-$Datos .= "INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " . strtoupper($mes_anno) . PHP_EOL;
-$Datos .= 'NIE;APELLIDOS;NOMBRE;CURSO_ACTUAL;FECHA' . PHP_EOL;
+// Cabecera del archivo
+$Datos .= "INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " . strtoupper($mes_anno) . $eol . $eol;
 
-// Consulta SQL
-$sql = "
-    SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
+// --- ASISTENCIAS ---
+$Datos .= "ASISTENCIAS" . $eol;
+$Datos .= "NIE,RESIDENTE,FECHA,DESAYUNO,COMIDA,CENA" . $eol;
+
+$sql_asistencias = "
+    SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
     FROM residentes r
-    INNER JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
-    WHERE rc.fecha_comedor BETWEEN ? AND ?
-      AND rc.desayuno = 0
-      AND rc.comida = 0
-      AND rc.cena = 0
-      AND NOT EXISTS (
-          SELECT 1
-          FROM residentes_comedor rc2
-          WHERE rc2.id_nie = rc.id_nie
-            AND rc2.fecha_no_comedor = rc.fecha_comedor
-      )
+    JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
+    WHERE (rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1)
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
-$stmt = $mysqli->prepare($sql);
-if ($stmt === false) {
-    http_response_code(500);
-    echo "Error en la preparación de la consulta.";
-    exit;
-}
-
-$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
-$stmt->execute();
-$result = $stmt->get_result();
-
+$result = $mysqli->query($sql_asistencias);
 while ($row = $result->fetch_assoc()) {
-    $linea = [
+    $line = [
         $row['id_nie'],
-        $row['apellidos'],
-        $row['nombre'],
-        $curso,
-        $row['fecha_comedor']
+        $row['apellidos'].", ".$row['nombre'],
+        $row['fecha_comedor'],
+        $row['desayuno'],
+        $row['comida'],
+        $row['cena']
     ];
-    $Datos .= implode(';', $linea) . PHP_EOL;
+    $Datos .= implode(",", $line) . $eol;
 }
 
-$stmt->close();
-$mysqli->close();
+// Separación
+$Datos .= $eol;
+
+// --- AUSENCIAS ---
+$Datos .= "AUSENCIAS INJUSTIFICADAS" . $eol;
+$Datos .= "NIE,RESIDENTE,FECHA" . $eol;
+
+$sql_ausencias = "
+    SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_no_comedor
+    FROM residentes r
+    JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
+    LEFT JOIN residentes_comedor rc2
+        ON rc.id_nie = rc2.id_nie AND rc.fecha_no_comedor = rc2.fecha_comedor
+    WHERE (rc2.id_nie IS NULL OR (rc2.desayuno = 0 AND rc2.comida = 0 AND rc2.cena = 0))
+    GROUP BY r.id_nie, rc.fecha_no_comedor
+    ORDER BY r.apellidos, r.nombre, rc.fecha_no_comedor
+";
+
+$result = $mysqli->query($sql_ausencias);
+while ($row = $result->fetch_assoc()) {
+    $line = [
+        $row['id_nie'],
+        $row['apellidos'].", ".$row['nombre'],
+        $row['fecha_no_comedor']
+    ];
+    $Datos .= implode(",", $line) . $eol;
+}
 
 header('Expires: 0');
 header('Cache-control: private');
