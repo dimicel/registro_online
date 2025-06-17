@@ -103,7 +103,7 @@ $sql_ausencias = "
         AND rc.fecha_comedor = just.fecha_no_comedor
     WHERE 
         rc.fecha_comedor BETWEEN ? AND ?
-        rc.desayuno = 0 AND rc.comida = 0 AND rc.cena = 0
+        AND rc.desayuno = 0 AND rc.comida = 0 AND rc.cena = 0
         AND just.id_nie IS NULL
         AND rc.fecha_comedor IS NOT NULL
         AND rc.fecha_comedor != ''
