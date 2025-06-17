@@ -90,13 +90,17 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 while ($row = $result->fetch_assoc()) {
+    $desayuno = isset($row['con_desayuno']) ? (int)$row['con_desayuno'] : 0;
+    $comida = isset($row['con_comida']) ? (int)$row['con_comida'] : 0;
+    $cena = isset($row['con_cena']) ? (int)$row['con_cena'] : 0;
+    $total = isset($row['total_con_alguna_comida']) ? (int)$row['total_con_alguna_comida'] : 0;
     $linea = [
         $row['fecha'],
         $row['dia_semana'],
-        $row['cont_desayuno'],
-        $row['cont_comida'],
-        $row['cont_cena'],
-        $row['total_con_alguna_comida']
+        $desayuno,
+        $comida,
+        $cena,
+        $total
     ];
     $Datos .= implode(';', $linea) . PHP_EOL;
 }
