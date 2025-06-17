@@ -766,8 +766,8 @@ function res_InformesComedor(){
                         na="informe_ausencias_asistencias_comedor_";
                     }
                     else if(tipo_informe=="3") {
-                        url = "php/residencia_csv_resumen_serv_com.php";
-                        na="resumen_servicios_comedor_";
+                        url = "php/residencia_csv_resumen_ausencias_com.php";
+                        na="resumen_ausencias_comedor_";
                     }
                     else if(tipo_informe=="4") {
                         url = "php/residencia_csv_serv_totales_dia_com.php";

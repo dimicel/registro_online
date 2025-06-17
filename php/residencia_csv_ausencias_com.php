@@ -48,7 +48,7 @@ if ($mes_num >= 7 && $mes_num <= 12) {
 $Name = 'informe_no_asistencia_comedor_' . $mes_anno . '.csv';
 
 $Datos .= "INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS - " . strtoupper($mes_anno) . PHP_EOL;
-$Datos .= 'NIE;APELLIDOS;NOMBRE;CURSO_ACTUAL;FECHA' . PHP_EOL;
+$Datos .= 'NIE;RESIDENTE;FECHA' . PHP_EOL;
 
 // Consulta SQL
 $sql = "
@@ -82,9 +82,7 @@ $result = $stmt->get_result();
 while ($row = $result->fetch_assoc()) {
     $linea = [
         $row['id_nie'],
-        $row['apellidos'],
-        $row['nombre'],
-        $curso,
+        '"'.$row['apellidos'].", ".$row['nombre'].'"',
         $row['fecha_comedor']
     ];
     $Datos .= implode(';', $linea) . PHP_EOL;
