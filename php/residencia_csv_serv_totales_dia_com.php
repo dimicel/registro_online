@@ -95,7 +95,8 @@ while ($row = $result->fetch_assoc()) {
         $row['dia_semana'],
         $row['cont_desayuno'],
         $row['cont_comida'],
-        $row['cont_cena']
+        $row['cont_cena'],
+        $row['total_con_alguna_comida']
     ];
     $Datos .= implode(';', $linea) . PHP_EOL;
 }
