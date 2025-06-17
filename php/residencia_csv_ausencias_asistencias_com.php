@@ -74,7 +74,6 @@ $stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$result = $mysqli->query($sql_asistencias);
 while ($row = $result->fetch_assoc()) {
     $line = [
         $row['id_nie'],
@@ -122,7 +121,6 @@ $stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$result = $mysqli->query($sql_ausencias);
 while ($row = $result->fetch_assoc()) {
     $line = [
         $row['id_nie'],
