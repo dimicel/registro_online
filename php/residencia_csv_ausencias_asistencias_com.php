@@ -67,8 +67,8 @@ $result = $mysqli->query($sql_asistencias);
 while ($row = $result->fetch_assoc()) {
     $line = [
         $row['id_nie'],
-        $row['apellidos'].", ".$row['nombre'],
-        $row['fecha_comedor'],
+        '"'.$row['apellidos'].", ".$row['nombre'].'"',
+        date("d/m/Y", strtotime($row['fecha_comedor'])),
         $row['desayuno'],
         $row['comida'],
         $row['cena']
@@ -98,8 +98,8 @@ $result = $mysqli->query($sql_ausencias);
 while ($row = $result->fetch_assoc()) {
     $line = [
         $row['id_nie'],
-        $row['apellidos'].", ".$row['nombre'],
-        $row['fecha_no_comedor']
+        '"'.$row['apellidos'].", ".$row['nombre'].'"',
+        date("d/m/Y", strtotime($row['fecha_no_comedor']))
     ];
     $Datos .= implode(",", $line) . $eol;
 }
