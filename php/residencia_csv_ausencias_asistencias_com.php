@@ -98,11 +98,11 @@ $sql_ausencias = "
         r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
-    WHERE rc.fecha_comedor BETWEEN ? AND ?
     LEFT JOIN residentes_comedor just
         ON rc.id_nie = just.id_nie 
         AND rc.fecha_comedor = just.fecha_no_comedor
     WHERE 
+        rc.fecha_comedor BETWEEN ? AND ?
         rc.desayuno = 0 AND rc.comida = 0 AND rc.cena = 0
         AND just.id_nie IS NULL
         AND rc.fecha_comedor IS NOT NULL
