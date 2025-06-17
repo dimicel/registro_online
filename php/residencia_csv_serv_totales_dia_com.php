@@ -84,7 +84,8 @@ if ($stmt === false) {
     exit;
 }
 
-$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
+//$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
+$stmt->bind_param("ss", '2025-06-01', '2025-06-30');
 $stmt->execute();
 $result = $stmt->get_result();
 
