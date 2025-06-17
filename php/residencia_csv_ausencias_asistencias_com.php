@@ -63,7 +63,7 @@ $sql_asistencias = "
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
-$stmt = $mysqli->prepare($sql);
+$stmt = $mysqli->prepare($sql_asistencias);
 if ($stmt === false) {
     http_response_code(500);
     echo "Error en la preparación de la consulta 1.";
@@ -110,7 +110,7 @@ $sql_ausencias = "
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
-$stmt = $mysqli->prepare($sql);
+$stmt = $mysqli->prepare($sql_ausencias);
 if ($stmt === false) {
     http_response_code(500);
     echo "Error en la preparación de la consulta 2.";
