@@ -55,20 +55,26 @@ $sql = "
     SELECT 
         r.id_nie,
         CONCAT(r.apellidos, ', ', r.nombre) AS nombre_completo,
-        COUNT(*) AS faltas_injustificadas
+        IFNULL(f.faltas_injustificadas, 0) AS faltas_injustificadas
     FROM residentes r
-    JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
-    LEFT JOIN residentes_comedor rnc 
-        ON rc.id_nie = rnc.id_nie 
-        AND rc.fecha_comedor = rnc.fecha_no_comedor
+    LEFT JOIN (
+        SELECT 
+            rc.id_nie,
+            COUNT(*) AS faltas_injustificadas
+        FROM residentes_comedor rc
+        LEFT JOIN residentes_comedor rnc 
+            ON rc.id_nie = rnc.id_nie 
+            AND rc.fecha_comedor = rnc.fecha_no_comedor
+        WHERE 
+            rc.fecha_comedor BETWEEN ? AND ?
+            AND rc.desayuno = 0 
+            AND rc.comida = 0 
+            AND rc.cena = 0
+            AND rnc.id_nie IS NULL
+        GROUP BY rc.id_nie
+    ) f ON r.id_nie = f.id_nie
     WHERE 
-        r.baja = 0
-        AND rc.fecha_comedor BETWEEN ? AND ?
-        AND rc.desayuno = 0 
-        AND rc.comida = 0 
-        AND rc.cena = 0
-        AND rnc.id_nie IS NULL
-    GROUP BY r.id_nie, r.apellidos, r.nombre
+        (f.faltas_injustificadas > 0 OR r.baja = 0)
     ORDER BY r.apellidos, r.nombre
 ";
 
