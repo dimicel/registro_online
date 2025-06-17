@@ -84,14 +84,20 @@ $Datos .= "AUSENCIAS INJUSTIFICADAS" . $eol;
 $Datos .= "NIE,RESIDENTE,FECHA" . $eol;
 
 $sql_ausencias = "
-    SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_no_comedor
+    SELECT 
+    r.id_nie,
+    r.apellidos,
+    r.nombre,
+    rc.fecha_comedor
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
-    LEFT JOIN residentes_comedor rc2
-        ON rc.id_nie = rc2.id_nie AND rc.fecha_no_comedor = rc2.fecha_comedor
-    WHERE (rc2.id_nie IS NULL OR (rc2.desayuno = 0 AND rc2.comida = 0 AND rc2.cena = 0))
-    GROUP BY r.id_nie, rc.fecha_no_comedor
-    ORDER BY r.apellidos, r.nombre, rc.fecha_no_comedor
+    LEFT JOIN residentes_comedor just
+    ON rc.id_nie = just.id_nie 
+    AND rc.fecha_comedor = just.fecha_no_comedor
+    WHERE 
+    rc.desayuno = 0 AND rc.comida = 0 AND rc.cena = 0
+    AND just.id_nie IS NULL
+    ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
 $result = $mysqli->query($sql_ausencias);
