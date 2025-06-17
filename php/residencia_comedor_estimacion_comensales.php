@@ -9,7 +9,7 @@ if ($mysqli->errno>0) {
 
 $curso=$_POST["curso"]; 
 
-function getSemanaFechas() {
+function getSemanaFechasArray() {
     $hoy = new DateTime();
     $diaSemana = (int)$hoy->format('N');
 
@@ -22,69 +22,90 @@ function getSemanaFechas() {
         $lunes->modify('-' . ($diaSemana - 1) . ' days');
     }
 
-    $viernes = clone $lunes;
-    $viernes->modify('+4 days');
+    $fechas = [];
+    for ($i = 0; $i < 5; $i++) {
+        $fecha = clone $lunes;
+        $fecha->modify("+$i days");
+        $fechas[] = $fecha->format('Y-m-d');
+    }
 
-    return ['lunes' => $lunes->format('Y-m-d'), 'viernes' => $viernes->format('Y-m-d')];
+    return $fechas;
 }
 
-$fechas = getSemanaFechas();
-$lunes = $fechas['lunes'];
-$viernes = $fechas['viernes'];
+$fechas = getSemanaFechasArray();
 
-$sql = "
-WITH fechas_semana AS (
-  SELECT ? AS fecha
-  UNION ALL SELECT DATE_ADD(fecha, INTERVAL 1 DAY) FROM fechas_semana WHERE fecha < ?
-),
-residentes_activos AS (
-  SELECT COUNT(*) AS total_residentes FROM residentes WHERE baja = 0 AND curso = ?
-),
-ausencias_dia AS (
-  SELECT
+$placeholders = implode(',', array_fill(0, count($fechas), '?'));
+
+// Ahora el conteo de residentes activos con curso y baja
+$sql_residentes = "SELECT COUNT(*) AS total_residentes FROM residentes WHERE baja = 0 AND curso = ?";
+
+$stmt_residentes = $mysqli->prepare($sql_residentes);
+if (!$stmt_residentes) {
+    die("Error en prepare residentes: " . $mysqli->error);
+}
+$stmt_residentes->bind_param('s', $curso);
+$stmt_residentes->execute();
+$result_residentes = $stmt_residentes->get_result();
+$row_residentes = $result_residentes->fetch_assoc();
+$total_residentes = (int)$row_residentes['total_residentes'];
+$stmt_residentes->close();
+
+// Consulta ausencias para las fechas dadas, solo residentes activos y de ese curso
+$sql_ausencias = "
+SELECT
     rc.fecha_no_comedor,
     COUNT(DISTINCT rc.id_nie) AS ausentes
-  FROM residentes_comedor rc
-  INNER JOIN residentes r ON rc.id_nie = r.id_nie
-  WHERE r.baja = 0
-    AND rc.fecha_no_comedor BETWEEN ? AND ?
-  GROUP BY rc.fecha_no_comedor
-)
-SELECT 
-  fs.fecha,
-  DAYNAME(fs.fecha) AS dia_semana,
-  ra.total_residentes - COALESCE(ad.ausentes, 0) AS num_comensales
-FROM fechas_semana fs
-CROSS JOIN residentes_activos ra
-LEFT JOIN ausencias_dia ad ON fs.fecha = ad.fecha_no_comedor
-ORDER BY fs.fecha
+FROM residentes_comedor rc
+INNER JOIN residentes r ON rc.id_nie = r.id_nie
+WHERE r.baja = 0
+  AND r.curso = ?
+  AND rc.fecha_no_comedor IN ($placeholders)
+GROUP BY rc.fecha_no_comedor
 ";
 
-if ($stmt = $mysqli->prepare($sql)) {
-    $stmt->bind_param("sssss", $lunes, $viernes,$curso, $lunes, $viernes);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    $dias_map = [
-        'Monday' => 'Lun',
-        'Tuesday' => 'Mar',
-        'Wednesday' => 'Mier',
-        'Thursday' => 'Jue',
-        'Friday' => 'Vie'
-    ];
-
-    $salida = [];
-    while ($row = $result->fetch_assoc()) {
-        $dia_eng = $row['dia_semana'];
-        $dia_esp = $dias_map[$dia_eng] ?? $dia_eng;
-        $num = (int)$row['num_comensales'];
-        $salida[] = "$dia_esp: $num";
-    }
-    $stmt->close();
-
-    echo implode('; ', $salida);
-} else {
-    echo "Error en la consulta: " . $mysqli->error;
+$stmt = $mysqli->prepare($sql_ausencias);
+if (!$stmt) {
+    die("Error en prepare ausencias: " . $mysqli->error);
 }
 
+// Bind params para $curso + fechas
+// primer param: curso (s) + luego fechas (todos s)
+$tipos = 's' . str_repeat('s', count($fechas));
+$params = array_merge([$curso], $fechas);
+
+// bind_param no acepta array directo, hay que usar call_user_func_array
+// para ello hacemos referencia por referencia
+$tmp = [];
+foreach ($params as $key => $value) {
+    $tmp[$key] = &$params[$key];
+}
+call_user_func_array([$stmt, 'bind_param'], array_merge([$tipos], $tmp));
+
+$stmt->execute();
+$result = $stmt->get_result();
+
+$ausencias = [];
+while ($row = $result->fetch_assoc()) {
+    $ausencias[$row['fecha_no_comedor']] = (int)$row['ausentes'];
+}
+$stmt->close();
+
+$dias_map = [
+    'Monday' => 'Lun',
+    'Tuesday' => 'Mar',
+    'Wednesday' => 'Mier',
+    'Thursday' => 'Jue',
+    'Friday' => 'Vie'
+];
+
+$salida = [];
+foreach ($fechas as $fecha) {
+    $dia_semana_eng = date('l', strtotime($fecha));
+    $dia_semana_esp = $dias_map[$dia_semana_eng] ?? $dia_semana_eng;
+
+    $num_comensales = $total_residentes - ($ausencias[$fecha] ?? 0);
+    $salida[] = "$dia_semana_esp: $num_comensales";
+}
+
+echo implode('; ', $salida);
 $mysqli->close();
