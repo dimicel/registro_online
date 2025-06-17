@@ -45,7 +45,7 @@ if ($mes_num >= 7 && $mes_num <= 12) {
     exit;
 }
 
-$Name = 'informe_no_asistencia_comedor_' . $mes_anno . '.csv';
+$Name = 'informe_resumen_servicios_' . $mes_anno . '.csv';
 
 $Datos .= "INFORME RESUMEN DE SERVICIOS PARCIALES Y TOTALES POR DÍA - " . strtoupper($mes_anno) . PHP_EOL;
 $Datos .= "La columna totales suma los residentes que han hecho desayuno, comida o cena en ese día." . PHP_EOL;
@@ -54,7 +54,27 @@ $Datos .= 'FECHA;DÍA_SEMANA;DESAYUNO;COMIDA;CENA;TOTAL' . PHP_EOL;
 
 // Consulta SQL
 $sql = "
-
+    SELECT 
+        rc.fecha_comedor AS fecha,
+        CASE DAYOFWEEK(rc.fecha_comedor)
+            WHEN 2 THEN 'Lunes'
+            WHEN 3 THEN 'Martes'
+            WHEN 4 THEN 'Miércoles'
+            WHEN 5 THEN 'Jueves'
+            WHEN 6 THEN 'Viernes'
+        END AS dia_semana,
+        SUM(rc.desayuno = 1) AS con_desayuno,
+        SUM(rc.comida = 1) AS con_comida,
+        SUM(rc.cena = 1) AS con_cena,
+        COUNT(CASE WHEN rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1 THEN 1 END) AS total_con_alguna_comida
+    FROM residentes_comedor rc
+    WHERE 
+        rc.fecha_comedor BETWEEN ? AND ?
+        AND DAYOFWEEK(rc.fecha_comedor) BETWEEN 2 AND 6
+    GROUP BY rc.fecha_comedor
+    HAVING 
+        SUM(rc.desayuno) > 0 OR SUM(rc.comida) > 0 OR SUM(rc.cena) > 0
+    ORDER BY rc.fecha_comedor
 ";
 
 $stmt = $mysqli->prepare($sql);
@@ -70,11 +90,11 @@ $result = $stmt->get_result();
 
 while ($row = $result->fetch_assoc()) {
     $linea = [
-        $row['id_nie'],
-        $row['apellidos'],
-        $row['nombre'],
-        $curso,
-        $row['fecha_comedor']
+        $row['fecha'],
+        $row['dia_semana'],
+        $row['cont_desayuno'],
+        $row['cont_comida'],
+        $row['cont_cena']
     ];
     $Datos .= implode(';', $linea) . PHP_EOL;
 }

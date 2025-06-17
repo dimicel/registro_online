@@ -46,7 +46,7 @@ if ($mes_num >= 7 && $mes_num <= 12) {
     exit;
 }
 
-$Name = 'informe_no_asistencia_comedor_' . $mes_anno . '.csv';
+$Name = 'informe_asistencias_ausencias_comedor_' . $mes_anno . '.csv';
 
 // Cabecera del archivo
 $Datos .= "INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " . strtoupper($mes_anno) . $eol . $eol;
