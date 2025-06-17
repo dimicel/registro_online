@@ -66,7 +66,7 @@ $sql_asistencias = "
 $stmt = $mysqli->prepare($sql);
 if ($stmt === false) {
     http_response_code(500);
-    echo "Error en la preparación de la consulta.";
+    echo "Error en la preparación de la consulta 1.";
     exit;
 }
 
@@ -114,7 +114,7 @@ $sql_ausencias = "
 $stmt = $mysqli->prepare($sql);
 if ($stmt === false) {
     http_response_code(500);
-    echo "Error en la preparación de la consulta.";
+    echo "Error en la preparación de la consulta 2.";
     exit;
 }
 
