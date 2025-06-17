@@ -59,9 +59,21 @@ $sql_asistencias = "
     SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
+    WHERE rc.fecha_comedor BETWEEN ? AND ?
     WHERE (rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1)
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
+
+$stmt = $mysqli->prepare($sql);
+if ($stmt === false) {
+    http_response_code(500);
+    echo "Error en la preparación de la consulta.";
+    exit;
+}
+
+$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $result = $mysqli->query($sql_asistencias);
 while ($row = $result->fetch_assoc()) {
@@ -88,6 +100,7 @@ $sql_ausencias = "
         r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
+    WHERE rc.fecha_comedor BETWEEN ? AND ?
     LEFT JOIN residentes_comedor just
         ON rc.id_nie = just.id_nie 
         AND rc.fecha_comedor = just.fecha_no_comedor
@@ -98,6 +111,17 @@ $sql_ausencias = "
         AND rc.fecha_comedor != ''
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
+
+$stmt = $mysqli->prepare($sql);
+if ($stmt === false) {
+    http_response_code(500);
+    echo "Error en la preparación de la consulta.";
+    exit;
+}
+
+$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $result = $mysqli->query($sql_ausencias);
 while ($row = $result->fetch_assoc()) {
