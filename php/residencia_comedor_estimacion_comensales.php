@@ -7,6 +7,7 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 
+$curso=$_POST["curso"]; 
 
 function getSemanaFechas() {
     $hoy = new DateTime();
@@ -37,7 +38,7 @@ WITH fechas_semana AS (
   UNION ALL SELECT DATE_ADD(fecha, INTERVAL 1 DAY) FROM fechas_semana WHERE fecha < ?
 ),
 residentes_activos AS (
-  SELECT COUNT(*) AS total_residentes FROM residentes WHERE baja = 0
+  SELECT COUNT(*) AS total_residentes FROM residentes WHERE baja = 0 AND curso = ?
 ),
 ausencias_dia AS (
   SELECT
@@ -60,7 +61,7 @@ ORDER BY fs.fecha
 ";
 
 if ($stmt = $mysqli->prepare($sql)) {
-    $stmt->bind_param("ssss", $lunes, $viernes, $lunes, $viernes);
+    $stmt->bind_param("sssss", $lunes, $viernes,$curso, $lunes, $viernes);
     $stmt->execute();
     $result = $stmt->get_result();
 
