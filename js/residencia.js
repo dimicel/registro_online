@@ -831,6 +831,10 @@ function res_InformesComedor(){
             }
         ]
     ).then((dialogo)=>{
+        $.post("php/residencia_comedor_estimacion_comensales.php", {}, (resp) => {
+                document.getElementById("prevision_comedor").innerHTML="Previsión asistencia al comedor: "+resp;
+                ocultarPantallaEspera();
+        });
         ocultarPantallaEspera();
     }).catch (error=>{
         ocultarPantallaEspera();
