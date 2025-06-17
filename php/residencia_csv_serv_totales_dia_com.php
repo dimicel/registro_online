@@ -77,8 +77,6 @@ $sql = "
     ORDER BY rc.fecha_comedor
 ";
 
-http_response_code(500);
-    echo $fecha_inicio . " - " . $fecha_fin;
 
 $stmt = $mysqli->prepare($sql);
 if ($stmt === false) {
@@ -87,8 +85,7 @@ if ($stmt === false) {
     exit;
 }
 
-//$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
-$stmt->bind_param("ss", '2025-06-01', '2025-06-30');
+$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
 $stmt->execute();
 $result = $stmt->get_result();
 
