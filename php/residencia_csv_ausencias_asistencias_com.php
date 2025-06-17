@@ -63,16 +63,16 @@ $sql_asistencias = "
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
-$stmt = $mysqli->prepare($sql_asistencias);
-if ($stmt === false) {
+$stmt_asis = $mysqli->prepare($sql_asistencias);
+if ($stmt_asis === false) {
     http_response_code(500);
-    echo "Error en la preparación de la consulta 1.";
+    echo "Error en la preparación de la consulta ASISTENCIAS.";
     exit;
 }
 
-$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt_asis->bind_param("ss", $fecha_inicio, $fecha_fin);
+$stmt_asis->execute();
+$result = $stmt_asis->get_result();
 
 while ($row = $result->fetch_assoc()) {
     $line = [
@@ -110,16 +110,16 @@ $sql_ausencias = "
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
-$stmt = $mysqli->prepare($sql_ausencias);
-if ($stmt === false) {
+$stmt_aus = $mysqli->prepare($sql_ausencias);
+if ($stmt_aus === false) {
     http_response_code(500);
-    echo "Error en la preparación de la consulta 2.";
+    echo "Error en la preparación de la consulta AUSENCIAS.";
     exit;
 }
 
-$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt_aus->bind_param("ss", $fecha_inicio, $fecha_fin);
+$stmt_aus->execute();
+$result = $stmt_aus->get_result();
 
 while ($row = $result->fetch_assoc()) {
     $line = [
