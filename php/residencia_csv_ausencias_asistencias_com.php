@@ -59,8 +59,7 @@ $sql_asistencias = "
     SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
-    WHERE rc.fecha_comedor BETWEEN ? AND ?
-    WHERE (rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1)
+    WHERE (rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1) AND (rc.fecha_comedor BETWEEN ? AND ?)
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
