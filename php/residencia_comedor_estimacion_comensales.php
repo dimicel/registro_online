@@ -7,6 +7,7 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 
+
 function getSemanaFechas() {
     $hoy = new DateTime();
     $diaSemana = (int)$hoy->format('N');
@@ -80,9 +81,9 @@ if ($stmt = $mysqli->prepare($sql)) {
     }
     $stmt->close();
 
-    // Cadena final separada por "; "
     echo implode('; ', $salida);
 } else {
     echo "Error en la consulta: " . $mysqli->error;
 }
+
 $mysqli->close();
