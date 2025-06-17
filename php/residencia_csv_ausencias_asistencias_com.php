@@ -84,19 +84,18 @@ $Datos .= "AUSENCIAS INJUSTIFICADAS" . $eol;
 $Datos .= "NIE,RESIDENTE,FECHA" . $eol;
 
 $sql_ausencias = "
-    SELECT 
-    r.id_nie,
-    r.apellidos,
-    r.nombre,
-    rc.fecha_comedor
+    SELECT DISTINCT 
+        r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
     LEFT JOIN residentes_comedor just
-    ON rc.id_nie = just.id_nie 
-    AND rc.fecha_comedor = just.fecha_no_comedor
+        ON rc.id_nie = just.id_nie 
+        AND rc.fecha_comedor = just.fecha_no_comedor
     WHERE 
-    rc.desayuno = 0 AND rc.comida = 0 AND rc.cena = 0
-    AND just.id_nie IS NULL
+        rc.desayuno = 0 AND rc.comida = 0 AND rc.cena = 0
+        AND just.id_nie IS NULL
+        AND rc.fecha_comedor IS NOT NULL
+        AND rc.fecha_comedor != ''
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
