@@ -45,7 +45,7 @@ if ($mes_num >= 7 && $mes_num <= 12) {
     exit;
 }
 
-$Name = 'informe_resumen_servicios_' . $mes_anno . '.csv';
+$Name = 'informe_resumen_servicios_dia_' . $mes_anno . '.csv';
 
 $Datos .= "INFORME RESUMEN DE SERVICIOS PARCIALES Y TOTALES POR DÍA - " . strtoupper($mes_anno) . PHP_EOL;
 $Datos .= "La columna totales suma los residentes que han hecho desayuno, comida o cena en ese día." . PHP_EOL;
