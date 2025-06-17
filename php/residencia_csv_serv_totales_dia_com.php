@@ -77,6 +77,9 @@ $sql = "
     ORDER BY rc.fecha_comedor
 ";
 
+http_response_code(500);
+    echo $fecha_inicio . " - " . $fecha_fin;
+
 $stmt = $mysqli->prepare($sql);
 if ($stmt === false) {
     http_response_code(500);
