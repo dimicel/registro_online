@@ -48,24 +48,28 @@ if ($mes_num >= 7 && $mes_num <= 12) {
 $Name = 'informe_no_asistencia_comedor_' . $mes_anno . '.csv';
 
 $Datos .= "INFORME RESUMEN DE FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS POR RESIDENTE - " . strtoupper($mes_anno) . PHP_EOL;
-$Datos .= 'NIE;RESIDENTE;FECHA' . PHP_EOL;
+$Datos .= 'NIE;RESIDENTE;N_FALTAS' . PHP_EOL;
 
 // Consulta SQL
 $sql = "
-    SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
+    SELECT 
+        r.id_nie,
+        CONCAT(r.apellidos, ', ', r.nombre) AS nombre_completo,
+        COUNT(*) AS faltas_injustificadas
     FROM residentes r
-    INNER JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
-    WHERE rc.fecha_comedor BETWEEN ? AND ?
-      AND rc.desayuno = 0
-      AND rc.comida = 0
-      AND rc.cena = 0
-      AND NOT EXISTS (
-          SELECT 1
-          FROM residentes_comedor rc2
-          WHERE rc2.id_nie = rc.id_nie
-            AND rc2.fecha_no_comedor = rc.fecha_comedor
-      )
-    ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
+    JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
+    LEFT JOIN residentes_comedor rnc 
+        ON rc.id_nie = rnc.id_nie 
+        AND rc.fecha_comedor = rnc.fecha_no_comedor
+    WHERE 
+        r.baja = 0
+        AND rc.fecha_comedor BETWEEN ? AND ?
+        AND rc.desayuno = 0 
+        AND rc.comida = 0 
+        AND rc.cena = 0
+        AND rnc.id_nie IS NULL
+    GROUP BY r.id_nie, r.apellidos, r.nombre
+    ORDER BY r.apellidos, r.nombre
 ";
 
 $stmt = $mysqli->prepare($sql);
@@ -82,9 +86,8 @@ $result = $stmt->get_result();
 while ($row = $result->fetch_assoc()) {
     $linea = [
         $row['id_nie'],
-        '"'.$row['apellidos'].", ".$row['nombre'].'"',
-        $curso,
-        $row['fecha_comedor']
+        $row['nombre_completo'],
+        $row['faltas_injustificadas']
     ];
     $Datos .= implode(';', $linea) . PHP_EOL;
 }
