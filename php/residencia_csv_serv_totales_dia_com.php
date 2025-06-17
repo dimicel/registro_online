@@ -47,25 +47,14 @@ if ($mes_num >= 7 && $mes_num <= 12) {
 
 $Name = 'informe_no_asistencia_comedor_' . $mes_anno . '.csv';
 
-$Datos .= "INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS - " . strtoupper($mes_anno) . PHP_EOL;
-$Datos .= 'NIE;APELLIDOS;NOMBRE;CURSO_ACTUAL;FECHA' . PHP_EOL;
+$Datos .= "INFORME RESUMEN DE SERVICIOS PARCIALES Y TOTALES POR DÍA - " . strtoupper($mes_anno) . PHP_EOL;
+$Datos .= "La columna totales suma los residentes que han hecho desayuno, comida o cena en ese día." . PHP_EOL;
+$Datos .= "El valor de esta columna NO tiene por qué coincidir con la suma de desayunos+comidas+cenas de ese día." . PHP_EOL;
+$Datos .= 'FECHA;DÍA_SEMANA;DESAYUNO;COMIDA;CENA;TOTAL' . PHP_EOL;
 
 // Consulta SQL
 $sql = "
-    SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
-    FROM residentes r
-    INNER JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
-    WHERE rc.fecha_comedor BETWEEN ? AND ?
-      AND rc.desayuno = 0
-      AND rc.comida = 0
-      AND rc.cena = 0
-      AND NOT EXISTS (
-          SELECT 1
-          FROM residentes_comedor rc2
-          WHERE rc2.id_nie = rc.id_nie
-            AND rc2.fecha_no_comedor = rc.fecha_comedor
-      )
-    ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
+
 ";
 
 $stmt = $mysqli->prepare($sql);
