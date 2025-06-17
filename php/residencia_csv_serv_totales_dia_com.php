@@ -63,9 +63,9 @@ $sql = "
             WHEN 5 THEN 'Jueves'
             WHEN 6 THEN 'Viernes'
         END AS dia_semana,
-        SUM(rc.desayuno = 1) AS con_desayuno,
-        SUM(rc.comida = 1) AS con_comida,
-        SUM(rc.cena = 1) AS con_cena,
+        SUM(CASE WHEN rc.desayuno = 1 THEN 1 ELSE 0 END) AS con_desayuno,
+        SUM(CASE WHEN rc.comida = 1 THEN 1 ELSE 0 END) AS con_comida,
+        SUM(CASE WHEN rc.cena = 1 THEN 1 ELSE 0 END) AS con_cena,
         COUNT(CASE WHEN rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1 THEN 1 END) AS total_con_alguna_comida
     FROM residentes_comedor rc
     WHERE 
