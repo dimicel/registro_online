@@ -1,5 +1,6 @@
 var _nif_duplicado;
 var residente_baja=false;
+var mes,anno_ini;
 
 $(function() {
     /*
@@ -259,15 +260,17 @@ function generaContrasena() {
 
 function compruebaEsResidente(){
     $.post("php/index_esresidente.php",{usuario:document.getElementById("usuario").value},(resp)=>{
-        if (resp=="si" || resp=="baja"){
+        mes=resp.mes;
+        anno_ini=resp.anno_inicio;
+        if (resp.esresidente=="si" || resp.esresidente=="baja"){
             document.getElementById("comedor").style.display="inherit";
-            if(resp=="baja")residente_baja=true;
+            if(respesresidente=="baja")residente_baja=true;
             else residente_baja=false;
         } 
         else{
             document.getElementById("comedor").style.display="none";
         } 
-    });
+    },"json");
 }
 
 function comedor(){
