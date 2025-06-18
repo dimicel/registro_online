@@ -264,7 +264,7 @@ function compruebaEsResidente(){
         anno_ini=resp.anno_inicio;
         if (resp.esresidente=="si" || resp.esresidente=="baja"){
             document.getElementById("comedor").style.display="inherit";
-            if(respesresidente=="baja")residente_baja=true;
+            if(resp.esresidente=="baja")residente_baja=true;
             else residente_baja=false;
         } 
         else{
