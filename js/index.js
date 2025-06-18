@@ -406,3 +406,19 @@ function comedor(){
     },"json");
 }
 
+
+function descargaInformeComedorResidente(){
+    if (document.getElementById("mes_comedor").value.trim() == "") {
+        alerta("Debe seleccionar un mes para descargar el informe de comedor.","NO MES SELECCIONADO");
+        return;
+    }
+    mostrarPantallaEspera("Generando informe...");
+    $.post("php/index_comedor_informe_residente.php", { mes: document.getElementById("mes_comedor").value, id_nie: document.getElementById("usuario").value }, function(resp) {
+        ocultarPantallaEspera();
+        if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+        else if (resp == "ok") {
+            alerta("El informe se ha generado correctamente y se ha enviado al correo electrónico asociado al usuario.","INFORME ENVIADO");
+        } else alerta(resp,"ERROR");
+    });
+}
+
