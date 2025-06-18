@@ -19,6 +19,114 @@ $dat_centro = $mysqli->query("SELECT * FROM config_centro");
 $datos_cen= $dat_centro->fetch_assoc();
 $dat_centro->close();
 
+$ausencias_avisadas=array();
+$ausencias_no_avisadas=array();
+$asistencias = array();
+
+$sql = "
+    SELECT *
+    FROM residentes_comedor
+	WHERE id_nie = ?
+    WHERE fecha_no_comedor BETWEEN
+        STR_TO_DATE(?, '%m/%Y') AND
+        LASTDAY(STR_TO_DATE(?, '%m/%Y'))
+	ORDER BY fecha_no_comedor
+";
+
+// Preparar y ejecutar
+$stmt = $mysqli->prepare($sql);
+if (!$stmt) {
+	http_response_code(500);
+    echo "Error en prepare: " . $mysqli->error;
+	exit;
+}
+
+// Pasamos la misma fecha dos veces (inicio y para LASTDAY)
+$stmt->bind_param("ss", $mes_anno, $mes_anno);
+$stmt->execute();
+
+$result = $stmt->get_result();
+while ($fila = $result->fetch_assoc()) {
+    $ausencias_avisadas[] = array(
+		'fecha' => $fila['fecha_no_comedor']
+	);
+}
+
+$stmt->close();
+
+$sql = "
+    SELECT *
+    FROM residentes_comedor
+	WHERE id_nie = ?
+    WHERE fecha_comedor BETWEEN
+        STR_TO_DATE(?, '%m/%Y') AND
+        LASTDAY(STR_TO_DATE(?, '%m/%Y'))
+	ORDER BY fecha_comedor
+";
+
+// Preparar y ejecutar
+$stmt = $mysqli->prepare($sql);
+if (!$stmt) {
+	http_response_code(500);
+    echo "Error en prepare: " . $mysqli->error;
+	exit;
+}
+
+// Pasamos la misma fecha dos veces (inicio y para LASTDAY)
+$stmt->bind_param("ss", $mes_anno, $mes_anno);
+$stmt->execute();
+
+$result = $stmt->get_result();
+while ($fila = $result->fetch_assoc()) {
+    $asistencias[] = array(
+		'fecha' => $fila['fecha_comedor'],
+		'desayuno' => $fila['desayuno'],
+		'comida' => $fila['comida'],
+		'cena' => $fila['cena']
+	);
+}
+
+$stmt->close();
+
+
+$sql = "
+	SELECT *
+	FROM residentes_comedor rc
+	WHERE rc.id_nie = ?
+	AND rc.fecha_comedor BETWEEN STR_TO_DATE(?, '%m/%Y') AND LASTDAY(STR_TO_DATE(?, '%m/%Y'))
+	AND rc.desayuno = 0
+	AND rc.comida = 0
+	AND rc.cena = 0
+	AND NOT EXISTS (
+		SELECT 1
+		FROM residentes_comedor rc2
+		WHERE rc2.fecha_no_comedor = rc.fecha_comedor
+	)
+	ORDER BY rc.fecha_comedor
+";
+
+// Preparar y ejecutar
+$stmt = $mysqli->prepare($sql);
+if (!$stmt) {
+	http_response_code(500);
+    echo "Error en prepare: " . $mysqli->error;
+	exit;
+}
+
+// Pasamos la misma fecha dos veces (inicio y para LASTDAY)
+$stmt->bind_param("ss", $mes_anno, $mes_anno);
+$stmt->execute();
+
+$result = $stmt->get_result();
+while ($fila = $result->fetch_assoc()) {
+    $ausencias_no_avisadas[] = array(
+		'fecha' => $fila['fecha_comedor']
+	);
+}
+
+$stmt->close();
+$mysqli->close();
+
 class MYPDF extends TCPDF {
 	private $datos_cen;
 
