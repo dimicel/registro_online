@@ -97,25 +97,7 @@ $pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->setFillColor(200);  //Relleno en gris
 $pdf->AddPage();
 
-if (file_exists($directorio.$id_nie."-A.jpg")) $anverso=$directorio.$id_nie."-A.jpg";
-elseif (file_exists($directorio.$id_nie."-A.jpeg")) $anverso=$directorio.$id_nie."-A.jpeg";
-else $anverso="no";
 
-if (file_exists($directorio.$id_nie."-R.jpg")) $reverso=$directorio.$id_nie."-R.jpg";
-elseif (file_exists($directorio.$id_nie."-R.jpeg")) $reverso=$directorio.$id_nie."-R.jpeg";
-else $reverso="no";
-
-
-if ($anverso!="no"){
-    $pdf->Image($anverso,15,35,1.42*75,75,'','','T');
-}
-if ($reverso!="no"){
-    $pdf->Image($reverso,15,120,1.42*75,75,'','','T');
-}
-if ($anverso=="no"  && $reverso=="no"){
-    $pdf->SetXY(40,35);
-    $pdf->Cell(0,0,"No existe documento de identificación",0,0,'L',0,'',1,false,'','');
-}
 
 $pdf->Output("Informe_comedor".$id_nie."_".$mes_anno.".pdf", 'D');
 
