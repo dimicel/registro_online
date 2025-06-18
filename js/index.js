@@ -260,8 +260,8 @@ function generaContrasena() {
 
 function compruebaEsResidente(){
     $.post("php/index_esresidente.php",{usuario:document.getElementById("usuario").value},(resp)=>{
-        mes=resp.mes;
-        anno_ini=resp.anno_inicio;
+        mes=parseInt(resp.mes);
+        anno_ini=parseInt(resp.anno_inicio);
         if (resp.esresidente=="si" || resp.esresidente=="baja"){
             document.getElementById("comedor").style.display="inherit";
             if(resp.esresidente=="baja")residente_baja=true;
