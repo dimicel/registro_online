@@ -415,8 +415,12 @@ function descargaInformeComedorResidente(){
         alerta("Debe seleccionar un mes para descargar el informe de comedor.","NO MES SELECCIONADO");
         return;
     }
+    
     mostrarPantallaEspera("Generando informe...");
-        fetch("php/index_comedor_informe_residente.php", {
+    const formData = new FormData();
+    formData.append("mes_anno", document.getElementById("mes_comedor").value);
+    formData.append("id_nie", document.getElementById("usuario").value);
+    fetch("php/index_comedor_informe_residente.php", {
         method: "POST",
         body: formData
     })
