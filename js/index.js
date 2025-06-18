@@ -339,19 +339,22 @@ function comedor(){
                 if (mes >= 9 && mes <= 12) {
                     // Solo meses de septiembre a mes actual en anno_ini
                     for (let m = 9; m <= mes; m++) {
-                    optionsHTML += `<option value="${meses[m]}/${anno_ini}">${meses[m]}/${anno_ini}</option>`;
+                    let mesNum = m.toString().padStart(2, "0");
+                    optionsHTML += `<option value="${mesNum}/${anno_ini}">${meses[m]}/${anno_ini}</option>`;
                     }
                 } else if (mes >= 1 && mes <= 6) {
                     // De septiembre a diciembre en anno_ini
                     for (let m = 9; m <= 12; m++) {
-                    optionsHTML += `<option value="${meses[m]}/${anno_ini}">${meses[m]}/${anno_ini}</option>`;
+                    let mesNum = m.toString().padStart(2, "0");
+                    optionsHTML += `<option value="${mesNum}/${anno_ini}">${meses[m]}/${anno_ini}</option>`;
                     }
                     // De enero a mes actual en anno_ini + 1
                     for (let m = 1; m <= mes; m++) {
-                    optionsHTML += `<option value="${meses[m]}/${anno_ini + 1}">${meses[m]}/${anno_ini + 1}</option>`;
+                    let mesNum = m.toString().padStart(2, "0");
+                    optionsHTML += `<option value="${mesNum}/${anno_ini + 1}">${meses[m]}/${anno_ini + 1}</option>`;
                     }
                 }
-                select.innerHTML = optionsHTML;      
+                select.innerHTML = optionsHTML;
 
                 // Tabla con los días seleccionables del comedor
                 tabla_com="<tr>";
@@ -413,12 +416,34 @@ function descargaInformeComedorResidente(){
         return;
     }
     mostrarPantallaEspera("Generando informe...");
-    $.post("php/index_comedor_informe_residente.php", { mes: document.getElementById("mes_comedor").value, id_nie: document.getElementById("usuario").value }, function(resp) {
+        fetch("php/index_comedor_informe_residente.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => {
+                throw new Error(text || "Error desconocido");
+            });
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = nombreArchivo;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        //alerta("Informe generado correctamente.", "PROCESO TERMINADO");
+    })
+    .catch(error => {
+        alerta("Error al generar informe: " + error.message, "ERROR");
+    })
+    .finally(() => {
         ocultarPantallaEspera();
-        if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
-        else if (resp == "ok") {
-            alerta("El informe se ha generado correctamente y se ha enviado al correo electrónico asociado al usuario.","INFORME ENVIADO");
-        } else alerta(resp,"ERROR");
     });
 }
 
