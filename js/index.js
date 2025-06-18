@@ -334,21 +334,21 @@ function comedor(){
                 //Select de meses para el informe
                 const select = document.getElementById("mes_comedor");
                 const meses = ["", "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic"];
-                let optionsHTML = "";
+                let optionsHTML = "<option value=''>Seleccione mes...</option>";
 
                 if (mes >= 9 && mes <= 12) {
                     // Solo meses de septiembre a mes actual en anno_ini
                     for (let m = 9; m <= mes; m++) {
-                    optionsHTML += `<option value="${meses[m]}/${anno_ini}">${meses[m]}/${anno_ini}</option>`;
+                    optionsHTML += '<option value="${meses[m]}/${anno_ini}">${meses[m]}/${anno_ini}</option>';
                     }
                 } else if (mes >= 1 && mes <= 6) {
                     // De septiembre a diciembre en anno_ini
                     for (let m = 9; m <= 12; m++) {
-                    optionsHTML += `<option value="${meses[m]}/${anno_ini}">${meses[m]}/${anno_ini}</option>`;
+                    optionsHTML += '<option value="${meses[m]}/${anno_ini}">${meses[m]}/${anno_ini}</option>';
                     }
                     // De enero a mes actual en anno_ini + 1
                     for (let m = 1; m <= mes; m++) {
-                    optionsHTML += `<option value="${meses[m]}/${anno_ini + 1}">${meses[m]}/${anno_ini + 1}</option>`;
+                    optionsHTML += '<option value="${meses[m]}/${anno_ini + 1}">${meses[m]}/${anno_ini + 1}</option>';
                     }
                 }
                 select.innerHTML = optionsHTML;      
