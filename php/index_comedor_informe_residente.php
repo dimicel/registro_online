@@ -23,6 +23,40 @@ $asistencias = array();
 
 $sql = "
     SELECT *
+    FROM residentes
+	WHERE id_nie = ?
+";
+
+// Preparar y ejecutar
+$stmt = $mysqli->prepare($sql);
+if (!$stmt) {
+	http_response_code(500);
+    echo "Error en prepare: " . $mysqli->error;
+	exit;
+}
+
+// Pasamos la misma fecha dos veces (inicio y para LASTDAY)
+$stmt->bind_param("s", $id_nie);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$nombre_residente = "";
+$apellidos_residente = "";
+$fila = $result->fetch_assoc();
+if ($fila) {
+	$nombre_residente = $fila['nombre'];
+	$apellidos_residente = $fila['apellidos'];
+} else {
+	http_response_code(404);
+	echo "Residente no encontrado.";
+	exit;
+}
+
+$stmt->close();
+
+
+$sql = "
+    SELECT *
     FROM residentes_comedor
 	WHERE id_nie = ?
     WHERE fecha_no_comedor BETWEEN
@@ -171,8 +205,26 @@ $pdf->setFontSubsetting(true);
 $pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->setFillColor(200);  //Relleno en gris
 $pdf->AddPage();
+$XInicio=10;
+$YInicio=50;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'B', 10, '', true);
+$pdf->Cell(180, 0, "INFORME COMEDOR RESIDENTE: ".$id_nie." - ".$nombre_residente." ".$apellidos_residente."-".$mes_anno, 0, 1, 'C', 0, '', 0, false, 'T', 'T');
+$texto=<<<EOD
+DIAS AVISADOS: Fechas en las que se comunicó que no se iba a asistir al comedor.
+INJUSTIFICADAS: Fechas en las que el residente no asistió al comedor en todo el día.
+AISTENCIAS: Fechas en las que el residente asistió al comedor, y tipo de servicio usado (desayuno (Des), comida (Com) o cena (Cen)).
+EOD;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->writeHTMLCell(180, 0, $XInicio, $YInicio, $texto, 0, 1, false, true, 'L', true);
+$YInicio+=20;
+$pdf->SetXY($XInicio,$YInicio);
+$pdf->SetFont('dejavusans', 'B', 8, '', true);
 
-
+// Encabezados alineados: izquierda, centro, derecha
+$pdf->Cell(63, 10, 'DIAS AVISADOS', 0, 0, 'L');
+$pdf->Cell(63, 10, 'INJUSTIFICADAS', 0, 0, 'C');
+$pdf->Cell(63, 10, 'ASISTENCIAS', 0, 1, 'L');
 
 $pdf->Output("Informe_comedor".$id_nie."_".$mes_anno.".pdf", 'D');
 
