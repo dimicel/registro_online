@@ -292,6 +292,7 @@ function comedor(){
                     {
                         class: "btn btn-success textoboton",
                         text: "Guardar Selección",
+                        id: "guardar_seleccion_comedor",
                         click: function() {
                             mostrarPantallaEspera();
                             let fechas_semana_no_comedor=[];
@@ -359,6 +360,7 @@ function comedor(){
                 if(resp.dia<1 || resp.dia>4){
                     alerta("La selección de días en los que el usuario no hará uso del comedor en la semana siguiente sólo está permitida de LUNES a JUEVES.","NO PERMITIDO");
                     document.getElementById("rotulo_comedor_seleccion").style.display='none';
+                    document.getElementById("guardar_seleccion_comedor").style.display='none';
                 }
                 else{
                     // Tabla con los días seleccionables del comedor
