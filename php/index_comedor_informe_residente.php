@@ -74,7 +74,7 @@ if (!$stmt) {
 }
 
 // Pasamos la misma fecha dos veces (inicio y para LASTDAY)
-$stmt->bind_param("ss", $mes_anno, $mes_anno);
+$stmt->bind_param("sss", $id_nie,$mes_anno, $mes_anno);
 $stmt->execute();
 
 $result = $stmt->get_result();
@@ -105,7 +105,7 @@ if (!$stmt) {
 }
 
 // Pasamos la misma fecha dos veces (inicio y para LASTDAY)
-$stmt->bind_param("ss", $mes_anno, $mes_anno);
+$stmt->bind_param("sss", $id_nie,$mes_anno, $mes_anno);
 $stmt->execute();
 
 $result = $stmt->get_result();
@@ -146,7 +146,7 @@ if (!$stmt) {
 }
 
 // Pasamos la misma fecha dos veces (inicio y para LASTDAY)
-$stmt->bind_param("ss", $mes_anno, $mes_anno);
+$stmt->bind_param("sss", $id_nie, $mes_anno, $mes_anno);
 $stmt->execute();
 
 $result = $stmt->get_result();
