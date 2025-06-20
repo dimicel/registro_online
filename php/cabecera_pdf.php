@@ -8,11 +8,12 @@ class MYPDF extends TCPDF {
 	private $datos_cen;
     private $titulo;
 
-    public function __construct($datos_cen,$titulo_PDF) {
-        parent::__construct(); // Llama al constructor de TCPDF
-        $this->datos_cen = $datos_cen;
-        $this->titulo=$titulo_PDF;
-    }
+	public function __construct($datos_cen, $titulo_PDF, $orientation = PDF_PAGE_ORIENTATION, $unit = PDF_UNIT, $format = PDF_PAGE_FORMAT, $unicode = true, $encoding = 'UTF-8', $diskcache = false, $pdfa = false) {
+		parent::__construct($orientation, $unit, $format, $unicode, $encoding, $diskcache, $pdfa);
+		$this->datos_cen = $datos_cen;
+		$this->titulo = $titulo_PDF;
+	}
+ 
 
 	//Page header
 	public function Header() {

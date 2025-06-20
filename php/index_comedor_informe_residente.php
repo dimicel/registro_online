@@ -159,7 +159,8 @@ $mysqli->close();
 
 
 // create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+//$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$pdf = new MYPDF($datos_cen, $titulo_PDF);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
