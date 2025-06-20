@@ -206,7 +206,7 @@ $pdf->AddPage();
 $XInicio=10;
 $YInicio=50;
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans', 'B', 10, '', true);
+$pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->Cell(180, 0, "INFORME COMEDOR RESIDENTE: ".$id_nie." - ".$nombre_residente." ".$apellidos_residente."-".$mes_anno, 0, 1, 'C', 0, '', 0, false, 'T', 'T');
 $texto=<<<EOD
 DIAS AVISADOS: Fechas en las que se comunicó que no se iba a asistir al comedor.
@@ -214,6 +214,7 @@ INJUSTIFICADAS: Fechas en las que el residente no asistió al comedor en todo el
 AISTENCIAS: Fechas en las que el residente asistió al comedor, y tipo de servicio usado (desayuno (Des), comida (Com) o cena (Cen)).
 EOD;
 $YInicio+=10;
+$pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->writeHTMLCell(180, 0, $XInicio, $YInicio, $texto, 0, 1, false, true, 'L', true);
 $YInicio+=20;
