@@ -242,10 +242,10 @@ while (true){
 		$avis = false;
 	}
 	if ($fila < count($ausencias_no_avisadas)) {
-		$pdf->Cell(60, 5, date("d/m/Y", strtotime($ausencias_no_avisadas[$fila]['fecha'])), 0, 0, 'C');
+		$pdf->Cell(65, 5, date("d/m/Y", strtotime($ausencias_no_avisadas[$fila]['fecha'])), 0, 0, 'C');
 	} else {
-		if($fila==0) $pdf->Cell(60, 5, 'No hay fechas', 0, 0, 'C');
-		else  $pdf->Cell(60, 5, '', 0, 0, 'C');
+		if($fila==0) $pdf->Cell(65, 5, 'No hay fechas', 0, 0, 'C');
+		else  $pdf->Cell(65, 5, '', 0, 0, 'C');
 		$noavis = false;
 	}
 	if ($fila < count($asistencias)) {
