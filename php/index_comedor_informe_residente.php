@@ -221,9 +221,9 @@ $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 
 // Encabezados alineados: izquierda, centro, derecha
-$pdf->Cell(63, 10, 'DIAS AVISADOS', 0, 0, 'L');
-$pdf->Cell(63, 10, 'INJUSTIFICADAS', 0, 0, 'C');
-$pdf->Cell(63, 10, 'ASISTENCIAS  Des  Com  Cen', 0, 1, 'L');
+$pdf->Cell(60, 10, 'DIAS AVISADOS', 0, 0, 'L');
+$pdf->Cell(60, 10, 'INJUSTIFICADAS', 0, 0, 'C');
+$pdf->Cell(60, 10, 'ASISTENCIAS  Des  Com  Cen', 0, 1, 'L');
 
 $YInicio+=10;
 $pdf->SetFont('dejavusans', '', 8, '', true);
