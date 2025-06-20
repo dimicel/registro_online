@@ -210,8 +210,8 @@ $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
 $pdf->Cell(180, 0, "INFORME COMEDOR RESIDENTE: ".$id_nie." - ".$nombre_residente." ".$apellidos_residente."-".$mes_anno, 0, 1, 'C', 0, '', 0, false, 'T', 'T');
 $texto=<<<EOD
-DIAS AVISADOS: Fechas en las que se comunicó que no se iba a asistir al comedor.
-INJUSTIFICADAS: Fechas en las que el residente no asistió al comedor en todo el día.
+DIAS AVISADOS: Fechas en las que se comunicó que no se iba a asistir al comedor.<br>
+INJUSTIFICADAS: Fechas en las que el residente no asistió al comedor en todo el día.<br>
 AISTENCIAS: Fechas en las que el residente asistió al comedor, y tipo de servicio usado (desayuno (Des), comida (Com) o cena (Cen)).
 EOD;
 $YInicio+=10;
@@ -235,10 +235,10 @@ $noavis=true;
 $asist=true;
 while (true){
 	if ($fila < count($ausencias_avisadas)) {
-		$pdf->Cell(60, 5, date("d/m/Y", strtotime($ausencias_avisadas[$fila]['fecha'])), 0, 0, 'L');
+		$pdf->Cell(50, 5, date("d/m/Y", strtotime($ausencias_avisadas[$fila]['fecha'])), 0, 0, 'L');
 	} else {
-		if($fila==0) $pdf->Cell(60, 5, 'No hay fechas', 0, 0, 'L');
-		else $pdf->Cell(60, 5, '', 0, 0, 'L');
+		if($fila==0) $pdf->Cell(50, 5, 'No hay fechas', 0, 0, 'L');
+		else $pdf->Cell(50, 5, '', 0, 0, 'L');
 		$avis = false;
 	}
 	if ($fila < count($ausencias_no_avisadas)) {
