@@ -250,7 +250,7 @@ while (true){
 		$desayuno = $asistencias[$fila]['desayuno'] ? 'X' : '';
 		$comida = $asistencias[$fila]['comida'] ? 'X' : '';
 		$cena = $asistencias[$fila]['cena'] ? 'X' : '';
-		$pdf->Cell(60, 5, date("d/m/Y", strtotime($asistencias[$fila]['fecha'])).'    '.$desayuno.'         '.$comida.'         '.$cena, 0, 1, 'L');
+		$pdf->Cell(60, 5, date("d/m/Y", strtotime($asistencias[$fila]['fecha'])).'    '.$desayuno.'        '.$comida.'       '.$cena, 0, 1, 'L');
 	} else {
 		if($fila==0) $pdf->Cell(60, 5, 'No hay fechas', 0, 1, 'L');
 		else $pdf->Cell(60, 5, '', 0, 1, 'L');
