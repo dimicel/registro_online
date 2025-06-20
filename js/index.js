@@ -417,7 +417,7 @@ function comedor(){
 
 function descargaInformeComedorResidente(){
     if (document.getElementById("mes_comedor").value.trim() == "") {
-        alerta("Debe seleccionar un mes para descargar el informe de comedor.","NO MES SELECCIONADO");
+        alerta("Debe seleccionar un mes para descargar el informe de comedor.","MES NO SELECCIONADO");
         return;
     }
     
