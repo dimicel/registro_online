@@ -60,7 +60,7 @@ $sql = "
     FROM residentes_comedor
 	WHERE id_nie = ? AND fecha_no_comedor BETWEEN
         STR_TO_DATE(?, '%m/%Y') AND
-        LASTDAY(STR_TO_DATE(?, '%m/%Y'))
+        LAST_DAY(STR_TO_DATE(?, '%m/%Y'))
 	ORDER BY fecha_no_comedor
 ";
 
@@ -90,7 +90,7 @@ $sql = "
     FROM residentes_comedor
 	WHERE id_nie = ? AND fecha_comedor BETWEEN
         STR_TO_DATE(?, '%m/%Y') AND
-        LASTDAY(STR_TO_DATE(?, '%m/%Y'))
+        LAST_DAY(STR_TO_DATE(?, '%m/%Y'))
 	ORDER BY fecha_comedor
 ";
 
@@ -123,7 +123,7 @@ $sql = "
 	SELECT *
 	FROM residentes_comedor rc
 	WHERE rc.id_nie = ?
-	AND rc.fecha_comedor BETWEEN STR_TO_DATE(?, '%m/%Y') AND LASTDAY(STR_TO_DATE(?, '%m/%Y'))
+	AND rc.fecha_comedor BETWEEN STR_TO_DATE(?, '%m/%Y') AND LAST_DAY(STR_TO_DATE(?, '%m/%Y'))
 	AND rc.desayuno = 0
 	AND rc.comida = 0
 	AND rc.cena = 0
