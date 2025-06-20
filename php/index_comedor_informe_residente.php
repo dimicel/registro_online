@@ -11,7 +11,7 @@ if ($mysqli->errno>0) {
     echo "Error en servidor.";
     exit;
 }
-$tiutlo_PDF = "INFORME COMEDOR RESIDENTE";
+$titulo_PDF = "INFORME COMEDOR RESIDENTE";
 include("cabecera_pdf.php");
 
 $id_nie=$_POST["id_nie"];
@@ -213,6 +213,7 @@ DIAS AVISADOS: Fechas en las que se comunicó que no se iba a asistir al comedor
 INJUSTIFICADAS: Fechas en las que el residente no asistió al comedor en todo el día.
 AISTENCIAS: Fechas en las que el residente asistió al comedor, y tipo de servicio usado (desayuno (Des), comida (Com) o cena (Cen)).
 EOD;
+$YInicio+=10;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->writeHTMLCell(180, 0, $XInicio, $YInicio, $texto, 0, 1, false, true, 'L', true);
 $YInicio+=20;
@@ -232,14 +233,14 @@ $noavis=true;
 $asist=true;
 while (true){
 	if ($fila < count($ausencias_avisadas)) {
-		$pdf->Cell(63, 10, $ausencias_avisadas[$fila]['fecha'], 0, 0, 'L');
+		$pdf->Cell(63, 10, date("d/m/Y", strtotime($ausencias_avisadas[$fila]['fecha'])), 0, 0, 'L');
 	} else {
 		if($fila==0) $pdf->Cell(63, 10, 'No hay fechas', 0, 0, 'L');
 		else $pdf->Cell(63, 10, '', 0, 0, 'L');
 		$avis = false;
 	}
 	if ($fila < count($ausencias_no_avisadas)) {
-		$pdf->Cell(63, 10, $ausencias_no_avisadas[$fila]['fecha'], 0, 0, 'C');
+		$pdf->Cell(63, 10, date("d/m/Y", strtotime($ausencias_no_avisadas[$fila]['fecha'])), 0, 0, 'C');
 	} else {
 		if($fila==0) $pdf->Cell(63, 10, 'No hay fechas', 0, 0, 'C');
 		else  $pdf->Cell(63, 10, '', 0, 0, 'C');
@@ -249,7 +250,7 @@ while (true){
 		$desayuno = $asistencias[$fila]['desayuno'] ? 'X' : '';
 		$comida = $asistencias[$fila]['comida'] ? 'X' : '';
 		$cena = $asistencias[$fila]['cena'] ? 'X' : '';
-		$pdf->Cell(63, 10, $asistencias[$fila]['fecha'].'  '.$desayuno.'   '.$comida.'    '.$cena, 0, 1, 'L');
+		$pdf->Cell(63, 10, date("d/m/Y", strtotime($asistencias[$fila]['fecha'])).'  '.$desayuno.'   '.$comida.'    '.$cena, 0, 1, 'L');
 	} else {
 		if($fila==0) $pdf->Cell(63, 10, 'No hay fechas', 0, 1, 'L');
 		else $pdf->Cell(63, 10, '', 0, 1, 'L');
