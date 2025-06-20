@@ -24,7 +24,7 @@ class MYPDF extends TCPDF {
 		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 
 		$this->SetFont('helvetica', 'B', 14);
-		$this->SetXY(0,10);
+		$this->SetXY(0,0);
 		$this->writeHTMLCell(0, 0, '', 10, $this->titulo, 0, 1, 0, true, 'C', true);
 			
 		$this->SetFont('helvetica', '', 8);
