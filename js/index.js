@@ -286,7 +286,7 @@ function comedor(){
     }
     mostrarPantallaEspera();
     $.post("php/index_login_comedor.php",{id_nie:document.getElementById("usuario").value,pass:document.getElementById("password").value},(resp)=>{
-        if (resp.error=="ok" && resp.dia>=1 && resp.dia<=4){
+        if (resp.error=="ok"){
             cargaHTML("html/index.htm","residencia_comedor","SELECCIÓN DE DÍAS NO ASISTENCIA A COMEDOR",500,400,"center center","center center",
                 [
                     {
@@ -356,36 +356,41 @@ function comedor(){
                 }
                 select.innerHTML = optionsHTML;
 
-                // Tabla con los días seleccionables del comedor
-                tabla_com="<tr>";
-                for (let i=0; i<5;i++){
-                    if(resp.fechas_no_comedor.length>0){
-                        let encontrado=false;
-                        for(let j=0;j<resp.fechas_no_comedor.length;j++){
-                            //let fecha_elegida= new Date(resp.fechas_no_comedor[j]);
-                            //let fecha_calendario=new Date(resp.fechas[i].fecha);
-                            let fecha_elegida= resp.fechas_no_comedor[j];
-                            let fecha_calendario=resp.fechas[i].fecha;
-                            if (fecha_elegida==fecha_calendario){
-                                encontrado=true;
-                                break;
+                if(resp.dia<1 || resp.dia>4){
+                    alerta("La selección de días en los que el usuario no hará uso del comedor en la semana siguiente sólo está permitida de LUNES a JUEVES.","NO PERMITIDO");
+                }
+                else{
+                    // Tabla con los días seleccionables del comedor
+                    tabla_com="<tr>";
+                    for (let i=0; i<5;i++){
+                        if(resp.fechas_no_comedor.length>0){
+                            let encontrado=false;
+                            for(let j=0;j<resp.fechas_no_comedor.length;j++){
+                                //let fecha_elegida= new Date(resp.fechas_no_comedor[j]);
+                                //let fecha_calendario=new Date(resp.fechas[i].fecha);
+                                let fecha_elegida= resp.fechas_no_comedor[j];
+                                let fecha_calendario=resp.fechas[i].fecha;
+                                if (fecha_elegida==fecha_calendario){
+                                    encontrado=true;
+                                    break;
+                                }
                             }
-                        }
-                        if (encontrado){
-                            tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:brown;background-color:yellow;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
+                            if (encontrado){
+                                tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:brown;background-color:yellow;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
+                            }
+                            else{
+                                tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
+                            }
                         }
                         else{
                             tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
                         }
+                        tabla_com+=resp.fechas[i].dia_sem+"<br>"+resp.fechas[i].dia+"/"+resp.fechas[i].mes;
+                        tabla_com+="</td>";
                     }
-                    else{
-                        tabla_com+="<td id='"+resp.fechas[i].fecha+"' width='20%' style='text-align:center;text-size:0.5em;color:#312e25;' onclick='if(this.style.color==\"brown\"){this.style.color=\"#312e25\";this.style.backgroundColor=\"#f4f3e5\";}else{this.style.color=\"brown\";this.style.backgroundColor=\"yellow\";}'>";
-                    }
-                    tabla_com+=resp.fechas[i].dia_sem+"<br>"+resp.fechas[i].dia+"/"+resp.fechas[i].mes;
-                    tabla_com+="</td>";
+                    tabla_com+="</tr>";
+                    document.getElementById("comedor_dias").innerHTML=tabla_com;
                 }
-                tabla_com+="</tr>";
-                document.getElementById("comedor_dias").innerHTML=tabla_com;
 
             }).catch (error=>{
                 ocultarPantallaEspera();
@@ -398,9 +403,6 @@ function comedor(){
         }
         else if(resp.error=="nousu"){
             alerta("El usuario no existe.","ERROR USUARIO");
-        }
-        else if(resp.dia<1 || resp.dia>4){
-            alerta("La selección de días en los que el usuario no hará uso del comedor en la semana siguiente sólo está permitida de LUNES a JUEVES.","NO PERMITIDO");
         }
         else {
             alerta("Error en base de datos. Inténtelo en otro momento.","ERROR DB");
