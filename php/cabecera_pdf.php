@@ -25,15 +25,12 @@ class MYPDF extends TCPDF {
 
 		$this->SetFont('helvetica', 'B', 14);
 		$this->SetXY(0,0);
-		$this->writeHTMLCell(0, 0, '', 10, $this->titulo, 0, 1, 0, true, 'C', true);
+		$this->writeHTMLCell(105, 0, 35, 10, '<div style="text-align:center; font-weight:bold;">' . $this->titulo . '</div>', 0, 1, 0, true, 'C', true);
 			
 		$this->SetFont('helvetica', '', 8);
-		// Title
-		//$this->setCellHeightRatio(1.75);
+
 		$encab = "<label><strong>".$this->datos_cen["centro"]."</strong><br>".$this->datos_cen["direccion_centro"]."<br>".$this->datos_cen["cp_centro"]."-".$this->datos_cen["localidad_centro"]."<br>Tlf.:".$this->datos_cen["tlf_centro"]."<br>Fax:".$this->datos_cen["fax_centro"]."</label>";
 		$this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
-		//$this->Ln();
-		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
 		
 	}
 }
