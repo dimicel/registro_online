@@ -25,7 +25,7 @@ class MYPDF extends TCPDF {
 
 		$this->SetFont('helvetica', 'B', 14);
 		$this->SetXY(0,10);
-		$this->Cell(0,0,$this->titulo,0,0,'C',0,'',1,false,'T','T');
+		$this->writeHTMLCell(0, 0, '', 10, $this->titulo, 0, 1, 0, true, 'C', true);
 			
 		$this->SetFont('helvetica', '', 8);
 		// Title

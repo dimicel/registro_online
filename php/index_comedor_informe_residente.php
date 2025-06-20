@@ -11,11 +11,21 @@ if ($mysqli->errno>0) {
     echo "Error en servidor.";
     exit;
 }
-$titulo_PDF = "INFORME COMEDOR RESIDENTE";
-include("cabecera_pdf.php");
 
 $id_nie=$_POST["id_nie"];
 $mes_anno=$_POST["mes_anno"];
+
+$meses = [
+    '01' => 'Enero', '02' => 'Febrero', '03' => 'Marzo', '04' => 'Abril',
+    '05' => 'Mayo', '06' => 'Junio', '07' => 'Julio', '08' => 'Agosto',
+    '09' => 'Septiembre', '10' => 'Octubre', '11' => 'Noviembre', '12' => 'Diciembre'
+];
+
+list($mes, $anio) = explode('/', $mes_anno);
+$fecha_formateada = $meses[$mes] . '/' . $anio; 
+
+$titulo_PDF = "INFORME COMEDOR RESIDENTE<br>Mes: " . $fecha_formateada;
+include("cabecera_pdf.php");
 
 $ausencias_avisadas=array();
 $ausencias_no_avisadas=array();
