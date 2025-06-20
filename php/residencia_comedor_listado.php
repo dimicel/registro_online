@@ -35,7 +35,7 @@ if ($con_dia->num_rows>0){
 }
 $con_dia->free();
 
-$consulta="SELECT * FROM residentes  where curso='$curso' and baja=0 ";
+$consulta="SELECT * FROM residentes  where curso='$curso' and baja=0 order by apellidos, nombre";
 $res=$mysqli->query($consulta);
 
 if ($res->num_rows==0){
