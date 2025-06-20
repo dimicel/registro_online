@@ -24,7 +24,7 @@ $meses = [
 list($mes, $anio) = explode('/', $mes_anno);
 $fecha_formateada = $meses[$mes] . '/' . $anio; 
 
-$titulo_PDF = "INFORME COMEDOR<br>Mes: " . $fecha_formateada;
+$titulo_PDF = "INFORME COMEDOR<br>" . $fecha_formateada;
 include("cabecera_pdf.php");
 
 $ausencias_avisadas=array();
