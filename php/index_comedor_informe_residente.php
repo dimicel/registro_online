@@ -208,7 +208,7 @@ $XInicio=10;
 $YInicio=50;
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans', 'B', 8, '', true);
-$pdf->Cell(180, 0, "INFORME COMEDOR RESIDENTE: ".$id_nie." - ".$nombre_residente." ".$apellidos_residente."-".$mes_anno, 0, 1, 'C', 0, '', 0, false, 'T', 'T');
+$pdf->Cell(180, 0, "INFORME COMEDOR RESIDENTE: ".$id_nie." - ".$nombre_residente." ".$apellidos_residente." - ".$mes_anno, 0, 1, 'C', 0, '', 0, false, 'T', 'T');
 $texto=<<<EOD
 DIAS AVISADOS: Fechas en las que se comunicó que no se iba a asistir al comedor.<br>
 INJUSTIFICADAS: Fechas en las que el residente no asistió al comedor en todo el día.<br>
