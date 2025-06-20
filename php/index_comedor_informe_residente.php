@@ -58,8 +58,7 @@ $stmt->close();
 $sql = "
     SELECT *
     FROM residentes_comedor
-	WHERE id_nie = ?
-    WHERE fecha_no_comedor BETWEEN
+	WHERE id_nie = ? AND fecha_no_comedor BETWEEN
         STR_TO_DATE(?, '%m/%Y') AND
         LASTDAY(STR_TO_DATE(?, '%m/%Y'))
 	ORDER BY fecha_no_comedor
@@ -89,8 +88,7 @@ $stmt->close();
 $sql = "
     SELECT *
     FROM residentes_comedor
-	WHERE id_nie = ?
-    WHERE fecha_comedor BETWEEN
+	WHERE id_nie = ? AND fecha_comedor BETWEEN
         STR_TO_DATE(?, '%m/%Y') AND
         LASTDAY(STR_TO_DATE(?, '%m/%Y'))
 	ORDER BY fecha_comedor
