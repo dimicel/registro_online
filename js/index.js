@@ -441,7 +441,7 @@ function descargaInformeComedorResidente(){
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = nombreArchivo;
+        a.download = "Informe_comedor_" + document.getElementById("usuario").value + "_" + document.getElementById("mes_comedor").value + ".pdf";
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
