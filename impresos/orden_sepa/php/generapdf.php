@@ -9,7 +9,6 @@ include("../../../php/conexion.php");
 if ($mysqli->errno>0) {
     exit("servidor");
 }
-include("../../../php/cabecera_pdf.php");
 
 $id_nie=$_POST['id_nie'];
 $registro=$_POST['registro'];
@@ -52,7 +51,7 @@ $pdf_sepa = new MYPDF_sepa('P', 'mm', 'A4', true, 'UTF-8', false);
 
 // set document information
 $pdf_sepa->SetCreator(PDF_CREATOR);
-//$pdf->SetAuthor($datos_cen["centro"]);
+$pdf->SetAuthor("Centro Educativo");
 $pdf_sepa->SetTitle('Inscripción a Residencia_SEPA');
 $pdf_sepa->SetSubject('Residencia');
 $pdf_sepa->SetKeywords('PDF, residencia, '. $datos_cen["localidad_centro"].', Inscripción residentes_SEPA');
