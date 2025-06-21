@@ -2,7 +2,7 @@
 
 $dat_centro = $mysqli->query("SELECT * FROM config_centro");
 $datos_cen= $dat_centro->fetch_assoc();
-$dat_centro->close();
+$dat_centro->free();
 
 class MYPDF extends TCPDF {
 	private $datos_cen;
