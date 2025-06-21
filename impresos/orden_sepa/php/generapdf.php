@@ -9,6 +9,7 @@ include("../../../php/conexion.php");
 if ($mysqli->errno>0) {
     exit("servidor");
 }
+include("../../../php/cabecera_pdf.php");
 
 $id_nie=$_POST['id_nie'];
 $registro=$_POST['registro'];
@@ -51,10 +52,10 @@ $pdf_sepa = new MYPDF_sepa('P', 'mm', 'A4', true, 'UTF-8', false);
 
 // set document information
 $pdf_sepa->SetCreator(PDF_CREATOR);
-$pdf_sepa->SetAuthor('IES Universidad Laboral');
+$pdf->SetAuthor($datos_cen["centro"]);
 $pdf_sepa->SetTitle('Inscripción a Residencia_SEPA');
 $pdf_sepa->SetSubject('Residencia');
-$pdf_sepa->SetKeywords('ulaboral, PDF, residencia, Toledo, Inscripción residentes_SEPA');
+$pdf_sepa->SetKeywords('PDF, residencia, '. $datos_cen["localidad_centro"].', Inscripción residentes_SEPA');
 
 // set default monospaced font
 $pdf_sepa->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
