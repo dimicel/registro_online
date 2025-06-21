@@ -2022,6 +2022,7 @@ function seleccionaRegistros(valor) {
 }
 
 function habilitaMenu(m2, m3) {
+    return;
     if (m2) $("#menu2").removeClass("disabled");
     else if (!m2) $("#menu2").addClass("disabled");
     if (m3) $("#menu3").removeClass("disabled");

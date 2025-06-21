@@ -687,7 +687,7 @@ function matriculaCiclos($r){
 	$GLOBALS['id_nie']=$id_nie;
 	$t="NIE: <b>$id_nie</b>&nbsp;&nbsp;&nbsp;&nbsp;Nº registro: <b>$registro</b><br>";
 	$t.="Apellidos y Nombre:<b>$apellidos, $nombre</b><br>";
-	if($anno-$actualiza<28){
+	if($anno-$anno_nac<28){
 		$t.="Alumno menor de 28 (requiere seguro escolar):<b>SI</b><br>";
 		$GLOBALS['menor28']=true;
 	}
