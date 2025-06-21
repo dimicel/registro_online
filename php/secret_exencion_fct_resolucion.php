@@ -87,24 +87,10 @@ $stmt->close();
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///GENERA LA RESOLUCIÓN
 ///////////////////////////////////////////////////////////////////////////////////////////
-if($valoracion=="exento"){
-	$texto_acuerda="<b>RECONOCER</b> la exención <b>TOTAL</b> del Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
-	$motivo="";
-}
-elseif($valoracion=="parcialmente exento"){
-	$texto_acuerda="<b>RECONOCER</b> la exención <b>PARCIAL</b> del Período de Formación en Empresas por los motivos que a continuación se razonan:";
-}
-elseif($valoracion=="no exento"){
-	$texto_acuerda="<b>NO RECONOCER</b> la exención del Período de Formación en Empresas por los motivos que a continuación se razonan:";
-}
-
-$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-$fecha_actual=getdate();
-$fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
 
 //----------------------- Configuración del PDF ------------------
-$titulo_PDF = "<label><strong>CONSEJERÍA DE EDUCACIÓN CULTURA Y DEPORTES DE CASTILLA - LA MANCHA<br>".strtoupper($datos_cen["centro"]) ." DE ". strtoupper($datos_cen["localidad_centro"])."</strong></label>";
 include("cabecera_pdf.php");
+$titulo_PDF = "<label><strong>CONSEJERÍA DE EDUCACIÓN CULTURA Y DEPORTES DE CASTILLA - LA MANCHA<br>".strtoupper($datos_cen["centro"]) ." DE ". strtoupper($datos_cen["localidad_centro"])."</strong></label>";
 $pdf = new MYPDF($datos_cen, $titulo_PDF);
 
 $mysqli->close();
@@ -149,6 +135,22 @@ $pdf->setFillColor(200);  //Relleno en gris
 $pdf->AddPage();
 
 // ---------------------------------------------------------
+if($valoracion=="exento"){
+	$texto_acuerda="<b>RECONOCER</b> la exención <b>TOTAL</b> del Período de Formación en Empresas por su correspondencia con la experiencia laboral acreditada.";
+	$motivo="";
+}
+elseif($valoracion=="parcialmente exento"){
+	$texto_acuerda="<b>RECONOCER</b> la exención <b>PARCIAL</b> del Período de Formación en Empresas por los motivos que a continuación se razonan:";
+}
+elseif($valoracion=="no exento"){
+	$texto_acuerda="<b>NO RECONOCER</b> la exención del Período de Formación en Empresas por los motivos que a continuación se razonan:";
+}
+
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+$fecha_actual=getdate();
+$fecha_firma=$datos_cen["localidad_centro"].", a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
+
+
 
 //Padding dentro de la celda del texto
 $pdf->setCellPaddings(0,0,0,0);
