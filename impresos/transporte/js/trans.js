@@ -188,7 +188,7 @@ function registraSolicitud() {
     $.post("php/generapdf.php",$("#transporte").serialize(),(r2)=>{
         alert(r2);
         ocultarPantallaEspera();
-        if (r2.indexOf("envio_ok") != -1) {
+        if (r2.indexOf("envio_ok") != -1 || r2=="envio_ok") {
             mensaje = "Proceso finalizado correctamente.<br>";
             mensaje += "Puede descargar el impreso de solicitud de transporte escolar registrado desde el panel de control del usuario.";
             alerta(mensaje, "Registro correcto");
