@@ -163,13 +163,14 @@ while ($fila = $result->fetch_assoc()) {
 }
 
 $stmt->close();
-$mysqli->close();
 
 
-//----------------------- Creación y configuración del PDF ------------------
+//----------------------- Configuración del PDF ------------------
 $titulo_PDF = "INFORME COMEDOR<br>" . $fecha_formateada;
 include("cabecera_pdf.php");
 $pdf = new MYPDF($datos_cen, $titulo_PDF);
+
+$mysqli->close();
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
