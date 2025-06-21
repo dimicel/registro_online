@@ -191,7 +191,7 @@ function registraSolicitud() {
         if (r2.indexOf("envio_ok") != -1 || r2=="envio_ok") {
             mensaje = "Proceso finalizado correctamente.<br>";
             mensaje += "Puede descargar el impreso de solicitud de transporte escolar registrado desde el panel de control del usuario.";
-            alerta(mensaje, "Registro correcto");
+            alerta(mensaje, "Registro correcto",true);
         } else if (r2 == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la solicitud.<br>Por favor, vuelva a intentarlo más tarde.";
             alerta(mensaje, "Error de servidor");
