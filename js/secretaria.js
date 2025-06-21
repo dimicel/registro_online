@@ -2022,11 +2022,14 @@ function seleccionaRegistros(valor) {
 }
 
 function habilitaMenu(m2, m3) {
-    return;
-    if (m2) $("#menu2").removeClass("disabled");
-    else if (!m2) $("#menu2").addClass("disabled");
-    if (m3) $("#menu3").removeClass("disabled");
-    else if (!m3) $("#menu3").addClass("disabled");
+    $("#menu2").addClass("disabled");
+    $("#menu3").addClass("disabled");
+    document.getElementById("menu2").style.display = "none";
+    document.getElementById("menu3").style.display = "none";
+    //if (m2) $("#menu2").removeClass("disabled");
+    //else if (!m2) $("#menu2").addClass("disabled");
+    //if (m3) $("#menu3").removeClass("disabled");
+    //else if (!m3) $("#menu3").addClass("disabled");
 }
 
 
