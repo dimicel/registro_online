@@ -166,7 +166,7 @@ $stmt->close();
 $mysqli->close();
 
 
-// create new PDF document
+//----------------------- Creación y configuración del PDF ------------------
 $titulo_PDF = "INFORME COMEDOR<br>" . $fecha_formateada;
 include("cabecera_pdf.php");
 $pdf = new MYPDF($datos_cen, $titulo_PDF);
@@ -202,13 +202,14 @@ if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
 	$pdf->setLanguageArray($l);
 }
 
-// -------------------------------------------------------------------------------------
-
 $pdf->setFontSubsetting(true);
 
 $pdf->SetFont('dejavusans', '', 8, '', true);
 $pdf->setFillColor(200);  //Relleno en gris
 $pdf->AddPage();
+// -------------------------------------------------------------------------------------
+
+
 $XInicio=10;
 $YInicio=50;
 $pdf->SetXY($XInicio,$YInicio);
