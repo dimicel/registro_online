@@ -7,9 +7,10 @@ if ($mysqli->errno>0) {
     exit("servidor");
 }
 
-$mysqli->set_charset("utf8");
+// Include TCPDF library
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
+include("../../../php/cabecera_pdf.php");
 
 function generaRegistro(){
     $minus="abcdefghijklmnopqrstuvwxyz";
@@ -152,42 +153,16 @@ else{
 
 //GENERA EL PDF Y LO GUARDA EN EL SERVIDOR
 
-class MYPDF extends TCPDF {
-
-	//Page header
-	public function Header() {
-		// Logo
-		$image_file = '../../../recursos/logo_ccm.jpg';
-		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$image_file = '../../../recursos/mini_escudo.jpg';
-		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-
-		$this->SetFont('helvetica', 'B', 14);
-		$this->SetXY(0,10);
-		$this->Cell(0,0,"M A T R Í C U L A",0,0,'C',0,'',1,false,'T','T');
-			
-		$this->SetFont('helvetica', '', 8);
-		// Title
-		//$this->setCellHeightRatio(1.75);
-		$encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
-		$this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
-		//$this->Ln();
-		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
-		
-	}
-}
-
-
-
 // create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$titulo_PDF = "M A T R Í C U L A";
+$pdf = new MYPDF($datos_cen, $titulo_PDF);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('IES Universidad Laboral');
+$pdf->SetAuthor($datos_cen["centro"]);
 $pdf->SetTitle('Impreso Matrícula');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Impreso Matrícula');
+$pdf->SetKeywords('PDF, secretaría,  '. $datos_cen["localidad_centro"].', Impreso Matrícula');
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -387,7 +362,7 @@ $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $texto_consent, 0, 1, false, true, '',
 //--------FINAL
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 $fecha_actual=getdate();
-$fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
+$fecha_firma=$datos_cen["localidad_centro"].", a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
 $texto=<<<EOD
 <p style="text-align:center">$fecha_firma<br>Nº de registro: $registro</p>
 EOD;
