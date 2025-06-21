@@ -32,7 +32,7 @@
         <!--CABECERA  ------------------------------------------------------------------------------------>
         <div class="d-flex flex-row justify-content-center" style="margin-top:30px">
             <div class="col-2 justify-content-start">
-                <input style="width:175px; height:100px" type="image" src="recursos/logo_ccm.jpg" />
+                <input style="width:175px; height:100px" type="image" src="../../recursos/logo_ccm.jpg" />
             </div>
             <div class="col-8 justify-content-center" style="text-align: center;">
                 <h5>IES UNIVERSIDAD LABORAL DE TOLEDO</h5>
@@ -42,7 +42,7 @@
                 <h7 style="color:#900; font-weight:bold">&nbsp;</h7>
             </div>
             <div class="col-2 justify-content-end">
-                <input style="width:150px; height:150px" type="image" src="recursos/mini_escudo.jpg" />
+                <input style="width:150px; height:150px" type="image" src="../../recursos/mini_escudo.jpg" />
             </div>
         </div>
         <label style="color:red !important;margin-left:100px;margin-top:30px">* Campos obligatorios</label>
