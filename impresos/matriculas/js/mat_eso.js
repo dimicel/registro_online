@@ -412,12 +412,12 @@ function registraMatricula() {
     f.appendChild(f3.tlf_tutor2);
     
   
-    $("#cargando").show();
+    mostrarPantallaEspera();
     $.post(f.action, $("#matricula_eso").serialize(),(r1)=>{
-        $("#cargando").hide();
+        ocultarPantallaEspera();
         if (r1.indexOf("envio_ok")>-1){
             if ($("input:radio[name=transporte]:checked").val()=="Si"){
-                $("#cargando").hide();
+                ocultarPantallaEspera();
                 document.location="../transporte/transporte.php?origen=mat&q="+Date.now().toString();
             }
             else {

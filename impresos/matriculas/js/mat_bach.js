@@ -359,7 +359,7 @@ function registraMatricula() {
     f.appendChild(f3.email_tutor2);
     f.appendChild(f3.tlf_tutor2);
 
-    $("#cargando").show();
+    mostrarPantallaEspera();
 
     var pet = $.ajax({
         url: f.action,
@@ -367,7 +367,7 @@ function registraMatricula() {
         data: $("#matricula_bach").serialize()
     });
     $.when(pet).done(function(resp) {
-        $("#cargando").hide();
+        ocultarPantallaEspera();
         if (resp == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
             alerta(mensaje, "Error de servidor", true);

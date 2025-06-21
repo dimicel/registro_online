@@ -295,12 +295,12 @@ function registraMatricula() {
     f.appendChild(f5.autor_fotos);
 
 
-    $("#cargando").show();
+    mostrarPantallaEspera();
     $.post(f.action, $("#mat_fpb").serialize(),(r1)=>{
-        $("#cargando").hide();
+        ocultarPantallaEspera();
         if (r1.indexOf("envio_ok")>-1){
             if ($("input:radio[name=transporte]:checked").val()=="Si"){
-                $("#cargando").hide();
+                ocultarPantallaEspera();
                 document.location="../transporte/transporte.php?origen=mat&q="+Date.now().toString();
             }
             else {
