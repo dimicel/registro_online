@@ -6,6 +6,7 @@ include("../../../php/conexion.php");
 if ($mysqli->errno>0) {
     exit("servidor");
 }
+include("../../../php/cabecera_pdf.php");
 
 $mysqli->set_charset("utf8");
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
@@ -212,7 +213,7 @@ $dia=$fecha_actual["mday"];
 $mes=$meses[$fecha_actual["mon"]-1];
 $anno=$fecha_actual["year"];
 
-class MYPDF extends TCPDF {
+/*class MYPDF extends TCPDF {
 
 	//Page header
 	public function Header() {
@@ -235,18 +236,22 @@ class MYPDF extends TCPDF {
 		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
 		
 	}
-}
+}*/
 
 
 // create new PDF document
-$pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+//$pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+// create new PDF document
+$titulo_PDF = "CONVALIDACIÓN";
+$pdf = new MYPDF($datos_cen, $titulo_PDF);
+
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('IES Universidad Laboral');
+$pdf->SetAuthor($datos_cen["centro"]);
 $pdf->SetTitle('Convalidaciones');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Convalidaciones');
+$pdf->SetKeywords('PDF, secretaría, '. $datos_cen["localidad_centro"].', Convalidaciones');
 
 // set default monospaced font
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -438,7 +443,7 @@ if ($documentos_aportados!=""){
 
 $pdf->setCellHeightRatio(1.4);
 $pdf->SetXY(10,177);
-$pdf->Cell(0,0,"Toledo, a ".$dia." de  ".$mes." de ".$anno,0,0,'C',0,'',1,true,'T','T');
+$pdf->Cell(0,0,$datos_cen["localidad_centro"].", a ".$dia." de  ".$mes." de ".$anno,0,0,'C',0,'',1,true,'T','T');
 
 $pdf->SetFont('dejavusans', '', 5, '', true);
 $pdf->SetXY(10,195);
