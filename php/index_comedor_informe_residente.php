@@ -175,13 +175,9 @@ $pdf = new MYPDF($datos_cen, $titulo_PDF);
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor($datos_cen["centro"]);
-$pdf->SetTitle('PDF DNI/NIF');
+$pdf->SetTitle('PDF '.$titulo_PDF);
 $pdf->SetSubject('Residencia Comedor Informe Residente');
 $pdf->SetKeywords('PDF, comedor,'. $datos_cen["localidad_centro"].', PDF DNI/NIF');
-
-// set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-//$pdf->setFooterData();
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
