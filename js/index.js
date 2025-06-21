@@ -57,7 +57,7 @@ $(function() {
         return _nif_duplicado;
     });
 
-    $.post("php/secret_recupera_nombre_centro.php",{},(resp)=>{
+    $.post("php/secret_recupera_param_centro.php",{},(resp)=>{
         document.getElementById("centro").innerHTML=resp["registro"]["centro"].toUpperCase();
         document.getElementById("titulo").innerHTML+=resp["registro"]["centro"].toUpperCase();
     },"json");
