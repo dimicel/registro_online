@@ -89,7 +89,6 @@ while($repite_registro){
     $vReg->free();
 }
 $dirRegistro=substr($registro, 17);
-exit ("ok");
 ///Parametro de bind sss por la siguiente tabla
 //"i": Entero (integer)
 //"d": Decimal (double)
