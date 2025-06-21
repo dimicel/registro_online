@@ -27,14 +27,12 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('IES Universidad Laboral');
+$pdf->SetAuthor('IES');
 $pdf->SetTitle('PDF DNI/NIF');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, PDF DNI/NIF');
+$pdf->SetKeywords('PDF, secretaría, PDF DNI/NIF');
 
-// set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-//$pdf->setFooterData();
+
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
