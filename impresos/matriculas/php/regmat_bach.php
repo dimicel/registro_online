@@ -2,16 +2,14 @@
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("../../../php/conexion.php");
-require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
-require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 
 if ($mysqli->errno>0) {
     exit("servidor");
 }
-
-$mysqli->set_charset("utf8");
+// Cargamos las librerías de TCPDF
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
+include("../../../php/cabecera_pdf.php");
 
 $desc_reg = Array(
     "1º Bach. HH.CC.SS."=>"ma1bah",
@@ -151,7 +149,7 @@ else{
 }
 //GENERA EL PDF Y LO GUARDA EN EL SERVIDOR
 
-class MYPDF extends TCPDF {
+/*class MYPDF extends TCPDF {
 
 	//Page header
 	public function Header() {
@@ -174,18 +172,19 @@ class MYPDF extends TCPDF {
 		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
 		
 	}
-}
-
+}*/
 
 // create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$titulo_PDF = "";
+$pdf = new MYPDF($datos_cen, $titulo_PDF);
+
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('IES Universidad Laboral');
+$pdf->SetAuthor($datos_cen["centro"]);
 $pdf->SetTitle('Impreso Matrícula');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Impreso Matrícula');
+$pdf->SetKeywords('PDF, secretaría, '. $datos_cen["localidad_centro"].', Impreso Matrícula');
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -449,7 +448,7 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
 $yyyy=substr($fecha_registro,0,4);
 $mm=$meses[intval(substr($fecha_registro,5,2))-1];
 $dd=substr($fecha_registro,8,2);
-$fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
+$fecha_firma=$datos_cen["localidad_centro"].", a ".$dd." de ".$mm." de ".$yyyy;
 $texto=<<<EOD
 <p style="text-align:center">$fecha_firma<br>Nº de registro: $registro</p>
 EOD;
