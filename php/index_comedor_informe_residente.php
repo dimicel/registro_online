@@ -24,8 +24,6 @@ $meses = [
 list($mes, $anio) = explode('/', $mes_anno);
 $fecha_formateada = $meses[$mes] . '/' . $anio; 
 
-$titulo_PDF = "INFORME COMEDOR<br>" . $fecha_formateada;
-include("cabecera_pdf.php");
 
 $ausencias_avisadas=array();
 $ausencias_no_avisadas=array();
@@ -169,7 +167,8 @@ $mysqli->close();
 
 
 // create new PDF document
-//$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$titulo_PDF = "INFORME COMEDOR<br>" . $fecha_formateada;
+include("cabecera_pdf.php");
 $pdf = new MYPDF($datos_cen, $titulo_PDF);
 
 // set document information
