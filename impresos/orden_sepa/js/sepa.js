@@ -30,7 +30,7 @@ $(document).ready(function() {
             window.history.back();
         }
 
-        return $.post("php/datos_residente.php", {id_nie:id_nie, curso:"2024-2025" }, () => {}, "json");
+        return $.post("php/datos_residente.php", {id_nie:id_nie, curso:anno_curso }, () => {}, "json");
     });
     dat3 = dat2.then((resp) => {
         if (resp.error=="ok"){
