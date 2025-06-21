@@ -20,6 +20,8 @@ else {
     $datosCentro=$consultaCentro->fetch_assoc();
     $nombreDirector=$datosCentro["director"];
     $nombreDirectorMayus=strtoupper($nombreDirector);
+    $nombre_centro=$datosCentro["centro"];
+    $localidad_centro=$datosCentro["localidad_centro"];
 }
 $genera_resolucion=$_POST["genera_resolucion"];
 $registro=$_POST["registro"];
@@ -162,14 +164,10 @@ if($res_fav>0 || $res_nofav>0 || $res_noproc>0){
 
     // set document information
     $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetAuthor('IES Universidad Laboral');
+    $pdf->SetAuthor($datos_cen["centro"]);
     $pdf->SetTitle('Resolución Convalidaciones');
     $pdf->SetSubject('Secretaría');
-    $pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Resolución Convalidaciones');
-
-    // set default header data
-    $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-    //$pdf->setFooterData();
+    $pdf->SetKeywords('PDF, secretaría, '. $datos_cen["localidad_centro"].', Resolución Convalidaciones');
 
     // set header and footer fonts
     $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -206,8 +204,8 @@ if($res_fav>0 || $res_nofav>0 || $res_noproc>0){
 
     $pdf->SetXY(0,$Yinicio);
     $pdf->SetFont('helvetica', '', 8);
-
-    $html="<p>D. <b>$nombreDirectorMayus</b>, director del centro educativo <b>IES UNIVERSIDAD LABORAL (Toledo)</b>, una vez examinada la documentación presentada por ";
+    
+    $html="<p>D. <b>$nombreDirectorMayus</b>, director del centro educativo <b>$nombre_centro ($localidad_centro)</b>, una vez examinada la documentación presentada por ";
     $html.="<b>".strtoupper($dr["nombre"])." ".strtoupper($dr["apellidos"])."</b> en la solicitud con nº de registro " . $registro . " por la que solicita la convalidación de módulos de Formación Profesional correspondientes al ";
     if ($dr["grado"]=="Curso de Especialización"){
         $html.=$dr["grado"] . " " . "<b>".strtoupper($dr["ciclo"])."</b>";
@@ -277,7 +275,7 @@ if($res_fav>0 || $res_nofav>0 || $res_noproc>0){
     $dd=$fecha_actual["mday"];
     $mm=$meses[$fecha_actual["mon"]-1];
     $yyyy=$fecha_actual["year"];
-    $fecha_firma="Toledo, a ".$dd." de ".$mm." de ".$yyyy;
+    $fecha_firma=$localidad_centro.", a ".$dd." de ".$mm." de ".$yyyy;
     $pdf->SetFont('helvetica', '', 8);
     //$Yinicio=$pdf->GetY();
     //$pdf->SetXY(0,$Yinicio);
@@ -314,7 +312,12 @@ if($res_fav>0 || $res_nofav>0 || $res_noproc>0){
 }
 elseif($res_min>0 || $res_con>0) {
     class MYPDF extends TCPDF {
+        private $datosCentro;
 
+        public function __construct($datosCentro, $orientation = PDF_PAGE_ORIENTATION, $unit = PDF_UNIT, $format = PDF_PAGE_FORMAT, $unicode = true, $encoding = 'UTF-8', $diskcache = false, $pdfa = false) {
+            parent::__construct($orientation, $unit, $format, $unicode, $encoding, $diskcache, $pdfa);
+            $this->datosCentro = $datosCentro;
+        }
         //Page header
         public function Header() {
             // Logo
@@ -330,7 +333,7 @@ elseif($res_min>0 || $res_con>0) {
             $this->SetFont('helvetica', '', 8);
             // Title
             //$this->setCellHeightRatio(1.75);
-            $encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
+		$encab = "<label><strong>".$this->datosCentro["centro"]."</strong><br>".$this->datosCentro["direccion_centro"]."<br>".$this->datosCentro["cp_centro"]."-".$this->datosCentro["localidad_centro"]."<br>Tlf.:".$this->datosCentro["tlf_centro"]."<br>Fax:".$this->datosCentro["fax_centro"]."</label>";
             $this->writeHTMLCell(0, 0, 160, 20, $encab, 0, 1, 0, true, 'C', true);
             //$this->Ln();
             //$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
@@ -338,18 +341,14 @@ elseif($res_min>0 || $res_con>0) {
     }
 
     // create new PDF document
-    $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+    $pdf = new MYPDF($datosCentro);
 
     // set document information
     $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetAuthor('IES Universidad Laboral');
+    $pdf->SetAuthor($nombre_centro);
     $pdf->SetTitle('Resolución Convalidaciones');
     $pdf->SetSubject('Secretaría');
-    $pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Resolución Convalidaciones');
-
-    // set default header data
-    $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-    //$pdf->setFooterData();
+    $pdf->SetKeywords('PDF, secretaría, '.$localidad_centro.', Resolución Convalidaciones');
 
     // set header and footer fonts
     $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
