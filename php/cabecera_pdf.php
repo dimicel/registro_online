@@ -23,7 +23,7 @@ class MYPDF extends TCPDF {
 		$image_file = '../recursos/mini_escudo.jpg';
 		$this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 
-		$this->SetFont('helvetica', 'B', 14);
+		$this->SetFont('helvetica', 'B', 12);
 		$this->SetXY(0,0);
 		$this->writeHTMLCell(105, 0, 35, 10, '<div style="text-align:center; font-weight:bold;">' . $this->titulo . '</div>', 0, 1, 0, true, 'C', true);
 			
