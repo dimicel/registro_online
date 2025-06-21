@@ -9,7 +9,7 @@ include("../../../php/conexion.php");
 if ($mysqli->errno>0) {
     exit("servidor");
 }
-include("../../../php/cabecera_pdf.php");
+//include("../../../php/cabecera_pdf.php");
 
 $id_nie=$_POST['id_nie'];
 $registro=$_POST['registro'];
