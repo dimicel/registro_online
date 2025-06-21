@@ -51,7 +51,7 @@ $pdf_sepa = new MYPDF_sepa('P', 'mm', 'A4', true, 'UTF-8', false);
 
 // set document information
 $pdf_sepa->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor("Centro Educativo");
+$pdf_sepa->SetAuthor("Titular Cuenta");
 $pdf_sepa->SetTitle('Inscripción a Residencia_SEPA');
 $pdf_sepa->SetSubject('Residencia');
 $pdf_sepa->SetKeywords('PDF, residencia, '. $datos_cen["localidad_centro"].', Inscripción residentes_SEPA');
