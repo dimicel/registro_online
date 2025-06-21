@@ -7,30 +7,12 @@ include("../../../php/mail.php");
 if ($mysqli->errno>0) {
     exit("servidor");
 }
-$mysqli->set_charset("utf8");
 
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
+include("../../../php/cabecera_pdf.php");
 
 
-class MYPDF extends TCPDF {
-
-	//Page header
-	public function Header() {
-		// Logo
-		$image_file = '../../../recursos/logo_ccm.jpg';
-		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$image_file = '../../../recursos/mini_escudo.jpg';
-		$this->Image($image_file, 170, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-				
-		$this->SetFont('helvetica', '', 8);
-		// Title
-		$encab = "<label><strong>Consejería de Educación, Cultura y Deportes<br>IES Universidad Laboral</strong><br>Avda. Europa, 28 45003 TOLEDO<br>Tlf.:925 22 34 00 Fax:925 22 24 54 e-mail 45003796.ies@edu.jccm.es</label>";
-		$this->writeHTMLCell(0, 0, 40, 11, $encab, 0, 1, 0, true, '', true);	
-	}
-
-
-}
 
 function generaRegistro(){
     $minus="abcdefghijklmnopqrstuvwxyz";
@@ -163,16 +145,17 @@ if ($mysqli->errno>0){
     exit("registro_erroneo ".$mysqli->errno);
 }
 
-
 // create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$titulo_PDF = "";
+$pdf = new MYPDF($datos_cen, $titulo_PDF);
+
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('IES Universidad Laboral');
+$pdf->SetAuthor($datos_cen["centro"]);
 $pdf->SetTitle('Revisión de Calificación');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Revisión de Calificación');
+$pdf->SetKeywords('ulaboral, PDF, secretaría, '. $datos_cen["localidad_centro"].', Revisión de Calificación');
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -223,15 +206,17 @@ $YInicio=60;
 $XInicio=10;
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 $fecha_actual=getdate();
-$fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
-
+$fecha_firma=$datos_cen["localidad_centro"].", a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
+$centro_estudios= strtoupper($datos_cen["centro"]);
+$localidad_centro= strtoupper($datos_cen["localidad_centro"]);
+$provincia_centro= strtoupper($datos_cen["provincia_centro"]);
 $texto=<<<EOD
 <h2 style="text-align:center"><b>SOLICITUD DE REVISIÓN DE LA CALIFICACIÓN</b></h2>
 <br><br>
 <b>$lista_don $nombre</b>, con <b>$num_documento</b>, domicilio <b>$domicilio</b>, teléfono <b>$telefono</b>, población <b>$poblacion</b> C.P. <b>$cp</b> y provincia <b>$provincia</b>,
 <br><br>
 <b>EXPONE:</b><br>
-1.- Que está cursando en el centro <b>IES UNIVERSIDAD LABORAL</b> Localidad <b>TOLEDO</b> Provincia de <b>TOLEDO</b> el ciclo formativo de grado <b>$grado</b> denominado <b>$ciclo</b>.<br>
+1.- Que está cursando en el centro <b>$centro_estudios</b> Localidad <b>$localidad_centro</b> Provincia de <b>$provincia_centro</b> el ciclo formativo de grado <b>$grado</b> denominado <b>$ciclo</b>.<br>
 2.- Que ha obtenido una calificación final del módulo <b>$modulo</b> una nota de <b>$nota</b><br><br>
 <b>SOLICITA:</b><br>
 1.- Una revisión de dicha calificación.<br>
@@ -242,7 +227,7 @@ EOD;
 
 $pdf->SetXY($XInicio,$YInicio);
 $pdf->writeHTMLCell(180,0,$XInicio,$YInicio,$texto,0,0,false,true,'',true);
-$pdf->MultiCell(180,0,"JEFE/A DE ESTUDIOS DEL IES UNIVERSIDAD LABORAL DE TOLEDO",0,'L',0,1,10,280,true,0,true,false,0);
+$pdf->MultiCell(180,0,"JEFE/A DE ESTUDIOS DEL".strtoupper($datos_cen["centro"])." DE ".strtoupper($datos_cen["localidad_centro"]),0,'L',0,1,10,280,true,0,true,false,0);
 
 $style_qr = array(
     'border' => false,
@@ -256,7 +241,7 @@ $pdf->write2DBarcode($registro."\t".$nombre."\tREVISION CALIFICACION", "PDF417",
 $mail->addAddress($email, '');
 $mail->Subject = 'Registro Online';
 
-$cuerpo = 'Registro online del IES Universidad Laboral<br>';
+$cuerpo = 'Registro online del '.$datos_cen["centro"].'<br>';
 $cuerpo .= 'Tipo de formulario: Revisión de calificación<br><br>';
 $cuerpo .= 'Su solicitud ha sido generada con el número de registro: '.$registro.'<br>';
 $mail->Body =$cuerpo;
