@@ -6,26 +6,6 @@ require_once('tcpdf/config/tcpdf_config_alt.php');
 require_once('tcpdf/tcpdf.php');
 header("Content-Type: text/html;charset=utf-8");
 
-class MYPDF extends TCPDF {
-
-	//Page header
-	public function Header() {
-		// Logo
-		$image_file = '../recursos/logo_ccm.jpg';
-		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$image_file = '../recursos/mini_escudo.jpg';
-		$this->Image($image_file, 180, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-				
-		$this->SetFont('helvetica', '', 8);
-		// Title
-		//$this->setCellHeightRatio(1.75);
-		$encab = "<label><strong>CONSEJERÍA DE EDUCACIÓN CULTURA Y DEPORTES DE CASTILLA - LA MANCHA<br>IES UNIVERSIDAD LABORAL DE TOLEDO</strong></label>";
-		$this->writeHTMLCell(0, 0, 15, 11, $encab, 0, 1, 0, true, 'C', true);
-		//$this->Ln();
-		//$this->writeHTMLCell(0, 0, '', '', '', 'B', 1, 0, true, 'L', true);
-		
-	}
-}
 
 if ($mysqli->errno>0) {
     exit("server");
@@ -101,7 +81,6 @@ if (!$stmt->execute()) {
     exit("sin_actualizacion");
 }*/
 $stmt->close();
-$mysqli->close();
 
 
 
@@ -123,19 +102,19 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
 $fecha_actual=getdate();
 $fecha_firma="Toledo, a ".$fecha_actual["mday"]." de ".$meses[$fecha_actual["mon"]-1]." de ".$fecha_actual["year"];
 
-// create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+//----------------------- Configuración del PDF ------------------
+$titulo_PDF = "<label><strong>CONSEJERÍA DE EDUCACIÓN CULTURA Y DEPORTES DE CASTILLA - LA MANCHA<br>".strtoupper($datos_cen["centro"]) ." DE ". strtoupper($datos_cen["localidad_centro"])."</strong></label>";
+include("cabecera_pdf.php");
+$pdf = new MYPDF($datos_cen, $titulo_PDF);
+
+$mysqli->close();
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('IES Universidad Laboral');
-$pdf->SetTitle('Exención PFE - Informe JD');
+$pdf->SetAuthor($datos_cen["centro"]);
+$pdf->SetTitle('Exención PFE - Reslución');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Exención PFE - Informe JD');
-
-// set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-//$pdf->setFooterData();
+$pdf->SetKeywords('PDF, secretaría, '. $datos_cen["localidad_centro"].', Exención PFE - Resolución');
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -161,8 +140,6 @@ if (@file_exists(dirname(__FILE__).'/lang/spa.php')) {
 	$pdf->setLanguageArray($l);
 }
 
-// ---------------------------------------------------------
-
 $pdf->setFontSubsetting(true);
 
 $pdf->SetFont('dejavusans', '', 8, '', true);
@@ -171,7 +148,7 @@ $pdf->setFillColor(200);  //Relleno en gris
 
 $pdf->AddPage();
 
-
+// ---------------------------------------------------------
 
 //Padding dentro de la celda del texto
 $pdf->setCellPaddings(0,0,0,0);
