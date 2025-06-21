@@ -175,7 +175,7 @@ else{
 }*/
 
 // create new PDF document
-$titulo_PDF = "";
+$titulo_PDF = "M A T R Í C U L A";
 $pdf = new MYPDF($datos_cen, $titulo_PDF);
 
 
