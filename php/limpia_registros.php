@@ -13,36 +13,7 @@ $usuarios_borrados=0;
 $carpetas_borradas=0;
 
 
-function borraCarpetas($directorioBase) {
-    if (!is_dir($directorioBase)) {
-        return false;
-    }
-    
-    // Abrir el directorio
-    $dirHandle = opendir($directorioBase);
-    
-    // Recorrer los contenidos del directorio
-    while (($file = readdir($dirHandle)) !== false) {
-        if ($file != "." && $file != "..") {
-            $filePath = $directorioBase . DIRECTORY_SEPARATOR . $file;
-            
-            // Si es un directorio, llamar a la función recursivamente
-            if (is_dir($filePath)) {
-                borraCarpetas($filePath);
-            } else {
-                // Si es un archivo, eliminarlo
-                unlink($filePath);
-            }
-        }
-    }
-    
-    // Cerrar el manejador de directorio
-    closedir($dirHandle);
-    
-    // Eliminar el directorio base
-    
-    return rmdir($directorioBase);
-}
+
 
 $consulta="select * from usuarios where no_ha_entrado=1 order by id_nie";
 $result = $mysqli->query($consulta);

@@ -83,3 +83,34 @@ function contarArchivos($dir) {
 
     return $contador;
 }
+
+function borraCarpetas($directorioBase) {
+    if (!is_dir($directorioBase)) {
+        return false;
+    }
+    
+    // Abrir el directorio
+    $dirHandle = opendir($directorioBase);
+    
+    // Recorrer los contenidos del directorio
+    while (($file = readdir($dirHandle)) !== false) {
+        if ($file != "." && $file != "..") {
+            $filePath = $directorioBase . DIRECTORY_SEPARATOR . $file;
+            
+            // Si es un directorio, llamar a la función recursivamente
+            if (is_dir($filePath)) {
+                borraCarpetas($filePath);
+            } else {
+                // Si es un archivo, eliminarlo
+                unlink($filePath);
+            }
+        }
+    }
+    
+    // Cerrar el manejador de directorio
+    closedir($dirHandle);
+    
+    // Eliminar el directorio base
+    
+    return rmdir($directorioBase);
+}
