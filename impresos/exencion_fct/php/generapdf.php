@@ -8,41 +8,8 @@ include("../../../php/conexion.php");
 if ($mysqli->errno>0) {
     exit("servidor");
 }
+include("../../../php/funciones.php");
 include("../../../php/cabecera_pdf.php");
-
-
-function generaRegistro(){
-    $minus="abcdefghijklmnopqrstuvwxyz";
-    $nums="0123456789";
-    $array=array("","","","","","","","");
-    $registro="";
-    $array[0]=substr($nums,mt_rand(0,strlen("mayus")-1),1);
-    $array[1]=substr($minus,mt_rand(0,strlen("minus")-1),1);
-    $array[2]=substr($nums,mt_rand(0,strlen("nums")-1),1);
-    $array[3]=substr($minus,mt_rand(0,strlen("mayus")-1),1);
-    $array[4]=substr($nums,mt_rand(0,strlen("minus")-1),1);
-    $array[5]=substr($minus,mt_rand(0,strlen("nums")-1),1);
-    $array[6]=substr($nums,mt_rand(0,strlen("mayus")-1),1);
-    $array[7]=substr($minus,mt_rand(0,strlen("signos")-1),1);
-    shuffle($array);
-    return "iesulabto_exefem_".date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];;    
-}
-
-function quitaAcentos($s){	
-    $s=str_replace("á","a",$s);
-    $s=str_replace("é","e",$s);
-    $s=str_replace("í","i",$s);
-    $s=str_replace("ó","o",$s);
-    $s=str_replace("ú","u",$s);
-    $s=str_replace("Á","A",$s);
-    $s=str_replace("É","E",$s);
-    $s=str_replace("Í","I",$s);
-    $s=str_replace("Ó","O",$s);
-    $s=str_replace("Ú","U",$s);
-    $s=str_replace("1ª","Primera",$s);
-    $s=str_replace("2ª","Segunda",$s);
-    return $s;
-}
 
 
 $anno_curso= $_POST['anno_curso'];
@@ -99,14 +66,14 @@ if (isset($_POST["desc"])){
     $docs=$_FILES['docs'];
 }
 
-$registro= generaRegistro();
+$registro= generaRegistro("iesulabto_exefem_");
 
 
 $repite_registro=true;
 while ($repite_registro){
     $res=$mysqli->query("select * from exencion_fct where registro='$registro'");
     if ($res->num_rows>0){
-       $registro= generaRegistro(); 
+       $registro= generaRegistro("iesulabto_exefem_"); 
     }
     else if ($res->num_rows==0){
         $repite_registro=false;
