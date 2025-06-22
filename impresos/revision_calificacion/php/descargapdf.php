@@ -9,24 +9,8 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="corr
 require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 include("../../../php/conexion.php");
+include("../../../php/cabecera_pdf.php");
 header('Content-type: application/pdf');
-
-
-class MYPDF extends TCPDF {
-	//Page header
-	public function Header() {
-		// Logo
-		$image_file = '../../../recursos/logo_ccm.jpg';
-		$this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$image_file = '../../../recursos/mini_escudo.jpg';
-		$this->Image($image_file, 170, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-				
-		$this->SetFont('helvetica', '', 8);
-		// Title
-		$encab = "<label><strong>Consejería de Educación, Cultura y Deportes<br>IES Universidad Laboral</strong><br>Avda. Europa, 28 45003 TOLEDO<br>Tlf.:925 22 34 00 Fax:925 22 24 54 e-mail 45003796.ies@edu.jccm.es</label>";
-		$this->writeHTMLCell(0, 0, 40, 11, $encab, 0, 1, 0, true, '', true);	
-	}
-}
 
 
 if (!isset($_POST["referencia"])) {
@@ -72,14 +56,16 @@ elseif ($tipo_doc=="PASS"){
 
 
 // create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$titulo_PDF = "";
+$pdf = new MYPDF($datos_cen, $titulo_PDF);
+
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('IES Universidad Laboral');
-$pdf->SetTitle('');
+$pdf->SetAuthor($datos_cen["centro"]);
+$pdf->SetTitle('Revisión de Calificación');
 $pdf->SetSubject('Secretaría');
-$pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo');
+$pdf->SetKeywords('PDF, secretaría, '. $datos_cen["localidad_centro"].', Revisión de Calificación');
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
