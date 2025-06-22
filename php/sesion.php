@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("conexion.php");
+include("funciones.php");
 header("Expires: Tue, 01 Jul 2001 06:00:00 GMT");
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -96,24 +97,3 @@ function calculaCurso_ini_docs(){
         return $anno-1;
 }
 
-
-
-function getRealIPAddr()
-   {
-       //check ip from share internet
-       if (!empty($_SERVER['HTTP_CLIENT_IP'])) 
-       {
-           $ip = $_SERVER['HTTP_CLIENT_IP'];
-       }
-       //to check ip is pass from proxy
-       elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))  
-       {
-           $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-       }
-       else
-       {
-           $ip = $_SERVER['REMOTE_ADDR'];
-       }
-
-       return $ip;
-   }
