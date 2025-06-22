@@ -3,6 +3,7 @@ session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 header('Content-Type: text/html; charset=UTF-8');
 include("conexion.php");
+include("funciones.php");
 
 if ($mysqli->errno>0) exit("server");
 
@@ -133,24 +134,7 @@ exit(strval($fallo_alta));
 
 
 
-function password(){
-    $mayus="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    $minus="abcdefghijklmnopqrstuvwxyz";
-    $nums="0123456789";
-    $array=array("","","","","","","","");
-    $password="";
-    $array[0]=substr($mayus,mt_rand(0,strlen("mayus")-1),1);
-    $array[1]=substr($minus,mt_rand(0,strlen("minus")-1),1);
-    $array[2]=substr($nums,mt_rand(0,strlen("nums")-1),1);
-    $array[3]=substr($mayus,mt_rand(0,strlen("mayus")-1),1);
-    $array[4]=substr($minus,mt_rand(0,strlen("minus")-1),1);
-    $array[5]=substr($nums,mt_rand(0,strlen("nums")-1),1);
-    $array[6]=substr($mayus,mt_rand(0,strlen("mayus")-1),1);
-    $array[7]=substr($minus,mt_rand(0,strlen("signos")-1),1);
-    shuffle($array);
-    $password=$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];
-    return $password;
-}
+
 
 
 
