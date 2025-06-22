@@ -213,39 +213,18 @@ elseif($tipo_envio=="multiple"){
     else{
         require_once(__DIR__.'/tcpdf/config/tcpdf_config_alt.php');
         require_once(__DIR__.'/tcpdf/tcpdf.php');
-        
-        class MYPDF extends TCPDF {
-
-            //Page header
-            public function Header() {
-                // Logo
-                $image_file = '../recursos/logo_ccm.jpg';
-                $this->Image($image_file, 10, 10, 25, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-                $image_file = '../recursos/mini_escudo.jpg';
-                $this->Image($image_file, 140, 10, 20, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-        
-                $this->SetFont('helvetica', 'B', 14);
-                $this->SetXY(0,10);
-                $this->Cell(0,0,"INFORME ERRORES",0,0,'C',0,'',1,false,'T','T');
-                    
-                $this->SetFont('helvetica', '', 8);
-                
-                $encab = "<label><strong>IES Universidad Laboral</strong><br>Avda. Europa, 28<br>45003-TOLEDO<br>Tlf.:925 22 34 00<br>Fax:925 22 24 54</label>";
-                $this->writeHTMLCell(0, 0, 160, 11, $encab, 0, 1, 0, true, 'C', true);
-                
-                
-            }
-        }
+        include("cabecera_pdf.php");
 
         // create new PDF document
-        $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $titulo_PDF = "INFORME ERRORES";
+        $pdf = new MYPDF($datos_cen, $titulo_PDF);
 
         // set document information
         $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('IES Universidad Laboral');
+        $pdf->SetAuthor($datos_cen["centro"]);
         $pdf->SetTitle('Informe Errores');
         $pdf->SetSubject('Secretaría');
-        $pdf->SetKeywords('ulaboral, PDF, secretaría, Toledo, Informe Errores');
+        $pdf->SetKeywords('PDF, secretaría, '. $datos_cen["localidad_centro"].', Informe Errores');
 
         // set default header data
         $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
