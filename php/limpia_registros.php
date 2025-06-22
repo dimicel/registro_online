@@ -13,8 +13,6 @@ $usuarios_borrados=0;
 $carpetas_borradas=0;
 
 
-
-
 $consulta="select * from usuarios where no_ha_entrado=1 order by id_nie";
 $result = $mysqli->query($consulta);
 
