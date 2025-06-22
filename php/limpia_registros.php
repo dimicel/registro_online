@@ -6,31 +6,12 @@
 exit(); //Para que no se ejecute hasta que haga falta
 
 include("conexion.php");
+include("funciones.php");
 set_time_limit(3600);  //Si el script se ejecuta más del número de segundos especificado en el parámetro, casca
 
 $usuarios_borrados=0;
 $carpetas_borradas=0;
 
-function contarArchivos($dir) {
-    $contador = 0;
-
-    // Obtener lista de archivos en el directorio
-    $archivos = glob($dir . '/*');
-
-    // Iterar sobre cada archivo encontrado
-    foreach ($archivos as $archivo) {
-        // Si es un archivo, incrementa el contador
-        if (is_file($archivo)) {
-            $contador++;
-        }
-        // Si es un directorio, llama recursivamente a la función
-        elseif (is_dir($archivo)) {
-            $contador += contarArchivos($archivo);
-        }
-    }
-
-    return $contador;
-}
 
 function borraCarpetas($directorioBase) {
     if (!is_dir($directorioBase)) {
