@@ -1,5 +1,5 @@
 <?php
-//Este script cuenta los archivos asociados a cada usuario dado de alta, hayan entrado o no
+//Este script cuenta los archivos asociados a cada usuario dado de alta que no haya entrado en la plataforma
 
 
 include("conexion.php");
