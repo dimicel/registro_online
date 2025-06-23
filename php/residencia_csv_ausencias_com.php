@@ -48,11 +48,11 @@ if ($mes_num >= 7 && $mes_num <= 12) {
 $Name = 'informe_no_asistencia_comedor_' . $mes_anno . '.csv';
 
 $Datos .= "INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS - " . strtoupper($mes_anno) . PHP_EOL;
-$Datos .= 'NIE;RESIDENTE;FECHA' . PHP_EOL;
+$Datos .= 'NIE;RESIDENTE;BONIFICADO;FECHA' . PHP_EOL;
 
 // Consulta SQL
 $sql = "
-    SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
+    SELECT r.id_nie, r.apellidos, r.nombre,r.bonificado, rc.fecha_comedor
     FROM residentes r
     INNER JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
     WHERE rc.fecha_comedor BETWEEN ? AND ?
@@ -80,9 +80,15 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 while ($row = $result->fetch_assoc()) {
+    if ($row['bonificado'] == 1) {
+        $bonificado = 'Sí';
+    } else {
+        $bonificado = 'No';
+    }
     $linea = [
         $row['id_nie'],
         '"'.$row['apellidos'].", ".$row['nombre'].'"',
+        $bonificado,
         $row['fecha_comedor']
     ];
     $Datos .= implode(';', $linea) . PHP_EOL;
