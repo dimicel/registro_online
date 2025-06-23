@@ -211,7 +211,7 @@
                 </form>
                 <form>
                     <div id="div_nuevos_otra_comunidad" class="form-group row" style="margin-top: 10px;display:none">
-                        <div class="custom-control custom-switch col" style="margin-left:20px">
+                        <div class="custom-control custom-switch col align-content-center" style="margin-left:20px">
                             <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_nuevo_otra_com" onchange="listaRegistros();">
                             <label for="check_nuevo_otra_com" class="custom-control-label" style="margin-top:5px;margin-left:10px;" >Alumno nuevo que inició los estudios en otra Comunidad Autónoma </label>
                         </div>
