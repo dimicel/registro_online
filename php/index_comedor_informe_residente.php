@@ -99,6 +99,7 @@ $sql = "
 	WHERE id_nie = ? AND fecha_comedor BETWEEN
         STR_TO_DATE(?, '%m/%Y') AND
         LAST_DAY(STR_TO_DATE(?, '%m/%Y'))
+		AND (desayuno = 1 OR comida = 1 OR cena = 1)
 	ORDER BY fecha_comedor
 ";
 
