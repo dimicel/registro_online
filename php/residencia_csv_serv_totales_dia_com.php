@@ -47,7 +47,6 @@ if ($mes_num >= 7 && $mes_num <= 12) {
 $Name = 'informe_resumen_servicios_dia_' . $mes_anno . '.csv';
 
 $Datos .= "INFORME RESUMEN DE SERVICIOS PARCIALES Y TOTALES POR DÍA - " . strtoupper($mes_anno) . PHP_EOL;
-$Datos .= "INFORME RESUMEN DE SERVICIOS PARCIALES Y TOTALES POR DÍA - " . strtoupper($mes_anno) . PHP_EOL;
 $Datos .= "La columna ASISTENTES cuenta el número de residentes que han hecho desayuno, comida o cena en ese día." . PHP_EOL;
 $Datos .= "El valor de esta columna NO tiene por qué coincidir con la suma de desayunos+comidas+cenas de ese día." . PHP_EOL;
 $Datos .= "Desglose por residentes bonificados y no bonificados." . PHP_EOL;
