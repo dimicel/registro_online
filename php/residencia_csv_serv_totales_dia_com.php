@@ -71,9 +71,9 @@ $sql = "
     WHERE 
         rc.fecha_comedor BETWEEN ? AND ?
         AND DAYOFWEEK(rc.fecha_comedor) BETWEEN 2 AND 6
-    GROUP BY rc.fecha_comedor, r.bonificados
+    GROUP BY rc.fecha_comedor, r.bonificado
     HAVING desayuno > 0 OR comida > 0 OR cena > 0
-    ORDER BY rc.fecha_comedor, r.bonificados
+    ORDER BY rc.fecha_comedor, r.bonificado
 ";
 
 $stmt = $mysqli->prepare($sql);
