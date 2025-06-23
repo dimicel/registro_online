@@ -134,7 +134,24 @@ function password(){
     return $password;
 }
 
-function generaRegistro($raiz){
+function generaRegistro($conexion_db,$tabla,$raiz){
+    $repite_registro=true;
+    $registro="";
+    while($repite_registro){
+        $registro=numRegistro($raiz);
+        $vReg=$conexion_db->query("select * from ".$tabla." where registro='$registro'");
+        if ($conexion_db->errno>0){
+            exit("database");
+        }
+        if ($vReg->num_rows==0) {
+            $repite_registro=false;
+        }
+        $vReg->free();
+    }
+    return $registro;
+}
+
+function numRegistro($raiz){
     $minus="abcdefghijklmnopqrstuvwxyz";
     $nums="0123456789";
     $array=array("","","","","","","","");
@@ -150,3 +167,4 @@ function generaRegistro($raiz){
     shuffle($array);
     return $raiz.date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];   
 }
+
