@@ -56,19 +56,6 @@ if (isset($_POST["desc"])){
     $docs=$_FILES['docs'];
 }
 
-
-/*$repite_registro=true;
-while($repite_registro){
-    $registro=generaRegistro("iesulabto_conval_");
-    $vReg=$mysqli->query("select * from convalidaciones where registro='$registro'");
-    if ($mysqli->errno>0){
-        exit("database");
-    }
-    if ($vReg->num_rows==0) {
-        $repite_registro=false;
-    }
-    $vReg->free();
-}*/
 $registro=generaRegistro($mysqli, "convalidaciones", "iesulabto_conval_");
 $dirRegistro=substr($registro, 17);
 ///Parametro de bind sss por la siguiente tabla
