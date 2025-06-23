@@ -52,20 +52,7 @@ $fecha_registro=date('Y-m-d');
 
 $mysqli->query("delete from transporte where id_nie='$id_nie' and curso='$anno_curso'");
 
-$registro=generaRegistro("iesulabto_transp_");
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select registro from transporte where registro='$registro'");
-    if ($mysqli->errno>0) exit("servidor");
-    if ($res->num_rows>0){
-        $registro= generaRegistro("iesulabto_transp_"); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
-
+$registro=generaRegistro($mysqli, "transporte", "iesulabto_transp_");
 
 $mysqli->query("insert into transporte (id_nie,
 registro,

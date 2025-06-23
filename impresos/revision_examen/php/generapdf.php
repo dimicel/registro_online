@@ -58,20 +58,9 @@ elseif ($pass_nif=="PASS"){
  if ($padre=="ALUMNO") $padres="ALUMNO/A";
  else if ($padre=="PADRE") $padres="PADRE/MADRE";
  else if ($padre=="TUTOR") $padres="TUTOR/A";
- 
- $registro= generaRegistro("iesulabto_revexa_");
 
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select * from revision_examen where registro='$registro'");
-    if ($res->num_rows>0){
-       $registro= generaRegistro("iesulabto_revexa_"); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
+ 
+$registro=generaRegistro($mysqli, "revision_examen", "iesulabto_revexa_");
 
 $mysqli->query("insert into revision_examen (id_nie,
                                             id_nif,
