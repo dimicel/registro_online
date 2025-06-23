@@ -47,6 +47,9 @@ if ($mes_num >= 7 && $mes_num <= 12) {
 $Name = 'informe_resumen_servicios_dia_' . $mes_anno . '.csv';
 
 $Datos .= "INFORME RESUMEN DE SERVICIOS PARCIALES Y TOTALES POR DÍA - " . strtoupper($mes_anno) . PHP_EOL;
+$Datos .= "INFORME RESUMEN DE SERVICIOS PARCIALES Y TOTALES POR DÍA - " . strtoupper($mes_anno) . PHP_EOL;
+$Datos .= "La columna ASISTENTES cuenta el número de residentes que han hecho desayuno, comida o cena en ese día." . PHP_EOL;
+$Datos .= "El valor de esta columna NO tiene por qué coincidir con la suma de desayunos+comidas+cenas de ese día." . PHP_EOL;
 $Datos .= "Desglose por residentes bonificados y no bonificados." . PHP_EOL;
 $Datos .= "FECHA;DÍA_SEMANA;DESAYUNO_BONIFICADOS;DESAYUNO_NO_BONIFICADOS;COMIDA_BONIFICADOS;COMIDA_NO_BONIFICADOS;CENA_BONIFICADOS;CENA_NO_BONIFICADOS;ASISTENTES_BONIFICADOS;ASISTENTES_NO_BONIFICADOS" . PHP_EOL;
 
@@ -93,7 +96,7 @@ $datos_por_fecha = [];
 while ($row = $result->fetch_assoc()) {
     $fecha = $row['fecha'];
     $dia_semana = $row['dia_semana'];
-    $bonificados = (int)$row['bonificados'];
+    $bonificado = (int)$row['bonificado'];
 
     if (!isset($datos_por_fecha[$fecha])) {
         $datos_por_fecha[$fecha] = [
@@ -105,7 +108,7 @@ while ($row = $result->fetch_assoc()) {
         ];
     }
 
-    if ($bonificados === 1) {
+    if ($bonificado === 1) {
         $datos_por_fecha[$fecha]['desayuno_b'] = (int)$row['desayuno'];
         $datos_por_fecha[$fecha]['comida_b'] = (int)$row['comida'];
         $datos_por_fecha[$fecha]['cena_b'] = (int)$row['cena'];
