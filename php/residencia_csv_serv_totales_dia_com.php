@@ -61,7 +61,7 @@ $sql = "
             WHEN 5 THEN 'Jueves'
             WHEN 6 THEN 'Viernes'
         END AS dia_semana,
-        r.bonificados,
+        r.bonificado,
         SUM(CASE WHEN rc.desayuno = 1 THEN 1 ELSE 0 END) AS desayuno,
         SUM(CASE WHEN rc.comida = 1 THEN 1 ELSE 0 END) AS comida,
         SUM(CASE WHEN rc.cena = 1 THEN 1 ELSE 0 END) AS cena,
