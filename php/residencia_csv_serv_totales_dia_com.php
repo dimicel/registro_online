@@ -2,6 +2,159 @@
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") exit("Acceso denegado");
 
+$Datos = "\xEF\xBB\xBF"; // BOM UTF-8 para Excel
+
+include("conexion.php");
+if ($mysqli->errno > 0) {
+    http_response_code(500);
+    echo "Error en servidor.";
+    exit;
+}
+
+$curso = $_POST["comedor_curso"] ?? "";
+$mes = $_POST["mes_informe"] ?? "";
+
+if ($curso === "" || $mes === "") {
+    http_response_code(500);
+    echo "Faltan datos del curso o mes.";
+    exit;
+}
+
+$anno_1 = substr($curso, 0, 4);
+$anno_2 = substr($curso, -4);
+$array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+$array_dias_mes = [31,29,31,30,31,30,31,31,30,31,30,31];
+
+$mes_anno = "";
+$fecha_inicio = "";
+$fecha_fin = "";
+$mes_num = (int)$mes;
+
+if ($mes_num >= 7 && $mes_num <= 12) {
+    $mes_anno = $array_meses[$mes_num - 1] . "/" . $anno_1;
+    $fecha_inicio = $anno_1 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-01";
+    $fecha_fin = $anno_1 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-" . $array_dias_mes[$mes_num - 1];
+} elseif ($mes_num >= 1 && $mes_num <= 6) {
+    $mes_anno = $array_meses[$mes_num - 1] . "/" . $anno_2;
+    $fecha_inicio = $anno_2 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-01";
+    $fecha_fin = $anno_2 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-" . $array_dias_mes[$mes_num - 1];
+} else {
+    http_response_code(500);
+    echo "Mes no válido.";
+    exit;
+}
+
+$Name = 'informe_resumen_servicios_dia_' . $mes_anno . '.csv';
+
+$Datos .= "INFORME RESUMEN DE SERVICIOS PARCIALES Y TOTALES POR DÍA - " . strtoupper($mes_anno) . PHP_EOL;
+$Datos .= "Desglose por residentes bonificados y no bonificados." . PHP_EOL;
+$Datos .= "FECHA;DÍA_SEMANA;DESAYUNO_BONIFICADOS;DESAYUNO_NO_BONIFICADOS;COMIDA_BONIFICADOS;COMIDA_NO_BONIFICADOS;CENA_BONIFICADOS;CENA_NO_BONIFICADOS;ASISTENTES_BONIFICADOS;ASISTENTES_NO_BONIFICADOS" . PHP_EOL;
+
+// Consulta SQL extendida para bonificados y no bonificados
+$sql = "
+    SELECT 
+        rc.fecha_comedor AS fecha,
+        CASE DAYOFWEEK(rc.fecha_comedor)
+            WHEN 2 THEN 'Lunes'
+            WHEN 3 THEN 'Martes'
+            WHEN 4 THEN 'Miércoles'
+            WHEN 5 THEN 'Jueves'
+            WHEN 6 THEN 'Viernes'
+        END AS dia_semana,
+        r.bonificados,
+        SUM(CASE WHEN rc.desayuno = 1 THEN 1 ELSE 0 END) AS desayuno,
+        SUM(CASE WHEN rc.comida = 1 THEN 1 ELSE 0 END) AS comida,
+        SUM(CASE WHEN rc.cena = 1 THEN 1 ELSE 0 END) AS cena,
+        COUNT(CASE WHEN rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1 THEN 1 END) AS total
+    FROM residentes_comedor rc
+    INNER JOIN residentes r ON rc.id_nie = r.id_nie
+    WHERE 
+        rc.fecha_comedor BETWEEN ? AND ?
+        AND DAYOFWEEK(rc.fecha_comedor) BETWEEN 2 AND 6
+    GROUP BY rc.fecha_comedor, r.bonificados
+    HAVING desayuno > 0 OR comida > 0 OR cena > 0
+    ORDER BY rc.fecha_comedor, r.bonificados
+";
+
+$stmt = $mysqli->prepare($sql);
+if ($stmt === false) {
+    http_response_code(500);
+    echo "Error en la preparación de la consulta.";
+    exit;
+}
+
+$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Agrupar resultados por fecha
+$datos_por_fecha = [];
+
+while ($row = $result->fetch_assoc()) {
+    $fecha = $row['fecha'];
+    $dia_semana = $row['dia_semana'];
+    $bonificados = (int)$row['bonificados'];
+
+    if (!isset($datos_por_fecha[$fecha])) {
+        $datos_por_fecha[$fecha] = [
+            'dia' => $dia_semana,
+            'desayuno_b' => 0, 'desayuno_nb' => 0,
+            'comida_b' => 0, 'comida_nb' => 0,
+            'cena_b' => 0, 'cena_nb' => 0,
+            'total_b' => 0, 'total_nb' => 0
+        ];
+    }
+
+    if ($bonificados === 1) {
+        $datos_por_fecha[$fecha]['desayuno_b'] = (int)$row['desayuno'];
+        $datos_por_fecha[$fecha]['comida_b'] = (int)$row['comida'];
+        $datos_por_fecha[$fecha]['cena_b'] = (int)$row['cena'];
+        $datos_por_fecha[$fecha]['total_b'] = (int)$row['total'];
+    } else {
+        $datos_por_fecha[$fecha]['desayuno_nb'] = (int)$row['desayuno'];
+        $datos_por_fecha[$fecha]['comida_nb'] = (int)$row['comida'];
+        $datos_por_fecha[$fecha]['cena_nb'] = (int)$row['cena'];
+        $datos_por_fecha[$fecha]['total_nb'] = (int)$row['total'];
+    }
+}
+
+$stmt->close();
+$mysqli->close();
+
+// Escribir los datos al CSV
+foreach ($datos_por_fecha as $fecha => $data) {
+    $linea = [
+        $fecha,
+        $data['dia'],
+        $data['desayuno_b'],
+        $data['desayuno_nb'],
+        $data['comida_b'],
+        $data['comida_nb'],
+        $data['cena_b'],
+        $data['cena_nb'],
+        $data['total_b'],
+        $data['total_nb']
+    ];
+    $Datos .= implode(';', $linea) . PHP_EOL;
+}
+
+// Enviar el CSV al cliente
+header('Expires: 0');
+header('Cache-control: private');
+header('Content-Type: application/octet-stream;charset=utf-8');
+header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+header('Content-Description: File Transfer');
+header('Last-Modified: ' . date('D, d M Y H:i:s'));
+header('Content-Disposition: attachment; filename="' . $Name . '"');
+header("Content-Transfer-Encoding: binary");
+
+echo $Datos;
+exit;
+
+
+/*session_start();
+if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") exit("Acceso denegado");
+
 $error = "";
 $Datos = "\xEF\xBB\xBF"; // Añadir BOM para UTF-8 para que Excel lo reconozca
 
@@ -50,6 +203,7 @@ $Name = 'informe_resumen_servicios_dia_' . $mes_anno . '.csv';
 $Datos .= "INFORME RESUMEN DE SERVICIOS PARCIALES Y TOTALES POR DÍA - " . strtoupper($mes_anno) . PHP_EOL;
 $Datos .= "La columna ASISTENTES cuenta el número de residentes que han hecho desayuno, comida o cena en ese día." . PHP_EOL;
 $Datos .= "El valor de esta columna NO tiene por qué coincidir con la suma de desayunos+comidas+cenas de ese día." . PHP_EOL;
+$DATOS .= "BONIFICADOS";
 $Datos .= 'FECHA;DÍA_SEMANA;DESAYUNO;COMIDA;CENA;ASISTENTES' . PHP_EOL;
 
 // Consulta SQL
@@ -68,9 +222,11 @@ $sql = "
         SUM(CASE WHEN rc.cena = 1 THEN 1 ELSE 0 END) AS con_cena,
         COUNT(CASE WHEN rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1 THEN 1 END) AS total_con_alguna_comida
     FROM residentes_comedor rc
+    INNER JOIN residentes r ON rc.id_nie = r.id_nie
     WHERE 
         rc.fecha_comedor BETWEEN ? AND ?
         AND DAYOFWEEK(rc.fecha_comedor) BETWEEN 2 AND 6
+        AND r.bonificados = 1
     GROUP BY rc.fecha_comedor
     HAVING 
         SUM(rc.desayuno) > 0 OR SUM(rc.comida) > 0 OR SUM(rc.cena) > 0
@@ -119,3 +275,4 @@ header("Content-Transfer-Encoding: binary");
 
 echo $Datos;
 exit;
+*/
