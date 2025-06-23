@@ -53,10 +53,10 @@ $Datos .= "INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " 
 
 // --- ASISTENCIAS ---
 $Datos .= "ASISTENCIAS" . $eol;
-$Datos .= "NIE,RESIDENTE,FECHA,DESAYUNO,COMIDA,CENA" . $eol;
+$Datos .= "NIE;RESIDENTE;BONIFICADO;FECHA;DESAYUNO;COMIDA;CENA" . $eol;
 
 $sql_asistencias = "
-    SELECT r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
+    SELECT r.id_nie, r.apellidos, r.nombre,r.bonificado, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
     WHERE (rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1) AND (rc.fecha_comedor BETWEEN ? AND ?)
@@ -75,15 +75,21 @@ $stmt_asis->execute();
 $result = $stmt_asis->get_result();
 
 while ($row = $result->fetch_assoc()) {
+    if ($row['bonificado'] == 1) {
+        $bonificado = 'Sí';
+    } else {
+        $bonificado = 'No';
+    }
     $line = [
         $row['id_nie'],
         '"'.$row['apellidos'].", ".$row['nombre'].'"',
+        $bonificado,
         date("d/m/Y", strtotime($row['fecha_comedor'])),
         $row['desayuno'],
         $row['comida'],
         $row['cena']
     ];
-    $Datos .= implode(",", $line) . $eol;
+    $Datos .= implode(";", $line) . $eol;
 }
 
 // Separación
@@ -91,11 +97,11 @@ $Datos .= $eol;
 
 // --- AUSENCIAS ---
 $Datos .= "AUSENCIAS INJUSTIFICADAS" . $eol;
-$Datos .= "NIE,RESIDENTE,FECHA" . $eol;
+$Datos .= "NIE;RESIDENTE;BONIFICADO;FECHA" . $eol;
 
 $sql_ausencias = "
     SELECT DISTINCT 
-        r.id_nie, r.apellidos, r.nombre, rc.fecha_comedor
+        r.id_nie, r.apellidos, r.nombre,r.bonificado, rc.fecha_comedor
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
     LEFT JOIN residentes_comedor just
@@ -122,12 +128,18 @@ $stmt_aus->execute();
 $result = $stmt_aus->get_result();
 
 while ($row = $result->fetch_assoc()) {
+    if ($row['bonificado'] == 1) {
+        $bonificado = 'Sí';
+    } else {
+        $bonificado = 'No';
+    }
     $line = [
         $row['id_nie'],
         '"'.$row['apellidos'].", ".$row['nombre'].'"',
+        $bonificado,
         date("d/m/Y", strtotime($row['fecha_comedor']))
     ];
-    $Datos .= implode(",", $line) . $eol;
+    $Datos .= implode(";", $line) . $eol;
 }
 
 header('Expires: 0');
