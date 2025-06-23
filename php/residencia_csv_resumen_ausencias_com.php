@@ -48,12 +48,12 @@ if ($mes_num >= 7 && $mes_num <= 12) {
 $Name = 'informe_resumen_ausencias_' . $mes_anno . '.csv';
 
 $Datos .= "INFORME RESUMEN DE FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS POR RESIDENTE - " . strtoupper($mes_anno) . PHP_EOL;
-$Datos .= 'NIE;RESIDENTE;NUM_FALTAS' . PHP_EOL;
+$Datos .= 'NIE;RESIDENTE;BONIFICADO;NUM_FALTAS' . PHP_EOL;
 
 // Consulta SQL
 $sql = "
     SELECT 
-        r.id_nie,
+        r.id_nie,r.bonificado
         CONCAT(r.apellidos, ', ', r.nombre) AS nombre_completo,
         IFNULL(f.faltas_injustificadas, 0) AS faltas_injustificadas
     FROM residentes r
@@ -90,9 +90,16 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 while ($row = $result->fetch_assoc()) {
+    if ($row["bonificado"] == 1) {
+        $bonificado="Sí";
+    }
+    else {
+        $bonificado="No";
+    }
     $linea = [
         $row['id_nie'],
         $row['nombre_completo'],
+        $bonificado,
         $row['faltas_injustificadas']
     ];
     $Datos .= implode(';', $linea) . PHP_EOL;
