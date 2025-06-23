@@ -48,20 +48,7 @@ $opt2=$_POST['eso2_opt2'];
 $opt3=$_POST['eso2_opt3'];
 $opt4=$_POST['eso2_opt4'];
 
-$registro=generaRegistro("iesulabto_pm2eso_");
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select * from premat_eso where registro='$registro'");
-    if ($mysqli->errno>0) exit("servidor");
-    if ($res->num_rows>0){
-       $registro= generaRegistro("iesulabto_pm2eso_"); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
-
+$registro=generaRegistro($mysqli, "premat_eso", "iesulabto_pm2eso_");
 
 $mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
