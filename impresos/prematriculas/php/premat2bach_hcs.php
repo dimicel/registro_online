@@ -61,21 +61,7 @@ $espitin16=$_POST['b2h_eitin26'];
 $espitin17=$_POST['b2h_eitin27'];
 
 
-
-$registro=generaRegistro("iesulabto_pm2bah_");
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select * from premat_bach where registro='$registro'");
-    if ($mysqli->errno>0) exit("servidor");
-    if ($res->num_rows>0){
-       $registro= generaRegistro("iesulabto_pm2bah_"); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
-
+$registro=generaRegistro($mysqli, "premat_bach", "iesulabtoiesulabto_pm2bah__conval_");
 
 $mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");

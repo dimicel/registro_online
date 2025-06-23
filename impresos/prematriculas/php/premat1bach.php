@@ -62,20 +62,7 @@ if($_POST['b1_modalidad']=='Ciencias y Tecnología') $raiz_reg="iesulabto_pm1bac
 else if($_POST['b1_modalidad']=='Humanidades y Ciencias Sociales') $raiz_reg="iesulabto_pm1bah_";
 else if($_POST['b1_modalidad']=='General') $raiz_reg="iesulabto_pm1bag_";   
 
-$registro=generaRegistro($raiz_reg);
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select * from premat_bach where registro='$registro'");
-    if ($mysqli->errno>0) exit("servidor");
-    if ($res->num_rows>0){
-       $registro= generaRegistro($raiz_reg); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
-
+$registro=generaRegistro($mysqli, "premat_bach", $raiz_reg);
 
 $mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
