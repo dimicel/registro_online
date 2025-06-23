@@ -43,19 +43,7 @@ $provincia=$_POST['provincia'];
 $tutor=$_POST['tutor'];
 $fecha_registro=date('Y-m-d');
 
-$registro=generaRegistro("iesulabto_matfpb_");
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select * from mat_fpb where registro='$registro'");
-    if ($mysqli->errno>0) exit("servidor");
-    if ($res->num_rows>0){
-       $registro= generaRegistro("iesulabto_matfpb_"); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
+$registro=generaRegistro($mysqli, "mat_fpb", "iesulabto_matfpb_");
 
 $mysqli->query("delete from mat_eso where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from mat_bach where id_nie='$id_nie' and curso='$anno_curso'");
