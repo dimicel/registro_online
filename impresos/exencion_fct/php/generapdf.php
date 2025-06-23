@@ -66,21 +66,8 @@ if (isset($_POST["desc"])){
     $docs=$_FILES['docs'];
 }
 
-$registro= generaRegistro("iesulabto_exefem_");
 
-
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select * from exencion_fct where registro='$registro'");
-    if ($res->num_rows>0){
-       $registro= generaRegistro("iesulabto_exefem_"); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
-
+$registro=generaRegistro($mysqli, "exencion_fct", "iesulabto_exefem_");
 $dirRegistro=substr($registro, 17);
 
 ///Parametro de bind sss por la siguiente tabla
