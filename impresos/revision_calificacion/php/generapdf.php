@@ -55,19 +55,7 @@ elseif ($pass_nif=="PASS"){
 	$num_documento="NÚMERO DE PASAPORTE " . $nif_nie;
 }
 
-$registro= generaRegistro("iesulabto_revcal_");
-
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select * from revision_calificacion where registro='$registro'");
-    if ($res->num_rows>0){
-       $registro= generaRegistro("iesulabto_revcal_"); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
+$registro=generaRegistro($mysqli, "revision_calificacion", "iesulabto_revcal_");
 
 $mysqli->query("insert into revision_calificacion (id_nie
                                                    id_nif,

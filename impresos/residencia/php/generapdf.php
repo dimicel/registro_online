@@ -144,28 +144,13 @@ if (isset($_POST['firma'])){
 }
 
 $fecha_registro=date('Y-m-d');
-$registro=generaRegistro("iesulabto_reside_");
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select * from residentes where registro='$registro'");
-    if ($mysqli->errno>0){
-		unlink($tempFile);
-		$respuesta["status"]="servidor";
-    	exit(json_encode($respuesta));
-	}
-    if ($res->num_rows>0){
-       $registro= generaRegistro("iesulabto_reside_"); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
- if (!$mysqli->query("delete from residentes where id_nie='$id_nie' and curso='$anno_curso'")){
+$registro=generaRegistro($mysqli, "residentes", "iesulabto_reside_");
+
+if (!$mysqli->query("delete from residentes where id_nie='$id_nie' and curso='$anno_curso'")){
 	unlink($tempFile);
 	$respuesta["status"]="db";
 	exit(json_encode($respuesta));
- }
+}
 
 $mysqli->query("insert into residentes (id_nie,
                                         registro,
