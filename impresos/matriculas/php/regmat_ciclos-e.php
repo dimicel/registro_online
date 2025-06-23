@@ -60,20 +60,7 @@ $mysqli->query("delete from mat_bach where id_nie='$id_nie' and curso='$anno_cur
 $mysqli->query("delete from mat_fpb where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from mat_ciclos where id_nie='$id_nie' and curso='$anno_curso'");
 
-$registro=generaRegistro("iesulabto_maci-e_");
-$repite_registro=true;
-while ($repite_registro){
-    $res=$mysqli->query("select registro from mat_ciclos where registro='$registro'");
-    if ($mysqli->errno>0) exit("servidor");
-    if ($res->num_rows>0){
-        $registro= generaRegistro("iesulabto_maci-e_"); 
-    }
-    else if ($res->num_rows==0){
-        $repite_registro=false;
-    }
-    $res->free();
-}
-
+$registro=generaRegistro($mysqli, "mat_ciclos", "iesulabto_maci-e_");
 
 $mysqli->query("insert into mat_ciclos (id_nie,
                                         registro,
