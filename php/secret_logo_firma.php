@@ -26,7 +26,7 @@ if (is_uploaded_file($_FILES['archivo']['tmp_name'])) {
         $ancho_original = imagesx($img);
         $alto_original = imagesy($img);
 
-        $ancho_nuevo = 100;
+        $ancho_nuevo = 300;
         $alto_nuevo = intval(($alto_original / $ancho_original) * $ancho_nuevo);
 
         $mini_img = imagecreatetruecolor($ancho_nuevo, $alto_nuevo);
