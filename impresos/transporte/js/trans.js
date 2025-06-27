@@ -186,7 +186,6 @@ function registraSolicitud() {
 
     mostrarPantallaEspera();
     $.post("php/generapdf.php",$("#transporte").serialize(),(r2)=>{
-        alert(r2);
         ocultarPantallaEspera();
         if (r2.indexOf("envio_ok") != -1 || r2=="envio_ok") {
             mensaje = "Proceso finalizado correctamente.<br>";
