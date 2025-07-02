@@ -268,22 +268,6 @@ function pasaPagina(p) {
             }
         } 
         else if (pag_html == "pagina_4") {
-            if (_curso == "1º ESO" || _curso == "2º ESO") {
-                $("#div_resguardo_seguro_escolar").hide();
-                $("#div_existe_resguardo_seguro_escolar").hide();
-                //document.getElementById("div_resguardo_seguro_escolar").style.display="none";
-                //document.getElementById("div_existe_resguardo_seguro_escolar").style.display="none";
-                document.getElementById("label_anv_dni").innerHTML="(SI tiene) Anverso de documento identificativo en JPEG (DNI/NIE).<br> <small>(Si sólo tiene pasaporte, JPEG de la página que contenga la foto y nombre del alumno)</small>:";
-                document.getElementById("label_rev_dni").innerHTML="(SI tiene) Reverso de documento identificativo en JPEG (DNI/NIE) <small>(si sólo tiene pasaporte, JPEG de imagen en blanco [foto de folio, pared...])</small>:";
-                $("#anverso_dni").rules("remove","required");
-                $("#reverso_dni").rules("remove","required");
-            }
-            else{
-                document.getElementById("label_anv_dni").innerHTML="*Anverso de documento identificativo en JPEG (DNI/NIE).<br> <small>(Si sólo tiene pasaporte, JPEG de la página que contenga la foto y nombre del alumno)</small>:";
-                document.getElementById("label_rev_dni").innerHTML="*Reverso de documento identificativo en JPEG (DNI/NIE) <small>(si sólo tiene pasaporte, JPEG de imagen en blanco [foto de folio, pared...])</small>:";
-                $("#anverso_dni").rules("add",{required:true});
-                $("#reverso_dni").rules("add",{required:true});
-            }
             $("#form_pagina_4").validate().resetForm();
             if (existe_foto){
                 $("#div_fotografia").hide();
@@ -324,6 +308,22 @@ function pasaPagina(p) {
                 $("#div_certificado").hide();
                 $("#div_existe_certificado").hide();
             } 
+            if (_curso == "1º ESO" || _curso == "2º ESO") {
+                $("#div_resguardo_seguro_escolar").hide();
+                $("#div_existe_resguardo_seguro_escolar").hide();
+                //document.getElementById("div_resguardo_seguro_escolar").style.display="none";
+                //document.getElementById("div_existe_resguardo_seguro_escolar").style.display="none";
+                document.getElementById("label_anv_dni").innerHTML="(SI tiene) Anverso de documento identificativo en JPEG (DNI/NIE).<br> <small>(Si sólo tiene pasaporte, JPEG de la página que contenga la foto y nombre del alumno)</small>:";
+                document.getElementById("label_rev_dni").innerHTML="(SI tiene) Reverso de documento identificativo en JPEG (DNI/NIE) <small>(si sólo tiene pasaporte, JPEG de imagen en blanco [foto de folio, pared...])</small>:";
+                $("#anverso_dni").rules("remove","required");
+                $("#reverso_dni").rules("remove","required");
+            }
+            else{
+                document.getElementById("label_anv_dni").innerHTML="*Anverso de documento identificativo en JPEG (DNI/NIE).<br> <small>(Si sólo tiene pasaporte, JPEG de la página que contenga la foto y nombre del alumno)</small>:";
+                document.getElementById("label_rev_dni").innerHTML="*Reverso de documento identificativo en JPEG (DNI/NIE) <small>(si sólo tiene pasaporte, JPEG de imagen en blanco [foto de folio, pared...])</small>:";
+                $("#anverso_dni").rules("add",{required:true});
+                $("#reverso_dni").rules("add",{required:true});
+            }
         }
         else if (pag_html == "pagina_5") {
             document.getElementById("label_texto").innerHTML += "D./Dña. " + document.getElementById("tutor").value;
