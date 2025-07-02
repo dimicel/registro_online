@@ -308,6 +308,7 @@ function pasaPagina(p) {
                 $("#div_certificado").hide();
                 $("#div_existe_certificado").hide();
             } 
+            alert(_curso);
             if (_curso == "1º ESO" || _curso == "2º ESO") {
                 $("#div_resguardo_seguro_escolar").hide();
                 $("#div_existe_resguardo_seguro_escolar").hide();
