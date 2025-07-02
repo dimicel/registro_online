@@ -162,6 +162,10 @@ function seleccionCurso() {
         document.getElementById("div_nuevo_otra_comunidad").style.display="inline-block";
         document.getElementById("div_consolida_premat").style.display="none";
     }
+    else if(existe_premat && _curso != "1º ESO") {
+        document.getElementById("div_consolida_premat").style.display="inline-block";
+    }
+
     if (existe_premat && curso_prematricula == _curso) {
         document.getElementById("repetidor_no").checked = true;
     } else if (existe_premat && curso_prematricula != _curso) {
