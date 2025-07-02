@@ -235,7 +235,6 @@ function pasaPagina(p) {
             $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
         } 
     } else {
-        alert(_curso);
         for (i = 0; i < _paginas.length; i++) $("#" + _paginas[i][1]).css('display', 'none');
         $("#" + pag_html).fadeIn(500);
 
@@ -309,7 +308,7 @@ function pasaPagina(p) {
                 $("#div_certificado").hide();
                 $("#div_existe_certificado").hide();
             } 
-            alert(_curso);
+            alert(document.getElementById("curso").value);
             if (_curso == "1º ESO" || _curso == "2º ESO") {
                 $("#div_resguardo_seguro_escolar").hide();
                 $("#div_existe_resguardo_seguro_escolar").hide();
