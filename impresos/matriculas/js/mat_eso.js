@@ -235,6 +235,7 @@ function pasaPagina(p) {
             $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
         } 
     } else {
+        alert(_curso);
         for (i = 0; i < _paginas.length; i++) $("#" + _paginas[i][1]).css('display', 'none');
         $("#" + pag_html).fadeIn(500);
 
