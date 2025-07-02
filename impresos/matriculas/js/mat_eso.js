@@ -266,7 +266,7 @@ function pasaPagina(p) {
                 form_pagina_3.tlf_tutor2.value=tlf_tutor2;
                 primera_vez_pag_3=false;
             }
-        }
+        } 
         else if (pag_html == "pagina_4") {
             if (_curso == "1º ESO" || _curso == "2º ESO") {
                 $("#div_resguardo_seguro_escolar").hide();
