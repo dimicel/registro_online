@@ -1,4 +1,5 @@
 <?php
+//Verifica si hay prematricula hecha para no duplicar hacer otra al mismo usuario en el mismo curso
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("conexion.php");

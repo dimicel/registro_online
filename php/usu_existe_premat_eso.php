@@ -1,4 +1,5 @@
 <?php
+//Verifica si hay prematrícula para rescatar sus datos y usarlos en la matricula
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("conexion.php");
