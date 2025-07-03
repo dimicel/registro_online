@@ -64,7 +64,7 @@ $mysqli->query("delete from mat_bach where id_nie='$id_nie' and curso='$anno_cur
 $mysqli->query("delete from mat_fpb where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from mat_ciclos where id_nie='$id_nie' and curso='$anno_curso'");
 
-$registro=generaRegistro($mysqli, "mat_eso", "iesulabto_".$desc_reg[$curso]."_");
+$registro=generaRegistro($mysqli, "mat_eso", $desc_reg[$curso]."_");
 
 $mysqli->query("insert into mat_eso (id_nie,
                                     registro,

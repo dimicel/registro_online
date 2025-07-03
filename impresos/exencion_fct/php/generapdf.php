@@ -67,7 +67,7 @@ if (isset($_POST["desc"])){
 }
 
 
-$registro=generaRegistro($mysqli, "exencion_fct", "iesulabto_exefem_");
+$registro=generaRegistro($mysqli, "exencion_fct", "exefem_");
 $dirRegistro=substr($registro, 17);
 
 ///Parametro de bind sss por la siguiente tabla

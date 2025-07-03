@@ -56,7 +56,7 @@ if (isset($_POST["desc"])){
     $docs=$_FILES['docs'];
 }
 
-$registro=generaRegistro($mysqli, "convalidaciones", "iesulabto_conval_");
+$registro=generaRegistro($mysqli, "convalidaciones", "conval_");
 $dirRegistro=substr($registro, 17);
 ///Parametro de bind sss por la siguiente tabla
 //"i": Entero (integer)

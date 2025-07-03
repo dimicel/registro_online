@@ -61,7 +61,7 @@ $espitin16=$_POST['b2h_eitin26'];
 $espitin17=$_POST['b2h_eitin27'];
 
 
-$registro=generaRegistro($mysqli, "premat_bach", "iesulabtoiesulabto_pm2bah__conval_");
+$registro=generaRegistro($mysqli, "premat_bach", "iesulabto_pm2bah__conval_");
 
 $mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");

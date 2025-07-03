@@ -43,7 +43,7 @@ $provincia=$_POST['provincia'];
 $tutor=$_POST['tutor'];
 $fecha_registro=date('Y-m-d');
 
-$registro=generaRegistro($mysqli, "mat_fpb", "iesulabto_matfpb_");
+$registro=generaRegistro($mysqli, "mat_fpb", "matfpb_");
 
 $mysqli->query("delete from mat_eso where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from mat_bach where id_nie='$id_nie' and curso='$anno_curso'");

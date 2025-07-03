@@ -152,6 +152,7 @@ function generaRegistro($conexion_db,$tabla,$raiz){
 }
 
 function numRegistro($raiz){
+    $raiz_centro="iesulabto_";
     $minus="abcdefghijklmnopqrstuvwxyz";
     $nums="0123456789";
     $array=array("","","","","","","","");
@@ -165,6 +166,6 @@ function numRegistro($raiz){
     $array[6]=substr($nums,mt_rand(0,strlen("mayus")-1),1);
     $array[7]=substr($minus,mt_rand(0,strlen("signos")-1),1);
     shuffle($array);
-    return $raiz.date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];   
+    return $raiz_centro.$raiz.date('dmY')."_".$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];   
 }
 
