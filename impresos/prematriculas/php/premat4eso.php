@@ -63,7 +63,7 @@ $optativa3=$_POST['eso4_opt13'];
 $optativa4=$_POST['eso4_opt14'];
 $optativa5=$_POST['eso4_opt15'];
 
-$registro=generaRegistro($mysqli, "premat_eso", "iesulabtoiesulabto_pm4eso__pm2eso_");
+$registro=generaRegistro($mysqli, "premat_eso", "pm4eso_");
 
 $mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");

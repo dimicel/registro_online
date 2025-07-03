@@ -60,7 +60,7 @@ elseif ($pass_nif=="PASS"){
  else if ($padre=="TUTOR") $padres="TUTOR/A";
 
  
-$registro=generaRegistro($mysqli, "revision_examen", "iesulabto_revexa_");
+$registro=generaRegistro($mysqli, "revision_examen", "revexa_");
 
 $mysqli->query("insert into revision_examen (id_nie,
                                             id_nif,

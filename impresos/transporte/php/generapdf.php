@@ -52,7 +52,7 @@ $fecha_registro=date('Y-m-d');
 
 $mysqli->query("delete from transporte where id_nie='$id_nie' and curso='$anno_curso'");
 
-$registro=generaRegistro($mysqli, "transporte", "iesulabto_transp_");
+$registro=generaRegistro($mysqli, "transporte", "transp_");
 
 $mysqli->query("insert into transporte (id_nie,
 registro,

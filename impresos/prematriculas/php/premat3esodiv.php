@@ -43,7 +43,7 @@ $opt2=$_POST['eso3_div_opt2'];
 $opt3=$_POST['eso3_div_opt3'];
 $opt4=$_POST['eso3_div_opt4'];
 
-$registro=generaRegistro($mysqli, "premat_eso", "iesulabto_pm3esd_");
+$registro=generaRegistro($mysqli, "premat_eso", "pm3esd_");
 
 $mysqli->query("delete from premat_eso where id_nie='$id_nie' and curso='$anno_curso'");
 $mysqli->query("delete from premat_bach where id_nie='$id_nie' and curso='$anno_curso'");

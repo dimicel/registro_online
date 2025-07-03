@@ -55,7 +55,7 @@ elseif ($pass_nif=="PASS"){
 	$num_documento="NÚMERO DE PASAPORTE " . $nif_nie;
 }
 
-$registro=generaRegistro($mysqli, "revision_calificacion", "iesulabto_revcal_");
+$registro=generaRegistro($mysqli, "revision_calificacion", "revcal_");
 
 $mysqli->query("insert into revision_calificacion (id_nie
                                                    id_nif,

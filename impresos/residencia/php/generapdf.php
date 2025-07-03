@@ -144,7 +144,7 @@ if (isset($_POST['firma'])){
 }
 
 $fecha_registro=date('Y-m-d');
-$registro=generaRegistro($mysqli, "residentes", "iesulabto_reside_");
+$registro=generaRegistro($mysqli, "residentes", "reside_");
 
 if (!$mysqli->query("delete from residentes where id_nie='$id_nie' and curso='$anno_curso'")){
 	unlink($tempFile);
