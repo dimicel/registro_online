@@ -131,7 +131,7 @@ function password(){
     $array[7]=substr($minus,mt_rand(0,strlen("signos")-1),1);
     shuffle($array);
     $password=$array[0].$array[1].$array[2].$array[3].$array[4].$array[5].$array[6].$array[7];
-    return $password;
+    return $password; 
 }
 
 function generaRegistro($conexion_db,$tabla,$raiz){
