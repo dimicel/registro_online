@@ -2295,14 +2295,20 @@ function listadoSeguroEscolarCiclos() {
         {
             url:"php/secret_csv_segurociclos.php",
             datos:{
-                curso_csv_seguro:_curso
+                curso_csv_seguro:document.getElementById("curso").value
             }
         });
 
 }
 
 function listadoNumSS(){
-    enviarFormularioSubmit({url:"php/secret_csv_fct_num_ss.php"});
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_fct_num_ss.php",
+            datos:{
+                curso_csv_seguro:_curso
+            }
+        });
 }
 
 //Oculta los cursos que no deben aparecer en función del año por los cambios de la ley

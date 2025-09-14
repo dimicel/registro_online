@@ -9,9 +9,34 @@ if ($mysqli->errno>0) $error="Error en servidor.";
 
 $curso=$_POST["curso_csv_seguro"];
 
-$anno_calculo=substr($curso,0,4);
-
-$res=$mysqli->query("SELECT usuarios.apellidos, usuarios.nombre, usuarios.id_nie, usuarios_dat.num_ss, usuarios_dat.fecha_mod_nuss FROM usuarios INNER JOIN usuarios_dat ON usuarios.id_nie=usuarios_dat.id_nie where usuarios_dat.num_ss is not NULL and usuarios_dat.num_ss<>''  ORDER BY usuarios.apellidos ASC, usuarios.nombre ASC");
+$res=$mysqli->query("
+    SELECT 
+        u.apellidos, 
+        u.nombre, 
+        u.id_nie, 
+        ud.num_ss, 
+        ud.fecha_mod_nuss
+    FROM usuarios u
+    INNER JOIN usuarios_dat ud ON u.id_nie = ud.id_nie
+    WHERE ud.num_ss IS NOT NULL 
+      AND ud.num_ss <> ''
+      AND (
+          EXISTS (
+              SELECT 1 
+              FROM mat_ciclos mc 
+              WHERE mc.id_nie = u.id_nie 
+                AND mc.curso = '$curso'
+          )
+          OR
+          EXISTS (
+              SELECT 1 
+              FROM mat_fpb mf 
+              WHERE mf.id_nie = u.id_nie 
+                AND mf.curso = '$curso'
+          )
+      )
+    ORDER BY u.apellidos ASC, u.nombre ASC
+");
 
 if ($res->num_rows==0){
     $error="No hay registros que listar.";
