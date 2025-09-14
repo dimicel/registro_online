@@ -24,7 +24,7 @@ $(document).ready(function() {
     $("#pagina_1").load("res_html/pagina1.html?q="+Date.now().toString(), function() {
         creaValidatorPagina1();
         $("#pagina_1").show();
-        $("[data-paginacion]").html("Pág. 1/7");
+        $("[data-paginacion]").html("Pág. 1/" + paginas_totales);
 
         dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
         dat2 = dat1.then((res1) => {
@@ -187,7 +187,7 @@ function pasaPagina(p) {
     
     if (p == "+") {
         if (pag_html=="pagina_2") validacion=$("#form_pagina_1").valid();
-        else if(pag_html=="pagina_5") validacion=$("#form_pagina_4").valid();
+        else if(pag_html=="pagina_6") validacion=$("#form_pagina_5").valid();
         //else if(pag_html=="pagina_7" && !document.getElementById("res_bonifSI").checked) validacion=$("#form_pagina_6").valid();
         //else if(pag_html=="pagina_7" && document.getElementById("res_bonifSI").checked) validacion=true;
         else validacion=true;
@@ -197,7 +197,7 @@ function pasaPagina(p) {
                     /*if (pag_html=="pagina_6"){creaValidatorPagina6();}
                     else if (pag_html=="pagina_5"){creaValidatorPagina5();}*/
                     if (pag_html=="pagina_5"){creaValidatorPagina5();}
-                    else if (pag_html=="pagina_4"){creaValidatorPagina4();}
+                    //else if (pag_html=="pagina_4"){creaValidatorPagina4();}
                     pasaPagina('0');
                 });
             }
