@@ -137,7 +137,7 @@
                     <a id="docs_residencia" class="enlaceEnabled" href="impresos/residencia/res.php" target="_self">Residencia (sólo para alumnos con plaza asignada para residencia)</a><br>
                 </div>
                 <div style="display:list-item; margin-left:50px">
-                    <a id="docs_residencia" class="enlaceEnabled" href="impresos/orden_sepa/sepa.php" target="_self">Orden SEPA (sólo para RESIDENTES NO BONIFICADOS, si han cambiado sus datos bancarios)</a><br>
+                    <a id="docs_residencia" class="enlaceEnabled" href="impresos/orden_sepa/sepa.php" target="_self">Orden SEPA (OBLIGATORIO PARA TODOS LOS RESIDENTES)</a><br>
                 </div>
                 <!--
                 <span>SOLICITUDES DE REVISIÓN</span>
