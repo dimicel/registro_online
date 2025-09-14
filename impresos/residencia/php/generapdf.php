@@ -125,9 +125,9 @@ if($_POST["nombre_foto"]!="") $ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie
 else $ruta_foto="";*/
 $ruta_tarjeta=__DIR__."/../../../docs/".$id_nie."/tarjeta_sanitaria"."/ts_".$id_nie.".jpeg";
 $ruta_foto=__DIR__."/../../../docs/fotos/".$id_nie.".jpeg";
-if (isset($_POST['iban']))$iban = trim($_POST['iban']);
-if (isset($_POST['bic']))$bic = trim($_POST['bic']);
-if (isset($_POST['titular_cuenta']))$titular_cuenta = trim($_POST['titular_cuenta']);
+//if (isset($_POST['iban']))$iban = trim($_POST['iban']);
+//if (isset($_POST['bic']))$bic = trim($_POST['bic']);
+//if (isset($_POST['titular_cuenta']))$titular_cuenta = trim($_POST['titular_cuenta']);
 
 if (strlen(trim($enfermedad_pasada))==0)$enfermedad_pasada="No";
 if (strlen(trim($enfermedad))==0)$enfermedad="No";
@@ -135,6 +135,7 @@ if (strlen(trim($medicacion))==0)$medicacion="No";
 if (strlen(trim($alergias))==0)$alergias="No";
 if (strlen(trim($otros_datos))==0)$otros_datos="Ninguno";
 
+/*
 if (isset($_POST['firma'])){
 	$imageData = urldecode($_POST['firma']);
 	if (!is_dir(__DIR__."/../../../docs/tmp"))mkdir(__DIR__."/../../../docs/tmp",0777);
@@ -142,12 +143,12 @@ if (isset($_POST['firma'])){
 	file_put_contents($tempFile, base64_decode(str_replace('data:image/png;base64,', '', $imageData)));
 	$firma = $tempFile;
 }
-
+*/
 $fecha_registro=date('Y-m-d');
 $registro=generaRegistro($mysqli, "residentes", "reside_");
 
 if (!$mysqli->query("delete from residentes where id_nie='$id_nie' and curso='$anno_curso'")){
-	unlink($tempFile);
+	//unlink($tempFile);
 	$respuesta["status"]="db";
 	exit(json_encode($respuesta));
 }
@@ -172,8 +173,6 @@ $mysqli->query("insert into residentes (id_nie,
 										provincia,
 										telef_urgencias,
 										n_seg_soc,
-										iban,
-										bic,
 										estudios,
 										tutor,
 										centro_estudios,
@@ -193,7 +192,6 @@ $mysqli->query("insert into residentes (id_nie,
                                         email_tutor2,
                                         tlf_tutor2,
 										fianza,
-										titular_cuenta,
 										fecha_hora_firma,
 										ip_remota) 
                                         values ('$id_nie',
@@ -216,8 +214,6 @@ $mysqli->query("insert into residentes (id_nie,
 										'$provincia',
 										'$tlf_urgencias',
 										'$num_ss',
-										'$iban',
-										'$bic',
 										'$estudios',
 										'$tutor',
 										'$centro_est',
@@ -237,11 +233,10 @@ $mysqli->query("insert into residentes (id_nie,
 										'$tut2_email',
 										'$tut2_telef',
 										'$fianza',
-										'$titular_cuenta',
 										'$fecha_hora_firma',
 										'$ip_remota')");
 if ($mysqli->errno>0){
-	unlink($tempFile);
+	//unlink($tempFile);
 	$respuesta["status"]="registro_erroneo ".$mysqli->errno;
     exit(json_encode($respuesta));
 }
@@ -729,7 +724,7 @@ $pdf->Output($ruta_pdf, 'F');
 $pdf_base64 = base64_encode($pdf_salud->Output($nombre_fichero, 'S'));
 // Crear el array de respuesta JSON
 $respuesta["pdf"] = $pdf_base64;
-
+/*
 if($bonificado==0){
 	//Genera orden SEPA si el residente es NO bonificado
 	class MYPDF_sepa extends TCPDF {
@@ -839,9 +834,9 @@ if($bonificado==0){
 	$ruta_sepa=__DIR__."/../../../docs/".$id_nie."/residencia/sepa_". $id_nie.".pdf";
 	$pdf_sepa->Output($ruta_sepa, 'F');
 }
+*/
 
-
-unlink($tempFile);
+//unlink($tempFile);
 $respuesta["status"]="ok";
 header('Content-Type: application/json');
 exit(json_encode($respuesta));
