@@ -1,7 +1,7 @@
 var pagina = 1;
 var i = 0;
 var _paginas = new Array();
-var paginas_totales=7;
+var paginas_totales=6; //Eran 7 pero se ha obviado en el formulñario la parte de la orden SEPA
 var existe_tarjeta_san=false;
 var existe_foto=false;
 var id_nie = "";
@@ -169,7 +169,7 @@ function pasaPagina(p) {
         pagina++;
     }
     $("[data-paginacion]").html("Pág. " + pagina + "/" + paginas_totales);
-    if (document.getElementById("res_bonifSI").checked && pagina==6){
+    /*if (document.getElementById("res_bonifSI").checked && pagina==6){
         if (p=='+'){
             pag = "res_html/" + _paginas[pagina][0] + ".html?q="+Date.now().toString();
             pag_html = _paginas[pagina][1];
@@ -179,23 +179,25 @@ function pasaPagina(p) {
             pag_html = _paginas[pagina - 2][1];
         }
     }
-    else {
+    else {*/
         pag = "res_html/" + _paginas[pagina - 1][0] + ".html?q="+Date.now().toString();
         pag_html = _paginas[pagina - 1][1];
-    }
+    //}
     
     
     if (p == "+") {
         if (pag_html=="pagina_2") validacion=$("#form_pagina_1").valid();
-        else if(pag_html=="pagina_6") validacion=$("#form_pagina_5").valid();
-        else if(pag_html=="pagina_7" && !document.getElementById("res_bonifSI").checked) validacion=$("#form_pagina_6").valid();
-        else if(pag_html=="pagina_7" && document.getElementById("res_bonifSI").checked) validacion=true;
+        else if(pag_html=="pagina_5") validacion=$("#form_pagina_4").valid();
+        //else if(pag_html=="pagina_7" && !document.getElementById("res_bonifSI").checked) validacion=$("#form_pagina_6").valid();
+        //else if(pag_html=="pagina_7" && document.getElementById("res_bonifSI").checked) validacion=true;
         else validacion=true;
         if (validacion) {
             if (document.getElementById(pag_html).innerHTML.length == 0) {
                 $("#" + pag_html).load(pag, function() {
-                    if (pag_html=="pagina_6"){creaValidatorPagina6();}
-                    else if (pag_html=="pagina_5"){creaValidatorPagina5();}
+                    /*if (pag_html=="pagina_6"){creaValidatorPagina6();}
+                    else if (pag_html=="pagina_5"){creaValidatorPagina5();}*/
+                    if (pag_html=="pagina_5"){creaValidatorPagina5();}
+                    else if (pag_html=="pagina_4"){creaValidatorPagina4();}
                     pasaPagina('0');
                 });
             }
@@ -240,8 +242,9 @@ function creaArrayPasapagina() {
     _paginas.push(new Array("pagina3", "pagina_3"));
     _paginas.push(new Array("pagina4", "pagina_4"));
     _paginas.push(new Array("pagina5", "pagina_5"));
-    _paginas.push(new Array("pagina6", "pagina_6"));
-    _paginas.push(new Array("pagina_final", "pagina_7"));
+    //_paginas.push(new Array("pagina6", "pagina_6"));
+    //_paginas.push(new Array("pagina_final", "pagina_7"));
+    _paginas.push(new Array("pagina_final", "pagina_6"));
 }
 
 
@@ -251,7 +254,7 @@ function registraSolicitud() {
     var f2 = document.getElementById("form_pagina_2");
     var f3 = document.getElementById("form_pagina_3");
     var f4 = document.getElementById("form_pagina_4");
-    var f6 = document.getElementById("form_pagina_6");
+    //var f6 = document.getElementById("form_pagina_6");
     //f.action = "php/generapdf.php";
     //f.method='POST';
     if (document.getElementById("res_bonifSI").checked) f.bonificado.value="SÍ";
@@ -294,6 +297,7 @@ function registraSolicitud() {
     f.appendChild(f4.medicacion);
     f.appendChild(f4.alergias);
     f.appendChild(f4.otros_datos);
+    /*
     if (document.getElementById("res_bonifNO").checked){
         f.appendChild(f6.bic);
         f.appendChild(f6.iban);
@@ -303,7 +307,7 @@ function registraSolicitud() {
         inputFirma.name = "firma";
         inputFirma.value = encodeURIComponent(canvas_upload);
         f.appendChild(inputFirma);
-    }
+    }*/
 
     mostrarPantallaEspera();
     $.ajax({
