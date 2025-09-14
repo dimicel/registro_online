@@ -33,7 +33,7 @@ $(document).ready(function() {
         return $.post("php/datos_residente.php", {id_nie:id_nie, curso:anno_curso }, () => {}, "json");
     });
     dat3 = dat2.then((resp) => {
-        if (resp.error=="ok"){
+        if (resp.error=="ok" || resp.error=="bonificado"){
             for (e in resp.datos){
                 if(typeof(resp.datos[e])==="undefined" || resp.datos[e]===null ) resp.datos[e]="";
             }
@@ -53,9 +53,9 @@ $(document).ready(function() {
         else if(resp.error=="no_inscrito"){
             alerta("El usuario no está inscrito en la residencia (internado).","NO RESIDENTE",true);
         }
-        else if(resp.error=="bonificado"){
+        /*else if(resp.error=="bonificado"){
             alerta("El residente es BONIFICADO, y por lo tanto no necesita crear una orden SEPA.","RESIDENTE BONIFICADO",true);
-        }
+        }*/
         ocultarPantallaEspera();
     });
 
