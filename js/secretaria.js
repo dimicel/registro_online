@@ -1158,7 +1158,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                                 }
                             }
                             data+="<td style='width:35px'><center>"+abrDpto+"</center></td>";
-                            dirRegistro=data_array[i]["registro"].slice(17);
+                            dirRegistro=data_array[i]["registro"].slice(-17);
                             rutaInforme=data_array[i]["rutaInforme"];
                             rutaResolucion=data_array[i]["rutaResolucion"];                            
                             if (rutaInforme=="" && rutaResolucion==""){

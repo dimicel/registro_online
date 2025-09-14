@@ -48,7 +48,7 @@ else {
 	$ciclo=$datos["ciclo"];
 	$valoracion=$datos["resolucion"];
 	$motivo=$datos["motivo"];
-	$dirRegistro=substr($registro,17);
+	$dirRegistro=substr($registro,-17);
 	// Obtener la IP remota del usuario
 	$ip_remota = $_SERVER['REMOTE_ADDR'];
 	// Obtener la fecha y hora actuales

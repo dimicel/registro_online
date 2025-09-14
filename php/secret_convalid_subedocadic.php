@@ -11,7 +11,7 @@ $registro=urldecode($_POST["registro"]);
 $id_nie=urldecode($_POST["id_nie"]);
 $anno_curso=urldecode($_POST["curso"]);
 $descripcion=urldecode($_POST["descripcion"]);
-$dirRegistro=substr($registro, 17);
+$dirRegistro=substr($registro, -17);
 $subidopor=$_SESSION['tipo_usu'];
 if($descripcion=="Resolución del Ministerio" || $descripcion=="Resolución de Consejería"){
     $nombre_doc=$descripcion.".pdf";

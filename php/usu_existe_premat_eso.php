@@ -47,8 +47,8 @@ if ($res->num_rows>0) {
     $respuesta["telef_alumno"]=$reg["telef_alumno"];
     $respuesta["email_alumno"]=$reg["email"];
     $respuesta["registro"]=$reg["registro"];
-    $respuesta["tabla"]=$cursos[substr($reg["registro"],10,6)];
-    $respuesta["curso_prematricula"]=$cursos2[substr($reg["registro"],10,6)];
+    $respuesta["tabla"]=$cursos[substr($reg["registro"],-24,6)];
+    $respuesta["curso_prematricula"]=$cursos2[substr($reg["registro"],-24,6)];
     $respuesta["tutor1"]=$reg["tutor1"];
     $respuesta["email_tutor1"]=$reg["email_tutor1"];
     $respuesta["nif_nie_tutor1"]=$reg["nif_nie_tutor1"];

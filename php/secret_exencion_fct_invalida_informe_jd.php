@@ -27,16 +27,16 @@ if ($result->num_rows == 1 ) {
     if ($mysqli->errno>0) exit("server"); 
     else{
         $error="";
-        if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
-            if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/informe_jd/informe_jd.pdf")){
+        if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, -17)."/docs/informe_jd/informe_jd.pdf")){
+            if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, -17)."/docs/informe_jd/informe_jd.pdf")){
                 //$error="no_borrado";
             }
         }
         //else{
         //    $error="no_existe";
         //}
-        if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
-            if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, 17)."/docs/resolucion/resolucion.pdf")){
+        if(is_file("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, -17)."/docs/resolucion/resolucion.pdf")){
+            if(!unlink("../docs/".$id_nie."/exencion_form_emp/".$curso."/".substr($registro, -17)."/docs/resolucion/resolucion.pdf")){
                 //$error="res_no_borrado";
             }
         }

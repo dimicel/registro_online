@@ -304,7 +304,7 @@ if($res_fav>0 || $res_nofav>0 || $res_noproc>0){
     //--------FINAL
 
     //GENERA EL ARCHIVO NUEVO
-    $dirRegistro=substr($dr["registro"], 17);
+    $dirRegistro=substr($dr["registro"], -17);
     $nombre_fichero='resolucion.pdf';
     $ruta=__DIR__."/../docs/".$dr["id_nie"]."/"."convalidaciones/".$dr["curso"]."/".$dirRegistro."/docs/resolucion";
     if(!is_dir($ruta))mkdir($ruta,0777,true);
@@ -424,7 +424,7 @@ elseif($res_min>0 || $res_con>0) {
     
 
 
-    $dirRegistro=substr($dr["registro"], 17);
+    $dirRegistro=substr($dr["registro"], -17);
     $nombre_fichero='resolucion.pdf';
     $ruta=__DIR__."/../docs/".$dr["id_nie"]."/"."convalidaciones/".$dr["curso"]."/".$dirRegistro."/docs/resolucion";
     if(!is_dir($ruta))mkdir($ruta,0777,true);
