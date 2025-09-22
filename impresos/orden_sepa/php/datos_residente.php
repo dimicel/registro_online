@@ -14,10 +14,10 @@ $resp=array();
 $dat=$mysqli->query("select * from residentes where id_nie='$id_nie' and curso='$curso'");
 if($dat->num_rows>0){
     while($reg=$dat->fetch_assoc()){
-        if ($reg["bonificado"]==1) {
+        /*if ($reg["bonificado"]==1) {
             $resp["error"]="bonificado";
             exit(json_encode($resp));
-        }
+        }*/
         $resp["datos"]=$reg;
         $resp["error"]="ok";
     }
