@@ -49,6 +49,7 @@
                         <div class="col">
                             <center>
                             <input type="button" id="instrucciones" class="btn btn-success textoboton" value="Instrucciones y Anexo I (sede electrónica ministerio)" onclick="seleccion(this)">
+                            <input type="button" id="anexo_ii" class="btn btn-success textoboton" value="Anexo II Reconocimiento entre Grados Medio, Superior y Universitario" onclick="seleccion(this)">
                             <input type="button" id="formulario" class="btn btn-success textoboton" value="Formulario" onclick="seleccion(this)" />
                             </center>
                         </div>

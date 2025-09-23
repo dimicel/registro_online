@@ -92,6 +92,9 @@ $(document).ready(function() {
 function seleccion(obj) {
     if (obj.id == "instrucciones") {
         open("instrucciones/instrucciones.pdf", "_blank");
+    }
+    else if (obj.id == "anexo_ii") {
+        open("instrucciones/ANEXO_II.pdf", "_blank");
     } else{
         document.getElementById("nif_nie").value = nif_nie;
         document.getElementById("nombre").value = nombre;
