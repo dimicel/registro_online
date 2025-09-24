@@ -372,7 +372,7 @@ function generaSelectCursoTurnoGMGS(c){
         if (cicloArr[1]>=2 )cu += "<option value='2º'>2º</option>";
         if (cicloArr[1]==3) cu += "<option value='3º'>3º</option>";
         cu += "<option value='Modular'>Modular</option>";
-        if(cicloArr[5]==1) cu += "<option value='learning'>E-Learning</option>";
+        if(cicloArr[5]==1) cu += "<option value='e-learning'>E-Learning</option>";
         document.getElementById("mat_ciclos_curso").innerHTML = cu;
 
         document.getElementById("mat_ciclos_turno").innerHTML = "";
