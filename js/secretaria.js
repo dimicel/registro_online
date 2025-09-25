@@ -1361,7 +1361,7 @@ function verRegAdjuntosExencFCT(reg){
             _div+="</ul>";
         }
         alert(_div);
-        document.getElementById("ver_reg_ajuntosExencFCT").innerHTML=_div;
+        document.getElementById("ver_reg_adjuntosExencFCT").innerHTML=_div;
     },"json");
 }
 
@@ -1737,7 +1737,7 @@ function verRegistroExencionFCT(num_registro,rutaInforme,rutaResolucion){
             contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>"+resp.registro.curso_ciclo+" de Grado " + resp.registro.grado + " "+resp.registro.ciclo+"</span><br>";
             contenido += "<span class='verReg_label'>Solicitud: </span><a style='color:GREEN' target='_blank' href='"+dir_solicitud+"'>"+num_registro+".pdf</a><br>";
             contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
-            contenido +="<div id='ver_reg_ajuntosExencFCT'></div>"
+            contenido +="<div id='ver_reg_adjuntosExencFCT'></div>";
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             contenido +="<div class='col-3'>";
             contenido +="<input type='button' class='textoboton btn btn-success' value='Adjuntar Documento' onclick='adjuntaDocAdicionalExencFCT(\""+resp.registro.id_nie+"\",\""+num_registro+"\")'/>";
