@@ -131,8 +131,8 @@ if ($buscar!=""){
     }*/
 } 
 $consulta=$consulta." order by $orden_listado";
-$data["consulta"]=$consulta;
-exit(json_encode($data));
+//$data["consulta"]=$consulta;
+//exit(json_encode($data));
 $res=$mysqli->query($consulta);
 
 if ($res->num_rows==0){
