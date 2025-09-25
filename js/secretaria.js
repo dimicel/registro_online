@@ -1675,7 +1675,7 @@ function verRegistroConvalidaciones(num_registro){
             contenido += "<span class='verReg_label'>Cursa: </span><span class='verReg_campo'>"+resp.registro.curso_ciclo+" de Grado " + resp.registro.grado + " "+resp.registro.ciclo+" "+resp.registro.ley+"</span><br>";
             contenido += "<span class='verReg_label'>Turno: </span><span class='verReg_campo'> " + resp.registro.turno + "</span>";
             contenido += "<span class='verReg_label'>Modalidad: </span><span class='verReg_campo'> " + resp.registro.modalidad + "</span><br>";
-            contenido += "<span class='verReg_label'>Solicitud: </span><a style='color:GREEN' target='_blank' href='"+dir_solicitud+"'>"+num_registro+"</a><br>";
+            contenido += "<span class='verReg_label'>Solicitud: </span><a style='color:GREEN' target='_blank' href='"+dir_solicitud+"'>"+num_registro+".pdf</a><br>";
             contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
             contenido +="<div id='ver_reg_ajuntosConvalid'></div>"
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
