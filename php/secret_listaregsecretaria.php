@@ -36,9 +36,6 @@ if ($tabla=="mat_ciclos"){
     if ($curso_ciclo=="E-learning"){
         $curso_ciclo="Modular";
         $turno="E-learning";
-        if($ciclo=="Administración y Finanzas"){
-            $ciclo="Administración y Finanzas (DIURNO)";
-        }
     }
 }
 elseif($tabla=="mat_fpb"){
