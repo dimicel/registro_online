@@ -1360,7 +1360,6 @@ function verRegAdjuntosExencFCT(reg){
             }
             _div+="</ul>";
         }
-        alert(_div);
         document.getElementById("ver_reg_adjuntosExencFCT").innerHTML=_div;
     },"json");
 }
