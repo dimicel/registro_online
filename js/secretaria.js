@@ -1351,6 +1351,7 @@ function verRegAdjuntosExencFCT(reg){
         else if(resp2.error=="sin_adjuntos") _div += "<span class='verReg_label'>El alumno no adjuntó documentos a la solicitud.</span>";
         else {
             _div+="<ul id='ul_docs_convalid'>";
+            alert(resp2.datos.length);
             for(i=0;i<resp2.datos.length;i++){
                 _div += "<li><a style='color:GREEN;font-size:0.75em' target='_blank' href='"+resp2.datos[i].ruta+"?q="+Date.now()+"'>"+resp2.datos[i].descripcion+"</a>";
                 if (resp2.datos[i].subidopor=="secretaria"){
