@@ -1337,7 +1337,7 @@ function verRegAdjuntosConvalid(reg){
             }
             _div+="</ul>";
         }
-        document.getElementById("ver_reg_ajuntosConvalid").innerHTML=_div;
+        document.getElementById("ver_reg_adjuntosConvalid").innerHTML=_div;
     },"json");
 }
 
@@ -1678,7 +1678,7 @@ function verRegistroConvalidaciones(num_registro){
             contenido += "<span class='verReg_label'>Modalidad: </span><span class='verReg_campo'> " + resp.registro.modalidad + "</span><br>";
             contenido += "<span class='verReg_label'>Solicitud: </span><a style='color:GREEN' target='_blank' href='"+dir_solicitud+"'>"+num_registro+".pdf</a><br>";
             contenido += "<span class='verReg_label'>DOCUMENTOS ADJUNTOS: </span><br>";
-            contenido +="<div id='ver_reg_ajuntosConvalid'></div>"
+            contenido +="<div id='ver_reg_adjuntosConvalid'></div>"
             contenido +="<div class='container' style='margin-top:20px'><div class='row'>";
             //contenido +="<div class='col-2'>";
             //contenido +="<label for='ver_docs_resol' class='verReg_label'>RESOLUCION:</label>";
