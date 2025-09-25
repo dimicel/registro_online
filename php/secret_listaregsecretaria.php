@@ -33,8 +33,9 @@ if ($tabla=="mat_ciclos"){
     $ciclo=$_POST["ciclo"];
     $curso_ciclo=$_POST["curso_ciclo"];
     $turno=$_POST["turno"];
-    if ($turno=="E-learning"){
+    if ($curso_ciclo=="E-learning"){
         $curso_ciclo="Modular";
+        $turno="E-learning";
         if($ciclo=="Administración y Finanzas"){
             $ciclo="Administración y Finanzas (DIURNO)";
         }
