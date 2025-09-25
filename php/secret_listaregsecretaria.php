@@ -33,6 +33,12 @@ if ($tabla=="mat_ciclos"){
     $ciclo=$_POST["ciclo"];
     $curso_ciclo=$_POST["curso_ciclo"];
     $turno=$_POST["turno"];
+    if ($turno=="E-learning"){
+        $curso_ciclo="Modular";
+        if($ciclo=="Administración y Finanzas"){
+            $ciclo="Administración y Finanzas (DIURNO)";
+        }
+    }
 }
 elseif($tabla=="mat_fpb"){
     $ciclo=$_POST["ciclo"];
