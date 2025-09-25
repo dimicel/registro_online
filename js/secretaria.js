@@ -1658,7 +1658,7 @@ function verRegistroConvalidaciones(num_registro){
     botones = "<div style='text-align:right'>";
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(\""+num_registro+"\",\"convalidaciones\",document.getElementById(\"incidencias_text\").value)'/>";
-    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:document.getElementById("+dialogo+").innerHTML='';$(\"#"+dialogo+"\").dialog(\"destroy\").remove();'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#"+dialogo+"\").dialog(\"destroy\").remove();'/>";
     botones += "</div>";
     contenido="";
     mostrarPantallaEspera();
@@ -1722,7 +1722,7 @@ function verRegistroExencionFCT(num_registro,rutaInforme,rutaResolucion){
     botones = "<div style='text-align:right'>";
     botones += "<input type='button' class='textoboton btn btn-success' value='Sin Incidencias' onclick='document.getElementById(\"incidencias_text\").value=\"\"'/>";
     botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Guardar' onclick='actualizaIncidencias(\""+num_registro+"\",\"exencion_fct\",document.getElementById(\"incidencias_text\").value)'/>";
-    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:$(\"#"+dialogo+"\").dialog(\"destroy\");'/>";
+    botones += "<input style='margin-left:5px' type='button' class='textoboton btn btn-success' value='Cerrar' onclick='javascript:document.getElementById("+dialogo+").innerHTML='';$(\"#"+dialogo+"\").dialog(\"destroy\");'/>";
     botones += "</div>";
     contenido="";
     mostrarPantallaEspera();
