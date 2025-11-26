@@ -592,7 +592,7 @@ function remesasBanco() {
     enviarFormularioSubmit(
         {
             url: "php/residencia_csv_remesas.php",
-            data: {
+            datos: {
                 curso_csv_remesas: document.getElementById("res_curso").value
             }
         }
