@@ -122,8 +122,8 @@ function res_listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:220px", "width:220px", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:70px;text-align:center","width:40px;text-align:center"];
-    encabezamiento_usu = ["NIE", "Alumno", "Email", "Bonificado","Devolución Fianza(€)","Baja","Fecha Baja","SEPA"];
+    estilo_usu = ["width:80px", "width:220px", "width:40px;text-align:center","width:70px;text-align:center", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:70px;text-align:center","width:40px;text-align:center"];
+    encabezamiento_usu = ["NIE", "Alumno", "Email","Fecha Alta", "Bonificado","Devolución Fianza(€)","Baja","Fecha Baja","SEPA"];
 
     //Construcción del res_encabezamiento de la tabla
     encab_usus = "<tr>";
@@ -163,7 +163,12 @@ function res_listaUsus() {
                 data += "<tr>";
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'><a href='docs/"+data_array[i]["id_nie"]+"/residencia/"+document.getElementById("res_curso").value+"/"+data_array[i]["registro"]+".pdf' target='_blank'>" + data_array[i]["nombre"] + "</a></td>";
-                data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='res_panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
+                //data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='res_panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
+                data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='res_panelEnvioEmail(\"" + data_array[i]["email"] + "\")'><i class='bi bi-envelope-at'></i></a></td>";
+                let partes_2 = data_array[i]["fecha_alta"].split('-');
+                let fechaConvertida_2 = partes_2[2] + '-' + partes_2[1] + '-' + partes_2[0];
+                data += "<td style='" + estilo_usu[3] + ";text-align:center'>"+fechaConvertida_2+"</td>";
+                
                 if (data_array[i]["bonificado"]==1){
                     data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
                 }
