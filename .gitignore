@@ -2,18 +2,12 @@ docs/
 logs/
 __transferencia_docs_ulaboral_a_nas_local/
 .vs/
-impresos/versiones_antiguas/
 *.sql
 *.code-workspace
 php/excel/
-ele.php
-ele.csv
-@eaDir
 añadir_a_htaccess.txt
 Guía de formato de ficheros CSV.*
 .vscode/
-codigo_convalidaciones.txt
-Cropper.txt
 js/._DAV/secretaria.js.dir
 js/._DAV/secretaria.js.pag
 #Instrucciones_testeadores/
