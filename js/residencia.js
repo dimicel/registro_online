@@ -861,7 +861,7 @@ function res_asignaEdificio(registro,celda){
                     obj=this
                     $.post({
                         url:"php/residencia_cambio_edificio.php" ,
-                        data: {registro:__registro,edificio:document.getElementById("_edificio").value,curso:document.getElementById("res_curso").value},
+                        data: {registro:registro,edificio:document.getElementById("_edificio").value,curso:document.getElementById("res_curso").value},
                         success: function(resp) {
                             ocultarPantallaEspera();
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
