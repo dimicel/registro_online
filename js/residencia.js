@@ -122,7 +122,7 @@ function res_listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:220px", "width:40px;text-align:center","width:70px;text-align:center", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:70px;text-align:center","width:40px;text-align:center","width:40px;text-align:center"];
+    estilo_usu = ["width:80px", "width:220px", "width:40px;text-align:center","width:70px;text-align:center", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:70px;text-align:center","width:40px;text-align:center","width:8ch;text-align:center"];
     encabezamiento_usu = ["NIE", "Alumno", "Email","Fecha Alta", "Bonificado","Devolución Fianza(€)","Baja","Fecha Baja","SEPA","Edificio"];
 
     //Construcción del res_encabezamiento de la tabla
