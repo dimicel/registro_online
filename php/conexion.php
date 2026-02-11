@@ -19,8 +19,9 @@ else {
 	$db="ulaboral_imp_sec_online";
 }
 
-if (!isset($mysqli)){exit(0);		
+if (!isset($mysqli)){		
 	$mysqli = new MySQLi($servidor, $usuario, $password, $db);
+	exit(0);
 	if ($mysqli==false) {
 		return false;
 	}
