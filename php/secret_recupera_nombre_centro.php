@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+include("conexion.php");exit(0);
 header("Content-Type: text/html;charset=utf-8");
 
 $data=array();
