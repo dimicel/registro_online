@@ -168,7 +168,7 @@ function res_listaUsus() {
                 data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='res_panelEnvioEmail(\"" + data_array[i]["email"] + "\")'><i class='bi bi-envelope-at'></i></a></td>";
                 let partes_2 = data_array[i]["fecha_alta"].split('-');
                 let fechaConvertida_2 = partes_2[2] + '-' + partes_2[1] + '-' + partes_2[0];
-                data += "<td style='" + estilo_usu[3] + ";text-align:center'>"+fechaConvertida_2+"</td>";
+                data += "<td style='" + estilo_usu[3] + ";text-align:center' ondblclick='res_fechaAlta(\""+data_array[i]["registro"]+"\",this)>"+fechaConvertida_2+"</td>";
                 
                 if (data_array[i]["bonificado"]==1){
                     data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
@@ -903,4 +903,129 @@ function res_asignaEdificio(registro,celda){
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
-}    
+} 
+
+
+function res_fechaAlta(registro,celda){
+    mostrarPantallaEspera();
+    cargaHTML("","","FECHA DE ALTA DEL RESIDENTE",400,2000,"center center","center center",
+        [
+            {
+                class: "btn btn-success textoboton",
+                text: "Confirmar cambio",
+                click: function() {
+                    fecha_alta=celda.innerText;
+                    mostrarPantallaEspera();
+                    obj=this
+                    $.post({
+                        url:"php/residencia_alta_baja.php",
+                        data: {registro:registro,fecha_alta:fecha_alta,curso:document.getElementById("res_curso").value},
+                        success: function(resp) {
+                            ocultarPantallaEspera();
+                            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                            else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                            else if (resp == "ok"){
+                                alerta("Fecha de alta modificada.","ACTUALIZACIÓN CORRECTA");
+                                res_listaUsus();
+                            }
+                            else{
+                                alerta(resp,"ERROR");
+                            }
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
+                        },
+                        error: function(xhr, status, error) {
+                            ocultarPantallaEspera();
+                            alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
+                        }
+                    });
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Asignar fecha del registro",
+                click: function() {
+                    mostrarPantallaEspera();
+                    obj=this
+                    $.post({
+                        url:"php/residencia_alta_baja.php",
+                        data: {registro:registro,fecha_alta:"fecha_registro",curso:document.getElementById("res_curso").value},
+                        success: function(resp) {
+                            ocultarPantallaEspera();
+                            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                            else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                            else if (resp == "ok"){
+                                alerta("Fecha de alta modificada.","ACTUALIZACIÓN CORRECTA");
+                                res_listaUsus();
+                            }
+                            else{
+                                alerta(resp,"ERROR");
+                            }
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
+                        },
+                        error: function(xhr, status, error) {
+                            ocultarPantallaEspera();
+                            alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
+                        }
+                    });
+                }
+            },
+            {
+                class: "btn btn-success textoboton",
+                text: "Cancelar",
+                click: function() {
+                    $(this).closest(".ui-dialog-content").dialog("destroy").remove();
+            }
+        }]).then((dialogo)=>{
+            ocultarPantallaEspera();
+            mensaje="<form id='form_alta'><p>Fecha de alta del residente.</p>";
+            mensaje+="<div class='form-row '>";
+            mensaje+="<div class='col-12 form-group' style='display: flex;align-items: center;'><label style='margin-right: 10px;' for='fech_alta'>Fecha alta <small>(dd/mm/aaaa)</small>:</label><span class='errorTxt' style='font-size: 1em;'></span>";
+            mensaje+="<input type='text' name='fech_alta' id='fech_alta' class='form-control' maxlength='10' size='15'  placeholder='Ej. 02/05/2000' value='"+fecha_alta+"'></div></div></form>";
+            dialogo.innerHTML=mensaje;
+            $("#form_alta").validate({
+                rules: {
+                    fech_alta: {
+                        required: true
+                    }
+                },
+                messages: {
+                    fech_alta: {
+                        required: "Falta fecha de baja"
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    $(element).prev($('.errorTxt')).html(error);
+                }
+            });
+            $("#fech_alta").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "dd/mm/yy",
+                dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                firstDay: 1,
+                monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                monthNameShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                showButtonPanel: true,
+                currentText: "Hoy",
+                closeText: "Cerrar",
+                minDate: new Date(2000, 0, 1),
+                maxDate: "0y",
+                nextText: "Siguiente",
+                prevText: "Previo"
+            });
+            var today = new Date();
+            var day = String(today.getDate()).padStart(2, '0');
+            var month = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0
+            var year = today.getFullYear();
+
+            var todayFormatted = day + '/' + month + '/' + year;
+            document.getElementById('fech_alta').value = todayFormatted;
+            
+        }).catch (error=>{
+            ocultarPantallaEspera();
+            var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+            alerta(msg,"ERROR DE CARGA");
+    });
+}
