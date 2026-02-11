@@ -77,7 +77,7 @@
             
             <div class="row" style="margin-top:15px">
                 <label class="col-form-label col-1" style="margin-left:20px">Buscar: </label>
-                <div class="col-6" style="margin-left:-35px">
+                <div class="col-5" style="margin-left:-35px">
                     <input type="text" id="res_busqueda_usus" maxlength="255" class="form-control" onkeyup="res_listaUsus()">
                 </div>
                 <label class="col-form-label col-1" style="margin-left:10px">FILTROS: </label>
