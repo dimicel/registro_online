@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+include("conexion.php");exit(0);
 include("funciones.php");
 header("Content-Type: text/html;charset=utf-8");
 session_start();
