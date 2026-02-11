@@ -138,7 +138,8 @@ function res_listaUsus() {
         res_pagina: res_pagina,
         res_num_reg_pagina: res_num_reg_pagina,
         res_curso:document.getElementById("res_curso").value,
-        filtro_bajas:document.getElementById("filtro_bajas").value
+        filtro_bajas:document.getElementById("filtro_bajas").value,
+        filtro_edificio:document.getElementById("filtro_edificio").value
     }
     $.post("php/residencia_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");

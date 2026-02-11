@@ -16,6 +16,7 @@ $orden_direccion=$_POST["res_orden_direccion_usu"];
 $curso=$_POST["res_curso"];
 $buscar=$_POST["res_buscar"];
 $baja=$_POST["filtro_bajas"];
+$edificio=$_POST["filtro_edificio"];
 
 
 $offset=($pagina-1)*$num_reg_pagina;
@@ -26,6 +27,11 @@ if ($baja==-1){
 else {
     $consulta="SELECT * FROM residentes  where curso='$curso' and baja='$baja' ";
     $sql = "SELECT COUNT(*) AS total FROM residentes where curso='$curso' and baja='$baja'";
+}
+
+if (trim($edificio)!=""){
+    $consulta.=" and edificio='$edificio' ";
+    $sql.=" and edificio='$edificio' ";
 }
 
 if (trim($buscar)==""){
