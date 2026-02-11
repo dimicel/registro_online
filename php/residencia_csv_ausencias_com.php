@@ -52,7 +52,7 @@ $Datos .= 'NIE;RESIDENTE;BONIFICADO;FECHA' . PHP_EOL;
 
 // Consulta SQL
 $sql = "
-    SELECT r.id_nie, r.apellidos, r.nombre,r.bonificado, rc.fecha_comedor
+    SELECT r.curso, r.id_nie, r.apellidos, r.nombre,r.bonificado, rc.fecha_comedor
     FROM residentes r
     INNER JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
     WHERE rc.fecha_comedor BETWEEN ? AND ?
@@ -65,6 +65,7 @@ $sql = "
           WHERE rc2.id_nie = rc.id_nie
             AND rc2.fecha_no_comedor = rc.fecha_comedor
       )
+      AND rc.curso = ?
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
@@ -75,7 +76,7 @@ if ($stmt === false) {
     exit;
 }
 
-$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
+$stmt->bind_param("sss", $fecha_inicio, $fecha_fin, $curso);
 $stmt->execute();
 $result = $stmt->get_result();
 

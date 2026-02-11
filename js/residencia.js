@@ -755,8 +755,9 @@ function res_InformesComedor(){
                 class: "btn btn-success textoboton",
                 text: "Generar informe",
                 click: function() {
+                    let res_curso_informe=document.getElementById("res_curso").value;
                     let mes = document.getElementById("mes_informe").value;
-                    document.getElementById("comedor_curso").value = res_curso_actual;
+                    document.getElementById("comedor_curso").value = res_curso_informe;
                     let tipo_informe = document.getElementById("tipo_informe_comedor").value;
 
                     if (tipo_informe === "" || mes === "") {
@@ -782,8 +783,8 @@ function res_InformesComedor(){
                     }
 
                     let array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
-                    let anno_1 = res_curso_actual.substr(0,4);
-                    let anno_2 = res_curso_actual.substr(res_curso_actual.length - 4);
+                    let anno_1 = res_curso_informe.substr(0,4);
+                    let anno_2 = res_curso_informe.substr(res_curso_informe.length - 4);
                     let mes_anno = "";
                     let m = parseInt(mes, 10);
 
@@ -838,7 +839,7 @@ function res_InformesComedor(){
             }
         ]
     ).then((dialogo)=>{
-        $.post("php/residencia_comedor_estimacion_comensales.php", {curso:res_curso_actual}, (resp) => {
+        $.post("php/residencia_comedor_estimacion_comensales.php", {curso:document.getElementById("res_curso").value}, (resp) => {
                 document.getElementById("prevision_comedor").innerHTML="Previsión asistencia al comedor: "+resp;
                 ocultarPantallaEspera();
         });
