@@ -21,7 +21,6 @@ else {
 
 if (!isset($mysqli)){		
 	$mysqli = new MySQLi($servidor, $usuario, $password, $db);
-	exit(0);
 	if ($mysqli==false) {
 		return false;
 	}
