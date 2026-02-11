@@ -68,6 +68,8 @@ while ($reg=$res->fetch_assoc()){
     $data["registros"][$contador]["baja"]= $reg["baja"];
     $data["registros"][$contador]["registro"]= $reg["registro"];
     $data["registros"][$contador]["fecha_baja"]= $reg["fecha_baja"];
+    $data["registros"][$contador]["fecha_alta"]= $reg["fecha_alta"];
+    $data["registros"][$contador]["fecha_registro"]= $reg["fecha_registro"];
     if (is_file(("../docs/".$reg["id_nie"]."/residencia/sepa_".$reg["id_nie"].".pdf"))){
         $data["registros"][$contador]["sepa"]="docs/".$reg["id_nie"]."/residencia/sepa_".$reg["id_nie"].".pdf";
     }
