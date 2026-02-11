@@ -122,8 +122,8 @@ function res_listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:220px", "width:40px;text-align:center","width:70px;text-align:center", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:70px;text-align:center","width:40px;text-align:center"];
-    encabezamiento_usu = ["NIE", "Alumno", "Email","Fecha Alta", "Bonificado","Devolución Fianza(€)","Baja","Fecha Baja","SEPA"];
+    estilo_usu = ["width:80px", "width:220px", "width:40px;text-align:center","width:70px;text-align:center", "width:80px;text-align:center","width:120px;text-align:center","width:60px;text-align:center","width:70px;text-align:center","width:40px;text-align:center","width:40px;text-align:center"];
+    encabezamiento_usu = ["NIE", "Alumno", "Email","Fecha Alta", "Bonificado","Devolución Fianza(€)","Baja","Fecha Baja","SEPA","Edificio"];
 
     //Construcción del res_encabezamiento de la tabla
     encab_usus = "<tr>";
@@ -196,6 +196,7 @@ function res_listaUsus() {
                 else{
                     data += "<td style='" + estilo_usu[8] + ";text-align:center'>-</td>";
                 }
+                data += "<td style='" + estilo_usu[9] + ";text-align:center'>"+data_array[i]["edificio"]+"</td>";
                 data += "</tr>";
             }
             document.getElementById("res_encabezado_usus").innerHTML = encab_usus;
