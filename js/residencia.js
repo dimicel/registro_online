@@ -852,7 +852,7 @@ function res_InformesComedor(){
 
 function res_asignaEdificio(registro,celda){
     mostrarPantallaEspera();
-    cargaHTML("","","ASIGANAR EDIFICIO",400,400,"center center","center center",
+    cargaHTML("","","ASIGNAR EDIFICIO",300,400,"center center","center center",
     [
             {
                 class: "btn btn-success textoboton",
