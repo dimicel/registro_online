@@ -92,7 +92,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <span style="font-size: 0.75em">
-                        Para cambiar la fianza, o el estado Bonificado/No bonificado o Baja, haz doble clic sobre la celda
+                        Para cambiar la FIANZA, el estado BONIFICADO/NO BONIFICADO,BAJA,o el EDIFICIO asignado al residente, haz doble clic sobre la celda correspondiente.
                     </span>
                 </div>
             </div>   
