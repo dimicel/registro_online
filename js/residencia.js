@@ -732,7 +732,7 @@ function res_actualizaListadoAsistenciaComedor(obj) {
         }
     });
 
-    $.post("php/residencia_comedor_actualiza.php", {fecha: fecha, asistencias: JSON.stringify(asistencias) }, function(resp) {
+    $.post("php/residencia_comedor_actualiza.php", {fecha: fecha, asistencias: JSON.stringify(asistencias)}, function(resp) {
         ocultarPantallaEspera();
         if (resp == "ok") {
             alerta("Listado de asistencia actualizado correctamente.", "ACTUALIZACIÓN CORRECTA");

@@ -11,7 +11,6 @@ if ($mysqli->errno>0) {
 $fecha=DateTime::createFromFormat('d/m/Y', $_POST["fecha"]);
 $fecha = $fecha->format('Y-m-d');
 $asistencias = json_decode($_POST["asistencias"], true);
-
 $mysqli->begin_transaction();
 try {
     foreach ($asistencias as $asistencia) {
