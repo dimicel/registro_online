@@ -80,7 +80,8 @@
                 <div class="col-6" style="margin-left:-35px">
                     <input type="text" id="res_busqueda_usus" maxlength="255" class="form-control" onkeyup="res_listaUsus()">
                 </div>
-                <label class="col-form-label col-1" style="margin-left:20px">Filtro: </label>
+                <label class="col-form-label col-1" style="margin-left:20px">FILTROS: </label>
+                <label class="col-form-label col-1" style="margin-left:10px">Estado</label>
                 <div class="col-2" style="margin-left:-35px">
                     <select id="filtro_bajas" size="1"   class="form-control" onchange="res_listaUsus();">
                         <option value=-1>Todos</option>
@@ -88,6 +89,8 @@
                         <option value=1>Bajas</option>
                     </select>
                 </div>
+                <label class="col-form-label col-1" style="margin-left:10px">Edificio</label>
+                <input type="text" size="10" maxlength="50" class="col-2" style="margin-left:0px">
             </div>
             <div class="row">
                 <div class="col-12 text-center">
