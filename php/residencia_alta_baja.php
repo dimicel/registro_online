@@ -11,6 +11,7 @@ if ($mysqli->errno>0) {
 
 
 $registro=$_POST['registro'];
+$curso=$_POST['curso'];
 $baja=$_POST['baja'];
 //$fecha_baja=date('Y-m-d');
 if ($baja==0)$fecha_baja="0000-00-00";
@@ -19,7 +20,7 @@ else $fecha_baja=substr($_POST['fecha_baja'],6,4).'/'.substr($_POST['fecha_baja'
 $sql = "UPDATE residentes SET 
     baja = ?,
     fecha_baja= ?
-    WHERE registro='$registro'";
+    WHERE registro='$registro' and curso='$curso'";
 
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param('ss',  $baja,$fecha_baja);

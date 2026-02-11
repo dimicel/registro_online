@@ -11,15 +11,15 @@ if ($mysqli->errno>0) {
 
 
 $registro=$_POST['registro'];
-$bonificado=$_POST['bonificado'];
+$edificio=$_POST['edificio'];
 $curso=$_POST['curso'];
 
 $sql = "UPDATE residentes SET 
-    bonificado = ?
+    edificio = ?
     WHERE registro='$registro' and curso='$curso'";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param('s',  $bonificado);
+$stmt->bind_param('d',  $fianza);
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {

@@ -12,10 +12,11 @@ if ($mysqli->errno>0) {
 
 $registro=$_POST['registro'];
 $fianza=$_POST['fianza'];
+$curso=$_POST['curso'];
 
 $sql = "UPDATE residentes SET 
     fianza = ?
-    WHERE registro='$registro'";
+    WHERE registro='$registro' and curso='$curso'";
 
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param('d',  $fianza);

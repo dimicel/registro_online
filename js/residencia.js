@@ -196,7 +196,7 @@ function res_listaUsus() {
                 else{
                     data += "<td style='" + estilo_usu[8] + ";text-align:center'>-</td>";
                 }
-                data += "<td style='" + estilo_usu[9] + ";text-align:center'>"+data_array[i]["edificio"]+"</td>";
+                data += "<td style='" + estilo_usu[9] + ";text-align:center' ondblclick='res_asignaEdificio(\""+data_array[i]["registro"]+"\",this)'>"+data_array[i]["edificio"]+"</td>";
                 data += "</tr>";
             }
             document.getElementById("res_encabezado_usus").innerHTML = encab_usus;
@@ -379,7 +379,7 @@ function estadoBonificado(__registro,celda){
                     obj=this;
                     $.post({
                         url:"php/residencia_cambio_estado_bonificado.php" ,
-                        data: {registro:__registro,bonificado:bonificado},
+                        data: {registro:__registro,bonificado:bonificado,curso:document.getElementById("res_curso").value},
                         success: function(resp) {
                             ocultarPantallaEspera();
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
@@ -443,7 +443,7 @@ function altaBaja(__registro,celda){
                     obj=this
                     $.post({
                         url:"php/residencia_alta_baja.php",
-                        data: {registro:__registro,baja:baja,fecha_baja:fecha_baja},
+                        data: {registro:__registro,baja:baja,fecha_baja:fecha_baja,curso:document.getElementById("res_curso").value},
                         success: function(resp) {
                             ocultarPantallaEspera();
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
@@ -545,7 +545,7 @@ function fianza(__registro,celda){
                     obj=this
                     $.post({
                         url:"php/residencia_cambio_fianza.php" ,
-                        data: {registro:__registro,fianza:document.getElementById("_fianz").value},
+                        data: {registro:__registro,fianza:document.getElementById("_fianz").value, curso:document.getElementById("res_curso").value},
                         success: function(resp) {
                             ocultarPantallaEspera();
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
@@ -848,3 +848,58 @@ function res_InformesComedor(){
         alerta(msg,"ERROR DE CARGA");
     });
 }
+
+function res_asignaEdificio(registro,celda){
+    mostrarPantallaEspera();
+    cargaHTML("","","ASIGANAR EDIFICIO",400,400,"center center","center center",
+    [
+            {
+                class: "btn btn-success textoboton",
+                text: "Confirmar cambio",
+                click: function() {
+                    mostrarPantallaEspera();
+                    obj=this
+                    $.post({
+                        url:"php/residencia_cambio_edificio.php" ,
+                        data: {registro:__registro,edificio:document.getElementById("_edificio").value,curso:document.getElementById("res_curso").value},
+                        success: function(resp) {
+                            ocultarPantallaEspera();
+                            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+                            else if (resp == "database") alerta("No se actualizó ningún registro. Es posible que el valor no haya cambiado.", "FALLO AL ACTUALIZAR");
+                            else if (resp == "ok"){
+                                alerta("Edificio asignado.","ACTUALIZACIÓN CORRECTA");
+                                res_listaUsus();
+                            }
+                            else{
+                                alerta(resp,"ERROR");
+                            }
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
+                        },
+                        error: function(xhr, status, error) {
+                            ocultarPantallaEspera();
+                            alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
+                            $(obj).closest(".ui-dialog-content").dialog("destroy").remove();
+                        }
+                    });
+                }
+            },
+            {
+            class: "btn btn-success textoboton",
+            text: "Cancelar",
+            click: function() {
+                $(this).closest(".ui-dialog-content").dialog("destroy").remove();
+            }
+        }]    
+    ).then((dialogo)=>{
+        ocultarPantallaEspera();
+        _ff=celda.innerText;
+        mensaje="<div class='form-row'><div class='col form-group'>";
+        mensaje+="<label for='_edificio'>Edificio:</label>";
+        mensaje+="<input type='text' maxlength='50' size='10' name='_edificio' id='_edificio' class='form-control' value='"+celda.innerText+"' /></div></div>";
+        dialogo.innerHTML=mensaje;
+    }).catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+}    
