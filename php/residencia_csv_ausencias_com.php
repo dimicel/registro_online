@@ -65,7 +65,7 @@ $sql = "
           WHERE rc2.id_nie = rc.id_nie
             AND rc2.fecha_no_comedor = rc.fecha_comedor
       )
-      AND rc.curso = ?
+      AND r.curso = ?
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
