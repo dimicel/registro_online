@@ -90,7 +90,9 @@
                     </select>
                 </div>
                 <label class="col-form-label col-1" style="margin-left:10px">Edificio</label>
-                <input type="text" class="form-control" id="filtro_edificio" size="5" maxlength="50" class="col-2" style="margin-left:0px">
+                <div class="col-1" style="margin-left:-35px">
+                    <input type="text" class="form-control" id="filtro_edificio" size="5" maxlength="50" class="col-2" style="margin-left:0px">
+                </div>
             </div>
             <div class="row">
                 <div class="col-12 text-center">
