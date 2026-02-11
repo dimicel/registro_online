@@ -19,7 +19,7 @@ $sql = "UPDATE residentes SET
     WHERE registro='$registro' and curso='$curso'";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param('d',  $fianza);
+$stmt->bind_param('d',  $edificio);
 
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
