@@ -18,7 +18,7 @@ else {
 	$password="#Ulab0ral@2223#";
 	$db="ulaboral_imp_sec_online";
 }
-
+exit(0);
 if (!isset($mysqli)){		
 	$mysqli = new MySQLi($servidor, $usuario, $password, $db);
 	if ($mysqli==false) {
