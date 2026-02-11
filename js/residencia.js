@@ -168,7 +168,7 @@ function res_listaUsus() {
                 data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='res_panelEnvioEmail(\"" + data_array[i]["email"] + "\")'><i class='bi bi-envelope-at'></i></a></td>";
                 let partes_2 = data_array[i]["fecha_alta"].split('-');
                 let fechaConvertida_2 = partes_2[2] + '-' + partes_2[1] + '-' + partes_2[0];
-                data += "<td style='" + estilo_usu[3] + "';text-align:center' ondblclick='res_fechaAlta(\""+data_array[i]["registro"]+"\",this)>"+fechaConvertida_2+"</td>";
+                data += "<td style='" + estilo_usu[3] + "' ondblclick='res_fechaAlta(\""+data_array[i]["registro"]+"\",this)>"+fechaConvertida_2+"</td>";
                 
                 if (data_array[i]["bonificado"]==1){
                     data += "<td style='" + estilo_usu[4] + ";text-align:center' ondblclick='estadoBonificado(\""+data_array[i]["registro"]+"\",this)'>SÍ</td>";
