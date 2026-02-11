@@ -55,6 +55,7 @@ $Datos .= "FECHA;DÍA_SEMANA;DESAYUNO_BONIFICADOS;DESAYUNO_NO_BONIFICADOS;COMIDA
 // Consulta SQL extendida para bonificados y no bonificados
 $sql = "
     SELECT 
+        r.curso, 
         rc.fecha_comedor AS fecha,
         CASE DAYOFWEEK(rc.fecha_comedor)
             WHEN 2 THEN 'Lunes'
@@ -71,7 +72,8 @@ $sql = "
     FROM residentes_comedor rc
     INNER JOIN residentes r ON rc.id_nie = r.id_nie
     WHERE 
-        rc.fecha_comedor BETWEEN ? AND ?
+        r.curso = ?
+        AND rc.fecha_comedor BETWEEN ? AND ?
         AND DAYOFWEEK(rc.fecha_comedor) BETWEEN 2 AND 6
     GROUP BY rc.fecha_comedor, r.bonificado
     HAVING desayuno > 0 OR comida > 0 OR cena > 0
@@ -85,7 +87,7 @@ if ($stmt === false) {
     exit;
 }
 
-$stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
+$stmt->bind_param("sss", $curso, $fecha_inicio, $fecha_fin);
 $stmt->execute();
 $result = $stmt->get_result();
 

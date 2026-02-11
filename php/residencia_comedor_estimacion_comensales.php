@@ -53,6 +53,7 @@ $stmt_residentes->close();
 // Consulta ausencias para las fechas dadas, solo residentes activos y de ese curso
 $sql_ausencias = "
 SELECT
+    r.curso,
     rc.fecha_no_comedor,
     COUNT(DISTINCT rc.id_nie) AS ausentes
 FROM residentes_comedor rc
