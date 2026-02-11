@@ -14,17 +14,24 @@ $registro=$_POST['registro'];
 $curso=$_POST['curso'];
 $fecha_alta=$_POST['fecha_alta'];
 //$fecha_baja=date('Y-m-d');
-if ($baja==0)$fecha_baja="0000-00-00";
-else $fecha_baja=substr($_POST['fecha_baja'],6,4).'/'.substr($_POST['fecha_baja'],3,2).'/'.substr($_POST['fecha_baja'],0,2);;
+if ($fecha_alta!="fecha_registro")
+{    
+    $fecha_alta=substr($_POST['fecha_alta'],6,4).'/'.substr($_POST['fecha_alta'],3,2).'/'.substr($_POST['fecha_alta'],0,2);
+    $sql = "UPDATE residentes SET 
+        fecha_alta = ?
+        WHERE registro='$registro' and curso='$curso'";
 
-$sql = "UPDATE residentes SET 
-    baja = ?,
-    fecha_baja= ?
-    WHERE registro='$registro' and curso='$curso'";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param('s',  $fecha_alta);
+}
+else
+{
+    $sql = "UPDATE residentes SET 
+        fecha_alta = fecha_registro
+        WHERE registro='$registro' and curso='$curso'";
 
-$stmt = $mysqli->prepare($sql);
-$stmt->bind_param('ss',  $baja,$fecha_baja);
-
+    $stmt = $mysqli->prepare($sql);
+}
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
         $stmt->close();
