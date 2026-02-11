@@ -895,7 +895,7 @@ function res_asignaEdificio(registro,celda){
         _ff=celda.innerText;
         mensaje="<div class='form-row'><div class='col form-group'>";
         mensaje+="<label for='_edificio'>Edificio:</label>";
-        mensaje+="<input type='text' maxlength='50' size='10' name='_edificio' id='_edificio' class='form-control' value='"+celda.innerText+"' /></div></div>";
+        mensaje+="<input type='text' maxlength='50' size='8' name='_edificio' id='_edificio' class='form-control' value='"+celda.innerText+"' /></div></div>";
         dialogo.innerHTML=mensaje;
     }).catch (error=>{
         ocultarPantallaEspera();
