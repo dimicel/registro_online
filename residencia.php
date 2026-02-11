@@ -82,7 +82,7 @@
                 </div>
                 <label class="col-form-label col-1" style="margin-left:20px">FILTROS: </label>
                 <label class="col-form-label col-1" style="margin-left:10px">Estado</label>
-                <div class="col-2" style="margin-left:-35px">
+                <div class="col-1" style="margin-left:-35px">
                     <select id="filtro_bajas" size="1"   class="form-control" onchange="res_listaUsus();">
                         <option value=-1>Todos</option>
                         <option value=0>Altas</option>
