@@ -8,7 +8,6 @@ $(function() {
         else{
             ocultarPantallaEspera();
             curso=resp.anno_ini_curso+"-"+(parseInt(resp.anno_ini_curso)+1);
-            /*
             $("#fecha_lista_comedor").datepicker({
                 changeMonth: true,
                 changeYear: true,
@@ -34,7 +33,6 @@ $(function() {
             document.getElementById('fecha_lista_comedor').value = todayFormatted;
             
             res_listadoRevisionAsistencia();
-            */
         }
     }},"json");
 });
