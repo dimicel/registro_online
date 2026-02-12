@@ -15,11 +15,12 @@ $registro=$_POST["registro"];
 $sql = "UPDATE $tabla SET pasado_delphos='$estado' WHERE registro='$registro'";
 $result = $mysqli->query($sql);
 
-if ($mysqli->affected_rows > 0) {
-    $mysqli->close();
-    exit("ok");
-}
-else{
+
+if ($result === false) {
     $mysqli->close();
     exit("errordb");
+}
+else {
+    $mysqli->close();
+    exit("ok");
 }
