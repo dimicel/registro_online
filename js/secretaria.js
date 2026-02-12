@@ -810,9 +810,9 @@ function listaRegistros(orden_campo, orden_direccion) {
         encabezamiento = ["NIE", "Solicitante", "Nº Registro"];
     } else if(tipo_formulario=="convalidaciones"){
         tabla = tipo_formulario;
-        campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min"];
+        campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min","procesado"];
         estilo = ["width:70px", "width:220px", "width:85px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;" ];
-        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Consej.","Proc.Cons.","Minist.","Proc.Minist.","Visto"];
+        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Consej.","Proc.Cons.","Minist.","Proc.Minist.","Proc."];
     } else if(tipo_formulario=="exencion_fct"){
         tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "fecha_registro","registro","resolucion"];
@@ -1125,11 +1125,11 @@ function listaRegistros(orden_campo, orden_direccion) {
                         }
                     }
                     if (fecha < fechaLimite){
-                        if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
+                        if (data_array[i]["procesado"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
                         else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
                     }
                     else{
-                        if (data_array[i]["visto"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
+                        if (data_array[i]["procesado"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
                         else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
                     }
 

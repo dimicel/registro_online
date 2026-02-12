@@ -173,7 +173,7 @@ elseif($proceso=="convalidaciones"){
         $data["registros"][$contador]["nombre"]=$reg["apellidos"].", ".$reg["nombre"];
         $data["registros"][$contador]["registro"]=$reg["registro"];
         $data["registros"][$contador]["fecha_registro"]=$reg["fecha_registro"];
-        $data["registros"][$contador]["visto"]=$reg["procesado"];
+        $data["registros"][$contador]["procesado"]=$reg["procesado"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
         $data["registros"][$contador]["resuelve_cen"]=$reg["resuelve_cen"];
@@ -182,6 +182,7 @@ elseif($proceso=="convalidaciones"){
         $data["registros"][$contador]["resuelto_cen"]=$reg["resuelto_cen"];
         $data["registros"][$contador]["resuelto_con"]=$reg["resuelto_con"];
         $data["registros"][$contador]["resuelto_min"]=$reg["resuelto_min"];
+        $data["registros"][$contador]["pasado_delphos"]=$reg["pasado_delphos"];
         $contador++;
     }
 }
@@ -192,7 +193,8 @@ elseif($proceso=="exencion_fct"){
         $data["registros"][$contador]["registro"]=$reg["registro"];
         $data["registros"][$contador]["fecha_registro"]=$reg["fecha_registro"];
         $data["registros"][$contador]["departamento"]=$reg["departamento"];
-        $data["registros"][$contador]["visto"]=$reg["procesado"];
+        $data["registros"][$contador]["procesado"]=$reg["procesado"];
+        $data["registros"][$contador]["pasado_delphos"]=$reg["pasado_delphos"];
         $data["registros"][$contador]["resolucion"]=$reg["resolucion"];
         if ($reg["incidencias"]=="") $data["registros"][$contador]["incidencias"]=0;
         else $data["registros"][$contador]["incidencias"]=1;
