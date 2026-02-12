@@ -1331,6 +1331,7 @@ function formularioProcesado(obj){
 
 function procedimientoPasadoDelphos(obj){
     num_reg=obj.dataset.registro;
+    alert(num_reg+"    "+tipo_formulario);return;
     mostrarPantallaEspera();
     $.post("php/secret_cambia_estado_procedimiento_delphos.php",{registro:num_reg,estado:(obj.checked)?1:0,formulario:tipo_formulario},(resp)=>{
         ocultarPantallaEspera();
