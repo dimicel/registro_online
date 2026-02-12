@@ -935,7 +935,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                 }
             }
         }
-        encab += "<td style='width:4ch; text-align: center' title='Pasado a Delphos'>PD</td>";
+        encab += "<td style='width:6ch; text-align: center' title='Pasado a Delphos'>PD</td>";
         encab += "<td style='width:6ch; text-align: center' title='Observaciones'>Obser.</td></tr>";
     }
     else{
@@ -1208,13 +1208,13 @@ function listaRegistros(orden_campo, orden_direccion) {
                         //else  data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
                     //}
                     if (data_array[i]["procesado"]==1){
-                        if (data_array[i]["pasado_delphos"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
-                        else data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
+                        if (data_array[i]["pasado_delphos"]==1) data += "<td style='width:6ch'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
+                        else data += "<td style='width:6ch'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
                     } 
                     else{
-                        data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;' data-registro='"+data_array[i]["registro"]+"'/></center></td>";
+                        data += "<td style='width:6ch'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;' data-registro='"+data_array[i]["registro"]+"'/></center></td>";
                     }  
-                    data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>"; 
+                    data += "<td style='width:6ch'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>"; 
                 }
                 else{
                     data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
