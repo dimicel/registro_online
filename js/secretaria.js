@@ -812,7 +812,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min","procesado"];
         estilo = ["width:70px", "width:220px", "width:85px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;" ];
-        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Consej.","Proc.Cons.","Minist.","Proc.Minist.","Proc."];
+        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Consej.","Proc.Cons.","Minist.","Proc.Minist.","PD"];
     } else if(tipo_formulario=="exencion_fct"){
         tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "fecha_registro","registro","resolucion"];
@@ -920,6 +920,9 @@ function listaRegistros(orden_campo, orden_direccion) {
         for (i = 0; i < encabezamiento.length; i++) {
             if(encabezamiento[i].substr(0,3)=="NIE" || encabezamiento[i].substr(0,6)=="Alumno" || encabezamiento[i].substr(0,10)=="Fecha Reg."){
                 encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
+            }
+            else if(encabezamiento[i]=="PD"){
+                encab+="<td style='"+ estilo[i] + "' tooltip='Pasado a Delphos'>" + encabezamiento[i] + "</td>";
             }
             else{
                 if (tipo_formulario=="exencion_fct" && i==4){
@@ -1079,6 +1082,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                         if (j==1) data += "<td title='"+data_array[i]["registro"]+"' style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                         else if(j==2){
                             data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]].substring(8, 10) + '-' + data_array[i][campos[j]].substring(5, 7) + '-' + data_array[i][campos[j]].substring(0, 4) + "</td>";
+                            /*
                             // String de la fecha
                             fechaString = data_array[i][campos[j]]; 
 
@@ -1088,6 +1092,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                             // Crear el objeto Date para la fecha límite
                             anno_final_curso=document.getElementById("curso").value.slice(-4);
                             fechaLimite = new Date(anno_final_curso+"-06-15");
+                            */
                         } 
                         else if (j==3 || j==5 || j==7) data += "<td style='" + estilo[j] + "'>" + array_sino[data_array[i][campos[j]]] + "</td>";
                         else if(j==4){
@@ -1124,6 +1129,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                             }
                         }
                     }
+                    /*
                     if (fecha < fechaLimite){
                         if (data_array[i]["procesado"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
                         else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); formularioProcesado(this);'/></center></td>";
@@ -1132,7 +1138,11 @@ function listaRegistros(orden_campo, orden_direccion) {
                         if (data_array[i]["procesado"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
                         else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
                     }
-
+                    */
+                    if (data_array[i]["procesado"]==1){
+                        data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
+                    } 
+                    else  data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
                     data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
 
                 }
@@ -1317,6 +1327,25 @@ function formularioProcesado(obj){
         }
     });
 
+}
+
+function procedimientoPasadoDelphos(obj){
+    num_reg=obj.dataset.registro;
+    mostrarPantallaEspera();
+    $.post("php/secret_cambia_estado_procedimiento_delphos.php",{registro:num_reg,estado:(obj.checked)?1:0,formulario:tipo_formulario},(resp)=>{
+        ocultarPantallaEspera();
+        if (resp=="server"){
+            alerta("Error de servidor. Vuelva a intentarlo en otro momento.","ERROR SERVIDOR");
+            obj.checked=!obj.checked;
+        }
+        else if(resp=="errordb"){
+            alerta("Hay un problema en la base de datos. Vuelva a intentarlo en otro momento.","ERROR DB");
+            obj.checked=!obj.checked;
+        }
+        else if(resp=="ok"){
+            alerta("Estado de pasado a Delphos cambiado correctamente.", "OK");
+        }
+    });
 }
 
 
