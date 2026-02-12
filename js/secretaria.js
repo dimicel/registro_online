@@ -927,7 +927,7 @@ function listaRegistros(orden_campo, orden_direccion) {
             else{
                 if (tipo_formulario=="exencion_fct" && i==4){
                     encab+="<td style='width:35px'><center>Dpto.</center></td>";
-                    encab+="<td style='width:70px' title='Informe del Jefe de Departamento'><center>Informe JD</center></td>";
+                    encab+="<td style='width:7ch' title='Informe del Jefe de Departamento'><center>Inf. JD</center></td>";
                     encab+="<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
                 }
                 else {
@@ -935,7 +935,8 @@ function listaRegistros(orden_campo, orden_direccion) {
                 }
             }
         }
-        encab += "<td style='width:90px; text-align: center'>Observaciones</td></tr>";
+        encab += "<td style='width:4ch; text-align: center' title='Pasado a Delphos'>PD</td>";
+        encab += "<td style='width:6ch; text-align: center' title='Observaciones'>Obser.</td></tr>";
     }
     else{
         if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
@@ -1176,18 +1177,18 @@ function listaRegistros(orden_campo, orden_direccion) {
                             rutaInforme=data_array[i]["rutaInforme"];
                             rutaResolucion=data_array[i]["rutaResolucion"];                            
                             if (rutaInforme=="" && rutaResolucion==""){
-                                data+="<td style='width:70px;'><center>-</center></td>";
+                                data+="<td style='width:7ch;'><center>-</center></td>";
                                 data += "<td style='" + estilo[j] + "'>-</td>";
                             }
                             else {
                                 if (rutaInforme!=""){
-                                    data+="<td style='width:70px;'><center><a href='"+rutaInforme+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>Ver</a></center></td>";
+                                    data+="<td style='width:7ch;'><center><a href='"+rutaInforme+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>Ver</a></center></td>";
                                 }
                                 else{
-                                    data += "<td style='width:70px;text-align:center'>-</td>";
+                                    data += "<td style='width:7ch;text-align:center'>-</td>";
                                 } 
                                 if (rutaResolucion!=""){
-                                    data+="<td style='width:70px;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
+                                    data+="<td style='width:7ch;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
                                 }
                                 else{
                                     data += "<td style='" + estilo[j] + "'>-</td>";
@@ -1206,6 +1207,13 @@ function listaRegistros(orden_campo, orden_direccion) {
                         //if (data_array[i]["visto"]==1) data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";
                         //else  data += "<td style='width:60px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;'/></center></td>";    
                     //}
+                    if (data_array[i]["procesado"]==1){
+                        if (data_array[i]["pasado_delphos"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
+                        else data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
+                    } 
+                    else{
+                        data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;' data-registro='"+data_array[i]["registro"]+"'/></center></td>";
+                    }  
                     data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>"; 
                 }
                 else{
