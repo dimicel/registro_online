@@ -1343,7 +1343,7 @@ function procedimientoPasadoDelphos(obj){
             obj.checked=!obj.checked;
         }
         else if(resp=="ok"){
-            alerta("Estado de pasado a Delphos cambiado correctamente.", "OK");
+            //alerta("Estado de pasado a Delphos cambiado correctamente.", "OK");
         }
     });
 }
