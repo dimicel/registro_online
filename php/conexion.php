@@ -13,7 +13,7 @@ elseif ($dominio=="registro.ulaboral.org"){
 	$db="ulaboral_imp_sec_online";
 }
 else {
-	$servidor="127.0.0.1";
+	$servidor="localhost";
 	$usuario="root";
 	$password="#Ulab0ral@2223#";
 	$db="ulaboral_imp_sec_online";
