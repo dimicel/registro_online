@@ -922,7 +922,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                 encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
             }
             else if(encabezamiento[i]=="PD"){
-                encab+="<td style='"+ estilo[i] + "' tooltip='Pasado a Delphos'>" + encabezamiento[i] + "</td>";
+                encab+="<td style='"+ estilo[i] + "' title='Pasado a Delphos'>" + encabezamiento[i] + "</td>";
             }
             else{
                 if (tipo_formulario=="exencion_fct" && i==4){
