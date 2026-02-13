@@ -910,7 +910,7 @@ function res_asignaEdificio(registro,celda){
 function res_fechaAlta(registro,celda){
     let fecha_alta = celda.innerText;
     mostrarPantallaEspera();
-    cargaHTML("","","FECHA DE ALTA DEL RESIDENTE",400,2000,"center center","center center",
+    cargaHTML("","","FECHA DE ALTA DEL RESIDENTE",400,2500,"center center","center center",
         [
             {
                 class: "btn btn-success textoboton",
