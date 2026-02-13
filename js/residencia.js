@@ -919,7 +919,7 @@ function res_fechaAlta(registro,celda){
                     mostrarPantallaEspera();
                     obj=this
                     $.post({
-                        url:"php/residencia_alta_baja.php",
+                        url:"php/residencia_fecha_alta.php",
                         data: {registro:registro,fecha_alta:document.getElementById("fech_alta").value,curso:document.getElementById("res_curso").value},
                         success: function(resp) {
                             ocultarPantallaEspera();
