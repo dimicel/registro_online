@@ -16,6 +16,7 @@ if ($mysqli->errno>0) {
 $nie=$_POST["nu_nie"];
 $nif=$_POST["nu_nif"];
 $es_pasaporte=$_POST["nu_pasaporte"]=="true"?1:0;
+if (strlen(trim($nif))==0) $es_pasaporte=0;
 $fecha_caducidad_id_nif = date("Y-m-d", strtotime($_POST["nu_doc_fecha_cad"]));
 $pais=$_POST["nu_nacionalidad"];
 $nombre=$_POST["nu_nombre"];
