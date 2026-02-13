@@ -22,7 +22,7 @@ if ($curso === "" || $mes === "") {
     exit;
 }
 
-$anno_1 = substr($curso, 0, 4);
+/*$anno_1 = substr($curso, 0, 4);
 $anno_2 = substr($curso, -4);
 $array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 $array_dias_mes = [31,28,31,30,31,30,31,31,30,31,30,31];
@@ -44,7 +44,28 @@ if ($mes_num >= 7 && $mes_num <= 12) {
     http_response_code(500);
     echo "Mes no válido.";
     exit;
+}*/
+$anno_1 = substr($curso, 0, 4);
+$anno_2 = substr($curso, -4);
+$array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+
+$mes_num = (int)$mes;
+
+if ($mes_num < 1 || $mes_num > 12) {
+    http_response_code(500);
+    exit("Mes no válido.");
 }
+
+// 1. Elegimos el año según el mes (Julio-Diciembre -> Año 1, Enero-Junio -> Año 2)
+$anio_actual = ($mes_num >= 7 && $mes_num <= 12) ? $anno_1 : $anno_2;
+
+// 2. Calculamos las fechas automáticamente
+$fecha_inicio = $anio_actual . "-" . str_pad($mes_num, 2, "0", STR_PAD_LEFT) . "-01";
+$ultimo_dia = date("t", strtotime($fecha_inicio)); // "t" saca el último día real del mes
+$fecha_fin = $anio_actual . "-" . str_pad($mes_num, 2, "0", STR_PAD_LEFT) . "-" . $ultimo_dia;
+
+// 3. Formateamos el texto para el informe
+$mes_anno = $array_meses[$mes_num - 1] . "/" . $anio_actual;
 
 $Name = 'informe_asistencias_ausencias_comedor_' . $mes_anno . '.csv';
 
