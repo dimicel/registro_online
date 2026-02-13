@@ -61,6 +61,7 @@ $update_query = "UPDATE exencion_fct
                  SET resolucion = ?, 
                      motivo = ?, 
                      procesado = 1, 
+					 pasado_delphos = 0,
                      fecha_hora_firma_jd = ?, 
                      ip_remota_jd = ? 
                  WHERE registro = ?";

@@ -70,7 +70,7 @@ if ($res_min>0) $act_resmin=1;
 else $act_resmin=0;
 
 $consulta_act_estado_procSI="update convalidaciones set resuelve_cen='$act_rescen', resuelto_cen='$act_rescen', resuelve_con='$act_rescon', resuelve_min='$act_resmin', procesado=1, resolucion='PROCESADA' where registro='$registro'";
-$consulta_act_estado_procNO="update convalidaciones set resuelve_cen='$act_rescen', resuelto_cen='$act_rescen', resuelve_con='$act_rescon', resuelve_min='$act_resmin', procesado=0, resolucion='EN ESPERA' where registro='$registro'";
+$consulta_act_estado_procNO="update convalidaciones set resuelve_cen='$act_rescen', resuelto_cen='$act_rescen', resuelve_con='$act_rescon', resuelve_min='$act_resmin', procesado=0, pasado_delphos=0, resolucion='EN ESPERA' where registro='$registro'";
 
 $mysqli->begin_transaction();
 

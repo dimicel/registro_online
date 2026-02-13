@@ -23,7 +23,7 @@ if ($result->num_rows == 1 ) {
     $id_nie=$fila['id_nie'];
     $curso=$fila['curso'];
     // Recorrer los resultados y mostrarlos
-    $mysqli->query("UPDATE exencion_fct SET procesado=0 WHERE registro='$registro'");
+    $mysqli->query("UPDATE exencion_fct SET procesado=0, pasado_delphos=0 WHERE registro='$registro'");
     if ($mysqli->errno>0) exit("server"); 
     else{
         $error="";
