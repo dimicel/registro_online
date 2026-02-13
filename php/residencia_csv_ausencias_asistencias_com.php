@@ -25,7 +25,7 @@ if ($curso === "" || $mes === "") {
 $anno_1 = substr($curso, 0, 4);
 $anno_2 = substr($curso, -4);
 $array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
-$array_dias_mes = [31,29,31,30,31,30,31,31,30,31,30,31];
+$array_dias_mes = [31,28,31,30,31,30,31,31,30,31,30,31];
 
 $mes_anno = "";
 $fecha_inicio = "";
@@ -112,7 +112,6 @@ $sql_ausencias = "
         AND rc.desayuno = 0 AND rc.comida = 0 AND rc.cena = 0
         AND just.id_nie IS NULL
         AND rc.fecha_comedor IS NOT NULL
-        AND rc.fecha_comedor != ''
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
