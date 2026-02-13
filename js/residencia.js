@@ -908,6 +908,7 @@ function res_asignaEdificio(registro,celda){
 
 
 function res_fechaAlta(registro,celda){
+    let fecha_alta = celda.innerText;
     mostrarPantallaEspera();
     cargaHTML("","","FECHA DE ALTA DEL RESIDENTE",400,2000,"center center","center center",
         [
@@ -915,7 +916,6 @@ function res_fechaAlta(registro,celda){
                 class: "btn btn-success textoboton",
                 text: "Confirmar cambio",
                 click: function() {
-                    fecha_alta=celda.innerText;
                     mostrarPantallaEspera();
                     obj=this
                     $.post({
@@ -978,7 +978,8 @@ function res_fechaAlta(registro,celda){
                 click: function() {
                     $(this).closest(".ui-dialog-content").dialog("destroy").remove();
                 }
-        }]).then((dialogo)=>{
+            }
+        ]).then((dialogo)=>{
             ocultarPantallaEspera();
             mensaje="<form id='form_alta'><p>Fecha de alta del residente.</p>";
             mensaje+="<div class='form-row '>";
