@@ -22,7 +22,8 @@ $curso=(string)$curso . "-" . (string)($curso+1);
 $consulta=$mysqli->query("select * from residentes where id_nie='$id_nie' and curso='$curso'");
 if ($consulta->num_rows>0){
     $res=$consulta->fetch_assoc(MYSQLI_ASSOC);
-    $baja=$res["baja"];
+    //$baja=$res["baja"];
+    $baja=0;
     if ($baja==0) {
         $respuesta["esresidente"]="si";
         $respuesta["error"]="ok";
