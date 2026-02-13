@@ -61,83 +61,96 @@
 
 <!--REGISTRO DE DATOS DEL NUEVO USUARIO ___________________________________________________________-->
 <!--_______________________________________________________________________________________________-->
-<div id="nuevoUsuario_div" name="nuevoUsuario_div" style="padding: 20px;" class="ui-widget-header ui-corner-all">
+<div id="nuevoUsuario_div" name="nuevoUsuario_div" class="container-fluid p-4 bg-light border rounded shadow-sm">
     <form id="form_nuevoUsuario" class="needs-validation" novalidate>
-        <div class="form-group">
-            <div style="display: inline-block;">
-                <label for="nu_nie">NIE <small>(Nº Identificación Escolar)</small>:</label>
+        
+        <div class="form-row mb-3">
+            <div class="col-sm-6">
+                <label for="nu_nie" class="font-weight-bold">NIE <small class="text-muted">(Nº Identificación Escolar)</small>:</label>
                 <input type="text" name="nu_nie" id="nu_nie" class="form-control" readonly>
             </div>
         </div>
-        <div class="form-group" style="margin-top:-10px">
-            <label>DOCUMENTO DE IDENTIDAD</label>
-        </div>
-        <div class="form-group" style="margin-top:-10px">
-            <div style="display: inline-block; margin-left:20px">
+
+        <hr>
+        <h6 class="mb-3 text-primary font-weight-bold">DOCUMENTO DE IDENTIDAD</h6>
+
+        <div class="form-row mb-3">
+            <div class="col-sm-5 mb-2">
                 <label for="nu_nif">Nº documento:</label>
-                <span class="errorTxt"></span>
-                <input type="text" name="nu_nif" id="nu_nif" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" onblur="revisaDNI(this.value)" placeholder="(No rellene si no tiene)">
+                <span class="errorTxt text-danger d-block small"></span>
+                <input type="text" name="nu_nif" id="nu_nif" class="form-control" onkeyup="this.value=this.value.toUpperCase();" onblur="revisaDNI(this.value)" placeholder="(No rellene si no tiene)">
             </div>
-            <div style="display: inline-block; margin-left:20px">
-                <label for="nu_nif">Es pasaporte:</label>
-                <input type="checkbox" name="nu_pasaporte" id="nu_pasaporte" class="form-control" >
+            <div class="col-sm-3 mb-2">
+                <label for="nu_doc_fecha_cad">Fecha caducidad:</label>
+                <span class="errorTxt text-danger d-block small"></span>
+                <input type="text" name="nu_doc_fecha_cad" id="nu_doc_fecha_cad" class="form-control" placeholder="dd-mm-aaaa" maxlength="10">
             </div>
-            <div style="display: inline-block; margin-left:20px">
-                <label for="nu_nif">Fecha caducidad:</label>
-                <span class="errorTxt"></span>
-                <input type="text" name="nu_doc_fecha_cad" maxlength="10" id="nu_doc_fecha_cad" class="form-control" placeholder="dd-mm-aaaa">
-            </div>
-            <div style="display: inline-block; margin-left:20px">
+            <div class="col-sm-4 mb-2">
                 <label for="nu_nacionalidad">País:</label>
-                <span class="errorTxt"></span>
-                <input type="text" name="nu_nacionalidad" maxlength="20" id="nu_nacionalidad" class="form-control">
+                <span class="errorTxt text-danger d-block small"></span>
+                <input type="text" name="nu_nacionalidad" id="nu_nacionalidad" class="form-control" maxlength="20">
             </div>
-        </div>
-        <div class="form-group" style="margin-top:-10px">
-            <div style="display:inline-block;">
-                <label for="nu_nombre">NOMBRE DEL ALUMNO:</label>
-                <span class="errorTxt"></span>
-                <input type="text" style="margin-top:-5px" name="nu_nombre" id="nu_nombre" class="form-control" required maxlength="25">
+            <div class="col-12 mt-1">
+                <div class="form-check">
+                    <input type="checkbox" name="nu_pasaporte" id="nu_pasaporte" class="form-check-input">
+                    <label class="form-check-label" for="nu_pasaporte">Es pasaporte</label>
+                </div>
             </div>
-            <div style="display: inline-block; margin-left:20px">
-                <label for="nu_apellidos">APELLIDOS DEL ALUMNO:</label>
-                <span class="errorTxt"></span>
-                <input type="text" style="margin-top:-5px" name="nu_apellidos" id="nu_apellidos" class="form-control" required maxlength="40" size="38">
-            </div>
-        </div>
-        <div class="form-group" style="margin-top:-10px">
-            <label for="nu_email">CORREO ELECTRÓNICO <small>(Para recuperación de contraseña y notificaciones)</small>:</label>
-            <span class="errorTxt"></span>
-            <input type="email" style="margin-top:-5px" name="nu_email" id="nu_email" class="form-control" required maxlength="40">
-        </div>
-        <div class="form-group" style="margin-top:-10px">
-            <label for="nu_repemail">REPITA EL CORREO ELECTRÓNICO:</label>
-            <span class="errorTxt"></span>
-            <input type="email" style="margin-top:-5px" name="nu_repemail" id="nu_repemail" class="form-control" required maxlength="40">
-        </div>
-        <div class="form-group" style="margin-top:-10px">
-            <label for="nu_password">CONTRASEÑA:</label>
-            <span class="errorTxt"></span>
-            <input type="password" style="margin-top:-5px" name="nu_password" id="nu_password" class="form-control" required maxlength="40">
-        </div>
-        <div class="form-group" style="margin-top:-10px">
-            <label for="nu_reppassword">REPITA LA CONTRASEÑA:</label>
-            <span class="errorTxt"></span>
-            <input type="password" style="margin-top:-5px" name="nu_reppassword" id="nu_reppassword" class="form-control" required maxlength="40">
-        </div>
-        <div style="margin-top:-10px">
-            <!--<label for="nu_reppassword">Acepto las condiciones:</label>
-            <input type="checkbox" style="margin-top:-5px" name="nu_condiciones" id="nu_condiciones" required>-->
-            <a href="javascript:condiciones();" style="margin-left:10px; font-size: 0.7em;">Ver condiciones</a>
-            <span class="errorTxt"></span>
-        </div>
-        <div class="justify-content-center" style="margin-top:10px">
-            <label>Por su comodidad a la hora de cumplimentar los formularios disponibles, complete sus datos en el panel del usuario (botón 'Mis Datos').</label>
         </div>
 
-        <div style="text-align: center;">
-            <input type="button" value="Complete el registro" class="btn btn-success textoboton" onclick="solicitaRegistro();" />
-            <input type="button" value="Cancelar" class="btn btn-success textoboton" onclick="$('#nuevoUsuario_div').closest('.ui-dialog-content').dialog('destroy').remove();" />
+        <hr>
+
+        <div class="form-row mb-3">
+            <div class="col-sm-5 mb-2">
+                <label for="nu_nombre" class="font-weight-bold">NOMBRE DEL ALUMNO:</label>
+                <span class="errorTxt text-danger d-block small"></span>
+                <input type="text" name="nu_nombre" id="nu_nombre" class="form-control" required maxlength="25">
+            </div>
+            <div class="col-sm-7 mb-2">
+                <label for="nu_apellidos" class="font-weight-bold">APELLIDOS DEL ALUMNO:</label>
+                <span class="errorTxt text-danger d-block small"></span>
+                <input type="text" name="nu_apellidos" id="nu_apellidos" class="form-control" required maxlength="40">
+            </div>
+        </div>
+
+        <div class="form-row mb-3">
+            <div class="col-sm-6 mb-2">
+                <label for="nu_email">CORREO ELECTRÓNICO <small class="text-muted">(Recuperación)</small>:</label>
+                <span class="errorTxt text-danger d-block small"></span>
+                <input type="email" name="nu_email" id="nu_email" class="form-control" required maxlength="40">
+            </div>
+            <div class="col-sm-6 mb-2">
+                <label for="nu_repemail">REPITA EL CORREO:</label>
+                <span class="errorTxt text-danger d-block small"></span>
+                <input type="email" name="nu_repemail" id="nu_repemail" class="form-control" required maxlength="40">
+            </div>
+        </div>
+
+        <div class="form-row mb-3">
+            <div class="col-sm-6 mb-2">
+                <label for="nu_password">CONTRASEÑA:</label>
+                <span class="errorTxt text-danger d-block small"></span>
+                <input type="password" name="nu_password" id="nu_password" class="form-control" required maxlength="40">
+            </div>
+            <div class="col-sm-6 mb-2">
+                <label for="nu_reppassword">REPITA LA CONTRASEÑA:</label>
+                <span class="errorTxt text-danger d-block small"></span>
+                <input type="password" name="nu_reppassword" id="nu_reppassword" class="form-control" required maxlength="40">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <a href="javascript:condiciones();" class="small text-info">Ver condiciones</a>
+            <span class="errorTxt text-danger d-block small"></span>
+        </div>
+
+        <div class="alert alert-info small py-2">
+            Por su comodidad a la hora de cumplimentar los formularios disponibles, complete sus datos en el panel del usuario (botón 'Mis Datos').
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-success px-4 m-1" onclick="solicitaRegistro();">Complete el registro</button>
+            <button type="button" class="btn btn-outline-secondary px-4 m-1" onclick="$('#nuevoUsuario_div').closest('.ui-dialog-content').dialog('destroy').remove();">Cancelar</button>
         </div>
     </form>
 </div>
