@@ -22,7 +22,7 @@ $curso=(string)$curso . "-" . (string)($curso+1);
 $consulta=$mysqli->query("select * from residentes where id_nie='$id_nie' and curso='$curso'");
 if ($consulta->num_rows>0){
     $res=$consulta->fetch_assoc();
-    /*$baja=$res["baja"];
+    $baja=$res["baja"];
     if ($baja==0) {
         $respuesta["esresidente"]="si";
         $respuesta["error"]="ok";
@@ -32,7 +32,7 @@ if ($consulta->num_rows>0){
         $respuesta["error"]="ok";
     }
     $consulta->free();
-    exit(json_encode($respuesta));*/
+    exit(json_encode($respuesta));
 } 
 else{
     $consulta->free();
