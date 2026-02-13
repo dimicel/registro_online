@@ -57,8 +57,8 @@ $Datos .= "NIE;RESIDENTE;BONIFICADO;FECHA;DESAYUNO;COMIDA;CENA" . $eol;
 
 $sql_asistencias = "
     SELECT r.curso, r.id_nie, r.apellidos, r.nombre,r.bonificado, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
-    FROM `residentes` r
-    JOIN `residentes_comedor` rc ON r.id_nie = rc.id_nie
+    FROM residentes r
+    JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
     WHERE (rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1) AND (rc.fecha_comedor BETWEEN ? AND ?) AND r.curso = ?
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
