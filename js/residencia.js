@@ -909,7 +909,6 @@ function res_asignaEdificio(registro,celda){
 
 function res_fechaAlta(registro,celda){
     let fecha_alta = celda.innerText;
-    alert(fecha_alta)
     mostrarPantallaEspera();
     cargaHTML("","","FECHA DE ALTA DEL RESIDENTE",500,300,"center center","center center",
         [
@@ -981,7 +980,7 @@ function res_fechaAlta(registro,celda){
                 }
             }
         ]).then((dialogo)=>{
-            ocultarPantallaEspera();
+            ocultarPantallaEspera();alert(fecha_alta)
             mensaje="<form id='form_alta'><p>Fecha de alta del residente.</p>";
             mensaje+="<div class='form-row '>";
             mensaje+="<div class='col-12 form-group' style='display: flex;align-items: center;'><label style='margin-right: 10px;' for='fech_alta'>Fecha alta <small>(dd/mm/aaaa)</small>:</label><span class='errorTxt' style='font-size: 1em;'></span>";
