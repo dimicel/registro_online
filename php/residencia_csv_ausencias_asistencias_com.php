@@ -74,10 +74,10 @@ $Datos .= "INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " 
 
 // --- ASISTENCIAS ---
 $Datos .= "ASISTENCIAS" . $eol;
-$Datos .= "NIE;RESIDENTE;BONIFICADO;FECHA;DESAYUNO;COMIDA;CENA" . $eol;
+$Datos .= "NIE;RESIDENTE;EDIFICIO;BONIFICADO;FECHA;DESAYUNO;COMIDA;CENA" . $eol;
 
 $sql_asistencias = "
-    SELECT r.curso, r.id_nie, r.apellidos, r.nombre,r.bonificado, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
+    SELECT r.curso, r.id_nie, r.apellidos, r.nombre,r.bonificado, r.edificio, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
     WHERE (rc.desayuno = 1 OR rc.comida = 1 OR rc.cena = 1) AND (rc.fecha_comedor BETWEEN ? AND ?) AND r.curso = ?
@@ -104,6 +104,7 @@ while ($row = $result->fetch_assoc()) {
     $line = [
         $row['id_nie'],
         '"'.$row['apellidos'].", ".$row['nombre'].'"',
+        $row['edificio'],
         $bonificado,
         date("d/m/Y", strtotime($row['fecha_comedor'])),
         $row['desayuno'],
@@ -118,11 +119,11 @@ $Datos .= $eol;
 
 // --- AUSENCIAS ---
 $Datos .= "AUSENCIAS INJUSTIFICADAS" . $eol;
-$Datos .= "NIE;RESIDENTE;BONIFICADO;FECHA" . $eol;
+$Datos .= "NIE;RESIDENTE;EDIFICIO;BONIFICADO;FECHA" . $eol;
 
 $sql_ausencias = "
     SELECT DISTINCT 
-        r.id_nie, r.apellidos, r.nombre,r.bonificado, rc.fecha_comedor
+        r.id_nie, r.apellidos, r.nombre,r.bonificado, r.edificio, rc.fecha_comedor
     FROM residentes r
     JOIN residentes_comedor rc ON r.id_nie = rc.id_nie
     LEFT JOIN residentes_comedor just
@@ -156,6 +157,7 @@ while ($row = $result->fetch_assoc()) {
     $line = [
         $row['id_nie'],
         '"'.$row['apellidos'].", ".$row['nombre'].'"',
+        $row['edificio'],
         $bonificado,
         date("d/m/Y", strtotime($row['fecha_comedor']))
     ];

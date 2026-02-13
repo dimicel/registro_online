@@ -18,7 +18,7 @@ if ($res->num_rows==0){
 $Name = 'remesas_'.date('d-m-Y').'.csv';
 $FileName = "./$Name";
 $Datos="Fecha y hora: ".date("d/m/Y H:i:s").PHP_EOL;
-$Datos.='NIE;APELLIDOS;NOMBRE;CURSO_ACTUAL;DIRECCION;CP;LOCALIDAD;PROVINCIA;TITULAR_CUENTA;IBAN;BAJA;FECHA_BAJA;BONIFICADO;FIANZA'.PHP_EOL;
+$Datos.='NIE;APELLIDOS;NOMBRE;EDIFICIO;CURSO_ACTUAL;DIRECCION;CP;LOCALIDAD;PROVINCIA;TITULAR_CUENTA;IBAN;BAJA;FECHA_BAJA;BONIFICADO;FIANZA'.PHP_EOL;
 
 header('Expires: 0');
 header('Cache-control: private');
@@ -38,6 +38,7 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
     $Datos.="'".utf8_decode($r["id_nie"])."'".";";
     $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).";");
     $Datos.=utf8_decode(ucwords(strtolower($r["nombre"])).";");
+    $Datos.=utf8_decode($r["edificio"].";");
     $Datos.=utf8_decode($r["curso"].";");
     $Datos.=utf8_decode($r["direccion"].";");
     $Datos.=utf8_decode($r["cp"].";");
