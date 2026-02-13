@@ -81,7 +81,7 @@ function entra() {
                 else if(resp.error=="inhabilitado") alerta("El usuario se ha inhabilitado por decisión del mismo, o por no ser ya alumno del centro. No podrá operar ni recibirá notificaciones.", "USUARIO INHABILITADO");
                 else if (resp.error == "primera_vez") {
                     mostrarPantallaEspera("Cargando ...");
-                    cargaHTML("html/index.htm","nuevoUsuario_div","COMPLETE O REVISE SUS DATOS INICIALES",750,2000)
+                    cargaHTML("html/index.htm","nuevoUsuario_div","COMPLETE O REVISE SUS DATOS INICIALES",650,2000)
                     .then((dialogo)=>{
                         ocultarPantallaEspera();
                         document.getElementById("nu_repemail").onpaste = function(e) {

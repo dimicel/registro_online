@@ -23,7 +23,6 @@ $consulta=$mysqli->query("select * from residentes where id_nie='$id_nie' and cu
 if ($consulta->num_rows>0){
     $res=$consulta->fetch_assoc(MYSQLI_ASSOC);
     $baja=$res["baja"];
-    $consulta->free();
     if ($baja==0) {
         $respuesta["esresidente"]="si";
         $respuesta["error"]="ok";
