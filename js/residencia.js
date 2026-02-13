@@ -980,7 +980,7 @@ function res_fechaAlta(registro,celda){
                 }
             }
         ]).then((dialogo)=>{
-            ocultarPantallaEspera();alert(fecha_alta)
+            ocultarPantallaEspera();
             mensaje="<form id='form_alta'><p>Fecha de alta del residente.</p>";
             mensaje+="<div class='form-row '>";
             mensaje+="<div class='col-12 form-group' style='display: flex;align-items: center;'><label style='margin-right: 10px;' for='fech_alta'>Fecha alta <small>(dd/mm/aaaa)</small>:</label><span class='errorTxt' style='font-size: 1em;'></span>";
@@ -1017,6 +1017,7 @@ function res_fechaAlta(registro,celda){
                 nextText: "Siguiente",
                 prevText: "Previo"
             });
+            /*
             var today = new Date();
             var day = String(today.getDate()).padStart(2, '0');
             var month = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0
@@ -1024,6 +1025,7 @@ function res_fechaAlta(registro,celda){
 
             var todayFormatted = day + '/' + month + '/' + year;
             document.getElementById('fech_alta').value = todayFormatted;
+            */
             
         }).catch (error=>{
             ocultarPantallaEspera();
