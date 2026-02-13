@@ -977,7 +977,7 @@ function res_fechaAlta(registro,celda){
                 text: "Cancelar",
                 click: function() {
                     $(this).closest(".ui-dialog-content").dialog("destroy").remove();
-            }
+                }
         }]).then((dialogo)=>{
             ocultarPantallaEspera();
             mensaje="<form id='form_alta'><p>Fecha de alta del residente.</p>";
@@ -1028,5 +1028,6 @@ function res_fechaAlta(registro,celda){
             ocultarPantallaEspera();
             var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
             alerta(msg,"ERROR DE CARGA");
+            $(this).closest(".ui-dialog-content").dialog("destroy").remove();
     });
 }
