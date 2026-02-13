@@ -86,6 +86,12 @@ else {
 			$_SESSION['email']=$pass['email'];
 			if ($pass['no_ha_entrado']){
 				$dat["error"]="primera_vez";
+				$dat["nombre"]=$pass['nombre'];
+				$dat["apellidos"]=$pass['apellidos'];
+				$dat["email"]=$pass['email'];
+				$dat["id_nif"]=$pass['id_nif'];
+				$dat["es_pasaporte"]=$pass['es_pasaporte'];
+				$dat["fecha_caducidad_id_nif"]=$pass['fecha_caducidad_id_nif'];
 				exit(json_encode($dat));
 			} 
 			$_SESSION['id_nie']=$pass['id_nie'];
