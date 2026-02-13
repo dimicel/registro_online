@@ -69,9 +69,13 @@
                 <input type="text" name="nu_nie" id="nu_nie" class="form-control" readonly>
             </div>
             <div style="display: inline-block; margin-left:20px">
-                <label for="nu_nif">NIF/NIE del alumno:</label>
+                <label for="nu_nif">DNI/NIE/Pasaporte del alumno:</label>
                 <span class="errorTxt"></span>
                 <input type="text" name="nu_nif" id="nu_nif" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" onblur="revisaNIF(this)" placeholder="(No rellene si no tiene)">
+            </div>
+            <div style="display: inline-block; margin-left:20px">
+                <label for="nu_nif">Marcar si es pasaporte:</label>
+                <input type="checkbox" name="nu_pasaporte" id="nu_pasaporte" class="form-control" >
             </div>
         </div>
         <div class="form-group" style="margin-top:-10px">

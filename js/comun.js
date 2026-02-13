@@ -125,28 +125,34 @@ function retornaValRadioButton(obj) {
 }
 
 function validaDNI_NIE(dni) {
-    var numero, le, letra;
-    var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
-
     dni = dni.toUpperCase();
+    
+    // Expresión regular: acepta DNI estándar y NIE (X, Y, Z, K, L, M)
+    // 7 u 8 números y una letra al final.
+    var regex = /^[XYZKLM0-9]\d{7,8}[A-Z]$/;
 
-    if (expresion_regular_dni.test(dni) === true) {
-        numero = dni.substr(0, dni.length - 1);
-        numero = numero.replace('X', 0);
-        numero = numero.replace('Y', 1);
-        numero = numero.replace('Z', 2);
-        le = dni.substr(dni.length - 1, 1);
-        numero = numero % 23;
-        letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
-        letra = letra.substring(numero, numero + 1);
-        if (letra != le) {
-            return false;
-        } else {
-            return true;
-        }
-    } else {
+    if (!regex.test(dni)) {
         return false;
     }
+
+    // Extraemos la letra de control (última posición)
+    var letraEntrada = dni.charAt(dni.length - 1);
+    
+    // Extraemos el bloque para el cálculo
+    var bloque = dni.substring(0, dni.length - 1);
+
+    // Mapeo de letras iniciales para el cálculo del Módulo 23
+    var reemplazos = { 'X': '0', 'Y': '1', 'Z': '2' };
+    
+    // Si empieza por X, Y o Z, sustituimos. 
+    // Si empieza por K, L o M, se eliminan (según norma técnica para el cálculo).
+    var numCalculo = bloque.replace(/[XYZ]/g, m => reemplazos[m]).replace(/[KLM]/g, '');
+
+    // Algoritmo Módulo 23
+    var letrasValidacion = 'TRWAGMYFPDXBNJZSQVHLCKET';
+    var letraCorrecta = letrasValidacion.charAt(parseInt(numCalculo) % 23);
+
+    return letraEntrada === letraCorrecta;
 }
 
 jQuery.validator.addMethod("password", function(value, element) {

@@ -46,6 +46,11 @@ $(function() {
         return document.getElementById("nu_password").value === value ? true : false;
     });
 
+    jQuery.validator.addMethod("numero_doc", function(value, element) {
+        if (value.miTrim() == '' || document.getElementById("nu_pasaporte").checked) return true;
+        return validaDNI_NIE(value)
+    });
+
     jQuery.validator.addMethod("nif_noduplicado", function(value, element) {
         if (value.miTrim() == '') return true;
         $.ajaxSetup({ async: false });
@@ -123,8 +128,8 @@ function entra() {
                             },
                             messages: {
                                 nu_nif: {
-                                    numero_nif: "NIF incorrecto.",
-                                    nif_noduplicado: "NIF ya registrado."
+                                    numero_nif: "Incorrecto.",
+                                    nif_noduplicado: "Ya registrado."
                                 },
                                 nu_nombre: {
                                     required: "Debe completar el campo."
