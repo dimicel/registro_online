@@ -920,7 +920,7 @@ function res_fechaAlta(registro,celda){
                     obj=this
                     $.post({
                         url:"php/residencia_alta_baja.php",
-                        data: {registro:registro,fecha_alta:fecha_alta,curso:document.getElementById("res_curso").value},
+                        data: {registro:registro,fecha_alta:document.getElementById("fech_alta").value,curso:document.getElementById("res_curso").value},
                         success: function(resp) {
                             ocultarPantallaEspera();
                             if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
