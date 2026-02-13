@@ -1141,13 +1141,13 @@ function listaRegistros(orden_campo, orden_direccion) {
                     }
                     */
                     if (data_array[i]["procesado"]==1){
-                        if (data_array[i]["pasado_delphos"]==1) data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
-                        else data += "<td style='width:70px'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
+                        if (data_array[i]["pasado_delphos"]==1) data += "<td style='width:6ch'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' checked onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
+                        else data += "<td style='width:6ch'><center><input type='checkbox' data-registro='"+data_array[i]["registro"]+"' onclick='javascript:event.stopPropagation(); procedimientoPasadoDelphos(this);'/></center></td>";
                     } 
                     else{
-                        data += "<td style='width:70px'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;' data-registro='"+data_array[i]["registro"]+"'/></center></td>";
+                        data += "<td style='width:6ch'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;' data-registro='"+data_array[i]["registro"]+"'/></center></td>";
                     }  
-                    data += "<td style='width:90px'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
+                    data += "<td style='width:6ch'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>";
 
                 }
                 else if(tipo_formulario=="exencion_fct"){
