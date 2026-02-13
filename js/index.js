@@ -96,7 +96,7 @@ function entra() {
                         $("#form_nuevoUsuario").validate({
                             rules: {
                                 nu_nif: {
-                                    numero_nif: true,
+                                    numero_doc: true,
                                     nif_noduplicado: true
                                 },
                                 nu_nombre: {
@@ -128,7 +128,7 @@ function entra() {
                             },
                             messages: {
                                 nu_nif: {
-                                    numero_nif: "Incorrecto.",
+                                    numero_doc: "Incorrecto.",
                                     nif_noduplicado: "Ya registrado."
                                 },
                                 nu_nombre: {
@@ -170,6 +170,7 @@ function entra() {
                         document.getElementById("nu_email").value=resp.datos.email;
                         document.getElementById("nu_repemail").value=resp.datos.email;
                         document.getElementById("nu_nif").value=resp.datos.id_nif;
+                        document.getElementById("nu_pasaporte").checked=resp.datos.es_pasaporte==1?true:false;
                     })
                     .catch (error=>{
                         ocultarPantallaEspera();
