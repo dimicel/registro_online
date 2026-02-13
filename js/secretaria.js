@@ -229,14 +229,14 @@ function generaSelectTipo_form(matriz){
 
     // Crear las opciones restantes
     const opciones = [
-        { value: "convalidaciones", text: "Convalidaciones ("+matriz.convalidaciones+")" },
-        { value: "exencion_fct", text: "Exencion PFE ("+matriz.exencion_fct+")" },
+        { value: "convalidaciones", text: "Convalidaciones ("+matriz.convalidaciones.procesado+")("+matriz.convalidaciones.pasado_delphos+")" },
+        { value: "exencion_fct", text: "Exencion PFE ("+matriz.exencion_fct.procesado+")("+matriz.exencion_fct.pasado_delphos+")" },
         { value: "matricula_ciclos", text: "Matrícula CICLOS" },
         { value: "matricula", text: "Matrícula ESO y BACH" },
         { value: "matricula_fpb", text: "Matrícula FPB" },
         { value: "prematricula", text: "Prematrícula" },
-        { value: "revision_calificacion", text: "Revisión de calificación ("+matriz.revision_calificacion+")" },
-        { value: "revision_examen", text: "Revisión de examen ("+matriz.revision_examen+")" }
+        { value: "revision_calificacion", text: "Revisión de calificación ("+matriz.revision_calificacion.procesado+")" },
+        { value: "revision_examen", text: "Revisión de examen ("+matriz.revision_examen.procesado+")" }
     ];
 
     // Recorrer el array de opciones y crear las opciones
