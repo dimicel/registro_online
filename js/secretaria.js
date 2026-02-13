@@ -811,8 +811,8 @@ function listaRegistros(orden_campo, orden_direccion) {
     } else if(tipo_formulario=="convalidaciones"){
         tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "fecha_registro","resuelve_cen","resuelto_cen","resuelve_con","resuelto_con","resuelve_min","resuelto_min","procesado"];
-        estilo = ["width:70px", "width:220px", "width:85px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;" ];
-        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Consej.","Proc.Cons.","Minist.","Proc.Minist.","PD"];
+        estilo = ["width:70px", "width:220px", "width:85px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;", "width:70px;text-align:center;" ];
+        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Centro","Proc.Centro","Consej.","Proc.Cons.","Minist.","Proc.Minist."];
     } else if(tipo_formulario=="exencion_fct"){
         tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "fecha_registro","registro","resolucion"];
