@@ -71,11 +71,10 @@ $sql = "
             AND rc.comida = 0 
             AND rc.cena = 0
             AND rnc.id_nie IS NULL
-            AND r.curso = ?
         GROUP BY rc.id_nie
     ) f ON r.id_nie = f.id_nie
     WHERE 
-        (f.faltas_injustificadas > 0 OR r.baja = 0)
+        (f.faltas_injustificadas > 0 OR r.baja = 0) AND r.curso = ?
     ORDER BY r.apellidos, r.nombre
 ";
 
