@@ -68,19 +68,29 @@
                 <label for="nu_nie">NIE <small>(Nº Identificación Escolar)</small>:</label>
                 <input type="text" name="nu_nie" id="nu_nie" class="form-control" readonly>
             </div>
+        </div>
+        <div class="form-group" style="margin-top:-10px">
+            <label>DOCUMENTO DE IDENTIDAD</label>
+        </div>
+        <div class="form-group" style="margin-top:-10px">
             <div style="display: inline-block; margin-left:20px">
-                <label for="nu_nif">DNI/NIE/Pasaporte del alumno:</label>
+                <label for="nu_nif">Nº documento:</label>
                 <span class="errorTxt"></span>
                 <input type="text" name="nu_nif" id="nu_nif" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" onblur="revisaNIF(this)" placeholder="(No rellene si no tiene)">
             </div>
             <div style="display: inline-block; margin-left:20px">
-                <label for="nu_nif">Marcar si es pasaporte:</label>
+                <label for="nu_nif">Es pasaporte:</label>
                 <input type="checkbox" name="nu_pasaporte" id="nu_pasaporte" class="form-control" >
             </div>
             <div style="display: inline-block; margin-left:20px">
-                <label for="nu_nif">Fecha caducidad del documento:</label>
+                <label for="nu_nif">Fecha caducidad:</label>
                 <span class="errorTxt"></span>
                 <input type="text" name="nu_doc_fecha_cad" maxlength="10" id="nu_doc_fecha_cad" class="form-control" placeholder="dd-mm-aaaa">
+            </div>
+            <div style="display: inline-block; margin-left:20px">
+                <label for="nu_nacionalidad">País:</label>
+                <span class="errorTxt"></span>
+                <input type="text" name="nu_nacionalidad" maxlength="20" id="nu_nacionalidad" class="form-control">
             </div>
         </div>
         <div class="form-group" style="margin-top:-10px">

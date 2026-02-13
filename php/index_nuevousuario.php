@@ -17,6 +17,7 @@ $nie=$_POST["nu_nie"];
 $nif=$_POST["nu_nif"];
 $es_pasaporte=$_POST["nu_pasaporte"]=="true"?1:0;
 $fecha_caducidad_id_nif = date("Y-m-d", strtotime($_POST["nu_doc_fecha_cad"]));
+$pais=$_POST["nu_nacionalidad"];
 $nombre=$_POST["nu_nombre"];
 $apellidos=$_POST["nu_apellidos"];
 $email=$_POST["nu_email"];
@@ -33,6 +34,7 @@ $conCadena="update usuarios set
                             password='$pass', 
                             fecha_caducidad_id_nif='$fecha_caducidad_id_nif',
                             es_pasaporte='$es_pasaporte',
+                            pais='$pais',
                             nombre='$nombre', 
                             apellidos='$apellidos',
                             email='$email',
