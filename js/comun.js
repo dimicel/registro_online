@@ -124,6 +124,20 @@ function retornaValRadioButton(obj) {
     }
 }
 
+function esDNI(dni) {
+    dni = dni.toUpperCase().trim();
+    var regex = /^\d{8}[A-Z]$/;
+
+    if (!regex.test(dni)) return false;
+
+    // Comprobar si la letra es la que toca
+    var letras = "TRWAGMYFPDXBNJZSQVHLCKET";
+    var numero = dni.substr(0, 8);
+    var letraActual = dni.substr(8, 1);
+    
+    return letraActual === letras.charAt(numero % 23);
+}
+
 function validaDNI_NIE(dni) {
     dni = dni.toUpperCase();
     
