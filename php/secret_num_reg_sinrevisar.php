@@ -69,7 +69,7 @@ if ($result && $result->num_rows > 0) {
         // Nota: He usado sentencias preparadas idealmente, pero mantengo tu estilo escapando la variable por seguridad
         $cursoEscaped = $mysqli->real_escape_string($curso);
         
-        $count_sql = "SELECT COUNT(*) as total FROM '$table' WHERE procesado = 0 AND curso = '$cursoEscaped'";
+        $count_sql = "SELECT COUNT(*) as total FROM `$table` WHERE procesado = 0 AND curso = '$cursoEscaped'";
         $count_res = $mysqli->query($count_sql);
         $count_row = $count_res->fetch_assoc();
         
@@ -77,7 +77,7 @@ if ($result && $result->num_rows > 0) {
 
         // 2. Conteo condicional de 'pasado_delphos'
         if ($tieneDelphos) {
-            $delphos_sql = "SELECT COUNT(*) as total FROM '$table' WHERE pasado_delphos = 0 AND curso = '$cursoEscaped'";
+            $delphos_sql = "SELECT COUNT(*) as total FROM `$table` WHERE pasado_delphos = 0 AND curso = '$cursoEscaped'";
             $delphos_res = $mysqli->query($delphos_sql);
             $delphos_row = $delphos_res->fetch_assoc();
             $data["datos"][$table]["pasado_delphos"] = (int)$delphos_row['total'];
