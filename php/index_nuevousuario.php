@@ -15,6 +15,8 @@ if ($mysqli->errno>0) {
 
 $nie=$_POST["nu_nie"];
 $nif=$_POST["nu_nif"];
+$es_pasaporte=$_POST["nu_pasaporte"]=="true"?1:0;
+$fecha_caducidad_id_nif = date("Y-m-d", strtotime($_POST["nu_doc_fecha_cad"]));
 $nombre=$_POST["nu_nombre"];
 $apellidos=$_POST["nu_apellidos"];
 $email=$_POST["nu_email"];
@@ -26,7 +28,16 @@ $consulta=$mysqli->query("select * from usuarios where id_nie='$nie' and no_ha_e
 if ($consulta->num_rows>0) exit("registrado");
 $consulta->free();
 
-$conCadena="update usuarios set id_nif='$nif', password='$pass', nombre='$nombre', apellidos='$apellidos',email='$email',no_ha_entrado=0 where id_nie='$nie'";
+$conCadena="update usuarios set 
+                            id_nif='$nif', 
+                            password='$pass', 
+                            fecha_caducidad_id_nif='$fecha_caducidad_id_nif',
+                            es_pasaporte='$es_pasaporte',
+                            nombre='$nombre', 
+                            apellidos='$apellidos',
+                            email='$email',
+                            no_ha_entrado=0 
+                            where id_nie='$nie'";
 //$comprobacion=$mysqli->query("select * from usuarios_dat where id_nie='$nie'");
 //if ($comprobacion->num_rows==0)$mysqli->query("insert into usuarios_dat (id_nie) values ('$nie')");
 
