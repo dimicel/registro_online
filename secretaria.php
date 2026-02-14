@@ -268,6 +268,9 @@
         <!-- GESTIÓN USUARIOS - LISTADO GENERAL _____________________________________________________________________-->
         <!--_______________________________________________________________________________________-->
         <div id="usu_reg_tab" class="ui-widget-header ui-corner-all d-none" >
+            <div class="row justify-content-end" style="margin-top:10px">
+                <input class="col-2" type="button" value="Volver" class="textoboton btn btn-danger" onclick="cierraListaUsuarios()" />
+            </div>
             <div class="row" style="margin-top:15px">
                 <div class="col-1">
                     <label class="col-form-label" style="margin-left:20px; ">Mostrar: </label>
@@ -288,7 +291,7 @@
                 </div>
                 <div class="col-4">
                     <input type="button" value="Subida Masiva Docs" class="textoboton btn btn-success" onclick="subeDocExpediente('varios','');" />
-                    <input type="button" value="Volver" class="textoboton btn btn-success" onclick="cierraListaUsuarios()" />
+                    
                 </div>
             </div>
             <div class="row justify-content-center" style="margin-top:10px">
