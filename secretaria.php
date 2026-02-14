@@ -286,7 +286,7 @@
                 <div class="col-6" style="margin-left:-35px">
                     <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="listaUsus()">
                 </div>
-                <div class="col-4 offset-3">
+                <div class="col-4">
                     <input type="button" value="Subida Masiva Docs" class="textoboton btn btn-success" onclick="subeDocExpediente('varios','');" />
                     <input type="button" value="Volver" class="textoboton btn btn-success" onclick="cierraListaUsuarios()" />
                 </div>
