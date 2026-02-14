@@ -268,8 +268,8 @@
         <!-- GESTIÓN USUARIOS - LISTADO GENERAL _____________________________________________________________________-->
         <!--_______________________________________________________________________________________-->
         <div id="usu_reg_tab" class="ui-widget-header ui-corner-all d-none" >
-            <div class="row justify-content-end" style="margin-top:10px">
-                <input class="col-1" type="button" value="Volver" class="textoboton btn btn-danger" onclick="cierraListaUsuarios()" />
+            <div class="row justify-content-end" style="margin-top:10px; margin-right:10px">
+                <input class="col-1 textoboton btn btn-danger" type="button" value="Volver"  onclick="cierraListaUsuarios()" />
             </div>
             <div class="row" style="margin-top:15px">
                 <div class="col-1">
