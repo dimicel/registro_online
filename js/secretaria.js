@@ -51,6 +51,7 @@ $(function() {
             generaSelectCurso(document.getElementById("curso"));
             generaSelectCurso(document.getElementById("sel_curso"));
             document.getElementById("curso").value = _curso;
+            document.getElementById("sel_curso").value = _curso;
             if (document.getElementById("curso").value != "2020-2021") $("#curso_pre_mat option[value='3esopmar']").hide();
             else $("#curso_pre_mat option[value='3esopmar']").show();
             ocultaCursosDesplegable();
