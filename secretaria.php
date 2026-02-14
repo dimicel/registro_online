@@ -277,9 +277,9 @@
                 </div>
                 <div class="col-3" style="margin-left:-10px">
                     <select id="sel_solo_entrado" size="1" onchange="listaUsus()" class="form-control">
+                        <option value='Todos' selected>Todos</option>
                         <option value='Si'>Los que han entrado alguna vez</option>
                         <option value='No'>Los que NO han entrado nunca</option>
-                        <option value='Todos' selected>Todos</option>
                     </select>
                 </div>
                 <div class="col-3" style="margin-left:-10px">
@@ -290,7 +290,7 @@
                 <div class="col-5" style="margin-left:-10px">
                     <select id="sel_residentes" size="1" onchange="listaUsus()" class="form-control">
                         <option value='Todos' selected>Todos</option>
-                        <option value='residentes_matriculados' selected>Excluir residentes no matriculados en el centro</option>
+                        <option value='residentes_matriculados'>Excluir residentes no matriculados en el centro</option>
                     </select>
                 </div>
             </div>
