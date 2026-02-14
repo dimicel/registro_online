@@ -190,6 +190,7 @@ function entra() {
 function solicitaRegistro() {
     if ($("#form_nuevoUsuario").valid()) {
         mostrarPantallaEspera("Registrando usuario...");
+        if (validaDNI_NIE(document.getElementById("nu_nif").value)) document.getElementById("nu_pasaporte").checked=false;
         $.post("php/index_nuevousuario.php", $("#form_nuevoUsuario").serialize(), function(resp) {
             ocultarPantallaEspera();
             if (resp == "server") alerta("Problemas de conexión con el servidor. Inténtelo más tarde.", "Error de servidor");
