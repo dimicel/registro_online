@@ -112,7 +112,7 @@ function listaUsus() {
         num_reg_pagina: num_reg_pagina,
         solo_han_entrado: document.getElementById("sel_solo_entrado").value,
         curso: document.getElementById("sel_curso").value,
-        residentes_matriculados: document.getElementById("sel_residentes").value
+        residentes_no_matriculados: document.getElementById("sel_residentes").value
     }
     $.post("php/secret_usu_listausuarios.php", datos, function(resp) {
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");

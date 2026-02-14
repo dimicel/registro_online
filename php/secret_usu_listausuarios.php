@@ -15,6 +15,8 @@ $num_reg_pagina=$_POST["num_reg_pagina"];//Número de registros por página
 $orden_direccion=$_POST["orden_direccion_usu"];
 $buscar=$_POST["buscar"];
 $solo_han_entrado=$_POST["solo_han_entrado"];
+$cursa=$_POST["curso"];
+$residentes_no_matriculados=($_POST["residentes_no_matriculados"]=="Todos")?0:1;
 
 $filtro_han_entrado="";
 if ($solo_han_entrado=="Si") $filtro_han_entrado="WHERE no_ha_entrado=0 AND residente_no_matriculado=0";
