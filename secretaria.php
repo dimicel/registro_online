@@ -265,7 +265,7 @@
         <!--_______________________________________________________________________________________-->
 
 
-        <!-- LISTADO USUARIOS _____________________________________________________________________-->
+        <!-- GESTIÓN USUARIOS - LISTADO GENERAL _____________________________________________________________________-->
         <!--_______________________________________________________________________________________-->
         <div id="usu_reg_tab" class="ui-widget-header ui-corner-all d-none" >
             <div class="row" style="margin-top:15px">
@@ -279,15 +279,16 @@
                         <option value='Todos' selected>Todos</option>
                     </select>
                 </div>
+
+            </div>
+            <div class="row" style="margin-top:15px">
+                <label class="col-form-label col-1" style="margin-left:20px">Buscar: </label>
+                <div class="col-8" style="margin-left:-35px">
+                    <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="listaUsus()">
+                </div>
                 <div class="col-4 offset-3">
                     <input type="button" value="Subida Masiva Docs" class="textoboton btn btn-success" onclick="subeDocExpediente('varios','');" />
                     <input type="button" value="Volver" class="textoboton btn btn-success" onclick="cierraListaUsuarios()" />
-                </div>
-            </div>
-            <div class="row" style="margin-top:15px">
-                <label class="col-form-label col-lg-1" style="margin-left:20px">Buscar: </label>
-                <div class="col-lg-8" style="margin-left:-35px">
-                    <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="listaUsus()">
                 </div>
             </div>
             <div class="row justify-content-center" style="margin-top:10px">
