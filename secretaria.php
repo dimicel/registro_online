@@ -283,7 +283,7 @@
             </div>
             <div class="row" style="margin-top:15px">
                 <label class="col-form-label col-1" style="margin-left:20px">Buscar: </label>
-                <div class="col-8" style="margin-left:-35px">
+                <div class="col-6" style="margin-left:-35px">
                     <input type="text" id="busqueda_usus" maxlength="255" class="form-control" onkeyup="listaUsus()">
                 </div>
                 <div class="col-4 offset-3">
