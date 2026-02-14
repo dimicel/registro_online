@@ -275,7 +275,7 @@
                 <div class="col-1">
                     <label class="col-form-label" style="margin-left:20px; ">Mostrar: </label>
                 </div>
-                <div class="col-4" style="margin-left:-10px">
+                <div class="col-3" style="margin-left:-10px">
                     <select id="sel_solo_entrado" size="1" onchange="listaUsus()" class="form-control">
                         <option value='Si'>Los que han entrado alguna vez</option>
                         <option value='No'>Los que NO han entrado nunca</option>
