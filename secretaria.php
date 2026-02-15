@@ -272,9 +272,6 @@
                 <input class="col-1 textoboton btn btn-danger" type="button" value="Volver"  onclick="cierraListaUsuarios()" />
             </div>
              <div class="row" style="margin-top:15px">
-                <div class="col-1">
-                    <label class="col-form-label" style="margin-left:20px; ">Filtros: </label>
-                </div>
                 <div class="col-3 offset-1" style="margin-left:-10px">
                     <label class="col-form-label" style="margin-left:20px; ">Han entrado o no</label>
                 </div>
@@ -285,7 +282,7 @@
                     <label class="col-form-label" style="margin-left:20px; ">Residentes</label>
                 </div>
             </div>
-            <div class="row" style="margin-top:15px">
+            <div class="row">
                 <div class="col-1">
                     <label class="col-form-label" style="margin-left:20px; ">Filtros: </label>
                 </div>
