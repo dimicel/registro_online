@@ -95,8 +95,8 @@ function listaUsus() {
     direccion["🡅"] = "ASC";
     direccion["🡇"] = "DESC";
 
-    estilo_usu = ["width:80px", "width:270px", "width:270px", "width:90px", "width:40px", "width:80px"];
-    encabezamiento_usu = ["NIE", "Alumno", "Email", "¿Ha entrado?", "Imag.", "Expediente"];
+    estilo_usu = ["width:80px", "width:270px", "width:5ch", "width:12ch", "width:5ch", "width:10ch","width:9ch"];
+    encabezamiento_usu = ["NIE", "Alumno", "Email", "¿Ha entrado?", "Imag.", "Expediente","Residente"];
 
     //Construcción del encabezamiento de la tabla
     encab_usus = "<tr>";
@@ -139,9 +139,9 @@ function listaUsus() {
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
                 if (String(data_array[i]["nombre"]).trim() != "" && data_array[i]["habilitado"]==1) {
-                    data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'>" + data_array[i]["email"] + "</a></td>";
+                    data += "<td style='" + estilo_usu[2] + "'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'><i class='bi bi-envelope-at'></i></a></td>";
                 } else {
-                    data += "<td style='" + estilo_usu[2] + "'></td>";
+                    data += "<td style='" + estilo_usu[2] + "'>-</td>";
                 }
                 data += "<td style='" + estilo_usu[3] + ";text-align:center'>" + data_array[i]["no_ha_entrado"] + "</td>";
                 //Columna DOCS
