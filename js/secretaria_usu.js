@@ -148,6 +148,8 @@ function listaUsus() {
                 data += "<td style='" + estilo_usu[4] + ";text-align:center' onclick='javascript:verDocsMatricula(this.parentNode.children[0].innerHTML)'>Ver</td>";
                 //columna EXPEDIENTE
                 data += "<td style='" + estilo_usu[5] + ";text-align:center' onclick='javascript:verExpediente(this.parentNode.children[0].innerHTML,this.parentNode.children[1].innerHTML)'>Ver</td>";
+                //columna RESIDENTE
+                data += "<td style='" + estilo_usu[6] + ";text-align:center'>" + data_array[i]["residente"] + "</td>";
                 data += "</tr>";
             }
             document.getElementById("encabezado_usus").innerHTML = encab_usus;
