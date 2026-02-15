@@ -6,14 +6,11 @@ include("conexion.php");
 header("Content-Type: text/html;charset=utf-8");
 
 $data = array();
-
-// Verificar conexión
 if ($mysqli->connect_errno) {
     $data["error"] = "server";
     exit(json_encode($data));
 }
 
-// Recogida de variables
 $pagina = isset($_POST["pagina"]) ? (int)$_POST["pagina"] : 1;
 $num_reg_pagina = isset($_POST["num_reg_pagina"]) ? (int)$_POST["num_reg_pagina"] : 10;
 $orden_direccion = ($_POST["orden_direccion_usu"] == 'DESC') ? 'DESC' : 'ASC';
@@ -25,21 +22,20 @@ $condiciones = [];
 $params = [];
 $tipos = "";
 
-// 1. Filtro: Solo han entrado
-if ($solo_han_entrado == "Si") {
-    $condiciones[] = "u.no_ha_entrado = 0";
-} elseif ($solo_han_entrado == "No") {
-    $condiciones[] = "u.no_ha_entrado = 1";
-}
+// 1. Filtro: Entradas
+if ($solo_han_entrado == "Si") $condiciones[] = "u.no_ha_entrado = 0";
+elseif ($solo_han_entrado == "No") $condiciones[] = "u.no_ha_entrado = 1";
 
-// 2. Filtro: Curso (Subconsultas en tablas de matrícula)
+// 2. Filtro: Curso (Lógica simplificada)
 if ($curso != "Todos") {
-    $tablas = [
-        "mat_1bach_c", "mat_1bach_hcs", "mat_1eso", "mat_2eso", "mat_3eso", 
-        "mat_4eso", "mat_2bach_c", "mat_2bach_hcs", "mat_2esopmar", "mat_3esodiv", 
-        "mat_3esopmar", "mat_eso", "mat_bach", "mat_fpb", "mat_ciclos"
-    ];
-    
+    if ($curso == "2021-2022") {
+        // Tablas antiguas específicas
+        $tablas = ["mat_1bach_c", "mat_1bach_hcs", "mat_1eso", "mat_2eso", "mat_3eso", "mat_4eso", "mat_2bach_c", "mat_2bach_hcs", "mat_2esopmar", "mat_3esodiv", "mat_3esopmar"];
+    } else {
+        // Tablas genéricas actuales
+        $tablas = ["mat_eso", "mat_bach", "mat_fpb", "mat_ciclos"];
+    }
+
     $subs = [];
     foreach ($tablas as $t) {
         $subs[] = "u.id_nie IN (SELECT id_nie FROM $t WHERE curso = ?)";
@@ -57,35 +53,29 @@ if ($buscar != "") {
     array_push($params, $termino, $termino, $termino);
 }
 
-// Construir el WHERE
 $where_sql = count($condiciones) > 0 ? "WHERE " . implode(" AND ", $condiciones) : "";
 
-// --- CONSULTA 1: OBTENER TOTAL PARA PAGINACIÓN ---
+// --- CONSULTA 1: TOTAL ---
 $sql_count = "SELECT COUNT(*) AS total FROM usuarios u $where_sql";
 $stmt_count = $mysqli->prepare($sql_count);
-if (!empty($params)) {
-    $stmt_count->bind_param($tipos, ...$params);
-}
+if (!$stmt_count) exit(json_encode(["error" => "Error Count: ".$mysqli->error]));
+
+if (!empty($params)) $stmt_count->bind_param($tipos, ...$params);
 $stmt_count->execute();
-$res_count = $stmt_count->get_result();
-$total_filas = $res_count->fetch_assoc()['total'];
-$data["num_registros"] = $total_filas;
+$data["num_registros"] = $stmt_count->get_result()->fetch_assoc()['total'];
 $stmt_count->close();
 
-if ($total_filas == 0) {
+if ($data["num_registros"] == 0) {
     $data["error"] = "sin_registros";
     exit(json_encode($data));
 }
 
-// --- CONSULTA 2: OBTENER DATOS CON RESIDENTES Y PAGINACIÓN ---
+// --- CONSULTA 2: DATOS ---
 $offset = ($pagina - 1) * $num_reg_pagina;
 
-// Configuración dinámica según el curso
 if ($curso != "Todos") {
     $select_residente = ", IF(r.id_nie IS NULL, 'No', 'Si') as residente";
     $join_residente = " LEFT JOIN residentes r ON u.id_nie = r.id_nie AND r.curso = ? ";
-    // El orden de los tipos para bind_param debe coincidir con el orden en la SQL:
-    // 1. El curso del JOIN, 2. Los filtros del WHERE, 3. LIMIT, 4. OFFSET
     $tipos_data = "s" . $tipos . "ii";
     $params_data = array_merge([$curso], $params, [$num_reg_pagina, $offset]);
 } else {
@@ -95,21 +85,17 @@ if ($curso != "Todos") {
     $params_data = array_merge($params, [$num_reg_pagina, $offset]);
 }
 
-$consulta = "SELECT u.* $select_residente 
-             FROM usuarios u 
-             $join_residente 
-             $where_sql 
-             ORDER BY u.apellidos $orden_direccion 
-             LIMIT ? OFFSET ?";
+$consulta = "SELECT u.* $select_residente FROM usuarios u $join_residente $where_sql ORDER BY u.apellidos $orden_direccion LIMIT ? OFFSET ?";
 
 $stmt_data = $mysqli->prepare($consulta);
+if (!$stmt_data) exit(json_encode(["error" => "Error Data: ".$mysqli->error, "sql" => $consulta]));
+
 $stmt_data->bind_param($tipos_data, ...$params_data);
 $stmt_data->execute();
 $res = $stmt_data->get_result();
 
 $data["error"] = "ok";
 $data["registros"] = array();
-
 while ($reg = $res->fetch_assoc()) {
     $data["registros"][] = [
         "id_nie"        => $reg["id_nie"],
@@ -121,10 +107,8 @@ while ($reg = $res->fetch_assoc()) {
     ];
 }
 
-$res->free();
 $stmt_data->close();
 $mysqli->close();
-
 exit(json_encode($data));
 /*session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
