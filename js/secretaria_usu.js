@@ -61,7 +61,7 @@ $(function() {
             firstClass: 'first'
         }).on("page", function(event, num) {
             pagina = num;
-            //listaUsus();
+            listaUsus();
         });
         $('#navegacion_usus_top li').addClass('page-item');
         $('#navegacion_usus_top a').addClass('page-link');
