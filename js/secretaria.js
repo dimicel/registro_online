@@ -194,11 +194,6 @@ $(function() {
 
     habilitarContextMenuTactil('registros_docs');
 
-    $('#nr_es_pasaporte').on('change', function() {
-        if($(this).is(':checked')) {
-            $('#nr_nif').removeClass('is-invalid');
-        }
-    });
 });
 
 function generaSelectCurso(obj){
