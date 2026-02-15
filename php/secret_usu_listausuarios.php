@@ -34,25 +34,19 @@ if ($solo_han_entrado == "Si") {
 
 // 2. Filtro: Curso (Subconsultas en tablas de matrícula)
 if ($curso != "Todos") {
-    $condiciones[] = "(
-        u.id_nie IN (SELECT id_nie FROM mat_1bach_c WHERE curso = ?) OR
-        u.id_nie IN (SELECT id_nie FROM mat_1bach_hcs WHERE curso = ?) OR
-        u.id_nie IN (SELECT id_nie FROM mat_1eso WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_2eso WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_3eso WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_4eso WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_2bach_c WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_2bach_hcs WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_2esopmar WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_3esodiv WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_3esopmar WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_eso WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_bach WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_fpb WHERE curso = ?) OR 
-        u.id_nie IN (SELECT id_nie FROM mat_ciclos WHERE curso = ?)
-    )";
-    $tipos .= "sssssssssssssss";
-    array_push($params, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso);
+    $tablas = [
+        "mat_1bach_c", "mat_1bach_hcs", "mat_1eso", "mat_2eso", "mat_3eso", 
+        "mat_4eso", "mat_2bach_c", "mat_2bach_hcs", "mat_2esopmar", "mat_3esodiv", 
+        "mat_3esopmar", "mat_eso", "mat_bach", "mat_fpb", "mat_ciclos"
+    ];
+    
+    $subs = [];
+    foreach ($tablas as $t) {
+        $subs[] = "u.id_nie IN (SELECT id_nie FROM $t WHERE curso = ?)";
+        $tipos .= "s";
+        $params[] = $curso;
+    }
+    $condiciones[] = "(" . implode(" OR ", $subs) . ")";
 }
 
 // 3. Filtro: Buscador
