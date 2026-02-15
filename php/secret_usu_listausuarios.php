@@ -51,8 +51,8 @@ if ($curso != "Todos") {
         u.id_nie IN (SELECT id_nie FROM mat_fpb WHERE curso = ?) OR 
         u.id_nie IN (SELECT id_nie FROM mat_ciclos WHERE curso = ?)
     )";
-    $tipos .= "sss";
-    array_push($params, $curso, $curso, $curso);
+    $tipos .= "sssssssssssssss";
+    array_push($params, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso, $curso);
 }
 
 // 3. Filtro: Buscador
