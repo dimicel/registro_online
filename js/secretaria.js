@@ -2334,6 +2334,7 @@ function descargaFotos() {
 function verListaUsuarios() {
     $("#doc_reg_tab").addClass("d-none");
     $("#usu_reg_tab").removeClass("d-none");
+    listaUsus();
 }
 
 

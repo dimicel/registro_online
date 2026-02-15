@@ -61,13 +61,13 @@ $(function() {
             firstClass: 'first'
         }).on("page", function(event, num) {
             pagina = num;
-            listaUsus();
+            //listaUsus();
         });
         $('#navegacion_usus_top li').addClass('page-item');
         $('#navegacion_usus_top a').addClass('page-link');
         $('#navegacion_usus_bottom li').addClass('page-item');
         $('#navegacion_usus_bottom a').addClass('page-link');
-        listaUsus();    
+        //listaUsus();    
     },"json");
 
 });
