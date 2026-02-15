@@ -193,6 +193,12 @@ $(function() {
     });
 
     habilitarContextMenuTactil('registros_docs');
+
+    $('#nr_es_pasaporte').on('change', function() {
+        if($(this).is(':checked')) {
+            $('#nr_nif').removeClass('is-invalid');
+        }
+    });
 });
 
 function generaSelectCurso(obj){
@@ -1966,7 +1972,15 @@ function panelNuevoUsuario() {
 
 
 function altaUsuario() {
-    
+    if (document.getElementById("nr_nif").value!= '' && !document.getElementById("nr_es_pasaporte").checked) {
+        if(validaDNI_NIE(document.getElementById("nr_nif").value)){
+            $('#nr_nif').removeClass('is-invalid').addClass('is-valid');
+        }
+        else{
+            $('#nr_nif').removeClass('is-valid').addClass('is-invalid');
+            return;
+        }
+    }
     if (document.getElementById("form_alta_usuario").checkValidity()) {
         mostrarPantallaEspera();
         $.post("php/secret_nuevousuario.php", $("#form_alta_usuario").serialize(), function(resp) {
