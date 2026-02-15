@@ -1967,6 +1967,7 @@ function panelNuevoUsuario() {
 
 
 function altaUsuario() {
+    document.getElementById("form_alta_usuario").checkValidity()
     if (document.getElementById("nr_nif").value!= '' && !document.getElementById("nr_es_pasaporte").checked) {
         if(validaDNI_NIE(document.getElementById("nr_nif").value)){
             $('#nr_nif').removeClass('is-invalid').addClass('is-valid');
