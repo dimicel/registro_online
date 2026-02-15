@@ -271,15 +271,12 @@
             <div class="row justify-content-end" style="margin-top:10px; margin-right:10px">
                 <input class="col-1 textoboton btn btn-danger" type="button" value="Volver"  onclick="cierraListaUsuarios()" />
             </div>
-             <div class="row" style="margin-top:15px">
+             <div class="row">
                 <div class="col-3 offset-1" >
                     <label class="col-form-label">Han entrado o no</label>
                 </div>
                 <div class="col-2" style="margin-left:-10px">
                     <label class="col-form-label" >Curso</label>
-                </div>
-                <div class="col-4" style="margin-left:-10px">
-                    <label class="col-form-label" >Residentes</label>
                 </div>
             </div>
             <div class="row">
@@ -296,12 +293,6 @@
                 <div class="col-2" style="margin-left:-10px">
                     <select id="sel_curso" size="1" onchange="listaUsus()" class="form-control">
                         <option value='Todos' selected>Todos</option>
-                    </select>
-                </div>
-                <div class="col-4" style="margin-left:-10px">
-                    <select id="sel_residentes" size="1" onchange="listaUsus()" class="form-control">
-                        <option value='Todos' selected>Todos</option>
-                        <option value='residentes_no_matriculados'>Excluir residentes no matriculados en el centro</option>
                     </select>
                 </div>
             </div>
