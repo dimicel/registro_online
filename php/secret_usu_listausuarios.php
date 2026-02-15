@@ -35,8 +35,20 @@ if ($solo_han_entrado == "Si") {
 // 2. Filtro: Curso (Subconsultas en tablas de matrícula)
 if ($curso != "Todos") {
     $condiciones[] = "(
+        u.id_nie IN (SELECT id_nie FROM mat_1bach_c WHERE curso = ?) OR
+        u.id_nie IN (SELECT id_nie FROM mat_1bach_hcs WHERE curso = ?) OR
+        u.id_nie IN (SELECT id_nie FROM mat_1eso WHERE curso = ?) OR 
+        u.id_nie IN (SELECT id_nie FROM mat_2eso WHERE curso = ?) OR 
+        u.id_nie IN (SELECT id_nie FROM mat_3eso WHERE curso = ?) OR 
+        u.id_nie IN (SELECT id_nie FROM mat_4eso WHERE curso = ?) OR 
+        u.id_nie IN (SELECT id_nie FROM mat_2bach_c WHERE curso = ?) OR 
+        u.id_nie IN (SELECT id_nie FROM mat_2bach_hcs WHERE curso = ?) OR 
+        u.id_nie IN (SELECT id_nie FROM mat_2esopmar WHERE curso = ?) OR 
+        u.id_nie IN (SELECT id_nie FROM mat_3esodiv WHERE curso = ?) OR 
+        u.id_nie IN (SELECT id_nie FROM mat_3esopmar WHERE curso = ?) OR 
         u.id_nie IN (SELECT id_nie FROM mat_eso WHERE curso = ?) OR 
         u.id_nie IN (SELECT id_nie FROM mat_bach WHERE curso = ?) OR 
+        u.id_nie IN (SELECT id_nie FROM mat_fpb WHERE curso = ?) OR 
         u.id_nie IN (SELECT id_nie FROM mat_ciclos WHERE curso = ?)
     )";
     $tipos .= "sss";
