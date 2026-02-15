@@ -22,6 +22,7 @@ $password=$_POST["password"];
 $nombre=$_POST["nombre"];
 $apellidos=$_POST["apellidos"];
 $nif=$_POST["nif"];
+$es_pasaporte = isset($_POST['nr_es_pasaporte']) ? 1 : 0;
 $pass=password_hash($_POST["password"],PASSWORD_BCRYPT);
 $mysqli->set_charset("utf8");
 
@@ -32,10 +33,29 @@ $consulta=$mysqli->query("select * from usuarios where id_nie='$nie' and no_ha_e
 if ($consulta->num_rows>0) exit("registrado");
 $consulta->free();
 
-$mysqli->query("insert into usuarios (id_nie,password,no_ha_entrado,nombre,apellidos,id_nif,email) values ('$nie','$pass',1,'$nombre','$apellidos','$nif','$email')");
-if ($mysqli->errno>0){
-	exit("fallo_alta");		
+// 1. Preparamos la sentencia con placeholders (?)
+// Fíjate que ya no usamos comillas simples alrededor de los valores
+$stmt = $mysqli->prepare("INSERT INTO usuarios (id_nie, password, no_ha_entrado, nombre, apellidos, id_nif, email, es_pasaporte) VALUES (?, ?, 1, ?, ?, ?, ?, ?)");
+
+if ($stmt === false) {
+    exit("fallo_alta");
 }
+
+// 2. Vinculamos los parámetros (bind_param)
+// "sssssss" indica que todos los parámetros son strings (s). 
+// Si id_nie o es_pasaporte fueran números enteros en la BD, usarías "i".
+$stmt->bind_param("sssssss", $nie, $pass, $nombre, $apellidos, $nif, $email, $es_pasaporte);
+
+// 3. Ejecutamos
+$stmt->execute();
+
+// 4. Comprobamos errores
+if ($stmt->errno > 0) {
+    $stmt->close();
+    exit("fallo_alta");
+}
+
+$stmt->close();
 
 if(!is_dir("../docs/".$nie)) mkdir("../docs/".$nie,0777);
 //if (!is_dir("../docs/".$nie."/seguro")) mkdir("../docs/".$nie."/seguro",0777);
