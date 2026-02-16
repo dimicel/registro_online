@@ -2,6 +2,7 @@ docs/
 logs/
 __transferencia_docs_ulaboral_a_nas_local/
 .vs/
+.vscode/
 *.sql
 *.code-workspace
 php/excel/
