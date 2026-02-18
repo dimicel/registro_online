@@ -138,7 +138,8 @@ function esDNI(dni) {
     return letraActual === letras.charAt(numero % 23);
 }
 
-function validaDNI_NIE(dni) {
+function validaDNI_NIE(dni, es_pasaporte=false) {
+    if (es_pasaporte) return true; 
     dni = dni.toUpperCase();
     
     // Expresión regular: acepta DNI estándar y NIE (X, Y, Z, K, L, M)
@@ -181,7 +182,7 @@ jQuery.validator.addMethod("password2", function(value, element) {
 
 jQuery.validator.addMethod("numero_nif", function(value, element) {
     if (value.miTrim() == '') return true;
-    return /(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))/.test(value.miTrim());
+    return validaDNI_NIE(value.miTrim());
 });
 
 
@@ -200,13 +201,6 @@ jQuery.validator.addMethod("bic", function(value, element) {
 
 jQuery.validator.addMethod("email", function(value, element) {
     // Expresión regular para validar un correo electrónico
-    var emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    return emailPattern.test(value);
-});
-
-jQuery.validator.addMethod("email_no_obligatorio", function(value, element) {
-    // Expresión regular para validar un correo electrónico
-    if (value.trim()=="") return true;
     var emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     return emailPattern.test(value);
 });

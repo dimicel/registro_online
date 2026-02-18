@@ -694,13 +694,28 @@ function panelModUsu(id) {
                         required: true
                     },
                     mod_email: {
-                        email: true
+                        email: function() {
+                            if (form_modif_datos_usu.mod_email.value.trim().length == 0) return false;
+                            else return true;
+                        }
+                    },
+                    mod_nif:{
+                        numero_nif: function() {
+                            if (form_modif_datos_usu.mod_es_pasaporte.checked) return false;
+                            else return true;
+                        }
                     },
                     dat_email_tut1: {
-                        email: true
+                        email: function() {
+                            if (form_modif_datos_usu.dat_email_tut1.value.trim().length == 0) return false;
+                            else return true; 
+                        }  
                     },
                     dat_email_tut2: {
-                        email: true
+                        email: function() {
+                            if (form_modif_datos_usu.dat_email_tut2.value.trim().length == 0) return false;
+                            else return true;
+                        }
                     }
                 },
                 messages: {
@@ -710,14 +725,17 @@ function panelModUsu(id) {
                     mod_apellidos: {
                         required: "No puede dejar los apellidos en blanco"
                     },
+                    mod_nif: {
+                        numero_nif: "Nº no válido"
+                    },
                     mod_email: {
-                        email: "Dirección de email no válida"
+                        email_no_obligatorio: "Dirección de email no válida"
                     },
                     dat_email_tut1: {
-                        email: "Dirección de email no válida"
+                        email_no_obligatorio: "Dirección de email no válida"
                     },
                     dat_email_tut2: {
-                        email: "Dirección de email no válida"
+                        email_no_obligatorio: "Dirección de email no válida"
                     }
                 },
                 errorPlacement: function(error, element) {
