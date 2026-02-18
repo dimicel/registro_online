@@ -42,25 +42,7 @@ if($checkusu->num_rows==0){
     $mysqli->query("insert into usuarios_dat (id_nie) values ('$id_nie')");
 }
 
-if(strlen($nss)>0){
-    $consulta="update usuarios_dat set sexo='$sexo',
-    fecha_nac='$fecha_nac',
-    telef_alumno='$telefono',
-    email='$email',
-    num_ss='$nss',
-    fecha_mod_nuss='$fecha_cambio_nuss',
-    direccion='$direccion',
-    cp='$cp',
-    localidad='$localidad',
-    provincia='$provincia',
-    tutor1='$tutor1',
-    email_tutor1='$email_tut1',
-    tlf_tutor1='$telef_tut1',
-    tutor2='$tutor2',
-    email_tutor2='$email_tut2',
-    tlf_tutor2='$telef_tut2' where id_nie='$id_nie'";
-}
-else{
+
 $consulta="update usuarios_dat set sexo='$sexo',
             fecha_nac='$fecha_nac',
             telef_alumno='$telefono',
@@ -74,8 +56,12 @@ $consulta="update usuarios_dat set sexo='$sexo',
             tlf_tutor1='$telef_tut1',
             tutor2='$tutor2',
             email_tutor2='$email_tut2',
-            tlf_tutor2='$telef_tut2' where id_nie='$id_nie'";
+            tlf_tutor2='$telef_tut2' ";
+if(strlen($nss)>0){
+    $consulta.= ",nss='$nss',fecha_cambio_nss='$fecha_cambio_nuss' ";
 }
+$consulta.= " where id_nie='$id_nie'";
+
 if($mysqli->query($consulta)==TRUE) exit("ok");
 else exit("Fallo:".$mysqli->error);
 
