@@ -8,8 +8,17 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 $mysqli->set_charset("utf8");
-
+if (isset($_POST["dat_usuario"])) $usuario=$_POST["dat_usuario"];
+else $usuario="alumno";
 $id_nie=$_POST["dat_idnie"];
+$email_recuperacion=$_POST["mod_email"];
+$nif=$_POST["mod_nif"];
+$nif_fecha_caducidad=substr($_POST['mod_fecha_caducidad'],6,4).'/'.substr($_POST['mod_fecha_caducidad'],3,2).'/'.substr($_POST['mod_fecha_caducidad'],0,2);
+$nif_fecha_caducidad=date('Y-m-d',strtotime($nif_fecha_caducidad));
+$pais=$_POST["mod_pais"];
+$es_pasaporte=isset($_POST["mod_es_pasaporte"])?1:0;
+$nombre=$_POST["mod_nombre"];
+$apellidos=$_POST["mod_apellidos"]; 
 $sexo=$_POST["dat_sexo"];
 $fecha_nac=substr($_POST['dat_fecha_nac'],6,4).'/'.substr($_POST['dat_fecha_nac'],3,2).'/'.substr($_POST['dat_fecha_nac'],0,2);
 $fecha_nac=date('Y-m-d',strtotime($fecha_nac));
