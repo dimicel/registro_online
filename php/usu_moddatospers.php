@@ -56,7 +56,7 @@ $consulta="update usuarios_dat set sexo='$sexo',
             tlf_tutor1='$telef_tut1',
             tutor2='$tutor2',
             email_tutor2='$email_tut2',
-            tlf_tutor2='$telef_tut2' ";
+            tlf_tutor2='$telef_tut2'";
 if(strlen($nss)>0){
     $consulta.= ",nss='$nss',fecha_cambio_nss='$fecha_cambio_nuss' ";
 }
