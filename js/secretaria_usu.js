@@ -636,7 +636,9 @@ function panelModUsu(id) {
             else if (resp.error == "ok") {
                 form_modif_datos_usu.mod_nombre.value = resp.registro.nombre;
                 form_modif_datos_usu.mod_apellidos.value = resp.registro.apellidos;
-                form_modif_datos_usu.mod_nif.value = resp.registro.nif;
+                form_modif_datos_usu.mod_nif.value = resp.registro.id_nif;
+                form_modif_datos_usu.mod_fecha_caducidad.value = resp.registro.fecha_caducidad_id_nif;
+                form_modif_datos_usu.mod_es_pasaporte.checked = resp.registro.es_pasaporte == 1 ? true : false;
                 form_modif_datos_usu.mod_email.value = resp.registro.email;
             }
             return $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, () => {}, "json");
