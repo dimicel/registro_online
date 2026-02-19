@@ -19,10 +19,6 @@ $res=$mysqli->query($consulta);
 if ($res->num_rows==1){
     $data["error"]="ok";
     $reg=$res->fetch_assoc();
-    /*$data["registro"]["apellidos"]=$reg["apellidos"];
-    $data["registro"]["nombre"]=$reg["nombre"];
-    $data["registro"]["email"]= $reg["email"];
-    $data["registro"]["nif"]= $reg["id_nif"];*/
     $data["registro"]=$reg;
     $res->free();
     exit(json_encode($data));
