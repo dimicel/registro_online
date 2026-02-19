@@ -42,8 +42,9 @@ if($checkusu->num_rows==0){
     $mysqli->query("insert into usuarios_dat (id_nie) values ('$id_nie')");
 }
 
+$consulta1="update usuarios set nombre='$nombre',apellidos='$apellidos',id_nif='$nif',fecha_caducidad_id_nif='$nif_fecha_caducidad',pais='$pais',es_pasaporte='$es_pasaporte',email='$email_recuperacion' where id_nie='$id_nie'";
 
-$consulta="update usuarios_dat set sexo='$sexo',
+$consulta2="update usuarios_dat set sexo='$sexo',
             fecha_nac='$fecha_nac',
             telef_alumno='$telefono',
             email='$email',
@@ -58,11 +59,12 @@ $consulta="update usuarios_dat set sexo='$sexo',
             email_tutor2='$email_tut2',
             tlf_tutor2='$telef_tut2'";
 if(strlen($nss)>0){
-    $consulta.= ",nss='$nss',fecha_cambio_nss='$fecha_cambio_nuss' ";
+    $consulta2.= ",nss='$nss',fecha_cambio_nss='$fecha_cambio_nuss' ";
 }
-$consulta.= " where id_nie='$id_nie'";
+$consulta2.= " where id_nie='$id_nie'";
 
-if($mysqli->query($consulta)==TRUE) exit("ok");
-else exit("Fallo:".$mysqli->error);
+if(!$mysqli->query($consulta1)) exit("Fallo consulta1:".$mysqli->error); 
+if(!$mysqli->query($consulta2)) exit("Fallo consulta2:".$mysqli->error);
+exit("ok");
 
 $mysqli->close();
