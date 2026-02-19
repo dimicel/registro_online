@@ -21,7 +21,6 @@ $tablas = $mysqli->query("SHOW TABLES FROM ulaboral_imp_sec_online");
 if ($tablas){
     while ($fila = $tablas->fetch_row()) {
         $c=$mysqli->query("show columns from $fila[0] like 'apellidos'");
-        //if ($fila[0]!="revision_examen" && $fila[0]!="revision_calificacion" && $fila[0]!="prematricula" && $fila[0]!="matricula"){
         if($c->num_rows>0){ 
             $consulta="UPDATE $fila[0] SET nombre='$nombre', apellidos='$apellidos', email='$email', id_nif='$id_nif' where id_nie='$id_nie'";
             $mysqli->query($consulta);
