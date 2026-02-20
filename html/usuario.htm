@@ -106,15 +106,13 @@
 <div id="div_mod_datos" style="padding:10px;" class="ui-widget-header ui-corner-all">
     <form id="form_mod_datos">
         <input type="hidden" id="dat_idnie" name="dat_idnie">
-        
         <div class="row justify-content-center" style="color:green">
             <div class="col">
                 <span>¡¡¡ATENCIÓN!!! - SI HAY UN ERROR EN EL NOMBRE, APELLIDOS, NIF DEL ALUMNO O EL CORREO PARA RECUPERACIÓN DE CONTRASEÑA, PÓNGASE EN CONTACTO CON LA SECRETARÍA DEL CENTRO</span>
             </div>
         </div>
         <hr>
-
-        <div class="row" style="color:brown">
+<div class="row" style="color:brown">
             <div class="col">
                 <span>DATOS DEL ALUMNO</span>
             </div>
@@ -154,9 +152,44 @@
                 <label for="dat_pais_nac" class="etiquetas">País:</label>
                 <input type="text" class="form-control" id="dat_pais_nac" name="dat_pais_nac" maxlength="20" readonly>
             </div>
+        </div>        
+        <hr>
+        <div class="row" style="color:brown">
+            <div class="col">
+                <span>DATOS PERSONALES DEL ALUMNO</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label for="dat_sexo" class="etiquetas">Sexo:</label>
+                <span class="errorTxt"></span>
+                <select id="dat_sexo" name="dat_sexo" class="form-control">
+                    <option value=""></option>
+                    <option value="H">Hombre</option>
+                    <option value="M">Mujer</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="dat_fecha_nac" class="etiquetas">Fecha Nacimiento:</label>
+                <input type="text" class="form-control" id="dat_fecha_nac" name="dat_fecha_nac" maxlength="10" size="10"  placeholder="dd/mm/aaaa">
+            </div>
+            <div class="col-3">
+                <label for="dat_telefono" class="etiquetas">Teléfono del alumno:</label>
+                <input type="text" class="form-control" id="dat_telefono" name="dat_telefono" maxlength="12" size="12">
+            </div>
+            <div class="col">
+                <label for="dat_email" class="etiquetas">Email alumno:</label>
+                <input type="email" class="form-control" id="dat_email" name="dat_email" maxlength="80" size="80">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="dat_nss" class="etiquetas">Nº Seguridad Social:
+                <small>Para Formación en Empresas. Sólo alumnos de Ciclos Formativos de Grado Básico, Medio y Superior</small></label>
+                <input type="text" class="form-control" id="dat_nss" name="dat_nss" maxlength="12" size="12">
+            </div>
         </div>
         <hr>
-
         <div class="row" style="color:brown">
             <div class="col">
                 <span>DATOS RELATIVOS AL DOMICILIO</span>
@@ -187,7 +220,6 @@
             </div>
         </div>
         <hr>
-
         <div class="row" style="color:brown">
             <div class="col">
                 <span>REPRESENTANTES LEGALES (SI PROCEDE)</span>
