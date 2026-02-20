@@ -213,7 +213,7 @@ function cambioDatosPers() {
                 prevText: "Previo"
             });
 
-            $("#dat_fecha_cad").datepicker({
+            $("#mod_fecha_caducidad").datepicker({
                 dateFormat: "dd/mm/yy",
                 changeMonth: true,
                 changeYear: true,
