@@ -4,16 +4,17 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="corr
 include("conexion.php");
 header("Content-Type: text/html;charset=utf-8");
 
-if ($mysqli->errno>0) {
-    $resp["error"]="server";
+// 1. Cambiamos la forma de detectar error de conexión
+if ($mysqli->connect_errno) {
+    $resp["error"] = "server";
+    $resp["detalle"] = $mysqli->connect_error; // Esto te ayudará a ver qué pasa
     exit(json_encode($resp));
 }
-// Escapar la variable para evitar Inyección SQL
+
 $id_nie = $mysqli->real_escape_string($_POST["id_nie"]);
 $resp = array();
 
-// Usamos JOIN para traer campos de ambas tablas. 
-// He usado 'u.*' para la tabla usuario y 'ud.*' para usuarios_dat
+// 2. Consulta SQL con alias
 $sql = "SELECT ud.*, 
                u.*, 
                u.email AS email_recuperacion, 
@@ -24,8 +25,14 @@ $sql = "SELECT ud.*,
 
 $dat = $mysqli->query($sql);
 
-if($dat && $dat->num_rows > 0){
-    // No hace falta un while si solo esperas un registro único por ID
+// 3. Verificamos si la CONSULTA falló (esto daría error 500 si no se controla)
+if (!$dat) {
+    $resp["error"] = "query";
+    $resp["detalle"] = $mysqli->error; // Te dirá si falta una tabla o columna
+    exit(json_encode($resp));
+}
+
+if($dat->num_rows > 0){
     $reg = $dat->fetch_assoc();
     $resp["datos"] = $reg;
     $resp["error"] = "ok";
