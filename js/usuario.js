@@ -235,10 +235,19 @@ function cambioDatosPers() {
                     }
                     f_nac = resp.datos.fecha_nac;
                     if (f_nac!="") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
+                    f_cad=resp.datos.fecha_caducidad_id_nif;
+                    if (f_cad!="") f_cad = f_cad.substr(8, 2) + "/" + f_cad.substr(5, 2) + "/" + f_cad.substr(0, 4);
+                    form_mod_datos.dat_nombre.value = resp.datos.nombre;
+                    form_mod_datos.dat_apellidos.value = resp.datos.apellidos;
+                    form_mod_datos.dat_email_recuperacion.value = resp.datos.email_recuperacion;
+                    form_mod_datos.dat_nif_nie.value = resp.datos.id_nif;
+                    form_mod_datos.dat_fecha_cad.value = f_cad;
+                    form_mod_datos.dat_pais.value = pais;
+                    form_mod_datos.dat_pasaporte.checked = resp.datos.es_pasaporte == 1 ? true : false;
                     form_mod_datos.dat_sexo.value = resp.datos.sexo;
                     form_mod_datos.dat_fecha_nac.value = f_nac;
                     form_mod_datos.dat_telefono.value = resp.datos.telef_alumno;
-                    form_mod_datos.dat_email.value = resp.datos.email;
+                    form_mod_datos.dat_email.value = resp.datos.email_alumno;
                     form_mod_datos.dat_nss.value = resp.datos.num_ss;
                     form_mod_datos.dat_direccion.value = resp.datos.direccion;
                     form_mod_datos.dat_cp.value = resp.datos.cp;
