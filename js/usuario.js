@@ -23,7 +23,9 @@ $(function() {
     mostrarPantallaEspera();
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
     else document.getElementById("servidor_pruebas").style.display="none";
-    $("#dat_fecha_nac").datepicker({
+
+    var $fechaCad = $("#dat_fecha_cad");
+    $fechaCad.datepicker({
         changeMonth: true,
         changeYear: true,
         dateFormat: "dd/mm/yy",
@@ -38,6 +40,9 @@ $(function() {
         maxDate: "-10y",
         nextText: "Siguiente",
         prevText: "Previo"
+    });
+    $fechaCad.on('click', function() {
+        $(this).datepicker("show");
     });
 
     $("#dat_fecha_cad").datepicker({
