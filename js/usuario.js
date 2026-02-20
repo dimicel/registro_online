@@ -23,42 +23,6 @@ $(function() {
     mostrarPantallaEspera();
     if (document.location.hostname!="registro.ulaboral.org")document.getElementById("servidor_pruebas").style.display="inherit";
     else document.getElementById("servidor_pruebas").style.display="none";
-
-    var $fechaCad = $("#dat_fecha_cad");
-    $fechaCad.datepicker({
-        changeMonth: true,
-        changeYear: true,
-        dateFormat: "dd/mm/yy",
-        dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
-        firstDay: 1,
-        monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-        monthNameShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-        showButtonPanel: true,
-        currentText: "Hoy",
-        closeText: "Cerrar",
-        yearRange: "-100:+0", // Permite hasta 100 años atrás y hasta el año actual
-        maxDate: "-10y",
-        nextText: "Siguiente",
-        prevText: "Previo"
-    });
-    $fechaCad.on('click', function() {
-        $(this).datepicker("show");
-    });
-
-    $("#dat_fecha_cad").datepicker({
-        dateFormat: "dd/mm/yy",
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "c-5:+15", // Permite ver 5 años atrás (por si acaba de caducar) y 15 hacia adelante
-        minDate: "-1m",       // Un pequeño margen de un mes atrás por errores de renovación
-        dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
-        monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-        nextText: "Siguiente",
-        prevText: "Previo",
-        currentText: "Hoy",
-        closeText: "Cerrar",
-        showButtonPanel: true
-    });
     
     $.post("php/secret_recupera_nombre_centro.php",{},(resp)=>{
         document.getElementById("centro").innerHTML=resp["registro"]["centro"].toUpperCase();
@@ -232,6 +196,37 @@ function cambioDatosPers() {
         ]
     )
     .then((dialogo)=>{
+            $("#dat_fecha_cad").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "dd/mm/yy",
+                dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                firstDay: 1,
+                monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                monthNameShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                showButtonPanel: true,
+                currentText: "Hoy",
+                closeText: "Cerrar",
+                yearRange: "-100:+0", // Permite hasta 100 años atrás y hasta el año actual
+                maxDate: "-10y",
+                nextText: "Siguiente",
+                prevText: "Previo"
+            });
+
+            $("#dat_fecha_cad").datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "c-5:+15", // Permite ver 5 años atrás (por si acaba de caducar) y 15 hacia adelante
+                minDate: "-1m",       // Un pequeño margen de un mes atrás por errores de renovación
+                dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
+                monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                nextText: "Siguiente",
+                prevText: "Previo",
+                currentText: "Hoy",
+                closeText: "Cerrar",
+                showButtonPanel: true
+            });
             $.post("php/usu_recdatospers.php", { id_nie: id_nie }, (resp) => {
                 ocultarPantallaEspera();
                 if (resp.error == "ok") {
