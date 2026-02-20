@@ -259,7 +259,7 @@ function cambioDatosPers() {
                     form_mod_datos.dat_tutor2.value = resp.datos.tutor2;
                     form_mod_datos.dat_telef_tut2.value = resp.datos.tlf_tutor2;
                     form_mod_datos.dat_email_tut2.value = resp.datos.email_tutor2;
-                } else if (resp.error == "server") {
+                } else if (resp.error == "server" || resp.error == "query") {
                     alerta("No se han podido recuperar los datos del usuario.", "ERROR BASE DE DATOS");
                     $("#div_mod_datos").closest(".ui-dialog-content").dialog("destroy").remove();
                 } 
