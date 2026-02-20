@@ -176,6 +176,26 @@ $(function() {
     $("#apartados").tabs({
         active: 0
     });
+
+    $("#dat_fecha_nac").datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0", // Permite hasta 100 años atrás y hasta el año actual
+        maxDate: 0,           // No permite seleccionar fechas futuras
+        dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
+        monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+    });
+
+    $("#dat_fecha_cad").datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "c-5:+15", // Permite ver 5 años atrás (por si acaba de caducar) y 15 hacia adelante
+        minDate: "-1m",       // Un pequeño margen de un mes atrás por errores de renovación
+        dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
+        monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+    });
 });
 
 
