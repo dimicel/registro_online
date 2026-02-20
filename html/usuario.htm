@@ -104,172 +104,155 @@
 <!--FORMULARIO MODIFICACIÓN DATOS USUARIO _________________________________________________________-->
 <!--_______________________________________________________________________________________________-->
 <div id="div_mod_datos" style="padding:10px;" class="ui-widget-header ui-corner-all">
+    <ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-bottom: 15px;">
+        <li class="nav-item">
+            <a class="nav-link active" id="alumno-tab" data-toggle="tab" href="#tab-alumno" role="tab">Datos Alumno</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="personales-tab" data-toggle="tab" href="#tab-personales" role="tab">Personales</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="domicilio-tab" data-toggle="tab" href="#tab-domicilio" role="tab">Domicilio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="tutores-tab" data-toggle="tab" href="#tab-tutores" role="tab">Representantes</a>
+        </li>
+    </ul>
+
     <form id="form_mod_datos">
         <input type="hidden" id="dat_idnie" name="dat_idnie">
-        <div class="row justify-content-center" style="color:green">
+        
+        <div class="row justify-content-center" style="color:green; margin-bottom: 10px;">
             <div class="col">
-                <span>¡¡¡ATENCIÓN!!! - SI HAY UN ERROR EN EL NOMBRE, APELLIDOS, NIF DEL ALUMNO O EL CORREO PARA RECUPERACIÓN DE CONTRASEÑA, PÓNGASE EN CONTACTO CON LA SECRETARÍA DEL CENTRO</span>
-            </div>
-        </div>
-        <hr>
-        <div class="row" style="color:brown">
-            <div class="col">
-                <span>DATOS DEL ALUMNO</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-3">
-                <label for="dat_nombre" class="etiquetas">Nombre</label>
-                <input type="text" class="form-control" id="dat_nombre" name="dat_nombre" maxlength="25" readonly>
-            </div>
-            <div class="col-5">
-                <label for="dat_apellidos" class="etiquetas">Apellidos</label>
-                <input type="text" class="form-control" id="dat_apellidos" name="dat_apellidos" maxlength="40" readonly>
-            </div>
-            <div class="col-4">
-                <label for="dat_email_recuperacion" class="etiquetas">Email recuperación</label>
-                <input type="email" class="form-control" id="dat_email_recuperacion" name="dat_email_recuperacion" maxlength="80" readonly>
+                <small>¡¡¡ATENCIÓN!!! - SI HAY UN ERROR EN DATOS PROTEGIDOS, CONTACTE CON SECRETARÍA.</small>
             </div>
         </div>
 
-        <div class="row mt-2">
-            <div class="col-4">
-                <label for="dat_nif_nie" class="etiquetas">Nº documento identidad</label>
-                <input type="text" class="form-control" id="dat_nif_nie" name="dat_nif_nie" maxlength="20" readonly>
-
-                <div class="offset-1">
-                    <input type="checkbox" id="dat_pasaporte" name="dat_pasaporte" onclick="return false;">
-                    <label for="dat_pasaporte" class="etiquetas" style="display:inline; margin-left:5px;">Es pasaporte</label>
+        <div class="tab-content" id="myTabContent">
+            
+            <div class="tab-pane fade show active" id="tab-alumno" role="tabpanel">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="dat_nombre" class="etiquetas">Nombre</label>
+                        <input type="text" class="form-control" id="dat_nombre" name="dat_nombre" maxlength="25" readonly>
+                    </div>
+                    <div class="col-5">
+                        <label for="dat_apellidos" class="etiquetas">Apellidos</label>
+                        <input type="text" class="form-control" id="dat_apellidos" name="dat_apellidos" maxlength="40" readonly>
+                    </div>
+                    <div class="col-4">
+                        <label for="dat_email_recuperacion" class="etiquetas">Email recuperación</label>
+                        <input type="email" class="form-control" id="dat_email_recuperacion" name="dat_email_recuperacion" maxlength="80" readonly>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-4">
+                        <label for="dat_nif_nie" class="etiquetas">Nº documento identidad</label>
+                        <input type="text" class="form-control" id="dat_nif_nie" name="dat_nif_nie" maxlength="20" readonly>
+                        <div class="offset-1">
+                            <input type="checkbox" id="dat_pasaporte" name="dat_pasaporte" onclick="return false;">
+                            <label for="dat_pasaporte" class="etiquetas" style="display:inline; margin-left:5px;">Es pasaporte</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label for="dat_fecha_cad" class="etiquetas">Fecha caducidad</label>
+                        <input type="text" class="form-control" id="dat_fecha_cad" name="dat_fecha_cad" maxlength="10" placeholder="dd/mm/aaaa">
+                    </div>
+                    <div class="col-5">
+                        <label for="dat_pais_nac" class="etiquetas">País</label>
+                        <input type="text" class="form-control" id="dat_pais_nac" name="dat_pais_nac" maxlength="20" readonly>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <label for="dat_nss" class="etiquetas">Nº Seguridad Social: <small>(Ciclos Formativos)</small></label>
+                        <input type="text" class="form-control" id="dat_nss" name="dat_nss" maxlength="12">
+                    </div>
                 </div>
             </div>
-            
-            <div class="col-3">
-                <label for="dat_fecha_cad" class="etiquetas">Fecha caducidad</label>
-                <input type="text" class="form-control" id="dat_fecha_cad" name="dat_fecha_cad" maxlength="10" placeholder="dd/mm/aaaa">
+
+            <div class="tab-pane fade" id="tab-personales" role="tabpanel">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="dat_sexo" class="etiquetas">Sexo:</label>
+                        <select id="dat_sexo" name="dat_sexo" class="form-control">
+                            <option value=""></option>
+                            <option value="H">Hombre</option>
+                            <option value="M">Mujer</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="dat_fecha_nac" class="etiquetas">Fecha Nacimiento:</label>
+                        <input type="text" class="form-control" id="dat_fecha_nac" name="dat_fecha_nac" maxlength="10" placeholder="dd/mm/aaaa">
+                    </div>
+                    <div class="col-3">
+                        <label for="dat_telefono" class="etiquetas">Teléfono:</label>
+                        <input type="text" class="form-control" id="dat_telefono" name="dat_telefono" maxlength="12">
+                    </div>
+                    <div class="col">
+                        <label for="dat_email" class="etiquetas">Email alumno:</label>
+                        <input type="email" class="form-control" id="dat_email" name="dat_email" maxlength="80">
+                    </div>
+                </div>
             </div>
-            
-            <div class="col-5">
-                <label for="dat_pais_nac" class="etiquetas">País</label>
-                <input type="text" class="form-control" id="dat_pais_nac" name="dat_pais_nac" maxlength="20" readonly>
+
+            <div class="tab-pane fade" id="tab-domicilio" role="tabpanel">
+                <div class="row">
+                    <div class="col">
+                        <label for="dat_direccion" class="etiquetas">Dirección:</label>
+                        <input type="text" id="dat_direccion" name="dat_direccion" class="form-control" maxlength="90"/>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-2">
+                        <label for="dat_cp" class="etiquetas">CP:</label>
+                        <input type="text" id="dat_cp" name="dat_cp" class="form-control" maxlength="5"/>
+                    </div>
+                    <div class="col">
+                        <label for="dat_localidad" class="etiquetas">Localidad:</label>
+                        <input type="text" id="dat_localidad" name="dat_localidad" class="form-control" maxlength="35"/>
+                    </div>
+                    <div class="col">
+                        <label for="dat_provincia" class="etiquetas">Provincia:</label>
+                        <input type="text" id="dat_provincia" name="dat_provincia" class="form-control" maxlength="35"/>
+                    </div>
+                </div>
             </div>
-        </div> 
-        <div class="row mt-2">
-            <div class="col">
-                <label for="dat_nss" class="etiquetas">Nº Seguridad Social:
-                <small>Para Formación en Empresas. Sólo alumnos de Ciclos Formativos de Grado Básico, Medio y Superior</small></label>
-                <input type="text" class="form-control" id="dat_nss" name="dat_nss" maxlength="12" size="12">
+
+            <div class="tab-pane fade" id="tab-tutores" role="tabpanel">
+                <div style="color:brown; font-weight:bold;">TUTOR/A LEGAL 1</div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="dat_tutor1" class="etiquetas">Nombre y apellidos:</label>
+                        <input type="text" id="dat_tutor1" name="dat_tutor1" class="form-control" maxlength="40"/>
+                    </div>
+                    <div class="col-2">
+                        <label for="dat_telef_tut1" class="etiquetas">Teléfono:</label>
+                        <input type="text" id="dat_telef_tut1" name="dat_telef_tut1" class="form-control" maxlength="12"/>
+                    </div>
+                    <div class="col-4">
+                        <label for="dat_email_tut1" class="etiquetas">Correo:</label>
+                        <input type="email" id="dat_email_tut1" name="dat_email_tut1" class="form-control" maxlength="40"/>
+                    </div>
+                </div>
+                <div style="color:brown; font-weight:bold;" class="mt-3">TUTOR/A LEGAL 2</div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="dat_tutor2" class="etiquetas">Nombre y apellidos:</label>
+                        <input type="text" id="dat_tutor2" name="dat_tutor2" class="form-control" maxlength="40"/>
+                    </div>
+                    <div class="col-2">
+                        <label for="dat_telef_tut2" class="etiquetas">Teléfono:</label>
+                        <input type="text" id="dat_telef_tut2" name="dat_telef_tut2" class="form-control" maxlength="12"/>
+                    </div>
+                    <div class="col-4">
+                        <label for="dat_email_tut2" class="etiquetas">Correo:</label>
+                        <input type="email" id="dat_email_tut2" name="dat_email_tut2" class="form-control" maxlength="40"/>
+                    </div>
+                </div>
             </div>
-        </div>       
-        <hr>
-        <div class="row" style="color:brown">
-            <div class="col">
-                <span>DATOS PERSONALES DEL ALUMNO</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <label for="dat_sexo" class="etiquetas">Sexo:</label>
-                <span class="errorTxt"></span>
-                <select id="dat_sexo" name="dat_sexo" class="form-control">
-                    <option value=""></option>
-                    <option value="H">Hombre</option>
-                    <option value="M">Mujer</option>
-                </select>
-            </div>
-            <div class="col-3">
-                <label for="dat_fecha_nac" class="etiquetas">Fecha Nacimiento:</label>
-                <input type="text" class="form-control" id="dat_fecha_nac" name="dat_fecha_nac" maxlength="10" size="10"  placeholder="dd/mm/aaaa">
-            </div>
-            <div class="col-3">
-                <label for="dat_telefono" class="etiquetas">Teléfono del alumno:</label>
-                <input type="text" class="form-control" id="dat_telefono" name="dat_telefono" maxlength="12" size="12">
-            </div>
-            <div class="col">
-                <label for="dat_email" class="etiquetas">Email alumno:</label>
-                <input type="email" class="form-control" id="dat_email" name="dat_email" maxlength="80" size="80">
-            </div>
-        </div>
-        <hr>
-        <div class="row" style="color:brown">
-            <div class="col">
-                <span>DATOS RELATIVOS AL DOMICILIO</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="dat_direccion" class="etiquetas">Dirección:</label>
-                <span class="errorTxt"></span>
-                <input type="text" id="dat_direccion" name="dat_direccion" class="form-control" maxlength="90" size="90"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <label for="dat_cp" class="etiquetas">CP:</label>
-                <span class="errorTxt"></span>
-                <input type="text" id="dat_cp" name="dat_cp" class="form-control" maxlength="5" size="5"/>
-            </div>
-            <div class="col">
-                <label for="dat_localidad" class="etiquetas">Localidad:</label>
-                <span class="errorTxt"></span>
-                <input type="text" id="dat_localidad" name="dat_localidad" class="form-control" maxlength="35" size="35"/>
-            </div>
-            <div class="col">
-                <label for="dat_provincia" class="etiquetas">Provincia:</label>
-                <span class="errorTxt"></span>
-                <input type="text" id="dat_provincia" name="dat_provincia" class="form-control" maxlength="35" size="35"/>
-            </div>
-        </div>
-        <hr>
-        <div class="row" style="color:brown">
-            <div class="col">
-                <span>REPRESENTANTES LEGALES (SI PROCEDE)</span>
-            </div>
-        </div>
-        <div class="row" style="color:brown">
-            <div class="col">
-                <span style="font-size:18px">PADRE/MADRE/TUTOR/A LEGAL 1</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="dat_tutor1" class="etiquetas">Nombre y apellidos:</label>
-                <span class="errorTxt"></span>
-                <input type="text" id="dat_tutor1" name="dat_tutor1" class="form-control" maxlength="40" size="40"/>
-            </div>
-            <div class="col-2">
-                <label for="dat_telef_tut1" class="etiquetas">Teléfono:</label>
-                <span class="errorTxt"></span>
-                <input type="text" id="dat_telef_tut1" name="dat_telef_tut1" class="form-control" maxlength="12" size="12"/>
-            </div>
-            <div class="col-4">
-                <label for="dat_email_tut1" class="etiquetas">Correo electrónico:</label>
-                <span class="errorTxt"></span>
-                <input type="email" id="dat_email_tut1" name="dat_email_tut1" class="form-control" maxlength="40" size="40"/>
-            </div>
-        </div>
-        <div class="row" style="color:brown">
-            <div class="col">
-                <span style="font-size:18px">PADRE/MADRE/TUTOR/A LEGAL 2</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="dat_tutor2" class="etiquetas">Nombre y apellidos:</label>
-                <span class="errorTxt"></span>
-                <input type="text" id="dat_tutor2" name="dat_tutor2" class="form-control" maxlength="40" size="40"/>
-            </div>
-            <div class="col-2">
-                <label for="dat_telef_tut2" class="etiquetas">Teléfono:</label>
-                <span class="errorTxt"></span>
-                <input type="text" id="dat_telef_tut2" name="dat_telef_tut2" class="form-control" maxlength="12" size="12"/>
-            </div>
-            <div class="col-4">
-                <label for="dat_email_tut2" class="etiquetas">Correo electrónico:</label>
-                <span class="errorTxt"></span>
-                <input type="email" id="dat_email_tut2" name="dat_email_tut2" class="form-control" maxlength="40" size="40"/>
-            </div>
-        </div>
-    </form>
+
+        </div> </form>
 </div>
 <!--_______________________________________________________________________________________________-->
 <!--_______________________________________________________________________________________________-->
