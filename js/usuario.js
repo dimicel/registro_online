@@ -196,7 +196,7 @@ function cambioDatosPers() {
         ]
     )
     .then((dialogo)=>{
-            $("#dat_fecha_cad").datepicker({
+            $("#dat_fecha_nac").datepicker({
                 changeMonth: true,
                 changeYear: true,
                 dateFormat: "dd/mm/yy",
