@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("conexion.php");
@@ -24,7 +20,7 @@ $sql = "SELECT ud.*,
                u.email AS email_recuperacion, 
                ud.email AS email_alumno 
         FROM usuarios_dat ud
-        LEFT JOIN usuario u ON ud.id_nie = u.id_nie 
+        LEFT JOIN usuarios u ON ud.id_nie = u.id_nie 
         WHERE ud.id_nie = '$id_nie'";
 
 $dat = $mysqli->query($sql);
