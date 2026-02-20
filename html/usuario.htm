@@ -155,37 +155,43 @@
 
         <div class="row" style="color:brown">
             <div class="col">
-                <span>DATOS PERSONALES DEL ALUMNO</span>
+                <span>DATOS DEL ALUMNO</span>
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
-                <label for="dat_sexo" class="etiquetas">Sexo:</label>
-                <span class="errorTxt"></span>
-                <select id="dat_sexo" name="dat_sexo" class="form-control">
-                    <option value=""></option>
-                    <option value="H">Hombre</option>
-                    <option value="M">Mujer</option>
-                </select>
-            </div>
             <div class="col-3">
-                <label for="dat_fecha_nac" class="etiquetas">Fecha Nacimiento:</label>
-                <input type="text" class="form-control" id="dat_fecha_nac" name="dat_fecha_nac" maxlength="10" size="10"  placeholder="dd/mm/aaaa">
+                <label for="dat_nombre" class="etiquetas">Nombre:</label>
+                <input type="text" class="form-control" id="dat_nombre" name="dat_nombre" maxlength="25" readonly>
             </div>
-            <div class="col-3">
-                <label for="dat_telefono" class="etiquetas">Teléfono del alumno:</label>
-                <input type="text" class="form-control" id="dat_telefono" name="dat_telefono" maxlength="12" size="12">
+            <div class="col-4">
+                <label for="dat_apellidos" class="etiquetas">Apellidos:</label>
+                <input type="text" class="form-control" id="dat_apellidos" name="dat_apellidos" maxlength="40" readonly>
             </div>
-            <div class="col">
-                <label for="dat_email" class="etiquetas">Email alumno:</label>
-                <input type="email" class="form-control" id="dat_email" name="dat_email" maxlength="80" size="80">
+            <div class="col-5">
+                <label for="dat_email_recuperacion" class="etiquetas">Email recuperación contraseña:</label>
+                <input type="email" class="form-control" id="dat_email_recuperacion" name="dat_email_recuperacion" maxlength="80" readonly>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <label for="dat_nss" class="etiquetas">Nº Seguridad Social:
-                <small>Para Formación en Empresas. Sólo alumnos de Ciclos Formativos de Grado Básico, Medio y Superior</small></label>
-                <input type="text" class="form-control" id="dat_nss" name="dat_nss" maxlength="12" size="12">
+
+        <div class="row mt-2">
+            <div class="col-4">
+                <label for="dat_nif_nie" class="etiquetas">Nº documento identidad:</label>
+                <input type="text" class="form-control" id="dat_nif_nie" name="dat_nif_nie" maxlength="20" readonly>
+                
+                <div class="mt-2">
+                    <input type="checkbox" id="dat_pasaporte" name="dat_pasaporte" onclick="return false;">
+                    <label for="dat_pasaporte" class="etiquetas" style="display:inline; margin-left:5px;">¿Es pasaporte?</label>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <label for="dat_fecha_cad" class="etiquetas">Fecha caducidad:</label>
+                <input type="text" class="form-control" id="dat_fecha_cad" name="dat_fecha_cad" maxlength="10" placeholder="dd/mm/aaaa">
+            </div>
+            
+            <div class="col-4">
+                <label for="dat_pais_nac" class="etiquetas">País:</label>
+                <input type="text" class="form-control" id="dat_pais_nac" name="dat_pais_nac" maxlength="20" readonly>
             </div>
         </div>
         <hr>
