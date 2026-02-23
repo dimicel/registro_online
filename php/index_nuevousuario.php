@@ -35,7 +35,7 @@ if ($dateObj) {
 // --- 2. RECOGIDA DE DATOS ---
 $nie          = $_POST["nu_nie"] ?? '';
 $nif          = $_POST["nu_nif"] ?? '';
-$es_pasaporte = ($_POST["nu_pasaporte"] == "true" && strlen(trim($nif)) > 0) ? 1 : 0;
+$es_pasaporte = isset($_POST["nu_pasaporte"]) ? 1 : 0;
 $pais         = $_POST["nu_nacionalidad"] ?? '';
 $nombre       = $_POST["nu_nombre"] ?? '';
 $apellidos    = $_POST["nu_apellidos"] ?? '';
