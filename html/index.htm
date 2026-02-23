@@ -118,7 +118,10 @@
                                         document.getElementById('nu_pasaporte').checked=false;
                                         return false;
                                     }
-                                    else document.getElementById('nu_nacionalidad').readOnly=false;" >
+                                    else{
+                                        document.getElementById('nu_nacionalidad').readOnly=false;
+                                        $('#form_nuevoUsuario').validate().resetElements($('#nu_nif'));
+                                    }">
                     <label class="form-check-label" for="nu_pasaporte">El documento es un pasaporte</label>
                 </div>
             </div>
