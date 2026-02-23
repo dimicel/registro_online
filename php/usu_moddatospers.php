@@ -69,7 +69,7 @@ try {
 
     // C. Actualizar tabla 'usuarios_dat' (Construcción con o sin NSS)
     if (strlen($nss) > 0) {
-        $sql2 = "UPDATE usuarios_dat SET sexo=?, fecha_nac=?, telef_alumno=?, email=?, direccion=?, cp=?, localidad=?, provincia=?, tutor1=?, email_tutor1=?, tlf_tutor1=?, tutor2=?, email_tutor2=?, tlf_tutor2=?, nss=?, fecha_cambio_nss=? WHERE id_nie=?";
+        $sql2 = "UPDATE usuarios_dat SET sexo=?, fecha_nac=?, telef_alumno=?, email=?, direccion=?, cp=?, localidad=?, provincia=?, tutor1=?, email_tutor1=?, tlf_tutor1=?, tutor2=?, email_tutor2=?, tlf_tutor2=?, num_ss=?, fecha_cambio_nss=? WHERE id_nie=?";
         $stmt2 = $mysqli->prepare($sql2);
         $stmt2->bind_param("sssssssssssssssss", $sexo, $fecha_nac, $telefono, $email, $direccion, $cp, $localidad, $provincia, $tutor1, $email_tut1, $telef_tut1, $tutor2, $email_tut2, $telef_tut2, $nss, $fecha_cambio_nuss, $id_nie);
     } else {
