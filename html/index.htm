@@ -105,7 +105,7 @@
                             name="nu_pasaporte" 
                             id="nu_pasaporte" 
                             class="form-check-input"
-                            onclick="if (this.checked) document.getElementById('nu_nacionalidad').readonly=false;
+                            onclick="if (this.checked) {document.getElementById('nu_nacionalidad').readonly=false;alert(0);}
                                     else if (esDNI(document.getElementById('nu_nif').value)) {
                                         document.getElementById('nu_nacionalidad').value='ESPAÑA';
                                         document.getElementById('nu_nacionalidad').readOnly=true;
