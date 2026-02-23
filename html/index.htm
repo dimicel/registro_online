@@ -82,9 +82,13 @@
                                     id="nu_nif" 
                                     class="form-control" 
                                     onkeyup="this.value=this.value.toUpperCase();" 
-                                    onblur="if (esDNI(this.value)){
-                                                document.getElementById('nu_nacionalidad').value='ESPAÑA';
-                                                document.getElementById('nu_nacionalidad').readOnly=true;
+                                    onblur="if(validaDNI_NIE(this.value)){
+                                                if (esDNI(this.value)){
+                                                    document.getElementById('nu_nacionalidad').value='ESPAÑA';
+                                                    document.getElementById('nu_nacionalidad').readOnly=true;
+                                                }
+                                                else document.getElementById('nu_nacionalidad').readOnly=false;
+                                                document.getElementById('nu_pasaporte').checked=false;
                                             }
                                             else document.getElementById('nu_nacionalidad').readOnly=false;" 
                                     placeholder="(No rellene si no tiene)">
@@ -105,13 +109,16 @@
                             name="nu_pasaporte" 
                             id="nu_pasaporte" 
                             class="form-check-input"
-                            onchange="if (this.checked) {document.getElementById('nu_nacionalidad').readonly=false;}
-                                    else if (esDNI(document.getElementById('nu_nif').value)) {
-                                        document.getElementById('nu_nacionalidad').value='ESPAÑA';
-                                        document.getElementById('nu_nacionalidad').readOnly=true;
-                                        this.checked=false;
+                            onclick="if(validaDNI_NIE(document.getElementById('nu_nif').value)){
+                                        if (esDNI(document.getElementById('nu_nif').value)){
+                                            document.getElementById('nu_nacionalidad').value='ESPAÑA';
+                                            document.getElementById('nu_nacionalidad').readOnly=true;
+                                        }
+                                        else document.getElementById('nu_nacionalidad').readOnly=false;
+                                        document.getElementById('nu_pasaporte').checked=false;
+                                        return false;
                                     }
-                                    else document.getElementById('nu_nacionalidad').readOnly=false;">
+                                    else document.getElementById('nu_nacionalidad').readOnly=false;" >
                     <label class="form-check-label" for="nu_pasaporte">El documento es un pasaporte</label>
                 </div>
             </div>
