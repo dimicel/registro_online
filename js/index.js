@@ -477,11 +477,3 @@ function descargaInformeComedorResidente(){
         ocultarPantallaEspera();
     });
 }
-
-function revisaDNI(dni) {
-    if (esDNI(dni)){
-        document.getElementById("nu_nacionalidad").value="ESPAÑA";
-        document.getElementById("nu_nacionalidad").readOnly=true;
-    }
-    else document.getElementById("nu_nacionalidad").readOnly=false;
-}

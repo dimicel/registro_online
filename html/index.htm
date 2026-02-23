@@ -78,7 +78,16 @@
             <div class="col-sm-5 mb-2">
                 <label for="nu_nif">Nº documento:</label>
                 <span class="errorTxt text-danger d-block small"></span>
-                <input type="text" name="nu_nif" id="nu_nif" class="form-control" onkeyup="this.value=this.value.toUpperCase();" onblur="revisaDNI(this.value)" placeholder="(No rellene si no tiene)">
+                <input type="text" name="nu_nif" 
+                                    id="nu_nif" 
+                                    class="form-control" 
+                                    onkeyup="this.value=this.value.toUpperCase();" 
+                                    onblur="if (esDNI(this.value)){
+                                                document.getElementById('nu_nacionalidad').value='ESPAÑA';
+                                                document.getElementById('nu_nacionalidad').readOnly=true;
+                                            }
+                                            else document.getElementById('nu_nacionalidad').readOnly=false;" 
+                                    placeholder="(No rellene si no tiene)">
             </div>
             <div class="col-sm-3 mb-2">
                 <label for="nu_doc_fecha_cad">Fecha caducidad:</label>
@@ -92,7 +101,16 @@
             </div>
             <div class="col-12 mt-1">
                 <div class="form-check">
-                    <input type="checkbox" name="nu_pasaporte" id="nu_pasaporte" class="form-check-input">
+                    <input type="checkbox" 
+                            name="nu_pasaporte" 
+                            id="nu_pasaporte" 
+                            class="form-check-input"
+                            onclick="if (this.checked) document.getElementById('nu_nacionalidad').readonly=false;
+                                    else if (esDNI(document.getElementById('nu_nif').value)) {
+                                        document.getElementById('nu_nacionalidad').value='ESPAÑA';
+                                        document.getElementById('nu_nacionalidad').readOnly=true;
+                                    }
+                                    else document.getElementById('nu_nacionalidad').readOnly=false;">
                     <label class="form-check-label" for="nu_pasaporte">El documento es un pasaporte</label>
                 </div>
             </div>
