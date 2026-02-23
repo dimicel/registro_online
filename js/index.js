@@ -93,6 +93,20 @@ function entra() {
                             e.preventDefault();
                             alerta('Esta acción está prohibida. Introduzca manualmente la contraseña.', 'PEGAR');
                         }
+                        $("#nu_doc_fecha_cad").datepicker({
+                            dateFormat: "dd/mm/yy",
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange: "c-5:+15", // Permite ver 5 años atrás (por si acaba de caducar) y 15 hacia adelante
+                            minDate: "-1m",       // Un pequeño margen de un mes atrás por errores de renovación
+                            dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
+                            monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                            nextText: "Siguiente",
+                            prevText: "Previo",
+                            currentText: "Hoy",
+                            closeText: "Cerrar",
+                            showButtonPanel: true
+                        });
                         $("#form_nuevoUsuario").validate({
                             rules: {
                                 nu_nif: {
