@@ -87,7 +87,7 @@ while ($r = $res->fetch_assoc()) {
         "'" . $r["id_nie"] . "'",
         $alumno,
         "\t" . $r["id_nif"],
-        ($r["es_pasaporte"] ? "1" : "0"),
+        ($r["es_pasaporte"] ? "Si" : "No"),
         $r["fecha_caducidad_id_nif"],
         $r["pais"]
     ];
