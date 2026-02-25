@@ -20,14 +20,44 @@ if (!$curso || $mysqli->connect_error) {
 // 2. Consulta (He añadido real_escape_string por seguridad básica)
 $curso_safe = $mysqli->real_escape_string($curso);
 $query = "
-    SELECT u.apellidos, u.nombre, u.id_nie, u.fecha_caducidad_id_nif, u.pais, u.id_nif, u.es_pasaporte
+    SELECT 
+        u.apellidos, 
+        u.nombre, 
+        u.id_nie, 
+        u.fecha_caducidad_id_nif,
+        u.pais,
+        u.id_nif,
+        u.es_pasaporte
     FROM usuarios u
     WHERE (
-          EXISTS (SELECT 1 FROM mat_ciclos mc WHERE mc.id_nie = u.id_nie AND mc.curso = '$curso_safe') OR
-          EXISTS (SELECT 1 FROM mat_fpb mf WHERE mf.id_nie = u.id_nie AND mf.curso = '$curso_safe') OR
-          EXISTS (SELECT 1 FROM mat_eso me WHERE me.id_nie = u.id_nie AND me.curso = '$curso_safe') OR
-          EXISTS (SELECT 1 FROM mat_bach mb WHERE mb.id_nie = u.id_nie AND mb.curso = '$curso_safe')
-    )
+          EXISTS (
+              SELECT 1 
+              FROM mat_ciclos mc 
+              WHERE mc.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
+                AND mc.curso = '$curso'
+          )
+          OR
+          EXISTS (
+              SELECT 1 
+              FROM mat_fpb mf 
+              WHERE mf.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
+                AND mf.curso = '$curso'
+          )
+          OR
+          EXISTS (
+              SELECT 1 
+              FROM mat_eso me 
+              WHERE me.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
+                AND me.curso = '$curso'
+          )
+          OR
+          EXISTS (
+              SELECT 1 
+              FROM mat_bach mb 
+              WHERE mb.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
+                AND mb.curso = '$curso'
+          )
+      )
     ORDER BY u.apellidos ASC, u.nombre ASC";
 
 $res = $mysqli->query($query);
