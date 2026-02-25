@@ -140,7 +140,7 @@
                             <a id="CSV_seguro" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="listadoSeguroEscolarCiclos()">CSV Seguro Escolar Ciclos</a>
                             <a id="CSV_num_ss" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="listadoNumSS()">CSV Número de la Seguridad Social</a>
                             <a id="CSV_autor_fotos" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="listadoAutorUsoImag()">CSV Autorización Uso Imágenes</a>
-                            <a id="CSV_autor_fotos" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="listadoDocumnetoIdentificacion()">CSV Autorización Uso Imágenes</a>
+                            <a id="CSV_autor_fotos" data="csv_tra_seg" class="dropdown-item small" href="#" onclick="listadoDocumnetoIdentificacion()">CSV Nº Documento Identificación</a>
                             <a id="fotos_alumnos" class="dropdown-item small" href="#" onclick="descargaFotos()">Descarga Fotos</a>
                         </div>
                     </li>
