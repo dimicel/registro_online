@@ -242,7 +242,7 @@ function cambioDatosPers() {
                     form_mod_datos.mod_email.value = resp.datos.email_recuperacion;
                     form_mod_datos.mod_nif.value = resp.datos.id_nif;
                     form_mod_datos.mod_fecha_caducidad.value = f_cad;
-                    form_mod_datos.mod_pais.value = pais;
+                    form_mod_datos.mod_pais.value = resp.datos.pais;
                     form_mod_datos.mod_pasaporte.checked = resp.datos.es_pasaporte == 1 ? true : false;
                     form_mod_datos.dat_sexo.value = resp.datos.sexo;
                     form_mod_datos.dat_fecha_nac.value = f_nac;
