@@ -3234,6 +3234,16 @@ function listadoAutorUsoImag(){
         });
 }
 
+function listadoDocumnetoIdentificacion(){
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_documento_id.php",
+            datos:{
+                curso_csv_doc_id:curso_actual
+            }
+        });
+}
+
 
 function avisarJefesDpto(){
     var emails=[];
