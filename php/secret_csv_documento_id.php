@@ -81,7 +81,7 @@ $fechaHoy->setTime(0, 0, 0); // Normalizamos a las 00:00 para comparar solo día
 
 while ($r = $res->fetch_assoc()) {
     // Saltamos usuarios de prueba
-    if (str_starts_with(strtoupper($r["id_nie"]), 'P')) continue;
+    if (strpos(strtoupper($r["id_nie"]), 'P') === 0) continue;
 
     // Función auxiliar para limpiar texto y convertir a ISO-8859-1 (Excel prefiere esto en CSV)
     $alumno = ucwords(strtolower($r["apellidos"])) . ", " . ucwords(strtolower($r["nombre"]));
