@@ -73,7 +73,11 @@ header('Content-Disposition: attachment; filename="' . $Name . '"');
 header('Cache-Control: max-age=0');
 
 // 4. Construcción del contenido
-$Datos = 'NIE;ALUMNO;N_DOCUMENTO;ES_PASAPORTE;FECHA_CADUCIDAD;PAIS' . PHP_EOL;
+$Datos = 'NIE;ALUMNO;N_DOCUMENTO;ES_PASAPORTE;FECHA_CADUCIDAD;CADUCADO;DIAS_HASTA_CADUCIDAD;PAIS' . PHP_EOL;
+
+
+$fechaHoy = new DateTime(); 
+$fechaHoy->setTime(0, 0, 0); // Normalizamos a las 00:00 para comparar solo días
 
 while ($r = $res->fetch_assoc()) {
     // Saltamos usuarios de prueba
@@ -81,16 +85,31 @@ while ($r = $res->fetch_assoc()) {
 
     // Función auxiliar para limpiar texto y convertir a ISO-8859-1 (Excel prefiere esto en CSV)
     $alumno = ucwords(strtolower($r["apellidos"])) . ", " . ucwords(strtolower($r["nombre"]));
-    
-    // Usamos mb_convert_encoding en lugar de utf8_decode por compatibilidad con PHP 8.x
+
+    // 1. Convertimos las fechas a objetos DateTime para comparar con precisión
+    $fechaCaducidad = new DateTime($r["fecha_caducidad_id_nif"]);
+
+    // 2. Determinamos si ya ha caducado (anterior o igual a hoy)
+    $estaCaducado = ($fechaCaducidad <= $fechaHoy) ? "Si" : "No";
+
+    // 3. Calculamos los días restantes
+    $diferencia = $fechaHoy->diff($fechaCaducidad);
+    $diasRaw = (int)$diferencia->format("%r%a"); // %r mantiene el signo negativo si ya pasó
+
+    // Si los días son menores o iguales a 0, forzamos que sea 0
+    $diasFaltan = ($diasRaw > 0) ? $diasRaw : 0;
+
     $linea = [
-        "'" . $r["id_nie"] . "'",
+        "\t" . $r["id_nie"],          // Usamos tabulador para evitar formato científico en Excel
         $alumno,
         "\t" . $r["id_nif"],
         ($r["es_pasaporte"] ? "Si" : "No"),
         $r["fecha_caducidad_id_nif"],
+        $estaCaducado,                // Nuevo Item 1: ¿Caducado?
+        $diasFaltan,                  // Nuevo Item 2: Días restantes (0 si ya pasó)
         $r["pais"]
     ];
+
 
     $linea_csv = implode(";", $linea);
     $Datos .= mb_convert_encoding($linea_csv, "ISO-8859-1", "UTF-8") . PHP_EOL;
