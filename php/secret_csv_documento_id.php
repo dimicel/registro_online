@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") {
     exit("Acceso denegado");
@@ -21,15 +17,23 @@ if (!$curso || $mysqli->connect_error) {
 $curso_safe = $mysqli->real_escape_string($curso);
 $query = "
 SELECT 
-    u.apellidos, u.nombre, u.id_nie, u.fecha_caducidad_id_nif,
-    u.pais, u.id_nif, u.es_pasaporte,
+    u.apellidos, 
+    u.nombre, 
+    u.id_nie, 
+    u.fecha_caducidad_id_nif,
+    u.pais,
+    u.id_nif,
+    u.es_pasaporte,
+    -- Campos combinados
     COALESCE(me.grupo, mb.grupo) AS grupo,
     COALESCE(mf.curso_ciclo, mc.curso_ciclo) AS curso_ciclo,
     COALESCE(mf.ciclo, mc.ciclo) AS ciclo,
-    COALESCE(mf.turno, mc.turno) AS turno
+    -- Turno solo existe en mat_ciclos
+    mc.turno AS turno
 FROM usuarios u
 INNER JOIN (
-    SELECT id_nie COLLATE utf8mb3_general_ci as id_nie FROM mat_ciclos WHERE curso = '$curso'
+    -- Unificamos los IDs con el mismo cotejamiento para el filtro inicial
+    SELECT id_nie COLLATE utf8mb3_general_ci AS id_nie FROM mat_ciclos WHERE curso = '$curso'
     UNION
     SELECT id_nie COLLATE utf8mb3_general_ci FROM mat_fpb WHERE curso = '$curso'
     UNION
@@ -37,6 +41,7 @@ INNER JOIN (
     UNION
     SELECT id_nie COLLATE utf8mb3_general_ci FROM mat_bach WHERE curso = '$curso'
 ) AS m ON m.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
+-- Unión de detalles con protección de cotejamiento
 LEFT JOIN mat_ciclos mc ON mc.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mc.curso = '$curso'
 LEFT JOIN mat_fpb mf    ON mf.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mf.curso = '$curso'
 LEFT JOIN mat_eso me    ON me.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND me.curso = '$curso'
@@ -84,7 +89,7 @@ while ($r = $res->fetch_assoc()) {
     $diasFaltan = ($diasRaw > 0) ? $diasRaw : 0;
     if ($r['ciclo']) {
         $curso = $r['curso_ciclo'] . "º-" . $r['ciclo'];
-        $turno = $r['turno'];
+        $turno= $r['turno'] ?? 'N/A';
     } else {
         $curso = $r['grupo'];
         $turno = 'N/A';
