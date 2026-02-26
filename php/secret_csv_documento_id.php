@@ -20,45 +20,32 @@ if (!$curso || $mysqli->connect_error) {
 // 2. Consulta (He añadido real_escape_string por seguridad básica)
 $curso_safe = $mysqli->real_escape_string($curso);
 $query = "
-    SELECT 
-        u.apellidos, 
-        u.nombre, 
-        u.id_nie, 
-        u.fecha_caducidad_id_nif,
-        u.pais,
-        u.id_nif,
-        u.es_pasaporte
-    FROM usuarios u
-    WHERE (
-          EXISTS (
-              SELECT 1 
-              FROM mat_ciclos mc 
-              WHERE mc.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
-                AND mc.curso = '$curso'
-          )
-          OR
-          EXISTS (
-              SELECT 1 
-              FROM mat_fpb mf 
-              WHERE mf.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
-                AND mf.curso = '$curso'
-          )
-          OR
-          EXISTS (
-              SELECT 1 
-              FROM mat_eso me 
-              WHERE me.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
-                AND me.curso = '$curso'
-          )
-          OR
-          EXISTS (
-              SELECT 1 
-              FROM mat_bach mb 
-              WHERE mb.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
-                AND mb.curso = '$curso'
-          )
-      )
-    ORDER BY u.apellidos ASC, u.nombre ASC";
+SELECT 
+    u.apellidos, 
+    u.nombre, 
+    u.id_nie, 
+    u.fecha_caducidad_id_nif,
+    u.pais,
+    u.id_nif,
+    u.es_pasaporte,
+    -- Campos para ESO y BACH
+    COALESCE(me.grupo, mb.grupo) AS grupo,
+    -- Campos para FPB y Ciclos
+    COALESCE(mf.curso_ciclo, mc.curso_ciclo) AS curso_ciclo,
+    COALESCE(mf.ciclo, mc.ciclo) AS ciclo,
+    COALESCE(mf.turno, mc.turno) AS turno
+FROM usuarios u
+LEFT JOIN mat_ciclos mc ON mc.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mc.curso = '$curso'
+LEFT JOIN mat_fpb mf    ON mf.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mf.curso = '$curso'
+LEFT JOIN mat_eso me    ON me.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND me.curso = '$curso'
+LEFT JOIN mat_bach mb   ON mb.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mb.curso = '$curso'
+WHERE (
+    mc.id_nie IS NOT NULL OR 
+    mf.id_nie IS NOT NULL OR 
+    me.id_nie IS NOT NULL OR 
+    mb.id_nie IS NOT NULL
+)
+ORDER BY u.apellidos ASC, u.nombre ASC";
 
 $res = $mysqli->query($query);
 
@@ -73,7 +60,7 @@ header('Content-Disposition: attachment; filename="' . $Name . '"');
 header('Cache-Control: max-age=0');
 
 // 4. Construcción del contenido
-$Datos = 'NIE;ALUMNO;N_DOCUMENTO;ES_PASAPORTE;FECHA_CADUCIDAD;CADUCADO;DIAS_HASTA_CADUCIDAD;PAIS' . PHP_EOL;
+$Datos = 'NIE;ALUMNO;N_DOCUMENTO;ES_PASAPORTE;FECHA_CADUCIDAD;CADUCADO;DIAS_HASTA_CADUCIDAD;PAIS;CURSO;TURNO' . PHP_EOL;
 
 
 $fechaHoy = new DateTime(); 
@@ -98,6 +85,13 @@ while ($r = $res->fetch_assoc()) {
 
     // Si los días son menores o iguales a 0, forzamos que sea 0
     $diasFaltan = ($diasRaw > 0) ? $diasRaw : 0;
+    if ($r['ciclo']) {
+        $curso = $r['curso_ciclo'] . "º-" . $r['ciclo'];
+        $turno = $r['turno'];
+    } else {
+        $curso = $r['grupo'];
+        $turno = 'N/A';
+    }
 
     $linea = [
         "\t" . $r["id_nie"],          // Usamos tabulador para evitar formato científico en Excel
@@ -107,7 +101,9 @@ while ($r = $res->fetch_assoc()) {
         $r["fecha_caducidad_id_nif"],
         $estaCaducado,                // Nuevo Item 1: ¿Caducado?
         $diasFaltan,                  // Nuevo Item 2: Días restantes (0 si ya pasó)
-        $r["pais"]
+        $r["pais"],
+        $curso,
+        $turno
     ];
 
 
