@@ -28,24 +28,26 @@ SELECT
     u.pais,
     u.id_nif,
     u.es_pasaporte,
-    -- Campos para ESO y BACH
+    -- Agrupamos los datos de las diferentes tablas
     COALESCE(me.grupo, mb.grupo) AS grupo,
-    -- Campos para FPB y Ciclos
     COALESCE(mf.curso_ciclo, mc.curso_ciclo) AS curso_ciclo,
     COALESCE(mf.ciclo, mc.ciclo) AS ciclo,
     COALESCE(mf.turno, mc.turno) AS turno
 FROM usuarios u
-LEFT JOIN mat_ciclos mc ON mc.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mc.curso = '$curso'
-LEFT JOIN mat_fpb mf    ON mf.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mf.curso = '$curso'
-LEFT JOIN mat_eso me    ON me.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND me.curso = '$curso'
-LEFT JOIN mat_bach mb   ON mb.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mb.curso = '$curso'
-WHERE (
-    mc.id_nie IS NOT NULL OR 
-    mf.id_nie IS NOT NULL OR 
-    me.id_nie IS NOT NULL OR 
-    mb.id_nie IS NOT NULL
-)
-ORDER BY u.apellidos ASC, u.nombre ASC";
+INNER JOIN (
+    SELECT id_nie FROM mat_ciclos WHERE curso = '$curso'
+    UNION
+    SELECT id_nie FROM mat_fpb WHERE curso = '$curso'
+    UNION
+    SELECT id_nie FROM mat_eso WHERE curso = '$curso'
+    UNION
+    SELECT id_nie FROM mat_bach WHERE curso = '$curso'
+) AS m ON m.id_nie = u.id_nie
+LEFT JOIN mat_ciclos mc ON mc.id_nie = u.id_nie AND mc.curso = '$curso'
+LEFT JOIN mat_fpb mf    ON mf.id_nie = u.id_nie AND mf.curso = '$curso'
+LEFT JOIN mat_eso me    ON me.id_nie = u.id_nie AND me.curso = '$curso'
+LEFT JOIN mat_bach mb   ON mb.id_nie = u.id_nie AND mb.curso = '$curso'
+ORDER BY u.apellidos ASC, u.nombre ASC;";
 
 $res = $mysqli->query($query);
 
