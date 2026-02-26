@@ -41,11 +41,13 @@
         <div id="doc_reg_tab" class="ui-widget-header ui-corner-all">
             <div style="margin-top:10px; margin-left:10px;" id="menu_div">
                 <ul class="nav bg-white" style="font-size:0.7em !important">
+                    <li class="nav-item" id="menu6">
+                        <a class="nav-link" href="#" onclick="javascript: verListaUsuarios();">Listado General</a>
+                    </li>
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" id="menu1"  href="#" data-toggle="dropdown" >Gestión Usuarios</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item small" href="#" onclick="javascript: panelNuevoUsuario();">Nuevos Usuarios / Cambio de contraseña</a>
-                            <a class="dropdown-item small" href="#" onclick="javascript: verListaUsuarios();">Usuarios - Listado General</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" >
