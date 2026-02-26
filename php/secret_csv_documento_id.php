@@ -47,7 +47,7 @@ LEFT JOIN mat_ciclos mc ON mc.id_nie = u.id_nie AND mc.curso = '$curso'
 LEFT JOIN mat_fpb mf    ON mf.id_nie = u.id_nie AND mf.curso = '$curso'
 LEFT JOIN mat_eso me    ON me.id_nie = u.id_nie AND me.curso = '$curso'
 LEFT JOIN mat_bach mb   ON mb.id_nie = u.id_nie AND mb.curso = '$curso'
-ORDER BY u.apellidos ASC, u.nombre ASC;";
+ORDER BY u.apellidos ASC, u.nombre ASC";
 
 $res = $mysqli->query($query);
 
