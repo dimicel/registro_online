@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
         }  
     }
 } else {
-    echo "No se encontraron registros para los departamentos seleccionados.";
+    exit("No se encontraron registros para los departamentos seleccionados.");
 }
 $error="<ul>";
 $mysqli->close();
