@@ -88,7 +88,7 @@ while ($r = $res->fetch_assoc()) {
     // Si los días son menores o iguales a 0, forzamos que sea 0
     $diasFaltan = ($diasRaw > 0) ? $diasRaw : 0;
     if ($r['ciclo']) {
-        $curso = $r['curso_ciclo'] . "º-" . $r['ciclo'];
+        $curso = $r['curso_ciclo'] . " - " . $r['ciclo'];
         $turno= $r['turno'] ?? 'N/A';
     } else {
         $curso = $r['grupo'];
