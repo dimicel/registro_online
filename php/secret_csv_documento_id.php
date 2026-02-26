@@ -49,15 +49,16 @@ ORDER BY u.apellidos ASC, u.nombre ASC";
 
 $res = $mysqli->query($query);
 
-if (!$res || $res->num_rows == 0) {
-    exit("No hay registros que listar.");
-}
-
 // 3. Preparación de Cabeceras (Nada debe imprimirse antes de esto)
 $Name = 'listado_num_doc_' . $curso . '.csv';
 header('Content-Type: text/csv; charset=latin1'); // Cambiado a text/csv para mejor compatibilidad
 header('Content-Disposition: attachment; filename="' . $Name . '"');
 header('Cache-Control: max-age=0');
+
+if (!$res || $res->num_rows == 0) {
+    echo "No hay registros que listar.";
+    exit();
+}
 
 // 4. Construcción del contenido
 $Datos = 'NIE;ALUMNO;N_DOCUMENTO;ES_PASAPORTE;FECHA_CADUCIDAD;CADUCADO;DIAS_HASTA_CADUCIDAD;PAIS;CURSO;TURNO' . PHP_EOL;
