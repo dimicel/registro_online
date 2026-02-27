@@ -630,7 +630,6 @@ function panelModUsu(id) {
         document.getElementById("dat_idnie").value = id;
         $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, (resp) => {
             ocultarPantallaEspera();
-            alert(resp.error);
             if (resp.error == "ok") {
                 for (e in resp.datos) {
                     if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
@@ -737,6 +736,7 @@ function panelModUsu(id) {
                 }
             });
         },"json");
+        alert(form_modif_datos_usu.mod_apellidos.value);
         $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
  
     })
