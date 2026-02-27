@@ -640,7 +640,7 @@ function panelModUsu(id) {
                 //alert(resp.datos.nombre+"____"+form_modif_datos_usu.mod_nombre.value);
                 form_modif_datos_usu.mod_apellidos.value = resp.datos.apellidos;
                 form_modif_datos_usu.mod_nif.value = resp.datos.id_nif;
-                form_modif_datos_usu.mod_fecha_caducidad.value = resp.datos.fecha_caducidad_id_nif.split('-').reverse().join('-');
+                form_modif_datos_usu.mod_fecha_caducidad.value = resp.datos.fecha_caducidad_id_nif.split('/').reverse().join('/');
                 form_modif_datos_usu.mod_es_pasaporte.checked = resp.datos.es_pasaporte == 1 ? true : false;
                 form_modif_datos_usu.mod_pais.value = resp.datos.pais;
                 form_modif_datos_usu.mod_email.value = resp.datos.email_recuperacion;
@@ -673,10 +673,25 @@ function panelModUsu(id) {
                 showButtonPanel: true,
                 currentText: "Hoy",
                 closeText: "Cerrar",
-                minDate: new Date(2000, 0, 1),
-                maxDate: "-12y",
+                yearRange: "-100:+0", // Permite hasta 100 años atrás y hasta el año actual
+                maxDate: "-10y",
                 nextText: "Siguiente",
                 prevText: "Previo"
+            });
+
+            $("#mod_fecha_caducidad").datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "c-5:+15", // Permite ver 5 años atrás (por si acaba de caducar) y 15 hacia adelante
+                minDate: "-1m",       // Un pequeño margen de un mes atrás por errores de renovación
+                dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
+                monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                nextText: "Siguiente",
+                prevText: "Previo",
+                currentText: "Hoy",
+                closeText: "Cerrar",
+                showButtonPanel: true
             });
 
             $("#form_modif_datos_usu").validate({
