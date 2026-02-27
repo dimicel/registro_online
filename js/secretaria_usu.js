@@ -628,22 +628,7 @@ function panelModUsu(id) {
     .then((dialogo)=>{
         mostrarPantallaEspera();
         document.getElementById("dat_idnie").value = id;
-        prom1 = Promise.resolve($.post("php/secret_usu_recdatusu.php", { id: document.getElementById("dat_idnie").value }, () => {}, "json"));
-        prom2 = prom1.then((resp) => {
-            if (resp.error == "server") alerta("Se ha producido un error en el servidor. Inténtelo más tarde", "ERROR DE SERVIDOR");
-            else if (resp.error == "duplicado") alerta("Existe más de un usuario con el mismo NIE. Póngse en contacto con el programador de la plataforma.", "REGISTRO DUPLICADO");
-            else if (resp.error == "no_existe") alerta("El usuario no se encuentra. Debe haber un problema en la base de datos.", "USUARIO INEXISTENTE");
-            else if (resp.error == "ok") {
-                form_modif_datos_usu.mod_nombre.value = resp.registro.nombre;
-                form_modif_datos_usu.mod_apellidos.value = resp.registro.apellidos;
-                form_modif_datos_usu.mod_nif.value = resp.registro.id_nif;
-                form_modif_datos_usu.mod_fecha_caducidad.value = resp.registro.fecha_caducidad_id_nif.split('-').reverse().join('-');
-                form_modif_datos_usu.mod_es_pasaporte.checked = resp.registro.es_pasaporte == 1 ? true : false;
-                form_modif_datos_usu.mod_email.value = resp.registro.email;
-            }
-            return $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, () => {}, "json");
-        });
-        prom3 = prom2.then((resp) => {
+        $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, (resp) => {
             ocultarPantallaEspera();
             if (resp.error == "ok") {
                 for (e in resp.datos) {
@@ -651,11 +636,18 @@ function panelModUsu(id) {
                 }
                 f_nac = resp.datos.fecha_nac;
                 if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
+                form_modif_datos_usu.mod_nombre.value = resp.datos.nombre;
+                form_modif_datos_usu.mod_apellidos.value = resp.datos.apellidos;
+                form_modif_datos_usu.mod_nif.value = resp.datos.id_nif;
+                form_modif_datos_usu.mod_fecha_caducidad.value = resp.datos.fecha_caducidad_id_nif.split('-').reverse().join('-');
+                form_modif_datos_usu.mod_es_pasaporte.checked = resp.datos.es_pasaporte == 1 ? true : false;
+                form_modif_datos_usu.mod_pais.value = resp.datos.pais;
+                form_modif_datos_usu.mod_email.value = resp.datos.email_recuperacion;
                 form_modif_datos_usu.dat_sexo.value = resp.datos.sexo;
                 form_modif_datos_usu.dat_fecha_nac.value = f_nac;
                 form_modif_datos_usu.dat_telefono.value = resp.datos.telef_alumno;
                 form_modif_datos_usu.dat_nss.value = resp.datos.num_ss;
-                form_modif_datos_usu.dat_email.value = resp.datos.email;
+                form_modif_datos_usu.dat_email.value = resp.datos.email_alumno;
                 form_modif_datos_usu.dat_direccion.value = resp.datos.direccion;
                 form_modif_datos_usu.dat_cp.value = resp.datos.cp;
                 form_modif_datos_usu.dat_localidad.value = resp.datos.localidad;
