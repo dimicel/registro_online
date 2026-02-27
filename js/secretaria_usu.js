@@ -736,7 +736,7 @@ function panelModUsu(id) {
                     $(element).prev($('.errorTxt')).html(error);
                 }
             });
-        });
+        },"json");
         $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
  
     })
