@@ -636,7 +636,7 @@ function panelModUsu(id) {
                 }
                 f_nac = resp.datos.fecha_nac;
                 if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
-                form_modif_datos_usu.mod_nombre.value = resp.datos.nombre;
+                form_modif_datos_usu.moddd_nombre.value = resp.datos.nombre;
                 form_modif_datos_usu.mod_apellidos.value = resp.datos.apellidos;
                 form_modif_datos_usu.mod_nif.value = resp.datos.id_nif;
                 form_modif_datos_usu.mod_fecha_caducidad.value = resp.datos.fecha_caducidad_id_nif.split('-').reverse().join('-');
