@@ -659,6 +659,7 @@ function panelModUsu(id) {
                 form_modif_datos_usu.dat_tutor2.value = resp.datos.tutor2;
                 form_modif_datos_usu.dat_telef_tut2.value = resp.datos.tlf_tutor2;
                 form_modif_datos_usu.dat_email_tut2.value = resp.datos.email_tutor2;
+                $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
             }
 
             $("#dat_fecha_nac").datepicker({
@@ -737,7 +738,6 @@ function panelModUsu(id) {
             });
         },"json");
         alert(form_modif_datos_usu.mod_apellidos.value);
-        $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
  
     })
     .catch (error=>{
