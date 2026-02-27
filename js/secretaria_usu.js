@@ -679,7 +679,7 @@ function panelModUsu(id) {
 
             $("#form_modif_datos_usu").validate({
                 rules: {
-                    mod_nombre: {
+                    moddd_nombre: {
                         required: true
                     },
                     mod_apellidos: {
@@ -711,7 +711,7 @@ function panelModUsu(id) {
                     }
                 },
                 messages: {
-                    mod_nombre: {
+                    moddd_nombre: {
                         required: "No puede dejar el nombre en blanco"
                     },
                     mod_apellidos: {
@@ -735,7 +735,7 @@ function panelModUsu(id) {
                 }
             });
         });
-        $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
+        $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.moddd_nombre.value);
  
     })
     .catch (error=>{
