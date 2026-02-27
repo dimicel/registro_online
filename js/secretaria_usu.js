@@ -636,7 +636,7 @@ function panelModUsu(id) {
                 }
                 f_nac = resp.datos.fecha_nac;
                 if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
-                form_modif_datos_usu.moddd_nombre.value = resp.datos.nombre;
+                form_modif_datos_usu.mod_nombre.value = resp.datos.nombre;
                 form_modif_datos_usu.mod_apellidos.value = resp.datos.apellidos;
                 form_modif_datos_usu.mod_nif.value = resp.datos.id_nif;
                 form_modif_datos_usu.mod_fecha_caducidad.value = resp.datos.fecha_caducidad_id_nif.split('-').reverse().join('-');
@@ -679,7 +679,7 @@ function panelModUsu(id) {
 
             $("#form_modif_datos_usu").validate({
                 rules: {
-                    moddd_nombre: {
+                    mod_nombre: {
                         required: true
                     },
                     mod_apellidos: {
@@ -711,7 +711,7 @@ function panelModUsu(id) {
                     }
                 },
                 messages: {
-                    moddd_nombre: {
+                    mod_nombre: {
                         required: "No puede dejar el nombre en blanco"
                     },
                     mod_apellidos: {
@@ -735,7 +735,7 @@ function panelModUsu(id) {
                 }
             });
         });
-        $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.moddd_nombre.value);
+        $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
  
     })
     .catch (error=>{
