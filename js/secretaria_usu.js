@@ -635,12 +635,14 @@ function panelModUsu(id) {
                     if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
                 }
                 f_nac = resp.datos.fecha_nac;
+                f_cad=resp.datos.fecha_caducidad_id_nif;
                 if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
+                if (f_cad != "") f_cad = f_cad.substr(8, 2) + "/" + f_cad.substr(5, 2) + "/" + f_cad.substr(0, 4);
                 form_modif_datos_usu.mod_nombre.value = resp.datos.nombre;
                 //alert(resp.datos.nombre+"____"+form_modif_datos_usu.mod_nombre.value);
                 form_modif_datos_usu.mod_apellidos.value = resp.datos.apellidos;
                 form_modif_datos_usu.mod_nif.value = resp.datos.id_nif;
-                form_modif_datos_usu.mod_fecha_caducidad.value = resp.datos.fecha_caducidad_id_nif.split('/').reverse().join('/');
+                form_modif_datos_usu.mod_fecha_caducidad.value = f_cad;
                 form_modif_datos_usu.mod_es_pasaporte.checked = resp.datos.es_pasaporte == 1 ? true : false;
                 form_modif_datos_usu.mod_pais.value = resp.datos.pais;
                 form_modif_datos_usu.mod_email.value = resp.datos.email_recuperacion;
