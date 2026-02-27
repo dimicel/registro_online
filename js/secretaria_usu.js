@@ -628,6 +628,8 @@ function panelModUsu(id) {
     .then((dialogo)=>{
         mostrarPantallaEspera();
         document.getElementById("dat_idnie").value = id;
+        $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
+
         $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, (resp) => {
             ocultarPantallaEspera();
             if (resp.error == "ok") {
@@ -734,8 +736,6 @@ function panelModUsu(id) {
                     $(element).prev($('.errorTxt')).html(error);
                 }
             });
-            $(dialogo).dialog("option", "title", "MODIFICAR DATOS DE " + form_modif_datos_usu.dat_idnie.value + "-" + form_modif_datos_usu.mod_apellidos.value + ", " + form_modif_datos_usu.mod_nombre.value);
-
         });
            
     })
