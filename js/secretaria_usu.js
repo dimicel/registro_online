@@ -737,7 +737,6 @@ function panelModUsu(id) {
                 }
             });
         },"json");
-        alert(form_modif_datos_usu.mod_apellidos.value);
  
     })
     .catch (error=>{
