@@ -630,6 +630,7 @@ function panelModUsu(id) {
         document.getElementById("dat_idnie").value = id;
         $.post("php/usu_recdatospers.php", { id_nie: document.getElementById("dat_idnie").value }, (resp) => {
             ocultarPantallaEspera();
+            alert(resp.error);
             if (resp.error == "ok") {
                 for (e in resp.datos) {
                     if (typeof(resp.datos[e]) == "undefined" || resp.datos[e] == null) resp.datos[e] = "";
