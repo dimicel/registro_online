@@ -17,7 +17,7 @@ $accion=$_POST['accion'];
 $id=$_POST['id'];
 $valor_normalizado = normalizar_nombre($valor);
 
-$mysqli->set_charset("utf8");
+ 
 
 
 if ($accion=="alta" && $tipo_input=="nombre") {

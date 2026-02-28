@@ -13,7 +13,7 @@ if ($mysqli->errno>0) {
 $codigo=$_POST['codigo'];
 $modulo=$_POST['modulo'];
 
-$mysqli->set_charset("utf8");
+ 
 $sql="DELETE FROM modulosfp WHERE codigo='$codigo' AND modulo='$modulo'";
 $result=$mysqli->query($sql);
 if ($mysqli->errno>0) {

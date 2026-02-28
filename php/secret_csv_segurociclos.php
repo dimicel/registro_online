@@ -46,16 +46,16 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
     $edad=intval($anno_calculo)-intval($a_nac);
     if($edad >= 28) $paga_seguro="NO";
 
-    $Datos.="'".utf8_decode($r["id_nie"])."'".";";
-    $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
-    $Datos.=utf8_decode($r["curso"].";");
-    $Datos.=utf8_decode($r["turno"].";");
-    $Datos.=utf8_decode($r["grado"].";");
-    $Datos.=utf8_decode($r["ciclo"].";");
-    $Datos.=utf8_decode($r["curso_ciclo"].";");
-    $Datos.=utf8_decode($fecha_nac.";");
-    $Datos.=utf8_decode($edad.";");
-    $Datos.=utf8_decode($paga_seguro).PHP_EOL;		
+    $Datos.="'". $r["id_nie"]."'".";";
+    $Datos.= ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";";
+    $Datos.= $r["curso"].";";
+    $Datos.= $r["turno"].";";
+    $Datos.= $r["grado"].";";
+    $Datos.= $r["ciclo"].";";
+    $Datos.= $r["curso_ciclo"].";";
+    $Datos.= $fecha_nac.";";
+    $Datos.= $edad.";";
+    $Datos.= $paga_seguro.PHP_EOL;		
 }
 
 echo $Datos;

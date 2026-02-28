@@ -5,7 +5,7 @@ include("conexion.php");
 
 if ($mysqli->errno>0) exit("server");
 
-$mysqli->set_charset("utf8");
+ 
 
 $mysqli->query("DELETE FROM premat_bach");
 if ($mysqli->errno > 0) exit("error_premat_bach");

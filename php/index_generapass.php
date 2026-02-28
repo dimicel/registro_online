@@ -12,9 +12,6 @@ if ($mysqli->errno>0){
 	exit("server");
 }
 
-$acentos = $mysqli->query("SET NAMES 'utf8'");
-
-
 $usu=$mysqli->query("select * from usuarios where id_nie='$nie'");
 if ($usu->num_rows<=0){
 	exit("usuario");

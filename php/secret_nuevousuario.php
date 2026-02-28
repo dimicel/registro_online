@@ -24,7 +24,7 @@ $apellidos=$_POST["apellidos"];
 $nif=$_POST["nif"];
 $es_pasaporte = isset($_POST['nr_es_pasaporte']) ? 1 : 0;
 $pass=password_hash($_POST["password"],PASSWORD_BCRYPT);
-$mysqli->set_charset("utf8");
+ 
 
 $consulta=$mysqli->query("select * from usuarios where id_nie='$nie' and no_ha_entrado=1");
 if ($consulta->num_rows>0) exit("usuario");

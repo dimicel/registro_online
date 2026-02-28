@@ -202,10 +202,10 @@ if ($csv != false) {
         if ($mattricula->num_rows>0){ //Sólo se envían emails de aviso si existen y no fueron enviados en el momento del registro de la matrícula
             $r=$mattricula->fetch_array(MYSQLI_ASSOC);
             if ($r["avisado_email"]==0 && $emailAlumno=="" && $emailTutor1=="" && $emailTutor2==""){
-                $nuevoArray[$fila-1][8].=utf8_decode("Matricula registrada. No existen emails para envío de instrucciones.");
+                $nuevoArray[$fila-1][8].= "Matricula registrada. No existen emails para envío de instrucciones.";
             }
             elseif($r["avisado_email"]==1){
-                $nuevoArray[$fila-1][8].=utf8_decode("Matricula registrada. Ya se han enviado instrucciones por email.");
+                $nuevoArray[$fila-1][8].= "Matricula registrada. Ya se han enviado instrucciones por email.";
                 $nuevoArray[$fila-1][1]="No generado";
             }
             else {
@@ -223,7 +223,7 @@ if ($csv != false) {
                     try{
                         $mail->send();
                     } catch (Exception  $e){
-                        $nuevoArray[$fila-1][8].=utf8_decode("Fallo envío EMAIL_ALUMNO.");
+                        $nuevoArray[$fila-1][8].= "Fallo envío EMAIL_ALUMNO.";
                         $emailAlumnoSend=false;
                     }
                 }
@@ -233,7 +233,7 @@ if ($csv != false) {
                     try{
                         $mail->send();
                     } catch (Exception  $e){
-                        $nuevoArray[$fila-1][8].=utf8_decode("Fallo envío EMAIL_TUTOR1.");
+                        $nuevoArray[$fila-1][8].= "Fallo envío EMAIL_TUTOR1.";
                         $emailTutor1Send=false;
                     }
                 }
@@ -243,7 +243,7 @@ if ($csv != false) {
                     try{
                         $mail->send();
                     } catch (Exception  $e){
-                        $nuevoArray[$fila-1][8].=utf8_decode("Fallo envío EMAIL_TUTOR2.");
+                        $nuevoArray[$fila-1][8].= "Fallo envío EMAIL_TUTOR2.";
                         $emailTutor2Send=false;
                     }
                 }
@@ -256,7 +256,7 @@ if ($csv != false) {
             
             //Se da de alta el registro y se envían los emails de aviso.
             if($mysqli->query("insert into matriculas_delphos (id_nie,curso) values ('$id_nie','$curso_actual')")!=true){
-                $nuevoArray[$fila-1][8].=utf8_decode("Fallo en alta de matrícula: Error " . $mysqli->error .".");
+                $nuevoArray[$fila-1][8].= "Fallo en alta de matrícula: Error " . $mysqli->error .".";
             }
             else{
                 if ($emailAlumno!="" || $emailTutor1!="" || $emailTutor2!=""){
@@ -274,7 +274,7 @@ if ($csv != false) {
                         try{
                             $mail->send();
                         } catch (Exception  $e){
-                            $nuevoArray[$fila-1][8].=utf8_decode("Fallo envío EMAIL_ALUMNO.");
+                            $nuevoArray[$fila-1][8].= "Fallo envío EMAIL_ALUMNO.";
                             $emailAlumnoSend=false;
                         }
                     }
@@ -284,7 +284,7 @@ if ($csv != false) {
                         try{
                             $mail->send();
                         } catch (Exception  $e){
-                            $nuevoArray[$fila-1][8].=utf8_decode("Fallo envío EMAIL_TUTOR1.");
+                            $nuevoArray[$fila-1][8].= "Fallo envío EMAIL_TUTOR1.";
                             $emailTutor1Send=false;
                         }
                     }
@@ -294,7 +294,7 @@ if ($csv != false) {
                         try{
                             $mail->send();
                         } catch (Exception  $e){
-                            $nuevoArray[$fila-1][8].=utf8_decode("Fallo envío EMAIL_TUTOR2.");
+                            $nuevoArray[$fila-1][8].= "Fallo envío EMAIL_TUTOR2.";
                             $emailTutor2Send=false;
                         }
                     }
@@ -303,7 +303,7 @@ if ($csv != false) {
                     }
                 }
                 else {
-                    $nuevoArray[$fila-1][8].=utf8_decode("Matricula registrada. No existen emails para envío de instrucciones.");
+                    $nuevoArray[$fila-1][8].= "Matricula registrada. No existen emails para envío de instrucciones.";
                 }
             }
         } 

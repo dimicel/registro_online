@@ -38,19 +38,19 @@ if ($error!="") {
 
 while($r=$res->fetch_array(MYSQLI_ASSOC)){
     if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
-    $Datos.=utf8_decode($r["id_nie"].";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["nombre"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["id_nif"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["registro"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["grado"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["ciclo"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["al_nuevo_otracomunidad"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["email"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["telefono"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["mayor_28"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["proyecto"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["fct"]))).PHP_EOL;			
+    $Datos.= $r["id_nie"].";";
+    $Datos.= ucwords(strtolower($r["apellidos"])).";";
+    $Datos.= ucwords(strtolower($r["nombre"])).";";
+    $Datos.= ucwords(strtolower($r["id_nif"])).";";
+    $Datos.= ucwords(strtolower($r["registro"])).";";
+    $Datos.= ucwords(strtolower($r["grado"])).";";
+    $Datos.= ucwords(strtolower($r["ciclo"])).";";
+    $Datos.= ucwords(strtolower($r["al_nuevo_otracomunidad"])).";";
+    $Datos.= ucwords(strtolower($r["email"])).";";
+    $Datos.= ucwords(strtolower($r["telefono"])).";";
+    $Datos.= ucwords(strtolower($r["mayor_28"])).";";
+    $Datos.= ucwords(strtolower($r["proyecto"])).";";
+    $Datos.= ucwords(strtolower($r["fct"])).PHP_EOL;			
 }
 
 echo $Datos;

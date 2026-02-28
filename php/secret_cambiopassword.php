@@ -20,7 +20,7 @@ $nie=$_POST["nie"];
 $email=$_POST["email"];
 $password=$_POST["password"];
 $pass=password_hash($_POST["password"],PASSWORD_BCRYPT);
-$mysqli->set_charset("utf8");
+ 
 
 $mysqli->query("update usuarios set password='$pass' where id_nie='$nie'");
 if ($mysqli->errno>0){

@@ -14,7 +14,7 @@ if (!is_numeric($id) || !is_array($lista_mods)) {
     exit("datos_invalidos");
 }
 
-$mysqli->set_charset("utf8");
+ 
 
 try {
     $mysqli->begin_transaction();

@@ -18,7 +18,7 @@ if ($mysqli->connect_errno) {
     exit("server");
 }
 
-$mysqli->set_charset("utf8");
+ 
 
 // --- 1. PROCESAMIENTO DE FECHA ---
 // Recibimos dd/mm/yyyy y lo convertimos a Y-m-d para MySQL

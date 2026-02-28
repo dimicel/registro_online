@@ -12,7 +12,7 @@ if ($mysqli->errno>0) {
 
 $dpto=$_POST['dpto'];
 
-$mysqli->set_charset("utf8");
+ 
 $sql="DELETE FROM departamentos WHERE departamento='$dpto'";
 $result=$mysqli->query($sql);
 if ($mysqli->errno>0) {

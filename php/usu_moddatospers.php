@@ -11,7 +11,7 @@ if ($mysqli->connect_errno) {
     exit("server_error");
 }
 
-$mysqli->set_charset("utf8");
+ 
 
 // --- 1. RECOGIDA DE TODOS LOS DATOS (COMPLETO) ---
 $id_nie = $_POST["dat_idnie"] ?? '';

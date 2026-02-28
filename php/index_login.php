@@ -25,7 +25,7 @@ else {
 	$usuario=$_POST['usuario']; 
 	$usuario_mayus=strtoupper($usuario);
 	$contrasena=$_POST['password'];
-	$mysqli->set_charset("utf8");
+	 
 
 	$consulta=$mysqli->query("select * from usuarios_admin where id_nie='$usuario'");
 	if ($consulta->num_rows>0){

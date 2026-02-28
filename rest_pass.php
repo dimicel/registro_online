@@ -10,7 +10,7 @@ header("Pragma: no-cache");
 if ($mysqli->errno>0) {
     exit("server");
 }
-$mysqli->set_charset("utf8");
+ 
 
 $pass=password_hash('#online@Ulab0ral#',PASSWORD_BCRYPT);
 $conCadena="update usuarios_admin set password='$pass' where id_nie='S4500175G'";

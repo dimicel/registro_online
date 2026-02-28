@@ -63,11 +63,11 @@ if ($error!="") {
 while($r=$res->fetch_array(MYSQLI_ASSOC)){
     if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
 
-    $Datos.="'".utf8_decode($r["id_nie"])."'".";";
-    $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
-    $Datos.=utf8_decode("\t".$r["num_ss"].";");
-    $Datos.=utf8_decode($r["fecha_mod_nuss"].";");
-    $Datos.=utf8_decode($paga_seguro).PHP_EOL;		
+    $Datos .= "=\"" . $r["id_nie"] . "\";";
+    $Datos.= ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";";
+    $Datos.= "\t".$r["num_ss"].";";
+    $Datos.= $r["fecha_mod_nuss"].";";
+    $Datos.= $paga_seguro.PHP_EOL;		
 }
 
 echo $Datos;

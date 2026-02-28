@@ -15,7 +15,7 @@ if ($mysqli->errno>0) {
 
 $nif=$_POST["nu_nif"];
 $id_nie=$_POST["id_nie"];
-$mysqli->set_charset("utf8");
+ 
 
 $consulta=$mysqli->query("select * from usuarios where id_nif='$nif' and id_nie!='$id_nie'");
 if ($consulta->num_rows>0) exit("duplicado");

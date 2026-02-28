@@ -38,16 +38,16 @@ if ($csv != false) {
         if ($fila==0){
             if(!in_array("C_NUMESCOLAR",$datos)) exit("formato_archivo");
             for ($c=0; $c < count($datos); $c++){
-                $nuevoArray[$fila][]=utf8_decode($datos[$c]);
+                $nuevoArray[$fila][]= $datos[$c];
                 if ($datos[$c]=="C_NUMESCOLAR"){
                     $columnaNIE=$c;
-                    $nuevoArray[$fila][]=utf8_decode('CONTRASEÑA');
+                    $nuevoArray[$fila][]= 'CONTRASEÑA';
                 }
                 else if($datos[$c]=="C_NUMIDE")$columnaNIF=$c;
                 else if($datos[$c]=="APELLIDOS")$columnaApellidos=$c;
                 else if($datos[$c]=="NOMBRE")$columnaNombre=$c;
             }
-            $nuevoArray[$fila][]=utf8_decode("ERROR");
+            $nuevoArray[$fila][]= "ERROR";
             $fila++;
             continue;
         }
@@ -61,7 +61,7 @@ if ($csv != false) {
             $apellidos=trim($nomArray[0]);
         }
         for ($c=0; $c < count($datos); $c++) {
-            $nuevoArray[$fila][]=utf8_decode($datos[$c]);
+            $nuevoArray[$fila][]= $datos[$c];
             if ($c==$columnaNIE){
                 $pass=password();
                 $p=password_hash($pass,PASSWORD_BCRYPT);
@@ -117,8 +117,8 @@ if ($csv != false) {
 
         }
         
-        if ($err_alta)$nuevoArray[$fila][]=utf8_decode("Error al dar de alta");
-        else if($err_duplicado) $nuevoArray[$fila][]=utf8_decode("Registro duplicado y habilitado");
+        if ($err_alta)$nuevoArray[$fila][]= "Error al dar de alta";
+        else if($err_duplicado) $nuevoArray[$fila][]= "Registro duplicado y habilitado";
         
         $fila++;
     }

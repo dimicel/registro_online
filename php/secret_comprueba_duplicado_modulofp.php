@@ -18,7 +18,7 @@ $id=$_POST['id'];
 $modulo_normalizado = normalizar_nombre($modulo);
 $codigo_normalizado = normalizar_nombre($codigo);
 
-$mysqli->set_charset("utf8");
+ 
 
 
 if ($accion=="alta") {

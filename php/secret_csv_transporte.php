@@ -35,14 +35,14 @@ if ($error!="") {
 }
 while($r=$res->fetch_array(MYSQLI_ASSOC)){
     if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
-    $Datos.="'".utf8_decode($r["id_nie"])."'".";";
-    $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";");
-    $Datos.=utf8_decode($r["curso"].";");
-    $Datos.=utf8_decode($r["cursa"].";");
-    $Datos.=utf8_decode($r["cp"].";");
-    $Datos.=utf8_decode($r["localidad"].";");
-    $Datos.=utf8_decode($r["provincia"].";");
-    $Datos.=utf8_decode($r["ruta"].";");
+    $Datos .= "=\"" . $r["id_nie"] . "\";";
+    $Datos.= ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";";
+    $Datos.= $r["curso"].";";
+    $Datos.= $r["cursa"].";";
+    $Datos.= $r["cp"].";";
+    $Datos.= $r["localidad"].";";
+    $Datos.= $r["provincia"].";";
+    $Datos.= $r["ruta"].";";
     if($r["sillaruedas"]==1)$Datos.="SI;";
     else $Datos.="NO;";	
     $Datos.=$r["fecha_registro"].PHP_EOL;

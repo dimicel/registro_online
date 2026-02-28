@@ -16,7 +16,7 @@ $accion=$_POST['accion'];
 $id=(int)$_POST['id'];
 $ciclo_normalizado = normalizar_nombre($ciclo);
 
-$mysqli->set_charset("utf8");
+ 
 
 
 if ($accion=="alta") {

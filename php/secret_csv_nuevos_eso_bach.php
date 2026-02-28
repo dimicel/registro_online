@@ -39,11 +39,11 @@ if ($error!="") {
 
 while($r=$res->fetch_array(MYSQLI_ASSOC)){
     if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
-    $Datos.=utf8_decode($r["id_nie"].";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["apellidos"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["nombre"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["al_nuevo_otracomunidad"])).";");
-    $Datos.=utf8_decode(ucwords(strtolower($r["grupo"]))).PHP_EOL;			
+    $Datos.= $r["id_nie"].";";
+    $Datos.= ucwords(strtolower($r["apellidos"])).";";
+    $Datos.= ucwords(strtolower($r["nombre"])).";";
+    $Datos.= ucwords(strtolower($r["al_nuevo_otracomunidad"])).";";
+    $Datos.= ucwords(strtolower($r["grupo"])).PHP_EOL;			
 }
 
 echo $Datos;

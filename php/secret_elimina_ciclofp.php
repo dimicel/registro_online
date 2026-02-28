@@ -10,7 +10,7 @@ if ($mysqli->errno>0) {
 
 $id=(int)$_POST['id'];
 
-$mysqli->set_charset("utf8");
+ 
 $mysqli->begin_transaction();
 
 try {
