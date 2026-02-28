@@ -24,28 +24,26 @@ SELECT
     u.pais,
     u.id_nif,
     u.es_pasaporte,
-    -- Campos combinados
     COALESCE(me.grupo, mb.grupo) AS grupo,
     COALESCE(mf.curso_ciclo, mc.curso_ciclo) AS curso_ciclo,
     COALESCE(mf.ciclo, mc.ciclo) AS ciclo,
-    -- Turno solo existe en mat_ciclos
     mc.turno AS turno
 FROM usuarios u
 INNER JOIN (
-    -- Unificamos los IDs con el mismo cotejamiento para el filtro inicial
-    SELECT id_nie COLLATE utf8mb3_general_ci AS id_nie FROM mat_ciclos WHERE curso = '$curso'
+    -- Ahora la unión es natural y limpia
+    SELECT id_nie FROM mat_ciclos WHERE curso = '$curso'
     UNION
-    SELECT id_nie COLLATE utf8mb3_general_ci FROM mat_fpb WHERE curso = '$curso'
+    SELECT id_nie FROM mat_fpb WHERE curso = '$curso'
     UNION
-    SELECT id_nie COLLATE utf8mb3_general_ci FROM mat_eso WHERE curso = '$curso'
+    SELECT id_nie FROM mat_eso WHERE curso = '$curso'
     UNION
-    SELECT id_nie COLLATE utf8mb3_general_ci FROM mat_bach WHERE curso = '$curso'
-) AS m ON m.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci
--- Unión de detalles con protección de cotejamiento
-LEFT JOIN mat_ciclos mc ON mc.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mc.curso = '$curso'
-LEFT JOIN mat_fpb mf    ON mf.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mf.curso = '$curso'
-LEFT JOIN mat_eso me    ON me.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND me.curso = '$curso'
-LEFT JOIN mat_bach mb   ON mb.id_nie COLLATE utf8mb3_general_ci = u.id_nie COLLATE utf8mb3_general_ci AND mb.curso = '$curso'
+    SELECT id_nie FROM mat_bach WHERE curso = '$curso'
+) AS m ON m.id_nie = u.id_nie
+-- Los JOINs ahora son directos
+LEFT JOIN mat_ciclos mc ON mc.id_nie = u.id_nie AND mc.curso = '$curso'
+LEFT JOIN mat_fpb mf    ON mf.id_nie = u.id_nie AND mf.curso = '$curso'
+LEFT JOIN mat_eso me    ON me.id_nie = u.id_nie AND me.curso = '$curso'
+LEFT JOIN mat_bach mb   ON mb.id_nie = u.id_nie AND mb.curso = '$curso'
 ORDER BY u.apellidos ASC, u.nombre ASC";
 
 $res = $mysqli->query($query);
