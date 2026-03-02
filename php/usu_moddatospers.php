@@ -73,15 +73,15 @@ try {
 
     // C. Actualizar tabla 'usuarios_dat' (Construcción con o sin NSS)
     if (strlen($nss) > 0) {
-        //$sql2 = "UPDATE usuarios_dat SET sexo=?, fecha_nac=?, telef_alumno=?, email=?, direccion=?, cp=?, localidad=?, provincia=?, tutor1=?, email_tutor1=?, tlf_tutor1=?, tutor2=?, email_tutor2=?, tlf_tutor2=?, num_ss=?, fecha_mod_nuss=? WHERE id_nie=?";
-        //$stmt2 = $mysqli->prepare($sql2);
-        //$stmt2->bind_param("sssssssssssssssss", $sexo, $fecha_nac, $telefono, $email, $direccion, $cp, $localidad, $provincia, $tutor1, $email_tut1, $telef_tut1, $tutor2, $email_tut2, $telef_tut2, $nss, $fecha_cambio_nuss, $id_nie);
+        $sql2 = "UPDATE usuarios_dat SET sexo=?, fecha_nac=?, telef_alumno=?, email=?, direccion=?, cp=?, localidad=?, provincia=?, tutor1=?, email_tutor1=?, tlf_tutor1=?, tutor2=?, email_tutor2=?, tlf_tutor2=?, num_ss=?, fecha_mod_nuss=? WHERE id_nie=?";
+        $stmt2 = $mysqli->prepare($sql2);
+        $stmt2->bind_param("sssssssssssssssss", $sexo, $fecha_nac, $telefono, $email, $direccion, $cp, $localidad, $provincia, $tutor1, $email_tut1, $telef_tut1, $tutor2, $email_tut2, $telef_tut2, $nss, $fecha_cambio_nuss, $id_nie);
     } else {
-        //$sql2 = "UPDATE usuarios_dat SET sexo=?, fecha_nac=?, telef_alumno=?, email=?, direccion=?, cp=?, localidad=?, provincia=?, tutor1=?, email_tutor1=?, tlf_tutor1=?, tutor2=?, email_tutor2=?, tlf_tutor2=? WHERE id_nie=?";
-        //$stmt2 = $mysqli->prepare($sql2);
-        //$stmt2->bind_param("sssssssssssssss", $sexo, $fecha_nac, $telefono, $email, $direccion, $cp, $localidad, $provincia, $tutor1, $email_tut1, $telef_tut1, $tutor2, $email_tut2, $telef_tut2, $id_nie);
+        $sql2 = "UPDATE usuarios_dat SET sexo=?, fecha_nac=?, telef_alumno=?, email=?, direccion=?, cp=?, localidad=?, provincia=?, tutor1=?, email_tutor1=?, tlf_tutor1=?, tutor2=?, email_tutor2=?, tlf_tutor2=? WHERE id_nie=?";
+        $stmt2 = $mysqli->prepare($sql2);
+        $stmt2->bind_param("sssssssssssssss", $sexo, $fecha_nac, $telefono, $email, $direccion, $cp, $localidad, $provincia, $tutor1, $email_tut1, $telef_tut1, $tutor2, $email_tut2, $telef_tut2, $id_nie);
     }
-    //if (!$stmt2->execute()) throw new Exception("Error en 'usuarios_dat': " . $stmt2->error);
+    if (!$stmt2->execute()) throw new Exception("Error en 'usuarios_dat': " . $stmt2->error);
 
     // D. BLOQUE CONDICIONAL (Segundo script): Solo si NO es 'alumno'
     if ($usuario !== 'alumno') {
@@ -89,15 +89,36 @@ try {
         if ($tablas) {
             while ($fila = $tablas->fetch_row()) {
                 $tablaActual = $fila[0];
-                // Comprobamos si la tabla tiene la columna 'apellidos' para actualizarla
-                $checkCol = $mysqli->query("SHOW COLUMNS FROM `$tablaActual` LIKE 'apellidos'");
-                if ($checkCol && $checkCol->num_rows > 0) {
-                    $sqlExtra = "UPDATE `$tablaActual` SET nombre=?, apellidos=?, email=?, id_nif=? WHERE id_nie=?";
-                    $stmtExtra = $mysqli->prepare($sqlExtra);
-                    $stmtExtra->bind_param("sssss", $nombre, $apellidos, $email_recuperacion, $nif, $id_nie);
+
+                // 1. Obtenemos todas las columnas de la tabla actual
+                $columnasQuery = $mysqli->query("SHOW COLUMNS FROM `$tablaActual` text");
+                $columnasTabla = [];
+                while ($col = $columnasQuery->fetch_assoc()) {
+                    $columnasTabla[] = $col['Field'];
+                }
+
+                // 2. Verificamos los requisitos mínimos (nombre y apellidos)
+                if (in_array('nombre', $columnasTabla) && in_array('apellidos', $columnasTabla)) {
+                    
+                    // Construcción dinámica de la SQL según si existe 'email'
+                    $tieneEmail = in_array('email', $columnasTabla);
+                    
+                    if ($tieneEmail) {
+                        $sqlExtra = "UPDATE `$tablaActual` SET nombre=?, apellidos=?, email=?, id_nif=? WHERE id_nie=?";
+                        $stmtExtra = $mysqli->prepare($sqlExtra);
+                        $stmtExtra->bind_param("sssss", $nombre, $apellidos, $email_recuperacion, $nif, $id_nie);
+                    } else {
+                        $sqlExtra = "UPDATE `$tablaActual` SET nombre=?, apellidos=?, id_nif=? WHERE id_nie=?";
+                        $stmtExtra = $mysqli->prepare($sqlExtra);
+                        // Quitamos el parámetro del email
+                        $stmtExtra->bind_param("ssss", $nombre, $apellidos, $nif, $id_nie);
+                    }
+
                     if (!$stmtExtra->execute()) {
                         throw new Exception("Error en tabla dinámica $tablaActual: " . $stmtExtra->error);
                     }
+                    
+                    $stmtExtra->close();
                 }
             }
         }
