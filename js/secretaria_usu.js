@@ -713,8 +713,8 @@ function panelModUsu(id) {
                     },
                     mod_nif:{
                         numero_nif: function() {
-                            if (form_modif_datos_usu.mod_es_pasaporte.checked) return false;
-                            else return true;
+                            if (form_modif_datos_usu.mod_es_pasaporte.checked) return true;
+                            else return false;
                         }
                     },
                     dat_email_tut1: {
