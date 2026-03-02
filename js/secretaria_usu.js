@@ -697,6 +697,12 @@ function panelModUsu(id) {
                 showButtonPanel: true
             });
 
+            $.validator.addMethod("metodo_nif_dinamico", function(value, element) {
+                // Comprobamos el check directamente aquí
+                var esPasaporte = $('#mod_es_pasaporte').is(':checked');
+                return validaDNI_NIE(value, esPasaporte);
+            }, "Identificación no válida");
+
             $("#form_modif_datos_usu").validate({
                 rules: {
                     mod_nombre: {
@@ -712,9 +718,7 @@ function panelModUsu(id) {
                         }
                     },
                     mod_nif:{
-                        numero_nif: function() {
-                            return validaDNI_NIE(form_modif_datos_usu.mod_nif.value, form_modif_datos_usu.mod_es_pasaporte.checked);
-                        }
+                        metodo_nif_dinamico: true
                     },
                     dat_email_tut1: {
                         email: function() {
@@ -737,7 +741,7 @@ function panelModUsu(id) {
                         required: "No puede dejar los apellidos en blanco"
                     },
                     mod_nif: {
-                        numero_nif: "Nº no válido"
+                        metodo_nif_dinamico: "Nº no válido"
                     },
                     mod_email: {
                         email_no_obligatorio: "Dirección de email no válida"
