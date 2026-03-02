@@ -70,7 +70,7 @@ $offset = ($pagina - 1) * $num_reg_pagina;
 if ($curso != "Todos") {
     $select_residente = ", IF(r.id_nie IS NULL, 'No', 'Si') as residente";
     // También añadimos COLLATE al JOIN por si acaso
-    $join_residente = " LEFT JOIN residentes r ON u.id_nie COLLATE utf8_unicode_ci = r.id_nie COLLATE utf8_unicode_ci AND r.curso COLLATE utf8_unicode_ci = ? ";
+    $join_residente = " LEFT JOIN residentes r ON u.id_nie  = r.id_nie  AND r.curso  = ? ";
     $tipos_final = "s" . $tipos_where . "ii";
     $params_final = array_merge([$curso], $params_where, [$num_reg_pagina, $offset]);
 } else {
