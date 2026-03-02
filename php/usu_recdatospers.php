@@ -15,13 +15,13 @@ $id_nie = $mysqli->real_escape_string($_POST["id_nie"]);
 $resp = array();
 
 // 2. Consulta SQL con alias
-$sql = "SELECT ud.*, 
-               u.*, 
-               u.email AS email_recuperacion, 
-               ud.email AS email_alumno 
-        FROM usuarios_dat ud
-        LEFT JOIN usuarios u ON ud.id_nie = u.id_nie 
-        WHERE ud.id_nie = '$id_nie'";
+$sql = "SELECT u.*, 
+       ud.*, 
+       u.email AS email_recuperacion, 
+       ud.email AS email_alumno 
+FROM usuarios u
+LEFT JOIN usuarios_dat ud ON u.id_nie = ud.id_nie 
+WHERE u.id_nie = '$id_nie'";
 
 $dat = $mysqli->query($sql);
 
