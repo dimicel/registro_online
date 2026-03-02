@@ -110,7 +110,7 @@ try {
 } catch (Exception $e) {
     // --- ERROR: ROLLBACK (Deshace todo lo anterior) ---
     $mysqli->rollback();
-    exit("fallo: " . $e->getMessage());
+    exit("fallo___: " . $e->getMessage());
 }
 
 $mysqli->close();
