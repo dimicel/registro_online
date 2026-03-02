@@ -622,6 +622,7 @@ function panelModUsu(id) {
     cargaHTML("html/secretaria_usu.htm", "div_modif_datos_usu","TITULO",1000,2000,"","",[],null,
         function(){
             $("#dat_fecha_nac").datepicker("destroy");
+            $("#mod_fecha_caducidad").datepicker("destroy");
             $("#form_modif_datos_usu").validate().destroy();
         }
     )
