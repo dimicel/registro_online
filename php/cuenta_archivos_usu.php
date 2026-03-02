@@ -1,4 +1,8 @@
 <?php
+/*ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 //Este script cuenta los archivos asociados a cada usuario dado de alta que no haya entrado en la plataforma
 
 

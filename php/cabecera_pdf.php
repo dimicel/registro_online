@@ -1,5 +1,8 @@
 <?php
-
+/*ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 $dat_centro = $mysqli->query("SELECT * FROM config_centro");
 $datos_cen= $dat_centro->fetch_assoc();
 $dat_centro->free();

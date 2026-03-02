@@ -1,4 +1,8 @@
 <?php
+/*ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 if (isset($mysqli)) mysqli_close($mysqli);
 session_start();
 header("Expires: Tue, 01 Jul 2001 06:00:00 GMT");
