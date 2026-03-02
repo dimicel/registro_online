@@ -101,18 +101,17 @@ try {
                 if (in_array('nombre', $columnasTabla) && in_array('apellidos', $columnasTabla)) {
                     
                     // Construcción dinámica de la SQL según si existe 'email'
-                    $tieneEmail = in_array('email', $columnasTabla);
+                    //$tieneEmail = in_array('email', $columnasTabla);
                     
-                    if ($tieneEmail) {
-                        $sqlExtra = "UPDATE `$tablaActual` SET nombre=?, apellidos=?, email=?, id_nif=? WHERE id_nie=?";
-                        $stmtExtra = $mysqli->prepare($sqlExtra);
-                        $stmtExtra->bind_param("sssss", $nombre, $apellidos, $email_recuperacion, $nif, $id_nie);
-                    } else {
+                    //if ($tieneEmail) {
+                    //    $sqlExtra = "UPDATE `$tablaActual` SET nombre=?, apellidos=?, email=?, id_nif=? WHERE id_nie=?";
+                    //    $stmtExtra = $mysqli->prepare($sqlExtra);
+                    //    $stmtExtra->bind_param("sssss", $nombre, $apellidos, $email_recuperacion, $nif, $id_nie);
+                    //} else {
                         $sqlExtra = "UPDATE `$tablaActual` SET nombre=?, apellidos=?, id_nif=? WHERE id_nie=?";
                         $stmtExtra = $mysqli->prepare($sqlExtra);
-                        // Quitamos el parámetro del email
                         $stmtExtra->bind_param("ssss", $nombre, $apellidos, $nif, $id_nie);
-                    }
+                    //}
 
                     if (!$stmtExtra->execute()) {
                         throw new Exception("Error en tabla dinámica $tablaActual: " . $stmtExtra->error);
