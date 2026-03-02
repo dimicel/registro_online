@@ -26,7 +26,6 @@ $tipos_where = "";
 if ($solo_han_entrado == "Si") $condiciones[] = "u.no_ha_entrado = 0";
 elseif ($solo_han_entrado == "No") $condiciones[] = "u.no_ha_entrado = 1";
 
-// 2. Filtro: Curso con corrección de COLLATE
 if ($curso != "Todos") {
     if ($curso == "2021-2022") {
         $tablas = ["mat_1bach_c", "mat_1bach_hcs", "mat_1eso", "mat_2eso", "mat_3eso", "mat_4eso", "mat_2bach_c", "mat_2bach_hcs", "mat_2esopmar", "mat_3esodiv", "mat_3esopmar"];
@@ -36,8 +35,7 @@ if ($curso != "Todos") {
 
     $subs = [];
     foreach ($tablas as $t) {
-        // Forzamos COLLATE para evitar el error de mezcla de caracteres
-        $subs[] = "u.id_nie COLLATE utf8_unicode_ci IN (SELECT id_nie COLLATE utf8_unicode_ci FROM $t WHERE curso COLLATE utf8_unicode_ci = ?)";
+        $subs[] = "u.id_nie IN (SELECT id_nie FROM $t WHERE curso = ?)";
         $tipos_where .= "s";
         $params_where[] = $curso;
     }
@@ -69,7 +67,6 @@ $offset = ($pagina - 1) * $num_reg_pagina;
 
 if ($curso != "Todos") {
     $select_residente = ", IF(r.id_nie IS NULL, 'No', 'Si') as residente";
-    // También añadimos COLLATE al JOIN por si acaso
     $join_residente = " LEFT JOIN residentes r ON u.id_nie  = r.id_nie  AND r.curso  = ? ";
     $tipos_final = "s" . $tipos_where . "ii";
     $params_final = array_merge([$curso], $params_where, [$num_reg_pagina, $offset]);
