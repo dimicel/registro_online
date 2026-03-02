@@ -81,7 +81,7 @@ try {
         $stmt2 = $mysqli->prepare($sql2);
         $stmt2->bind_param("sssssssssssssss", $sexo, $fecha_nac, $telefono, $email, $direccion, $cp, $localidad, $provincia, $tutor1, $email_tut1, $telef_tut1, $tutor2, $email_tut2, $telef_tut2, $id_nie);
     }
-    if (!$stmt2->execute()) throw new Exception("Error en 'usuarios_dat': " . $stmt2->error);
+    //if (!$stmt2->execute()) throw new Exception("Error en 'usuarios_dat': " . $stmt2->error);
 
     // D. BLOQUE CONDICIONAL (Segundo script): Solo si NO es 'alumno'
     if ($usuario !== 'alumno') {
