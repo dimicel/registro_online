@@ -66,16 +66,16 @@ try {
     }
 
     // B. Actualizar tabla 'usuarios'
-    //$sql1 = "UPDATE usuarios SET nombre=?, apellidos=?, id_nif=?, fecha_caducidad_id_nif=?, pais=?, es_pasaporte=?, email=? WHERE id_nie=?";
-    //$stmt1 = $mysqli->prepare($sql1);
-    //$stmt1->bind_param("sssssiss", $nombre, $apellidos, $nif, $nif_fecha_caducidad, $pais, $es_pasaporte, $email_recuperacion, $id_nie);
-    //if (!$stmt1->execute()) throw new Exception("Error en 'usuarios': " . $stmt1->error);
+    $sql1 = "UPDATE usuarios SET nombre=?, apellidos=?, id_nif=?, fecha_caducidad_id_nif=?, pais=?, es_pasaporte=?, email=? WHERE id_nie=?";
+    $stmt1 = $mysqli->prepare($sql1);
+    $stmt1->bind_param("sssssiss", $nombre, $apellidos, $nif, $nif_fecha_caducidad, $pais, $es_pasaporte, $email_recuperacion, $id_nie);
+    if (!$stmt1->execute()) throw new Exception("Error en 'usuarios': " . $stmt1->error);
 
     // C. Actualizar tabla 'usuarios_dat' (Construcción con o sin NSS)
     if (strlen($nss) > 0) {
-        $sql2 = "UPDATE usuarios_dat SET sexo=?, fecha_nac=?, telef_alumno=?, email=?, direccion=?, cp=?, localidad=?, provincia=?, tutor1=?, email_tutor1=?, tlf_tutor1=?, tutor2=?, email_tutor2=?, tlf_tutor2=?, num_ss=?, fecha_mod_nuss=? WHERE id_nie=?";
-        $stmt2 = $mysqli->prepare($sql2);
-        $stmt2->bind_param("sssssssssssssssss", $sexo, $fecha_nac, $telefono, $email, $direccion, $cp, $localidad, $provincia, $tutor1, $email_tut1, $telef_tut1, $tutor2, $email_tut2, $telef_tut2, $nss, $fecha_cambio_nuss, $id_nie);
+        //$sql2 = "UPDATE usuarios_dat SET sexo=?, fecha_nac=?, telef_alumno=?, email=?, direccion=?, cp=?, localidad=?, provincia=?, tutor1=?, email_tutor1=?, tlf_tutor1=?, tutor2=?, email_tutor2=?, tlf_tutor2=?, num_ss=?, fecha_mod_nuss=? WHERE id_nie=?";
+        //$stmt2 = $mysqli->prepare($sql2);
+        //$stmt2->bind_param("sssssssssssssssss", $sexo, $fecha_nac, $telefono, $email, $direccion, $cp, $localidad, $provincia, $tutor1, $email_tut1, $telef_tut1, $tutor2, $email_tut2, $telef_tut2, $nss, $fecha_cambio_nuss, $id_nie);
     } else {
         $sql2 = "UPDATE usuarios_dat SET sexo=?, fecha_nac=?, telef_alumno=?, email=?, direccion=?, cp=?, localidad=?, provincia=?, tutor1=?, email_tutor1=?, tlf_tutor1=?, tutor2=?, email_tutor2=?, tlf_tutor2=? WHERE id_nie=?";
         $stmt2 = $mysqli->prepare($sql2);
