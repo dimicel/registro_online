@@ -91,7 +91,7 @@ try {
                 $tablaActual = $fila[0];
 
                 // 1. Obtenemos todas las columnas de la tabla actual
-                $columnasQuery = $mysqli->query("SHOW COLUMNS FROM `$tablaActual` text");
+                $columnasQuery = $mysqli->query("SHOW COLUMNS FROM `$tablaActual`");
                 $columnasTabla = [];
                 while ($col = $columnasQuery->fetch_assoc()) {
                     $columnasTabla[] = $col['Field'];
