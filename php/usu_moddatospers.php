@@ -66,10 +66,10 @@ try {
     }
 
     // B. Actualizar tabla 'usuarios'
-    $sql1 = "UPDATE usuarios SET nombre=?, apellidos=?, id_nif=?, fecha_caducidad_id_nif=?, pais=?, es_pasaporte=?, email=? WHERE id_nie=?";
-    $stmt1 = $mysqli->prepare($sql1);
-    $stmt1->bind_param("sssssiss", $nombre, $apellidos, $nif, $nif_fecha_caducidad, $pais, $es_pasaporte, $email_recuperacion, $id_nie);
-    if (!$stmt1->execute()) throw new Exception("Error en 'usuarios': " . $stmt1->error);
+    //$sql1 = "UPDATE usuarios SET nombre=?, apellidos=?, id_nif=?, fecha_caducidad_id_nif=?, pais=?, es_pasaporte=?, email=? WHERE id_nie=?";
+    //$stmt1 = $mysqli->prepare($sql1);
+    //$stmt1->bind_param("sssssiss", $nombre, $apellidos, $nif, $nif_fecha_caducidad, $pais, $es_pasaporte, $email_recuperacion, $id_nie);
+    //if (!$stmt1->execute()) throw new Exception("Error en 'usuarios': " . $stmt1->error);
 
     // C. Actualizar tabla 'usuarios_dat' (Construcción con o sin NSS)
     if (strlen($nss) > 0) {
@@ -110,7 +110,7 @@ try {
 } catch (Exception $e) {
     // --- ERROR: ROLLBACK (Deshace todo lo anterior) ---
     $mysqli->rollback();
-    exit("fallo___: " . $e->getMessage());
+    exit("fallo: " . $e->getMessage());
 }
 
 $mysqli->close();
