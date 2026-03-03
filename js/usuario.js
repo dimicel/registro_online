@@ -521,7 +521,7 @@ function ocultaDivsSubeDocs(panel) {
                         document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
                     }
                     else{
-                        img.style.display = 'none';
+                        document.getElementById('img_alumno').style.display = 'none';
                         document.getElementById('txt_no_foto').style.display = 'block';
                         document.getElementById('btn_label_foto').innerText = 'Subir fotografía';
                     }
