@@ -58,7 +58,7 @@
         </div>-->
         <div class="row" id="div_fotografia">
             <div class="col-12 text-center mb-3">
-                
+
                 <div id="contenedor-img-perfil" style="width: 150px; height: 180px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">                  
                     <img id="img_alumno" 
                         src="" 
@@ -96,6 +96,7 @@
 
             // Al cargar la página, si la imagen cargó bien, actualizamos el texto del botón
             document.getElementById('img_alumno').onload = function() {
+                document.getElementById('img_alumno').src = '/docs/fotos/'+id_nie+'.jpeg';
                 document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
             };
             
