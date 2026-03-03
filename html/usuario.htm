@@ -57,59 +57,56 @@
             </div>
         </div>-->
         <div class="row" id="div_fotografia">
-    <div class="col-12 text-center mb-3">
-        <div id="contenedor-img-perfil" style="width: 150px; height: 180px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
-            
-            <img id="img_alumno" 
-                 src="docs/foto/" + id_nie + ".jpg" 
-                 style="width: 100%; height: 100%; object-fit: cover;"
-                 onerror="handleErrorFoto(this)">
-            
-            <span id="txt_no_foto" style="display: none; font-size: 0.8em; color: #6c757d; padding: 10px;">
-                Fotografía no existente
-            </span>
+            <div class="col-12 text-center mb-3">
+                
+                <div id="contenedor-img-perfil" style="width: 150px; height: 180px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">                  
+                    <img id="img_alumno" 
+                        src="" 
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        onerror="handleErrorFoto(this)">
+                    
+                    <span id="txt_no_foto" style="display: none; font-size: 0.8em; color: #6c757d; padding: 10px;">
+                        Fotografía no existente
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-12 text-center">
+                <label for="foto_alumno" class="btn btn-success" id="btn_label_foto">
+                    Cargando...
+                </label>
+                
+                <input name="foto_alumno" id="foto_alumno" type="file" 
+                    style="display: none;" 
+                    accept="image/jpeg" 
+                    onchange="muestraEditor_usu(this.files[0],'foto')" required/>
+            </div>
+
+            <div class="w-100" style="text-align: center; margin-top:15px">
+                <span class="errorTxt" style="font-size: 1em;"></span>
+            </div>
         </div>
-    </div>
+        <script>
+            function handleErrorFoto(img) {
+                // Si falla la carga, ocultamos la imagen y mostramos el texto
+                img.style.display = 'none';
+                document.getElementById('txt_no_foto').style.display = 'block';
+                document.getElementById('btn_label_foto').innerText = 'Subir fotografía';
+            }
 
-    <div class="col-12 text-center">
-        <label for="foto_alumno" class="btn btn-success" id="btn_label_foto">
-            Cargando...
-        </label>
-        
-        <p><small>Fotografía en JPEG (formato DNI). Si es con móvil, en vertical.</small></p>
-        
-        <input name="foto_alumno" id="foto_alumno" type="file" 
-               style="display: none;" 
-               accept="image/jpeg" 
-               onchange="muestraEditor_usu(this.files[0],'foto')" required/>
-    </div>
-
-    <div class="w-100" style="text-align: center; margin-top:15px">
-        <span class="errorTxt" style="font-size: 1em;"></span>
-    </div>
-</div>
-
-<script>
-    function handleErrorFoto(img) {
-        // Si falla la carga, ocultamos la imagen y mostramos el texto
-        img.style.display = 'none';
-        document.getElementById('txt_no_foto').style.display = 'block';
-        document.getElementById('btn_label_foto').innerText = 'Subir fotografía';
-    }
-
-    // Al cargar la página, si la imagen cargó bien, actualizamos el texto del botón
-    document.getElementById('img_alumno').onload = function() {
-        document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
-    };
-    
-    // Por si acaso la imagen tarda o ya está en caché
-    window.addEventListener('load', () => {
-        const img = document.getElementById('img_alumno');
-        if (img.complete && img.naturalWidth > 0) {
-            document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
-        }
-    });
-</script>
+            // Al cargar la página, si la imagen cargó bien, actualizamos el texto del botón
+            document.getElementById('img_alumno').onload = function() {
+                document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
+            };
+            
+            // Por si acaso la imagen tarda o ya está en caché
+            window.addEventListener('load', () => {
+                const img = document.getElementById('img_alumno');
+                if (img.complete && img.naturalWidth > 0) {
+                    document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
+                }
+            });
+        </script>
         <!------------------------------------------------------------>
         <!-- SEGURO ESCOLAR ---------------------------------------------->
         <div class="row" id="div_resguardo_seguro_escolar">
