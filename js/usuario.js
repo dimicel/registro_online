@@ -514,6 +514,19 @@ function ocultaDivsSubeDocs(panel) {
                 document.getElementById("div_reverso_dni").style.display = "none";
                 document.getElementById("div_certificado").style.display = "inherit";
             }
+            $.post("php/usu_existe_docs.php",{id_nie:id_nie,curso:anno_curso_usu},(resp)=>{
+                if (panel=="foto"){
+                    if (resp.foto==1){
+                        document.getElementById('img_alumno').src = '/docs/fotos/'+id_nie+'.jpeg';
+                        document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
+                    }
+                    else{
+                        img.style.display = 'none';
+                        document.getElementById('txt_no_foto').style.display = 'block';
+                        document.getElementById('btn_label_foto').innerText = 'Subir fotografía';
+                    }
+                }
+            },"json");
     })
     .catch (error=>{
         ocultarPantallaEspera();
