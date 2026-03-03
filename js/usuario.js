@@ -517,7 +517,7 @@ function ocultaDivsSubeDocs(panel) {
             $.post("php/usu_existe_docs.php",{id_nie:id_nie,curso:anno_curso_usu},(resp)=>{
                 if (panel=="foto"){
                     if (resp.foto==1){
-                        document.getElementById('img_alumno').src = '/docs/fotos/'+id_nie+'.jpeg';
+                        document.getElementById('img_alumno').src = 'docs/fotos/'+id_nie+'.jpeg';
                         document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
                     }
                     else{
