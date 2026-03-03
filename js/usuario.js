@@ -516,11 +516,20 @@ function ocultaDivsSubeDocs(panel) {
             }
             $.post("php/usu_existe_docs.php",{id_nie:id_nie,curso:anno_curso_usu},(resp)=>{
                 if (panel=="foto"){
-                    if (resp.foto==1){
-                        document.getElementById('img_alumno').src = 'docs/fotos/'+id_nie+'.jpeg';
+                    if (resp.foto == 1) {
+                        let img = document.getElementById('img_alumno');
+                        let txt = document.getElementById('txt_no_foto');
+                        
+                        // 1. IMPORTANTE: Volvemos a mostrar la imagen y ocultar el texto
+                        img.style.display = 'block'; 
+                        txt.style.display = 'none';
+                        
+                        // 2. Cargamos la ruta (añadimos un timestamp para evitar caché si se acaba de subir)
+                        img.src = 'docs/fotos/' + id_nie + '.jpeg?t=' + new Date().getTime();
+                        
                         document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
-                    }
-                    else{
+                    } else {
+                        // Lógica si no hay foto en BD
                         document.getElementById('img_alumno').style.display = 'none';
                         document.getElementById('txt_no_foto').style.display = 'block';
                         document.getElementById('btn_label_foto').innerText = 'Subir fotografía';
