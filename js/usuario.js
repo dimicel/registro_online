@@ -815,9 +815,24 @@ function muestraEditor_usu(_file,tipo){
             $(dialogo).dialog("option", "width", dialogoW);
 
             // Inicializar Croppie
+            ////ELIMINAMOS LA INSTANCIA DE CROPPIE SI EXISTE ANTES DE CREAR UNA NUEVA, PARA EVITAR ERRORES EN CASO DE QUE EL USUARIO HAGA VARIAS SUBIDAS SIN RECARGAR LA PÁGINA
+            // 1. Buscamos el elemento
+            const el = document.getElementById("div_imagen");
+
+            // 2. Si _crop1 existe, intentamos destruirlo, pero con un try/catch por si acaso
             if (typeof _crop1 !== 'undefined' && _crop1 !== null) {
-                _crop1.destroy();
-            } // Evita duplicados si el usuario cambia de opinión
+                try {
+                    _crop1.destroy();
+                } catch(e) {
+                    console.log("Croppie ya estaba medio destruido, seguimos...");
+                }
+            }
+
+            // 3. LIMPIEZA TOTAL: Vaciamos el HTML y quitamos clases de Croppie
+            el.innerHTML = ''; 
+            el.className = ''; // Esto quita las clases 'croppie-container' que añade la librería
+            _crop1 = null;
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////
             
             _crop1 = new Croppie(document.getElementById("div_imagen"), {
                 viewport: { width: vWidth, height: vHeight },
