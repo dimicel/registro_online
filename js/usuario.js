@@ -510,7 +510,7 @@ function ocultaDivsSubeDocs(panel) {
                 document.getElementById("div_doc_dni").style.display = "none";
                 document.getElementById("div_certificado").style.display = "inherit";
             }
-            $.post("php/usu_existe_docs.php",{id_nie:id_nie,curso:anno_curso_usu},(resp)=>{
+            $.post("php/usu_existe_docs.php",{id_nie:id_nie,curso:anno_curso_usu,tipo_doc:panel},(resp)=>{
                 if (panel=="foto"){
                     if (resp.foto == 1) {
                         let img = document.getElementById('img_alumno');
