@@ -702,8 +702,7 @@ function muestraEditor_usu(_file,tipo){
                                 }
                                 else if (tipo == "seguro"){
                                     mm = "Resguardo del pago del seguro escolar subido.";
-                                }
-                                
+                                } 
                             }
                             if (mmtit!="") alerta(mm, mmtit);
                         });
@@ -716,6 +715,7 @@ function muestraEditor_usu(_file,tipo){
         ]
     )
     .then((dialogo)=>{
+        /*
             ocultarPantallaEspera();
             if (tipo=="dni_anverso" || tipo=="dni_reverso"){
                 document.getElementById("texto_editor_imagen").innerHTML="Rota, haz zoom (con la rueda del ratón) y mueve la imagen para ajustar la CARA y CUELLO al recuadro";
@@ -758,10 +758,81 @@ function muestraEditor_usu(_file,tipo){
                 $(dialogo).dialog("option", "width", 1000);
             }
             _crop1.bind({
-                url: URL.createObjectURL(_file),
-                orientation: 1
+                url: URL.createObjectURL(_file)
+            });
+        */
+        const img = new Image();
+        img.src = URL.createObjectURL(_file);
+
+        img.onload = function() {
+            const anchoReal = this.width;
+            const altoReal = this.height;
+            const esHorizontal = anchoReal > altoOriginal;
+
+            // Variables que configuraremos según el caso
+            let vWidth, vHeight, bWidth, bHeight, msg, dialogoW;
+
+            if (tipo == "dni_anverso" || tipo == "dni_reverso") {
+                msg = "Rota, haz zoom y mueve para ajustar la CARA y CUELLO";
+                // Mantenemos proporción horizontal de un DNI
+                vWidth = 450; vHeight = 285;
+                dialogoW = 700;
+                _fname_ajax = "dni";
+                _f_ajax = id_nie + (tipo == "dni_anverso" ? "-A.jpeg" : "-R.jpeg");
+                url = "impresos/matriculas/php/sube_dni.php";
+            } 
+            else if (tipo == "foto") {
+                msg = "Ajusta la imagen al recuadro";
+                // Si la foto subida es horizontal, quizás quieras invertir el viewport a 255x190? 
+                // Normalmente las fotos de carnet son verticales:
+                vWidth = 190; vHeight = 255;
+                dialogoW = 500;
+                _fname_ajax = "foto";
+                _f_ajax = id_nie + ".jpeg";
+                url = "impresos/matriculas/php/sube_foto.php";
+            } 
+            else if (tipo == "seguro") {
+                msg = "Ajusta el recuadro al resguardo...";
+                // AQUÍ aplicamos el cambio según la imagen real
+                if (esHorizontal) {
+                    vWidth = 630; vHeight = 350;
+                } else {
+                    vWidth = 350; vHeight = 630; // Invertimos para vertical
+                }
+                dialogoW = 1000;
+                _fname_ajax = "seguro";
+                _f_ajax = id_nie + ".jpeg";
+                url = "impresos/matriculas/php/sube_seguro.php";
+            }
+
+            // Calculamos Boundary proporcional al Viewport para que no sea gigante
+            bWidth = vWidth + 100;
+            bHeight = vHeight + 100;
+
+            // Aplicar cambios al DOM
+            ocultarPantallaEspera();
+            document.getElementById("texto_editor_imagen").innerHTML = msg;
+            $(dialogo).dialog("option", "width", dialogoW);
+
+            // Inicializar Croppie
+            if(_crop1) _crop1.destroy(); // Evita duplicados si el usuario cambia de opinión
+            
+            _crop1 = new Croppie(document.getElementById("div_imagen"), {
+                viewport: { width: vWidth, height: vHeight },
+                boundary: { width: bWidth, height: bHeight },
+                showZoomer: false,
+                enableOrientation: true
             });
 
+            _crop1.bind({
+                url: img.src
+            });
+        };
+
+        img.onerror = function() {
+            ocultarPantallaEspera();
+            alerta("Error al cargar la imagen. Inténtalo de nuevo.","ERROR DE CARGA");
+        };
             
     })
     .catch (error=>{
