@@ -652,6 +652,9 @@ function muestraEditor_usu(_file,tipo){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
+                    mm="";
+                    mmtit="";
+                    _resp="";
                     _crop1.result({
                         type: 'blob'
                     }).then(function (blob) {
@@ -677,12 +680,17 @@ function muestraEditor_usu(_file,tipo){
                         .done(function(resp) {
                             ocultarPantallaEspera();
                             if (resp == "archivo") {
-                                alerta("Ha habido un error al subir el archivo.", "Error carga");
+                                mmtit="ERROR CARGA";
+                                mm = "Ha habido un error al subir el archivo.";
+                                //alerta("Ha habido un error al subir el archivo.", "Error carga");
                                 obj.value = null;
                             } else if (resp == "almacenar") {
-                                alerta("Ha habido un error al copiar el archivo.", "Error copia");
+                                mmtit="ERROR COPIA";
+                                mm = "Ha habido un error al copiar el archivo.";
+                                //  alerta("Ha habido un error al copiar el archivo.", "Error copia");
                                 obj.value = null;
                             } else if (resp == "ok") {
+                                mmtit="OK";
                                 if (tipo == "dni_anverso"){
                                     mm = "Anverso de documento subido.";
                                 }
@@ -695,13 +703,14 @@ function muestraEditor_usu(_file,tipo){
                                 else if (tipo == "seguro"){
                                     mm = "Resguardo del pago del seguro escolar subido.";
                                 }
-                                alerta(mm, "OK");
+                                
                             }
                         });
                     });
                     _crop1.destroy();
                     $(this).dialog("destroy").remove();
                     $("#div_subida_archivos_usu").closest(".ui-dialog-content").dialog("destroy").remove();
+                    alerta(mm, mmtit);
                 }
             }
         ]
