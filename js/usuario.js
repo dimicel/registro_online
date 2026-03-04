@@ -815,7 +815,9 @@ function muestraEditor_usu(_file,tipo){
             $(dialogo).dialog("option", "width", dialogoW);
 
             // Inicializar Croppie
-            if(_crop1) _crop1.destroy(); // Evita duplicados si el usuario cambia de opinión
+            if (typeof _crop1 !== 'undefined' && _crop1 !== null) {
+                _crop1.destroy();
+            } // Evita duplicados si el usuario cambia de opinión
             
             _crop1 = new Croppie(document.getElementById("div_imagen"), {
                 viewport: { width: vWidth, height: vHeight },
