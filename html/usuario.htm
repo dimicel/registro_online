@@ -88,31 +88,105 @@
             </div>
         </div>
         <!------------------------------------------------------------>
-        <!-- ANVERSO DNI ---------------------------------------------->
-        <div class="row" id="div_anverso_dni">
-            <div class="col">
-                <label for="anverso_dni">Anverso de documento identificativo (DNI/NIE) en JPEG.<br>
-                Si sólo tiene pasaporte, fotografía en JPEG de la página que contenga la foto y nombre del alumno<br>
-                <small>(Si se toma la imagen con móvil, poner éste en posición horizontal):</small></label>
-                <input name="anverso_dni" id="anverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor_usu(this.files[0],'dni_anverso')//USUsubeDNI(this,'A')" required/>
+        <!-- DOCUMENTO DE IDENTIFICACION ---------------------------------------------->
+        <div class="row" id="div_doc_dni">
+			<div class="col-12 text-center">
+                <label>Si la imágenes del documento de identificación se toman con un móvil, sujételo en posición horizontal.</label>
             </div>
-            <div class="w-100" style="text-align: center;margin-top:15px">
-                <span class="errorTxt" style="font-size: 1em;"></span>
+            <div class="col-6 text-center mb-3">
+                <div id="contenedor-img-anverso" style="width: 450px; height: 285px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">                  
+                    <img id="img_anverso" 
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        onerror="this.style.display = 'none';
+                                document.getElementById('txt_no_anverso').style.display = 'block';
+                                document.getElementById('btn_label_anverso').innerText = 'Subir parte delantera del documento';">
+                    
+                    <span id="txt_no_anverso" style="display: none; font-size: 0.8em; color: #6c757d; padding: 10px;">
+                        Parte delantera del documento no existente
+                    </span>
+                </div>
+            </div>
+			<div class="col-6 text-center mb-3">
+				<div id="contenedor-img-reverso" style="width: 450px; height: 285px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">                  
+                    <img id="img_anverso" 
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        onerror="this.style.display = 'none';
+                                document.getElementById('txt_no_reverso').style.display = 'block';
+                                document.getElementById('btn_label_reverso').innerText = 'Subir parte trasera del documento';">
+                    
+                    <span id="txt_no_reverso" style="display: none; font-size: 0.8em; color: #6c757d; padding: 10px;">
+                        Parte trasera del documento no existente
+                    </span>
+                </div>
+			</div>
+			<div class="col-6 text-center">
+                <label for="foto_anverso_dni" class="btn btn-success textoboton" style="color:white !important" id="btn_label_anverso">
+                    Cargando...
+                </label>
+                
+                <input name="foto_anverso_dni" id="foto_anverso_dni" type="file" 
+                    style="display: none;" 
+                    accept="image/jpeg" 
+                    onchange="muestraEditor_usu(this.files[0],'dni')" />
+            </div>
+			<div class="col-6 text-center">
+                <label for="foto_reverso_dni" class="btn btn-success textoboton" style="color:white !important" id="btn_label_reverso">
+                    Cargando...
+                </label>
+                
+                <input name="foto_reverso_dni" id="foto_reverso_dni" type="file" 
+                    style="display: none;" 
+                    accept="image/jpeg" 
+                    onchange="muestraEditor_usu(this.files[0],'dni')" />
             </div>
         </div>
-        <!------------------------------------------------------------>
-        <!-- REVERSO DNI ---------------------------------------------->
-        <div class="row" id="div_reverso_dni">
-            <div class="col">
-                <label for="reverso_dni">Reverso del documento identificativo (DNI/NIE) en JPEG.<br>
-                Si sólo tiene pasaporte, fotografía en JPEG de una imagen en blanco (por ejemplo, folio).<br>
-                <small>(Si se toma la imagen con móvil, poner éste en posición horizontal):</small></label>
-                <input name="reverso_dni" id="reverso_dni" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor_usu(this.files[0],'dni_reverso')//USUsubeDNI(this,'R')" required/>
+		<div class="row" id="doc_pasaporte" style="display:none">
+			<div class="col-12 text-center">
+					<label for="pasaporte">Si la imágenes del pasaporte se toman con un móvil, sujételo en posición horizontal.</label>
             </div>
-            <div class="w-100" style="text-align: center;margin-top:15px">
-                <span class="errorTxt" style="font-size: 1em;"></span>
+            <div class="col-12 text-center text-center mb-3">
+                <div class="col-12 text-center mb-3">
+					<div id="contenedor-img-pasaporte" style="width: 472px; height: 332px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">                  
+						<img id="img_pasaporte" 
+							style="width: 100%; height: 100%; object-fit: cover;"
+							onerror="this.style.display = 'none';
+									document.getElementById('txt_no_pasaporte').style.display = 'block';
+									document.getElementById('btn_label_pasaporte').innerText = 'Subir pasaporte';">
+						
+						<span id="txt_no_pasaporte" style="display: none; font-size: 0.8em; color: #6c757d; padding: 10px;">
+							El pasaporte no existe
+						</span>
+					</div>
+				</div>
+				<div class="col-12 text-center">
+					<label for="foto_pasaporte" class="btn btn-success textoboton" style="color:white !important" id="btn_label_pasaporte">
+						Cargando...
+					</label>
+					
+					<input name="foto_pasaporte" id="foto_pasaporte" type="file" 
+						style="display: none;" 
+						accept="image/jpeg" 
+						onchange="muestraEditor_usu(this.files[0],'foto')" />
+				</div>
             </div>
-        </div>
+        </div>		
+		
+		<div class="row">
+			<div class="col-12 text-center">
+				<label for="doc_es_pasaporte">Marcar si el documento de identificación es un pasaporte</label>
+				<input type="checkbox" id="doc_es_pasaporte" 
+										onchange="
+												if(this.checked){
+													document.getElementById('doc_dni').style.display='none';
+													document.getElementById('doc_pasaporte').style.display='inherit';
+												}
+												else{
+													document.getElementById('doc_dni').style.display='inherit';
+													document.getElementById('doc_pasaporte').style.display='none';
+												}">
+			</div>
+		</div>
+		
         <!------------------------------------------------------------>
         <!-- CERTIFICADO ESCOLAR ---------------------------------------------->
         <div class="row" id="div_certificado">
