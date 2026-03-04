@@ -690,7 +690,7 @@ function muestraEditor_usu(_file,tipo){
                                 //  alerta("Ha habido un error al copiar el archivo.", "Error copia");
                                 obj.value = null;
                             } else if (resp == "ok") {
-                                mmtit="OK";
+                                mmtit="OK";alert(mmtit);
                                 if (tipo == "dni_anverso"){
                                     mm = "Anverso de documento subido.";
                                 }
