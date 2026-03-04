@@ -531,6 +531,9 @@ function ocultaDivsSubeDocs(panel) {
                         document.getElementById('btn_label_foto').innerText = 'Subir fotografía';
                     }
                 }
+                else if(panel=="dni"){
+
+                }
             },"json");
     })
     .catch (error=>{
