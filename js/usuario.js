@@ -623,6 +623,9 @@ function lanzaAvisoMatricula(nivel_educ) {
 }
 
 function muestraEditor_usu(_file,tipo){
+    mm="";
+    mmtit="";
+    _resp="";
     mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/usuario.htm", "div_edita_imagen_usu","EDICIÓN IMAGEN",600,2000,"","",
         [
@@ -652,9 +655,6 @@ function muestraEditor_usu(_file,tipo){
                 class: "btn btn-success textoboton",
                 text: "Aceptar",
                 click: function() {
-                    mm="";
-                    mmtit="";
-                    _resp="";
                     _crop1.result({
                         type: 'blob'
                     }).then(function (blob) {
@@ -710,7 +710,7 @@ function muestraEditor_usu(_file,tipo){
                     _crop1.destroy();
                     $(this).dialog("destroy").remove();
                     $("#div_subida_archivos_usu").closest(".ui-dialog-content").dialog("destroy").remove();
-                    alerta(mm, mmtit);
+                    if (mmtit!="") alerta(mm, mmtit);
                 }
             }
         ]
