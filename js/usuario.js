@@ -767,7 +767,7 @@ function muestraEditor_usu(_file,tipo){
         img.onload = function() {
             const anchoReal = this.width;
             const altoReal = this.height;
-            const esHorizontal = anchoReal > altoOriginal;
+            const esHorizontal = anchoReal > altoReal;
 
             // Variables que configuraremos según el caso
             let vWidth, vHeight, bWidth, bHeight, msg, dialogoW;
