@@ -691,6 +691,7 @@ function muestraEditor_usu(_file,tipo){
                                 }
                                 else if (tipo == "foto"){
                                     mm = "Fotografía subida.";
+                                    document.getElementById("img_alumno").src = 'docs/fotos/' + id_nie + '.jpeg?t=' + new Date().getTime();
                                 }
                                 else if (tipo == "seguro"){
                                     mm = "Resguardo del pago del seguro escolar subido.";
