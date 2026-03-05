@@ -543,7 +543,7 @@ function ocultaDivsSubeDocs(panel) {
                         document.getElementById('doc_dni').style.display='inherit';
 						document.getElementById('doc_pasaporte').style.display='none';
                         document.getElementById('doc_es_pasaporte').checked=false;
-                        $(dialogo).dialog("option", "width", 800);
+                        $(dialogo).dialog("option", "width", 1000);
                         $(dialogo).dialog("option", "height", 600);
                     }
                 }
