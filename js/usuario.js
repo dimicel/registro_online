@@ -537,14 +537,14 @@ function ocultaDivsSubeDocs(panel) {
 						document.getElementById('div_doc_pasaporte').style.display='inherit';
                         document.getElementById('doc_es_pasaporte').checked=true;
                         $(dialogo).dialog("option", "width", 500);
-                        $(dialogo).dialog("option", "height", 600);
+                        $(dialogo).dialog("option", "height", 500);
                     }
                     else{
                         document.getElementById('div_doc_dni').style.display='inherit';
 						document.getElementById('div_doc_pasaporte').style.display='none';
                         document.getElementById('doc_es_pasaporte').checked=false;
-                        $(dialogo).dialog("option", "width", 800);
-                        $(dialogo).dialog("option", "height", 600);
+                        $(dialogo).dialog("option", "width", 700);
+                        $(dialogo).dialog("option", "height", 500);
                     }
                 }
             },"json");
