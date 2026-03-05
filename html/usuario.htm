@@ -140,7 +140,7 @@
                     onchange="muestraEditor_usu(this.files[0],'dni')" />
             </div>
         </div>
-		<div class="row" id="doc_pasaporte" style="display:none">
+		<div class="row" id="div_doc_pasaporte" style="display:none">
 			<div class="col-12 text-center">
 					<label for="pasaporte">Si la imágenes del pasaporte se toman con un móvil, sujételo en posición horizontal.</label>
             </div>
@@ -177,12 +177,12 @@
 				<input type="checkbox" id="doc_es_pasaporte" 
 										onchange="
 												if(this.checked){
-													document.getElementById('doc_dni').style.display='none';
-													document.getElementById('doc_pasaporte').style.display='inherit';
+													document.getElementById('div_doc_dni').style.display='none';
+													document.getElementById('div_doc_pasaporte').style.display='inherit';
 												}
 												else{
-													document.getElementById('doc_dni').style.display='inherit';
-													document.getElementById('doc_pasaporte').style.display='none';
+													document.getElementById('div_doc_dni').style.display='inherit';
+													document.getElementById('div_doc_pasaporte').style.display='none';
 												}">
 			</div>
 		</div>

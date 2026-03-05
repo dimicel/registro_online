@@ -533,15 +533,15 @@ function ocultaDivsSubeDocs(panel) {
                 }
                 else if(panel=="dni"){
                     if(resp.es_pasaporte==1){
-                        document.getElementById('doc_dni').style.display='none';
-						document.getElementById('doc_pasaporte').style.display='inherit';
+                        document.getElementById('div_doc_dni').style.display='none';
+						document.getElementById('div_doc_pasaporte').style.display='inherit';
                         document.getElementById('doc_es_pasaporte').checked=true;
                         $(dialogo).dialog("option", "width", 500);
                         $(dialogo).dialog("option", "height", 600);
                     }
                     else{
-                        document.getElementById('doc_dni').style.display='inherit';
-						document.getElementById('doc_pasaporte').style.display='none';
+                        document.getElementById('div_doc_dni').style.display='inherit';
+						document.getElementById('div_doc_pasaporte').style.display='none';
                         document.getElementById('doc_es_pasaporte').checked=false;
                         $(dialogo).dialog("option", "width", 1000);
                         $(dialogo).dialog("option", "height", 600);
