@@ -532,7 +532,16 @@ function ocultaDivsSubeDocs(panel) {
                     }
                 }
                 else if(panel=="dni"){
-
+                    if(resp.es_pasaporte==1){
+                        document.getElementById('doc_dni').style.display='none';
+						document.getElementById('doc_pasaporte').style.display='inherit';
+                        document.getElementById('doc_es_pasaporte').checked=true;
+                    }
+                    else{
+                        document.getElementById('doc_dni').style.display='inherit';
+						document.getElementById('doc_pasaporte').style.display='none';
+                        document.getElementById('doc_es_pasaporte').checked=false;
+                    }
                 }
             },"json");
     })

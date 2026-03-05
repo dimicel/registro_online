@@ -17,6 +17,15 @@ if($tipo_doc=="dni"){
     if ($mysqli->errno>0){
         $resp["es_pasaporte"]=-1;
     } 
+    else{
+        $sql="SELECT es_pasaporte FROM usuarios WHERE id_nie='$id_nie'";
+        $resultado=$mysqli->query($sql);
+        if ($resultado->num_rows>0){
+            $fila=$resultado->fetch_assoc();
+            $resp["es_pasaporte"]=$fila["es_pasaporte"];
+        }
+        else $resp["es_pasaporte"]=-1;
+    }
 }
 
 
