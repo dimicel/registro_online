@@ -532,8 +532,8 @@ function ocultaDivsSubeDocs(panel) {
                     }
                 }
                 else if(panel=="dni"){
-                    dialogo.dialog("option", "width", 800);
-                    dialogo.dialog("option", "height", 600);
+                    $(dialogo).dialog("option", "width", 800);
+                    $(dialogo).dialog("option", "height", 600);
                     if(resp.es_pasaporte==1){
                         document.getElementById('doc_dni').style.display='none';
 						document.getElementById('doc_pasaporte').style.display='inherit';
