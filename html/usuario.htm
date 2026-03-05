@@ -223,6 +223,8 @@
 				<label for="doc_es_pasaporte">Marcar si el documento de identificación es un pasaporte</label>
 				<input type="checkbox" id="doc_es_pasaporte" 
 										onchange="
+                                                var docs_dialogId = $(this).closest('.ui-dialog-content').attr('id');
+                                                alert(docs_dialogId);
 												if(this.checked){
 													document.getElementById('div_doc_dni').style.display='none';
 													document.getElementById('div_doc_pasaporte').style.display='inherit';
