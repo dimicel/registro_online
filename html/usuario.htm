@@ -224,14 +224,17 @@
 				<input type="checkbox" id="doc_es_pasaporte" 
 										onchange="
                                                 var docs_dialogId = $(this).closest('.ui-dialog-content').attr('id');
-                                                alert(docs_dialogId);
 												if(this.checked){
 													document.getElementById('div_doc_dni').style.display='none';
 													document.getElementById('div_doc_pasaporte').style.display='inherit';
+                                                    $('#'+docs_dialogId).dialog('option', 'width', 500);
+                                                    $('#'+docs_dialogId).dialog('option', 'height', 500);
 												}
 												else{
 													document.getElementById('div_doc_dni').style.display='inherit';
 													document.getElementById('div_doc_pasaporte').style.display='none';
+                                                    $('#'+docs_dialogId).dialog('option', 'width', 700);
+                                                    $('#'+docs_dialogId).dialog('option', 'height', 500);
 												}">
 			</div>
 		</div>
