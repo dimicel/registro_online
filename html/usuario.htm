@@ -91,15 +91,13 @@
                                 document.getElementById('btn_label_seguro_escolar').innerText = 'Subir Resguardo';"
                         onload="
                             var docs_dialogId = $(this).closest('.ui-dialog-content').attr('id');
-                            var anchoOriginalDialog=document.getElementById(docs_dialogId).style.width;
-                            var altoOriginalDialog=document.getElementById(docs_dialogId).style.height;
-                            alert(anchoOriginalDialog+','+altoOriginalDialog);
                             if (this.naturalWidth > this.naturalHeight) {
                                 document.getElementById('contenedor_seguro_escolar').style.width = '450px';
                                 document.getElementById('contenedor_seguro_escolar').style.height = 'auto';
                             } else {
                                 document.getElementById('contenedor_seguro_escolar').style.width = '253px';
                                 document.getElementById('contenedor_seguro_escolar').style.height = 'auto';
+                                document.getElementById(docs_dialogId).style.height = 'auto';
                             } ">
                     
                     <span id="txt_no_seguro_escolar" style="display: none; font-size: 0.8em; color: #6c757d; padding: 10px;">
