@@ -582,6 +582,20 @@ function ocultaDivsSubeDocs(panel) {
                         document.getElementById('btn_label_reverso').innerText = 'Subir imagen trasera del documento';
                     }
                 }
+                else if(panel=="seguro"){
+                    if (resp.seguro == 1) {
+                        let img = document.getElementById('img_seguro');
+                        let txt = document.getElementById('txt_no_seguro');
+                        img.style.display = 'block'; 
+                        txt.style.display = 'none';
+                        img.src= 'docs/' + id_nie + '/seguro/' +anno_curso_usu+'/' +id_nie + '.jpeg?t=' + new Date().getTime();
+                        document.getElementById('btn_label_seguro').innerText = 'Subir nuevo resguardo del seguro escolar';
+                    } else {
+                        document.getElementById('img_seguro').style.display = 'none';
+                        document.getElementById('txt_no_seguro').style.display = 'block';
+                        document.getElementById('btn_label_seguro').innerText = 'Subir resguardo del seguro escolar';
+                    }
+                }
             },"json");
     })
     .catch (error=>{
@@ -740,18 +754,23 @@ function muestraEditor_usu(_file,tipo){
                                 mmtit="OK";
                                 if (tipo == "dni_anverso"){
                                     mm = "Anverso de documento subido.";
+                                    document.getElementById('img_anverso').src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime(); 
                                 }
                                 else if (tipo == "dni_reverso"){
                                     mm = "Reverso de documento subido.";
+                                    document.getElementById('img_reverso').src= 'docs/' + id_nie + '/dni/' + id_nie + '-R.jpeg?t=' + new Date().getTime();
                                 }
                                 else if (tipo == "dni_pasaporte"){
                                     mm = "Pasaporte subido.";
+                                    document.getElementById('img_pasaporte').src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime(); 
                                 }
                                 else if (tipo == "foto"){
                                     mm = "Fotografía subida.";
+                                    document.getElementById('img_alumno').src= 'docs/fotos/' + id_nie + '.jpeg?t=' + new Date().getTime(); 
                                 }
                                 else if (tipo == "seguro"){
                                     mm = "Resguardo del pago del seguro escolar subido.";
+                                    document.getElementById('img_seguro_escolar').src= 'docs/' + id_nie + '/seguro/' +anno_curso_usu+'/' +id_nie + '.jpeg?t=' + new Date().getTime();
                                 } 
                             }
                             if (mmtit!="") alerta(mm, mmtit);

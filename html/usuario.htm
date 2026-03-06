@@ -79,12 +79,32 @@
         <!------------------------------------------------------------>
         <!-- SEGURO ESCOLAR ---------------------------------------------->
         <div class="row" id="div_resguardo_seguro_escolar">
-            <div class="col">
+            <div class="col-12 text-center">
                 <label for="resguardo_seguro_escolar">Resguardo del seguro escolar en JPEG, si no lo adjuntó o lo hizo incorrectamente al hacer la matrícula <small>(Si se hace con móvil, en posición horizontal)</small>:</label>
-                <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="btn btn-success form-control" accept="image/jpeg" onchange="muestraEditor_usu(this.files[0],'seguro')//USUsubeSeguro(this)" required/>
             </div>
-            <div class="w-100" style="text-align: center;margin-top:15px">
-                <span class="errorTxt" style="font-size: 1em;"></span>
+            <div class="col-12 text-center mb-3">
+                <div id="contenedor-seguro-escolar" style="width: 150px; height: 180px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">                  
+                    <img id="img_seguro_escolar" 
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        onerror="this.style.display = 'none';
+                                document.getElementById('txt_no_seguro_escolar').style.display = 'block';
+                                document.getElementById('btn_label_seguro_escolar').innerText = 'Subir Resguardo';">
+                    
+                    <span id="txt_no_seguro_escolar" style="display: none; font-size: 0.8em; color: #6c757d; padding: 10px;">
+                        Resguardo no existente
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-12 text-center">
+                <label for="imagen_seguro_escolar" class="btn btn-success textoboton" style="color:white !important" id="btn_label_foto">
+                    Cargando...
+                </label>
+                
+                <input name="imagen_seguro_escolar" id="imagen_seguro_escolar" type="file" 
+                    style="display: none;" 
+                    accept="image/jpeg" 
+                    onchange="muestraEditor_usu(this.files[0],'seguro')" />
             </div>
         </div>
         <!------------------------------------------------------------>
