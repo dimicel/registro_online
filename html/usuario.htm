@@ -85,10 +85,17 @@
             <div class="col-12 text-center mb-3">
                 <div id="contenedor_seguro_escolar" style="width: 450px; height:253px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">                  
                     <img id="img_seguro_escolar" 
-                        style="width: 100%; height: 100%; object-fit: cover;"
+                        style="max-width: 100%; max-height: 100%; object-fit:contain;"
                         onerror="this.style.display = 'none';
                                 document.getElementById('txt_no_seguro_escolar').style.display = 'block';
-                                document.getElementById('btn_label_seguro_escolar').innerText = 'Subir Resguardo';">
+                                document.getElementById('btn_label_seguro_escolar').innerText = 'Subir Resguardo';"
+                        onload="if (this.naturalWidth > this.naturalHeight) {
+                                this.style.width = '100%';
+                                this.style.height = 'auto';
+                            } else {
+                                this.style.width = 'auto';
+                                this.style.height = '100%';
+                             }">
                     
                     <span id="txt_no_seguro_escolar" style="display: none; font-size: 0.8em; color: #6c757d; padding: 10px;">
                         Resguardo no existente

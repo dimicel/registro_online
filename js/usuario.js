@@ -593,26 +593,6 @@ function ocultaDivsSubeDocs(panel) {
                         img.style.display = 'block'; 
                         txt.style.display = 'none';
                         ruta_seguro='docs/' + id_nie + '/seguro/' +anno_curso_usu+'/' +id_nie + '.jpeg?t=' + new Date().getTime();
-                        
-                        const imgAux = new Image();
-                        imgAux.src = URL.createObjectURL(ruta_seguro);
-                        imgAux.onload = function() {
-                            const anchoReal = this.width;
-                            const altoReal = this.height;
-                            const esHorizontal = anchoReal > altoReal;
-                            if (!esHorizontal) {
-                                img.style.width = 'auto';
-                                img.style.height = '100%';
-                            } else {
-                                img.style.width = '100%';
-                                img.style.height = 'auto';
-                            }
-                            URL.revokeObjectURL(objectURL);
-                            imgAux.onload = null;
-                            imgAux.src = '';
-                            imgAux.remove();
-                        };
-                        
                         img.src= ruta_seguro;
                         document.getElementById('btn_label_seguro_escolar').innerText = 'Subir nuevo resguardo del seguro escolar';
                     } else {
