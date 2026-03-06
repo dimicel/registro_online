@@ -712,7 +712,7 @@ function muestraEditor_usu(_file,tipo){
                         formData= new FormData();
                         formData.append(_fname_ajax, blob, _f_ajax);
                         formData.append("id_nie",id_nie);
-                        if (tipo=="dni_anverso")formData.append("parte","A");
+                        if (tipo=="dni_anverso" || tipo=="dni_pasaporte")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
                         if(tipo=="seguro") formData.append("anno_curso", anno_curso_usu);
                         mostrarPantallaEspera();
@@ -744,6 +744,9 @@ function muestraEditor_usu(_file,tipo){
                                 else if (tipo == "dni_reverso"){
                                     mm = "Reverso de documento subido.";
                                 }
+                                else if (tipo == "dni_pasaporte"){
+                                    mm = "Pasaporte subido.";
+                                }
                                 else if (tipo == "foto"){
                                     mm = "Fotografía subida.";
                                 }
@@ -773,13 +776,13 @@ function muestraEditor_usu(_file,tipo){
             // Variables que configuraremos según el caso
             let vWidth, vHeight, bWidth, bHeight, msg, dialogoW;
 
-            if (tipo == "dni_anverso" || tipo == "dni_reverso") {
+            if (tipo == "dni_anverso" || tipo == "dni_reverso"  || tipo == "dni_pasaporte") {
                 msg = "Rota, haz zoom y mueve para ajustar la CARA y CUELLO";
                 // Mantenemos proporción horizontal de un DNI
                 vWidth = 450; vHeight = 285;
                 dialogoW = 700;
                 _fname_ajax = "dni";
-                _f_ajax = id_nie + (tipo == "dni_anverso" ? "-A.jpeg" : "-R.jpeg");
+                _f_ajax = id_nie + ((tipo == "dni_anverso" || tipo == "dni_pasaporte")? "-A.jpeg" : "-R.jpeg");
                 url = "impresos/matriculas/php/sube_dni.php";
             } 
             else if (tipo == "foto") {
