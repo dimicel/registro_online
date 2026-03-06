@@ -759,7 +759,9 @@ function muestraEditor_usu(_file,tipo){
                     });
                     _crop1.destroy();
                     $(this).dialog("destroy").remove();
-                    $("#div_subida_archivos_usu").closest(".ui-dialog-content").dialog("destroy").remove();
+                    if(tipo!="dni_anverso" || tipo!="dni_reverso"){
+                        $("#div_subida_archivos_usu").closest(".ui-dialog-content").dialog("destroy").remove();
+                    }
                 }
             }
         ]
