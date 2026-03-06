@@ -549,16 +549,24 @@ function ocultaDivsSubeDocs(panel) {
                     if (resp.dni_anverso == 1) {
                         let img = document.getElementById('img_anverso');
                         let txt = document.getElementById('txt_no_anverso');
+                        let imgpass = document.getElementById('img_pasaporte');
+                        let txtpass = document.getElementById('txt_no_pasaporte');
                         img.style.display = 'block'; 
                         txt.style.display = 'none';
                         img.src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime();
                         document.getElementById('btn_label_anverso').innerText = 'Subir nueva imagen delantera del documento';
-                        
+                        imgpass.style.display = 'block'; 
+                        txtpass.style.display = 'none';
+                        imgpass.src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime();
+                        document.getElementById('btn_label_pasaporte').innerText = 'Subir nueva imagen del documento';
                     }
                     else{
                         document.getElementById('img_anverso').style.display = 'none';
                         document.getElementById('txt_no_anverso').style.display = 'block';
                         document.getElementById('btn_label_anverso').innerText = 'Subir imagen delantera del documento';
+                        document.getElementById('img_pasaporte').style.display = 'none';
+                        document.getElementById('txt_no_pasaporte').style.display = 'block';
+                        document.getElementById('btn_label_pasaporte').innerText = 'Subir imagen del documento';
                     }
                     if (resp.dni_reverso == 1) {
                         let img = document.getElementById('img_reverso');
