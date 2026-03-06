@@ -594,6 +594,7 @@ function ocultaDivsSubeDocs(panel) {
                         txt.style.display = 'none';
                         ruta_seguro='docs/' + id_nie + '/seguro/' +anno_curso_usu+'/' +id_nie + '.jpeg?t=' + new Date().getTime();
                         
+                        const imgAux = new Image();
                         imgAux.src = URL.createObjectURL(ruta_seguro);
                         imgAux.onload = function() {
                             const anchoReal = this.width;
