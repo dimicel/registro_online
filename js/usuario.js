@@ -607,6 +607,10 @@ function ocultaDivsSubeDocs(panel) {
                                 img.style.width = '100%';
                                 img.style.height = 'auto';
                             }
+                            URL.revokeObjectURL(objectURL);
+                            imgAux.onload = null;
+                            imgAux.src = '';
+                            imgAux.remove();
                         };
                         
                         img.src= ruta_seguro;
