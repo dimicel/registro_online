@@ -547,11 +547,23 @@ function ocultaDivsSubeDocs(panel) {
                         $(dialogo).dialog("option", "height", 500);
                     }
                     if (resp.dni_anverso == 1) {
-                        document.getElementById("img_anverso").src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime();
-                        document.getElementById("img_pasaporte").src= 'docs/' + id_nie + '/dni/' + id_nie + '-R.jpeg?t=' + new Date().getTime();
+                        let img = document.getElementById('img_anverso');
+                        let txt = document.getElementById('txt_no_anverso');
+                        img.style.display = 'block'; 
+                        txt.style.display = 'none';
+                        img.src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime();
+                        txt.src= 'docs/' + id_nie + '/dni/' + id_nie + '-R.jpeg?t=' + new Date().getTime();
+                        document.getElementById('btn_label_anverso').innerText = 'Subir nueva imagen delantera del documento';
+                        
+                    }
+                    else{
+                        document.getElementById('img_anverso').style.display = 'none';
+                        document.getElementById('txt_no_anverso').style.display = 'block';
+                        document.getElementById('btn_label_anverso').innerText = 'Subir imagen delantera del documento';
                     }
                     if (resp.dni_reverso == 1) {
                         document.getElementById("img_reverso").src= 'docs/' + id_nie + '/dni/' + id_nie + '-R.jpeg?t=' + new Date().getTime();
+                        document.getElementById('btn_label_reverso').innerText = 'Subir nueva imagen trasera del documento';
                     }
                 }
             },"json");
