@@ -546,6 +546,13 @@ function ocultaDivsSubeDocs(panel) {
                         $(dialogo).dialog("option", "width", 700);
                         $(dialogo).dialog("option", "height", 500);
                     }
+                    if (resp.dni_anverso == 1) {
+                        document.getElementById("img_anverso").src= 'docs/' + id_nie + '/dni/' + id_nie + '_A.jpeg?t=' + new Date().getTime();
+                        document.getElementById("img_pasaporte").src= 'docs/' + id_nie + '/dni/' + id_nie + '_R.jpeg?t=' + new Date().getTime();
+                    }
+                    if (resp.dni_reverso == 1) {
+                        document.getElementById("img_reverso").src= 'docs/' + id_nie + '/dni/' + id_nie + '_R.jpeg?t=' + new Date().getTime();
+                    }
                 }
             },"json");
     })
