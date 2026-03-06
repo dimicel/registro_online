@@ -552,7 +552,6 @@ function ocultaDivsSubeDocs(panel) {
                         img.style.display = 'block'; 
                         txt.style.display = 'none';
                         img.src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime();
-                        txt.src= 'docs/' + id_nie + '/dni/' + id_nie + '-R.jpeg?t=' + new Date().getTime();
                         document.getElementById('btn_label_anverso').innerText = 'Subir nueva imagen delantera del documento';
                         
                     }
@@ -562,8 +561,17 @@ function ocultaDivsSubeDocs(panel) {
                         document.getElementById('btn_label_anverso').innerText = 'Subir imagen delantera del documento';
                     }
                     if (resp.dni_reverso == 1) {
-                        document.getElementById("img_reverso").src= 'docs/' + id_nie + '/dni/' + id_nie + '-R.jpeg?t=' + new Date().getTime();
+                        let img = document.getElementById('img_reverso');
+                        let txt = document.getElementById('txt_no_reverso');
+                        img.style.display = 'block'; 
+                        txt.style.display = 'none';
+                        img.src= 'docs/' + id_nie + '/dni/' + id_nie + '-R.jpeg?t=' + new Date().getTime();
                         document.getElementById('btn_label_reverso').innerText = 'Subir nueva imagen trasera del documento';
+                    }
+                    else{
+                        document.getElementById('img_reverso').style.display = 'none';
+                        document.getElementById('txt_no_reverso').style.display = 'block';
+                        document.getElementById('btn_label_reverso').innerText = 'Subir imagen trasera del documento';
                     }
                 }
             },"json");
