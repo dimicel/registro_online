@@ -493,25 +493,25 @@ function ocultaDivsSubeDocs(panel) {
                 document.getElementById("div_fotografia").style.display = "inherit";
                 document.getElementById("div_resguardo_seguro_escolar").style.display = "none";
                 document.getElementById("div_doc_dni").style.display = "none";
-                document.getElementById("div_doc_pasaporte").style.display = "none";
+                document.getElementById("div_checkbox_pasaporte").style.display = "none";
                 document.getElementById("div_certificado").style.display = "none";
             } else if (panel == "seguro") {
                 document.getElementById("div_fotografia").style.display = "none";
                 document.getElementById("div_resguardo_seguro_escolar").style.display = "inherit";
                 document.getElementById("div_doc_dni").style.display = "none";
-                document.getElementById("div_doc_pasaporte").style.display = "none";
+                document.getElementById("div_checkbox_pasaporte").style.display = "none";
                 document.getElementById("div_certificado").style.display = "none";
             } else if (panel == "dni") {
                 document.getElementById("div_fotografia").style.display = "none";
                 document.getElementById("div_resguardo_seguro_escolar").style.display = "none";
                 document.getElementById("div_doc_dni").style.display = "inherit";
-                document.getElementById("div_doc_pasaporte").style.display = "inherit";
+                document.getElementById("div_checkbox_pasaporte").style.display = "inherit";
                 document.getElementById("div_certificado").style.display = "none";
             } else if (panel == "certificado") {
                 document.getElementById("div_fotografia").style.display = "none";
                 document.getElementById("div_resguardo_seguro_escolar").style.display = "none";
                 document.getElementById("div_doc_dni").style.display = "none";
-                document.getElementById("div_doc_pasaporte").style.display = "none";
+                document.getElementById("div_checkbox_pasaporte").style.display = "none";
                 document.getElementById("div_certificado").style.display = "inherit";
             }
             $.post("php/usu_existe_docs.php",{id_nie:id_nie,curso:anno_curso_usu,tipo_doc:panel},(resp)=>{
