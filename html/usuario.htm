@@ -176,7 +176,8 @@
                 <div class="col-12 text-center mb-3">
 					<div id="contenedor-img-pasaporte" style="width: 315px; height: 221px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">                  
 						<img id="img_pasaporte" 
-							style="width: 100%; height: 100%; object-fit: cover;"
+							style="width: 100%; height: 100%; object-fit: cover;cursor: pointer;"
+                            onclick="alerta('<img style=\'width:100%\' src=\''+this.src+'\' />','Imagen del pasaporte', false, 700)"
 							onerror="this.style.display = 'none';
 									document.getElementById('txt_no_pasaporte').style.display = 'block';
 									document.getElementById('btn_label_pasaporte').innerText = 'Subir pasaporte';">
