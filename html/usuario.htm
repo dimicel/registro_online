@@ -130,6 +130,7 @@
                     <div id="contenedor-img-anverso" style="width: 100%; aspect-ratio: 3/2; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">                  
                         <img id="img_anverso" 
                             style="width: 100%; height: 100%; object-fit: cover;"
+                            onclick="alerta('<img style=\'width:100%\' src=\''+this.src+'\' />','Imagen delantera', false, 600)"
                             onerror="this.style.display = 'none';
                                     document.getElementById('txt_no_anverso').style.display = 'block';
                                     document.getElementById('btn_label_anverso').innerText = 'Subir Anverso';">
