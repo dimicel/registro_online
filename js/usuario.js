@@ -890,6 +890,4 @@ function muestraEditor_usu(_file,tipo){
 
 }
 
-function test(){
-    alert("prueba");
-}
+
