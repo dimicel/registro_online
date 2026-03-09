@@ -730,6 +730,9 @@ function muestraEditor_usu(_file,tipo){
                         url: URL.createObjectURL(_file),
                         orientation: orientacionActual,
                         zoom: 0 // Para que se ajuste al mínimo del nuevo viewport
+                    }).then(function() {
+                        var zoomer = document.querySelector('.cr-slider');
+                        zoomer.setAttribute('max', 6.0); 
                     });
                 }
             },
@@ -767,6 +770,9 @@ function muestraEditor_usu(_file,tipo){
                         url: URL.createObjectURL(_file),
                         orientation: orientacionActual,
                         zoom: 0 // Para que se ajuste al mínimo del nuevo viewport
+                    }).then(function() {
+                        var zoomer = document.querySelector('.cr-slider');
+                        zoomer.setAttribute('max', 6.0); 
                     });
                 }
             },
