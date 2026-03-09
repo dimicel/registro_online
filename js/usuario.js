@@ -692,6 +692,7 @@ function muestraEditor_usu(_file,tipo){
     mm="";
     mmtit="";
     _resp="";
+    let orientacionActual = 1;
     mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/usuario.htm", "div_edita_imagen_usu","EDICIÓN IMAGEN",600,2000,"","",
         [
