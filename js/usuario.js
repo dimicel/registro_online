@@ -721,7 +721,8 @@ function muestraEditor_usu(_file,tipo){
                         viewport: { width: vH, height: vW }, // Invertidos
                         boundary: { width: bH, height: bW }, // Invertidos
                         showZoomer: true,
-                        enableOrientation: true
+                        enableOrientation: true,
+                        enforceBoundary: false
                     });
 
                     // 5. Cargamos la imagen original PERO con la orientación guardada
@@ -757,7 +758,8 @@ function muestraEditor_usu(_file,tipo){
                         viewport: { width: vH, height: vW }, // Invertidos
                         boundary: { width: bH, height: bW }, // Invertidos
                         showZoomer: true,
-                        enableOrientation: true
+                        enableOrientation: true,
+                        enforceBoundary: false
                     });
 
                     // 5. Cargamos la imagen original PERO con la orientación guardada
@@ -928,7 +930,8 @@ function muestraEditor_usu(_file,tipo){
                 boundary: { width: bWidth, height: bHeight },
                 showZoomer: true,
                 enableOrientation: true,
-                enforceBoundary: false
+                enforceBoundary: false,
+                enableZoomer: true
             });
 
             _crop1.bind({
