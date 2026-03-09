@@ -700,13 +700,21 @@ function muestraEditor_usu(_file,tipo){
                 text: "Girar +90º",
                 click: function() {
                     _crop1.rotate(-90);
-                    var vWidth = _crop1.viewport.width;
-                    var vHeight = _crop1.viewport.height;
-                    var bWidth = _crop1.boundary.width;
-                    var bHeight = _crop1.boundary.height;
+                    var currentVWidth = _crop1.elements.viewport.offsetWidth;
+                    var currentVHeight = _crop1.elements.viewport.offsetHeight;
+                    
+                    var currentBWidth = _crop1.elements.boundary.offsetWidth;
+                    var currentBHeight = _crop1.elements.boundary.offsetHeight;
+
                     _crop1.setOptions({
-                        viewport: { width: vHeight, height: vWidth },
-                        boundary: { width: bHeight, height: bWidth }
+                        viewport: { 
+                            width: currentVHeight, 
+                            height: currentVWidth 
+                        },
+                        boundary: { 
+                            width: currentBHeight, 
+                            height: currentBWidth 
+                        }
                     });
                 }
             },
@@ -715,13 +723,21 @@ function muestraEditor_usu(_file,tipo){
                 text: "Girar -90º",
                 click: function() {
                     _crop1.rotate(90);
-                    var vWidth = _crop1.viewport.width;
-                    var vHeight = _crop1.viewport.height;
-                    var bWidth = _crop1.boundary.width;
-                    var bHeight = _crop1.boundary.height;
+                    var currentVWidth = _crop1.elements.viewport.offsetWidth;
+                    var currentVHeight = _crop1.elements.viewport.offsetHeight;
+                    
+                    var currentBWidth = _crop1.elements.boundary.offsetWidth;
+                    var currentBHeight = _crop1.elements.boundary.offsetHeight;
+
                     _crop1.setOptions({
-                        viewport: { width: vHeight, height: vWidth },
-                        boundary: { width: bHeight, height: bWidth }
+                        viewport: { 
+                            width: currentVHeight, 
+                            height: currentVWidth 
+                        },
+                        boundary: { 
+                            width: currentBHeight, 
+                            height: currentBWidth 
+                        }
                     });
                 }
             },
