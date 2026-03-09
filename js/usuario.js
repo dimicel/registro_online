@@ -823,7 +823,6 @@ function muestraEditor_usu(_file,tipo){
                                 else if (tipo=="seguro") mm="El resguardo del seguro escolar se ha subido correctamente, pero ha habido un error al grabar la fecha.";
                                 else mm="El documento se ha subido correctament, pero ha habido un error al grabar la fecha.";
                             }
-                            
                             else if (resp == "almacenar") {
                                 mmtit="ERROR COPIA";
                                 mm = "Ha habido un error al copiar el archivo.";
