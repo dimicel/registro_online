@@ -719,7 +719,7 @@ function muestraEditor_usu(_file,tipo){
                         // 3. EL TRUCO: Forzamos a Croppie a re-leer el DOM
                         // Al hacer bind() sin parámetros, Croppie se ve obligado a 
                         // ajustar el zoom y los límites al nuevo tamaño del viewport.
-                        _crop1.bind();
+                        _crop1.bind({ zoom: 0 });
                     }
                 }
             },
@@ -747,7 +747,7 @@ function muestraEditor_usu(_file,tipo){
                         // 3. EL TRUCO: Forzamos a Croppie a re-leer el DOM
                         // Al hacer bind() sin parámetros, Croppie se ve obligado a 
                         // ajustar el zoom y los límites al nuevo tamaño del viewport.
-                        _crop1.bind();
+                        _crop1.bind({ zoom: 0 });
                     }
                 }
             },
