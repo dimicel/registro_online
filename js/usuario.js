@@ -927,7 +927,8 @@ function muestraEditor_usu(_file,tipo){
                 viewport: { width: vWidth, height: vHeight },
                 boundary: { width: bWidth, height: bHeight },
                 showZoomer: true,
-                enableOrientation: true
+                enableOrientation: true,
+                enforceBoundary: false
             });
 
             _crop1.bind({
