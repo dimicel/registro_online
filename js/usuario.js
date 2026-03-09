@@ -798,6 +798,7 @@ function muestraEditor_usu(_file,tipo){
                         formData= new FormData();
                         formData.append(_fname_ajax, blob, _f_ajax);
                         formData.append("id_nie",id_nie);
+                        formData.append("subido_por","usuario");
                         if (tipo=="dni_anverso" || tipo=="dni_pasaporte")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
                         if(tipo=="seguro") formData.append("anno_curso", anno_curso_usu);
