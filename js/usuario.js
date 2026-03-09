@@ -700,10 +700,10 @@ function muestraEditor_usu(_file,tipo){
                 text: "Girar +90º",
                 click: function() {
                     _crop1.rotate(-90);
-                    var vWidth = _crop1.getOptions().viewport.width;
-                    var vHeight = _crop1.getOptions().viewport.height;
-                    var bWidth = _crop1.getOptions().boundary.width;
-                    var bHeight = _crop1.getOptions().boundary.height;
+                    var vWidth = _crop1.viewport.width;
+                    var vHeight = _crop1.viewport.height;
+                    var bWidth = _crop1.boundary.width;
+                    var bHeight = _crop1.boundary.height;
                     _crop1.setOptions({
                         viewport: { width: vHeight, height: vWidth },
                         boundary: { width: bHeight, height: bWidth }
@@ -715,10 +715,10 @@ function muestraEditor_usu(_file,tipo){
                 text: "Girar -90º",
                 click: function() {
                     _crop1.rotate(90);
-                    var vWidth = _crop1.getOptions().viewport.width;
-                    var vHeight = _crop1.getOptions().viewport.height;
-                    var bWidth = _crop1.getOptions().boundary.width;
-                    var bHeight = _crop1.getOptions().boundary.height;
+                    var vWidth = _crop1.viewport.width;
+                    var vHeight = _crop1.viewport.height;
+                    var bWidth = _crop1.boundary.width;
+                    var bHeight = _crop1.boundary.height;
                     _crop1.setOptions({
                         viewport: { width: vHeight, height: vWidth },
                         boundary: { width: bHeight, height: bWidth }
