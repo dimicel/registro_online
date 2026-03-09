@@ -700,22 +700,23 @@ function muestraEditor_usu(_file,tipo){
                 text: "Girar +90º",
                 click: function() {
                     _crop1.rotate(-90);
-                    var currentVWidth = _crop1.elements.viewport.offsetWidth;
-                    var currentVHeight = _crop1.elements.viewport.offsetHeight;
-                    
-                    var currentBWidth = _crop1.elements.boundary.offsetWidth;
-                    var currentBHeight = _crop1.elements.boundary.offsetHeight;
+                    // Capturamos dimensiones actuales
+var vWidth = _crop1.elements.viewport.offsetWidth;
+var vHeight = _crop1.elements.viewport.offsetHeight;
 
-                    _crop1.setOptions({
-                        viewport: { 
-                            width: currentVHeight, 
-                            height: currentVWidth 
-                        },
-                        boundary: { 
-                            width: currentBHeight, 
-                            height: currentBWidth 
-                        }
-                    });
+// Intercambiamos el Viewport (el marco de recorte)
+_crop1.elements.viewport.style.width = vHeight + 'px';
+_crop1.elements.viewport.style.height = vWidth + 'px';
+
+// Intercambiamos el Boundary (el contenedor gris de fondo)
+var bWidth = _crop1.elements.boundary.offsetWidth;
+var bHeight = _crop1.elements.boundary.offsetHeight;
+_crop1.elements.boundary.style.width = bHeight + 'px';
+_crop1.elements.boundary.style.height = bWidth + 'px';
+
+// IMPORTANTE: Después de esto, debes llamar a bind para que Croppie 
+// recalcule los límites internos de la imagen con el nuevo tamaño
+_crop1.bind();
                 }
             },
             {
@@ -723,22 +724,23 @@ function muestraEditor_usu(_file,tipo){
                 text: "Girar -90º",
                 click: function() {
                     _crop1.rotate(90);
-                    var currentVWidth = _crop1.elements.viewport.offsetWidth;
-                    var currentVHeight = _crop1.elements.viewport.offsetHeight;
-                    
-                    var currentBWidth = _crop1.elements.boundary.offsetWidth;
-                    var currentBHeight = _crop1.elements.boundary.offsetHeight;
+                    // Capturamos dimensiones actuales
+var vWidth = _crop1.elements.viewport.offsetWidth;
+var vHeight = _crop1.elements.viewport.offsetHeight;
 
-                    _crop1.setOptions({
-                        viewport: { 
-                            width: currentVHeight, 
-                            height: currentVWidth 
-                        },
-                        boundary: { 
-                            width: currentBHeight, 
-                            height: currentBWidth 
-                        }
-                    });
+// Intercambiamos el Viewport (el marco de recorte)
+_crop1.elements.viewport.style.width = vHeight + 'px';
+_crop1.elements.viewport.style.height = vWidth + 'px';
+
+// Intercambiamos el Boundary (el contenedor gris de fondo)
+var bWidth = _crop1.elements.boundary.offsetWidth;
+var bHeight = _crop1.elements.boundary.offsetHeight;
+_crop1.elements.boundary.style.width = bHeight + 'px';
+_crop1.elements.boundary.style.height = bWidth + 'px';
+
+// IMPORTANTE: Después de esto, debes llamar a bind para que Croppie 
+// recalcule los límites internos de la imagen con el nuevo tamaño
+_crop1.bind();
                 }
             },
             {
