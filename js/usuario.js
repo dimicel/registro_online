@@ -701,7 +701,7 @@ function muestraEditor_usu(_file,tipo){
                 click: function() {
                     // 1. Calculamos la nueva orientación (Ciclo de 90º en 90º)
     // Orientaciones Croppie: 1=0º, 6=90º, 3=180º, 8=270º
-    if (grados === 90) {
+    if (true) {
         orientacionActual = (orientacionActual === 1) ? 6 : (orientacionActual === 6) ? 3 : (orientacionActual === 3) ? 8 : 1;
     } else {
         orientacionActual = (orientacionActual === 1) ? 8 : (orientacionActual === 8) ? 3 : (orientacionActual === 3) ? 6 : 1;
