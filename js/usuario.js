@@ -699,28 +699,40 @@ function muestraEditor_usu(_file,tipo){
                 class: "btn btn-success textoboton",
                 text: "Girar +90º",
                 click: function() {
-                    _crop1.rotate(-90);
-                    if(tipo == "seguro") {
-                        var v = _crop1.elements.viewport;
-                        var b = _crop1.elements.boundary;
+                    // 1. Calculamos la nueva orientación (Ciclo de 90º en 90º)
+    // Orientaciones Croppie: 1=0º, 6=90º, 3=180º, 8=270º
+    if (grados === 90) {
+        orientacionActual = (orientacionActual === 1) ? 6 : (orientacionActual === 6) ? 3 : (orientacionActual === 3) ? 8 : 1;
+    } else {
+        orientacionActual = (orientacionActual === 1) ? 8 : (orientacionActual === 8) ? 3 : (orientacionActual === 3) ? 6 : 1;
+    }
 
-                        // Guardamos anchos actuales
-                        var oldVW = v.offsetWidth;
-                        var oldVH = v.offsetHeight;
-                        var oldBW = b.offsetWidth;
-                        var oldBH = b.offsetHeight;
+    // 2. Capturamos dimensiones del DOM para invertirlas
+    var vW = _crop1.elements.viewport.offsetWidth;
+    var vH = _crop1.elements.viewport.offsetHeight;
+    var bW = _crop1.elements.boundary.offsetWidth;
+    var bH = _crop1.elements.boundary.offsetHeight;
 
-                        // Aplicamos el intercambio directo al estilo
-                        v.style.width = oldVH + 'px';
-                        v.style.height = oldVW + 'px';
-                        b.style.width = oldBH + 'px';
-                        b.style.height = oldBW + 'px';
+    // 3. ¡FUERA TODO! Destruimos para resetear el zoom y los límites
+    _crop1.destroy();
+    var el = document.getElementById("div_imagen");
+    el.innerHTML = ''; 
+    el.className = '';
 
-                        // 3. EL TRUCO: Forzamos a Croppie a re-leer el DOM
-                        // Al hacer bind() sin parámetros, Croppie se ve obligado a 
-                        // ajustar el zoom y los límites al nuevo tamaño del viewport.
-                        _crop1.bind({ zoom: 0 });
-                    }
+    // 4. Creamos la instancia NUEVA con dimensiones ya invertidas
+    _crop1 = new Croppie(el, {
+        viewport: { width: vH, height: vW }, // Invertidos
+        boundary: { width: bH, height: bW }, // Invertidos
+        showZoomer: true,
+        enableOrientation: true
+    });
+
+    // 5. Cargamos la imagen original PERO con la orientación guardada
+    _crop1.bind({
+        url: URL.createObjectURL(_file),
+        orientation: orientacionActual,
+        zoom: 0 // Para que se ajuste al mínimo del nuevo viewport
+    });
                 }
             },
             {
