@@ -2,7 +2,6 @@
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 $id_nie=$_POST["id_nie"];
-$anno_curso=$_POST["anno_curso"];
 $subido_por=$_POST["subido_por"];
 if(is_uploaded_file($_FILES['foto']['tmp_name'])){
     $ruta="../../../docs/fotos/" . $id_nie.".jpeg";

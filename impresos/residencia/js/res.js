@@ -407,6 +407,7 @@ function muestraEditor(_file,tipo){
                         nombre_fichero=id_nie+".jpg";
                         formData= new FormData();
                         formData.append("id_nie", id_nie);
+                        formData.append("subido_por","residente");
                         if(tipo=='foto'){
                             formData.append("foto", blob, nombre_fichero);
                             document.getElementById("nombre_foto").value=nombre_fichero;
@@ -426,9 +427,12 @@ function muestraEditor(_file,tipo){
                         }).done(function(resp) {
                             ocultarPantallaEspera();
                             if (resp == "archivo") {
-                                alerta("Ha habido un error al subir la imagen.", "Error carga");
+                                alerta("Ha habido un error al subir la imagen.", "ERROR CARGA");
                             } else if (resp == "almacenar") {
-                                alerta("Ha habido un error al copiar la imagen.", "Error copia");
+                                alerta("Ha habido un error al copiar la imagen.", "ERROR COPIA");
+                            }
+                            else if(resp=="servidor" || resp=="error_db") {
+                                alerta("Ha habido un error al grabar la fecha, pero la fotografía se ha subido correctamente", "ERROR SERVIDOR");
                             }
                             else if(resp=="ok"){
                                 if (tipo=="foto")existe_foto=true;
