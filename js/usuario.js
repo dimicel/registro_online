@@ -799,8 +799,9 @@ function muestraEditor_usu(_file,tipo){
                         formData.append(_fname_ajax, blob, _f_ajax);
                         formData.append("id_nie",id_nie);
                         formData.append("subido_por","usuario");
-                        if (tipo=="dni_anverso" || tipo=="dni_pasaporte")formData.append("parte","A");
+                        if (tipo=="dni_anverso")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
+                        else if(tipo=="dni_pasaporte")formData.append("parte","P");
                         if(tipo=="seguro") formData.append("anno_curso", anno_curso_usu);
                         mostrarPantallaEspera();
                         $.ajax({
@@ -816,13 +817,16 @@ function muestraEditor_usu(_file,tipo){
                             if (resp == "archivo") {
                                 mmtit="ERROR CARGA";
                                 mm = "Ha habido un error al subir el archivo.";
-                                //alerta("Ha habido un error al subir el archivo.", "Error carga");
-                                obj.value = null;
-                            } else if (resp == "almacenar") {
+                            } else if(resp=="servidor" || resp=="error_db") {
+                                mmtit="ERROR SERVIDOR";
+                                if (tipo=="foto") mm="La fotografía se ha subido correctamente, pero ha habido un error al grabar la fecha.";
+                                else if (tipo=="seguro") mm="El resguardo del seguro escolar se ha subido correctamente, pero ha habido un error al grabar la fecha.";
+                                else mm="El documento se ha subido correctament, pero ha habido un error al grabar la fecha.";
+                            }
+                            
+                            else if (resp == "almacenar") {
                                 mmtit="ERROR COPIA";
                                 mm = "Ha habido un error al copiar el archivo.";
-                                //  alerta("Ha habido un error al copiar el archivo.", "Error copia");
-                                obj.value = null;
                             } else if (resp == "ok") {
                                 mmtit="OK";
                                 if (tipo == "dni_anverso"){

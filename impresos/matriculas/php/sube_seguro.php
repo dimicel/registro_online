@@ -17,7 +17,7 @@ if(is_uploaded_file($_FILES['seguro']['tmp_name'])){
         if ($mysqli->errno>0) {
             exit("servidor");
         }
-        $mysqli->query("insert into fechas_subidas_docs (id_nie, documento, fecha, subido_por) values ('$id_nie', 'seguro_escolar', now(), '$subido_por')");
+        $mysqli->query("insert into fechas_subidas_docs (id_nie, documento, subido_por) values ('$id_nie', 'seguro_escolar', '$subido_por')");
         if($mysqli->errno>0) exit("error_db");
         else exit("ok");
     }
