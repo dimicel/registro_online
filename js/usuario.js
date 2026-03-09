@@ -721,8 +721,8 @@ function muestraEditor_usu(_file,tipo){
                         viewport: { width: vH, height: vW }, // Invertidos
                         boundary: { width: bH, height: bW }, // Invertidos
                         showZoomer: true,
-                        enableOrientation: true,
-                        enforceBoundary: false
+                        enableOrientation: true
+                        //enforceBoundary: false
                     });
 
                     // 5. Cargamos la imagen original PERO con la orientación guardada
@@ -758,8 +758,8 @@ function muestraEditor_usu(_file,tipo){
                         viewport: { width: vH, height: vW }, // Invertidos
                         boundary: { width: bH, height: bW }, // Invertidos
                         showZoomer: true,
-                        enableOrientation: true,
-                        enforceBoundary: false
+                        enableOrientation: true
+                        //enforceBoundary: false
                     });
 
                     // 5. Cargamos la imagen original PERO con la orientación guardada
@@ -930,12 +930,17 @@ function muestraEditor_usu(_file,tipo){
                 boundary: { width: bWidth, height: bHeight },
                 showZoomer: true,
                 enableOrientation: true,
-                enforceBoundary: false,
+                //enforceBoundary: false,
                 enableZoomer: true
             });
 
             _crop1.bind({
                 url: img.src
+            }).then(function() {
+                // Esto le dice a Croppie: "Independientemente de lo que creas, 
+                // permite que el usuario amplíe hasta 3 veces el tamaño"
+                var zoomer = document.querySelector('.cr-slider');
+                zoomer.setAttribute('max', 3.0); // Por defecto suele ser 1.5 o 2
             });
         };
 
