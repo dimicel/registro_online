@@ -940,7 +940,7 @@ function muestraEditor_usu(_file,tipo){
                 // Esto le dice a Croppie: "Independientemente de lo que creas, 
                 // permite que el usuario amplíe hasta 3 veces el tamaño"
                 var zoomer = document.querySelector('.cr-slider');
-                zoomer.setAttribute('max', 3.0); // Por defecto suele ser 1.5 o 2
+                zoomer.setAttribute('max', 6.0); // Por defecto suele ser 1.5 o 2
             });
         };
 
