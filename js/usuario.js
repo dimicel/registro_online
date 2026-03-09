@@ -905,7 +905,7 @@ function muestraEditor_usu(_file,tipo){
             _crop1 = new Croppie(document.getElementById("div_imagen"), {
                 viewport: { width: vWidth, height: vHeight },
                 boundary: { width: bWidth, height: bHeight },
-                showZoomer: false,
+                showZoomer: true,
                 enableOrientation: true
             });
 
