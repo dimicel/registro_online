@@ -700,23 +700,25 @@ function muestraEditor_usu(_file,tipo){
                 text: "Girar +90º",
                 click: function() {
                     _crop1.rotate(-90);
-                    // Capturamos dimensiones actuales
-var vWidth = _crop1.elements.viewport.offsetWidth;
-var vHeight = _crop1.elements.viewport.offsetHeight;
+                    if(tipo=="seguro"){
+                        // Capturamos dimensiones actuales
+                        var vWidth = _crop1.elements.viewport.offsetWidth;
+                        var vHeight = _crop1.elements.viewport.offsetHeight;
 
-// Intercambiamos el Viewport (el marco de recorte)
-_crop1.elements.viewport.style.width = vHeight + 'px';
-_crop1.elements.viewport.style.height = vWidth + 'px';
+                        // Intercambiamos el Viewport (el marco de recorte)
+                        _crop1.elements.viewport.style.width = vHeight + 'px';
+                        _crop1.elements.viewport.style.height = vWidth + 'px';
 
-// Intercambiamos el Boundary (el contenedor gris de fondo)
-var bWidth = _crop1.elements.boundary.offsetWidth;
-var bHeight = _crop1.elements.boundary.offsetHeight;
-_crop1.elements.boundary.style.width = bHeight + 'px';
-_crop1.elements.boundary.style.height = bWidth + 'px';
+                        // Intercambiamos el Boundary (el contenedor gris de fondo)
+                        var bWidth = _crop1.elements.boundary.offsetWidth;
+                        var bHeight = _crop1.elements.boundary.offsetHeight;
+                        _crop1.elements.boundary.style.width = bHeight + 'px';
+                        _crop1.elements.boundary.style.height = bWidth + 'px';
 
-// IMPORTANTE: Después de esto, debes llamar a bind para que Croppie 
-// recalcule los límites internos de la imagen con el nuevo tamaño
-_crop1.bind();
+                        // IMPORTANTE: Después de esto, debes llamar a bind para que Croppie 
+                        // recalcule los límites internos de la imagen con el nuevo tamaño
+                        _crop1.bind();
+                    }
                 }
             },
             {
@@ -724,23 +726,25 @@ _crop1.bind();
                 text: "Girar -90º",
                 click: function() {
                     _crop1.rotate(90);
-                    // Capturamos dimensiones actuales
-var vWidth = _crop1.elements.viewport.offsetWidth;
-var vHeight = _crop1.elements.viewport.offsetHeight;
+                    if(tipo=="seguro"){
+                        // Capturamos dimensiones actuales
+                        var vWidth = _crop1.elements.viewport.offsetWidth;
+                        var vHeight = _crop1.elements.viewport.offsetHeight;
 
-// Intercambiamos el Viewport (el marco de recorte)
-_crop1.elements.viewport.style.width = vHeight + 'px';
-_crop1.elements.viewport.style.height = vWidth + 'px';
+                        // Intercambiamos el Viewport (el marco de recorte)
+                        _crop1.elements.viewport.style.width = vHeight + 'px';
+                        _crop1.elements.viewport.style.height = vWidth + 'px';
 
-// Intercambiamos el Boundary (el contenedor gris de fondo)
-var bWidth = _crop1.elements.boundary.offsetWidth;
-var bHeight = _crop1.elements.boundary.offsetHeight;
-_crop1.elements.boundary.style.width = bHeight + 'px';
-_crop1.elements.boundary.style.height = bWidth + 'px';
+                        // Intercambiamos el Boundary (el contenedor gris de fondo)
+                        var bWidth = _crop1.elements.boundary.offsetWidth;
+                        var bHeight = _crop1.elements.boundary.offsetHeight;
+                        _crop1.elements.boundary.style.width = bHeight + 'px';
+                        _crop1.elements.boundary.style.height = bWidth + 'px';
 
-// IMPORTANTE: Después de esto, debes llamar a bind para que Croppie 
-// recalcule los límites internos de la imagen con el nuevo tamaño
-_crop1.bind();
+                        // IMPORTANTE: Después de esto, debes llamar a bind para que Croppie 
+                        // recalcule los límites internos de la imagen con el nuevo tamaño
+                        _crop1.bind();
+                    }
                 }
             },
             {
