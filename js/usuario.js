@@ -699,52 +699,94 @@ function muestraEditor_usu(_file,tipo){
                 class: "btn btn-success textoboton",
                 text: "Girar +90º",
                 click: function() {
-                    _crop1.rotate(-90);
-                    if(tipo=="seguro"){
-                        // Capturamos dimensiones actuales
-                        var vWidth = _crop1.elements.viewport.offsetWidth;
-                        var vHeight = _crop1.elements.viewport.offsetHeight;
+                    /*_crop1.rotate(-90);
+                    if(tipo == "seguro") {
+                        _crop1.result({
+                            type: 'blob',
+                            size: 'original',
+                            format: 'jpeg'
+                        }).then(function(blob) {
+                            muestraEditor_usu(blob, tipo);
+                        });
+                    }*/
+                   mostrarPantallaEspera("Rotando imagen...");
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+            // Creamos un canvas para rotar la imagen COMPLETA
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
 
-                        // Intercambiamos el Viewport (el marco de recorte)
-                        _crop1.elements.viewport.style.width = vHeight + 'px';
-                        _crop1.elements.viewport.style.height = vWidth + 'px';
+            // Intercambiamos dimensiones para el canvas
+            canvas.width = img.height;
+            canvas.height = img.width;
 
-                        // Intercambiamos el Boundary (el contenedor gris de fondo)
-                        var bWidth = _crop1.elements.boundary.offsetWidth;
-                        var bHeight = _crop1.elements.boundary.offsetHeight;
-                        _crop1.elements.boundary.style.width = bHeight + 'px';
-                        _crop1.elements.boundary.style.height = bWidth + 'px';
+            // Rotamos 90 grados (puedes ajustar a -90 según el botón)
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(-90 * Math.PI / 180); // O -90 para el otro botón
+            ctx.drawImage(img, -img.width / 2, -img.height / 2);
 
-                        // IMPORTANTE: Después de esto, debes llamar a bind para que Croppie 
-                        // recalcule los límites internos de la imagen con el nuevo tamaño
-                        _crop1.bind();
-                    }
+            // Convertimos el canvas de nuevo a un Blob (imagen completa rotada)
+            canvas.toBlob(function(blob) {
+                ocultarPantallaEspera();
+                // LLAMADA RECURSIVA: Ahora la función recibe la foto completa y rotada
+                // El img.onload de tu función detectará las nuevas dimensiones
+                // y pondrá el viewport correcto (vertical/horizontal)
+                muestraEditor_usu(blob, tipo);
+            }, 'image/jpeg', 0.95);
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(_file);
                 }
             },
             {
                 class: "btn btn-success textoboton",
                 text: "Girar -90º",
                 click: function() {
-                    _crop1.rotate(90);
+                    /*_crop1.rotate(90);
                     if(tipo=="seguro"){
-                        // Capturamos dimensiones actuales
-                        var vWidth = _crop1.elements.viewport.offsetWidth;
-                        var vHeight = _crop1.elements.viewport.offsetHeight;
+                         _crop1.result({
+                            type: 'blob',
+                            size: 'original',
+                            format: 'jpeg'
+                        }).then(function(blob) {
+                            muestraEditor_usu(blob, tipo);
+                        });
+                    }*/
+                   mostrarPantallaEspera("Rotando imagen...");
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+            // Creamos un canvas para rotar la imagen COMPLETA
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
 
-                        // Intercambiamos el Viewport (el marco de recorte)
-                        _crop1.elements.viewport.style.width = vHeight + 'px';
-                        _crop1.elements.viewport.style.height = vWidth + 'px';
+            // Intercambiamos dimensiones para el canvas
+            canvas.width = img.height;
+            canvas.height = img.width;
 
-                        // Intercambiamos el Boundary (el contenedor gris de fondo)
-                        var bWidth = _crop1.elements.boundary.offsetWidth;
-                        var bHeight = _crop1.elements.boundary.offsetHeight;
-                        _crop1.elements.boundary.style.width = bHeight + 'px';
-                        _crop1.elements.boundary.style.height = bWidth + 'px';
+            // Rotamos 90 grados (puedes ajustar a -90 según el botón)
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(90 * Math.PI / 180); // O -90 para el otro botón
+            ctx.drawImage(img, -img.width / 2, -img.height / 2);
 
-                        // IMPORTANTE: Después de esto, debes llamar a bind para que Croppie 
-                        // recalcule los límites internos de la imagen con el nuevo tamaño
-                        _crop1.bind();
-                    }
+            // Convertimos el canvas de nuevo a un Blob (imagen completa rotada)
+            canvas.toBlob(function(blob) {
+                ocultarPantallaEspera();
+                // LLAMADA RECURSIVA: Ahora la función recibe la foto completa y rotada
+                // El img.onload de tu función detectará las nuevas dimensiones
+                // y pondrá el viewport correcto (vertical/horizontal)
+                muestraEditor_usu(blob, tipo);
+            }, 'image/jpeg', 0.95);
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(_file);
                 }
             },
             {
