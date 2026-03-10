@@ -19,40 +19,38 @@ if (!isset($_POST["id_nie"])) {
     exit ("Acceso denegado");
 }
 
-$curso=$_POST['_cursa'];
-$anno_curso=$_POST['anno_curso'];
-$id_nie=$_POST['id_nie'];
-$email=$_POST['email'];
-$apellidos=$_POST['apellidos'];
-$nombre=$_POST['nombre'];
-$nif_nie=$_POST['nif_nie'];
-$email_alumno=$_POST['email_alumno'];
-$telef_alumno=$_POST['telef_alumno'];
-$direccion=$_POST['direccion'];
-$cp=$_POST['cp'];
-$localidad=$_POST['localidad'];
-$provincia=$_POST['provincia'];
-$te_nombre_apellidos=$_POST["te_nombre_apellidos"];
-$te_nif_nie=$_POST["te_nif_nie"];
-$te_direccion=$_POST["te_direccion"];
-$te_localidad=$_POST["te_localidad"];
-$te_provincia=$_POST["te_provincia"];
-$te_cp=$_POST["te_cp"];
-$te_tlf_movil=$_POST["te_tlf_movil"];
-$te_tlf_fijo=$_POST["te_tlf_fijo"];
-$te_email=$_POST["te_email"];
-//$te_distancia=$_POST["te_distancia"];
-$te_ruta=$_POST["_t_ruta"];
-$_t_apartado=$_POST["_t_apartado"];
-$_t_modalidad=$_POST["_t_modalidad"];
-if (isset($_POST['sillaruedas']) && $_POST['sillaruedas'] == '1') {
-    $sillaruedas=1;
-  } else {
-    $sillaruedas=0;
-  }
-$_t_aut_acred_iden=$_POST["_t_aut_acred_iden"];
-$_t_aut_acred_domic=$_POST["_t_aut_acred_domic"];
-$fecha_registro=date('Y-m-d');
+// Usamos el operador ?? para evitar los "Undefined array key"
+$curso          = $_POST['_cursa'] ?? '';
+$anno_curso     = $_POST['anno_curso'] ?? '';
+$id_nie         = $_POST['id_nie'] ?? '';
+$email          = $_POST['email'] ?? '';
+$apellidos      = $_POST['apellidos'] ?? '';
+$nombre         = $_POST['nombre'] ?? '';
+$nif_nie        = $_POST['nif_nie'] ?? '';
+$email_alumno   = $_POST['email_alumno'] ?? '';
+$telef_alumno   = $_POST['telef_alumno'] ?? '';
+$direccion      = $_POST['direccion'] ?? '';
+$cp             = $_POST['cp'] ?? '';
+$localidad      = $_POST['localidad'] ?? '';
+$provincia      = $_POST['provincia'] ?? '';
+$te_nombre_apellidos = $_POST["te_nombre_apellidos"] ?? '';
+$te_nif_nie     = $_POST["te_nif_nie"] ?? '';
+$te_direccion   = $_POST["te_direccion"] ?? '';
+$te_localidad   = $_POST["te_localidad"] ?? '';
+$te_provincia   = $_POST["te_provincia"] ?? '';
+$te_cp          = $_POST["te_cp"] ?? '';
+$te_tlf_movil   = $_POST["te_tlf_movil"] ?? '';
+$te_tlf_fijo    = $_POST["te_tlf_fijo"] ?? '';
+$te_email       = $_POST["te_email"] ?? '';
+$te_ruta        = $_POST["_t_ruta"] ?? '';
+$_t_apartado    = $_POST["_t_apartado"] ?? '';
+$_t_modalidad   = $_POST["_t_modalidad"] ?? '';
+
+$sillaruedas = (isset($_POST['sillaruedas']) && $_POST['sillaruedas'] == '1') ? 1 : 0;
+
+$_t_aut_acred_iden  = $_POST["_t_aut_acred_iden"] ?? '';
+$_t_aut_acred_domic = $_POST["_t_aut_acred_domic"] ?? '';
+$fecha_registro     = date('Y-m-d');
 
 $mysqli->query("delete from transporte where id_nie='$id_nie' and curso='$anno_curso'");
 
