@@ -18,7 +18,7 @@ var telef_alumno="",email_alumno="",direccion="",cp="",localidad="",provincia=""
 var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2="",nif_nie_tutor1="";
 var primera_vez_pag_2=true;
 var primera_vez_pag_3=true;
-var iniciada_desde_matricula=false;
+var iniciada_desde_matricula="";
 
 
 $(document).ready(function() {
@@ -163,7 +163,7 @@ function registraSolicitud() {
     var f4 = document.getElementById("form_pagina_4");
     var f5 = document.getElementById("form_pagina_5");
     f.action = "php/generapdf.php";
-    //f.appendChild(f2.nombre);
+    f.appendChild(f2.nombre);
     f.appendChild(f2.apellidos);
     f.appendChild(f2.nif_nie);
     f.appendChild(f2.telef_alumno);
@@ -202,7 +202,7 @@ function registraSolicitud() {
             window.history.back();
             window.history.back();
         } 
-        //else window.history.back();
+        else window.history.back();
     });
 }
 
