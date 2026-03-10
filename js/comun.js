@@ -205,6 +205,13 @@ jQuery.validator.addMethod("email", function(value, element) {
     return emailPattern.test(value);
 });
 
+jQuery.validator.addMethod("email_no_obligatorio", function(value, element) {
+    // Expresión regular para validar un correo electrónico
+    var emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    if (value.trim().length==0) return true;
+    return emailPattern.test(value);
+});
+
 
 //Limita un grupo de checkbox a que puedan activar si hay menos de un número de ellos activo
 function limitCheckboxes(selector, maxCount) {
