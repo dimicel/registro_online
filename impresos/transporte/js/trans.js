@@ -163,7 +163,7 @@ function registraSolicitud() {
     var f4 = document.getElementById("form_pagina_4");
     var f5 = document.getElementById("form_pagina_5");
     f.action = "php/generapdf.php";
-    f.appendChild(f2.nombre);
+    //f.appendChild(f2.nombre);
     f.appendChild(f2.apellidos);
     f.appendChild(f2.nif_nie);
     f.appendChild(f2.telef_alumno);
