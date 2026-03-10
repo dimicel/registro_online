@@ -108,7 +108,7 @@ function creaValidatorPagina3() {
                 numero_nif: true
             },
             te_email: {
-                email: true
+                email_no_obligatorio: true
             },
             te_ruta: {
                 required: true
@@ -134,7 +134,7 @@ function creaValidatorPagina3() {
                 numero_nif: "Incorrecto"
             },
             te_email: {
-                email: "Dirección no válida"
+                email_no_obligatorio: "Dirección no válida"
             },
             te_ruta: {
                 required: "Seleccione una ruta"
