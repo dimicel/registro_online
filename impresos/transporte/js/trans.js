@@ -202,7 +202,7 @@ function registraSolicitud() {
             window.history.back();
             window.history.back();
         } 
-        else window.history.back();
+        //else window.history.back();
     });
 }
 
