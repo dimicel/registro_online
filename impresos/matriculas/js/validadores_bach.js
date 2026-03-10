@@ -75,7 +75,7 @@ function creaValidatorPagina2() {
                  numero_nif: true
              },*/
              email_alumno:{
-                 email:true
+                 email_no_obligatorio:true
              }
          },
          messages: {
@@ -95,7 +95,7 @@ function creaValidatorPagina2() {
                  numero_nif: "Incorrecto"
              },*/
              email_alumno:{
-                 email:"Dirección no válida"
+                 email_no_obligatorio:"Dirección no válida"
              }
          },
          errorPlacement: function(error, element) {
