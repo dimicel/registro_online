@@ -309,7 +309,7 @@ $pdf->SetXY($XInicioRotulo,$YInicio+1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"TIPO DE TRANSPORTE QUE SOLICITA Y MODALIDAD",0,0,'L',0,'',1,false,'','');
 $pdf->RoundedRect($XInicio-2,$YInicio,185,38,2,'1111','','','');
-
+$texto_trans_solic = "";
 if ($_t_apartado=="Art. 3 pto. 2 aptdo. c)"){
     $texto_trans_solic="Artículo 3, punto 2, apartado c) del decreto 119/2012, por el que se regula la organización y funcionamiento del transporte escolar: ";
     $texto_trans_solic.="Residir en pedanía o población rural dispersa perteneciente a la misma localidad donde éste está ubicado, siempre que cumpla el requisito de distancia superior a cinco kilómetros, desde su domicilio al límite del casco urbano, contemplándose la consideración excepcional de casos puntuales debidamente justificados.";
