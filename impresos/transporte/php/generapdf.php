@@ -381,20 +381,26 @@ EOT;
 $pdf->writeHTMLCell(0,0,'',$YInicio,$declarac_resp, 0, 1, false, true, 'L', true);
 
 //AUTORIZACIONES
-$YInicio+=34;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,19,2,'1111','','','');
-$pdf->SetXY($XInicio,$YInicio+1);
+// --- BLOQUE AUTORIZACIONES CORREGIDO ---
+$YInicio += 34;
+$pdf->RoundedRect($XInicio-2, $YInicio, 185, 19, 2, '1111', '', '', '');
+$pdf->SetXY((float)$XInicio, (float)$YInicio + 1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
-$pdf->Cell(0,0,"AUTORIZACIONES",0,0,'L',0,'',1,false,'','');
-$texto_autor=<<<EOT
-El solicitantes AUTORIZA a la Dirección Provincial de Educación, Cultura y Deportes en la provincia de Toledo para que pueda proceder a la comprobación y verificación de los siguientes datos:
-                    
-                    $_t_aut_acred_iden: Los acreditativos de identidad.
-                    $_t_aut_acred_domic: Los acreditativos del domicilio o residencia.
-EOT;
-$pdf->SetXY($XInicio,$YInicio+5);
+$pdf->Cell(0, 0, "AUTORIZACIONES", 0, 0, 'L', 0, '', 1, false, '', '');
+
+// Aseguramos que las variables tengan texto, aunque sea un espacio
+$aut_iden = (string)($_t_aut_acred_iden ?? '---');
+$aut_domi = (string)($_t_aut_acred_domic ?? '---');
+
+$texto_autor = "El solicitante AUTORIZA a la Dirección Provincial de Educación, Cultura y Deportes en la provincia de Toledo para que pueda proceder a la comprobación y verificación de los siguientes datos:\n\n";
+$texto_autor .= "                    " . $aut_iden . ": Los acreditativos de identidad.\n";
+$texto_autor .= "                    " . $aut_domi . ": Los acreditativos del domicilio o residencia.";
+
+$pdf->SetXY((float)$XInicio, (float)$YInicio + 5);
 $pdf->SetFont('dejavusans', '', 7, '', true);
-$pdf->MultiCell(0,0,$texto_autor,0,'L',0,1,'','',true,0,false,false,'');
+
+// Forzamos parámetros numéricos para evitar el Fatal Error de float + string
+$pdf->MultiCell(183, 0, $texto_autor, 0, 'L', 0, 1, (float)$XInicio, (float)$YInicio + 5, true, 0, false, false, 0);
 
 //FINAL
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
