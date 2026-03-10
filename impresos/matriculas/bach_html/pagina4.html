@@ -46,7 +46,7 @@
             </div>
             <div class="row border-bottom border-success" id="div_existe_anverso_dni" style="display:none">
                 <div class="col">
-                    <label for='anverso_dni_e'>Ya existe una imagen del anverso del DNI. Si desea dejar la existente no suba nada.</label>
+                    <label for='anverso_dni_e' id="label_anv_dni">Ya existe una imagen del anverso del DNI. Si desea dejar la existente no suba nada.</label>
                     <!--<input name='anverso_dni_e' id='anverso_dni_e' type='file'  accept='image/jpeg' onchange="subeDNI(this,'A')" style="display:none" />-->
                     <div style="clear:both"></div>
                     <center>
@@ -59,7 +59,7 @@
             </div>
             <div class="row" id="div_reverso_dni" >
                 <div class="col">
-                    <label for="reverso_dni">*Reverso de documento identificativo en JPEG (DNI/NIE) <small>(si sólo tiene pasaporte, JPEG de imagen en blanco [foto de folio, pared...])</small>:</label>
+                    <label for="reverso_dni" id="label_rev_dni">*Reverso de documento identificativo en JPEG (DNI/NIE) <small>(si sólo tiene pasaporte, JPEG de imagen en blanco [foto de folio, pared...])</small>:</label>
                     <input type="button" class="btn btn-success form-control"  onclick="document.getElementById('reverso_dni').value='';document.getElementById('reverso_dni').click()" value="Click para seleccionar archivo">
                     <input name="reverso_dni" id="reverso_dni" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
                 </div>
