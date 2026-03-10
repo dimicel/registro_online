@@ -336,10 +336,17 @@ $pdf->SetXY($XInicio,$YInicio);
 $pdf->SetFont('dejavusans','U', 8, '', true);
 $pdf->Cell(0,0,"Tipo de transporte solicitado",0,0,'L',0,'',1,false,'','');
 
-$YInicio+=4;
-$pdf->SetXY($XInicio,$YInicio);
-$pdf->SetFont('dejavusans','', 8, '', true);
-$pdf->MultiCell(0,0,$texto_trans_solic,0,'L',0,1,'','',true,0,false,false,'');
+$YInicio += 4;
+$pdf->SetXY((float)$XInicio, (float)$YInicio);
+$pdf->SetFont('dejavusans', '', 8, '', true);
+
+// ASEGURAMOS TIPOS DE DATOS ANTES DE PASARLOS A TCPDF
+$ancho_celda = (float)183; // Forzamos a float limpio
+$alto_celda  = (float)0;   // TCPDF calculará el alto automáticamente
+$texto_final = (string)($texto_trans_solic ?? 'No especificado');
+
+// EL CAMBIO CLAVE: Quitamos los últimos parámetros vacíos que pueden causar conflicto
+$pdf->MultiCell($ancho_celda, $alto_celda, $texto_final, 0, 'L', 0, 1, '', '', true);
 
 $YInicio+=15;
 $pdf->SetXY($XInicio,$YInicio);
