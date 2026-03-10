@@ -8,7 +8,6 @@ if ($mysqli->errno>0) {
 }
 include("../../../php/funciones.php");
 // Cargamos las librerías de TCPDF
-require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 include("../../../php/cabecera_pdf.php");
 

@@ -211,7 +211,6 @@ elseif($tipo_envio=="multiple"){
         exit ($data);
     }
     else{
-        require_once(__DIR__.'/tcpdf/config/tcpdf_config_alt.php');
         require_once(__DIR__.'/tcpdf/tcpdf.php');
         include("cabecera_pdf.php");
 

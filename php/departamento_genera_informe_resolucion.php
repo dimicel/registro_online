@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("conexion.php");
-require_once('tcpdf/config/tcpdf_config_alt.php');
 require_once('tcpdf/tcpdf.php');
 header("Content-Type: text/html;charset=utf-8");
 

@@ -2,7 +2,6 @@
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 
-require_once('tcpdf/config/tcpdf_config_alt.php');
 require_once('tcpdf/tcpdf.php');
 
 $id_nie=$_POST["id_down"];

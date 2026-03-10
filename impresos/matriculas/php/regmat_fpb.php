@@ -8,7 +8,6 @@ if ($mysqli->errno>0) {
 }
 include("../../../php/funciones.php");
 // Requiere TCPDF y la cabecera del PDF
-require_once(__DIR__.'/../../../php/tcpdf/config/tcpdf_config_alt.php');
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 include("../../../php/cabecera_pdf.php");
 
