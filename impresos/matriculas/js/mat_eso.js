@@ -344,7 +344,8 @@ function pasaPagina(p) {
 
 function cargaImagen(dest){
     if (dest=="prev_foto"){
-        document.getElementById("prev_foto").src="../../docs/fotos/"+id_nie+".jpeg?q="+Date();
+        //document.getElementById("prev_foto").src="../../docs/fotos/"+id_nie+".jpeg?q="+Date();
+        alerta("<img src='../../docs/fotos/"+id_nie+".jpeg?q="+Date()+"'>","FOTOGRAFÍA");
     }
     else if(dest=="prev_anverso_dni"){
         document.getElementById("prev_anverso_dni").src="../../docs/"+id_nie+"/dni/"+id_nie+"-A.jpeg?q="+Date();
