@@ -708,7 +708,7 @@ $handle = opendir($dir);
 while ($file = readdir($handle)) {
 	if (is_file($dir.$file)) unlink($dir.$file);
 }
-closedir($dir);
+closedir($handle);
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";
