@@ -20,6 +20,7 @@ if(is_uploaded_file($_FILES['dni']['tmp_name'])){
     $ruta="../../../docs/".$id_nie."/"."dni/". $id_nie."-".$parte.".jpeg";
     if(!move_uploaded_file($_FILES['dni']['tmp_name'], $ruta)) exit("almacenar");
     else{
+        include("../../../php/conexion.php");
         if ($mysqli->errno>0) {
             exit("servidor");
         }

@@ -1,9 +1,6 @@
 <?php
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
-include("../../../php/conexion.php");
-
-
 $id_nie=$_POST["id_nie"];
 $anno_curso=$_POST["anno_curso"];
 $subido_por=$_POST["subido_por"];
@@ -14,6 +11,7 @@ if(is_uploaded_file($_FILES['seguro']['tmp_name'])){
     $ruta="../../../docs/".$id_nie."/"."seguro/".$anno_curso."/". $id_nie.".jpeg";
     if(!move_uploaded_file($_FILES['seguro']['tmp_name'], $ruta)) exit("almacenar");
     else{
+        include("../../../php/conexion.php");
         if ($mysqli->errno>0) {
             exit("servidor");
         }
