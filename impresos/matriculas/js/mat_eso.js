@@ -347,13 +347,13 @@ function cargaImagen(dest){
         alerta("<center><img src='../../docs/fotos/"+id_nie+".jpeg?q="+Date()+"'></center>","FOTOGRAFÍA");
     }
     else if(dest=="prev_anverso_dni"){
-        alerta("<center><img src='../../docs/"+id_nie+"/dni/"+id_nie+"-A.jpeg?q="+Date()+"'></center>","ANVERSO DOCUMENTO IDENTIFICACIÓN");
+        alerta("<center><img src='../../docs/"+id_nie+"/dni/"+id_nie+"-A.jpeg?q="+Date()+"'></center>","ANVERSO DOCUMENTO IDENTIFICACIÓN",false,500);
     }
     else if(dest=="prev_reverso_dni"){
-        alerta("<center><img src='../../docs/"+id_nie+"/dni/"+id_nie+"-R.jpeg?q="+Date()+"'></center>","REVERSO DOCUMENTO IDENTIFICACIÓN");
+        alerta("<center><img src='../../docs/"+id_nie+"/dni/"+id_nie+"-R.jpeg?q="+Date()+"'></center>","REVERSO DOCUMENTO IDENTIFICACIÓN",false,500);
     }
     else if(dest=="prev_resguardo_seguro"){
-        alerta("<center><img src='../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR");
+        alerta("<center><img src='../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR",false,500);
     }
 }
 
