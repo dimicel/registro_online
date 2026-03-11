@@ -166,6 +166,7 @@ function muestraEditor(_file,tipo){
         ]
     )
     .then((dialogo)=>{
+        ocultarPantallaEspera();
         const img = new Image();
         img.src = URL.createObjectURL(_file);
 
