@@ -694,7 +694,7 @@ function muestraEditor_usu(_file,tipo){
     _resp="";
     let orientacionActual = 1;
     mostrarPantallaEspera("Cargando ...");
-    cargaHTML("html/usuario.htm", "div_edita_imagen_usu","EDICIÓN IMAGEN",600,2000,"","",
+    cargaHTML("html/usuario.htm", "div_edita_imagen_usu","EDICIÓN IMAGEN",600,2000,"center center","center center",
         [
             {
                 class: "btn btn-success textoboton",
