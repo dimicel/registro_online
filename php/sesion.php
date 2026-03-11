@@ -53,6 +53,7 @@ else $respuesta["error"]="ok";
 
 if ($respuesta["error"]=="ok"){ 
     $respuesta["id_nif"]=$_SESSION['id_nif'];
+    $respuesta["es_pasaporte"]=$_SESSION['es_pasaporte'];
     $respuesta["id_nie"]=$_SESSION['id_nie'];
     $respuesta["nombre"]=$_SESSION['nombre'];
     $respuesta["apellidos"]=$_SESSION['apellidos'];

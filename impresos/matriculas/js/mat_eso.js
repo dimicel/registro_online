@@ -31,6 +31,7 @@ $(document).ready(function() {
     dat2 = dat1.then((res1) => {
         id_nie = res1["id_nie"];
         id_nif = res1["id_nif"];
+        es_pasaporte = res1["es_pasaporte"];
         nombre = res1["nombre"];
         apellidos = res1["apellidos"];
         email = res1["email"];

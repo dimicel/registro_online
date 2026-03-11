@@ -85,6 +85,7 @@ else {
 				exit(json_encode($dat));
 			}
 			$_SESSION['id_nif']=$pass['id_nif'];
+			$_SESSION['es_pasaporte']=$pass['es_pasaporte'];
 			$_SESSION['nombre']=$pass['nombre'];
 			$_SESSION['apellidos']=$pass['apellidos'];
 			$_SESSION['email']=$pass['email'];
