@@ -21,9 +21,9 @@
                     <span class="errorTxt" style="font-size: 1em;"></span>
                 </div>
             </div>
-            <div class="row border border-success" id="div_existe_fotografia" style="display:none">
+            <div id="div_existe_fotografia" style="display:none">
                 <div class="col-12">
-                    <h4 style="color:brown">FOTOGRAFÍA</h4>
+                    <h5 style="color:brown">FOTOGRAFÍA</h5>
                 </div>
                 <div class="col">
                     <label for='foto_alumno_e'>Ya existe una fotografía del alumno en el servidor. Si desea dejar la existente no suba nada.</label>
@@ -36,7 +36,9 @@
                 </div>
             </div>
             <div class="row" id="div_anverso_dni" >
-                <h2>DOCUMENTO DE IDENTIFICACIÓN</h2>
+                <div class="col-12">
+                    <h5 style="color:brown">DOCUMENTO DE IDENTIFICACIÓN</h5>
+                </div>
                 <div class="col">
                     <label for="anverso_dni">*Anverso de documento identificativo en JPEG (DNI/NIE).<br> <small>(Si sólo tiene pasaporte, JPEG de la página que contenga la foto y nombre del alumno)</small>:</label>
                     <input type="button" class="btn btn-success form-control"  onclick="document.getElementById('anverso_dni').value='';document.getElementById('anverso_dni').click()" value="Click para seleccionar archivo">
