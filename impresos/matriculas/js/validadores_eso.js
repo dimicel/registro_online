@@ -194,8 +194,9 @@ function creaValidatorPagina4() {
             }
         },
         errorPlacement: function(error, element) {
-            $(element).parent().next().children().html(error);
-        }
+        // Busca el contenedor de error más cercano hacia abajo en la sección
+        $(element).closest('.mb-4').find('.errorTxt').html(error);
+    }
 
     });
 }
