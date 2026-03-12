@@ -2,6 +2,7 @@ var _curso;
 var pagina = 1;
 var id_nie = "";
 var id_nif = "";
+var es_pasaporte=0;
 var nombre = "";
 var apellidos = "";
 var email = "";
@@ -31,7 +32,7 @@ $(document).ready(function() {
     dat2 = dat1.then((res1) => {
         id_nie = res1["id_nie"];
         id_nif = res1["id_nif"];
-        es_pasaporte = res1["es_pasaporte"];
+        //es_pasaporte = res1["es_pasaporte"];
         nombre = res1["nombre"];
         apellidos = res1["apellidos"];
         email = res1["email"];
@@ -89,6 +90,7 @@ $(document).ready(function() {
             for (e in resp.datos){
                 if(typeof(resp.datos[e])==="undefined" || resp.datos[e]===null) resp.datos[e]="";
             }
+            es_pasaporte=resp.datos.es_pasaporte;
             f_nac=resp.datos.fecha_nac;
             if (f_nac!="")f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
             fecha_nac=f_nac;
