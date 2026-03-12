@@ -21,17 +21,16 @@ $(function() {
 function alerta(mensaje, titulo, previo, ancho) {
     let $div = $("#mensaje_div");
     if ($div.length === 0) {
-        $("body").append("<div id='mensaje_div'></div>");
+        $("body").append("<div id='mensaje_div' style='display:none;'></div>");
         $div = $("#mensaje_div");
     }
     if (typeof(previo) == 'boolean' && previo == true) {
-        document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta(true)'/></div>";
+        $div.html("<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta(true)'/></div>");
     } else {
-        document.getElementById('mensaje_div').innerHTML = "<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta()'/></div>";
+        $div.html("<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta()'/></div>");
     }
 
     if (typeof(ancho) != 'number') ancho = 300;
-    if (typeof(duracion) != 'number') duracion = 0;
     $("#mensaje_div").dialog({
         title: titulo.toUpperCase(),
         autoOpen: true,
@@ -41,7 +40,15 @@ function alerta(mensaje, titulo, previo, ancho) {
         hide: { effect: "fade", duration: 0 },
         resizable: false,
         show: { effect: "fade", duration: 0 },
-        width: ancho
+        width: ancho,
+        closeOnEscape: false,
+        open: function() {
+            $(this).dialog("option", "position", { 
+                my: "center", 
+                at: "center", 
+                of: window 
+            });
+        }
     });
 }
 
