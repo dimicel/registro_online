@@ -274,6 +274,7 @@ function pasaPagina(p) {
             }
         } 
  else if (pag_html == "pagina_4") {
+    alert(es_pasaporte);
     // 1. Resetear el validador
     $("#form_pagina_4").validate().resetForm();
     $(".errorTxt").html("");
