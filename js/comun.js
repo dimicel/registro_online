@@ -48,6 +48,9 @@ function alerta(mensaje, titulo, previo, ancho) {
                 at: "center", 
                 of: window 
             });
+        },
+        close: function() {
+            $(this).dialog("destroy").remove();
         }
     });
 }
@@ -56,8 +59,7 @@ function cierraAlerta(previo) {
     if (typeof(previo) == 'boolean' && previo == true) {
         window.history.back();
     }
-    $("#mensaje_div").dialog("close").dialog("destroy");
-    $("#mensaje_div").remove();
+    $("#mensaje_div").dialog("close");
 }
 
 //Confirmar o no la salida de un formulario
@@ -95,7 +97,13 @@ function confirmar(mensaje, titulo, ancho) {
             width: ancho,
             show: { effect: "fade", duration: 0 },
             hide: { effect: "fade", duration: 0 },
+            closeOnEscape: false,
             open: function () {
+                $(this).dialog("option", "position", { 
+                    my: "center", 
+                    at: "center", 
+                    of: window 
+                });
                 // Asocia eventos a los botones internos
                 $div.find("#btnAceptar").off("click").on("click", () => {
                     $div.dialog("close").dialog("destroy");
@@ -346,7 +354,9 @@ function cargaHTML(url="",contenido="",titulo="",ancho=600,alto=400,posicion_my=
                             hide: { effect: "fade", duration: 0 },
                             position: { my: posicion_my, at: posicion_at, of: window },
                             buttons: botones,
+                            openOnEscape: false,
                             open: function(event, ui) {
+
                                 $(this).css("overflow", "hidden");
                                 funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
                                 resolve(this);
@@ -375,6 +385,7 @@ function cargaHTML(url="",contenido="",titulo="",ancho=600,alto=400,posicion_my=
                     hide: { effect: "fade", duration: 0 },
                     position: { my: posicion_my, at: posicion_at, of: window },
                     buttons: botones,
+                    openOnEscape: false,
                     open: function(event, ui) {
                         $(this).css("overflow", "hidden");
                         funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
