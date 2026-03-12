@@ -278,7 +278,17 @@ function pasaPagina(p) {
  else if (pag_html == "pagina_4") {
 $("#form_pagina_4").validate().resetForm();
     $(".errorTxt").html("");
-
+    if (existe_foto) {
+            // Si existe, mostramos el panel de "Ya existe" (con botones Ver y Subir Nueva)
+            $("#div_fotografia").hide();
+            $("#div_existe_fotografia").show();
+            // Si tienes el elemento img para previsualizar, descomenta la siguiente línea:
+            // $("#prev_foto").attr("src", "../../docs/fotos/" + id_nie + ".jpeg?q=" + Date.now());
+        } else {
+            // Si no existe, mostramos el botón grande de subida
+            $("#div_fotografia").show();
+            $("#div_existe_fotografia").hide();
+    }
     // 1. SWITCH PASAPORTE VS DNI
     if (es_pasaporte == 1) {
         $("#vista_pasaporte").show();
