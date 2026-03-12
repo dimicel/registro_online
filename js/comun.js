@@ -56,10 +56,10 @@ function alerta(mensaje, titulo, previo, ancho) {
 }
 
 function cierraAlerta(previo) {
+    $("#mensaje_div").dialog("close");
     if (typeof(previo) == 'boolean' && previo == true) {
         window.history.back();
     }
-    $("#mensaje_div").dialog("close");
 }
 
 //Confirmar o no la salida de un formulario
