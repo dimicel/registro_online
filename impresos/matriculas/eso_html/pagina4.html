@@ -19,16 +19,15 @@
         <hr>
 
         <div id="sec_foto" class="mb-4">
+            <h6 class="text-brown font-weight-bold">FOTOGRAFÍA</h6>
             <div id="div_fotografia" class="row">
                 <div class="col">
                     <label>*Fotografía del alumno en JPEG (formato DNI):</label>
                     <input type="button" class="btn btn-success btn-block" onclick="$('#foto_alumno').val('').click()" value="Click para seleccionar fotografía">
-                    <input name="foto_alumno" id="foto_alumno" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
                 </div>
             </div>
             <div id="div_existe_fotografia" class="card border-success bg-light p-3 text-center" style="display:none">
-                <h6 class="text-brown">FOTOGRAFÍA</h6>
-                <p class="small">Ya existe una fotografía en el servidor. Si es correcta, no suba nada.</p>
+                <p class="small mb-2">Ya existe una fotografía en el servidor. Si es correcta, no suba nada.</p>
                 <div>
                     <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_foto')">Ver foto existente</a>
                     <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#foto_alumno').val('').click()">Subir Nueva Foto</a>
@@ -39,8 +38,7 @@
 
         <div id="sec_documento_id" class="mb-4">
             <h6 class="text-brown font-weight-bold">DOCUMENTO DE IDENTIFICACIÓN</h6>
-            <hr>
-
+            
             <div id="vista_pasaporte" style="display:none">
                 <div id="div_pasaporte" class="row">
                     <div class="col">
@@ -48,9 +46,9 @@
                         <input type="button" class="btn btn-success btn-block" onclick="$('#anverso_dni').val('').click()" value="Seleccionar Pasaporte">
                     </div>
                 </div>
-                <div id="div_existe_pasaporte" class="card border-success bg-light p-2 text-center" style="display:none">
-                    <p class="small mb-1">Ya existe la imagen del Pasaporte en el servidor.</p>
-                    <div>
+                <div id="div_existe_pasaporte" class="card border-success bg-light p-3 text-center" style="display:none">
+                    <p class="small mb-2">Ya existe la imagen del Pasaporte.</p>
+                    <div class="d-flex justify-content-center align-items-center">
                         <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_anverso_dni')">Ver Pasaporte</a>
                         <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#anverso_dni').val('').click()">Subir Nuevo</a>
                     </div>
@@ -58,38 +56,37 @@
             </div>
 
             <div id="vista_dni" style="display:none">
-                <div id="div_anverso_dni" class="row">
-                    <div class="col">
-                        <label>*Anverso del DNI/NIE (JPEG):</label>
-                        <input type="button" class="btn btn-success btn-block" onclick="$('#anverso_dni').val('').click()" value="Seleccionar Anverso">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div id="div_anverso_dni">
+                            <label class="small font-weight-bold">Anverso DNI/NIE:</label>
+                            <input type="button" class="btn btn-success btn-block" onclick="$('#anverso_dni').val('').click()" value="Subir Anverso">
+                        </div>
+                        <div id="div_existe_anverso_dni" class="card border-success bg-light p-2 text-center" style="display:none; min-height: 90px;">
+                            <p class="small mb-1">Anverso existente</p>
+                            <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="cargaImagen('prev_anverso_dni')">Ver</a>
+                            <a href="#" class="small text-muted" onclick="$('#anverso_dni').val('').click()">Subir nuevo</a>
+                        </div>
                     </div>
-                </div>
-                <div id="div_existe_anverso_dni" class="card border-success bg-light p-2 text-center mb-3" style="display:none">
-                    <p class="small mb-1">Ya existe el Anverso del DNI/NIE.</p>
-                    <div>
-                        <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_anverso_dni')">Ver Anverso</a>
-                        <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#anverso_dni').val('').click()">Subir Nuevo</a>
-                    </div>
-                </div>
 
-                <div id="div_reverso_dni" class="row mt-3">
-                    <div class="col">
-                        <label>*Reverso del DNI/NIE (JPEG):</label>
-                        <input type="button" class="btn btn-success btn-block" onclick="$('#reverso_dni').val('').click()" value="Seleccionar Reverso">
-                        <input name="reverso_dni" id="reverso_dni" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
-                    </div>
-                </div>
-                <div id="div_existe_reverso_dni" class="card border-success bg-light p-2 text-center" style="display:none">
-                    <p class="small mb-1">Ya existe el Reverso del DNI/NIE.</p>
-                    <div>
-                        <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_reverso_dni')">Ver Reverso</a>
-                        <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#reverso_dni').val('').click()">Subir Nuevo</a>
+                    <div class="col-md-6 mb-3">
+                        <div id="div_reverso_dni">
+                            <label class="small font-weight-bold">Reverso DNI/NIE:</label>
+                            <input type="button" class="btn btn-success btn-block" onclick="$('#reverso_dni').val('').click()" value="Subir Reverso">
+                        </div>
+                        <div id="div_existe_reverso_dni" class="card border-success bg-light p-2 text-center" style="display:none; min-height: 90px;">
+                            <p class="small mb-1">Reverso existente</p>
+                            <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="cargaImagen('prev_reverso_dni')">Ver</a>
+                            <a href="#" class="small text-muted" onclick="$('#reverso_dni').val('').click()">Subir nuevo</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <input name="foto_alumno" id="foto_alumno" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
             <input name="anverso_dni" id="anverso_dni" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_anverso')" />
-            
+            <input name="reverso_dni" id="reverso_dni" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
+
             <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
         </div>
         <div id="sec_seguro" class="mb-4">
