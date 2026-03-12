@@ -276,48 +276,65 @@ function pasaPagina(p) {
             }
         } 
  else if (pag_html == "pagina_4") {
-    // 1. Resetear el validador
-    $("#form_pagina_4").validate().resetForm();
+$("#form_pagina_4").validate().resetForm();
     $(".errorTxt").html("");
 
-    // --- LÓGICA DE FOTOGRAFÍA ---
-    if (existe_foto) {
-        $("#div_fotografia").hide();
-        $("#div_existe_fotografia").show();
-    } else {
-        $("#div_fotografia").show();
-        $("#div_existe_fotografia").hide();
-    }
-
-    // --- LÓGICA DNI / PASAPORTE ---
-    if (es_pasaporte) {
-        $("#sec_reverso").hide(); // Ocultamos sección reverso por completo
-        $("#div_pasaporte_instruccion").show();
-        $("#label_anv_dni").html("Página principal del Pasaporte (JPEG):");
-        // Quitamos regla de reverso si es pasaporte
+    // 1. SWITCH PASAPORTE VS DNI
+    if (es_pasaporte == 1) {
+        $("#vista_pasaporte").show();
+        $("#vista_dni").hide();
+        
+        // Control de archivos existentes para Pasaporte (usamos la variable del anverso)
+        if (existe_dni_A) {
+            $("#div_pasaporte").hide();
+            $("#div_existe_pasaporte").show();
+        } else {
+            $("#div_pasaporte").show();
+            $("#div_existe_pasaporte").hide();
+        }
+        // El reverso nunca es obligatorio en pasaporte
         $("#reverso_dni").rules("remove", "required");
-    } else {
-        $("#sec_reverso").show();
-        $("#div_pasaporte_instruccion").hide();
-        $("#label_anv_dni").html("Anverso del DNI/NIE (JPEG):");
-    }
 
-    // Mostrar u ocultar si existen documentos de ID
-    if (existe_dni_A) {
-        $("#div_anverso_dni").hide();
-        $("#div_existe_anverso_dni").show();
     } else {
-        $("#div_anverso_dni").show();
-        $("#div_existe_anverso_dni").hide();
-    }
+        $("#vista_pasaporte").hide();
+        $("#vista_dni").show();
 
-    if (!es_pasaporte) {
+        // Control de existentes para DNI Anverso
+        if (existe_dni_A) {
+            $("#div_anverso_dni").hide();
+            $("#div_existe_anverso_dni").show();
+        } else {
+            $("#div_anverso_dni").show();
+            $("#div_existe_anverso_dni").hide();
+        }
+
+        // Control de existentes para DNI Reverso
         if (existe_dni_R) {
             $("#div_reverso_dni").hide();
             $("#div_existe_reverso_dni").show();
         } else {
             $("#div_reverso_dni").show();
             $("#div_existe_reverso_dni").hide();
+        }
+    }
+
+    // 2. LÓGICA DE OBLIGATORIEDAD POR CURSO
+    // En 1º y 2º ESO NO es obligatorio subir nada de ID
+    if (_curso == "1º ESO" || _curso == "2º ESO") {
+        $("#anverso_dni").rules("remove", "required");
+        $("#reverso_dni").rules("remove", "required");
+        
+        // Quitamos el asterisco visualmente si quieres
+        $("label[for='anverso_dni'], label[for='reverso_dni']").each(function() {
+            $(this).text($(this).text().replace('*', '(Opcional) '));
+        });
+    } else {
+        // En otros cursos SI es obligatorio, pero solo si no existe ya
+        if (!existe_dni_A) {
+            $("#anverso_dni").rules("add", { required: true });
+        }
+        if (es_pasaporte == 0 && !existe_dni_R) {
+            $("#reverso_dni").rules("add", { required: true });
         }
     }
 
