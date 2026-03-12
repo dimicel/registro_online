@@ -44,19 +44,25 @@ function alerta(mensaje, titulo, previo, ancho) {
         closeOnEscape: false,
         open: function() {
             var $dialogo = $(this);
-        
-            // 1. Centramos inmediatamente
-            $dialogo.dialog("option", "position", { my: "center", at: "center", of: window });
+            
+            // Forzamos el centrado inicial
+            const centrar = () => {
+                $dialogo.dialog("option", "position", { 
+                    my: "center", 
+                    at: "center", 
+                    of: window 
+                });
+            };
 
-            // 2. Si hay imágenes, re-centramos cuando se carguen
+            centrar();
+
+            // Si hay imágenes re-centramos al cargar
             $dialogo.find('img').on('load', function() {
-                $dialogo.dialog("option", "position", { my: "center", at: "center", of: window });
+                centrar();
             });
 
-            // 3. Por seguridad, un re-centrado extra tras un mini-delay
-            setTimeout(function() {
-                $dialogo.dialog("option", "position", { my: "center", at: "center", of: window });
-            }, 100);
+            // Seguro de vida: re-centrado tras 100ms por si el DOM está perezoso
+            setTimeout(centrar, 100);
         },
         close: function() {
             $(this).dialog("destroy").remove();
