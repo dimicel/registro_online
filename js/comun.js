@@ -43,11 +43,25 @@ function alerta(mensaje, titulo, previo, ancho) {
         width: ancho,
         closeOnEscape: false,
         open: function() {
-            $(this).dialog("option", "position", { 
+            /*$(this).dialog("option", "position", { 
                 my: "center", 
                 at: "center", 
                 of: window 
-            });
+            });*/
+            var $dialogo = $(this);
+        
+        // 1. Centramos inmediatamente
+        $dialogo.dialog("option", "position", { my: "center", at: "center", of: window });
+
+        // 2. Si hay imágenes, re-centramos cuando se carguen
+        $dialogo.find('img').on('load', function() {
+            $dialogo.dialog("option", "position", { my: "center", at: "center", of: window });
+        });
+
+        // 3. Por seguridad, un re-centrado extra tras un mini-delay
+        setTimeout(function() {
+            $dialogo.dialog("option", "position", { my: "center", at: "center", of: window });
+        }, 100);
         },
         close: function() {
             $(this).dialog("destroy").remove();
