@@ -32,14 +32,13 @@
             <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="cargaImagen('prev_foto')">Ver foto existente</a>
             <a href="#" class="small text-muted mt-1" onclick="$('#foto_alumno').val('').click()">Subir Nueva Foto</a>
         </div>
-        <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
     </div>
 
     <div id="vista_pasaporte" class="col-md-4 mb-4" style="display:none">
-        <h6 class="text-brown font-weight-bold text-center">DOCUMENTO ID</h6>
+        <h6 class="text-brown font-weight-bold text-center">DOCUMENTO DE IDENTIFICACIÓN</h6>
         <div id="div_pasaporte" class="card border-success bg-light p-3 text-center h-100">
             <p class="small mb-2">*Página principal del Pasaporte (JPEG)</p>
-            <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="$('#anverso_dni').val('').click()">Seleccionar imagen del documento</a>
+            <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="$('#anverso_dni').val('').click()">Seleccionar imagen</a>
         </div>
         <div id="div_existe_pasaporte" class="card border-success bg-light p-3 text-center" style="display:none">
             <p class="small mb-2">Pasaporte existente</p>
@@ -51,28 +50,29 @@
     </div>
 
     <div id="vista_dni" style="display:none; display: contents;">
+        <div class="col-md-8 mb-2">
+            <h6 class="text-brown font-weight-bold text-center">DOCUMENTO DE IDENTIFICACIÓN</h6>
+        </div>
         
         <div class="col-md-4 mb-4">
-            <h6 class="text-brown font-weight-bold text-center">ANVERSO</h6>
             <div id="div_anverso_dni" class="card border-success bg-light p-3 text-center h-100">
                 <p class="small mb-2">Anverso DNI/NIE</p>
                 <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="$('#anverso_dni').val('').click()">Seleccionar</a>
             </div>
             <div id="div_existe_anverso_dni" class="card border-success bg-light p-2 text-center" style="display:none; min-height: 90px;">
-                <p class="small mb-1 font-weight-bold">Ya existe el Anverso del DNI/NIE.</p>
+                <p class="small mb-1 font-weight-bold text-success">Anverso guardado</p>
                 <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="cargaImagen('prev_anverso_dni')">Ver</a>
                 <a href="#" class="small text-muted mt-1" onclick="$('#anverso_dni').val('').click()">Subir nuevo</a>
             </div>
         </div>
 
         <div class="col-md-4 mb-4">
-            <h6 class="text-brown font-weight-bold text-center">REVERSO</h6>
             <div id="div_reverso_dni" class="card border-success bg-light p-3 text-center h-100">
                 <p class="small mb-2">Reverso DNI/NIE</p>
                 <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="$('#reverso_dni').val('').click()">Seleccionar</a>
             </div>
             <div id="div_existe_reverso_dni" class="card border-success bg-light p-2 text-center" style="display:none; min-height: 90px;">
-                <p class="small mb-1 font-weight-bold">Ya existe el Reverso del DNI/NIE.</p>
+                <p class="small mb-1 font-weight-bold text-success">Reverso guardado</p>
                 <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="cargaImagen('prev_reverso_dni')">Ver</a>
                 <a href="#" class="small text-muted mt-1" onclick="$('#reverso_dni').val('').click()">Subir nuevo</a>
             </div>
