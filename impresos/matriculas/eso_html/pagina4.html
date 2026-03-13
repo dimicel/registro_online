@@ -26,12 +26,10 @@
                     <input type="button" class="btn btn-success btn-block" onclick="$('#foto_alumno').val('').click()" value="Click para seleccionar fotografía">
                 </div>
             </div>
-            <div id="div_existe_fotografia" class="card border-success bg-light p-3 text-center" style="display:none">
-                <p class="small mb-2">Ya existe una fotografía en el servidor. Si es correcta, no suba nada.</p>
-                <div>
-                    <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_foto')">Ver foto existente</a>
-                    <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#foto_alumno').val('').click()">Subir Nueva Foto</a>
-                </div>
+            <div id="div_existe_fotografia" class="card border-success bg-light p-3 text-center" style="display:none;min-height: 90px;">
+                <p class="small mb-2">Fotografía existente.</p>
+                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="cargaImagen('prev_foto')">Ver foto existente</a>
+                <a href="#" class="small text-muted" onclick="$('#foto_alumno').val('').click()">Subir Nueva Foto</a>
             </div>
             <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
         </div>
