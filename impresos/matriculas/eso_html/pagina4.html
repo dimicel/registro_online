@@ -87,11 +87,9 @@
         </div>
         <div id="sec_seguro" class="mb-4">
             <div id="div_resguardo_seguro_escolar" class="row">
-                <div class="col">
-                    <label>*Justificante pago seguro escolar (JPEG):</label>
-                    <input type="button" class="btn btn-success btn-block" onclick="$('#resguardo_seguro_escolar').val('').click()" value="Seleccionar archivo">
-                    <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')" />
-                </div>
+                <p class="small mb-2">*Justificante pago seguro escolar (JPEG):</p>
+                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#resguardo_seguro_escolar').val('').click()">Seleccionar imagen del resguardo</a>
+                <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')" />
             </div>
             <div id="div_existe_resguardo_seguro_escolar" class="card border-success bg-light p-2 text-center" style="display:none">
                 <p class="small mb-1">Ya existe justificante de seguro escolar.</p>
@@ -105,11 +103,9 @@
 
         <div id="sec_cert" class="mb-4">
             <div id="div_certificado" class="row">
-                <div class="col">
-                    <label>*Certificado notas (PDF):</label>
-                    <input type="button" class="btn btn-success btn-block" onclick="$('#certificado').val('').click()" value="Seleccionar archivo">
-                    <input name="certificado" id="certificado" type="file" class="d-none" accept="application/pdf" onchange="subeCertificado(this)" />
-                </div>
+                <p class="small mb-2">*Certificado notas (PDF):</p>
+                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#certificado').val('').click()">Seleccionar archivo</a>
+                <input name="certificado" id="certificado" type="file" class="d-none" accept="application/pdf" onchange="subeCertificado(this)" />
             </div>
             <div id="div_existe_certificado" class="card border-success bg-light p-2 text-center" style="display:none">
                 <p class="small mb-1">Ya existe certificado de notas.</p>
