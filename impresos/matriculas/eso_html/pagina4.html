@@ -20,11 +20,9 @@
 
         <div id="sec_foto" class="mb-4">
             <h6 class="text-brown font-weight-bold">FOTOGRAFÍA</h6>
-            <div id="div_fotografia" class="row">
-                <div class="col">
-                    <label>*Fotografía del alumno en JPEG (formato DNI):</label>
-                    <input type="button" class="btn btn-success btn-block" onclick="$('#foto_alumno').val('').click()" value="Click para seleccionar fotografía">
-                </div>
+            <div id="div_fotografia" class="card border-success bg-light p-3 text-center">
+                <p class="small mb-2">*Fotografía del alumno en JPEG (formato DNI):</p>
+                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#foto_alumno').val('').click()">Clic para seleccionar archivo</a>
             </div>
             <div id="div_existe_fotografia" class="card border-success bg-light p-3 text-center" style="display:none;min-height: 90px;">
                 <p class="small mb-2">Fotografía existente.</p>
