@@ -19,66 +19,68 @@
             <a href="#" class="text-danger" onclick="muestraAyudaDocs()">Ayuda sobre el formato de los documentos</a>
         </div>
         <hr>
-    <div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center align-items-start">
     
-    <div id="sec_foto" class="col-md-auto mb-4">
+    <div id="sec_foto" class="col-md-4 mb-4">
         <h6 class="text-brown font-weight-bold text-center">FOTOGRAFÍA</h6>
-        <div style="width: 300px;"> 
-            <div id="div_fotografia" class="card border-success bg-light p-3 text-center h-100">
-                <p class="small mb-2">*Fotografía del alumno en JPEG (formato DNI):</p>
-                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#foto_alumno').val('').click()">Seleccionar fotografía</a>
-            </div>
-            
-            <div id="div_existe_fotografia" class="card border-success bg-light p-3 text-center" style="display:none; min-height: 90px;">
-                <p class="small mb-2">Fotografía existente.</p>
-                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="cargaImagen('prev_foto')">Ver foto existente</a>
-                <a href="#" class="small text-muted" onclick="$('#foto_alumno').val('').click()">Subir Nueva Foto</a>
-            </div>
+        
+        <div id="div_fotografia" class="card border-success bg-light p-3 text-center h-100">
+            <p class="small mb-2">*Fotografía del alumno en JPEG (formato DNI):</p>
+            <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="$('#foto_alumno').val('').click()">Seleccionar fotografía</a>
         </div>
+        
+        <div id="div_existe_fotografia" class="card border-success bg-light p-3 text-center" style="display:none; min-height: 90px;">
+            <p class="small mb-2">Fotografía existente.</p>
+            <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="cargaImagen('prev_foto')">Ver foto existente</a>
+            <a href="#" class="small text-muted mt-1" onclick="$('#foto_alumno').val('').click()">Subir Nueva Foto</a>
+        </div>
+        
         <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
     </div>
 
-    <div id="sec_documento_id" class="col-md-auto mb-4">
+    <div id="sec_documento_id" class="col-md-8 mb-4">
         <h6 class="text-brown font-weight-bold text-center">DOCUMENTO DE IDENTIFICACIÓN</h6>
         
         <div id="vista_pasaporte" style="display:none">
-            <div style="width: 300px;"> <div id="div_pasaporte" class="card border-success bg-light p-3 text-center h-100">
-                    <p class="small mb-2">*Página principal del Pasaporte (JPEG)</p>
-                    <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#anverso_dni').val('').click()">Seleccionar imagen del documento</a>
-                </div>
-                <div id="div_existe_pasaporte" class="card border-success bg-light p-3 text-center" style="display:none">
-                    <p class="small mb-2">Pasaporte existente</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_anverso_dni')">Ver Pasaporte</a>
-                        <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#anverso_dni').val('').click()">Subir Nuevo</a>
+            <div class="row justify-content-start">
+                <div class="col-md-6"> <div id="div_pasaporte" class="card border-success bg-light p-3 text-center h-100">
+                        <p class="small mb-2">*Página principal del Pasaporte (JPEG)</p>
+                        <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="$('#anverso_dni').val('').click()">Seleccionar imagen del documento</a>
+                    </div>
+                    <div id="div_existe_pasaporte" class="card border-success bg-light p-3 text-center" style="display:none">
+                        <p class="small mb-2">Pasaporte existente</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="#" class="btn btn-outline-success btn-sm mt-auto" onclick="cargaImagen('prev_anverso_dni')">Ver Pasaporte</a>
+                            <a href="#" class="btn btn-link btn-sm ml-2 mt-auto" onclick="$('#anverso_dni').val('').click()">Subir Nuevo</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="vista_dni" style="display:none">
-            <div class="d-flex flex-wrap justify-content-center">
-                <div class="mb-3 mr-md-3" style="width: 300px;">
+            <div class="row">
+                <div class="col-md-6 mb-3">
                     <div id="div_anverso_dni" class="card border-success bg-light p-3 text-center h-100">
                         <p class="small mb-2">Anverso DNI/NIE</p>
-                        <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#anverso_dni').val('').click()">Seleccionar imagen del documento</a>
+                        <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="$('#anverso_dni').val('').click()">Seleccionar imagen del documento</a>
                     </div>
                     <div id="div_existe_anverso_dni" class="card border-success bg-light p-2 text-center" style="display:none; min-height: 90px;">
-                        <p class="small mb-1">Anverso existente</p>
-                        <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="cargaImagen('prev_anverso_dni')">Ver</a>
-                        <a href="#" class="small text-muted" onclick="$('#anverso_dni').val('').click()">Subir nuevo</a>
+                        <p class="small mb-1 font-weight-bold">Ya existe el Anverso del DNI/NIE.</p>
+                        <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="cargaImagen('prev_anverso_dni')">Ver</a>
+                        <a href="#" class="small text-muted mt-1" onclick="$('#anverso_dni').val('').click()">Subir nuevo</a>
                     </div>
                 </div>
 
-                <div class="mb-3" style="width: 300px;">
+                <div class="col-md-6 mb-3">
                     <div id="div_reverso_dni" class="card border-success bg-light p-3 text-center h-100">
                         <p class="small mb-2">Reverso DNI/NIE</p>
-                        <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#reverso_dni').val('').click()">Seleccionar imagen del documento</a>
+                        <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="$('#reverso_dni').val('').click()">Seleccionar imagen del documento</a>
                     </div>
                     <div id="div_existe_reverso_dni" class="card border-success bg-light p-2 text-center" style="display:none; min-height: 90px;">
-                        <p class="small mb-1">Reverso existente</p>
-                        <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="cargaImagen('prev_reverso_dni')">Ver</a>
-                        <a href="#" class="small text-muted" onclick="$('#reverso_dni').val('').click()">Subir nuevo</a>
+                        <p class="small mb-1 font-weight-bold">Ya existe el Reverso del DNI/NIE.</p>
+                        <a href="#" class="btn btn-outline-success btn-sm btn-block mt-auto" onclick="cargaImagen('prev_reverso_dni')">Ver</a>
+                        <a href="#" class="small text-muted mt-1" onclick="$('#reverso_dni').val('').click()">Subir nuevo</a>
                     </div>
                 </div>
             </div>
