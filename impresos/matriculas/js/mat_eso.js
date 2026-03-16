@@ -204,7 +204,7 @@ function alRepite(){
         document.getElementById("div_consolida_premat").style.display="no";
         document.getElementById("consolida_prem_no").checked = true;
     } 
-    else{
+    else if(document.getElementById("alumno_nuevo_no").checked){
         $("#div_nuevo_otra_comunidad").hide();
         document.getElementById("div_consolida_premat").style.display="inline-block";
     } 
