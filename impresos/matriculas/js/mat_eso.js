@@ -324,8 +324,13 @@ function pasaPagina(p) {
                 }
             }
 
-            // 2. LÓGICA DE OBLIGATORIEDAD POR CURSO
-            // En 1º y 2º ESO NO es obligatorio subir nada de ID
+            // 2. LÓGICA DE OBLIGATORIEDAD
+            if(existe_foto){
+                $("#foto_alumno").rules("remove", "required");
+            }
+            else{
+                $("#foto_alumno").rules("add", { required: true });
+            }
             if (_curso == "1º ESO" || _curso == "2º ESO") {
                 $("#anverso_dni").rules("remove", "required");
                 $("#reverso_dni").rules("remove", "required");
@@ -344,8 +349,15 @@ function pasaPagina(p) {
                         $("#pasaporte").rules("remove", "required");
                     }
                 }
+                else{
+                    $("#anverso_dni").rules("remove", "required");
+                    $("#pasaporte").rules("remove", "required");
+                }
                 if (es_pasaporte == 0 && !existe_dni_R) {
                     $("#reverso_dni").rules("add", { required: true });
+                }
+                else{
+                    $("#reverso_dni").rules("remove", "required");
                 }
                 $("p[data-label='documento_identificacion']").each(function() {
                     $(this).text($(this).text().replace('(Opcional) ', '*'));
@@ -361,9 +373,11 @@ function pasaPagina(p) {
                 if (existe_seguro) {
                     $("#div_resguardo_seguro_escolar").hide();
                     $("#div_existe_resguardo_seguro_escolar").show();
+                    $("#resguardo_seguro_escolar").rules("remove", "required");
                 } else {
                     $("#div_resguardo_seguro_escolar").show();
                     $("#div_existe_resguardo_seguro_escolar").hide();
+                    $("#resguardo_seguro_escolar").rules("add", { required: true });
                 }
             }
 
@@ -375,9 +389,11 @@ function pasaPagina(p) {
                     $("#div_existe_certificado").show();
                     let urlCert = "../../docs/" + id_nie + "/certificado_notas/" + anno_curso + "/" + id_nie + ".pdf?q=" + Date.now();
                     $("#prev_certificado").attr("href", urlCert);
+                    $("#certificado").rules("remove", "required");
                 } else {
                     $("#div_certificado").show();
                     $("#div_existe_certificado").hide();
+                    $("#certificado").rules("add", { required: true });
                 }
             } else {
                 $("#sec_cert").hide();

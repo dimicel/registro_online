@@ -159,6 +159,7 @@ function creaValidatorPagina3() {
 
 function creaValidatorPagina4() {
     $("#form_pagina_4").validate({
+        ignore: [],
         rules: {
             foto_alumno: {
                 required: true
@@ -203,7 +204,6 @@ function creaValidatorPagina4() {
             /*// Busca el contenedor de error más cercano hacia abajo en la sección
             $(element).closest('.mb-4').find('.errorTxt').html(error);*/
             // Busca el selector guardado en el atributo data-error-container
-            alert(error);
             var target = $(element).data('error-container');
         
             if (target) {
