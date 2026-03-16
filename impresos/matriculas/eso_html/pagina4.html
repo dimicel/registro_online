@@ -88,34 +88,32 @@
             </div>
         </div>
         <hr>
-        <div id="sec_seguro" class="mb-4">
-            <div id="div_resguardo_seguro_escolar" class="card border-success bg-light p-3 text-center">
-                <p class="small mb-2" style="color: red;">*Justificante pago seguro escolar (JPEG):</p>
-                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#resguardo_seguro_escolar').val('').click()">Seleccionar fichero</a>
-            </div>
-            <div id="div_existe_resguardo_seguro_escolar" class="card border-success bg-light p-2 text-center" style="display:none">
-                <p class="small mb-1">Ya existe justificante de seguro escolar.</p>
-                <div>
+        <div class="row d-flex justify-content-center">
+            <div id="sec_seguro" class="col-md-4 mb-4">
+                <div id="div_resguardo_seguro_escolar" class="card border-success bg-light p-3 text-center">
+                    <p class="small mb-2" style="color: red;">*Justificante pago seguro escolar (JPEG):</p>
+                    <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#resguardo_seguro_escolar').val('').click()">Seleccionar fichero</a>
+                </div>
+                <div id="div_existe_resguardo_seguro_escolar" class="card border-success bg-light p-2 text-center" style="display:none">
+                    <p class="small mb-1">Ya existe justificante de seguro escolar.</p>
                     <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_resguardo_seguro')">Ver existente</a>
                     <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#resguardo_seguro_escolar').val('').click()">Subir nuevo</a>
                 </div>
+                <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
             </div>
-            <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
-        </div>
 
-        <div id="sec_cert" class="mb-4">
-            <div id="div_certificado" class="card border-success bg-light p-3 text-center">
-                <p class="small mb-2" style="color: red;">*Certificado notas (PDF):</p>
-                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#certificado').val('').click()">Seleccionar fichero</a>
-            </div>
-            <div id="div_existe_certificado" class="card border-success bg-light p-2 text-center" style="display:none">
-                <p class="small mb-1">Ya existe certificado de notas.</p>
-                <div>
+            <div id="sec_cert" class="col-md-4 mb-4">
+                <div id="div_certificado" class="card border-success bg-light p-3 text-center">
+                    <p class="small mb-2" style="color: red;">*Certificado notas (PDF):</p>
+                    <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#certificado').val('').click()">Seleccionar fichero</a>
+                </div>
+                <div id="div_existe_certificado" class="card border-success bg-light p-2 text-center" style="display:none">
+                    <p class="small mb-1">Ya existe certificado de notas</p>
                     <a href="#" id="prev_certificado" class="btn btn-outline-success btn-sm" target="_blank">Ver certificado existente</a>
                     <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#certificado').val('').click()">Subir nuevo</a>
                 </div>
+                <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
             </div>
-            <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
         </div>
 
         <input name="foto_alumno" id="foto_alumno" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
