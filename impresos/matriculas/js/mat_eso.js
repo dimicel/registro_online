@@ -340,6 +340,9 @@ function pasaPagina(p) {
                 if (es_pasaporte == 0 && !existe_dni_R) {
                     $("#reverso_dni").rules("add", { required: true });
                 }
+                $("p[data-label='documento_identificacion']").each(function() {
+                    $(this).text($(this).text().replace('(Opcional) ', '*'));
+                });
             }
 
             // --- LÓGICA SEGURO ESCOLAR (Obligatorio > 2º ESO) ---
