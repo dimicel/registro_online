@@ -44,13 +44,13 @@
                     <div class="row justify-content-center">
                         <div class="col-md-12"> <div id="div_pasaporte" class="card border-success bg-light p-3 text-center h-100">
                                 <p class="small mb-2" style="color: red;" data-label="documento_identificacion">*Página principal del Pasaporte</p>
-                                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#anverso_dni').val('').click()">Seleccionar fichero</a>
+                                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#pasaporte').val('').click()">Seleccionar fichero</a>
                             </div>
                             <div id="div_existe_pasaporte" class="card border-success bg-light p-3 text-center" style="display:none">
                                 <p class="small mb-2">Pasaporte existente</p>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_anverso_dni')">Ver Pasaporte</a>
-                                    <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#anverso_dni').val('').click()">Subir Nuevo</a>
+                                    <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#pasaporte').val('').click()">Subir Nuevo</a>
                                 </div>
                             </div>
                         </div>
@@ -119,6 +119,7 @@
         <input name="foto_alumno" id="foto_alumno" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
         <input name="anverso_dni" id="anverso_dni" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_anverso')" />
         <input name="reverso_dni" id="reverso_dni" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
+        <input name="pasaporte" id="pasaporte" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'pasaporte')" />        
         <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')" />
         <input name="certificado" id="certificado" type="file" class="d-none" accept="application/pdf" onchange="subeCertificado(this)" />
     </form>

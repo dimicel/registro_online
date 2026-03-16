@@ -172,6 +172,9 @@ function creaValidatorPagina4() {
             reverso_dni: {
                 required: true
             },
+            pasaporte: {
+                required: true
+            },
             certificado:{
                 required: true
             }
@@ -188,6 +191,9 @@ function creaValidatorPagina4() {
             },
             reverso_dni: {
                 required: "Suba un archivo JPEG con el reverso del documento de identificación (DNI/NIE)"
+            },
+            pasaporte: {
+                required: "Suba un archivo JPEG con la página principal del pasaporte"
             },
             certificado: {
                 required: "Suba el certificado de notas en formato PDF"

@@ -329,13 +329,20 @@ function pasaPagina(p) {
             if (_curso == "1º ESO" || _curso == "2º ESO") {
                 $("#anverso_dni").rules("remove", "required");
                 $("#reverso_dni").rules("remove", "required");
+                $("#pasaporte").rules("remove", "required");
                 
                 $("p[data-label='documento_identificacion']").each(function() {
                     $(this).text($(this).text().replace('*', '(Opcional) '));
                 });
             } else {
                 if (!existe_dni_A) {
-                    $("#anverso_dni").rules("add", { required: true });
+                    if (es_pasaporte==1) {
+                        $("#pasaporte").rules("add", { required: true });
+                        $("#anverso_dni").rules("remove", "required");
+                    } else {
+                        $("#anverso_dni").rules("add", { required: true });
+                        $("#pasaporte").rules("remove", "required");
+                    }
                 }
                 if (es_pasaporte == 0 && !existe_dni_R) {
                     $("#reverso_dni").rules("add", { required: true });

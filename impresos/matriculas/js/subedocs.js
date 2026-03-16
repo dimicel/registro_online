@@ -111,7 +111,7 @@ function muestraEditor(_file,tipo){
                         formData.append("subido_por","usuario_matricula");
                         if (tipo=="dni_anverso")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
-                        else if(tipo=="dni_pasaporte")formData.append("parte","P");
+                        else if(tipo=="pasaporte")formData.append("parte","P");
                         if(tipo=="seguro") formData.append("anno_curso", anno_curso);
                         mostrarPantallaEspera();
                         $.ajax({
@@ -178,13 +178,13 @@ function muestraEditor(_file,tipo){
             // Variables que configuraremos según el caso
             let vWidth, vHeight, bWidth, bHeight, msg, dialogoW;
 
-            if (tipo == "dni_anverso" || tipo == "dni_reverso"  || tipo == "dni_pasaporte") {
+            if (tipo == "dni_anverso" || tipo == "dni_reverso"  || tipo == "pasaporte") {
                 msg = "Rota, haz zoom y mueve para ajustar la CARA y CUELLO";
                 // Mantenemos proporción horizontal de un DNI
                 vWidth = 450; vHeight = 285;
                 dialogoW = 700;
                 _fname_ajax = "dni";
-                _f_ajax = id_nie + ((tipo == "dni_anverso" || tipo == "dni_pasaporte")? "-A.jpeg" : "-R.jpeg");
+                _f_ajax = id_nie + ((tipo == "dni_anverso" || tipo == "pasaporte")? "-A.jpeg" : "-R.jpeg");
                 url = "impresos/matriculas/php/sube_dni.php";
             } 
             else if (tipo == "foto") {
