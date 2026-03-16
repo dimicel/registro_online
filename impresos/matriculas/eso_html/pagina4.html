@@ -110,60 +110,61 @@
                     </div>
                 </div>
             </div>
-            <hr>
-            <div class="row d-flex justify-content-center">
-                <div id="sec_seguro" class="col-md-4 mb-4">
-                    <h6 class="text-brown font-weight-bold text-center">SEGURO ESCOLAR</h6>
-                    <div id="div_resguardo_seguro_escolar" class="card border-success bg-light p-3 text-center">
-                        <p class="small mb-2" style="color: red;">*Justificante pago seguro escolar (JPEG):</p>
-                        <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1"
-                            onclick="$('#resguardo_seguro_escolar').val('').click()">Seleccionar fichero</a>
-                    </div>
-                    <div id="div_existe_resguardo_seguro_escolar" class="card border-success bg-light p-3 text-center"
-                        style="display:none">
-                        <p class="small mb-1">Ya existe justificante de seguro escolar.</p>
-                        <a href="#" class="btn btn-outline-success btn-sm"
-                            onclick="cargaImagen('prev_resguardo_seguro')">Ver existente</a>
-                        <a href="#" class="btn btn-link btn-sm ml-2"
-                            onclick="$('#resguardo_seguro_escolar').val('').click()">Subir nuevo</a>
-                    </div>
-                    <div id="error_resguardo_seguro_escolar" class="error-container text-center mt-1"><span
-                            class="errorTxt text-danger small"></span></div>
+        </div>
+        <hr>
+        <div class="row d-flex justify-content-center">
+            <div id="sec_seguro" class="col-md-4 mb-4">
+                <h6 class="text-brown font-weight-bold text-center">SEGURO ESCOLAR</h6>
+                <div id="div_resguardo_seguro_escolar" class="card border-success bg-light p-3 text-center">
+                    <p class="small mb-2" style="color: red;">*Justificante pago seguro escolar (JPEG):</p>
+                    <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1"
+                        onclick="$('#resguardo_seguro_escolar').val('').click()">Seleccionar fichero</a>
                 </div>
-
-                <div id="sec_cert" class="col-md-4 mb-4">
-                    <h6 class="text-brown font-weight-bold text-center">CERTIFICADO NOTAS</h6>
-                    <div id="div_certificado" class="card border-success bg-light p-3 text-center">
-                        <p class="small mb-2" style="color: red;">*Certificado notas (PDF):</p>
-                        <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1"
-                            onclick="$('#certificado').val('').click()">Seleccionar fichero</a>
-                    </div>
-                    <div id="div_existe_certificado" class="card border-success bg-light p-3 text-center"
-                        style="display:none">
-                        <p class="small mb-1">Ya existe certificado de notas</p>
-                        <a href="#" id="prev_certificado" class="btn btn-outline-success btn-sm" target="_blank">Ver
-                            certificado existente</a>
-                        <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#certificado').val('').click()">Subir
-                            nuevo</a>
-                    </div>
-                    <div id="error_certificado" class="error-container text-center mt-1"><span
-                            class="errorTxt text-danger small"></span></div>
+                <div id="div_existe_resguardo_seguro_escolar" class="card border-success bg-light p-3 text-center"
+                    style="display:none">
+                    <p class="small mb-1">Ya existe justificante de seguro escolar.</p>
+                    <a href="#" class="btn btn-outline-success btn-sm"
+                        onclick="cargaImagen('prev_resguardo_seguro')">Ver existente</a>
+                    <a href="#" class="btn btn-link btn-sm ml-2"
+                        onclick="$('#resguardo_seguro_escolar').val('').click()">Subir nuevo</a>
                 </div>
+                <div id="error_resguardo_seguro_escolar" class="error-container text-center mt-1"><span
+                        class="errorTxt text-danger small"></span></div>
             </div>
 
-            <input data-error-container="#error_fotografia" name="foto_alumno" id="foto_alumno" type="file"
-                class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
-            <input data-error-container="#error_anverso_dni" name="anverso_dni" id="anverso_dni" type="file"
-                class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_anverso')" />
-            <input data-error-container="#error_reverso_dni" name="reverso_dni" id="reverso_dni" type="file"
-                class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
-            <input data-error-container="#error_pasaporte" name="pasaporte" id="pasaporte" type="file" class="d-none"
-                accept="image/jpeg" onchange="muestraEditor(this.files[0],'pasaporte')" />
-            <input data-error-container="#error_resguardo_seguro_escolar" name="resguardo_seguro_escolar"
-                id="resguardo_seguro_escolar" type="file" class="d-none" accept="image/jpeg"
-                onchange="muestraEditor(this.files[0],'seguro')" />
-            <input data-error-container="#error_certificado" name="certificado" id="certificado" type="file"
-                class="d-none" accept="application/pdf" onchange="subeCertificado(this)" />
+            <div id="sec_cert" class="col-md-4 mb-4">
+                <h6 class="text-brown font-weight-bold text-center">CERTIFICADO NOTAS</h6>
+                <div id="div_certificado" class="card border-success bg-light p-3 text-center">
+                    <p class="small mb-2" style="color: red;">*Certificado notas (PDF):</p>
+                    <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1"
+                        onclick="$('#certificado').val('').click()">Seleccionar fichero</a>
+                </div>
+                <div id="div_existe_certificado" class="card border-success bg-light p-3 text-center"
+                    style="display:none">
+                    <p class="small mb-1">Ya existe certificado de notas</p>
+                    <a href="#" id="prev_certificado" class="btn btn-outline-success btn-sm" target="_blank">Ver
+                        certificado existente</a>
+                    <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#certificado').val('').click()">Subir
+                        nuevo</a>
+                </div>
+                <div id="error_certificado" class="error-container text-center mt-1"><span
+                        class="errorTxt text-danger small"></span></div>
+            </div>
+        </div>
+
+        <input data-error-container="#error_fotografia" name="foto_alumno" id="foto_alumno" type="file" class="d-none"
+            accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
+        <input data-error-container="#error_anverso_dni" name="anverso_dni" id="anverso_dni" type="file" class="d-none"
+            accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_anverso')" />
+        <input data-error-container="#error_reverso_dni" name="reverso_dni" id="reverso_dni" type="file" class="d-none"
+            accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
+        <input data-error-container="#error_pasaporte" name="pasaporte" id="pasaporte" type="file" class="d-none"
+            accept="image/jpeg" onchange="muestraEditor(this.files[0],'pasaporte')" />
+        <input data-error-container="#error_resguardo_seguro_escolar" name="resguardo_seguro_escolar"
+            id="resguardo_seguro_escolar" type="file" class="d-none" accept="image/jpeg"
+            onchange="muestraEditor(this.files[0],'seguro')" />
+        <input data-error-container="#error_certificado" name="certificado" id="certificado" type="file" class="d-none"
+            accept="application/pdf" onchange="subeCertificado(this)" />
     </form>
 
     <hr>
