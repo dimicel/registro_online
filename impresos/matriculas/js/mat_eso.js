@@ -289,7 +289,8 @@ $("#form_pagina_4").validate().resetForm();
     if (es_pasaporte == 1) {
         $("#vista_pasaporte").show();
         $("#vista_dni").hide();
-        
+        $("#sec_foto").removeClass("col-md-4").addClass("col-md-6");
+        $("#sec_documento_id").removeClass("col-md-8").addClass("col-md-6");
         if (existe_dni_A) {
             $("#div_pasaporte").hide();
             $("#div_existe_pasaporte").show();
@@ -302,7 +303,8 @@ $("#form_pagina_4").validate().resetForm();
     } else {
         $("#vista_pasaporte").hide();
         $("#vista_dni").show();
-
+        $("#sec_foto").removeClass("col-md-6").addClass("col-md-4");
+        $("#sec_documento_id").removeClass("col-md-6").addClass("col-md-8");
         // Control de existentes para DNI Anverso
         if (existe_dni_A) {
             $("#div_anverso_dni").hide();
