@@ -205,10 +205,11 @@ function creaValidatorPagina4() {
             // Busca el selector guardado en el atributo data-error-container
             alert(error);
             var target = $(element).data('error-container');
+        
             if (target) {
-                $(target).html(error);
+                // Buscamos el span .errorTxt dentro de ese contenedor
+                $(target).find('.errorTxt').html(error);
             } else {
-                // Fallback por si se te olvida poner el data-attribute en alguno
                 error.insertAfter(element);
             }
         }
