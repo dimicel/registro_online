@@ -165,13 +165,13 @@ function creaValidatorPagina4() {
             },
             resguardo_seguro_escolar: {
                 required: true
-            },/*
+            },
             anverso_dni: {
                 required: true
             },
             reverso_dni: {
                 required: true
-            },*/
+            },
             certificado:{
                 required: true
             }
