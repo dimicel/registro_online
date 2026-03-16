@@ -276,119 +276,104 @@ function pasaPagina(p) {
             }
         } 
  else if (pag_html == "pagina_4") {
-$("#form_pagina_4").validate().resetForm();
-    $(".errorTxt").html("");
-    if (existe_foto) {
-            $("#div_fotografia").hide();
-            $("#div_existe_fotografia").show();
-        } else {
-            $("#div_fotografia").show();
-            $("#div_existe_fotografia").hide();
-    }
-    // 1. SWITCH PASAPORTE VS DNI
-    if (es_pasaporte == 1) {
-        $("#vista_pasaporte").show();
-        $("#vista_dni").hide();
-        $("#sec_foto").removeClass("col-md-4").addClass("col-md-6");
-        $("#sec_documento_id").removeClass("col-md-8").addClass("col-md-6");
-        if (existe_dni_A) {
-            $("#div_pasaporte").hide();
-            $("#div_existe_pasaporte").show();
-        } else {
-            $("#div_pasaporte").show();
-            $("#div_existe_pasaporte").hide();
-        }
-        $("#reverso_dni").rules("remove", "required");
+        $("#form_pagina_4").validate().resetForm();
+            $(".errorTxt").html("");
+            if (existe_foto) {
+                    $("#div_fotografia").hide();
+                    $("#div_existe_fotografia").show();
+                } else {
+                    $("#div_fotografia").show();
+                    $("#div_existe_fotografia").hide();
+            }
+            // 1. SWITCH PASAPORTE VS DNI
+            if (es_pasaporte == 1) {
+                $("#vista_pasaporte").show();
+                $("#vista_dni").hide();
+                $("#sec_foto").removeClass("col-md-4").addClass("col-md-6");
+                $("#sec_documento_id").removeClass("col-md-8").addClass("col-md-6");
+                if (existe_dni_A) {
+                    $("#div_pasaporte").hide();
+                    $("#div_existe_pasaporte").show();
+                } else {
+                    $("#div_pasaporte").show();
+                    $("#div_existe_pasaporte").hide();
+                }
+                $("#reverso_dni").rules("remove", "required");
 
-    } else {
-        $("#vista_pasaporte").hide();
-        $("#vista_dni").show();
-        $("#sec_foto").removeClass("col-md-6").addClass("col-md-4");
-        $("#sec_documento_id").removeClass("col-md-6").addClass("col-md-8");
-        // Control de existentes para DNI Anverso
-        if (existe_dni_A) {
-            $("#div_anverso_dni").hide();
-            $("#div_existe_anverso_dni").show();
-        } else {
-            $("#div_anverso_dni").show();
-            $("#div_existe_anverso_dni").hide();
-        }
+            } else {
+                $("#vista_pasaporte").hide();
+                $("#vista_dni").show();
+                $("#sec_foto").removeClass("col-md-6").addClass("col-md-4");
+                $("#sec_documento_id").removeClass("col-md-6").addClass("col-md-8");
+                // Control de existentes para DNI Anverso
+                if (existe_dni_A) {
+                    $("#div_anverso_dni").hide();
+                    $("#div_existe_anverso_dni").show();
+                } else {
+                    $("#div_anverso_dni").show();
+                    $("#div_existe_anverso_dni").hide();
+                }
 
-        // Control de existentes para DNI Reverso
-        if (existe_dni_R) {
-            $("#div_reverso_dni").hide();
-            $("#div_existe_reverso_dni").show();
-        } else {
-            $("#div_reverso_dni").show();
-            $("#div_existe_reverso_dni").hide();
-        }
-    }
+                // Control de existentes para DNI Reverso
+                if (existe_dni_R) {
+                    $("#div_reverso_dni").hide();
+                    $("#div_existe_reverso_dni").show();
+                } else {
+                    $("#div_reverso_dni").show();
+                    $("#div_existe_reverso_dni").hide();
+                }
+            }
 
-    // 2. LÓGICA DE OBLIGATORIEDAD POR CURSO
-    // En 1º y 2º ESO NO es obligatorio subir nada de ID
-    if (_curso == "1º ESO" || _curso == "2º ESO") {
-        $("#anverso_dni").rules("remove", "required");
-        $("#reverso_dni").rules("remove", "required");
-        
-        $("label[for='anverso_dni'], label[for='reverso_dni']").each(function() {
-            $(this).text($(this).text().replace('*', '(Opcional) '));
-        });
-    } else {
-        if (!existe_dni_A) {
-            $("#anverso_dni").rules("add", { required: true });
-        }
-        if (es_pasaporte == 0 && !existe_dni_R) {
-            $("#reverso_dni").rules("add", { required: true });
-        }
-    }
+            // 2. LÓGICA DE OBLIGATORIEDAD POR CURSO
+            // En 1º y 2º ESO NO es obligatorio subir nada de ID
+            if (_curso == "1º ESO" || _curso == "2º ESO") {
+                $("#anverso_dni").rules("remove", "required");
+                $("#reverso_dni").rules("remove", "required");
+                
+                $("p[data-label='documento_identificacion']").each(function() {
+                    $(this).text($(this).text().replace('*', '(Opcional) '));
+                });
+            } else {
+                if (!existe_dni_A) {
+                    $("#anverso_dni").rules("add", { required: true });
+                }
+                if (es_pasaporte == 0 && !existe_dni_R) {
+                    $("#reverso_dni").rules("add", { required: true });
+                }
+            }
 
-    // --- LÓGICA SEGURO ESCOLAR (Obligatorio > 2º ESO) ---
-    if (_curso == "1º ESO" || _curso == "2º ESO") {
-        $("#sec_seguro").hide(); // No pagan seguro escolar en estos niveles
-        $("#resguardo_seguro_escolar").rules("remove", "required");
-    } else {
-        $("#sec_seguro").show();
-        if (existe_seguro) {
-            $("#div_resguardo_seguro_escolar").hide();
-            $("#div_existe_resguardo_seguro_escolar").show();
-        } else {
-            $("#div_resguardo_seguro_escolar").show();
-            $("#div_existe_resguardo_seguro_escolar").hide();
-        }
-    }
+            // --- LÓGICA SEGURO ESCOLAR (Obligatorio > 2º ESO) ---
+            if (_curso == "1º ESO" || _curso == "2º ESO") {
+                $("#sec_seguro").hide(); // No pagan seguro escolar en estos niveles
+                $("#resguardo_seguro_escolar").rules("remove", "required");
+            } else {
+                $("#sec_seguro").show();
+                if (existe_seguro) {
+                    $("#div_resguardo_seguro_escolar").hide();
+                    $("#div_existe_resguardo_seguro_escolar").show();
+                } else {
+                    $("#div_resguardo_seguro_escolar").show();
+                    $("#div_existe_resguardo_seguro_escolar").hide();
+                }
+            }
 
-    // --- LÓGICA CERTIFICADO (Solo si OC_SI está marcado) ---
-    if (document.getElementById("oc_si").checked) {
-        $("#sec_cert").show();
-        if (existe_certificado) {
-            $("#div_certificado").hide();
-            $("#div_existe_certificado").show();
-            let urlCert = "../../docs/" + id_nie + "/certificado_notas/" + anno_curso + "/" + id_nie + ".pdf?q=" + Date.now();
-            $("#prev_certificado").attr("href", urlCert);
-        } else {
-            $("#div_certificado").show();
-            $("#div_existe_certificado").hide();
+            // --- LÓGICA CERTIFICADO (Solo si OC_SI está marcado) ---
+            if (document.getElementById("oc_si").checked) {
+                $("#sec_cert").show();
+                if (existe_certificado) {
+                    $("#div_certificado").hide();
+                    $("#div_existe_certificado").show();
+                    let urlCert = "../../docs/" + id_nie + "/certificado_notas/" + anno_curso + "/" + id_nie + ".pdf?q=" + Date.now();
+                    $("#prev_certificado").attr("href", urlCert);
+                } else {
+                    $("#div_certificado").show();
+                    $("#div_existe_certificado").hide();
+                }
+            } else {
+                $("#sec_cert").hide();
+                $("#certificado").rules("remove", "required");
+            }
         }
-    } else {
-        $("#sec_cert").hide();
-        $("#certificado").rules("remove", "required");
-    }
-
-    // --- GESTIÓN DE OBLIGATORIEDAD SEGÚN CURSO (DNI/NIE) ---
-    // Si es 1º o 2º ESO, los documentos de identidad NO son obligatorios
-    if (_curso == "1º ESO" || _curso == "2º ESO") {
-        $("#anverso_dni").rules("remove", "required");
-        $("#reverso_dni").rules("remove", "required");
-        // Opcional: Cambiar label para indicar que no es obligatorio
-        $("#label_anv_dni").prepend("(Opcional) ");
-        if(!es_pasaporte) $("#label_rev_dni").prepend("(Opcional) ");
-    } else {
-        // Son obligatorios para el resto. 
-        // Solo añadimos la regla si NO existen ya en el servidor
-        if (!existe_dni_A) $("#anverso_dni").rules("add", { required: true });
-        if (!es_pasaporte && !existe_dni_R) $("#reverso_dni").rules("add", { required: true });
-    }
-}
         else if (pag_html == "pagina_5") {
             document.getElementById("label_texto").innerHTML += "D./Dña. " + document.getElementById("tutor").value;
             document.getElementById("label_texto").innerHTML += ", como tutor/a legal del alumno/a " + nombre + " " + apellidos + ", mediante este formulario formaliza su matrícula en el Centro para el año escolar ";
