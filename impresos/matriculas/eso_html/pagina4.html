@@ -34,7 +34,7 @@
                     <a href="#" class="small text-muted" onclick="$('#foto_alumno').val('').click()">Subir Nueva Foto</a>
                 </div>
                 
-                <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
+                <div id="error_fotografia" class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
             </div>
 
             <div id="sec_documento_id" class="col-md-6 mb-4">
@@ -43,17 +43,15 @@
                 <div id="vista_pasaporte" style="display:none">
                     <div class="row justify-content-center">
                         <div class="col-md-12"> <div id="div_pasaporte" class="card border-success bg-light p-3 text-center h-100">
-                                <p class="small mb-2" style="color: red;" data-label="documento_identificacion">*Página principal del Pasaporte</p>
-                                <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#pasaporte').val('').click()">Seleccionar fichero</a>
-                            </div>
-                            <div id="div_existe_pasaporte" class="card border-success bg-light p-3 text-center" style="display:none">
-                                <p class="small mb-2">Pasaporte existente</p>
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_anverso_dni')">Ver Pasaporte</a>
-                                    <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#pasaporte').val('').click()">Subir Nuevo</a>
-                                </div>
-                            </div>
+                            <p class="small mb-2" style="color: red;" data-label="documento_identificacion">*Página principal del Pasaporte</p>
+                            <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="$('#pasaporte').val('').click()">Seleccionar fichero</a>
                         </div>
+                        <div id="div_existe_pasaporte" class="card border-success bg-light p-3 text-center" style="display:none">
+                            <p class="small mb-2">Pasaporte existente</p>
+                            <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_anverso_dni')">Ver Pasaporte</a>
+                            <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#pasaporte').val('').click()">Subir Nuevo</a>
+                        </div>
+                        <div id="error_pasaporte" class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
                     </div>
                 </div>
 
@@ -69,6 +67,7 @@
                                 <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="cargaImagen('prev_anverso_dni')">Ver</a>
                                 <a href="#" class="small text-muted" onclick="$('#anverso_dni').val('').click()">Subir nuevo</a>
                             </div>
+                            <div id="error_anverso_dni" class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -81,10 +80,11 @@
                                 <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1" onclick="cargaImagen('prev_reverso_dni')">Ver</a>
                                 <a href="#" class="small text-muted" onclick="$('#reverso_dni').val('').click()">Subir nuevo</a>
                             </div>
+                            <div id="error_reverso_dni" class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
                         </div>
                     </div>
                 </div>
-                <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
+                
             </div>
         </div>
         <hr>
@@ -99,7 +99,7 @@
                     <a href="#" class="btn btn-outline-success btn-sm" onclick="cargaImagen('prev_resguardo_seguro')">Ver existente</a>
                     <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#resguardo_seguro_escolar').val('').click()">Subir nuevo</a>
                 </div>
-                <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
+                <div id="error_resguardo_seguro_escolar" class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
             </div>
 
             <div id="sec_cert" class="col-md-4 mb-4">
@@ -112,16 +112,16 @@
                     <a href="#" id="prev_certificado" class="btn btn-outline-success btn-sm" target="_blank">Ver certificado existente</a>
                     <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#certificado').val('').click()">Subir nuevo</a>
                 </div>
-                <div class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
+                <div id="error_certificado" class="error-container text-center mt-1"><span class="errorTxt text-danger small"></span></div>
             </div>
         </div>
 
-        <input name="foto_alumno" id="foto_alumno" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
-        <input name="anverso_dni" id="anverso_dni" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_anverso')" />
-        <input name="reverso_dni" id="reverso_dni" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
-        <input name="pasaporte" id="pasaporte" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'pasaporte')" />        
-        <input name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')" />
-        <input name="certificado" id="certificado" type="file" class="d-none" accept="application/pdf" onchange="subeCertificado(this)" />
+        <input data-error-container="#error_fotografia" name="foto_alumno" id="foto_alumno" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
+        <input data-error-container="#error_anverso_dni" name="anverso_dni" id="anverso_dni" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_anverso')" />
+        <input data-error-container="#error_reverso_dni" name="reverso_dni" id="reverso_dni" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
+        <input data-error-container="#error_pasaporte" name="pasaporte" id="pasaporte" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'pasaporte')" />        
+        <input data-error-container="#error_resguardo_seguro_escolar" name="resguardo_seguro_escolar" id="resguardo_seguro_escolar" type="file" class="d-none" accept="image/jpeg" onchange="muestraEditor(this.files[0],'seguro')" />
+        <input data-error-container="#error_certificado" name="certificado" id="certificado" type="file" class="d-none" accept="application/pdf" onchange="subeCertificado(this)" />
     </form>
 
     <hr>
