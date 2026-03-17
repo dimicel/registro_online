@@ -365,7 +365,7 @@ $handle = opendir($dir);
 while ($file = readdir($handle)) {
 	if (is_file($dir.$file)) unlink($dir.$file);
 }
-closedir($dir);
+closedir($handle);
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';
 if (!is_dir(__DIR__."/../../../docs/".$id_nie))mkdir(__DIR__."/../../../docs/".$id_nie,0777);
