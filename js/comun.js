@@ -122,11 +122,31 @@ function confirmar(mensaje, titulo, ancho) {
             hide: { effect: "fade", duration: 0 },
             closeOnEscape: false,
             open: function () {
-                $(this).dialog("option", "position", { 
+                var $dialogo = $(this);
+            
+                // Forzamos el centrado inicial
+                const centrar = () => {
+                    $dialogo.dialog("option", "position", { 
+                        my: "center", 
+                        at: "center", 
+                        of: window 
+                    });
+                };
+
+                centrar();
+
+                // Si hay imágenes re-centramos al cargar
+                $dialogo.find('img').on('load', function() {
+                    centrar();
+                });
+
+                // Seguro de vida: re-centrado tras 100ms por si el DOM está perezoso
+                setTimeout(centrar, 100);
+                /*$(this).dialog("option", "position", { 
                     my: "center", 
                     at: "center", 
                     of: window 
-                });
+                });*/
                 // Asocia eventos a los botones internos
                 $div.find("#btnAceptar").off("click").on("click", () => {
                     $div.dialog("close").dialog("destroy");
@@ -379,6 +399,26 @@ function cargaHTML(url="",contenido="",titulo="",ancho=600,alto=400,posicion_my=
                             buttons: botones,
                             openOnEscape: false,
                             open: function(event, ui) {
+                                var $dialogo = $(this);
+                                
+                                // Forzamos el centrado inicial
+                                const centrar = () => {
+                                    $dialogo.dialog("option", "position", { 
+                                        my: "center", 
+                                        at: "center", 
+                                        of: window 
+                                    });
+                                };
+
+                                centrar();
+
+                                // Si hay imágenes re-centramos al cargar
+                                $dialogo.find('img').on('load', function() {
+                                    centrar();
+                                });
+
+                                // Seguro de vida: re-centrado tras 100ms por si el DOM está perezoso
+                                setTimeout(centrar, 100);
 
                                 $(this).css("overflow", "hidden");
                                 funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
@@ -410,6 +450,27 @@ function cargaHTML(url="",contenido="",titulo="",ancho=600,alto=400,posicion_my=
                     buttons: botones,
                     openOnEscape: false,
                     open: function(event, ui) {
+                        var $dialogo = $(this);
+                        
+                        // Forzamos el centrado inicial
+                        const centrar = () => {
+                            $dialogo.dialog("option", "position", { 
+                                my: "center", 
+                                at: "center", 
+                                of: window 
+                            });
+                        };
+
+                        centrar();
+
+                        // Si hay imágenes re-centramos al cargar
+                        $dialogo.find('img').on('load', function() {
+                            centrar();
+                        });
+
+                        // Seguro de vida: re-centrado tras 100ms por si el DOM está perezoso
+                        setTimeout(centrar, 100);
+                        
                         $(this).css("overflow", "hidden");
                         funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
                         resolve(this);

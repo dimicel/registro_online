@@ -145,6 +145,11 @@ function muestraEditor(_file,tipo){
                                     document.getElementById("div_existe_reverso_dni").style.display="inherit";
                                     document.getElementById("div_reverso_dni").style.display="none";
                                 }
+                                else if (tipo == "pasaporte"){
+                                    mm = "Pasaporte subido.";
+                                    document.getElementById("div_existe_pasaporte").style.display="inherit";
+                                    document.getElementById("div_pasaporte").style.display="none";
+                                }
                                 else if (tipo == "foto"){
                                     mm = "Fotografía subida.";
                                     document.getElementById("div_existe_fotografia").style.display="inherit";
