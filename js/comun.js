@@ -17,22 +17,18 @@ $(function() {
       }, 600000); // Cada 10 minutos*/
 
       // Esto detecta automáticamente si estás en / o en /carpeta/
-    var root = "<?php echo dirname($_SERVER['SCRIPT_NAME'], (substr_count($_SERVER['SCRIPT_NAME'], '/') - 1)); ?>";
-    alert(root);
-    // Aseguramos que 'root' termine en una sola barra
-    if (root === "" || root === "/") {
-        root = "/";
-    } else {
-        root = "/" + root.replace(/^\/|\/$/g, '') + "/";
-    }
+    var scriptActual = document.querySelector('script[src*="comun.js"]');
+    var urlScript = scriptActual.src; // Esto da algo como http://dominio.com/js/comun.js
+    
+    // Obtenemos la base: quitamos "js/comun.js" y lo que venga después (el ?q=...)
+    var root = urlScript.split('js/comun.js')[0];
 
-    // 4. Keep Alive
     setInterval(() => {
-        $.post(root + "php/keep_alive.php", function(){
-            // Se mantiene la sesión activa
-            console.log("Keep-alive en: " + root + "php/keep_alive.php");
+        // Ahora root es siempre la raíz de tu proyecto
+        $.post(root + "php/keep_alive.php", function() {
+            console.log("Sesión mantenida desde: " + root);
         });
-    }, 600000); // Cada 10 minutos
+    }, 600000); 
       
 });
 
