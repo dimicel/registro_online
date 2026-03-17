@@ -278,7 +278,7 @@ function pasaPagina(p) {
 function pasaPagina_actualizaHTML(_pagina){
     for (i = 1; i <= 6; i++) $("#pagina_" + i).css('display', 'none');
     $("#pagina_" + _pagina).css('display', 'inherit').fadeIn(500);
-
+    alert(_pagina);
     if(_pagina==2){
         form_pagina_2.apellidos.value = apellidos;
         form_pagina_2.nombre.value = nombre;
