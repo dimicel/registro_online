@@ -373,7 +373,9 @@ $pdf->Cell(0,0,$email_tutor2,0,0,'L',0,'',1,false,'','');
 //-------AUTORIZACIONES MATRÍCULA
 $YInicio+=7;
 $YInicioAutorizaciones=$YInicio;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,70,2,'1111','','','');
+$YInicioAutorizacionesRectangulo=$YInicio;
+$XInicioAutorizacionesRectangulo=$XInicio-2;
+//$pdf->RoundedRect($XInicio-2,$YInicio,185,70,2,'1111','','','');
 $pdf->SetXY($XInicioRotulo,$YInicio+1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"AUTORIZACIONES",0,0,'L',0,'',1,false,'','');
@@ -384,10 +386,10 @@ $pdf->SetFont('dejavusans', '', 7, '', true);
 $texto_1_consent=<<<EOT
 D./Dña. $tutor, como tutor/a legal del alumno/a $nombre $apellidos, mediante este formulario formaliza su matrícula en el Centro para el año escolar $anno_curso para cursar las enseñanzas de $curso.
 EOT;
-$nf_consent=$pdf->MultiCell(180,0,$texto_1_consent,0,'L',0,1,'','',true,0,false,false,'');
-
+$pdf->MultiCell(180, 0, $texto_1_consent, 0, 'L', 0, 1, '', '', true);
+$autor_fotos_mayus = mb_strtoupper($autor_fotos, 'UTF-8');
 $texto_2_consent=<<<EOT
-Así mismo, <b>$autor_fotos</b> autoriza al IES Universidad Laboral a la  toma de fotografías y de vídeo para que con motivo de las actividades Docentes - y especialmente las del 50  Aniversario- puedan ser usadas  en documentos oficiales o impresos, páginas webs, blogs redes sociales (Twitter Facebook)  o en cualquier otro soporte online del centro o medio de comunicación común y siempre que se use bajo la supervisión del equipo directivo.
+Así mismo, $autor_fotos_mayus autoriza al IES Universidad Laboral a la  toma de fotografías y de vídeo para que con motivo de las actividades Docentes - y especialmente las del 50  Aniversario- puedan ser usadas  en documentos oficiales o impresos, páginas webs, blogs redes sociales (Twitter Facebook)  o en cualquier otro soporte online del centro o medio de comunicación común y siempre que se use bajo la supervisión del equipo directivo.
 Autorización en  conformidad a lo establecido en el artículo 5.1 de la Ley Orgánica 15/1999 de protección de datos de carácter personal y Art. 6.1.a) Reglamento (UE) 2016/679  general de protección de datos.
 Esta autorización podrá ser anulada en cualquier instante siempre que se comunique por escrito este aspecto a la Dirección del Centro.
 EOT;
@@ -404,12 +406,14 @@ INFORMACIÓN BÁSICA DE PROTECCIÓN DE DATOS
 -Información adicional: Disponible en la dirección electrónica: https://rat.castillalamancha.es/info/0372
 EOT;
 
-$YInicio+=$nf_consent*3;
+$YInicio = $pdf->GetY() + 5;
 $pdf->SetXY($XInicio,$YInicio);
-$nf2_consent=$pdf->MultiCell(180,0,$texto_2_consent,0,'J',0,1,'','',true,0,true,false,0);
-$YInicio+=$nf2_consent*4+12;
+$pdf->writeHTMLCell(180, 0, $XInicio, $YInicio, $texto_2_consent, 0, 1, 0, true, 'J', true);
+$YInicio = $pdf->GetY() + 5;
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->MultiCell(180,0,$texto_3_consent,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->MultiCell(180, 0, $texto_3_consent, 0, 'L', 0, 1, '', '', true);
+$YFinRectangulo = $pdf->GetY() + 5;
+$pdf->RoundedRect($XInicioAutorizacionesRectangulo,$YInicioAutorizacionesRectangulo,185,$YFinRectangulo-$YInicioAutorizacionesRectangulo,2,'1111','','','');
 
 //--------FINAL
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
