@@ -8,14 +8,6 @@ $(function() {
     }
     String.prototype.miTrim = function() { return this.replace(/^\s+|\s+$/gm, ''); }
 
-    /*var root = window.location.protocol + "//" + window.location.host + "/";
-    
-    setInterval(() => {
-        $.post(root + "php/keep_alive.php", function(){
-          //se mantiene la sesion activa haciendo una llamada a keep_alive.php cada 10mn
-        });
-      }, 600000); // Cada 10 minutos*/
-
       // Esto detecta automáticamente si estás en / o en /carpeta/
     var scriptActual = document.querySelector('script[src*="comun.js"]');
     var urlScript = scriptActual.src; // Esto da algo como http://dominio.com/js/comun.js
