@@ -394,9 +394,9 @@ D./Dña. $tutor, como tutor/a legal del alumno/a $nombre $apellidos, mediante es
 EOT;
 $pdf->MultiCell(180, 0, $texto_1_consent, 0, 'L', 0, 1, '', '', true);
 //$nf_consent=$pdf->MultiCell(180,0,$texto_1_consent,0,'L',0,1,'','',true,0,false,false,'');
-
+$autor_fotos_mayus = mb_strtoupper($autor_fotos, 'UTF-8');
 $texto_2_consent=<<<EOT
-Así mismo, <b>$autor_fotos</b> autoriza al IES Universidad Laboral a la  toma de fotografías y de vídeo para que con motivo de las actividades Docentes - y especialmente las del 50  Aniversario- puedan ser usadas  en documentos oficiales o impresos, páginas webs, blogs redes sociales (Twitter Facebook)  o en cualquier otro soporte online del centro o medio de comunicación común y siempre que se use bajo la supervisión del equipo directivo.
+Así mismo, $autor_fotos_mayus autoriza al IES Universidad Laboral a la  toma de fotografías y de vídeo para que con motivo de las actividades Docentes - y especialmente las del 50  Aniversario- puedan ser usadas  en documentos oficiales o impresos, páginas webs, blogs redes sociales (Twitter Facebook)  o en cualquier otro soporte online del centro o medio de comunicación común y siempre que se use bajo la supervisión del equipo directivo.
 Autorización en  conformidad a lo establecido en el artículo 5.1 de la Ley Orgánica 15/1999 de protección de datos de carácter personal y Art. 6.1.a) Reglamento (UE) 2016/679  general de protección de datos.
 Esta autorización podrá ser anulada en cualquier instante siempre que se comunique por escrito este aspecto a la Dirección del Centro.
 EOT;
@@ -418,7 +418,7 @@ $YInicio = $pdf->GetY() + 5;
 $pdf->SetXY($XInicio,$YInicio);
 //$nf2_consent=$pdf->MultiCell(180,0,$texto_2_consent,0,'J',0,1,'','',true,0,true,false,0);
 //$YInicio+=$nf2_consent*4+12;
-$pdf->MultiCell(180, 0, $texto_2_consent, 0, 'L', 0, 1, '', '', true);
+$pdf->writeHTMLCell(180, 0, $XInicio, $YInicio, $texto_2_consent, 0, 1, 0, true, 'J', true);
 $YInicio = $pdf->GetY() + 5;
 $pdf->SetXY($XInicio,$YInicio);
 //$pdf->MultiCell(180,0,$texto_3_consent,0,'L',0,1,'','',true,0,false,false,0);
