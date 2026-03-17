@@ -18,7 +18,7 @@ $(function() {
 
       // Esto detecta automáticamente si estás en / o en /carpeta/
     var root = "<?php echo dirname($_SERVER['SCRIPT_NAME'], (substr_count($_SERVER['SCRIPT_NAME'], '/') - 1)); ?>";
-    
+    alert(root);
     // Aseguramos que 'root' termine en una sola barra
     if (root === "" || root === "/") {
         root = "/";
