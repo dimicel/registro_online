@@ -289,6 +289,7 @@ function pasaPagina_actualizaHTML(_pagina){
             form_pagina_2.email_alumno.value=email_alumno;
             primera_vez_pag_2=false;
         }
+        $("#email_alumno").rules("remove", "required");
         
     }
     else if (_pagina==3){
@@ -301,6 +302,8 @@ function pasaPagina_actualizaHTML(_pagina){
             form_pagina_3.tlf_tutor2.value=tlf_tutor2;
             primera_vez_pag_3=false;
         }
+        $("#email_tutor1").rules("remove", "required");
+        $("#email_tutor2").rules("remove", "required");
     }
     else if (_pagina == 4) {
         cursoActual();
