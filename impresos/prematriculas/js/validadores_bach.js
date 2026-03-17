@@ -54,10 +54,10 @@ function creaValidatorPagina2() {
             fecha_nac: {
                 required: true,
                 miFecha: true
-            },
+            }/*,
             email_alumno: {
                 email: true
-            }
+            }*/
         },
         messages: {
             apellidos: {
@@ -86,7 +86,7 @@ function creaValidatorPagina2() {
 function creaValidatorPagina3() {
     $("#form_pagina_3").validate({
         rules: {
-            tutor1:{
+            /*tutor1:{
                 required:true
             },
             tlf_tutor1:{
@@ -97,10 +97,10 @@ function creaValidatorPagina3() {
             },
             email_tutor2: {
                 email: true
-            }
+            }*/
         },
         messages: {
-            tutor1:{
+            /*tutor1:{
                 required:"Requerido"
             },
             tlf_tutor1:{
@@ -111,7 +111,7 @@ function creaValidatorPagina3() {
             },
             email_tutor2: {
                 email: "No es una dirección correcta"
-            }
+            }*/
         },
         errorPlacement: function(error, element) {
             $(element).prev($('.errorTxt')).html(error);
