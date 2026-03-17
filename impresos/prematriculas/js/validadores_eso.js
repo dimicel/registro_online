@@ -49,10 +49,10 @@ function creaValidatorPagina2() {
             fecha_nac: {
                 required: true,
                 miFecha: true
-            },
+            }/*,
             email_alumno: {
                 email: true
-            }
+            }*/
         },
         messages: {
             apellidos: {
@@ -67,10 +67,10 @@ function creaValidatorPagina2() {
             fecha_nac: {
                 required: "Seleccione una fecha",
                 miFecha: "Formato incorrecto"
-            },
+            }/*,
             email_alumno: {
                 email: "Dirección no válida"
-            }
+            }*/
         },
         errorPlacement: function(error, element) {
             $(element).prev($('.errorTxt')).html(error);
@@ -81,20 +81,20 @@ function creaValidatorPagina2() {
 function creaValidatorPagina3() {
     $("#form_pagina_3").validate({
         rules: {
-            email_tutor1: {
+            /*email_tutor1: {
                 email: true
             },
             email_tutor2: {
                 email: true
-            }
+            }*/
         },
         messages: {
-            email_tutor1: {
+            /*email_tutor1: {
                 email: "No es una dirección correcta"
             },
             email_tutor2: {
                 email: "No es una dirección correcta"
-            }
+            }*/
         },
         errorPlacement: function(error, element) {
             $(element).prev($('.errorTxt')).html(error);
