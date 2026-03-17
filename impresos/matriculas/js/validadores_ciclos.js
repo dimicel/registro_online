@@ -141,6 +141,7 @@ function creaValidatorPagina3() {
 
 function creaValidatorPagina4() {
     $("#form_pagina_4").validate({
+        ignore: [],
         rules: {
             foto_alumno: {
                 required: true
@@ -152,6 +153,12 @@ function creaValidatorPagina4() {
                 required: true
             },
             reverso_dni: {
+                required: true
+            },
+            pasaporte: {
+                required: true
+            },
+            certificado:{
                 required: true
             }
         },
@@ -167,10 +174,24 @@ function creaValidatorPagina4() {
             },
             reverso_dni: {
                 required: "Suba un archivo JPEG con el reverso del documento de identificación (DNI/NIE)"
+            },
+            pasaporte: {
+                required: "Suba un archivo JPEG con la página principal del pasaporte"
+            },
+            certificado: {
+                required: "Suba el certificado de notas en formato PDF"
             }
         },
         errorPlacement: function(error, element) {
-            $(element).parent().next().children().html(error);
+            // Busca el selector guardado en el atributo data-error-container
+            var target = $(element).data('error-container');
+        
+            if (target) {
+                // Buscamos el span .errorTxt dentro de ese contenedor
+                $(target).find('.errorTxt').html(error);
+            } else {
+                error.insertAfter(element);
+            }
         }
 
     });

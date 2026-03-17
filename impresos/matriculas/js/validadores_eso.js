@@ -201,8 +201,6 @@ function creaValidatorPagina4() {
             }
         },
         errorPlacement: function(error, element) {
-            /*// Busca el contenedor de error más cercano hacia abajo en la sección
-            $(element).closest('.mb-4').find('.errorTxt').html(error);*/
             // Busca el selector guardado en el atributo data-error-container
             var target = $(element).data('error-container');
         
