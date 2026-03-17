@@ -420,6 +420,7 @@ function registraMatricula() {
     f.appendChild(f1.curso);  
     f.appendChild(f2.apellidos);
     f.appendChild(f2.nombre);
+    f.appendChild(f2.sexo);
     f.appendChild(f2.fecha_nac);
     f.appendChild(f2.telef_alumno);
     f.appendChild(f2.email_alumno);
