@@ -8,11 +8,31 @@ $(function() {
     }
     String.prototype.miTrim = function() { return this.replace(/^\s+|\s+$/gm, ''); }
 
+    /*var root = window.location.protocol + "//" + window.location.host + "/";
+    
     setInterval(() => {
-        $.post("php/keep_alive.php", function(){
+        $.post(root + "php/keep_alive.php", function(){
           //se mantiene la sesion activa haciendo una llamada a keep_alive.php cada 10mn
         });
-      }, 600000); // Cada 10 minutos
+      }, 600000); // Cada 10 minutos*/
+
+      // Esto detecta automáticamente si estás en / o en /carpeta/
+    var root = "<?php echo dirname($_SERVER['SCRIPT_NAME'], (substr_count($_SERVER['SCRIPT_NAME'], '/') - 1)); ?>";
+    
+    // Aseguramos que 'root' termine en una sola barra
+    if (root === "" || root === "/") {
+        root = "/";
+    } else {
+        root = "/" + root.replace(/^\/|\/$/g, '') + "/";
+    }
+
+    // 4. Keep Alive
+    setInterval(() => {
+        $.post(root + "php/keep_alive.php", function(){
+            // Se mantiene la sesión activa
+            console.log("Keep-alive en: " + root + "php/keep_alive.php");
+        });
+    }, 600000); // Cada 10 minutos
       
 });
 
