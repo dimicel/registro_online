@@ -390,7 +390,8 @@ $pdf->SetFont('dejavusans', '', 7, '', true);
 $texto_1_consent=<<<EOT
 D./Dña. $tutor, como tutor/a legal del alumno/a $nombre $apellidos, mediante este formulario formaliza su matrícula en el Centro para el año escolar $anno_curso para cursar las enseñanzas de $curso.
 EOT;
-$nf_consent=$pdf->MultiCell(180,0,$texto_1_consent,0,'L',0,1,'','',true,0,false,false,'');
+$pdf->MultiCell(180, 0, $texto_1_consent, 0, 'L', 0, 1, '', '', true);
+//$nf_consent=$pdf->MultiCell(180,0,$texto_1_consent,0,'L',0,1,'','',true,0,false,false,'');
 
 $texto_2_consent=<<<EOT
 Así mismo, <b>$autor_fotos</b> autoriza al IES Universidad Laboral a la  toma de fotografías y de vídeo para que con motivo de las actividades Docentes - y especialmente las del 50  Aniversario- puedan ser usadas  en documentos oficiales o impresos, páginas webs, blogs redes sociales (Twitter Facebook)  o en cualquier otro soporte online del centro o medio de comunicación común y siempre que se use bajo la supervisión del equipo directivo.
@@ -410,12 +411,16 @@ INFORMACIÓN BÁSICA DE PROTECCIÓN DE DATOS
 -Información adicional: Disponible en la dirección electrónica: https://rat.castillalamancha.es/info/0372
 EOT;
 
-$YInicio+=$nf_consent*3;
+//$YInicio+=$nf_consent*3;
+$YInicio = $pdf->GetY() + 5;
 $pdf->SetXY($XInicio,$YInicio);
-$nf2_consent=$pdf->MultiCell(180,0,$texto_2_consent,0,'J',0,1,'','',true,0,true,false,0);
-$YInicio+=$nf2_consent*4+12;
+//$nf2_consent=$pdf->MultiCell(180,0,$texto_2_consent,0,'J',0,1,'','',true,0,true,false,0);
+//$YInicio+=$nf2_consent*4+12;
+$pdf->MultiCell(180, 0, $texto_2_consent, 0, 'L', 0, 1, '', '', true);
+$YInicio = $pdf->GetY() + 5;
 $pdf->SetXY($XInicio,$YInicio);
-$pdf->MultiCell(180,0,$texto_3_consent,0,'L',0,1,'','',true,0,false,false,0);
+//$pdf->MultiCell(180,0,$texto_3_consent,0,'L',0,1,'','',true,0,false,false,0);
+$pdf->MultiCell(180, 0, $texto_3_consent, 0, 'L', 0, 1, '', '', true);
 
 //--------FINAL
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -438,7 +443,7 @@ $handle = opendir($dir);
 while ($file = readdir($handle)) {
 	if (is_file($dir.$file)) unlink($dir.$file);
 }
-closedir($dir);
+closedir($handle);
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';
 if (!is_dir(__DIR__."/../../../docs/".$id_nie))mkdir(__DIR__."/../../../docs/".$id_nie,0777);
