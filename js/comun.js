@@ -22,7 +22,7 @@ $(function() {
     
     // Obtenemos la base: quitamos "js/comun.js" y lo que venga después (el ?q=...)
     var root = urlScript.split('js/comun.js')[0];
-
+    alert(root);
     setInterval(() => {
         // Ahora root es siempre la raíz de tu proyecto
         $.post(root + "php/keep_alive.php", function() {
