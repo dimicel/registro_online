@@ -2,6 +2,7 @@ var _curso;
 var pagina = 1;
 var id_nie = "";
 var id_nif = "";
+var es_pasaporte=0;
 var nombre = "";
 var apellidos = "";
 var email = "";
@@ -88,6 +89,7 @@ $(document).ready(function() {
             for (e in resp.datos){
                 if(typeof(resp.datos[e])==="undefined" || resp.datos[e]===null) resp.datos[e]="";
             }
+            es_pasaporte=resp.datos.es_pasaporte;
             f_nac=resp.datos.fecha_nac;
             if (f_nac!="")f_nac=f_nac.substr(8,2)+"/"+f_nac.substr(5,2)+"/"+f_nac.substr(0,4);
             fecha_nac=f_nac;
@@ -250,40 +252,113 @@ function pasaPagina(p) {
         }
         else if (pag_html = "pagina_4") {
             $("#form_pagina_4").validate().resetForm();
-            if (existe_foto){
+            $(".errorTxt").html("");
+            if (existe_foto) {
                 $("#div_fotografia").hide();
                 $("#div_existe_fotografia").show();
-                //document.getElementById("prev_foto").src="../../docs/fotos/"+id_nie+".jpeg?q="+Date();
+            } else {
+                $("#div_fotografia").show();
+                $("#div_existe_fotografia").hide();
             }
-            if (existe_dni_A){
-                $("#div_anverso_dni").hide();
-                $("#div_existe_anverso_dni").show();
-                //document.getElementById("prev_anverso_dni").src="../../docs/"+id_nie+"/dni/"+id_nie+"-A.jpeg?q="+Date();
-            }
-            if (existe_dni_R){
-                $("#div_reverso_dni").hide();
-                $("#div_existe_reverso_dni").show();
-                //document.getElementById("prev_reverso_dni").src="../../docs/"+id_nie+"/dni/"+id_nie+"-R.jpeg?q="+Date();
-            }
-            if (existe_seguro){
-                $("#div_resguardo_seguro_escolar").hide();
-                $("#div_existe_resguardo_seguro_escolar").show();
-                //document.getElementById("prev_resguardo_seguro").src="../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date();
-            }
-            if(document.getElementById("oc_si").checked){
-                if (existe_certificado){
-                    $("#div_certificado").hide();
-                    $("#div_existe_certificado").show();
-                    document.getElementById("prev_certificado").href="../../docs/"+id_nie+"/certificado_notas/"+anno_curso+"/"+id_nie+".pdf?q="+Date();
+            // 1. SWITCH PASAPORTE VS DNI
+            if (es_pasaporte == 1) {
+                $("#vista_pasaporte").show();
+                $("#vista_dni").hide();
+                $("#sec_foto").removeClass("col-md-4").addClass("col-md-6");
+                $("#sec_documento_id").removeClass("col-md-8").addClass("col-md-6");
+                if (existe_dni_A) {
+                    $("#div_pasaporte").hide();
+                    $("#div_existe_pasaporte").show();
+                } else {
+                    $("#div_pasaporte").show();
+                    $("#div_existe_pasaporte").hide();
                 }
-                else{
-                    $("#div_certificado").show();
-                    $("#div_existe_certificado").hide();
+                $("#reverso_dni").rules("remove", "required");
+
+            } else {
+                $("#vista_pasaporte").hide();
+                $("#vista_dni").show();
+                $("#sec_foto").removeClass("col-md-6").addClass("col-md-4");
+                $("#sec_documento_id").removeClass("col-md-6").addClass("col-md-8");
+                // Control de existentes para DNI Anverso
+                if (existe_dni_A) {
+                    $("#div_anverso_dni").hide();
+                    $("#div_existe_anverso_dni").show();
+                } else {
+                    $("#div_anverso_dni").show();
+                    $("#div_existe_anverso_dni").hide();
+                }
+
+                // Control de existentes para DNI Reverso
+                if (existe_dni_R) {
+                    $("#div_reverso_dni").hide();
+                    $("#div_existe_reverso_dni").show();
+                } else {
+                    $("#div_reverso_dni").show();
+                    $("#div_existe_reverso_dni").hide();
+                }
+            }
+
+            // 2. LÓGICA DE OBLIGATORIEDAD
+            if(existe_foto){
+                $("#foto_alumno").rules("remove", "required");
+            }
+            else{
+                $("#foto_alumno").rules("add", { required: true });
+            }
+            if (!existe_dni_A) {
+                if (es_pasaporte==1) {
+                    $("#pasaporte").rules("add", { required: true });
+                    $("#anverso_dni").rules("remove", "required");
+                } else {
+                    $("#anverso_dni").rules("add", { required: true });
+                    $("#pasaporte").rules("remove", "required");
                 }
             }
             else{
-                $("#div_certificado").hide();
-                $("#div_existe_certificado").hide();
+                $("#anverso_dni").rules("remove", "required");
+                $("#pasaporte").rules("remove", "required");
+            }
+            if (es_pasaporte == 0 && !existe_dni_R) {
+                $("#reverso_dni").rules("add", { required: true });
+            }
+            else{
+                $("#reverso_dni").rules("remove", "required");
+            }
+            $("p[data-label='documento_identificacion']").each(function() {
+                $(this).text($(this).text().replace('(Opcional) ', '*'));
+            });
+            
+
+            // --- LÓGICA SEGURO ESCOLAR
+            $("#sec_seguro").show();
+            if (existe_seguro) {
+                $("#div_resguardo_seguro_escolar").hide();
+                $("#div_existe_resguardo_seguro_escolar").show();
+                $("#resguardo_seguro_escolar").rules("remove", "required");
+            } else {
+                $("#div_resguardo_seguro_escolar").show();
+                $("#div_existe_resguardo_seguro_escolar").hide();
+                $("#resguardo_seguro_escolar").rules("add", { required: true });
+            }
+
+            // --- LÓGICA CERTIFICADO (Solo si OC_SI está marcado) ---
+            if (document.getElementById("oc_si").checked) {
+                $("#sec_cert").show();
+                if (existe_certificado) {
+                    $("#div_certificado").hide();
+                    $("#div_existe_certificado").show();
+                    let urlCert = "../../docs/" + id_nie + "/certificado_notas/" + anno_curso + "/" + id_nie + ".pdf?q=" + Date.now();
+                    $("#prev_certificado").attr("href", urlCert);
+                    $("#certificado").rules("remove", "required");
+                } else {
+                    $("#div_certificado").show();
+                    $("#div_existe_certificado").hide();
+                    $("#certificado").rules("add", { required: true });
+                }
+            } else {
+                $("#sec_cert").hide();
+                $("#certificado").rules("remove", "required");
             }
         }
         else if (pag_html == "pagina_5") {

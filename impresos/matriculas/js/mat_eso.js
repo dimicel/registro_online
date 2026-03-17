@@ -275,15 +275,15 @@ function pasaPagina(p) {
                 primera_vez_pag_3=false;
             }
         } 
- else if (pag_html == "pagina_4") {
-        $("#form_pagina_4").validate().resetForm();
+        else if (pag_html == "pagina_4") {
+            $("#form_pagina_4").validate().resetForm();
             $(".errorTxt").html("");
             if (existe_foto) {
-                    $("#div_fotografia").hide();
-                    $("#div_existe_fotografia").show();
-                } else {
-                    $("#div_fotografia").show();
-                    $("#div_existe_fotografia").hide();
+                $("#div_fotografia").hide();
+                $("#div_existe_fotografia").show();
+            } else {
+                $("#div_fotografia").show();
+                $("#div_existe_fotografia").hide();
             }
             // 1. SWITCH PASAPORTE VS DNI
             if (es_pasaporte == 1) {
