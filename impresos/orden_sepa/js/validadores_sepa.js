@@ -1,7 +1,7 @@
  
 $("#sepa").validate({
     rules: {
-/*        bic: {
+        bic: {
             //required: true,
             bic:true
         },
@@ -14,10 +14,10 @@ $("#sepa").validate({
         },
         titular_cuenta: {
         required: true
-        }*/
+        }
     },
     messages: {
-/*        bic: {
+        bic: {
             //required: "Complete el campo",
             bic:"El código BIC no es válido.<br>Si no lo sabe déjelo en blanco."
         },
@@ -30,7 +30,7 @@ $("#sepa").validate({
         },
         titular_cuenta: {
         required: "Se necesita el titular de la cuenta asociada al IBAN."
-        }*/
+        }
     },
     errorPlacement: function(error, element) {
         $(element).prev($('.errorTxt')).html(error);
