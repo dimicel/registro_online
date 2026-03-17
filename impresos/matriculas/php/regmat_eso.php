@@ -379,7 +379,9 @@ $pdf->Cell(0,0,$email_tutor2,0,0,'L',0,'',1,false,'','');
 //-------AUTORIZACIONES MATRÍCULA
 $YInicio+=7;
 $YInicioAutorizaciones=$YInicio;
-$pdf->RoundedRect($XInicio-2,$YInicio,185,70,2,'1111','','','');
+$YInicioAutorizacionesRectangulo=$YInicio;
+$XInicioAutorizacionesRectangulo=$XInicio-2;
+//$pdf->RoundedRect($XInicio-2,$YInicio,185,70,2,'1111','','','');
 $pdf->SetXY($XInicioRotulo,$YInicio+1);
 $pdf->SetFont('dejavusans', 'B', 10, '', true);
 $pdf->Cell(0,0,"AUTORIZACIONES",0,0,'L',0,'',1,false,'','');
@@ -421,7 +423,8 @@ $YInicio = $pdf->GetY() + 5;
 $pdf->SetXY($XInicio,$YInicio);
 //$pdf->MultiCell(180,0,$texto_3_consent,0,'L',0,1,'','',true,0,false,false,0);
 $pdf->MultiCell(180, 0, $texto_3_consent, 0, 'L', 0, 1, '', '', true);
-
+$YFinRectangulo = $pdf->GetY() + 5;
+$pdf->RoundedRect($XInicioAutorizacionesRectangulo,$YInicioAutorizacionesRectangulo,185,$YFinRectangulo-$YInicioAutorizacionesRectangulo,2,'1111','','','');
 //--------FINAL
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 $yyyy=substr($fecha_registro,0,4);
