@@ -367,12 +367,18 @@ $pdf->SetFont('dejavusans', 'B', 16, '', true);
 $pdf->Cell(0,0,"RECUERDE QUE ESTE NO ES UN FORMULARIO DE MATRICULA",0,0,'C',0,'',1,false,'T','T');
 
 //SI YA HAY ALGUNA MATRÍCULA BORRA EL ARCHIVO
-$dir = __DIR__."/../../../docs/".$id_nie."/prematriculas"."/".$anno_curso.'/';     
-$handle = opendir($dir);
-while ($file = readdir($handle)) {
-	if (is_file($dir.$file)) unlink($dir.$file);
+$dir = __DIR__."/../../../docs/".$id_nie."/prematriculas"."/".$anno_curso.'/'; 
+
+// glob devuelve un array de strings (las rutas) o false si falla estrepitosamente
+$archivos = glob($dir . "*"); 
+
+if ($archivos !== false) {
+    foreach ($archivos as $archivo) {
+        if (is_file($archivo)) {
+            unlink($archivo); 
+        }
+    }
 }
-closedir($handle);
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';
 if (!is_dir(__DIR__."/../../../docs/".$id_nie))mkdir(__DIR__."/../../../docs/".$id_nie,0777);
