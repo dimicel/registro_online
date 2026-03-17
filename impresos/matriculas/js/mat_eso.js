@@ -506,7 +506,7 @@ function registraMatricula() {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la matrícula.<br>Por favor, vuelva a intentarlo más tarde.";
             alerta(mensaje, "Error de servidor", true);
         }
-        //else window.history.back();
+        else window.history.back();
     });
 }
 
