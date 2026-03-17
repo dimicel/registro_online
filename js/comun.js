@@ -14,7 +14,7 @@ $(function() {
     
     // Obtenemos la base: quitamos "js/comun.js" y lo que venga después (el ?q=...)
     var root = urlScript.split('js/comun.js')[0];
-    alert(root);
+    
     setInterval(() => {
         // Ahora root es siempre la raíz de tu proyecto
         $.post(root + "php/keep_alive.php", function() {
@@ -470,7 +470,7 @@ function cargaHTML(url="",contenido="",titulo="",ancho=600,alto=400,posicion_my=
 
                         // Seguro de vida: re-centrado tras 100ms por si el DOM está perezoso
                         setTimeout(centrar, 100);
-                        
+
                         $(this).css("overflow", "hidden");
                         funcAbrir && funcAbrir();  //Equivalente a  if(funcAbrir!=null) funcAbrir();
                         resolve(this);
