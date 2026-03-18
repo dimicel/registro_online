@@ -56,7 +56,6 @@ SELECT
     COALESCE(mf.curso_ciclo, mc.curso_ciclo) AS curso_ciclo,
     COALESCE(mf.ciclo, mc.ciclo) AS ciclo,
     mc.turno AS turno,
-    -- Magia para las fechas de documentos
     MAX(CASE WHEN doc.documento = 'dni_anverso' THEN doc.fecha END) AS ultima_fecha_anverso_dni,
     MAX(CASE WHEN doc.documento = 'dni_reverso' THEN doc.fecha END) AS ultima_fecha_reverso_dni,
     MAX(CASE WHEN doc.documento = 'pasaporte' THEN doc.fecha END) AS ultima_fecha_pasaporte,
@@ -75,7 +74,6 @@ LEFT JOIN mat_ciclos mc ON mc.id_nie = u.id_nie AND mc.curso = '$curso'
 LEFT JOIN mat_fpb mf    ON mf.id_nie = u.id_nie AND mf.curso = '$curso'
 LEFT JOIN mat_eso me    ON me.id_nie = u.id_nie AND me.curso = '$curso'
 LEFT JOIN mat_bach mb   ON mb.id_nie = u.id_nie AND mb.curso = '$curso'
--- Unimos con la tabla de documentos
 LEFT JOIN fechas_subidas_docs doc ON doc.id_nie = u.id_nie
 GROUP BY 
     u.id_nie, u.apellidos, u.nombre, u.fecha_caducidad_id_nif, 
