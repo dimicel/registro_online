@@ -56,10 +56,10 @@ SELECT
     COALESCE(mf.curso_ciclo, mc.curso_ciclo) AS curso_ciclo,
     COALESCE(mf.ciclo, mc.ciclo) AS ciclo,
     mc.turno AS turno,
-    MAX(CASE WHEN doc.documento = 'dni_anverso' THEN doc.fecha END) AS ultima_fecha_anverso_dni,
-    MAX(CASE WHEN doc.documento = 'dni_reverso' THEN doc.fecha END) AS ultima_fecha_reverso_dni,
-    MAX(CASE WHEN doc.documento = 'pasaporte' THEN doc.fecha END) AS ultima_fecha_pasaporte,
-    MAX(CASE WHEN doc.documento = 'seguro_escolar' THEN doc.fecha END) AS ultima_fecha_seguro_escolar
+    DATE_FORMAT(MAX(CASE WHEN doc.documento = 'dni_anverso' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_anverso_dni,
+    DATE_FORMAT(MAX(CASE WHEN doc.documento = 'dni_reverso' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_reverso_dni,
+    DATE_FORMAT(MAX(CASE WHEN doc.documento = 'pasaporte' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_pasaporte,
+    DATE_FORMAT(MAX(CASE WHEN doc.documento = 'seguro_escolar' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_seguro_escolar
 FROM usuarios u
 INNER JOIN (
     SELECT id_nie FROM mat_ciclos WHERE curso = '$curso'
@@ -109,6 +109,7 @@ while ($r = $res->fetch_assoc()) {
 
     // 1. Convertimos las fechas a objetos DateTime para comparar con precisión
     $fechaCaducidad = new DateTime($r["fecha_caducidad_id_nif"]);
+    $fechaCad_ES = $fechaCaducidad->format('d/m/Y');
 
     // 2. Determinamos si ya ha caducado (anterior o igual a hoy)
     $estaCaducado = ($fechaCaducidad <= $fechaHoy) ? "Si" : "No";
@@ -127,27 +128,24 @@ while ($r = $res->fetch_assoc()) {
         $turno = 'N/A';
     }
 
-    $linea = [
+    fputcsv($output, [
         "\t" . $r["id_nie"],          // Usamos tabulador para evitar formato científico en Excel
         $alumno,
         "\t" . $r["id_nif"],
         ($r["es_pasaporte"] ? "Si" : "No"),
-        $r["fecha_caducidad_id_nif"],
+        $fechaCad_ES,
         $estaCaducado,                // Nuevo Item 1: ¿Caducado?
         $diasFaltan,                  // Nuevo Item 2: Días restantes (0 si ya pasó)
         $r["pais"],
         $curso,
         $turno,
-        $r["ultima_fecha_anverso_dni"],
-        $r["ultima_fecha_reverso_dni"],
-        $r["ultima_fecha_pasaporte"],
-        $r["ultima_fecha_seguro_escolar"]
-    ];
+        $r["ultima_fecha_anverso_dni"]?:'',
+        $r["ultima_fecha_reverso_dni"]?:'',
+        $r["ultima_fecha_pasaporte"]?:'',
+        $r["ultima_fecha_seguro_escolar"]?:''
+    ], ';');
 
-
-    $linea_csv = implode(";", $linea);
-    $Datos .= mb_convert_encoding($linea_csv, "ISO-8859-1", "UTF-8") . PHP_EOL;
 }
 
-echo $Datos;
+fclose($output);
 exit();
