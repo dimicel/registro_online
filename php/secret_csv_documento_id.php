@@ -57,8 +57,8 @@ SELECT
     COALESCE(mf.ciclo, mc.ciclo) AS ciclo,
     mc.turno AS turno,
     -- Magia para las fechas de documentos
-    MAX(CASE WHEN doc.documento = 'dni_anverso' THEN doc.fecha END) AS ultima_fecha_dni_anverso,
-    MAX(CASE WHEN doc.documento = 'dni_reverso' THEN doc.fecha END) AS ultima_fecha_dni_reverso,
+    MAX(CASE WHEN doc.documento = 'dni_anverso' THEN doc.fecha END) AS ultima_fecha_anverso_dni,
+    MAX(CASE WHEN doc.documento = 'dni_reverso' THEN doc.fecha END) AS ultima_fecha_reverso_dni,
     MAX(CASE WHEN doc.documento = 'pasaporte' THEN doc.fecha END) AS ultima_fecha_pasaporte,
     MAX(CASE WHEN doc.documento = 'seguro_escolar' THEN doc.fecha END) AS ultima_fecha_seguro_escolar
 FROM usuarios u
@@ -96,7 +96,7 @@ if (!$res || $res->num_rows == 0) {
 }
 
 // 4. Construcción del contenido
-$Datos = 'NIE;ALUMNO;N_DOCUMENTO;ES_PASAPORTE;FECHA_CADUCIDAD;CADUCADO;DIAS_HASTA_CADUCIDAD;PAIS;CURSO;TURNO' . PHP_EOL;
+$Datos = 'NIE;ALUMNO;N_DOCUMENTO;ES_PASAPORTE;FECHA_CADUCIDAD;CADUCADO;DIAS_HASTA_CADUCIDAD;PAIS;CURSO;TURNO;FECHA_ANVERSO_DNI;FECHA_REVERSO_DNI;FECHA_PASAPORTE;FECHA_SEGURO_ESCOLAR' . PHP_EOL;
 
 
 $fechaHoy = new DateTime(); 
@@ -139,7 +139,11 @@ while ($r = $res->fetch_assoc()) {
         $diasFaltan,                  // Nuevo Item 2: Días restantes (0 si ya pasó)
         $r["pais"],
         $curso,
-        $turno
+        $turno,
+        $r["ultima_fecha_anverso_dni"],
+        $r["ultima_fecha_reverso_dni"],
+        $r["ultima_fecha_pasaporte"],
+        $r["ultima_fecha_seguro_escolar"]
     ];
 
 
