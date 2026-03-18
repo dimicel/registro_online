@@ -15,7 +15,7 @@ if (!$curso || $mysqli->connect_error) {
 
 // 2. Consulta (He añadido real_escape_string por seguridad básica)
 $curso_safe = $mysqli->real_escape_string($curso);
-$query = "
+/*$query = "
 SELECT 
     u.apellidos, 
     u.nombre, 
@@ -30,7 +30,6 @@ SELECT
     mc.turno AS turno
 FROM usuarios u
 INNER JOIN (
-    -- Ahora la unión es natural y limpia
     SELECT id_nie FROM mat_ciclos WHERE curso = '$curso'
     UNION
     SELECT id_nie FROM mat_fpb WHERE curso = '$curso'
@@ -39,11 +38,48 @@ INNER JOIN (
     UNION
     SELECT id_nie FROM mat_bach WHERE curso = '$curso'
 ) AS m ON m.id_nie = u.id_nie
--- Los JOINs ahora son directos
 LEFT JOIN mat_ciclos mc ON mc.id_nie = u.id_nie AND mc.curso = '$curso'
 LEFT JOIN mat_fpb mf    ON mf.id_nie = u.id_nie AND mf.curso = '$curso'
 LEFT JOIN mat_eso me    ON me.id_nie = u.id_nie AND me.curso = '$curso'
 LEFT JOIN mat_bach mb   ON mb.id_nie = u.id_nie AND mb.curso = '$curso'
+ORDER BY u.apellidos ASC, u.nombre ASC";*/
+$query="
+SELECT 
+    u.apellidos, 
+    u.nombre, 
+    u.id_nie, 
+    u.fecha_caducidad_id_nif,
+    u.pais,
+    u.id_nif,
+    u.es_pasaporte,
+    COALESCE(me.grupo, mb.grupo) AS grupo,
+    COALESCE(mf.curso_ciclo, mc.curso_ciclo) AS curso_ciclo,
+    COALESCE(mf.ciclo, mc.ciclo) AS ciclo,
+    mc.turno AS turno,
+    -- Magia para las fechas de documentos
+    MAX(CASE WHEN doc.documento = 'dni_anverso' THEN doc.fecha END) AS ultima_fecha_dni_anverso,
+    MAX(CASE WHEN doc.documento = 'dni_reverso' THEN doc.fecha END) AS ultima_fecha_dni_reverso,
+    MAX(CASE WHEN doc.documento = 'pasaporte' THEN doc.fecha END) AS ultima_fecha_pasaporte,
+    MAX(CASE WHEN doc.documento = 'seguro_escolar' THEN doc.fecha END) AS ultima_fecha_seguro_escolar
+FROM usuarios u
+INNER JOIN (
+    SELECT id_nie FROM mat_ciclos WHERE curso = '$curso'
+    UNION
+    SELECT id_nie FROM mat_fpb WHERE curso = '$curso'
+    UNION
+    SELECT id_nie FROM mat_eso WHERE curso = '$curso'
+    UNION
+    SELECT id_nie FROM mat_bach WHERE curso = '$curso'
+) AS m ON m.id_nie = u.id_nie
+LEFT JOIN mat_ciclos mc ON mc.id_nie = u.id_nie AND mc.curso = '$curso'
+LEFT JOIN mat_fpb mf    ON mf.id_nie = u.id_nie AND mf.curso = '$curso'
+LEFT JOIN mat_eso me    ON me.id_nie = u.id_nie AND me.curso = '$curso'
+LEFT JOIN mat_bach mb   ON mb.id_nie = u.id_nie AND mb.curso = '$curso'
+-- Unimos con la tabla de documentos
+LEFT JOIN fechas_subidas_docs doc ON doc.id_nie = u.id_nie
+GROUP BY 
+    u.id_nie, u.apellidos, u.nombre, u.fecha_caducidad_id_nif, 
+    u.pais, u.id_nif, u.es_pasaporte, grupo, curso_ciclo, ciclo, turno
 ORDER BY u.apellidos ASC, u.nombre ASC";
 
 $res = $mysqli->query($query);
