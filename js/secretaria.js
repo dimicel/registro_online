@@ -819,8 +819,8 @@ function listaRegistros(orden_campo, orden_direccion) {
     } else if(tipo_formulario=="exencion_fct"){
         tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "fecha_registro","registro","resolucion"];
-        estilo = ["width:70px", "width:180px", "width:85px;text-align:center;", "width:230px;", "width:150px;text-align:center;","width:2ch;text-align:center;" ];
-        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Registro","Resolución","PD"];
+        estilo = ["width:70px", "width:180px", "width:85px;text-align:center;", "width:230px;", "width:12ch;text-align:center;" ];
+        encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Registro","Resolución"];
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
         else if (document.getElementById("curso_pre_mat").value == "3eso") {tabla = "premat_eso"; grupo="3º ESO";}
@@ -1191,7 +1191,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                                     data += "<td style='width:7ch;text-align:center'>-</td>";
                                 } 
                                 if (rutaResolucion!=""){
-                                    data+="<td style='width:7ch;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
+                                    data+="<td style='width:12ch;'><center><a href='"+rutaResolucion+"?q="+Date.now()+"' target='_blank' onclick='event.stopPropagation();'>"+data_array[i][campos[j]].toUpperCase()+"</a></center></td>";
                                 }
                                 else{
                                     data += "<td style='" + estilo[j] + "'>-</td>";
