@@ -35,6 +35,17 @@ if (!$dat) {
 if($dat->num_rows > 0){
     $reg = $dat->fetch_assoc();
     $resp["datos"] = $reg;
+
+    // Inicializamos a 0 por defecto por si el campo es NULL o no ha caducado
+    $resp["datos"]["documento_caducado"] = 0;
+
+    if (!empty($reg["fecha_caducidad_id_nif"])) {
+        // Comparamos: si la fecha de la DB es menor que la fecha de hoy ("today" a las 00:00:00)
+        if (strtotime($reg["fecha_caducidad_id_nif"]) < strtotime("today")) {
+            $resp["datos"]["documento_caducado"] = 1;
+        }
+    }
+
     $resp["error"] = "ok";
 } else {
     $resp["error"] = "no_usuarios";
