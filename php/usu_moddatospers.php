@@ -84,7 +84,9 @@ try {
     if (!$stmt2->execute()) throw new Exception("Error en 'usuarios_dat': " . $stmt2->error);
 
     // D. BLOQUE CONDICIONAL (Segundo script): Solo si NO es 'alumno'
-    if ($usuario !== 'alumno') {
+    //De momento se ionhabilita que el cambio de datos se propague a todas las tablas asociadas a formularios
+    //if ($usuario !== 'alumno') {
+    if ($usuario == 'no se hace nunca') {
         $tablas = $mysqli->query("SHOW TABLES");
         if ($tablas) {
             while ($fila = $tablas->fetch_row()) {
