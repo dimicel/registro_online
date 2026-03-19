@@ -69,13 +69,13 @@ if (!$res || $res->num_rows == 0) {
     exit();
 }
 
-// 4. Construcción del contenido
-$Datos = 'NIE;ALUMNO;N_DOCUMENTO;ES_PASAPORTE;FECHA_CADUCIDAD;CADUCADO;DIAS_HASTA_CADUCIDAD;PAIS;CURSO;TURNO;FECHA_ANVERSO_DNI;FECHA_REVERSO_DNI;FECHA_PASAPORTE;FECHA_SEGURO_ESCOLAR' . PHP_EOL;
-
 
 $fechaHoy = new DateTime(); 
 $fechaHoy->setTime(0, 0, 0); // Normalizamos a las 00:00 para comparar solo días
 
+$output = fopen('php://output', 'w');
+fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+fputcsv($output, ["NIE", "ALUMNO", "N_DOCUMENTO", "ES_PASAPORTE", "FECHA_CADUCIDAD", "CADUCADO", "DIAS_HASTA_CADUCIDAD", "PAIS", "CURSO", "TURNO", "SUBIDA_ANVERSO_DNI", "SUBIDA_REVERSO_DNI", "SUBIDA_PASAPORTE", "SUBIDA_SEGURO_ESCOLAR"], ";");
 while ($r = $res->fetch_assoc()) {
     // Saltamos usuarios de prueba
     if (strpos(strtoupper($r["id_nie"]), 'P') === 0) continue;
