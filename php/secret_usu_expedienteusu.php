@@ -1,4 +1,8 @@
 <?php
+/*ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 //include("conexion.php");
@@ -16,41 +20,7 @@ $id_nie=$_POST["id_nie"];
 $data["error"]="sin_registros";
 $filtro=$_POST["filtro"];
 
-/*
-$tablas=array("mat_1eso",
-			  "mat_2eso",
-			  "mat_2esopmar",
-			  "mat_3eso",
-			  "mat_3esopmar",
-			  "mat_4eso",
-			  "mat_1bach_c",
-			  "mat_1bach_hcs",
-			  "mat_2bach_c",
-			  "mat_2bach_hcs",
-			  "mat_fpb",
-			  "mat_ciclos",
-			  "transporte");
-$data["docs"]=array();
-for($i=0;$i<count($tablas);$i++){
-	$data["docs"][$tablas[$i]]=array();
-	if ($filtro=="todos") $res=$mysqli->query("SELECT registro,curso FROM $tablas[$i] WHERE id_nie='$id_nie' ORDER BY curso ASC");
-	else $res=$mysqli->query("SELECT registro,curso FROM $tablas[$i] WHERE id_nie='$id_nie' AND curso='$filtro' ORDER BY curso ASC");
-	if ($res->num_rows>0){
-		$data["error"]="ok";
-		$contador=0;
-		//$data["docs"][$tablas[$i]]["num_registros"]=$res->num_rows;
-		while ($reg=$res->fetch_assoc()){
-			$data["docs"][$tablas[$i]][$contador]["curso"]= $reg["curso"];
-			$data["docs"][$tablas[$i]][$contador]["registro"]= $reg["registro"];
-			$contador++;
-		}
-		$res->free();
-	}
-	else{
-		$data["docs"][$tablas[$i]]["num_registros"]=0;
-	}
-}
-*/
+
 
 $tipos_doc=[
 	"certificado_notas"=>"certificado_notas",//par índice del array y directorio de ubicación de los docs
