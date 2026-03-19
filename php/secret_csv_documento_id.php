@@ -83,19 +83,27 @@ while ($r = $res->fetch_assoc()) {
     // Función auxiliar para limpiar texto y convertir a ISO-8859-1 (Excel prefiere esto en CSV)
     $alumno = ucwords(strtolower($r["apellidos"])) . ", " . ucwords(strtolower($r["nombre"]));
 
-    // 1. Convertimos las fechas a objetos DateTime para comparar con precisión
-    $fechaCaducidad = new DateTime($r["fecha_caducidad_id_nif"]);
-    $fechaCad_ES = $fechaCaducidad->format('d/m/Y');
+    $fechaRaw = $r["fecha_caducidad_id_nif"];
+    $esInvalida = (empty($fechaRaw) || $fechaRaw == "0000-00-00" || $fechaRaw == "1970-01-01");
+    if ($esInvalida) {
+    $fechaCad_ES = '';
+    $estaCaducado = 'X';
+    $diasFaltan = 0; // Opcional, por si lo usas luego
+    } else {
+        // 1. Convertimos las fechas a objetos DateTime para comparar con precisión
+        $fechaCaducidad = new DateTime($r["fecha_caducidad_id_nif"]);
+        $fechaCad_ES = $fechaCaducidad->format('d/m/Y');
 
-    // 2. Determinamos si ya ha caducado (anterior o igual a hoy)
-    $estaCaducado = ($fechaCaducidad <= $fechaHoy) ? "Si" : "No";
+        // 2. Determinamos si ya ha caducado (anterior o igual a hoy)
+        $estaCaducado = ($fechaCaducidad <= $fechaHoy) ? "Si" : "No";
 
-    // 3. Calculamos los días restantes
-    $diferencia = $fechaHoy->diff($fechaCaducidad);
-    $diasRaw = (int)$diferencia->format("%r%a"); // %r mantiene el signo negativo si ya pasó
+        // 3. Calculamos los días restantes
+        $diferencia = $fechaHoy->diff($fechaCaducidad);
+        $diasRaw = (int)$diferencia->format("%r%a"); // %r mantiene el signo negativo si ya pasó
 
-    // Si los días son menores o iguales a 0, forzamos que sea 0
-    $diasFaltan = ($diasRaw > 0) ? $diasRaw : 0;
+        // Si los días son menores o iguales a 0, forzamos que sea 0
+        $diasFaltan = ($diasRaw > 0) ? $diasRaw : 0;
+    }
     if ($r['ciclo']) {
         $curso = $r['curso_ciclo'] . " - " . $r['ciclo'];
         $turno= $r['turno'] ?? 'N/A';
