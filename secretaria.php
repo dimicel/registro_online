@@ -272,7 +272,10 @@
         <!--_______________________________________________________________________________________-->
         <div id="usu_reg_tab" class="ui-widget-header ui-corner-all d-none" >
             <div class="row justify-content-end" style="margin-top:10px; margin-right:10px">
-                <input class="col-1 textoboton btn btn-danger" type="button" value="Volver"  onclick="cierraListaUsuarios()" />
+                <input class="col-1 textoboton btn btn-danger" 
+                    type="button" value="Volver"  
+                    onclick="$('#doc_reg_tab').removeClass('d-none');
+                            $('#usu_reg_tab').addClass('d-none');" />
             </div>
              <div class="row">
                 <div class="col-3 offset-1" >

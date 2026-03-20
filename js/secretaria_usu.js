@@ -176,11 +176,6 @@ function ordenUsus() {
     listaUsus();
 }
 
-function cierraListaUsuarios() {
-    $("#doc_reg_tab").removeClass("d-none");
-    $("#usu_reg_tab").addClass("d-none");
-}
-
 
 function verExpediente(id_nie, nom) {
     tablas = ["mat_1eso",
