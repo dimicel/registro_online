@@ -285,9 +285,9 @@ function NifNoDuplicado(value, id_nie) {
         success: function(resp) {
             // 2. Limpiamos espacios invisibles de la respuesta del PHP
             if (resp.trim() == "ok") {
-                esDuplicado = true;
-            } else {
                 esDuplicado = false;
+            } else {
+                esDuplicado = true;
             }
         }
     });
