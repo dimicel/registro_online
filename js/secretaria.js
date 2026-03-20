@@ -1978,10 +1978,10 @@ function altaUsuario() {
             $('#nr_nif').removeClass('is-invalid').addClass('is-valid');
         }
         if(!_dni_valido || !_dni_noduplicado){
-            if (!validaDNI_NIE(document.getElementById("nr_nif").value)){
+            if (!_dni_valido){
                 document.getElementById("nr_nif").setCustomValidity("El NIF o NIE no es válido");
             }
-            else if(!NifNoDuplicado(document.getElementById("nr_nif").value)){
+            else if(!_dni_noduplicado){
                 document.getElementById("nr_nif").setCustomValidity("El nº ya está registrado");
             }
             $('#nr_nif').removeClass('is-valid').addClass('is-invalid');
