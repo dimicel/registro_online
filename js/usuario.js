@@ -152,24 +152,6 @@ $(function() {
         listaSolicitudes();
     });
 
-
-    jQuery.validator.addMethod("nif_noduplicado", function(value, element) {
-        if (value.miTrim() == '') return true;
-        $.ajaxSetup({ async: false });
-        var a = $.post("php/usu_nifduplicado.php", { nu_nif: value, id_nie: id_nie }, function(resp) {
-            if (resp == "ok") _nif_duplicado = true;
-            else _nif_duplicado = false;
-        });
-        $.ajaxSetup({ async: true });
-        return _nif_duplicado;
-    });
-
-
-    jQuery.validator.addMethod("rep_password", function(value, element) {
-        return document.getElementById("p1").value === value ? true : false;
-    });
-
-
     $("#apartados").tabs({
         active: 0
     });
@@ -342,6 +324,9 @@ function cambioPassword(){
     )
     .then((dialogo)=>{
         ocultarPantallaEspera();
+        jQuery.validator.addMethod("rep_password", function(value, element) {
+            return document.getElementById("p1").value === value ? true : false;
+        });
         $("#form_cambioPass").validate({
             rules: {
                 p1: {
