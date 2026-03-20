@@ -698,6 +698,17 @@ function panelModUsu(id) {
                 return validaDNI_NIE(value, esPasaporte);
             }, "Identificación no válida");
 
+            jQuery.validator.addMethod("nif_noduplicado", function(value, element) {
+                if (value.miTrim() == '') return true;
+                $.ajaxSetup({ async: false });
+                var a = $.post("php/usu_nifduplicado.php", { nu_nif: value, id_nie: id_nie }, function(resp) {
+                    if (resp == "ok") _nif_duplicado = true;
+                    else _nif_duplicado = false;
+                });
+                $.ajaxSetup({ async: true });
+                return _nif_duplicado;
+            });
+
             $("#form_modif_datos_usu").validate({
                 rules: {
                     mod_nombre: {
