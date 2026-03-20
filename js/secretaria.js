@@ -1972,10 +1972,10 @@ function altaUsuario() {
         if(validaDNI_NIE(document.getElementById("nr_nif").value)){
             $('#nr_nif').removeClass('is-invalid').addClass('is-valid');
         }
-        else if(NifNoDuplicado(document.getElementById("nr_nif").value)){
+        if(NifNoDuplicado(document.getElementById("nr_nif").value)){
             $('#nr_nif').removeClass('is-invalid').addClass('is-valid');
         }
-        else{
+        if(!validaDNI_NIE(document.getElementById("nr_nif").value) || !NifNoDuplicado(document.getElementById("nr_nif").value)){
             if (!validaDNI_NIE(document.getElementById("nr_nif").value)){
                 document.getElementById("nr_nif").setCustomValidity("El NIF o NIE no es válido");
             }
