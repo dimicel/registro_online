@@ -1971,6 +1971,7 @@ function altaUsuario() {
     if (document.getElementById("nr_nif").value!= '' && !document.getElementById("nr_es_pasaporte").checked) {
         _dni_valido=validaDNI_NIE(document.getElementById("nr_nif").value);
         _dni_noduplicado=NifNoDuplicado(document.getElementById("nr_nif").value);
+        alert(_dni_noduplicado)
         if(_dni_valido){
             $('#nr_nif').removeClass('is-invalid').addClass('is-valid');
         }
