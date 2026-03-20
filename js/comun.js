@@ -273,12 +273,10 @@ jQuery.validator.addMethod("email_no_obligatorio", function(value, element) {
 
 function NifNoDuplicado(value, id_nie) {
     if (value.miTrim() == '') return true;
-    _nif_duplicado = false;
     $.ajaxSetup({ async: false });
     var a = $.post("php/usu_nifduplicado.php", { nu_nif: value, id_nie: id_nie }, function(resp) {
         if (resp == "ok") _nif_duplicado = true;
         else _nif_duplicado = false;
-        alert(resp)
     });
     $.ajaxSetup({ async: true });
     return !_nif_duplicado;

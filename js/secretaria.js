@@ -1969,13 +1969,15 @@ function panelNuevoUsuario() {
 function altaUsuario() {
     document.getElementById("form_alta_usuario").checkValidity()
     if (document.getElementById("nr_nif").value!= '' && !document.getElementById("nr_es_pasaporte").checked) {
-        if(validaDNI_NIE(document.getElementById("nr_nif").value)){
+        _dni_valido=validaDNI_NIE(document.getElementById("nr_nif").value);
+        _dni_noduplicado=NifNoDuplicado(document.getElementById("nr_nif").value);
+        if(_dni_valido){
             $('#nr_nif').removeClass('is-invalid').addClass('is-valid');
         }
-        if(NifNoDuplicado(document.getElementById("nr_nif").value)){
+        if(_dni_noduplicado){
             $('#nr_nif').removeClass('is-invalid').addClass('is-valid');
         }
-        if(!validaDNI_NIE(document.getElementById("nr_nif").value) || !NifNoDuplicado(document.getElementById("nr_nif").value)){
+        if(!_dni_valido || !_dni_noduplicado){
             if (!validaDNI_NIE(document.getElementById("nr_nif").value)){
                 document.getElementById("nr_nif").setCustomValidity("El NIF o NIE no es válido");
             }
