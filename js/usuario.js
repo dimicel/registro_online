@@ -259,10 +259,28 @@ function cambioDatosPers() {
                     $("#div_mod_datos").closest(".ui-dialog-content").dialog("destroy").remove();
                 } 
 
+                $.validator.addMethod("metodo_nif_dinamico", function(value, element) {
+                    // Comprobamos el check directamente aquí
+                    var esPasaporte = $('#mod_es_pasaporte').is(':checked');
+                    return validaDNI_NIE(value, esPasaporte);
+                }, "Identificación no válida");
+
+                jQuery.validator.addMethod("nif_noduplicado", function(value, element) {
+                    if (value.miTrim() == '') return true;
+                    $.ajaxSetup({ async: false });
+                    var a = $.post("php/usu_nifduplicado.php", { nu_nif: value, id_nie: id_nie }, function(resp) {
+                        if (resp == "ok") _nif_duplicado = true;
+                        else _nif_duplicado = false;
+                    });
+                    $.ajaxSetup({ async: true });
+                    return _nif_duplicado;
+                });
+
                 $("#form_mod_datos").validate({
                     rules: {
-                        nif_nie: {
-                            numero_nif: true
+                        mod_nif:{
+                            metodo_nif_dinamico: true,
+                            nif_noduplicado: true
                         },
                         dat_email: {
                             email: true
@@ -275,8 +293,9 @@ function cambioDatosPers() {
                         }
                     },
                     messages: {
-                        nif_nie: {
-                            numero_nif: "NIF incorrecto."
+                        mod_nif: {
+                            metodo_nif_dinamico: "Nº no válido",
+                            nif_noduplicado: "Nº ya existe"
                         },
                         dat_email: {
                             email: "No es una dirección de correo electrónico."
