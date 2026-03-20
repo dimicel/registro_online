@@ -281,6 +281,18 @@ jQuery.validator.addMethod("nif_noduplicado", function(value, element) {
     return _nif_duplicado;
 });
 
+function NifNoDuplicado(value) {
+    if (value.miTrim() == '') return true;
+    _nif_duplicado = false;
+    $.ajaxSetup({ async: false });
+    var a = $.post("php/usu_nifduplicado.php", { nu_nif: value, id_nie: id_nie }, function(resp) {
+        if (resp == "ok") _nif_duplicado = true;
+        else _nif_duplicado = false;
+    });
+    $.ajaxSetup({ async: true });
+    return !_nif_duplicado;
+}
+
 
 //Limita un grupo de checkbox a que puedan activar si hay menos de un número de ellos activo
 function limitCheckboxes(selector, maxCount) {
