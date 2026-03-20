@@ -713,7 +713,8 @@ function panelModUsu(id) {
                         }
                     },
                     mod_nif:{
-                        metodo_nif_dinamico: true
+                        metodo_nif_dinamico: true,
+                        nif_noduplicado: true
                     },
                     dat_email_tut1: {
                         email: function() {
@@ -736,7 +737,8 @@ function panelModUsu(id) {
                         required: "No puede dejar los apellidos en blanco"
                     },
                     mod_nif: {
-                        metodo_nif_dinamico: "Nº no válido"
+                        metodo_nif_dinamico: "Nº no válido",
+                        nif_noduplicado: "Nº ya existe"
                     },
                     mod_email: {
                         email_no_obligatorio: "Dirección de email no válida"
