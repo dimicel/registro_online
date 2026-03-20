@@ -19,6 +19,7 @@ if ($mysqli->connect_errno) {
 
 // --- 1. RECOGIDA DE TODOS LOS DATOS (COMPLETO) ---
 $id_nie = $_POST["dat_idnie"] ?? '';
+$mysqli->query("SET @usuario_plataforma = '$id_nie'");
 $usuario = $_POST["dat_usuario"] ?? "alumno";
 
 $email_recuperacion = $_POST["mod_email"] ?? '';

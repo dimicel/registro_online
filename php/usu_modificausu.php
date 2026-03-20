@@ -18,6 +18,7 @@ if ($_POST["procedimiento"]=="datos"){
     $email=$_POST["email"];
     $id_nie=$_POST["id_nie"];
     $nif_nie=$_POST["nif_nie"];
+    $mysqli->query("SET @usuario_plataforma = '$id_nie'");
     $consulta="update usuarios set nombre='$nombre',apellidos='$apellidos',email='$email',id_nif='$nif_nie' where id_nie='$id_nie'";
 }
 elseif ($_POST["procedimiento"]=="password"){
