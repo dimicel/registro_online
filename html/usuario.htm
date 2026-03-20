@@ -284,9 +284,24 @@
                 <div class="row mt-2">
                     <div class="col-4">
                         <label for="mod_nif" class="etiquetas">Nº documento identidad</label>
-                        <input type="text" class="form-control" id="mod_nif" name="mod_nif" maxlength="20" readonly onkeyup="this.value=this.value.toUpperCase();" >
+                        <span class="errorTxt"></span>
+                        <input type="text" class="form-control" id="mod_nif" name="mod_nif" maxlength="20"  
+                                        onkeyup="this.value=this.value.toUpperCase();" 
+                                        onchange="if (esDNI(this.value)){
+                                        document.getElementById('mod_es_pasaporte').checked=false;
+                                        document.getElementById('mod_pais').readonly=true;
+                                        document.getElementById('mod_pais').value='España';
+                                   }">
                         <div class="offset-1">
-                            <input type="checkbox" id="mod_es_pasaporte" name="mod_es_pasaporte" onclick="return false;">
+                            <input type="checkbox" id="mod_es_pasaporte" name="mod_es_pasaporte" 
+                                    onclick="if (document.getElementById('mod_nif').readonly==false ) this.checked=!this.checked;
+                                                else if(esDNI(document.getElementById('mod_nif').value)){
+                                                    this.checked=false;
+                                                    document.getElementById('mod_pais').readonly=true;
+                                                    document.getElementById('mod_pais').value='España';
+                                                }
+                                                else document.getElementById('mod_pais').readonly=false;
+                                                $('#form_mod_datos').validate().element('#mod_nif');">
                             <label for="mod_es_pasaporte" class="etiquetas" style="display:inline; margin-left:5px;">Es pasaporte</label>
                         </div>
                     </div>
