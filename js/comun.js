@@ -271,7 +271,7 @@ jQuery.validator.addMethod("email_no_obligatorio", function(value, element) {
 });
 
 
-function NifNoDuplicado(value) {
+function NifNoDuplicado(value, id_nie) {
     if (value.miTrim() == '') return true;
     _nif_duplicado = false;
     $.ajaxSetup({ async: false });
