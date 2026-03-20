@@ -1979,10 +1979,10 @@ function altaUsuario() {
         }
         if(!_dni_valido || !_dni_noduplicado){
             if (!_dni_valido){
-                document.getElementById("nr_nif").innerText("El NIF o NIE no es válido");
+                document.getElementById("error_nif").innerText("El NIF o NIE no es válido");
             }
             else if(!_dni_noduplicado){
-                document.getElementById("nr_nif").innerText("El nº ya está registrado");
+                document.getElementById("error_nif").innerText("El nº ya está registrado");
             }
             $('#nr_nif').removeClass('is-valid').addClass('is-invalid');
             return;
