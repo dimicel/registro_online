@@ -3146,19 +3146,124 @@ function subeLogo(obj, imagen){
         });
 }
 
-function descargaCSVpremat() {
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_prematricula.php",
-            datos:{
-                premat_csv:"premat_" + document.getElementById("curso_pre_mat").value,
-                curso_csv:document.getElementById("curso").value,
+
+
+function descargaCsvExcel(tipo_listado){
+    mostrarPantallaEspera("Cargando ...");
+    cargaHTML("html/secretaria.htm", "div_seleccion_csv_excel","SELECCIÓN DE FORMATO",600,400,"center_top","center_top",
+        [
+            {
+                text:"Solicitar Listado",
+                class: "textoboton btn btn-success btn-sm",
+                click:function(){
+                    const valor_seleccionado = document.querySelector('input[name="seleccion_csv_excel"]:checked')?.value;
+                    if (valor_seleccionado) {
+                        console.log("El usuario eligió: " + valor);
+                    } else {
+                        alerta("Por favor, selecciona un formato.","ERROR SELECCIÓN");
+                        return;
+                    }
+                    _url="";
+                    _datos={};
+                    _formato=document.querySelector('input[name="seleccion_csv_excel"]:checked').value;
+                    if (tipo_listado=="ele_fct_proy"){
+                        _url="php/secret_csv_elearning_fctproyecto.php";
+                        _datos={
+                            curso_csv_elearning_fctproyecto:document.getElementById("curso").value
+                        }
+                    }
+                    else if(tipo_listado=="consolidan_premat"){
+                        _url="php/secret_csv_consolidaprematricula.php";
+                        _datos={
+                            curso_csv_consolidaprematricula:document.getElementById("curso").value
+                        }
+                    }
+                    else if(tipo_listado=="prog_ling"){
+                        _url="php/secret_csv_programaling.php";
+                        _datos={
+                            curso_csv_prog_ling:document.getElementById("curso").value
+                        }    
+                    }
+                    else if(tipo_listado=="alumn_nuevos"){
+                        _url="php/secret_csv_nuevos_eso_bach.php";
+                        _datos={
+                            curso_csv_nuevos_eso_bach:document.getElementById("curso").value
+                        }   
+                    }
+                    else if(tipo_listado=="alumn_nuevos_otra_com"){
+                        _url="php/secret_csv_nuevosotracomunidad.php";
+                        _datos={
+                            curso_csv_nuevosotracomunidad:document.getElementById("curso").value
+                        }                        
+                    }
+                    else if(tipo_listado=="transp_escolar"){
+                        _url="php/secret_csv_transporte.php";
+                        _datos={
+                            curso_csv_transporte:document.getElementById("curso").value
+                        }
+                    }
+                    else if(tipo_listado=="seguro_escolar_ciclos"){
+                        _url="php/secret_csv_segurociclos.php";
+                        _datos={
+                            curso_csv_seguro:document.getElementById("curso").value
+                        }
+                    }
+                    else if(tipo_listado=="num_ss"){
+                        _url="php/secret_csv_fct_num_ss.php";
+                        _datos={
+                            curso_csv_seguro:_curso
+                        }
+                    }
+                    else if(tipo_listado=="autor_uso_img"){
+                        _url="php/secret_csv_autor_uso_imagenes.php";
+                        _datos={
+                            curso_csv_autor_uso_imagenes:curso_actual
+                        }
+                    }
+                    else if(tipo_listado=="doc_ident"){
+                        _url="php/secret_csv_documento_id.php";
+                        _datos={
+                            curso_csv_doc_id:curso_actual
+                        }
+                    }
+                    else if(tipo_listado=="prematriculas"){
+                        _url="php/secret_csv_prematricula.php";
+                        _datos={
+                            premat_csv:"premat_" + document.getElementById("curso_pre_mat").value,
+                            curso_csv:document.getElementById("curso").value
+                        }
+                    }
+                    enviarFormularioSubmit(
+                        {
+                            url:_url,
+                            datos:_datos,
+                            formato:_formato
+                        }
+                    );
+                    $(this).dialog("destroy").remove();
+                }
             }
-        }
-    );
+            ,
+            {
+                text:"Cancelar",
+                class: "textoboton btn btn-danger btn-sm",
+                click:function(){
+                    $(this).dialog("destroy").remove();
+                }
+            }
+        ]
+    )
+    .then ((dialogo)=>{
+            ocultarPantallaEspera();
+    })
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 }
 
-
+/*
 function descargaCSVelearningFctProy(){
     enviarFormularioSubmit(
         {
@@ -3266,6 +3371,19 @@ function listadoDocumnetoIdentificacion(){
         });
 }
 
+
+function descargaCSVpremat() {
+    enviarFormularioSubmit(
+        {
+            url:"php/secret_csv_prematricula.php",
+            datos:{
+                premat_csv:"premat_" + document.getElementById("curso_pre_mat").value,
+                curso_csv:document.getElementById("curso").value
+            }
+        }
+    );
+}
+*/
 
 function avisarJefesDpto(){
     var emails=[];
