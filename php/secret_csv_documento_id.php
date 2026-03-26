@@ -10,14 +10,13 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "co
 
 include("conexion.php");
 
-// 1. Validar que recibimos el curso
 $curso = isset($_POST["curso_csv_doc_id"]) ? $_POST["curso_csv_doc_id"] : null;
+$formato=$_POST["formato"];
 
 if (!$curso || $mysqli->connect_error) {
     exit("Error: Parámetros insuficientes o fallo de conexión.");
 }
 
-// 2. Consulta (He añadido real_escape_string por seguridad básica)
 $curso_safe = $mysqli->real_escape_string($curso);
 $query="
 SELECT 
@@ -58,7 +57,7 @@ ORDER BY u.apellidos ASC, u.nombre ASC";
 
 $res = $mysqli->query($query);
 
-// 3. Preparación de Cabeceras (Nada debe imprimirse antes de esto)
+// Preparación de Cabeceras (Nada debe imprimirse antes de esto)
 $Name = 'listado_num_doc_' . $curso . '.csv';
 header('Content-Type: text/csv; charset=latin1'); // Cambiado a text/csv para mejor compatibilidad
 header('Content-Disposition: attachment; filename="' . $Name . '"');

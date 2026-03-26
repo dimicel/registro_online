@@ -3169,75 +3169,85 @@ function descargaCsvExcel(tipo_listado){
                     if (tipo_listado=="ele_fct_proy"){
                         _url="php/secret_csv_elearning_fctproyecto.php";
                         _datos={
-                            curso_csv_elearning_fctproyecto:document.getElementById("curso").value
+                            curso_csv_elearning_fctproyecto:document.getElementById("curso").value,
+                            formato:_formato
                         }
                     }
                     else if(tipo_listado=="consolidan_premat"){
                         _url="php/secret_csv_consolidaprematricula.php";
                         _datos={
-                            curso_csv_consolidaprematricula:document.getElementById("curso").value
+                            curso_csv_consolidaprematricula:document.getElementById("curso").value,
+                            formato:_formato
                         }
                     }
                     else if(tipo_listado=="prog_ling"){
                         _url="php/secret_csv_programaling.php";
                         _datos={
-                            curso_csv_prog_ling:document.getElementById("curso").value
+                            curso_csv_prog_ling:document.getElementById("curso").value,
+                            formato:_formato
                         }    
                     }
                     else if(tipo_listado=="alumn_nuevos"){
                         _url="php/secret_csv_nuevos_eso_bach.php";
                         _datos={
-                            curso_csv_nuevos_eso_bach:document.getElementById("curso").value
+                            curso_csv_nuevos_eso_bach:document.getElementById("curso").value,
+                            formato:_formato
                         }   
                     }
                     else if(tipo_listado=="alumn_nuevos_otra_com"){
                         _url="php/secret_csv_nuevosotracomunidad.php";
                         _datos={
-                            curso_csv_nuevosotracomunidad:document.getElementById("curso").value
+                            curso_csv_nuevosotracomunidad:document.getElementById("curso").value,
+                            formato:_formato
                         }                        
                     }
                     else if(tipo_listado=="transp_escolar"){
                         _url="php/secret_csv_transporte.php";
                         _datos={
-                            curso_csv_transporte:document.getElementById("curso").value
+                            curso_csv_transporte:document.getElementById("curso").value,
+                            formato:_formato
                         }
                     }
                     else if(tipo_listado=="seguro_escolar_ciclos"){
                         _url="php/secret_csv_segurociclos.php";
                         _datos={
-                            curso_csv_seguro:document.getElementById("curso").value
+                            curso_csv_seguro:document.getElementById("curso").value,
+                            formato:_formato
                         }
                     }
                     else if(tipo_listado=="num_ss"){
                         _url="php/secret_csv_fct_num_ss.php";
                         _datos={
-                            curso_csv_seguro:_curso
+                            curso_csv_seguro:_curso,
+                            formato:_formato
                         }
                     }
                     else if(tipo_listado=="autor_uso_img"){
                         _url="php/secret_csv_autor_uso_imagenes.php";
                         _datos={
-                            curso_csv_autor_uso_imagenes:curso_actual
+                            curso_csv_autor_uso_imagenes:curso_actual,
+                            formato:_formato
                         }
                     }
                     else if(tipo_listado=="doc_ident"){
                         _url="php/secret_csv_documento_id.php";
                         _datos={
-                            curso_csv_doc_id:curso_actual
+                            curso_csv_doc_id:curso_actual,
+                            formato:_formato
                         }
                     }
                     else if(tipo_listado=="prematriculas"){
                         _url="php/secret_csv_prematricula.php";
                         _datos={
                             premat_csv:"premat_" + document.getElementById("curso_pre_mat").value,
-                            curso_csv:document.getElementById("curso").value
+                            curso_csv:document.getElementById("curso").value,
+                            formato:_formato
                         }
                     }
                     enviarFormularioSubmit(
                         {
                             url:_url,
-                            datos:_datos,
-                            formato:_formato
+                            datos:_datos
                         }
                     );
                     $(this).dialog("destroy").remove();
