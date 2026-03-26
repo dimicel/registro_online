@@ -1,4 +1,8 @@
 <?php
+/*ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") {
     exit("Acceso denegado");
@@ -64,20 +68,15 @@ $fechaHoy->setTime(0, 0, 0);
 // --- LÓGICA DE EXPORTACIÓN ---
 
 if ($formato === "excel") {
-    // Cargamos la librería de Excel
+// 1. Cargamos la librería SOLO si entramos aquí
     require_once __DIR__ . '/../vendor/autoload.php';
 
-    use PhpOffice\PhpSpreadsheet\Spreadsheet;
-    use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-    use PhpOffice\PhpSpreadsheet\Style\Alignment;
-    use PhpOffice\PhpSpreadsheet\Style\Fill;
-    use PhpOffice\PhpSpreadsheet\Style\Color;
-    
-    $spreadsheet = new Spreadsheet();
+    // 2. Creamos el objeto usando la ruta completa de la clase
+    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Listado');
 
-    // 1. Encabezados
+    // 3. Encabezados (Tal cual los pediste)
     $headers = [
         "NIE", "ALUMNO", "Nº de DOCUMENTO", "ES PASAPORTE", "FECHA CADUCIDAD", 
         "CADUCADO", "DIAS HASTA CADUCIDAD DEL DOCUMENTO DE IDENTIDAD", "PAIS", 
@@ -87,28 +86,31 @@ if ($formato === "excel") {
     ];
     $sheet->fromArray($headers, NULL, 'A1');
 
-    // Estilos de cabecera: Fija, Negrita, Mayúsculas
+    // 4. Estilos de cabecera: Fija, Negrita y Centrada
     $sheet->freezePane('A2');
     $estiloCabecera = [
         'font' => ['bold' => true],
-        'alignment' => ['vertical' => Alignment::VERTICAL_CENTER],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER
+        ],
     ];
     $sheet->getStyle('A1:N1')->applyFromArray($estiloCabecera);
 
-    // Alineaciones específicas de cabecera y columnas
-    // Centrados: D, E, F, G, K, L, M, N
+    // 5. Alineación de columnas (Centramos las que pediste)
     $columnasCentradas = ['D', 'E', 'F', 'G', 'K', 'L', 'M', 'N'];
     foreach ($columnasCentradas as $col) {
-        $sheet->getStyle($col)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle($col)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
     }
 
     $row = 2;
     while ($r = $res->fetch_assoc()) {
+        // Saltamos usuarios de prueba
         if (strpos(strtoupper($r["id_nie"]), 'P') === 0) continue;
 
         $alumno = ucwords(strtolower($r["apellidos"])) . ", " . ucwords(strtolower($r["nombre"]));
         
-        // Lógica de fechas
+        // Lógica de fechas (Igual que en tu CSV)
         $fechaRaw = $r["fecha_caducidad_id_nif"];
         $esInvalida = (empty($fechaRaw) || $fechaRaw == "0000-00-00" || $fechaRaw == "1970-01-01");
         if ($esInvalida) {
@@ -125,23 +127,24 @@ if ($formato === "excel") {
         $cursoTexto = $r['ciclo'] ? ($r['curso_ciclo'] . " - " . $r['ciclo']) : $r['grupo'];
         $turnoTexto = $r['turno'] ?? 'N/A';
 
-        // Insertar datos
+        // Insertar datos en las celdas
         $sheet->setCellValue('A' . $row, $r["id_nie"]);
         $sheet->setCellValue('B' . $row, $alumno);
         $sheet->setCellValue('C' . $row, $r["id_nif"]);
         
-        // ES PASAPORTE (Rojo si es 1)
-        $sheet->setCellValue('D' . $row, ($r["es_pasaporte"] ? "Si" : "No"));
+        // Columna D: ES PASAPORTE (Rojo si es 1/Si)
+        $valorPasaporte = ($r["es_pasaporte"] ? "Si" : "No");
+        $sheet->setCellValue('D' . $row, $valorPasaporte);
         if ($r["es_pasaporte"]) {
-            $sheet->getStyle('D' . $row)->getFont()->getColor()->setARGB(Color::COLOR_RED);
+            $sheet->getStyle('D' . $row)->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
         }
 
         $sheet->setCellValue('E' . $row, $fechaCad_ES);
 
-        // CADUCADO (Rojo si es Si)
+        // Columna F: CADUCADO (Rojo si es Si)
         $sheet->setCellValue('F' . $row, $estaCaducado);
         if ($estaCaducado === "Si") {
-            $sheet->getStyle('F' . $row)->getFont()->getColor()->setARGB(Color::COLOR_RED);
+            $sheet->getStyle('F' . $row)->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
         }
 
         $sheet->setCellValue('G' . $row, $diasFaltan);
@@ -156,16 +159,17 @@ if ($formato === "excel") {
         $row++;
     }
 
-    // Autoajustar columnas
+    // 6. Autoajustar el ancho de todas las columnas (A hasta N)
     foreach (range('A', 'N') as $col) {
         $sheet->getColumnDimension($col)->setAutoSize(true);
     }
 
-    // Descarga directa
+    // 7. Cabeceras para descarga forzada del navegador
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
     header('Cache-Control: max-age=0');
-    $writer = new Xlsx($spreadsheet);
+
+    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
     $writer->save('php://output');
     exit();
 
