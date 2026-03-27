@@ -3158,7 +3158,7 @@ function descargaCsvExcel(tipo_listado){
                 click:function(){
                     const valor_seleccionado = document.querySelector('input[name="seleccion_csv_excel"]:checked')?.value;
                     if (valor_seleccionado) {
-                        console.log("El usuario eligió: " + valor);
+                        console.log("El usuario eligió: " + valor_seleccionado);
                     } else {
                         alerta("Por favor, selecciona un formato.","ERROR SELECCIÓN");
                         return;
