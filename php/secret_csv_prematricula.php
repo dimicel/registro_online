@@ -254,6 +254,7 @@ if ($formato=="excel"){
     $sheet->setTitle('Listado');
     if ($error!="") {
         $stmt->close();
+        if (ob_get_length()) ob_end_clean();
         $sheet->setCellValue('A1', $error);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="listado_' . $tabla . '_' . $curso . '.xlsx"');
