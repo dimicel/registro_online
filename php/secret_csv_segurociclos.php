@@ -126,23 +126,59 @@ else {
 
 
 function generarFilaAlumno($r) {
-    $paga_seguro="SI";
+    global $curso; // Traemos la variable $curso que está "arriba" en el script
 
-    $f_n=explode("-",$r["fecha_nac"]);
-    $fecha_nac=$f_n[2]."-".$f_n[1]."-".$f_n[0];
-    $a_nac=$f_n[0];
-    
-    $edad=intval($anno_calculo)-intval($a_nac);
-    if($edad >= 28) $paga_seguro="NO";
+    // 1. Extraemos el año de inicio del curso escolar (ej: de "2022-2023" sacamos 2022)
+    $partes_curso = explode("-", $curso);
+    $anno_inicio_curso = intval($partes_curso[0]);
+
+    // 2. Procesamos la fecha de nacimiento (yyyy-mm-dd)
+    $f_n = explode("-", $r["fecha_nac"]);
+    $a_nac = intval($f_n[0]);
+    $m_nac = intval($f_n[1]);
+    $d_nac = intval($f_n[2]);
+
+    // 3. Calculamos en qué año el alumno cumple los 28
+    $anno_cumple_28 = $a_nac + 28;
+
+    // 4. Lógica del Seguro Escolar:
+    // Por defecto pagan todos
+    $paga_seguro = "SI";
+
+    // Si el año en que cumple 28 es ANTERIOR al inicio del curso, ya es mayor -> NO PAGA
+    if ($anno_cumple_28 < $anno_inicio_curso) {
+        $paga_seguro = "NO";
+    } 
+    // Si cumple los 28 en el MISMO año que empieza el curso...
+    elseif ($anno_cumple_28 == $anno_inicio_curso) {
+        // ...pero los cumple entre Septiembre (9) y Diciembre (12) -> NO PAGA (según tu regla)
+        if ($m_nac >= 9) {
+            $paga_seguro = "NO";
+        } else {
+            // Si los cumplió entre Enero y Agosto de ese mismo año, ya tiene 28 al empezar -> SI PAGA (o NO, según criterio, pero aquí aplicamos "si no, si lo paga")
+            $paga_seguro = "SI"; 
+        }
+    }
+    // Si cumple los 28 en el futuro (año siguiente o más), es menor de 28 -> SI PAGA
+    else {
+        $paga_seguro = "SI";
+    }
+
+    // 5. Calculamos la edad real actual para mostrarla (opcional)
+    $edad = $anno_inicio_curso - $a_nac;
+
+    // Formateamos fecha para mostrar (dd-mm-yyyy)
+    $fecha_mostrar = $d_nac . "-" . $m_nac . "-" . $f_n[0];
+
     return [
-        "\t".$r["id_nie"],
-        ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])),
+        "\t" . $r["id_nie"],
+        ucwords(strtolower($r["apellidos"])) . ", " . ucwords(strtolower($r["nombre"])),
         $r["curso"],
         $r["turno"],
         $r["grado"],
         $r["ciclo"],
         $r["curso_ciclo"],
-        $fecha_nac,
+        $fecha_mostrar,
         $edad,
         $paga_seguro
     ];
