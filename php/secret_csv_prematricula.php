@@ -176,6 +176,10 @@ $grupos=Array(
     "premat_2bach_h" => "2º Bach. HH.CC.SS."
 );
 
+if (!isset($grupos[$tabla])) {
+    // Si la tabla no está en nuestra lista, cortamos el grifo
+    exit("Error: El grupo solicitado no es válido.");
+}
 
 if(strpos($tabla_db,"premat_")!==false){
     if (strpos($tabla_db,"eso")!==false) $tabla_db="premat_eso";
@@ -251,7 +255,7 @@ if ($formato=="excel"){
     if ($error!="") {
         $sheet->setCellValue('A1', $error);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="listado_' . $table_ . $curso .'.xlsx"');
+        header('Content-Disposition: attachment;filename="listado_' . $tabla . '_' . $curso . '.xlsx"');
         header('Cache-Control: max-age=0');
         header('Pragma: public');
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
@@ -286,7 +290,7 @@ if ($formato=="excel"){
 
     // 2. Cabeceras oficiales
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment;filename=""listado_' . $table_ . $curso .'.xlsx"');
+    header('Content-Disposition: attachment;filename="listado_' . $tabla . '_' . $curso . '.xlsx"');
     header('Cache-Control: max-age=0');
     header('Pragma: public');
 
@@ -299,7 +303,7 @@ if ($formato=="excel"){
 
 } else {
     header('Content-Type: text/csv; charset=latin1');
-    header('Content-Disposition: attachment; filename="listado_' . $table_ . $curso .'.csv"');
+    header('Content-Disposition: attachment;filename="listado_' . $tabla . '_' . $curso . '.csv"');
 
     $output = fopen('php://output', 'w');
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
