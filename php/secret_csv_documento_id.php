@@ -173,7 +173,8 @@ if ($formato === "excel") {
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
     header('Cache-Control: max-age=0');
-    exit("aqui ha llegado");
+    echo extension_loaded('zip') ? "ZIP instalado" : "Falta la extensión ZIP";
+    exit();
     $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
     $writer->save('php://output');
     exit();
