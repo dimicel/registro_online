@@ -16,12 +16,41 @@ if ($mysqli->errno>0) exit("Error en servidor.");
 $curso=$_POST["curso_csv_consolidaprematricula"];
 $formato = isset($_POST["formato"]) ? $_POST["formato"] : 'csv';
 
-$consulta="select id_nie,apellidos,nombre,grupo,consolida_premat,curso from mat_eso where consolida_premat='Si' and curso='$curso' union all ";
-$consulta.="select id_nie,apellidos,nombre,grupo,consolida_premat,curso from mat_bach where consolida_premat='Si' and curso='$curso' order by grupo,apellidos,nombre";
-$res=$mysqli->query($consulta);
+// 1. Definimos la estructura de la consulta con los marcadores '?'
+$sql = "SELECT id_nie, apellidos, nombre, grupo, consolida_premat, curso 
+        FROM mat_eso 
+        WHERE consolida_premat = 'Si' AND curso = ? 
+        UNION ALL 
+        SELECT id_nie, apellidos, nombre, grupo, consolida_premat, curso 
+        FROM mat_bach 
+        WHERE consolida_premat = 'Si' AND curso = ? 
+        ORDER BY grupo, apellidos, nombre";
+
+// 2. Preparamos la sentencia
+$stmt = $mysqli->prepare($sql);
+
+if ($stmt) {
+    // 3. Vinculamos los parámetros
+    // Usamos "ss" porque enviamos dos strings (uno para cada '?')
+    $stmt->bind_param("ss", $curso, $curso);
+
+    // 4. Ejecutamos
+    $stmt->execute();
+
+    // 5. Obtenemos el resultado
+    $res = $stmt->get_result();
+
+    // Ya puedes usar $res como lo hacías antes (fetch_assoc, num_rows, etc.)
+    // while($r = $res->fetch_assoc()) { ... }
+
+    $stmt->close();
+} else {
+    // Manejo de error en la preparación
+    $error="Error en la consulta: " . $mysqli->error;
+}
 
 if (!$res ||$res->num_rows==0){
-    $error="No hay matrículas.";
+    $error="No hay datos que listar.";
 }
 
 $Name = 'prematriculas_consolidadas_'.$curso;
@@ -40,7 +69,6 @@ if ($formato=="excel"){
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Listado');
     if ($error!="") {
-        $stmt->close();
         if (ob_get_length()) ob_end_clean();
         $sheet->setCellValue('A1', $error);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -97,7 +125,6 @@ else {
     $output = fopen('php://output', 'w');
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
     if ($error!="") {
-        $stmt->close();
         fputcsv($output, [$error], ';');
         fclose($output);
         exit();

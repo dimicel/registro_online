@@ -37,7 +37,7 @@ $stmt->execute();
 $res = $stmt->get_result();
 
 if (!$res || $res->num_rows==0){
-    $error="No hay matrículas.";
+    $error="No hay datos que listar.";
 }
 
 $Name = 'matricula_elearning_fct_proyecto_' . $curso;
@@ -69,7 +69,6 @@ if ($formato=="excel"){
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Listado');
     if ($error!="") {
-        $stmt->close();
         if (ob_get_length()) ob_end_clean();
         $sheet->setCellValue('A1', $error);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -126,7 +125,6 @@ else {
     $output = fopen('php://output', 'w');
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
     if ($error!="") {
-        $stmt->close();
         fputcsv($output, [$error], ';');
         fclose($output);
         exit();
