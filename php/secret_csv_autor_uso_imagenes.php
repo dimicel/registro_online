@@ -100,6 +100,10 @@ if ($formato=="excel"){
         
         // Insertar toda la fila de golpe (mucho más rápido)
         $sheet->fromArray($filaFinal, NULL, "A$row");
+        // Centrar horizontalmente la celda de la columna D
+        $sheet->getStyle("D$row")
+            ->getAlignment()
+            ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
         if (strtolower(trim($r["autoriza_fotos"])) === 'no') {
             $sheet->getStyle("D$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
