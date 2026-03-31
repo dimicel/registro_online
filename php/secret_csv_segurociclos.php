@@ -1,46 +1,131 @@
 <?php
-/*ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ob_start();
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+ini_set('log_errors', 1);
 error_reporting(E_ALL);
-*/
+
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 $error="";
-$Datos="";
 
 include("conexion.php");
-if ($mysqli->errno>0) $error="Error en servidor.";
+if ($mysqli->errno>0) exit("Error en servidor.");
 
 $curso=$_POST["curso_csv_seguro"];
+$formato = isset($_POST["formato"]) ? $_POST["formato"] : 'csv';
+$res=null;
 
 $anno_calculo=substr($curso,0,4);
 
-$res=$mysqli->query("select * from mat_ciclos where curso='$curso' order by turno,grado,ciclo,curso_ciclo,apellidos,nombre");
+$sql="SELECT * 
+        FROM mat_ciclos 
+        WHERE curso=? 
+        ORDER BY turno,grado,ciclo,curso_ciclo,apellidos,nombre";
 
-if ($res->num_rows==0){
-    $error="No hay registros que listar.";
+$stmt=$mysqli->prepare($sql);
+if ($stmt){
+    $stmt->bind_param("s",$curso);
+    $stmt->execute();
+    $res=$stmt->get_result();
+    $stmt->close();
+}else{  
+    $error="Error en la consulta: " . $mysqli->error;
+}    
+
+if (!$res ||$res->num_rows==0){
+    if ($error=="")$error="No hay datos que listar.";
 }
 
-$Name = 'seguro_escolar_ciclos_'.$curso.'.csv';
-$FileName = "./$Name";
+$Name = 'seguro_escolar_ciclos_'.$curso;
 
-$Datos='NIE;ALUMNO;CURSO_ACTUAL;TURNO;GRADO;CICLO;CURSO;FECHA_NAC;EDAD;PAGA_SEGURO'.PHP_EOL;
+$encabezamiento=["NIE","ALUMNO","CURSO_ACTUAL","TURNO","GRADO","CICLO","CURSO","FECHA_NAC","EDAD","PAGA_SEGURO"];
 
-header('Expires: 0');
-header('Cache-control: private');
-header('Content-Type: application/x-octet-stream;charset=utf-8'); // Archivo de Excel
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Content-Description: File Transfer');
-header('Last-Modified: '.date('D, d M Y H:i:s'));
-header('Content-Disposition: attachment; filename="'.$Name.'"');
-header("Content-Transfer-Encoding: binary");
+if ($formato=="excel"){
+    // 1. Recursos y Librería
+    ini_set('memory_limit', '512M'); 
+    set_time_limit(300);
 
-if ($error!="") {
-    echo $error;
+    require_once __DIR__ . '/vendor/autoload.php';
+
+    // 2. Crear Objeto
+    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setTitle('Listado');
+    if ($error!="") {
+        if (ob_get_length()) ob_end_clean();
+        $sheet->setCellValue('A1', $error);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $Name. '.xlsx"');
+        header('Cache-Control: max-age=0');
+        header('Pragma: public');
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        $writer->save('php://output');
+        exit();
+    }
+    $sheet->fromArray($encabezamiento, NULL, 'A1');
+    $sheet->freezePane('A2'); //Inmoviliza la priemra fila
+    $estiloCabecera = [
+        'font' => ['bold' => true],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
+        ],
+    ];
+    $sheet->getStyle('1:1')->applyFromArray($estiloCabecera);
+
+    //Llenado de datos
+    $row = 2;
+    $res->data_seek(0); // Reiniciamos el puntero por si acaso
+    while ($r = $res->fetch_assoc()) {
+        if (substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
+
+        $filaFinal = generarFilaAlumno($r);
+        
+        // Insertar toda la fila de golpe (mucho más rápido)
+        $sheet->fromArray($filaFinal, NULL, "A$row");
+        $row++;
+    }
+    // 1. Borramos cualquier salida previa (espacios, errores ocultos)
+    if (ob_get_length()) ob_end_clean();
+
+    // 2. Cabeceras oficiales
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $Name. '.xlsx"');
+    header('Cache-Control: max-age=0');
+    header('Pragma: public');
+
+    // 3. Generar archivo
+    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+    $writer->save('php://output');
+    
+    // 4. Salida limpia
     exit();
 }
-while($r=$res->fetch_array(MYSQLI_ASSOC)){
-    if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
+else {
+    header('Content-Type: text/csv; charset=UTF-8');
+    header('Content-Disposition: attachment; filename="'.$Name.'.csv"');
+
+    $output = fopen('php://output', 'w');
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    if ($error!="") {
+        fputcsv($output, [$error], ';');
+        fclose($output);
+        exit();
+    }
+    fputcsv($output, $encabezamiento, ";");
+
+    while($r=$res->fetch_assoc()){
+        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
+
+        $filaFinal = generarFilaAlumno($r);
+        fputcsv($output, $filaFinal, ";");
+    }
+    fclose($output);
+    exit();
+}
+
+
+function generarFilaAlumno($r) {
     $paga_seguro="SI";
 
     $f_n=explode("-",$r["fecha_nac"]);
@@ -49,18 +134,19 @@ while($r=$res->fetch_array(MYSQLI_ASSOC)){
     
     $edad=intval($anno_calculo)-intval($a_nac);
     if($edad >= 28) $paga_seguro="NO";
-
-    $Datos.="'". $r["id_nie"]."'".";";
-    $Datos.= ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";";
-    $Datos.= $r["curso"].";";
-    $Datos.= $r["turno"].";";
-    $Datos.= $r["grado"].";";
-    $Datos.= $r["ciclo"].";";
-    $Datos.= $r["curso_ciclo"].";";
-    $Datos.= $fecha_nac.";";
-    $Datos.= $edad.";";
-    $Datos.= $paga_seguro.PHP_EOL;		
+    return [
+        "\t".$r["id_nie"],
+        ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])),
+        $r["curso"],
+        $r["turno"],
+        $r["grado"],
+        $r["ciclo"],
+        $r["curso_ciclo"],
+        $fecha_nac,
+        $edad,
+        $paga_seguro
+    ];
 }
 
-echo $Datos;
+
 
