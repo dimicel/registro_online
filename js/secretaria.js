@@ -3150,7 +3150,7 @@ function subeLogo(obj, imagen){
 
 function descargaCsvExcel(tipo_listado){
     mostrarPantallaEspera("Cargando ...");
-    cargaHTML("html/secretaria.htm", "div_seleccion_csv_excel","SELECCIÓN DE FORMATO",500,400,"center_top","center_top",
+    cargaHTML("html/secretaria.htm", "div_seleccion_csv_excel","SELECCIÓN DE FORMATO",400,400,"center_top","center_top",
         [
             {
                 text:"Solicitar Listado",
