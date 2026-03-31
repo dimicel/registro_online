@@ -34,7 +34,7 @@ if (!$res ||$res->num_rows==0){
     if ($error=="")$error="No hay datos que listar.";
 }
 
-$Name = 'eso_programa_ling'.$curso;
+$Name = 'eso_programa_ling_'.$curso;
 
 $encabezamiento=['NIE','APELLIDOS','NOMBRE','GRUPO','PROGRAMA LINGÜÍSTICO'];
 

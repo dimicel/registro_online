@@ -40,9 +40,7 @@ if (!$res ||$res->num_rows==0){
     if ($error=="")$error="No hay datos que listar.";
 }
 
-$res=$mysqli->query($consulta);
-
-$Name = 'alumnos_nuevos_eso_bach' . $curso;
+$Name = 'alumnos_nuevos_eso_bach_' . $curso;
 
 $encabezamiento=['NIE','APELLIDOS','NOMBRE','NUEVO DE OTRA COMUNIDAD','GRUPO'];
 
