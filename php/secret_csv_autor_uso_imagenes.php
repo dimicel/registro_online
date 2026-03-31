@@ -101,13 +101,18 @@ if ($formato=="excel"){
         // Insertar toda la fila de golpe (mucho más rápido)
         $sheet->fromArray($filaFinal, NULL, "A$row");
 
-        if (strtolower(trim($r["autoriza_fotos"])) === 'si') {
+        if (strtolower(trim($r["autoriza_fotos"])) === 'no') {
             $sheet->getStyle("D$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
             // Opcional: ponerlo en negrita para que resalte más
             // $sheet->getStyle("D$row")->getFont()->setBold(true);
         }
 
         $row++;
+    }
+    // Ajustar el ancho de las columnas automáticamente
+    $columnas = ['A', 'B', 'C', 'D'];
+    foreach ($columnas as $col) {
+        $sheet->getColumnDimension($col)->setAutoSize(true);
     }
     // 1. Borramos cualquier salida previa (espacios, errores ocultos)
     if (ob_get_length()) ob_end_clean();
