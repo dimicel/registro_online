@@ -15,7 +15,7 @@ if ($mysqli->errno>0) exit("Error en servidor.");
 
 $curso=$_POST["curso_csv_consolidaprematricula"];
 $formato = isset($_POST["formato"]) ? $_POST["formato"] : 'csv';
-
+$res = null;
 // 1. Definimos la estructura de la consulta con los marcadores '?'
 $sql = "SELECT id_nie, apellidos, nombre, grupo, consolida_premat, curso 
         FROM mat_eso 
