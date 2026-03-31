@@ -15,11 +15,11 @@ include("conexion.php");
 
 $curso = isset($_POST["curso_csv_doc_id"]) ? $_POST["curso_csv_doc_id"] : null;
 $formato = isset($_POST["formato"]) ? $_POST["formato"] : 'csv';
-$registros_obtenidos = true;
+$error="";
 
 
 if (!$curso || $mysqli->connect_error) {
-    exit("Error: Parámetros insuficientes o fallo de conexión.");
+    $error="Error: Parámetros insuficientes o fallo de conexión.";
 }
 
 $curso_safe = $mysqli->real_escape_string($curso);
@@ -63,9 +63,10 @@ ORDER BY u.apellidos ASC, u.nombre ASC";
 $res = $mysqli->query($query);
 
 if (!$res || $res->num_rows == 0) {
-    //exit("No hay registros que listar.");
-    $registros_obtenidos = false;
+    $error="No hay registros que listar.";
 }
+
+
 
 $fechaHoy = new DateTime(); 
 $fechaHoy->setTime(0, 0, 0);
@@ -83,8 +84,8 @@ if ($formato === "excel") {
     $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Listado');
-    if ($registros_obtenidos === false) {
-        $sheet->setCellValue('A1', "No hay registros que listar.");
+    if ($error!="") {
+        $sheet->setCellValue('A1', $error);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
         header('Cache-Control: max-age=0');
@@ -204,11 +205,12 @@ if ($formato === "excel") {
     
     $output = fopen('php://output', 'w');
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
-    if ($registros_obtenidos === false){
-        fputcsv($output, ["No hay registros que listar."], ";");
+    if ($error!="") {
+        fputcsv($output, [$error], ';');
         fclose($output);
         exit();
     }
+    
     fputcsv($output, ["NIE", "ALUMNO", "N_DOCUMENTO", "ES_PASAPORTE", "FECHA_CADUCIDAD", "CADUCADO", "DIAS_HASTA_CADUCIDAD", "PAIS", "CURSO", "TURNO", "SUBIDA_ANVERSO_DNI", "SUBIDA_REVERSO_DNI", "SUBIDA_PASAPORTE", "SUBIDA_SEGURO_ESCOLAR"], ";");
     
     while ($r = $res->fetch_assoc()) {
