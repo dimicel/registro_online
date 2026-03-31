@@ -50,7 +50,7 @@ if ($stmt) {
 }
 
 if (!$res ||$res->num_rows==0){
-    $error="No hay datos que listar.";
+    if ($error=="")$error="No hay datos que listar.";
 }
 
 $Name = 'prematriculas_consolidadas_'.$curso;

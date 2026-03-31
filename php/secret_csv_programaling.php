@@ -25,9 +25,13 @@ if($stmt){
     $res=$stmt->get_result();
     $stmt->close();
 }
+else {
+    // Manejo de error en la preparación
+    $error="Error en la consulta: " . $mysqli->error;
+}
 
-if (!$res || $res->num_rows==0){
-    $error="No hay datos que listar.";
+if (!$res ||$res->num_rows==0){
+    if ($error=="")$error="No hay datos que listar.";
 }
 
 $Name = 'eso_programa_ling'.$curso;
