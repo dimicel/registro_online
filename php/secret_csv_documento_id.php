@@ -85,6 +85,7 @@ if ($formato === "excel") {
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Listado');
     if ($error!="") {
+        $stmt->close();
         $sheet->setCellValue('A1', $error);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="listado_doc_identif_' . $curso . '.xlsx"');
@@ -206,6 +207,7 @@ if ($formato === "excel") {
     $output = fopen('php://output', 'w');
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
     if ($error!="") {
+        $stmt->close();
         fputcsv($output, [$error], ';');
         fclose($output);
         exit();

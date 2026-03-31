@@ -8,7 +8,6 @@ error_reporting(E_ALL);
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 $error="";
-$Datos="";
 
 include("conexion.php");
 if ($mysqli->errno>0) exit("Error en servidor.");
@@ -18,46 +17,148 @@ $curso=$_POST["curso_csv_elearning_fctproyecto"];
 $turno="E-Learning_f";
 $formato = isset($_POST["formato"]) ? $_POST["formato"] : 'csv';
 
-$consulta="select * from mat_ciclos where turno='$turno' and curso='$curso' order by apellidos,nombre";
-$res=$mysqli->query($consulta);
+// 1. Preparamos la consulta con los marcadores '?'
+$sql = "SELECT * FROM mat_ciclos WHERE turno = ? AND curso = ? ORDER BY apellidos, nombre";
+$stmt = $mysqli->prepare($sql);
+
+if (!$stmt) {
+    // Si falla la preparación (por ejemplo, error en nombre de columna)
+    exit("Error en la preparación: " . $mysqli->error);
+}
+
+// 2. Vinculamos las variables
+// "ss" indica que enviamos dos Strings (turno y curso)
+$stmt->bind_param("ss", $turno, $curso);
+
+// 3. Ejecutamos
+$stmt->execute();
+
+// 4. Obtenemos el resultado para poder usarlo como antes ($res->fetch_assoc, etc.)
+$res = $stmt->get_result();
 
 if (!$res || $res->num_rows==0){
     $error="No hay matrículas.";
 }
 
 $Name = 'matricula_elearning_fct_proyecto_' . $curso;
+$encabezamiento = [
+    "NIE", 
+    "APELLIDOS", 
+    "NOMBRE", 
+    "NIF", 
+    "REGISTRO", 
+    "GRADO", 
+    "CICLO", 
+    "NUEVO_DE_OTRA_COMUNIDAD", 
+    "EMAIL", 
+    "TELEFONO", 
+    "MAYOR_28_AÑOS", 
+    "PROYECTO", 
+    "FCT"
+];
 
-$Datos='NIE;APELLIDOS;NOMBRE;NIF;REGISTRO;GRADO;CICLO;NUEVO_DE_OTRA_COMUNIDAD;EMAIL;TELEFONO;MAYOR_28_AÑOS;PROYECTO;FCT'.PHP_EOL;
-header('Expires: 0');
-header('Cache-control: private');
-header('Content-Type: application/x-octet-stream;charset=utf-8'); // Archivo de Excel
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Content-Description: File Transfer');
-header('Last-Modified: '.date('D, d M Y H:i:s'));
-header('Content-Disposition: attachment; filename="'.$Name.'csv"');
-header("Content-Transfer-Encoding: binary");
+if ($formato=="excel"){
+    // 1. Recursos y Librería
+    ini_set('memory_limit', '512M'); 
+    set_time_limit(300);
 
-if ($error!="") {
-    echo $error;
+    require_once __DIR__ . '/vendor/autoload.php';
+
+    // 2. Crear Objeto
+    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setTitle('Listado');
+    if ($error!="") {
+        $stmt->close();
+        $sheet->setCellValue('A1', $error);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $Name. '.xlsx"');
+        header('Cache-Control: max-age=0');
+        header('Pragma: public');
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        $writer->save('php://output');
+        exit();
+    }
+    $sheet->fromArray($encabezamiento, NULL, 'A1');
+    $sheet->freezePane('A2'); //Inmoviliza la priemra fila
+    $estiloCabecera = [
+        'font' => ['bold' => true],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
+        ],
+    ];
+    $sheet->getStyle('1:1')->applyFromArray($estiloCabecera);
+
+    //Llenado de datos
+    $row = 2;
+    $res->data_seek(0); // Reiniciamos el puntero por si acaso
+    while ($r = $res->fetch_assoc()) {
+        if (substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
+
+        $filaFinal = generarFilaAlumno($r);
+        
+        // Insertar toda la fila de golpe (mucho más rápido)
+        $sheet->fromArray($filaFinal, NULL, "A$row");
+        $row++;
+    }
+    $stmt->close();
+    // 1. Borramos cualquier salida previa (espacios, errores ocultos)
+    if (ob_get_length()) ob_end_clean();
+
+    // 2. Cabeceras oficiales
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $Name. '.xlsx"');
+    header('Cache-Control: max-age=0');
+    header('Pragma: public');
+
+    // 3. Generar archivo
+    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+    $writer->save('php://output');
+    
+    // 4. Salida limpia
+    exit();
+}
+else {
+    header('Content-Type: text/csv; charset=latin1');
+    header('Content-Disposition: attachment; filename="'.$Name.'csv"');
+
+    $output = fopen('php://output', 'w');
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    if ($error!="") {
+        $stmt->close();
+        fputcsv($output, [$error], ';');
+        fclose($output);
+        exit();
+    }
+    fputcsv($output, $encabezamiento, ";");
+
+    while($r=$res->fetch_array(MYSQLI_ASSOC)){
+        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
+
+        $filaFinal = generarFilaAlumno($r, $tabla);
+        fputcsv($output, $filaFinal, ";");
+    }
+    $stmt->close();
+    fclose($output);
     exit();
 }
 
-while($r=$res->fetch_array(MYSQLI_ASSOC)){
-    if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
-    $Datos.= $r["id_nie"].";";
-    $Datos.= ucwords(strtolower($r["apellidos"])).";";
-    $Datos.= ucwords(strtolower($r["nombre"])).";";
-    $Datos.= ucwords(strtolower($r["id_nif"])).";";
-    $Datos.= ucwords(strtolower($r["registro"])).";";
-    $Datos.= ucwords(strtolower($r["grado"])).";";
-    $Datos.= ucwords(strtolower($r["ciclo"])).";";
-    $Datos.= ucwords(strtolower($r["al_nuevo_otracomunidad"])).";";
-    $Datos.= ucwords(strtolower($r["email"])).";";
-    $Datos.= ucwords(strtolower($r["telefono"])).";";
-    $Datos.= ucwords(strtolower($r["mayor_28"])).";";
-    $Datos.= ucwords(strtolower($r["proyecto"])).";";
-    $Datos.= ucwords(strtolower($r["fct"])).PHP_EOL;			
+
+function generarFilaAlumno($r) {
+    $fila=[$r["id_nie"]];
+    array_push($fila,ucwords(strtolower($r["apellidos"])));
+    array_push($fila,ucwords(strtolower($r["nombre"])));
+    array_push($fila,ucwords(strtolower($r["id_nif"])));
+    array_push($fila,ucwords(strtolower($r["registro"])));
+    array_push($fila,ucwords(strtolower($r["grado"])));
+    array_push($fila,ucwords(strtolower($r["ciclo"])));
+    array_push($fila,ucwords(strtolower($r["al_nuevo_otracomunidad"])));
+    array_push($fila,ucwords(strtolower($r["email"])));
+    array_push($fila,ucwords(strtolower($r["telefono"])));
+    array_push($fila,ucwords(strtolower($r["mayor_28"])));
+    array_push($fila,ucwords(strtolower($r["proyecto"])));
+    array_push($fila,ucwords(strtolower($r["fct"])));
+    return $fila;
 }
 
-echo $Datos;
 
