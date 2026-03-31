@@ -247,6 +247,12 @@ if ($formato=="excel"){
             array_push($Datos, $r["materia20"]);
         }
 
+        $col=1;
+        foreach ($Datos as $dato){
+            $sheet->setCellValueByColumnAndRow($col , $row, $dato);
+            $col++;
+        }
+        $row++;
     }
 
 } else {
