@@ -710,10 +710,6 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_mat_fpb").style.display = "none";
         if (document.getElementById("curso_pre_mat").value != "") $("#CSV_premat").removeClass("disabled");
         else $("#CSV_premat").addClass("disabled");
-        //$("#menu_csv_mat").addClass("disabled");
-        //$("#menu_listado_mat_pdf").addClass("disabled");
-        $("#CSV_transporte").addClass("disabled");
-        $("#CSV_seguro").addClass("disabled");
     } else if (tipo_formulario == "matricula") {
         habilitaMenu(true, false);
         document.getElementById("div_curso_mat").style.display = "inherit";
@@ -721,17 +717,6 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
         document.getElementById("div_curso_mat_fpb").style.display = "none";
         $("#CSV_premat").addClass("disabled");
-        if (document.getElementById("curso_mat").value != "") {
-            //$("#menu_csv_mat").removeClass("disabled");
-            //$("#menu_listado_mat_pdf").removeClass("disabled");
-            $("#CSV_transporte").removeClass("disabled");
-            $("#CSV_seguro").addClass("disabled");
-        } else {
-            //$("#menu_csv_mat").addClass("disabled");
-            //$("#menu_listado_mat_pdf").addClass("disabled");
-            $("#CSV_transporte").addClass("disabled");
-            $("#CSV_seguro").addClass("disabled");
-        }
     } else if (tipo_formulario == "matricula_ciclos") {
         habilitaMenu(true, false);
         document.getElementById("div_curso_mat").style.display = "none";
@@ -739,16 +724,9 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_mat_ciclos").style.display = "inherit";
         document.getElementById("div_curso_mat_fpb").style.display = "none";
         $("#CSV_premat").addClass("disabled");
-        //$("#menu_csv_mat").addClass("disabled");
-        //$("#menu_listado_mat_pdf").addClass("disabled");
         if (document.getElementById("mat_ciclos").value != "" &&
             document.getElementById("mat_ciclos_curso").value != "" &&
             document.getElementById("mat_ciclos_turno").value != "") {
-            $("#CSV_transporte").addClass("disabled");
-            $("#CSV_seguro").removeClass("disabled");
-        } else {
-            $("#CSV_transporte").addClass("disabled");
-            $("#CSV_seguro").addClass("disabled");
         }
     } else if (tipo_formulario == "matricula_fpb") {
         habilitaMenu(true, false);
@@ -757,16 +735,6 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
         document.getElementById("div_curso_mat_fpb").style.display = "inherit";
         $("#CSV_premat").addClass("disabled");
-        //$("#menu_csv_mat").addClass("disabled");
-        //$("#menu_listado_mat_pdf").addClass("disabled");
-        if (document.getElementById("mat_fpb").value != "" &&
-            document.getElementById("mat_fpb_curso").value != "") {
-            $("#CSV_transporte").removeClass("disabled");
-            $("#CSV_seguro").addClass("disabled");
-        } else {
-            $("#CSV_transporte").addClass("disabled");
-            $("#CSV_seguro").addClass("disabled");
-        }
     }
     else if(tipo_formulario=="convalidaciones" || tipo_formulario=="exencion_fct"){
         habilitaMenu(false, false);
@@ -778,10 +746,6 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
         document.getElementById("div_curso_mat_fpb").style.display = "none";
         $("#CSV_premat").addClass("disabled");
-        //$("#menu_csv_mat").addClass("disabled");
-        //$("#menu_listado_mat_pdf").addClass("disabled");
-        $("#CSV_transporte").addClass("disabled");
-        $("#CSV_seguro").addClass("disabled");
     }
     else {
         habilitaMenu(true, true);
@@ -790,10 +754,6 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
         document.getElementById("div_curso_mat_fpb").style.display = "none";
         $("#CSV_premat").addClass("disabled");
-        //$("#menu_csv_mat").addClass("disabled");
-        //$("#menu_listado_mat_pdf").addClass("disabled");
-        $("#CSV_transporte").addClass("disabled");
-        $("#CSV_seguro").addClass("disabled");
     }
 
     direccion = new Array();
