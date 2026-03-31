@@ -11,7 +11,7 @@ $error="";
 $Datos="";
 
 include("conexion.php");
-if ($mysqli->errno>0) $error="Error en servidor.";
+if ($mysqli->errno>0) exit("Error en servidor.");
 
 
 $tabla=$_POST["premat_csv"];
@@ -254,6 +254,21 @@ if ($formato=="excel"){
         }
         $row++;
     }
+    // 1. Borramos cualquier salida previa (espacios, errores ocultos)
+    if (ob_get_length()) ob_end_clean();
+
+    // 2. Cabeceras oficiales
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
+    header('Cache-Control: max-age=0');
+    header('Pragma: public');
+
+    // 3. Generar archivo
+    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+    $writer->save('php://output');
+    
+    // 4. Salida limpia
+    exit();
 
 } else {
     header('Content-Type: text/csv; charset=latin1');
