@@ -100,6 +100,13 @@ if ($formato=="excel"){
         
         // Insertar toda la fila de golpe (mucho más rápido)
         $sheet->fromArray($filaFinal, NULL, "A$row");
+
+        if (strtolower(trim($r["autoriza_fotos"])) === 'si') {
+            $sheet->getStyle("D$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
+            // Opcional: ponerlo en negrita para que resalte más
+            // $sheet->getStyle("D$row")->getFont()->setBold(true);
+        }
+
         $row++;
     }
     // 1. Borramos cualquier salida previa (espacios, errores ocultos)
