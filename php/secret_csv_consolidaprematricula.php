@@ -142,11 +142,12 @@ else {
 
 
 function generarFilaAlumno($r) {
-    $fila=[$r["id_nie"]];
-    array_push($fila,ucwords(strtolower($r["apellidos"])));
-    array_push($fila,ucwords(strtolower($r["nombre"])));
-    array_push($fila,ucwords(strtolower($r["grupo"])));
-    return $fila;
+    return [
+        "\t".$r["id_nie"],
+        ucwords(strtolower($r["apellidos"])),
+        ucwords(strtolower($r["nombre"])),
+        ucwords(strtolower($r["grupo"]))
+    ];
 }
 
 
