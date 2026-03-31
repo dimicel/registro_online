@@ -174,7 +174,7 @@ if ($formato === "excel") {
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
     header('Cache-Control: max-age=0');
-
+    exit("aqui ha llegado");
     $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
     $writer->save('php://output');
     exit();
