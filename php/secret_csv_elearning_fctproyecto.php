@@ -1,8 +1,10 @@
 <?php
-/*ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ob_start();
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+ini_set('log_errors', 1);
 error_reporting(E_ALL);
-*/
+
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 $error="";
@@ -24,7 +26,6 @@ if (!$res || $res->num_rows==0){
 }
 
 $Name = 'matricula_elearning_fct_proyecto_' . $curso;
-$FileName = "./$Name";
 
 $Datos='NIE;APELLIDOS;NOMBRE;NIF;REGISTRO;GRADO;CICLO;NUEVO_DE_OTRA_COMUNIDAD;EMAIL;TELEFONO;MAYOR_28_AÑOS;PROYECTO;FCT'.PHP_EOL;
 header('Expires: 0');

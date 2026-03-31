@@ -87,7 +87,7 @@ if ($formato === "excel") {
     if ($error!="") {
         $sheet->setCellValue('A1', $error);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
+        header('Content-Disposition: attachment;filename="listado_doc_identif_' . $curso . '.xlsx"');
         header('Cache-Control: max-age=0');
         header('Pragma: public');
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
@@ -186,7 +186,7 @@ if ($formato === "excel") {
 
     // 2. Cabeceras oficiales
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
+    header('Content-Disposition: attachment;filename="listado_doc_identif_' . $curso . '.xlsx"');
     header('Cache-Control: max-age=0');
     header('Pragma: public');
 
@@ -199,7 +199,7 @@ if ($formato === "excel") {
 
 } else {
     // --- LÓGICA CSV (Tu código original) ---
-    $Name = 'listado_num_doc_' . $curso . '.csv';
+    $Name = 'listado_doc_identif_' . $curso . '.csv';
     header('Content-Type: text/csv; charset=latin1');
     header('Content-Disposition: attachment; filename="' . $Name . '"');
     
