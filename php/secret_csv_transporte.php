@@ -20,9 +20,9 @@ if ($res->num_rows==0){
 }
 
 $Name = 'transporte_'.$curso.'.csv';
-$FileName = "./$Name";
+
 $Datos="Fecha y hora: ".date("d/m/Y H:i:s").PHP_EOL;
-$Datos.='NIE;ALUMNO;CURSO_ACTUAL;ESTUDIOS;CP;LOCALIDAD;PROVINCIA;RUTA Y PARADA;SILLA_RUEDAS;FECHA_SOLICITUD'.PHP_EOL;
+$Datos.='NIE;ALUMNO;AÑO_ACADÉMICO;CURSO;CP;LOCALIDAD;PROVINCIA;RUTA Y PARADA;SILLA_RUEDAS;FECHA_SOLICITUD'.PHP_EOL;
 
 header('Expires: 0');
 header('Cache-control: private');
