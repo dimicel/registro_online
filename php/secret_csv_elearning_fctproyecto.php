@@ -9,20 +9,21 @@ $error="";
 $Datos="";
 
 include("conexion.php");
-if ($mysqli->errno>0) $error="Error en servidor.";
+if ($mysqli->errno>0) exit("Error en servidor.");
 
 
 $curso=$_POST["curso_csv_elearning_fctproyecto"];
 $turno="E-Learning_f";
+$formato = isset($_POST["formato"]) ? $_POST["formato"] : 'csv';
 
 $consulta="select * from mat_ciclos where turno='$turno' and curso='$curso' order by apellidos,nombre";
 $res=$mysqli->query($consulta);
 
-if ($res->num_rows==0){
+if (!$res || $res->num_rows==0){
     $error="No hay matrículas.";
 }
 
-$Name = 'matricula_elearning_fct_proyecto.csv';
+$Name = 'matricula_elearning_fct_proyecto_' . $curso;
 $FileName = "./$Name";
 
 $Datos='NIE;APELLIDOS;NOMBRE;NIF;REGISTRO;GRADO;CICLO;NUEVO_DE_OTRA_COMUNIDAD;EMAIL;TELEFONO;MAYOR_28_AÑOS;PROYECTO;FCT'.PHP_EOL;
@@ -32,7 +33,7 @@ header('Content-Type: application/x-octet-stream;charset=utf-8'); // Archivo de 
 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 header('Content-Description: File Transfer');
 header('Last-Modified: '.date('D, d M Y H:i:s'));
-header('Content-Disposition: attachment; filename="'.$Name.'"');
+header('Content-Disposition: attachment; filename="'.$Name.'csv"');
 header("Content-Transfer-Encoding: binary");
 
 if ($error!="") {
