@@ -70,17 +70,24 @@ $fechaHoy->setTime(0, 0, 0);
 // --- LÓGICA DE EXPORTACIÓN ---
 
 if ($formato === "excel") {
-// 1. Cargamos la librería SOLO si entramos aquí
-    ini_set('memory_limit', '512M'); // Aumenta el límite de memoria
-    set_time_limit(300);   // Da 5 minutos de margen por si la consulta es lenta
+    // 1. Recursos y Librería
+    ini_set('memory_limit', '512M'); 
+    set_time_limit(300);
+    
+    // Verificación de seguridad: ¿Está instalada la extensión ZIP? 
+    // Sin ella, PhpSpreadsheet muere al intentar generar el .xlsx
+    if (!extension_loaded('zip')) {
+        exit("Error: La extensión 'zip' no está activa en tu servidor PHP. Es necesaria para generar archivos Excel.");
+    }
+
     require_once __DIR__ . '/vendor/autoload.php';
 
-    // 2. Creamos el objeto usando la ruta completa de la clase
+    // 2. Crear Objeto
     $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Listado');
 
-    // 3. Encabezados (Tal cual los pediste)
+    // 3. Encabezados
     $headers = [
         "NIE", "ALUMNO", "Nº de DOCUMENTO", "ES PASAPORTE", "FECHA CADUCIDAD", 
         "CADUCADO", "DIAS HASTA CADUCIDAD DEL DOCUMENTO DE IDENTIDAD", "PAIS", 
@@ -90,7 +97,7 @@ if ($formato === "excel") {
     ];
     $sheet->fromArray($headers, NULL, 'A1');
 
-    // 4. Estilos de cabecera: Fija, Negrita y Centrada
+    // 4. Estilos de cabecera
     $sheet->freezePane('A2');
     $estiloCabecera = [
         'font' => ['bold' => true],
@@ -101,20 +108,20 @@ if ($formato === "excel") {
     ];
     $sheet->getStyle('A1:N1')->applyFromArray($estiloCabecera);
 
-    // 5. Alineación de columnas (Centramos las que pediste)
+    // 5. Alineación
     $columnasCentradas = ['D', 'E', 'F', 'G', 'K', 'L', 'M', 'N'];
     foreach ($columnasCentradas as $col) {
         $sheet->getStyle($col)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
     }
 
+    // 6. Llenado de datos
     $row = 2;
+    $res->data_seek(0); // Reiniciamos el puntero por si acaso
     while ($r = $res->fetch_assoc()) {
-        // Saltamos usuarios de prueba
         if (strpos(strtoupper($r["id_nie"]), 'P') === 0) continue;
 
         $alumno = ucwords(strtolower($r["apellidos"])) . ", " . ucwords(strtolower($r["nombre"]));
         
-        // Lógica de fechas (Igual que en tu CSV)
         $fechaRaw = $r["fecha_caducidad_id_nif"];
         $esInvalida = (empty($fechaRaw) || $fechaRaw == "0000-00-00" || $fechaRaw == "1970-01-01");
         if ($esInvalida) {
@@ -131,12 +138,10 @@ if ($formato === "excel") {
         $cursoTexto = $r['ciclo'] ? ($r['curso_ciclo'] . " - " . $r['ciclo']) : $r['grupo'];
         $turnoTexto = $r['turno'] ?? 'N/A';
 
-        // Insertar datos en las celdas
         $sheet->setCellValue('A' . $row, $r["id_nie"]);
         $sheet->setCellValue('B' . $row, $alumno);
         $sheet->setCellValue('C' . $row, $r["id_nif"]);
         
-        // Columna D: ES PASAPORTE (Rojo si es 1/Si)
         $valorPasaporte = ($r["es_pasaporte"] ? "Si" : "No");
         $sheet->setCellValue('D' . $row, $valorPasaporte);
         if ($r["es_pasaporte"]) {
@@ -144,8 +149,6 @@ if ($formato === "excel") {
         }
 
         $sheet->setCellValue('E' . $row, $fechaCad_ES);
-
-        // Columna F: CADUCADO (Rojo si es Si)
         $sheet->setCellValue('F' . $row, $estaCaducado);
         if ($estaCaducado === "Si") {
             $sheet->getStyle('F' . $row)->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
@@ -163,20 +166,27 @@ if ($formato === "excel") {
         $row++;
     }
 
-    // 6. Autoajustar el ancho de todas las columnas (A hasta N)
+    // 7. Autoajuste de columnas
     foreach (range('A', 'N') as $col) {
         $sheet->getColumnDimension($col)->setAutoSize(true);
     }
     
-    // 7. Cabeceras para descarga forzada del navegador
-    if (ob_get_contents()) ob_end_clean();
+    // --- IMPORTANTE: LIMPIEZA FINAL Y SALIDA ---
+    
+    // 1. Borramos cualquier salida previa (espacios, errores ocultos)
+    if (ob_get_length()) ob_end_clean();
+
+    // 2. Cabeceras oficiales
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
     header('Cache-Control: max-age=0');
-    echo extension_loaded('zip') ? "ZIP instalado" : "Falta la extensión ZIP";
-    exit();
+    header('Pragma: public');
+
+    // 3. Generar archivo
     $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
     $writer->save('php://output');
+    
+    // 4. Salida limpia
     exit();
 
 } else {
