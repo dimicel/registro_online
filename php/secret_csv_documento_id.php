@@ -168,7 +168,6 @@ if ($formato === "excel") {
         $sheet->getColumnDimension($col)->setAutoSize(true);
     }
     
-    ob_end_clean();
     // 7. Cabeceras para descarga forzada del navegador
     if (ob_get_contents()) ob_end_clean();
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
