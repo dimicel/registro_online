@@ -1,4 +1,5 @@
 <?php
+ob_start();
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 ini_set('log_errors', 1);
@@ -164,7 +165,8 @@ if ($formato === "excel") {
     foreach (range('A', 'N') as $col) {
         $sheet->getColumnDimension($col)->setAutoSize(true);
     }
-
+    
+    ob_end_clean();
     // 7. Cabeceras para descarga forzada del navegador
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
