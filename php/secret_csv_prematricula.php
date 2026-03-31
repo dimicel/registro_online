@@ -1,8 +1,10 @@
 <?php
-/*ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ob_start();
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+ini_set('log_errors', 1);
 error_reporting(E_ALL);
-*/
+
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 $error="";
@@ -15,6 +17,7 @@ if ($mysqli->errno>0) $error="Error en servidor.";
 $tabla=$_POST["premat_csv"];
 $tabla_db=$tabla;
 $curso=$_POST["curso_csv"];
+$formato = isset($_POST["formato"]) ? $_POST["formato"] : 'csv';
 
 $grupos=Array(
     "premat_2eso" => "2º ESO",

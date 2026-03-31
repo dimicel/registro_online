@@ -73,12 +73,6 @@ if ($formato === "excel") {
     // 1. Recursos y Librería
     ini_set('memory_limit', '512M'); 
     set_time_limit(300);
-    
-    // Verificación de seguridad: ¿Está instalada la extensión ZIP? 
-    // Sin ella, PhpSpreadsheet muere al intentar generar el .xlsx
-    if (!extension_loaded('zip')) {
-        exit("Error: La extensión 'zip' no está activa en tu servidor PHP. Es necesaria para generar archivos Excel.");
-    }
 
     require_once __DIR__ . '/vendor/autoload.php';
 
