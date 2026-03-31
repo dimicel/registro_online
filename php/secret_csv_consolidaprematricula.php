@@ -101,7 +101,6 @@ if ($formato=="excel"){
         $sheet->fromArray($filaFinal, NULL, "A$row");
         $row++;
     }
-    $stmt->close();
     // 1. Borramos cualquier salida previa (espacios, errores ocultos)
     if (ob_get_length()) ob_end_clean();
 
@@ -137,7 +136,6 @@ else {
         $filaFinal = generarFilaAlumno($r);
         fputcsv($output, $filaFinal, ";");
     }
-    $stmt->close();
     fclose($output);
     exit();
 }
