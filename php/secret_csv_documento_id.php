@@ -71,6 +71,8 @@ $fechaHoy->setTime(0, 0, 0);
 
 if ($formato === "excel") {
 // 1. Cargamos la librería SOLO si entramos aquí
+    ini_set('memory_limit', '512M'); // Aumenta el límite de memoria
+    set_time_limit(300);   // Da 5 minutos de margen por si la consulta es lenta
     require_once __DIR__ . '/vendor/autoload.php';
 
     // 2. Creamos el objeto usando la ruta completa de la clase
@@ -168,6 +170,7 @@ if ($formato === "excel") {
     
     ob_end_clean();
     // 7. Cabeceras para descarga forzada del navegador
+    if (ob_get_contents()) ob_end_clean();
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
     header('Cache-Control: max-age=0');
