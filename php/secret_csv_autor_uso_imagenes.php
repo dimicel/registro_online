@@ -1,86 +1,157 @@
 <?php
-/*ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ob_start();
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+ini_set('log_errors', 1);
 error_reporting(E_ALL);
-*/
+
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 $error="";
-$Datos="";
+
 
 include("conexion.php");
-if ($mysqli->errno>0) $error="Error en servidor.";
+if ($mysqli->errno>0) exit("Error en servidor.");
 
 $curso=$_POST["curso_csv_autor_uso_imagenes"];
+$formato = isset($_POST["formato"]) ? $_POST["formato"] : 'csv';
+$res=null;
 
-$Name = 'listado_autorizacion_fotos.csv';
-$FileName = "./$Name";
+$Name = 'listado_autorizacion_fotos_'.$curso;
 
+$encabezamiento=["NIE", "ALUMNO","GRUPO/CURSO","AUTORIZA_USO_FOTOS"];
 
-$Datos='CURSO;NIE;ALUMNO;AUTORIZA_USO_FOTOS'.PHP_EOL;
-
-
-$res=$mysqli->query("SELECT * FROM mat_eso where curso='$curso' ORDER BY grupo,apellidos,nombre");
-if ($res->num_rows>0){
-    while($r=$res->fetch_array(MYSQLI_ASSOC)){
-        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
-        $Datos.=$r["grupo"].";";
-        $Datos.= $r["id_nie"].";";
-        $Datos.= ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";";
-        $Datos.= $r["autoriza_fotos"].";".PHP_EOL;	
-    }
+$sql = "SELECT id_nie, apellidos, nombre, grupo AS grupo_clase, autoriza_fotos 
+        FROM mat_eso 
+        WHERE curso = ?
+        
+        UNION ALL
+        
+        SELECT id_nie, apellidos, nombre, grupo AS grupo_clase, autoriza_fotos 
+        FROM mat_bach 
+        WHERE curso = ?
+        
+        UNION ALL
+        
+        SELECT id_nie, apellidos, nombre, CONCAT(curso_ciclo, '-', ciclo) AS grupo_clase, autoriza_fotos 
+        FROM mat_ciclos 
+        WHERE curso = ?
+        
+        UNION ALL
+        
+        SELECT id_nie, apellidos, nombre, CONCAT(curso_ciclo, '-', ciclo) AS grupo_clase, autoriza_fotos 
+        FROM mat_fpb 
+        WHERE curso = ?
+        
+        ORDER BY grupo_clase, apellidos, nombre";
+$stmt=$mysqli->prepare($sql);
+if($stmt){
+    $stmt->bind_param("ssss",$curso,$curso,$curso,$curso);
+    $stmt->execute();
+    $res=$stmt->get_result();
+    $stmt->close();
+}else{
+    $error="Error en la consulta: " . $mysqli->error;
 }
-$res->free();
 
-
-
-$res=$mysqli->query("SELECT * FROM mat_bach where curso='$curso' ORDER BY grupo,apellidos,nombre");
-if ($res->num_rows>0){
-    while($r=$res->fetch_array(MYSQLI_ASSOC)){
-        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
-        $Datos.= $r["grupo"].";";
-        $Datos.= $r["id_nie"].";";
-        $Datos.= ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";";
-        $Datos.= $r["autoriza_fotos"].";".PHP_EOL;	
-    }
+if (!$res ||$res->num_rows==0){
+    if ($error=="")$error="No hay datos que listar.";
 }
-$res->free();
 
+if ($formato=="excel"){
+    // 1. Recursos y Librería
+    ini_set('memory_limit', '512M'); 
+    set_time_limit(300);
 
-$res=$mysqli->query("SELECT * FROM mat_ciclos where curso='$curso' ORDER BY ciclo,curso_ciclo,apellidos,nombre");
-if ($res->num_rows>0){
-    while($r=$res->fetch_array(MYSQLI_ASSOC)){
-        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
-        $Datos.= $r["ciclo"]." ".$r["curso_ciclo"].";";
-        $Datos.= $r["id_nie"].";";
-        $Datos.= ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";";
-        $Datos.= $r["autoriza_fotos"].";".PHP_EOL;	
+    require_once __DIR__ . '/vendor/autoload.php';
+
+    // 2. Crear Objeto
+    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setTitle('Listado');
+    if ($error!="") {
+        if (ob_get_length()) ob_end_clean();
+        $sheet->setCellValue('A1', $error);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $Name. '.xlsx"');
+        header('Cache-Control: max-age=0');
+        header('Pragma: public');
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        $writer->save('php://output');
+        exit();
     }
-}
-$res->free();
+    $sheet->fromArray($encabezamiento, NULL, 'A1');
+    $sheet->freezePane('A2'); //Inmoviliza la priemra fila
+    $estiloCabecera = [
+        'font' => ['bold' => true],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
+        ],
+    ];
+    $sheet->getStyle('1:1')->applyFromArray($estiloCabecera);
 
-$res=$mysqli->query("SELECT * FROM mat_fpb where curso='$curso' ORDER BY ciclo,curso_ciclo,apellidos,nombre");
-if ($res->num_rows>0){
-    while($r=$res->fetch_array(MYSQLI_ASSOC)){
-        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;//Los NIE que empiezan por P son usuarios de prueba
-        $Datos.= $r["ciclo"]." ".$r["curso_ciclo"].";";
-        $Datos.= $r["id_nie"].";";
-        $Datos.= ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";";
-        $Datos.= $r["autoriza_fotos"].";".PHP_EOL;	
+    //Llenado de datos
+    $row = 2;
+    $res->data_seek(0); // Reiniciamos el puntero por si acaso
+    while ($r = $res->fetch_assoc()) {
+        if (substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
+
+        $filaFinal = generarFilaAlumno($r);
+        
+        // Insertar toda la fila de golpe (mucho más rápido)
+        $sheet->fromArray($filaFinal, NULL, "A$row");
+        $row++;
     }
+    // 1. Borramos cualquier salida previa (espacios, errores ocultos)
+    if (ob_get_length()) ob_end_clean();
+
+    // 2. Cabeceras oficiales
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $Name. '.xlsx"');
+    header('Cache-Control: max-age=0');
+    header('Pragma: public');
+
+    // 3. Generar archivo
+    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+    $writer->save('php://output');
+    
+    // 4. Salida limpia
+    exit();
 }
-$res->free();
+else {
+    header('Content-Type: text/csv; charset=UTF-8');
+    header('Content-Disposition: attachment; filename="'.$Name.'.csv"');
+
+    $output = fopen('php://output', 'w');
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    if ($error!="") {
+        fputcsv($output, [$error], ';');
+        fclose($output);
+        exit();
+    }
+    fputcsv($output, $encabezamiento, ";");
+
+    while($r=$res->fetch_assoc()){
+        if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
+
+        $filaFinal = generarFilaAlumno($r);
+        fputcsv($output, $filaFinal, ";");
+    }
+    fclose($output);
+    exit();
+}
 
 
-header('Expires: 0');
-header('Cache-control: private');
-header('Content-Type: application/x-octet-stream;charset=utf-8'); // Archivo de Excel
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Content-Description: File Transfer');
-header('Last-Modified: '.date('D, d M Y H:i:s'));
-header('Content-Disposition: attachment; filename="'.$Name.'"');
-header("Content-Transfer-Encoding: binary");
+function generarFilaAlumno($r) {
+    return [
+        "\t".$r["id_nie"],
+        ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])),
+        $r["grupo_clase"],
+        $r["autoriza_fotos"]
+    ];
+}
 
 
 
-echo $Datos;
+
+
