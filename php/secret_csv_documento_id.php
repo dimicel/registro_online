@@ -19,7 +19,7 @@ $error="";
 
 
 if (!$curso || $mysqli->connect_error) {
-    $error="Error: Parámetros insuficientes o fallo de conexión.";
+    exit("Error: Parámetros insuficientes o fallo de conexión.");
 }
 
 $curso_safe = $mysqli->real_escape_string($curso);

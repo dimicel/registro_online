@@ -33,8 +33,8 @@ $grupos=Array(
 );
 
 
-if(strpos($tabla_db,"premat_")>=0){
-    if (strpos($tabla_db,"eso")) $tabla_db="premat_eso";
+if(strpos($tabla_db,"premat_")!==false){
+    if (strpos($tabla_db,"eso")!==false) $tabla_db="premat_eso";
     else $tabla_db="premat_bach";
 }
 
