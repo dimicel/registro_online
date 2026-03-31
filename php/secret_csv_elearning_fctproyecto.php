@@ -119,8 +119,8 @@ if ($formato=="excel"){
     exit();
 }
 else {
-    header('Content-Type: text/csv; charset=latin1');
-    header('Content-Disposition: attachment; filename="'.$Name.'csv"');
+    header('Content-Type: text/csv; charset=UTF-8');
+    header('Content-Disposition: attachment; filename="'.$Name.'.csv"');
 
     $output = fopen('php://output', 'w');
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
@@ -135,7 +135,7 @@ else {
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
         if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
 
-        $filaFinal = generarFilaAlumno($r, $tabla);
+        $filaFinal = generarFilaAlumno($r);
         fputcsv($output, $filaFinal, ";");
     }
     $stmt->close();
@@ -148,13 +148,13 @@ function generarFilaAlumno($r) {
     $fila=[$r["id_nie"]];
     array_push($fila,ucwords(strtolower($r["apellidos"])));
     array_push($fila,ucwords(strtolower($r["nombre"])));
-    array_push($fila,ucwords(strtolower($r["id_nif"])));
-    array_push($fila,ucwords(strtolower($r["registro"])));
+    array_push($fila,$r["id_nif"]);
+    array_push($fila,$r["registro"]);
     array_push($fila,ucwords(strtolower($r["grado"])));
     array_push($fila,ucwords(strtolower($r["ciclo"])));
     array_push($fila,ucwords(strtolower($r["al_nuevo_otracomunidad"])));
-    array_push($fila,ucwords(strtolower($r["email"])));
-    array_push($fila,ucwords(strtolower($r["telefono"])));
+    array_push($fila,$r["email"]);
+    array_push($fila,$r["telefono"]);
     array_push($fila,ucwords(strtolower($r["mayor_28"])));
     array_push($fila,ucwords(strtolower($r["proyecto"])));
     array_push($fila,ucwords(strtolower($r["fct"])));
