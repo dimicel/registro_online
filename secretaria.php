@@ -81,7 +81,7 @@
                                 <label for="premat_bach" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Bachillerato</label>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a id="CSV_premat" class="dropdown-item disabled" href="#" onclick="descargaCSVpremat()">Descarga CSV</a>
+                            <a id="CSV_premat" class="dropdown-item disabled" href="#" onclick="descargaCsvExcel('prematriculas')">Descarga Listado</a>
                             <div class="dropdown-divider" id="divider_borra_premat" style="display:none"></div>
                             <a id="borra_premat" style="display:none" class="dropdown-item" href="#" onclick="eliminaPrematriculas()">Borrar Prematrículas</a>
                         </div>
