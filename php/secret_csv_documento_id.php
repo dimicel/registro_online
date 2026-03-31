@@ -69,7 +69,7 @@ $fechaHoy->setTime(0, 0, 0);
 
 if ($formato === "excel") {
 // 1. Cargamos la librería SOLO si entramos aquí
-    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once __DIR__ . '/vendor/autoload.php';
 
     // 2. Creamos el objeto usando la ruta completa de la clase
     $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
