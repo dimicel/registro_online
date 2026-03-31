@@ -73,6 +73,43 @@ elseif($tabla=="premat_2bach_c"){
 }
 
 if ($formato=="excel"){
+    // 1. Recursos y Librería
+    ini_set('memory_limit', '512M'); 
+    set_time_limit(300);
+
+    require_once __DIR__ . '/vendor/autoload.php';
+
+    // 2. Crear Objeto
+    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setTitle('Listado');
+    if ($error!="") {
+        $sheet->setCellValue('A1', $error);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="listado_' . $curso . '.xlsx"');
+        header('Cache-Control: max-age=0');
+        header('Pragma: public');
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        $writer->save('php://output');
+        exit();
+    }
+    $sheet->fromArray($Datos, NULL, 'A1');
+    $sheet->freezePane('A2'); //Inmoviliza la priemra fila
+    $estiloCabecera = [
+        'font' => ['bold' => true],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
+        ],
+    ];
+    $sheet->getStyle('1:1')->applyFromArray($estiloCabecera);
+
+    //Llenado de datos
+    $row = 2;
+    $res->data_seek(0); // Reiniciamos el puntero por si acaso
+    while ($r = $res->fetch_assoc()) {
+        if (substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
+
+    }
 
 } else {
     header('Content-Type: text/csv; charset=latin1');
@@ -85,152 +122,155 @@ if ($formato=="excel"){
         fclose($output);
         exit();
     }
-    fputcsv($output, ["NIE", "ALUMNO", "N_DOCUMENTO", "ES_PASAPORTE", "FECHA_CADUCIDAD", "CADUCADO", "DIAS_HASTA_CADUCIDAD", "PAIS", "CURSO", "TURNO", "SUBIDA_ANVERSO_DNI", "SUBIDA_REVERSO_DNI", "SUBIDA_PASAPORTE", "SUBIDA_SEGURO_ESCOLAR"], ";");
+    fputcsv($output, $Datos, ";");
 
     while($r=$res->fetch_array(MYSQLI_ASSOC)){
         if(substr(strtoupper($r["id_nie"]),0,1)== "P") continue;
 
-        $Datos.= $r["id_nie"].";";
-        $Datos.= ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])).";";
-        $Datos.= $r["sexo"].";";
+        $Datos=["\t". $r["id_nie"],
+                ucwords(strtolower($r["apellidos"])).", ".ucwords(strtolower($r["nombre"])),
+                $r["sexo"]];
 
         if($tabla=="premat_2eso"){
-            $Datos.= $r["curso_actual"].";";
-            $Datos.= $r["grupo_curso_actual"].";";
-            $Datos.= $r["prog_ling"].";";
-            $Datos.= $r["materia2"].";";
-            $Datos.= $r["materia1"].";";
-            $Datos.= $r["materia3"].";";
-            $Datos.= $r["materia4"].";";
-            $Datos.= $r["materia5"].";";
-            $Datos.= $r["materia6"].PHP_EOL;
+            array_push($Datos, $r["curso_actual"]);
+            array_push($Datos, $r["grupo_curso_actual"]);
+            array_push($Datos, $r["prog_ling"]);
+            array_push($Datos,$r["materia1"]);
+            array_push($Datos,$r["materia2"]);
+            array_push($Datos,$r["materia3"]);
+            array_push($Datos,$r["materia4"]);
+            array_push($Datos,$r["materia5"]);
+            array_push($Datos,$r["materia6"]);
         }
         elseif($tabla=="premat_3eso"){
-            $Datos.= $r["curso_actual"].";";
-            $Datos.= $r["grupo_curso_actual"].";";
-            $Datos.= $r["prog_ling"].";";
-            $Datos.= $r["materia2"].";";
-            $Datos.= $r["materia1"].";";
-            $Datos.= $r["materia3"].";";
-            $Datos.= $r["materia4"].";";
-            $Datos.= $r["materia5"].";";
-            $Datos.= $r["materia6"].PHP_EOL;
+            array_push($Datos, $r["curso_actual"]);
+            array_push($Datos, $r["grupo_curso_actual"]);
+            array_push($Datos, $r["prog_ling"]);
+            array_push($Datos,$r["materia1"]);
+            array_push($Datos,$r["materia2"]);
+            array_push($Datos,$r["materia3"]);
+            array_push($Datos,$r["materia4"]);
+            array_push($Datos,$r["materia5"]);
+            array_push($Datos,$r["materia6"]);
         }
         elseif($tabla=="premat_4eso"){
-            $Datos.= $r["curso_actual"].";";
-            $Datos.= $r["grupo_curso_actual"].";";
-            $Datos.= $r["prog_ling"].";";
-            $Datos.= $r["materia1"].";";
-            $Datos.= $r["materia2"].";";
-            $Datos.= $r["materia3"].";";
-            $Datos.= $r["materia4"].";";
-            $Datos.= $r["materia5"].";";
-            $Datos.= $r["materia6"].";";
-            $Datos.= $r["materia7"].";";
-            $Datos.= $r["materia8"].";";
-            $Datos.= $r["materia9"].";";
-            $Datos.= $r["materia10"].";";
-            $Datos.= $r["materia11"].";";
-            $Datos.= $r["materia12"].";";
-            $Datos.= $r["materia13"].";";
-            $Datos.= $r["materia14"].PHP_EOL;
+            array_push($Datos, $r["curso_actual"]);
+            array_push($Datos, $r["grupo_curso_actual"]);
+            array_push($Datos, $r["prog_ling"]);
+            array_push($Datos,$r["materia1"]);
+            array_push($Datos,$r["materia2"]);
+            array_push($Datos,$r["materia3"]);
+            array_push($Datos,$r["materia4"]);
+            array_push($Datos,$r["materia5"]);
+            array_push($Datos,$r["materia6"]);
+            array_push($Datos,$r["materia7"]);
+            array_push($Datos,$r["materia8"]);
+            array_push($Datos,$r["materia9"]);
+            array_push($Datos,$r["materia10"]);
+            array_push($Datos,$r["materia11"]);
+            array_push($Datos,$r["materia12"]);
+            array_push($Datos,$r["materia13"]);
+            array_push($Datos,$r["materia14"]);
         }
         elseif($tabla=="premat_3esodiv"){
-            $Datos.= $r["curso_actual"].";";
-            $Datos.= $r["grupo_curso_actual"].";";
-            $Datos.= $r["materia1"].";";
-            $Datos.= $r["materia2"].";";
-            $Datos.= $r["materia3"].";";
-            $Datos.= $r["materia4"].PHP_EOL;
+            array_push($Datos, $r["curso_actual"]);
+            array_push($Datos, $r["grupo_curso_actual"]);
+            array_push($Datos, $r["materia1"]);
+            array_push($Datos, $r["materia2"]);
+            array_push($Datos, $r["materia3"]);
+            array_push($Datos, $r["materia4"]);
         }
         elseif($tabla=="premat_4esodiv"){
-            $Datos.= $r["curso_actual"].";";
-            $Datos.= $r["grupo_curso_actual"].";";
-            $Datos.= $r["materia1"].";";
-            $Datos.= $r["materia2"].";";
-            $Datos.= $r["materia3"].";";
-            $Datos.= $r["materia4"].";";
-            $Datos.= $r["materia5"].";";
-            $Datos.= $r["materia6"].";";
-            $Datos.= $r["materia7"].";";
-            $Datos.= $r["materia8"].";";
-            $Datos.= $r["materia9"].";";
-            $Datos.= $r["materia10"].";";
-            $Datos.= $r["materia11"].PHP_EOL;
+            array_push($Datos, $r["curso_actual"]);
+            array_push($Datos, $r["grupo_curso_actual"]);
+            array_push($Datos, $r["materia1"]);
+            array_push($Datos, $r["materia2"]);
+            array_push($Datos, $r["materia3"]);
+            array_push($Datos, $r["materia4"]);
+            array_push($Datos, $r["materia5"]);
+            array_push($Datos, $r["materia6"]);
+            array_push($Datos, $r["materia7"]);
+            array_push($Datos, $r["materia8"]);
+            array_push($Datos, $r["materia9"]);
+            array_push($Datos, $r["materia10"]);
+            array_push($Datos, $r["materia11"]);
         }
         elseif($tabla=="premat_1bach_h" || $tabla=="premat_1bach_c"){
-            $Datos.= $r["modalidad"].";";
-            $Datos.= $r["materia1"].";";
-            $Datos.= $r["materia2"].";";
-            $Datos.= $r["materia3"].";";
-            $Datos.= $r["materia4"].";";
-            $Datos.= $r["materia5"].";";
-            $Datos.= $r["materia6"].";";
-            $Datos.= $r["materia7"].";";
-            $Datos.= $r["materia8"].";";
-            $Datos.= $r["materia9"].";";
-            $Datos.= $r["materia10"].";";
-            $Datos.= $r["materia11"].";";
-            $Datos.= $r["materia12"].";";
-            $Datos.= $r["materia13"].";";
-            $Datos.= $r["materia14"].";";
-            $Datos.= $r["materia15"].";";
-            $Datos.= $r["materia16"].";";
-            $Datos.= $r["materia17"].";";
-            $Datos.= $r["materia18"].";";
-            $Datos.= $r["materia19"].";";
-            $Datos.= $r["materia20"].";";
-            $Datos.= $r["materia21"].PHP_EOL;
+            array_push($Datos, $r["modalidad"]);
+            array_push($Datos, $r["materia1"]);
+            array_push($Datos, $r["materia2"]);
+            array_push($Datos, $r["materia3"]);
+            array_push($Datos, $r["materia4"]);
+            array_push($Datos, $r["materia5"]);
+            array_push($Datos, $r["materia6"]);
+            array_push($Datos, $r["materia7"]);
+            array_push($Datos, $r["materia8"]);
+            array_push($Datos, $r["materia9"]);
+            array_push($Datos, $r["materia10"]);
+            array_push($Datos, $r["materia11"]);
+            array_push($Datos, $r["materia12"]);
+            array_push($Datos, $r["materia13"]);
+            array_push($Datos, $r["materia14"]);
+            array_push($Datos, $r["materia15"]);
+            array_push($Datos, $r["materia16"]);
+            array_push($Datos, $r["materia17"]);
+            array_push($Datos, $r["materia18"]);
+            array_push($Datos, $r["materia19"]);
+            array_push($Datos, $r["materia20"]);
+            array_push($Datos, $r["materia21"]);
         }
         elseif($tabla=="premat_2bach_h"){
-            $Datos.= $r["materia1"].";";
-            $Datos.= $r["materia2"].";";
-            $Datos.= $r["materia3"].";";
-            $Datos.= $r["materia4"].";";
-            $Datos.= $r["materia5"].";";
-            $Datos.= $r["materia6"].";";
-            $Datos.= $r["materia7"].";";
-            $Datos.= $r["materia8"].";";
-            $Datos.= $r["materia9"].";";
-            $Datos.= $r["materia10"].";";
-            $Datos.= $r["materia11"].";";
-            $Datos.= $r["materia12"].";";
-            $Datos.= $r["materia13"].";";
-            $Datos.= $r["materia14"].";";
-            $Datos.= $r["materia15"].";";
-            $Datos.= $r["materia16"].";";
-            $Datos.= $r["materia17"].";";
-            $Datos.= $r["materia18"].";";
-            $Datos.= $r["materia19"].";";
-            $Datos.= $r["materia20"].";";
-            $Datos.= $r["materia21"].PHP_EOL;
+            array_push($Datos, $r["materia1"]);
+            array_push($Datos, $r["materia2"]);
+            array_push($Datos, $r["materia3"]);
+            array_push($Datos, $r["materia4"]);
+            array_push($Datos, $r["materia5"]);
+            array_push($Datos, $r["materia6"]);
+            array_push($Datos, $r["materia7"]);
+            array_push($Datos, $r["materia8"]);
+            array_push($Datos, $r["materia9"]);
+            array_push($Datos, $r["materia10"]);
+            array_push($Datos, $r["materia11"]);
+            array_push($Datos, $r["materia12"]);
+            array_push($Datos, $r["materia13"]);
+            array_push($Datos, $r["materia14"]);
+            array_push($Datos, $r["materia15"]);
+            array_push($Datos, $r["materia16"]);
+            array_push($Datos, $r["materia17"]);
+            array_push($Datos, $r["materia18"]);
+            array_push($Datos, $r["materia19"]);
+            array_push($Datos, $r["materia20"]);
+            array_push($Datos, $r["materia21"]);
         }
         elseif($tabla=="premat_2bach_c"){
-            $Datos.= $r["materia1"].";";
-            $Datos.= $r["materia2"].";";
-            $Datos.= $r["materia3"].";";
-            $Datos.= $r["materia4"].";";
-            $Datos.= $r["materia5"].";";
-            $Datos.= $r["materia6"].";";
-            $Datos.= $r["materia7"].";";
-            $Datos.= $r["materia8"].";";
-            $Datos.= $r["materia9"].";";
-            $Datos.= $r["materia10"].";";
-            $Datos.= $r["materia11"].";";
-            $Datos.= $r["materia12"].";";
-            $Datos.= $r["materia13"].";";
-            $Datos.= $r["materia14"].";";
-            $Datos.= $r["materia15"].";";
-            $Datos.= $r["materia16"].";";
-            $Datos.= $r["materia17"].";";
-            $Datos.= $r["materia18"].";";
-            $Datos.= $r["materia19"].";";
-            $Datos.= $r["materia20"].PHP_EOL;
+            array_push($Datos, $r["materia1"]);
+            array_push($Datos, $r["materia2"]);
+            array_push($Datos, $r["materia3"]);
+            array_push($Datos, $r["materia4"]);
+            array_push($Datos, $r["materia5"]);
+            array_push($Datos, $r["materia6"]);
+            array_push($Datos, $r["materia7"]);
+            array_push($Datos, $r["materia8"]);
+            array_push($Datos, $r["materia9"]);
+            array_push($Datos, $r["materia10"]);
+            array_push($Datos, $r["materia11"]);
+            array_push($Datos, $r["materia12"]);
+            array_push($Datos, $r["materia13"]);
+            array_push($Datos, $r["materia14"]);
+            array_push($Datos, $r["materia15"]);
+            array_push($Datos, $r["materia16"]);
+            array_push($Datos, $r["materia17"]);
+            array_push($Datos, $r["materia18"]);
+            array_push($Datos, $r["materia19"]);
+            array_push($Datos, $r["materia20"]);
         }
+
+        fputcsv($output, $Datos, ";");
                 
     }
 
-    echo $Datos;
+    fclose($output);
+    exit();
 
 }
 
