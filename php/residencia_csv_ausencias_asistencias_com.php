@@ -1,8 +1,10 @@
 <?php
-/*ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ob_start();
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+ini_set('log_errors', 1);
 error_reporting(E_ALL);
-*/
+
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") exit("Acceso denegado");
 
@@ -19,8 +21,9 @@ if ($mysqli->errno > 0) {
 
 $curso = $_POST["comedor_curso"] ?? "";
 $mes = $_POST["mes_informe"] ?? "";
+$formato = $_POST["seleccion_csv_excel"] ?? "";
 
-if ($curso === "" || $mes === "") {
+if ($curso === "" || $mes === "" || $formato === "") {
     http_response_code(500);
     echo "Faltan datos del curso o mes.";
     exit;
