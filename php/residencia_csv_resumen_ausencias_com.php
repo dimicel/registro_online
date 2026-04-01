@@ -27,31 +27,7 @@ if ($curso === "" || $mes === "" || $formato === "") {
     echo "Faltan datos del curso o mes.";
     exit;
 }
-/*
-$anno_1 = substr($curso, 0, 4);
-$anno_2 = substr($curso, -4);
-$array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
-$array_dias_mes = [31,29,31,30,31,30,31,31,30,31,30,31];
 
-$mes_anno = "";
-$fecha_inicio = "";
-$fecha_fin = "";
-$mes_num = (int)$mes;
-
-if ($mes_num >= 7 && $mes_num <= 12) {
-    $mes_anno = $array_meses[$mes_num - 1] . "/" . $anno_1;
-    $fecha_inicio = $anno_1 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-01";
-    $fecha_fin = $anno_1 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-" . $array_dias_mes[$mes_num - 1];
-} elseif ($mes_num >= 1 && $mes_num <= 6) {
-    $mes_anno = $array_meses[$mes_num - 1] . "/" . $anno_2;
-    $fecha_inicio = $anno_2 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-01";
-    $fecha_fin = $anno_2 . "-" . str_pad($mes, 2, "0", STR_PAD_LEFT) . "-" . $array_dias_mes[$mes_num - 1];
-} else {
-    http_response_code(500);
-    echo "Mes no válido.";
-    exit;
-}
-*/
 $anno_1 = substr($curso, 0, 4);
 $anno_2 = substr($curso, -4);
 $array_meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
