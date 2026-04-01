@@ -101,6 +101,10 @@ if ($formato=="excel"){
         $sheet->fromArray($filaFinal, NULL, "A$row");
         $row++;
     }
+    // Ajustar el ancho de las columnas automáticamente
+    foreach (range('A', 'M') as $col) {
+        $sheet->getColumnDimension($col)->setAutoSize(true);
+    }
     $stmt->close();
     // 1. Borramos cualquier salida previa (espacios, errores ocultos)
     if (ob_get_length()) ob_end_clean();
