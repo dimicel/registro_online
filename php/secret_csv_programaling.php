@@ -80,7 +80,16 @@ if ($formato=="excel"){
         
         // Insertar toda la fila de golpe (mucho más rápido)
         $sheet->fromArray($filaFinal, NULL, "A$row");
+        if (strtolower($r["prog_ling"])!="no"){
+            $sheet->getStyle("E$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
+        }
+        $sheet->getStyle("D$row")->getAlignment()->setHorizontal(PhpOffice\PhpSpreadsheet\Style\AlignmentAlignment::HORIZONTAL_CENTER);
+        $sheet->getStyle("E$row")->getAlignment()->setHorizontal(PhpOffice\PhpSpreadsheet\Style\AlignmentAlignment::HORIZONTAL_CENTER);
         $row++;
+    }
+    // Ajustar el ancho de las columnas automáticamente
+    foreach (range('A', 'E') as $col) {
+        $sheet->getColumnDimension($col)->setAutoSize(true);
     }
     // 1. Borramos cualquier salida previa (espacios, errores ocultos)
     if (ob_get_length()) ob_end_clean();
