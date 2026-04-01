@@ -759,9 +759,16 @@ function res_InformesComedor(){
                     let mes = document.getElementById("mes_informe").value;
                     document.getElementById("comedor_curso").value = res_curso_informe;
                     let tipo_informe = document.getElementById("tipo_informe_comedor").value;
-
+                    let validacion="";
                     if (tipo_informe === "" || mes === "") {
-                        alerta("Debe seleccionar un mes y un tipo de informe.", "FALTAN DATOS");
+                        validacion="- Debe seleccionar un mes y un tipo de informe.";
+                    }
+                    if (!document.getElementById("descarga_csv").checked && !document.getElementById("descarga_excel").checked){
+                        if (validacion=="") validacion="- Hay que indicar un formato de archivo.";
+                        else validacion+="<br>- Hay que indicar un formato de archivo.";
+                    }
+                    if (validacion!="") {
+                        alerta(validacion,"FAALTA INFORMACION");
                         return;
                     }
 
