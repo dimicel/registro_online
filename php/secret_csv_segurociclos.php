@@ -83,7 +83,18 @@ if ($formato=="excel"){
         
         // Insertar toda la fila de golpe (mucho más rápido)
         $sheet->fromArray($filaFinal, NULL, "A$row");
+        if ($filafinal[8]>=28){
+            $sheet->getStyle("I$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
+        }
+        if ($filafinal[9]=="NO"){
+            $sheet->getStyle("J$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
+        }
+        $sheet->getStyle("C$row:J$row")->getAlignment()->setHorizontal(PhpOffice\PhpSpreadsheet\Style\AlignmentAlignment::HORIZONTAL_CENTER);
         $row++;
+    }
+    // Ajustar el ancho de las columnas automáticamente
+    foreach (range('A', 'J') as $col) {
+        $sheet->getColumnDimension($col)->setAutoSize(true);
     }
     // 1. Borramos cualquier salida previa (espacios, errores ocultos)
     if (ob_get_length()) ob_end_clean();
