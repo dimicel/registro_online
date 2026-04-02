@@ -60,7 +60,7 @@
                     <!--<input type="button" class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">-->
                     <div class="btn-group">
                         <button type="button" class="btn btn-success" onclick="remesasBanco()">
-                            Remesas Banco
+                            <small>Remesas Banco</small>
                         </button>
 
                         <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
