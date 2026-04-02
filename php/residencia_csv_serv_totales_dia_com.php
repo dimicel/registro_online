@@ -83,7 +83,7 @@ $sql = "
 $stmt = $mysqli->prepare($sql);
 
 if($stmt){
-    $stmt->bind_param("sss", "sss", $curso, $fecha_inicio, $fecha_fin);
+    $stmt->bind_param("sss", $curso, $fecha_inicio, $fecha_fin);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
