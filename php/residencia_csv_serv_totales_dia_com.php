@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") exit("Acceso denegado");
 
-$Datos = "\xEF\xBB\xBF"; // BOM UTF-8 para Excel
+$error="";
 
 include("conexion.php");
 if ($mysqli->errno > 0) {
