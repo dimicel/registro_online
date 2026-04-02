@@ -21,8 +21,6 @@ $curso = $_POST["comedor_curso"] ?? "";
 $mes = $_POST["mes_informe"] ?? "";
 $formato = $_POST["seleccion_csv_excel"] ?? "";
 
-echo $formato;
-
 if ($curso === "" || $mes === "" || $formato === "") {
     http_response_code(500);
     echo "Faltan datos del curso o mes.";
