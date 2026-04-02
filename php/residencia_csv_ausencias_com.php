@@ -80,15 +80,13 @@ if($stmt){
     $error="Error en la consulta: " . $mysqli->error;
 }
 
-
+$primera_fila= ["","INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS - " . strtoupper($mes_anno),"","",""];
 $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA "];
 
 if ($formato=="excel"){
         // 1. Recursos y Librería
     ini_set('memory_limit', '512M'); 
     set_time_limit(300);
-
-    $primera_fila= ["","INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS - " . strtoupper($mes_anno)];
 
     require_once __DIR__ . '/vendor/autoload.php';
 
@@ -153,7 +151,6 @@ if ($formato=="excel"){
     header('Content-Type: text/csv; charset=UTF-8');
     header('Content-Disposition: attachment; filename="'.$Name.'.csv"');
 
-    $primera_fila= ["","INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS - " . strtoupper($mes_anno),"","",""];
     $output = fopen('php://output', 'w');
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
     if ($error!="") {
@@ -161,7 +158,7 @@ if ($formato=="excel"){
         fclose($output);
         exit();
     }
-    fputcsv($ourput, $primaera_fila, ";");
+    fputcsv($ourput, $primera_fila, ";");
     fputcsv($output, $encabezamiento, ";");
 
     while ($row = $result->fetch_assoc()) {
