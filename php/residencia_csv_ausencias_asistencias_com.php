@@ -9,8 +9,6 @@ session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") exit("Acceso denegado");
 
 $error = "";
-$Datos = "\xEF\xBB\xBF"; // Añadir BOM para UTF-8 para que Excel lo reconozca
-$eol = PHP_EOL;
 
 include("conexion.php");
 if ($mysqli->errno > 0) {
@@ -51,14 +49,9 @@ $fecha_fin = $anio_actual . "-" . str_pad($mes_num, 2, "0", STR_PAD_LEFT) . "-" 
 // 3. Formateamos el texto para el informe
 $mes_anno = $array_meses[$mes_num - 1] . "/" . $anio_actual;
 
-$Name = 'informe_asistencias_ausencias_comedor_' . $mes_anno . '.csv';
+$Name = 'informe_asistencias_ausencias_comedor_' . $mes_anno;
 
-// Cabecera del archivo
-$Datos .= "INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " . strtoupper($mes_anno) . $eol . $eol;
 
-// --- ASISTENCIAS ---
-$Datos .= "ASISTENCIAS" . $eol;
-$Datos .= "NIE;RESIDENTE;EDIFICIO;BONIFICADO;FECHA;DESAYUNO;COMIDA;CENA" . $eol;
 
 $sql_asistencias = "
     SELECT r.curso, r.id_nie, r.apellidos, r.nombre,r.bonificado, r.edificio, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
@@ -68,42 +61,20 @@ $sql_asistencias = "
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
-$stmt_asis = $mysqli->prepare($sql_asistencias);
-if ($stmt_asis === false) {
-    http_response_code(500);
-    echo "Error en la preparación de la consulta ASISTENCIAS  1. " . $mysqli->error;
-    exit;
+$stmt = $mysqli->prepare($sql_asistencias);
+
+if($stmt){
+    $stmt->bind_param("sss", $fecha_inicio, $fecha_fin, $curso);
+    $stmt->execute();
+    $asistencia = $stmt->get_result();
+    $stmt->close();
+}else{
+    $error="Error en la consulta: " . $mysqli->error;
 }
 
-$stmt_asis->bind_param("sss", $fecha_inicio, $fecha_fin, $curso);
-$stmt_asis->execute();
-$result = $stmt_asis->get_result();
-
-while ($row = $result->fetch_assoc()) {
-    if ($row['bonificado'] == 1) {
-        $bonificado = 'Sí';
-    } else {
-        $bonificado = 'No';
-    }
-    $line = [
-        $row['id_nie'],
-        '"'.$row['apellidos'].", ".$row['nombre'].'"',
-        $row['edificio'],
-        $bonificado,
-        date("d/m/Y", strtotime($row['fecha_comedor'])),
-        $row['desayuno'],
-        $row['comida'],
-        $row['cena']
-    ];
-    $Datos .= implode(";", $line) . $eol;
+if (!$asistencia ||$asistencia->num_rows==0){
+    if ($error=="")$error="No hay datos de ASISTENCIA que listar. ";
 }
-
-// Separación
-$Datos .= $eol;
-
-// --- AUSENCIAS ---
-$Datos .= "AUSENCIAS INJUSTIFICADAS" . $eol;
-$Datos .= "NIE;RESIDENTE;EDIFICIO;BONIFICADO;FECHA" . $eol;
 
 $sql_ausencias = "
     SELECT DISTINCT 
@@ -121,41 +92,79 @@ $sql_ausencias = "
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
-$stmt_aus = $mysqli->prepare($sql_ausencias);
-if ($stmt_aus === false) {
-    http_response_code(500);
-    echo "Error en la preparación de la consulta AUSENCIAS. 2" . $mysqli->error;
-    exit;
+$stmt = $mysqli->prepare($sql_ausencias);
+
+if($stmt){
+    $stmt->bind_param("sss", $fecha_inicio, $fecha_fin, $curso);
+    $stmt->execute();
+    $ausencia = $stmt->get_result();
+    $stmt->close();
+}else{
+    $error="Error en la consulta: " . $mysqli->error;
 }
 
-$stmt_aus->bind_param("ss", $fecha_inicio, $fecha_fin);
-$stmt_aus->execute();
-$result = $stmt_aus->get_result();
+if (!$ausencia ||$ausencia->num_rows==0){
+    $error+="No hay datos de AUSENCIAS INJUSTIFICADAS que listar. ";
+}
 
-while ($row = $result->fetch_assoc()) {
-    if ($row['bonificado'] == 1) {
-        $bonificado = 'Sí';
-    } else {
-        $bonificado = 'No';
+if ($formato=="excel"){
+   
+} else {
+    header('Content-Type: text/csv; charset=UTF-8');
+    header('Content-Disposition: attachment; filename="'.$Name.'.csv"');
+
+    $output = fopen('php://output', 'w');
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    if ($error!="") {
+        fputcsv($output, [$error], ';');
+        fclose($output);
+        exit();
     }
-    $line = [
-        $row['id_nie'],
-        '"'.$row['apellidos'].", ".$row['nombre'].'"',
-        $row['edificio'],
-        $bonificado,
-        date("d/m/Y", strtotime($row['fecha_comedor']))
-    ];
-    $Datos .= implode(";", $line) . $eol;
+    fputcsv($output, ["INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " . strtoupper($mes_anno),"","","","","","",""], ";");
+    fputcsv($output, ["","","","","","","",""], ";");
+    fputcsv($output, ["","","","","","","",""], ";");
+    fputcsv($output, ["ASISTENCIAS","","","","","","",""], ";");
+    fputcsv($output, ["","","","","","","",""], ";");
+    $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA","DESAYUNO","COMIDA","CENA"];
+    fputcsv($output, $encabezamiento, ";");
 }
 
-header('Expires: 0');
-header('Cache-control: private');
-header('Content-Type: application/octet-stream;charset=utf-8');
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Content-Description: File Transfer');
-header('Last-Modified: ' . date('D, d M Y H:i:s'));
-header('Content-Disposition: attachment; filename="' . $Name . '"');
-header("Content-Transfer-Encoding: binary");
 
-echo $Datos;
-exit;
+
+
+$Datos .= $eol;
+
+// --- AUSENCIAS ---
+$Datos .= "AUSENCIAS INJUSTIFICADAS" . $eol;
+$Datos .= "NIE;RESIDENTE;EDIFICIO;BONIFICADO;FECHA" . $eol;
+
+
+
+
+function generarFilaAlumno($r,$asis_aus) {
+    if ($r['bonificado'] == 1) {
+            $bonificado = 'Sí';
+        } else {
+            $bonificado = 'No';
+        }
+    if ($asis_aus=="ausencia"){
+        return [
+                $row['id_nie'],
+                '"'.$row['apellidos'].", ".$row['nombre'].'"',
+                $row['edificio'],
+                $bonificado,
+                date("d/m/Y", strtotime($row['fecha_comedor']))
+            ];
+    }else{
+        return[
+            $row['id_nie'],
+            '"'.$row['apellidos'].", ".$row['nombre'].'"',
+            $row['edificio'],
+            $bonificado,
+            date("d/m/Y", strtotime($row['fecha_comedor'])),
+            $row['desayuno'],
+            $row['comida'],
+            $row['cena']
+        ];
+    }
+}
