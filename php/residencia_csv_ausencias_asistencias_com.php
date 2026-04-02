@@ -128,7 +128,6 @@ if ($formato=="excel"){
         $filaFinal = generarFilaAlumno($registro,"asistencia");
         fputcsv($output, $filaFinal, ";");
     }
-
     if (!$ausencia ||$ausencia->num_rows==0){
         fputcsv($output, ["No hay datos de AUSENCIAS INJUSTIFICADAS que listar."], ';');
         fclose($output);
