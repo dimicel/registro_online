@@ -175,7 +175,21 @@ if ($formato=="excel"){
         }
     }
 
+    // 1. Borramos cualquier salida previa (espacios, errores ocultos)
+    if (ob_get_length()) ob_end_clean();
 
+    // 2. Cabeceras oficiales
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $Name. '.xlsx"');
+    header('Cache-Control: max-age=0');
+    header('Pragma: public');
+
+    // 3. Generar archivo
+    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+    $writer->save('php://output');
+    
+    // 4. Salida limpia
+    exit();
    
 } else {
     header('Content-Type: text/csv; charset=UTF-8');
