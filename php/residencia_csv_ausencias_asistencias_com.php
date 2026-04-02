@@ -216,16 +216,16 @@ if ($formato=="excel"){
     fputcsv($output, ["ASISTENCIAS","","","","","","",""], ";");
     if (!$asistencia ||$asistencia->num_rows==0){
         fputcsv($output, ["No hay datos de ASISTENCIA que mostrar."], ';');
-        fclose($output);
-        exit();
     }
-    fputcsv($output, ["","","","","","","",""], ";");
-    $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA","DESAYUNO","COMIDA","CENA"];
-    fputcsv($output, $encabezamiento, ";");
-    while ($registro = $asistencia->fetch_assoc()) {
-        if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
-        $filaFinal = generarFilaAlumno($registro,"asistencia","csv");
-        fputcsv($output, $filaFinal, ";");
+    else{
+        fputcsv($output, ["","","","","","","",""], ";");
+        $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA","DESAYUNO","COMIDA","CENA"];
+        fputcsv($output, $encabezamiento, ";");
+        while ($registro = $asistencia->fetch_assoc()) {
+            if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
+            $filaFinal = generarFilaAlumno($registro,"asistencia","csv");
+            fputcsv($output, $filaFinal, ";");
+        }
     }
     fputcsv($output, ["","","","","","","",""], ";");
     fputcsv($output, ["","","","","","","",""], ";");
