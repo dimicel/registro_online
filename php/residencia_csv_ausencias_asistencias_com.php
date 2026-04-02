@@ -99,6 +99,83 @@ if($stmt){
 
 
 if ($formato=="excel"){
+    // 1. Recursos y Librería
+    ini_set('memory_limit', '512M'); 
+    set_time_limit(300);
+
+    require_once __DIR__ . '/vendor/autoload.php';
+
+    // 2. Crear Objeto
+    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setTitle('ASISTENCIAS POR ALUMNO Y FECHA - ' . strtoupper($mes_anno));
+    if (!$asistencia ||$asistencia->num_rows==0){
+        if (ob_get_length()) ob_end_clean();
+        $sheet->setCellValue('A1', "No hay datos de ASISTENCIA que mostrar.");
+    }
+    else {
+        $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA","DESAYUNO","COMIDA","CENA"];
+        $sheet->fromArray($encabezamiento, NULL, 'A1');
+        $sheet->freezePane('A2'); //Inmoviliza la priemra fila
+        $estiloCabecera = [
+            'font' => ['bold' => true],
+            'alignment' => [
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
+            ],
+        ];
+        $sheet->getStyle('1:1')->applyFromArray($estiloCabecera);
+
+        $row = 2;
+        $asistencia->data_seek(0); // Reiniciamos el puntero por si acaso
+        while ($registro = $asistencia->fetch_assoc()) {
+            if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
+            $filaFinal = generarFilaAlumno($registro,"asistencia","excel");
+            $sheet->fromArray($filaFinal, NULL, "A$row");
+            $sheet->getStyle("C$row:H$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $row++;
+        }
+        foreach (range('A', 'H') as $col) {
+            $sheet->getColumnDimension($col)->setAutoSize(true);
+        }
+    }
+    // Crear nueva hoja
+    $nuevaHoja = $spreadsheet->createSheet();
+    $nuevaHoja->setTitle('AUSENCIAS INJUSTIFICADAS POR ALUMNO Y FECHA - ' . strtoupper($mes_anno));
+
+    //Activar la hoja para empezar a meter datos
+    $spreadsheet->setActiveSheetIndex($spreadsheet->getSheetCount() - 1);
+    $sheet = $spreadsheet->getActiveSheet();
+    if (!$ausencia ||$ausencia->num_rows==0){
+        if (ob_get_length()) ob_end_clean();
+        $sheet->setCellValue('A1', "No hay datos de AUSENCIAS INJUSTIFICADAS que mostrar.");
+    }
+    else {
+        $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA"];
+        $sheet->fromArray($encabezamiento, NULL, 'A1');
+        $sheet->freezePane('A2'); //Inmoviliza la priemra fila
+        $estiloCabecera = [
+            'font' => ['bold' => true],
+            'alignment' => [
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
+            ],
+        ];
+        $sheet->getStyle('1:1')->applyFromArray($estiloCabecera);
+
+        $row = 2;
+        $ausencia->data_seek(0); // Reiniciamos el puntero por si acaso
+        while ($registro = $ausencia->fetch_assoc()) {
+            if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
+            $filaFinal = generarFilaAlumno($registro,"ausencia","excel");
+            $sheet->fromArray($filaFinal, NULL, "A$row");
+            $sheet->getStyle("C$row:E$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $row++;
+        }
+        foreach (range('A', 'E') as $col) {
+            $sheet->getColumnDimension($col)->setAutoSize(true);
+        }
+    }
+
+
    
 } else {
     header('Content-Type: text/csv; charset=UTF-8');
@@ -126,7 +203,7 @@ if ($formato=="excel"){
     fputcsv($output, $encabezamiento, ";");
     while ($registro = $asistencia->fetch_assoc()) {
         if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
-        $filaFinal = generarFilaAlumno($registro,"asistencia");
+        $filaFinal = generarFilaAlumno($registro,"asistencia","csv");
         fputcsv($output, $filaFinal, ";");
     }
     fputcsv($output, ["","","","","","","",""], ";");
@@ -141,7 +218,7 @@ if ($formato=="excel"){
     fputcsv($output, ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA","","",""], ";");
     while ($registro = $ausencia->fetch_assoc()) {
         if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
-        $filaFinal = generarFilaAlumno($registro,"ausencia");
+        $filaFinal = generarFilaAlumno($registro,"ausencia","csv");
         fputcsv($output, $filaFinal, ";");
     }
     fclose($output);
@@ -149,33 +226,42 @@ if ($formato=="excel"){
 }
 
 
-function generarFilaAlumno($r,$asis_aus) {
+function generarFilaAlumno($r,$asis_aus,$for) {
     if ($r['bonificado'] == 1) {
             $bonificado = 'Sí';
         } else {
             $bonificado = 'No';
         }
     if ($asis_aus=="ausencia"){
-        return [
-                $row['id_nie'],
-                '"'.$row['apellidos'].", ".$row['nombre'].'"',
-                $row['edificio'],
+        if($for=="excel"){
+            return [
+                $r['id_nie'],
+                '"'.$row['apellidos'].", ".$r['nombre'].'"',
+                $r['edificio'],
                 $bonificado,
-                date("d/m/Y", strtotime($row['fecha_comedor'])),
+                date("d/m/Y", strtotime($r['fecha_comedor']))
+            ];
+        }
+        return [
+                $r['id_nie'],
+                '"'.$r['apellidos'].", ".$r['nombre'].'"',
+                $r['edificio'],
+                $bonificado,
+                date("d/m/Y", strtotime($r['fecha_comedor'])),
                 "",
                 "",
                 ""
             ];
     }else{
         return[
-            $row['id_nie'],
-            '"'.$row['apellidos'].", ".$row['nombre'].'"',
-            $row['edificio'],
+            $r['id_nie'],
+            '"'.$r['apellidos'].", ".$r['nombre'].'"',
+            $r['edificio'],
             $bonificado,
-            date("d/m/Y", strtotime($row['fecha_comedor'])),
-            $row['desayuno'],
-            $row['comida'],
-            $row['cena']
+            date("d/m/Y", strtotime($r['fecha_comedor'])),
+            $r['desayuno'],
+            $r['comida'],
+            $r['cena']
         ];
     }
 }
