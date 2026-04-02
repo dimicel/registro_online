@@ -83,6 +83,7 @@ $sql_ausencias = "
         AND rc.desayuno = 0 AND rc.comida = 0 AND rc.cena = 0
         AND just.id_nie IS NULL
         AND rc.fecha_comedor IS NOT NULL
+        AND r.curso = ?
     ORDER BY r.apellidos, r.nombre, rc.fecha_comedor
 ";
 
@@ -131,7 +132,7 @@ if ($formato=="excel"){
             if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
             $filaFinal = generarFilaAlumno($registro,"asistencia","excel");
             $sheet->fromArray($filaFinal, NULL, "A$row");
-            $sheet->getStyle("C$row:H$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $sheet->getStyle("C$row:E$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
             if ($filaFinal[3] != "No"){
                 $sheet->getStyle("D$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
             }
@@ -256,7 +257,7 @@ function generarFilaAlumno($r,$asis_aus,$for) {
         if($for=="excel"){
             return [
                 $r['id_nie'],
-                '"'.$r['apellidos'].", ".$r['nombre'].'"',
+                $r['apellidos'].", ".$r['nombre'],
                 $r['edificio'],
                 $bonificado,
                 date("d/m/Y", strtotime($r['fecha_comedor']))
@@ -273,6 +274,18 @@ function generarFilaAlumno($r,$asis_aus,$for) {
                 ""
             ];
     }else{
+        if($for=="excel"){
+            return[
+                $r['id_nie'],
+                $r['apellidos'].", ".$r['nombre'],
+                $r['edificio'],
+                $bonificado,
+                date("d/m/Y", strtotime($r['fecha_comedor'])),
+                $r['desayuno'],
+                $r['comida'],
+                $r['cena']
+            ];
+        }
         return[
             $r['id_nie'],
             '"'.$r['apellidos'].", ".$r['nombre'].'"',
