@@ -66,8 +66,8 @@
                         </button>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" onclick="remesasBanco()">CSV</a>
-                            <a class="dropdown-item" href="#" onclick="remesasExcel()">EXCEL</a>
+                            <a class="dropdown-item" href="#" onclick="remesasBanco('csv')">CSV</a>
+                            <a class="dropdown-item" href="#" onclick="remesasBanco('excel')">EXCEL</a>
                         </div>
                     </div>
                 </div>

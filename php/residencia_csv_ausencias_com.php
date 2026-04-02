@@ -131,6 +131,9 @@ if ($formato=="excel"){
         // Insertar toda la fila de golpe (mucho más rápido)
         $sheet->fromArray($filaFinal, NULL, "A$row");
         $sheet->getStyle("C$row:E$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        if ($filaFinal[3] != "No"){
+            $sheet->getStyle("D$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
+        }
         $row++;
     }
     // Ajustar el ancho de las columnas automáticamente

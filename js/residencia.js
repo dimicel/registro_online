@@ -595,12 +595,13 @@ function res_cierrasesion() {
     });
 }
 
-function remesasBanco() {
+function remesasBanco(formato) {
     enviarFormularioSubmit(
         {
             url: "php/residencia_csv_remesas.php",
             datos: {
-                curso_csv_remesas: document.getElementById("res_curso").value
+                curso_csv_remesas: document.getElementById("res_curso").value,
+                formato: formato
             }
         }
     );
