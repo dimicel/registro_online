@@ -149,10 +149,6 @@ if ($formato=="excel"){
 }
 
 
-
-
-
-
 function generarFilaAlumno($r,$asis_aus) {
     if ($r['bonificado'] == 1) {
             $bonificado = 'Sí';
