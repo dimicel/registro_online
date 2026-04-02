@@ -189,7 +189,7 @@ if ($formato=="excel"){
         
         // Insertar toda la fila de golpe (mucho más rápido)
         $sheet->fromArray($filaFinal, NULL, "A$row");
-        $sheet->getStyle('A$row:J$row')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle("A$row:J$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
         $row++;
     }
     // Combinar de la A a la K para cada fila individualmente
