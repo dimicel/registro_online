@@ -132,7 +132,7 @@ if ($formato=="excel"){
             if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
             $filaFinal = generarFilaAlumno($registro,"asistencia","excel");
             $sheet->fromArray($filaFinal, NULL, "A$row");
-            $sheet->getStyle("C$row:E$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $sheet->getStyle("C$row:H$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
             if ($filaFinal[3] != "No"){
                 $sheet->getStyle("D$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
             }
