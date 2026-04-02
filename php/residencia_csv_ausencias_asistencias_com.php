@@ -247,54 +247,31 @@ if ($formato=="excel"){
 }
 
 
-function generarFilaAlumno($r,$asis_aus,$for) {
-    if ($r['bonificado'] == 1) {
-            $bonificado = 'Sí';
-        } else {
-            $bonificado = 'No';
-        }
-    if ($asis_aus=="ausencia"){
-        if($for=="excel"){
-            return [
-                $r['id_nie'],
-                $r['apellidos'].", ".$r['nombre'],
-                $r['edificio'],
-                $bonificado,
-                date("d/m/Y", strtotime($r['fecha_comedor']))
-            ];
-        }
-        return [
-                $r['id_nie'],
-                '"'.$r['apellidos'].", ".$r['nombre'].'"',
-                $r['edificio'],
-                $bonificado,
-                date("d/m/Y", strtotime($r['fecha_comedor'])),
-                "",
-                "",
-                ""
-            ];
-    }else{
-        if($for=="excel"){
-            return[
-                $r['id_nie'],
-                $r['apellidos'].", ".$r['nombre'],
-                $r['edificio'],
-                $bonificado,
-                date("d/m/Y", strtotime($r['fecha_comedor'])),
-                $r['desayuno'],
-                $r['comida'],
-                $r['cena']
-            ];
-        }
-        return[
-            $r['id_nie'],
-            '"'.$r['apellidos'].", ".$r['nombre'].'"',
-            $r['edificio'],
-            $bonificado,
-            date("d/m/Y", strtotime($r['fecha_comedor'])),
-            $r['desayuno'],
-            $r['comida'],
-            $r['cena']
-        ];
+function generarFilaAlumno($r, $asis_aus, $for) {
+    $bonificado = ($r['bonificado'] == 1) ? 'Sí' : 'No';
+    $nombre = $r['apellidos'] . ", " . $r['nombre'];
+    
+    // Solo ponemos comillas si es CSV
+    if ($for == "csv") {
+        $nombre = '"' . $nombre . '"';
     }
+
+    $fila = [
+        $r['id_nie'],
+        $nombre,
+        $r['edificio'],
+        $bonificado,
+        date("d/m/Y", strtotime($r['fecha_comedor']))
+    ];
+
+    if ($asis_aus == "asistencia") {
+        $fila[] = $r['desayuno'];
+        $fila[] = $r['comida'];
+        $fila[] = $r['cena'];
+    } elseif ($for == "csv") {
+        // Para que el CSV mantenga la estructura de 8 columnas aunque sea ausencia
+        return array_merge($fila, ["", "", ""]);
+    }
+
+    return $fila;
 }
