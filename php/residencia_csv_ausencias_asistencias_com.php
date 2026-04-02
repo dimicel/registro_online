@@ -51,8 +51,6 @@ $mes_anno = $array_meses[$mes_num - 1] . "/" . $anio_actual;
 
 $Name = 'informe_asistencias_ausencias_comedor_' . $mes_anno;
 
-
-
 $sql_asistencias = "
     SELECT r.curso, r.id_nie, r.apellidos, r.nombre,r.bonificado, r.edificio, rc.fecha_comedor, rc.desayuno, rc.comida, rc.cena
     FROM residentes r
@@ -70,10 +68,6 @@ if($stmt){
     $stmt->close();
 }else{
     $error="Error en la consulta: " . $mysqli->error;
-}
-
-if (!$asistencia ||$asistencia->num_rows==0){
-    if ($error=="")$error="No hay datos de ASISTENCIA que listar. ";
 }
 
 $sql_ausencias = "
@@ -103,9 +97,6 @@ if($stmt){
     $error="Error en la consulta: " . $mysqli->error;
 }
 
-if (!$ausencia ||$ausencia->num_rows==0){
-    $error+="No hay datos de AUSENCIAS INJUSTIFICADAS que listar. ";
-}
 
 if ($formato=="excel"){
    
@@ -120,6 +111,11 @@ if ($formato=="excel"){
         fclose($output);
         exit();
     }
+    if (!$asistencia ||$asistencia->num_rows==0){
+        fputcsv($output, ["No hay datos de ASISTENCIA que mostrar."], ';');
+        fclose($output);
+        exit();
+    }
     fputcsv($output, ["INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " . strtoupper($mes_anno),"","","","","","",""], ";");
     fputcsv($output, ["","","","","","","",""], ";");
     fputcsv($output, ["","","","","","","",""], ";");
@@ -127,6 +123,17 @@ if ($formato=="excel"){
     fputcsv($output, ["","","","","","","",""], ";");
     $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA","DESAYUNO","COMIDA","CENA"];
     fputcsv($output, $encabezamiento, ";");
+    while ($registro = $asistencia->fetch_assoc()) {
+        if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
+        $filaFinal = generarFilaAlumno($registro,"asistencia");
+        fputcsv($output, $filaFinal, ";");
+    }
+
+    if (!$ausencia ||$ausencia->num_rows==0){
+        fputcsv($output, ["No hay datos de AUSENCIAS INJUSTIFICADAS que listar."], ';');
+        fclose($output);
+        exit();
+    }
 }
 
 
