@@ -158,7 +158,7 @@ if ($formato=="excel"){
     $output = fopen('php://output', 'w');
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
     if ($error!="") {
-        fputcsv($output, $formato, ";");
+        fputcsv($output, [$formato], ";");
         fputcsv($output, [$error], ';');
         fclose($output);
         exit();
