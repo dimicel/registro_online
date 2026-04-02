@@ -796,12 +796,14 @@ function res_InformesComedor(){
                     let m = parseInt(mes, 10);
 
                     if(m >= 7 && m <= 12) {
-                        mes_anno = array_meses[m-1] + "/" + anno_1;
+                        mes_anno = array_meses[m-1] + "_" + anno_1;
                     } else if (m >= 1 && m <= 6) {
-                        mes_anno = array_meses[m-1] + "/" + anno_2;
+                        mes_anno = array_meses[m-1] + "_" + anno_2;
                     }
 
-                    let nombreArchivo = na + mes_anno + ".csv";
+                    let nombreArchivo = "";
+                    if (document.getElementById("descarga_csv").checked) nombreArchivo = na + mes_anno + ".csv";
+                    else nombreArchivo = na + mes_anno + ".xlsx";
 
                     const formData = new FormData(document.getElementById("form_informes_comedor"));
                     mostrarPantallaEspera();
