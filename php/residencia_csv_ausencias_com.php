@@ -118,7 +118,7 @@ if ($formato=="excel"){
 
     //Llenado de datos
     $row = 3;
-    $res->data_seek(0); // Reiniciamos el puntero por si acaso
+    $result->data_seek(0); // Reiniciamos el puntero por si acaso
     while ($row = $result->fetch_assoc()) {
         if (substr(strtoupper($row["id_nie"]),0,1)== "P") continue;
 

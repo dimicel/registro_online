@@ -169,7 +169,6 @@ if ($formato=="excel"){
 
     //Llenado de datos
     $row = 6;
-    $res->data_seek(0); // Reiniciamos el puntero por si acaso
     foreach ($datos_por_fecha as $fecha => $data) {
         $filaFinal = [
                 $fecha,
