@@ -91,6 +91,10 @@ if($stmt){
     $error="Error en la consulta: " . $mysqli->error;
 }
 
+if (!$result ||$result->num_rows==0){
+    if ($error=="")$error="No hay datos que listar.";
+}
+
 $primera_fila = ["","INFORME RESUMEN DE FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS POR RESIDENTE - " . strtoupper($mes_anno),"","",""];
 $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","NUM_FALTAS"];
 

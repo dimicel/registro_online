@@ -91,6 +91,10 @@ if($stmt){
     $error="Error en la consulta: " . $mysqli->error;
 }
 
+if (!$result ||$result->num_rows==0){
+    if ($error=="")$error="No hay datos que listar.";
+}
+
 // Agrupar resultados por fecha
 $datos_por_fecha = [];
 
