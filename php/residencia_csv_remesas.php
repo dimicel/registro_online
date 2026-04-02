@@ -120,7 +120,7 @@ if ($formato=="excel"){
 }else{
     header('Content-Type: text/csv; charset=UTF-8');
     header('Content-Disposition: attachment; filename="'.$Name.'.csv"');
-    $primera_file=["Fecha y hora: ".date("d/m/Y H:i:s"),"","","","","","","","","","","","","","","",""];
+    $primera_fila=["Fecha y hora: ".date("d/m/Y H:i:s"),"","","","","","","","","","","","","","","",""];
     $output = fopen('php://output', 'w');
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
     if ($error!="") {
@@ -143,22 +143,20 @@ if ($formato=="excel"){
 
 function generarFilaAlumno($r) {
     return [
-            "\t" . $r["id_nie"],
-            ucwords(strtolower($r["apellidos"])),
-            ucwords(strtolower($r["nombre"])),
-            $r['edificio'],
-            $r["curso"],
-            $r["direccion"],
-            $r["cp"],
-            $r["localidad"],
-            $r["provincia"],
-            $r["titular_cuenta"],
-            $r["iban"],
-            $r["baja"]==1?"SI":"NO",
-            $r["fecha_baja"],
-            $r["bonificado"]==1?"SI":"NO",
-            $r["fianza"]
+        "\t" . ($r["id_nie"] ?? ''),
+        ucwords(strtolower($r["apellidos"] ?? '')),
+        ucwords(strtolower($r["nombre"] ?? '')),
+        $r['edificio'] ?? '',
+        $r["curso"] ?? '',
+        $r["direccion"] ?? '',
+        $r["cp"] ?? '',
+        $r["localidad"] ?? '',
+        $r["provincia"] ?? '',
+        $r["titular_cuenta"] ?? '',
+        $r["iban"] ?? '',
+        (($r["baja"] ?? 0) == 1) ? "SI" : "NO",
+        $r["fecha_baja"] ?? '',
+        (($r["bonificado"] ?? 0) == 1) ? "SI" : "NO",
+        $r["fianza"] ?? ''
     ];
-    
 }
-
