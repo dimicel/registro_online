@@ -162,6 +162,7 @@ if ($formato=="excel"){
         fclose($output);
         exit();
     }
+    fputcsv($output, $formato, ";");
     fputcsv($output, $primera_fila, ";");
     fputcsv($output, $encabezamiento, ";");
 
