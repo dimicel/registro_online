@@ -48,7 +48,7 @@ $ultimo_dia = date("t", strtotime($fecha_inicio)); // "t" saca el último día r
 $fecha_fin = $anio_actual . "-" . str_pad($mes_num, 2, "0", STR_PAD_LEFT) . "-" . $ultimo_dia;
 
 // 3. Formateamos el texto para el informe
-$mes_anno = $array_meses[$mes_num - 1] . "/" . $anio_actual;
+$mes_anno = $array_meses[$mes_num - 1] . "-" . $anio_actual;
 
 $Name = 'informe_resumen_ausencias_' . $mes_anno;
 
