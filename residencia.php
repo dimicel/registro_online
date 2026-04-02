@@ -56,7 +56,7 @@
                     <input type="button" class="textoboton btn btn-success" onclick="res_GestionComedor()" value="Asist.Comedor">
                     <input type="button" class="textoboton btn btn-success" onclick="res_InformesComedor()" value="Informes Comedor">
                     
-                    <div class="btn-group">
+                    <div class="btn-group" id="csv_remesas" style="display:none">
                         <button type="button" class="btn btn-success" onclick="remesasBanco()">
                             <small>Remesas Banco</small>
                         </button>
