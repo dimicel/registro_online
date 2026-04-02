@@ -57,7 +57,21 @@
                     <input type="button" class="textoboton btn btn-success" onclick="res_InformesComedor()" value="Informes Comedor">
                 </div>
                 <div class="col-2" style="display:none" id="csv_remesas">
-                    <input type="button" class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">
+                    <!--<input type="button" class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">-->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success" onclick="remesasBanco()">
+                            CSV Remesas Banco
+                        </button>
+
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Desplegar opciones</span>
+                        </button>
+
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" onclick="remesasBanco()">Descargar CSV</a>
+                            <a class="dropdown-item" href="#" onclick="remesasExcel()">Descargar EXCEL</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <!--
