@@ -134,10 +134,10 @@ if ($formato=="excel"){
     //Llenado de datos
     $row = 3;
     $result->data_seek(0); // Reiniciamos el puntero por si acaso
-    while ($row = $result->fetch_assoc()) {
-        if (substr(strtoupper($row["id_nie"]),0,1)== "P") continue;
+    while ($registro = $result->fetch_assoc()) {
+        if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
 
-        $filaFinal = generarFilaAlumno($row);
+        $filaFinal = generarFilaAlumno($registro);
         
         // Insertar toda la fila de golpe (mucho más rápido)
         $sheet->fromArray($filaFinal, NULL, "A$row");

@@ -98,10 +98,10 @@ if (!$result ||$result->num_rows==0){
 // Agrupar resultados por fecha
 $datos_por_fecha = [];
 
-while ($row = $result->fetch_assoc()) {
-    $fecha = $row['fecha'];
-    $dia_semana = $row['dia_semana'];
-    $bonificado = (int)$row['bonificado'];
+while ($registro = $result->fetch_assoc()) {
+    $fecha = $registro['fecha'];
+    $dia_semana = $registro['dia_semana'];
+    $bonificado = (int)$registro['bonificado'];
 
     if (!isset($datos_por_fecha[$fecha])) {
         $datos_por_fecha[$fecha] = [
@@ -114,15 +114,15 @@ while ($row = $result->fetch_assoc()) {
     }
 
     if ($bonificado === 1) {
-        $datos_por_fecha[$fecha]['desayuno_b'] = (int)$row['desayuno'];
-        $datos_por_fecha[$fecha]['comida_b'] = (int)$row['comida'];
-        $datos_por_fecha[$fecha]['cena_b'] = (int)$row['cena'];
-        $datos_por_fecha[$fecha]['total_b'] = (int)$row['total'];
+        $datos_por_fecha[$fecha]['desayuno_b'] = (int)$registro['desayuno'];
+        $datos_por_fecha[$fecha]['comida_b'] = (int)$registro['comida'];
+        $datos_por_fecha[$fecha]['cena_b'] = (int)$registro['cena'];
+        $datos_por_fecha[$fecha]['total_b'] = (int)$registro['total'];
     } else {
-        $datos_por_fecha[$fecha]['desayuno_nb'] = (int)$row['desayuno'];
-        $datos_por_fecha[$fecha]['comida_nb'] = (int)$row['comida'];
-        $datos_por_fecha[$fecha]['cena_nb'] = (int)$row['cena'];
-        $datos_por_fecha[$fecha]['total_nb'] = (int)$row['total'];
+        $datos_por_fecha[$fecha]['desayuno_nb'] = (int)$registro['desayuno'];
+        $datos_por_fecha[$fecha]['comida_nb'] = (int)$registro['comida'];
+        $datos_por_fecha[$fecha]['cena_nb'] = (int)$registro['cena'];
+        $datos_por_fecha[$fecha]['total_nb'] = (int)$registro['total'];
     }
 }
 
