@@ -256,7 +256,7 @@ function generarFilaAlumno($r,$asis_aus,$for) {
         if($for=="excel"){
             return [
                 $r['id_nie'],
-                '"'.$row['apellidos'].", ".$r['nombre'].'"',
+                '"'.$r['apellidos'].", ".$r['nombre'].'"',
                 $r['edificio'],
                 $bonificado,
                 date("d/m/Y", strtotime($r['fecha_comedor']))
