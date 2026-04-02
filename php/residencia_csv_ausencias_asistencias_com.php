@@ -132,6 +132,9 @@ if ($formato=="excel"){
             $filaFinal = generarFilaAlumno($registro,"asistencia","excel");
             $sheet->fromArray($filaFinal, NULL, "A$row");
             $sheet->getStyle("C$row:H$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            if ($filaFinal[3] != "No"){
+                $sheet->getStyle("D$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
+            }
             $row++;
         }
         foreach (range('A', 'H') as $col) {
@@ -168,6 +171,9 @@ if ($formato=="excel"){
             $filaFinal = generarFilaAlumno($registro,"ausencia","excel");
             $sheet->fromArray($filaFinal, NULL, "A$row");
             $sheet->getStyle("C$row:E$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            if ($filaFinal[3] != "No"){
+                $sheet->getStyle("D$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
+            }
             $row++;
         }
         foreach (range('A', 'E') as $col) {
