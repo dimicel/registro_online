@@ -173,7 +173,7 @@ if ($formato=="excel"){
         fclose($output);
         exit();
     }
-    fputcsv($ouput, $primera_fila, ";");
+    fputcsv($output, $primera_fila, ";");
     fputcsv($output, $encabezamiento, ";");
 
     while ($row = $result->fetch_assoc()) {
