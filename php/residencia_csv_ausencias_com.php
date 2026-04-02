@@ -84,7 +84,7 @@ $primera_fila= ["","INFORME FALTAS DE ASISTENCIA AL COMEDOR NO COMUNICADAS - " .
 $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA "];
 
 if ($formato=="excel"){
-        // 1. Recursos y Librería
+    // 1. Recursos y Librería
     ini_set('memory_limit', '512M'); 
     set_time_limit(300);
 
@@ -158,14 +158,13 @@ if ($formato=="excel"){
         fclose($output);
         exit();
     }
-    fputcsv($ourput, $primera_fila, ";");
+    fputcsv($output, $primera_fila, ";");
     fputcsv($output, $encabezamiento, ";");
 
     while ($row = $result->fetch_assoc()) {
         if (substr(strtoupper($row["id_nie"]),0,1)== "P") continue;
-        generarFilaAlumno($row);
-        
-        $Datos .= implode(';', $linea) . PHP_EOL;
+        $filaFinal = generarFilaAlumno($row);
+        fputcsv($output, $filaFinal, ";");
     }
     fclose($output);
     exit();
