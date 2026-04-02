@@ -109,7 +109,7 @@ if ($formato=="excel"){
     // 2. Crear Objeto
     $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
-    $sheet->setTitle('ASISTENCIAS POR ALUMNO Y FECHA - ' . strtoupper($mes_anno));
+    $sheet->setTitle('ASISTENCIAS_' . strtoupper($mes_anno));
     if (!$asistencia ||$asistencia->num_rows==0){
         if (ob_get_length()) ob_end_clean();
         $sheet->setCellValue('A1', "No hay datos de ASISTENCIA que mostrar.");
@@ -144,7 +144,7 @@ if ($formato=="excel"){
     }
     // Crear nueva hoja
     $nuevaHoja = $spreadsheet->createSheet();
-    $nuevaHoja->setTitle('AUSENCIAS INJUSTIFICADAS POR ALUMNO Y FECHA - ' . strtoupper($mes_anno));
+    $nuevaHoja->setTitle('AUSENCIAS INJUST._' . strtoupper($mes_anno));
 
     //Activar la hoja para empezar a meter datos
     $spreadsheet->setActiveSheetIndex($spreadsheet->getSheetCount() - 1);
