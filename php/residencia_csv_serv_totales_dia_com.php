@@ -158,7 +158,7 @@ if ($formato=="excel"){
     $sheet->fromArray($tercera_fila, NULL, 'A3');
     $sheet->fromArray($cuarta_fila, NULL, 'A4');
     $sheet->fromArray($encabezamiento, NULL, 'A5');
-    $sheet->freezePane('A6'); //Inmoviliza la priemra fila
+    $sheet->freezePane('A6'); 
     $estiloCabecera = [
         'font' => ['bold' => true],
         'alignment' => [
@@ -196,7 +196,7 @@ if ($formato=="excel"){
 
     // Aplicar la alineación a la izquierda a todo el bloque
     $sheet->getStyle('A1:K4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
-    
+
     // Ajustar el ancho de las columnas automáticamente
     foreach (range('A', 'j') as $col) {
         $sheet->getColumnDimension($col)->setAutoSize(true);
