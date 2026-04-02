@@ -18,6 +18,7 @@ if ($mysqli->errno > 0) {
 
 $curso=$_POST["curso_csv_remesas"];
 $formato=$_POST["formato"] ?? "csv";
+$result=null;
 
 $sql="SELECT * FROM residentes WHERE curso=? ORDER BY apellidos,nombre";
 $stmt = $mysqli->prepare($sql);
@@ -45,7 +46,7 @@ if ($formato=="excel"){
     ini_set('memory_limit', '512M'); 
     set_time_limit(300);
 
-    $primera_file=["Fecha y hora: ".date("d/m/Y H:i:s"),"","","","","","","","","","","","","","","",""];
+    $primera_fila=["Fecha y hora: ".date("d/m/Y H:i:s")];
 
     require_once __DIR__ . '/vendor/autoload.php';
 

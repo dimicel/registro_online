@@ -9,7 +9,6 @@ session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado'] !== "correcto") exit("Acceso denegado");
 
 $error = "";
-$Datos = "\xEF\xBB\xBF"; // Añadir BOM para UTF-8 para que Excel lo reconozca
 
 include("conexion.php");
 if ($mysqli->errno > 0) {
@@ -21,6 +20,7 @@ if ($mysqli->errno > 0) {
 $curso = $_POST["comedor_curso"] ?? "";
 $mes = $_POST["mes_informe"] ?? "";
 $formato = $_POST["seleccion_csv_excel"] ?? "";
+$result=null;
 
 if ($curso === "" || $mes === "" || $formato === "") {
     http_response_code(500);

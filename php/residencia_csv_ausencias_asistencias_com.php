@@ -20,6 +20,7 @@ if ($mysqli->errno > 0) {
 $curso = $_POST["comedor_curso"] ?? "";
 $mes = $_POST["mes_informe"] ?? "";
 $formato = $_POST["seleccion_csv_excel"] ?? "";
+$result=null;
 
 if ($curso === "" || $mes === "" || $formato === "") {
     http_response_code(500);
