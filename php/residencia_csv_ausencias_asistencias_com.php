@@ -111,15 +111,16 @@ if ($formato=="excel"){
         fclose($output);
         exit();
     }
+
+    fputcsv($output, ["INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " . strtoupper($mes_anno),"","","","","","",""], ";");
+    fputcsv($output, ["","","","","","","",""], ";");
+    fputcsv($output, ["","","","","","","",""], ";");
+    fputcsv($output, ["ASISTENCIAS","","","","","","",""], ";");
     if (!$asistencia ||$asistencia->num_rows==0){
         fputcsv($output, ["No hay datos de ASISTENCIA que mostrar."], ';');
         fclose($output);
         exit();
     }
-    fputcsv($output, ["INFORME DE ASISTENCIAS Y AUSENCIAS AL COMEDOR POR ALUMNO Y FECHA - " . strtoupper($mes_anno),"","","","","","",""], ";");
-    fputcsv($output, ["","","","","","","",""], ";");
-    fputcsv($output, ["","","","","","","",""], ";");
-    fputcsv($output, ["ASISTENCIAS","","","","","","",""], ";");
     fputcsv($output, ["","","","","","","",""], ";");
     $encabezamiento= ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA","DESAYUNO","COMIDA","CENA"];
     fputcsv($output, $encabezamiento, ";");
@@ -128,21 +129,26 @@ if ($formato=="excel"){
         $filaFinal = generarFilaAlumno($registro,"asistencia");
         fputcsv($output, $filaFinal, ";");
     }
+    fputcsv($output, ["","","","","","","",""], ";");
+    fputcsv($output, ["","","","","","","",""], ";");
+    fputcsv($output, ["AUSENCIAS INJUSTIFICADAS","","","","","","",""], ";");
     if (!$ausencia ||$ausencia->num_rows==0){
         fputcsv($output, ["No hay datos de AUSENCIAS INJUSTIFICADAS que listar."], ';');
         fclose($output);
         exit();
     }
+    fputcsv($output, ["","","","","","","",""], ";");
+    fputcsv($output, ["NIE","RESIDENTE","EDIFICIO","BONIFICADO","FECHA","","",""], ";");
+    while ($registro = $ausencia->fetch_assoc()) {
+        if (substr(strtoupper($registro["id_nie"]),0,1)== "P") continue;
+        $filaFinal = generarFilaAlumno($registro,"ausencia");
+        fputcsv($output, $filaFinal, ";");
+    }
+    fclose($output);
+    exit();
 }
 
 
-
-
-$Datos .= $eol;
-
-// --- AUSENCIAS ---
-$Datos .= "AUSENCIAS INJUSTIFICADAS" . $eol;
-$Datos .= "NIE;RESIDENTE;EDIFICIO;BONIFICADO;FECHA" . $eol;
 
 
 
@@ -159,7 +165,10 @@ function generarFilaAlumno($r,$asis_aus) {
                 '"'.$row['apellidos'].", ".$row['nombre'].'"',
                 $row['edificio'],
                 $bonificado,
-                date("d/m/Y", strtotime($row['fecha_comedor']))
+                date("d/m/Y", strtotime($row['fecha_comedor'])),
+                "",
+                "",
+                ""
             ];
     }else{
         return[
