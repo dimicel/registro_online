@@ -52,12 +52,10 @@
                 <div class="col-3">
                     <input type="button"  class="textoboton btn btn-success" value="Modificar email Jefe Residencia" onclick="cambioEmailJefeRes()">
                 </div>
-                <div class="col-3">
-                    <input type="button" class="textoboton btn btn-success" onclick="res_GestionComedor()" value="Comedor">
+                <div class="col-5">
+                    <input type="button" class="textoboton btn btn-success" onclick="res_GestionComedor()" value="Asist.Comedor">
                     <input type="button" class="textoboton btn btn-success" onclick="res_InformesComedor()" value="Informes Comedor">
-                </div>
-                <div class="col-2" style="display:none" id="csv_remesas">
-                    <!--<input type="button" class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">-->
+                    
                     <div class="btn-group">
                         <button type="button" class="btn btn-success" onclick="remesasBanco()">
                             <small>Remesas Banco</small>
@@ -73,6 +71,9 @@
                         </div>
                     </div>
                 </div>
+                <!--<div class="col-2" style="display:none" id="csv_remesas">
+                    <input type="button" class="textoboton btn btn-success" value="CSV Remesas Banco" onclick="remesasBanco()">
+                </div>-->
                 
                 <!--
                 <div class="col-1">
