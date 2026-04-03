@@ -148,6 +148,28 @@ $(function() {
             mensaje_alerta_inicio="Su documento de identidad ha caducado, según consta en el sistema. Se recomienda actualizar la fecha de caducidad en 'Mis datos', y subir nuevas imágenes del mismo en 'Documentos adjuntos'->'Documento identificación' del menú superior.";
             alerta(mensaje_alerta_inicio,"SUGERENCIA");
         }
+        if (resp.datos.residente_no_matriculado==1){
+            document.getElementById("docs_mat_eso").setAttribute('onclick', "");
+            document.getElementById("docs_mat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_mat_bach").setAttribute('onclick', "");
+            document.getElementById("docs_mat_bach").className = "enlaceDisabled";
+            document.getElementById("docs_mat_ciclos").setAttribute('onclick', "");
+            document.getElementById("docs_mat_ciclos").className = "enlaceDisabled";
+            document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "");
+            document.getElementById("docs_mat_ciclos-e").className = "enlaceDisabled";
+            document.getElementById("docs_mat_fpb").setAttribute('onclick', "");
+            document.getElementById("docs_mat_fpb").className = "enlaceDisabled";
+            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
+            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
+            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
+            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
+            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
+            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+            document.getElementById("docs_transporte_escolar").setAttribute('onclick', "");
+            document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
+        }
 
         listaSolicitudes();
     });

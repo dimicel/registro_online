@@ -42,6 +42,7 @@ if($dat->num_rows > 0){
 
     // Inicializamos a 0 por defecto por si el campo es NULL o no ha caducado
     $resp["datos"]["documento_caducado"] = 0;
+    $resp["datos"]["residente_no_matriculado"] = $reg["residente_no_matriculado"];
 
     if (!empty($reg["fecha_caducidad_id_nif"])) {
         // Comparamos: si la fecha de la DB es menor que la fecha de hoy ("today" a las 00:00:00)
