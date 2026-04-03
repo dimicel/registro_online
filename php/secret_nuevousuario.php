@@ -30,6 +30,8 @@ $apellidos=$_POST["apellidos"];
 $nif=$_POST["nif"];
 $es_pasaporte = isset($_POST['nr_es_pasaporte']) ? 1 : 0;
 $pass=password_hash($_POST["password"],PASSWORD_BCRYPT);
+$residente_no_matriculado=isset($_POST['residente_no_matriculado'])? 1: 0;
+
  
 
 $consulta=$mysqli->query("select * from usuarios where id_nie='$nie' and no_ha_entrado=1");
@@ -41,7 +43,7 @@ $consulta->free();
 
 // 1. Preparamos la sentencia con placeholders (?)
 // Fíjate que ya no usamos comillas simples alrededor de los valores
-$stmt = $mysqli->prepare("INSERT INTO usuarios (id_nie, password, no_ha_entrado, nombre, apellidos, id_nif, email, es_pasaporte) VALUES (?, ?, 1, ?, ?, ?, ?, ?)");
+$stmt = $mysqli->prepare("INSERT INTO usuarios (id_nie, password, no_ha_entrado, nombre, apellidos, id_nif, email, es_pasaporte, residente_no_matriculado) VALUES (?, ?, 1, ?, ?, ?, ?, ?,?)");
 
 if ($stmt === false) {
     exit("fallo_alta");
@@ -50,7 +52,7 @@ if ($stmt === false) {
 // 2. Vinculamos los parámetros (bind_param)
 // "sssssss" indica que todos los parámetros son strings (s). 
 // Si id_nie o es_pasaporte fueran números enteros en la BD, usarías "i".
-$stmt->bind_param("sssssss", $nie, $pass, $nombre, $apellidos, $nif, $email, $es_pasaporte);
+$stmt->bind_param("ssssssii", $nie, $pass, $nombre, $apellidos, $nif, $email, $es_pasaporte,$residente_no_matriculado);
 
 // 3. Ejecutamos
 $stmt->execute();
