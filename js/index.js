@@ -178,7 +178,7 @@ function entra() {
                                 else $(element).next().next($('.errorTxt')).html(error);*/
                             }
                         });
-                        document.getElementById("nu_nie").value = document.getElementById("usuario").value;
+                        //document.getElementById("nu_nie").value = document.getElementById("usuario").value;
                         //document.getElementById("nu_apellidos").value=resp.datos.apellidos;
                         //document.getElementById("nu_nombre").value=resp.datos.nombre;
                         //document.getElementById("nu_email").value=resp.datos.email;
