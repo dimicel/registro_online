@@ -90,7 +90,11 @@ function entra() {
                         document.getElementById("nu_repemail").value=resp.datos.email;
                         document.getElementById("nu_nif").value=resp.datos.id_nif;
                         document.getElementById("nu_pasaporte").checked=resp.datos.es_pasaporte==1?true:false;
-                        document.getElementById("nu_doc_fecha_cad").value=date("d-m-Y", strtotime(resp.datos.fecha_caducidad_id_nif));
+                        if (resp.datos.fecha_caducidad_id_nif) {
+                            let partes = resp.datos.fecha_caducidad_id_nif.split("-"); // [año, mes, día]
+                            // Lo ponemos en formato dd/mm/yyyy que es el que espera tu datepicker
+                            document.getElementById("nu_doc_fecha_cad").value = partes[2] + "/" + partes[1] + "/" + partes[0];
+                        }
                         ocultarPantallaEspera();
                         document.getElementById("nu_repemail").onpaste = function(e) {
                             e.preventDefault();
