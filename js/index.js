@@ -102,7 +102,7 @@ function entra() {
                             alerta('Esta acción está prohibida. Introduzca manualmente la contraseña.', 'PEGAR');
                         }
                         $("#nu_doc_fecha_cad").datepicker({
-                            dateFormat: "dd/mm/yy",
+                            dateFormat: "dd/mm/yyyy",
                             changeMonth: true,
                             changeYear: true,
                             yearRange: "c-5:+15", // Permite ver 5 años atrás (por si acaba de caducar) y 15 hacia adelante
