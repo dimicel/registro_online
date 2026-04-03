@@ -83,6 +83,14 @@ function entra() {
                     mostrarPantallaEspera("Cargando ...");
                     cargaHTML("html/index.htm","nuevoUsuario_div","COMPLETE O REVISE SUS DATOS INICIALES",650,2000)
                     .then((dialogo)=>{
+                        document.getElementById("nu_nie").value = document.getElementById("usuario").value;
+                        document.getElementById("nu_apellidos").value=resp.datos.apellidos;
+                        document.getElementById("nu_nombre").value=resp.datos.nombre;
+                        document.getElementById("nu_email").value=resp.datos.email;
+                        document.getElementById("nu_repemail").value=resp.datos.email;
+                        //document.getElementById("nu_nif").value=resp.datos.id_nif;
+                        //document.getElementById("nu_pasaporte").checked=resp.datos.es_pasaporte==1?true:false;
+                        //document.getElementById("nu_doc_fecha_cad").value=date("d-m-Y", strtotime(resp.datos.fecha_caducidad_id_nif));
                         ocultarPantallaEspera();
                         document.getElementById("nu_repemail").onpaste = function(e) {
                             e.preventDefault();
@@ -178,14 +186,6 @@ function entra() {
                                 else $(element).next().next($('.errorTxt')).html(error);*/
                             }
                         });
-                        document.getElementById("nu_nie").value = document.getElementById("usuario").value;
-                        document.getElementById("nu_apellidos").value=resp.datos.apellidos;
-                        document.getElementById("nu_nombre").value=resp.datos.nombre;
-                        document.getElementById("nu_email").value=resp.datos.email;
-                        document.getElementById("nu_repemail").value=resp.datos.email;
-                        //document.getElementById("nu_nif").value=resp.datos.id_nif;
-                        //document.getElementById("nu_pasaporte").checked=resp.datos.es_pasaporte==1?true:false;
-                        //document.getElementById("nu_doc_fecha_cad").value=date("d-m-Y", strtotime(resp.datos.fecha_caducidad_id_nif));
                     })
                     .catch (error=>{
                         ocultarPantallaEspera();
