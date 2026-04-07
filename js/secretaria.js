@@ -4490,10 +4490,11 @@ function RutasTransporte(){
                 for (let i = 0; i < resp.rutas.length; i++) {
                     const fila = document.createElement("tr");
                     fila.setAttribute("id", resp.rutas[i].id);
+                    fila.style.cursor = "pointer"; // Opcional: para que el usuario sepa que es clickable
 
+                    // --- Configuración de celdas (tu código base) ---
                     const celdaNombre = document.createElement("td");
                     celdaNombre.innerHTML = resp.rutas[i].ruta;
-                    
                     celdaNombre.style.width = "50%"; 
                     celdaNombre.style.overflow = "hidden";
                     celdaNombre.style.textOverflow = "ellipsis";
@@ -4505,6 +4506,23 @@ function RutasTransporte(){
                     celdaDescripcion.style.overflow = "hidden";
                     celdaDescripcion.style.textOverflow = "ellipsis";
                     celdaDescripcion.style.whiteSpace = "nowrap";
+
+                    // --- Lógica de Selección ---
+                    fila.addEventListener("click", function() {
+                        // 1. Buscamos todas las filas del contenedor para resetearlas
+                        const filas = cont.getElementsByTagName("tr");
+                        for (let f of filas) {
+                            f.style.backgroundColor = ""; // Color original (transparente/blanco)
+                            f.style.color = "";           // Color de letra original
+                        }
+
+                        // 2. Aplicamos el formato solo a la fila clickeada
+                        this.style.backgroundColor = "yellow";
+                        this.style.color = "brown";
+                        
+                        // Opcional: si quieres que el texto sea negrita al seleccionar
+                        // this.style.fontWeight = "bold"; 
+                    });
 
                     fila.appendChild(celdaNombre);
                     fila.appendChild(celdaDescripcion);
