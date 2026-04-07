@@ -15,7 +15,7 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-$consulta="select * from transporte_rutas order by ruta";
+$consulta="select * from transporte_rutas order by ruta, parada";
 $res=$mysqli->query($consulta);
 if ($res->num_rows==0){
     $data["error"]="sin_rutas";
