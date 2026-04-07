@@ -1,8 +1,8 @@
 <?php
 ob_start();
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
-ini_set('log_errors', 1);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+ini_set('log_errors', 0);
 error_reporting(E_ALL);
 
 session_start();
@@ -24,6 +24,6 @@ if ($res->num_rows==0){
 $data["error"]="ok";
 $data["rutas"]=array();
 while ($reg=$res->fetch_assoc()){
-    $data["rutas"]=$reg;
+    $data["rutas"][]=$reg;
 }
 exit(json_encode($data));
