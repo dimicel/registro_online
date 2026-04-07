@@ -126,6 +126,7 @@
                             <a id="config_ciclos" class="dropdown-item small" href="#" onclick="gestionCiclosFP()">Ciclos Formativos</a>
                             <a id="config_modulos" class="dropdown-item small" href="#" onclick="gestionModulosFP()">Módulos de Ciclos Formativos</a>
                             <a id="config_jef_dpto" class="dropdown-item small" href="#" onclick="JefesDepartamento()">Jefes de Departamento FP</a>
+                            <a id="config_rutas_transporte" class="dropdown-item small" href="#" onclick="RutasTransporte()">Rutas de Transporte</a>
                         </div>    
                     </li>
                     <li class="nav-item" id="menu8">

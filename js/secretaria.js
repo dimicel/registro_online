@@ -3233,127 +3233,7 @@ function descargaCsvExcel(tipo_listado){
     });
 }
 
-/*
-function descargaCSVelearningFctProy(){
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_elearning_fctproyecto.php",
-            datos:{
-                curso_csv_elearning_fctproyecto:document.getElementById("curso").value
-            }
-        });
-}
 
-
-function descargaCSVnuevosOtraCom(){
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_nuevosotracomunidad.php",
-            datos:{
-                curso_csv_nuevosotracomunidad:document.getElementById("curso").value
-            }
-        }
-    );
-}
-
-function descargaCSVAlNuevos(){
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_nuevos_eso_bach.php",
-            datos:{
-                curso_csv_nuevos_eso_bach:document.getElementById("curso").value
-            }
-        }
-    );
-}
-
-function descargaCSVProgLing(){
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_programaling.php",
-            datos:{
-                curso_csv_prog_ling:document.getElementById("curso").value
-            }
-        }
-    );
-}
-
-function descargaCSVconsolPremat(){
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_consolidaprematricula.php",
-            datos:{
-                curso_csv_consolidaprematricula:document.getElementById("curso").value
-            }
-        }
-    );
-}
-
-
-function descargaCSVtransporte() {
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_transporte.php",
-            datos:{
-                curso_csv_transporte:document.getElementById("curso").value
-            }
-        });
-}
-
-function listadoSeguroEscolarCiclos() {
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_segurociclos.php",
-            datos:{
-                curso_csv_seguro:document.getElementById("curso").value
-            }
-        });
-
-}
-
-function listadoNumSS(){
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_fct_num_ss.php",
-            datos:{
-                curso_csv_seguro:_curso
-            }
-        });
-}
-
-function listadoAutorUsoImag(){
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_autor_uso_imagenes.php",
-            datos:{
-                curso_csv_autor_uso_imagenes:curso_actual
-            }
-        });
-}
-
-function listadoDocumnetoIdentificacion(){
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_documento_id.php",
-            datos:{
-                curso_csv_doc_id:curso_actual
-            }
-        });
-}
-
-
-function descargaCSVpremat() {
-    enviarFormularioSubmit(
-        {
-            url:"php/secret_csv_prematricula.php",
-            datos:{
-                premat_csv:"premat_" + document.getElementById("curso_pre_mat").value,
-                curso_csv:document.getElementById("curso").value
-            }
-        }
-    );
-}
-*/
 
 function avisarJefesDpto(){
     var emails=[];
@@ -4566,3 +4446,83 @@ function asignaModulosACiclos(dialogo){
     });
 }
 
+
+
+function RutasTransporte(){
+    cargaHTML("html/secretaria.htm", "div_rutas_transporte","GESTIÓN DE RUTAS DE TRANSPORTE",1000,500,"","",
+    [{
+        class: "btn btn-success textoboton btn-sm",
+        text: "Añadir",
+        click: function() {
+            //Funcionalidad de añadir ruta de transporte
+            alert("Funcionalidad de añadir ruta de transporte aún no implementada.","EN DESARROLLO");
+        }
+    },
+    {
+        class: "btn btn-success textoboton btn-sm",
+        text: "Modificar",
+        click: function() {
+            //Funcionalidad de modificar ruta de transporte
+            alert("Funcionalidad de modificar ruta de transporte aún no implementada.","EN DESARROLLO");
+        }
+    },
+    {
+        class: "btn btn-success textoboton btn-sm",
+        text: "Borrar",
+        click: function() {
+            //Funcionalidad de borrar ruta de transporte
+            alert("Funcionalidad de borrar ruta de transporte aún no implementada.","EN DESARROLLO");
+        }
+    },
+    {
+        class: "btn btn-success textoboton btn-sm",
+        text: "Salir",
+        click: function() {
+            $(this).dialog("destroy").remove();
+        }
+    }]).then((dialogo)=>{
+        ocultarPantallaEspera();
+        $.post("php/secret_recupera_rutas_transporte.php",{},(resp)=>{
+            if (resp.error=="ok"){
+                const cont = document.getElementById("tbody_rutas_transporte");
+                cont.innerHTML = ""; // Limpia el contenido previo
+                for (let i = 0; i < resp.registro.length; i++) {
+                    const fila = document.createElement("tr");
+                    fila.setAttribute("id", resp.registro[i].id);
+                    fila.style.display = "table";
+                    fila.style.width = "100%";
+                    fila.style.tableLayout = "fixed";
+                    const celdaNombre = document.createElement("td");
+                    celdaNombre.innerHTML = resp.registro[i].ruta;
+                    celdaNombre.style.width = "50%";
+                    celdaNombre.style.boxSizing = "border-box";
+                    celdaNombre.style.overflow = "hidden";
+                    celdaNombre.style.textOverflow = "ellipsis";
+                    celdaNombre.style.whiteSpace = "nowrap";
+                    fila.appendChild(celdaNombre);
+                    const celdaDescripcion = document.createElement("td");
+                    celdaDescripcion.innerHTML = resp.registro[i].parada;
+                    celdaDescripcion.style.width = "50%";
+                    celdaDescripcion.style.boxSizing = "border-box";
+                    celdaDescripcion.style.overflow = "hidden";
+                    celdaDescripcion.style.textOverflow = "ellipsis";
+                    celdaDescripcion.style.whiteSpace = "nowrap";
+                    fila.appendChild(celdaDescripcion);
+                    cont.appendChild(fila);
+                }
+            }
+            else {
+                alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
+            }
+        },"json")
+        .catch (error=>{
+            ocultarPantallaEspera();
+            var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+            alerta(msg,"ERROR DE CARGA");
+        });
+    }).catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+}
