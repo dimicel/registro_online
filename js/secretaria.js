@@ -4491,13 +4491,9 @@ function RutasTransporte(){
                     const fila = document.createElement("tr");
                     fila.setAttribute("id", resp.rutas[i].id);
 
-                    // --- ELIMINADOS: display=table, width=100%, tableLayout ---
-                    // Deja que el TR se comporte como una fila natural de tabla
-
                     const celdaNombre = document.createElement("td");
                     celdaNombre.innerHTML = resp.rutas[i].ruta;
                     
-                    // El ancho se hereda del thead, pero puedes reforzarlo aquí
                     celdaNombre.style.width = "50%"; 
                     celdaNombre.style.overflow = "hidden";
                     celdaNombre.style.textOverflow = "ellipsis";
