@@ -4449,7 +4449,7 @@ function asignaModulosACiclos(dialogo){
 
 
 function RutasTransporte(){
-    cargaHTML("html/secretaria.htm", "div_rutas_transporte","GESTIÓN DE RUTAS DE TRANSPORTE",1000,500,"","",
+    cargaHTML("html/secretaria.htm", "div_rutas_transporte_escolar","GESTIÓN DE RUTAS DE TRANSPORTE",1000,500,"","",
     [{
         class: "btn btn-success textoboton btn-sm",
         text: "Añadir",
@@ -4485,7 +4485,7 @@ function RutasTransporte(){
         $.post("php/secret_recupera_rutas_transporte.php",{},(resp)=>{
             if (resp.error=="ok"){
                 const cont = document.getElementById("tbody_rutas_transporte");
-                if (cont!=null) cont.innerHTML = ""; // Limpia el contenido previo
+                cont.innerHTML = ""; // Limpia el contenido previo
                 for (let i = 0; i < resp.rutas.length; i++) {
                     const fila = document.createElement("tr");
                     fila.setAttribute("id", resp.rutas[i].id);
@@ -4513,7 +4513,7 @@ function RutasTransporte(){
             }
             else if(resp.error=="sin_rutas"){
                 const cont = document.getElementById("tbody_rutas_transporte");
-                if (cont!=null) cont.innerHTML = ""; // Limpia el contenido previo
+                cont.innerHTML = ""; // Limpia el contenido previo
                 const fila = document.createElement("tr");
                 fila.style.display = "table";
                 fila.style.width = "100%";
