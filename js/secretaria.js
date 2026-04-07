@@ -4513,19 +4513,23 @@ function RutasTransporte(){
             }
             else if(resp.error=="sin_rutas"){
                 const cont = document.getElementById("tbody_rutas_transporte");
-                cont.innerHTML = ""; // Limpia el contenido previo
+                cont.innerHTML = ""; 
+
                 const fila = document.createElement("tr");
-                //fila.style.display = "table";
-                fila.style.width = "100%";
-                //fila.style.tableLayout = "fixed";
+
                 const celda = document.createElement("td");
-                celda.setAttribute("colspan","2");
+                celda.setAttribute("colspan", "2"); // Esto ahora sí funcionará
                 celda.innerHTML = "No hay rutas de transporte registradas.";
+
+                // Estilos de alineación
                 celda.style.textAlign = "center";
-                celda.style.boxSizing = "border-box";
-                celda.style.overflow = "hidden";
-                celda.style.textOverflow = "ellipsis";
-                celda.style.whiteSpace = "nowrap";
+                celda.style.padding = "10px"; // Opcional, para que se vea mejor
+
+                // Si quieres evitar el scroll, NO uses width: 100% aquí.
+                // El overflow y textOverflow solo funcionan si el contenedor tiene un ancho fijo,
+                // pero en un mensaje de "No hay datos", no suelen ser necesarios.
+                celda.style.whiteSpace = "nowrap"; 
+
                 fila.appendChild(celda);
                 cont.appendChild(fila);
             }
