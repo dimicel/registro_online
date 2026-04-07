@@ -1,8 +1,8 @@
 <?php
 ob_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-ini_set('log_errors', 0);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
@@ -15,7 +15,7 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-$consulta="select * from rutas_transporte order by ruta";
+$consulta="select * from transporte_rutas order by ruta";
 $res=$mysqli->query($consulta);
 if ($res->num_rows==0){
     $data["error"]="sin_rutas";
