@@ -4485,28 +4485,32 @@ function RutasTransporte(){
         $.post("php/secret_recupera_rutas_transporte.php",{},(resp)=>{
             if (resp.error=="ok"){
                 const cont = document.getElementById("tbody_rutas_transporte");
-                cont.innerHTML = ""; // Limpia el contenido previo
+                cont.innerHTML = ""; 
+
                 for (let i = 0; i < resp.rutas.length; i++) {
                     const fila = document.createElement("tr");
                     fila.setAttribute("id", resp.rutas[i].id);
-                    fila.style.display = "table";
-                    fila.style.width = "100%";
-                    fila.style.tableLayout = "fixed";
+
+                    // --- ELIMINADOS: display=table, width=100%, tableLayout ---
+                    // Deja que el TR se comporte como una fila natural de tabla
+
                     const celdaNombre = document.createElement("td");
                     celdaNombre.innerHTML = resp.rutas[i].ruta;
-                    celdaNombre.style.width = "50%";
-                    celdaNombre.style.boxSizing = "border-box";
+                    
+                    // El ancho se hereda del thead, pero puedes reforzarlo aquí
+                    celdaNombre.style.width = "50%"; 
                     celdaNombre.style.overflow = "hidden";
                     celdaNombre.style.textOverflow = "ellipsis";
                     celdaNombre.style.whiteSpace = "nowrap";
-                    fila.appendChild(celdaNombre);
+
                     const celdaDescripcion = document.createElement("td");
                     celdaDescripcion.innerHTML = resp.rutas[i].parada;
                     celdaDescripcion.style.width = "50%";
-                    celdaDescripcion.style.boxSizing = "border-box";
                     celdaDescripcion.style.overflow = "hidden";
                     celdaDescripcion.style.textOverflow = "ellipsis";
                     celdaDescripcion.style.whiteSpace = "nowrap";
+
+                    fila.appendChild(celdaNombre);
                     fila.appendChild(celdaDescripcion);
                     cont.appendChild(fila);
                 }
