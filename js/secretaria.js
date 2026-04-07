@@ -4515,9 +4515,9 @@ function RutasTransporte(){
                 const cont = document.getElementById("tbody_rutas_transporte");
                 cont.innerHTML = ""; // Limpia el contenido previo
                 const fila = document.createElement("tr");
-                fila.style.display = "table";
+                //fila.style.display = "table";
                 fila.style.width = "100%";
-                fila.style.tableLayout = "fixed";
+                //fila.style.tableLayout = "fixed";
                 const celda = document.createElement("td");
                 celda.setAttribute("colspan","2");
                 celda.innerHTML = "No hay rutas de transporte registradas.";
