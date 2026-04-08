@@ -60,6 +60,7 @@ else{
     }
     $data["error"]="ok";
     $data["rutas"]=array();
+    $data["paradas"]=[];
     while ($reg=$res->fetch_assoc()){
         $data["rutas"][]=$reg;
     }
