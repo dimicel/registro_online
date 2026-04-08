@@ -48,6 +48,7 @@ if($_POST["ruta"]!=""){
     $data["error"] = "ok";
     $data["rutas"] = $info_ruta;
     $data["paradas"] = $paradas;
+    $data["listado"] = "paradas";
 
     exit(json_encode($data));
 }
@@ -61,6 +62,7 @@ else{
     $data["error"]="ok";
     $data["rutas"]=array();
     $data["paradas"]=[];
+    $data["listado"] = "rutas";
     while ($reg=$res->fetch_assoc()){
         $data["rutas"][]=$reg;
     }

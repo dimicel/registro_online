@@ -4472,7 +4472,7 @@ function obtieneRutasParadas(ruta=""){
         mostrarPantallaEspera();
         $.post("php/secret_recupera_rutas_transporte.php",{ruta:ruta},(resp)=>{
             ocultarPantallaEspera();
-            if (resp.error=="ok"  && resp.paradas.length==0){
+            if (resp.error=="ok"  && resp.listado=="rutas"){
                 alert(444444)
                 const cont = document.getElementById("tbody_rutas_transporte");
                 cont.innerHTML = ""; 
