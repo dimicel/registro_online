@@ -36,7 +36,7 @@ if($_POST["ruta"]!=""){
     while ($fila = $res->fetch_assoc()) {
         // Guardamos los datos de la ruta solo una vez
         if (!$info_ruta) {
-            $info_ruta = $fila; 
+            $info_ruta = $fila["ruta"]; 
         }
         
         // Si hay una parada (el id_parada no es null), la añadimos al array
