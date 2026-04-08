@@ -4529,22 +4529,20 @@ function obtieneRutasParadas(ruta=""){
                     const divBotones = document.createElement("div");
                     divBotones.className = "btn-group"; // Mantiene los botones juntos
 
-                    // Botón Editar (Azul)
                     divBotones.innerHTML += `
                         <button class="btn btn-primary btn-sm me-1" 
                                 data-bs-toggle="tooltip" 
                                 title="Modificar"
-                                onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].id})">
-                            <i class="bi bi-pencil"></i>
+                                onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].id_ruta})">
+                            <i class="bi bi-pencil" style='pointer-events: none'></i>
                         </button>`;
 
-                    // Botón Borrar (Rojo)
                     divBotones.innerHTML += `
                         <button class="btn btn-danger btn-sm" 
                                 data-bs-toggle="tooltip" 
                                 title="Eliminar"
-                                onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].id})">
-                            <i class="bi bi-trash"></i>
+                                onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].id_ruta})">
+                            <i class="bi bi-trash" style='pointer-events: none'></i>
                         </button>`;
 
                     // Ensamblamos todo
@@ -4565,37 +4563,8 @@ function obtieneRutasParadas(ruta=""){
                         this.style.color = "brown";
                     });
 
-// Importante: Inicializar tooltips después de añadir la fila al DOM
-// bootstrap.Tooltip.getOrCreateInstance(elemento);
-                    /*const fila = document.createElement("tr");
-                    fila.setAttribute("id", resp.rutas[i].id);
-                    fila.style.cursor = "pointer"; // Opcional: para que el usuario sepa que es clickable
-
-                    // --- Configuración de celdas (tu código base) ---
-                    const celdaNombre = document.createElement("td");
-                    celdaNombre.innerHTML = resp.rutas[i].ruta;
-                    celdaNombre.style.width = "50%"; 
-                    celdaNombre.style.overflow = "hidden";
-                    celdaNombre.style.textOverflow = "ellipsis";
-                    celdaNombre.style.whiteSpace = "nowrap";
-
-
-                    // --- Lógica de Selección ---
-                    fila.addEventListener("click", function() {
-                        // 1. Buscamos todas las filas del contenedor para resetearlas
-                        const filas = cont.getElementsByTagName("tr");
-                        for (let f of filas) {
-                            f.style.backgroundColor = ""; // Color original (transparente/blanco)
-                            f.style.color = "";           // Color de letra original
-                        }
-
-                        // 2. Aplicamos el formato solo a la fila clickeada
-                        this.style.backgroundColor = "yellow";
-                        this.style.color = "brown";
-                        
-                        // Opcional: si quieres que el texto sea negrita al seleccionar
-                        // this.style.fontWeight = "bold"; 
-                    });*/
+                    // Importante: Inicializar tooltips después de añadir la fila al DOM
+                    // bootstrap.Tooltip.getOrCreateInstance(elemento);
 
                     fila.appendChild(celdaNombre);
                     cont.appendChild(fila);
