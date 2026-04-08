@@ -4452,22 +4452,6 @@ function RutasTransporte(){
     cargaHTML("html/secretaria.htm", "div_rutas_transporte_escolar","GESTIÓN DE RUTAS DE TRANSPORTE",500,700,"","",
     [{
         class: "btn btn-success textoboton btn-sm",
-        text: "Modificar",
-        click: function() {
-            //Funcionalidad de modificar ruta de transporte
-            alert("Funcionalidad de modificar ruta de transporte aún no implementada.","EN DESARROLLO");
-        }
-    },
-    {
-        class: "btn btn-success textoboton btn-sm",
-        text: "Borrar",
-        click: function() {
-            //Funcionalidad de borrar ruta de transporte
-            alert("Funcionalidad de borrar ruta de transporte aún no implementada.","EN DESARROLLO");
-        }
-    },
-    {
-        class: "btn btn-success textoboton btn-sm",
         text: "Salir",
         click: function() {
             $(this).dialog("destroy").remove();
@@ -4507,7 +4491,7 @@ function obtieneRutasParadas(ruta=""){
 
                 for (let i = 0; i < resp.rutas.length; i++) {
                     const fila = document.createElement("tr");
-                    fila.setAttribute("id", resp.rutas[i].id);
+                    fila.setAttribute("id", resp.rutas[i].ruta);
                     fila.style.cursor = "pointer";
 
                     // --- Configuración de celda ---
@@ -4570,6 +4554,8 @@ function obtieneRutasParadas(ruta=""){
 
                         this.style.backgroundColor = "yellow";
                         this.style.color = "brown";
+
+                        obtieneRutasParadas(fila.getAttribute("id"));
                     });
 
                     // Importante: Inicializar tooltips después de añadir la fila al DOM
