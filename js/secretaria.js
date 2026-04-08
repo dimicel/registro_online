@@ -4529,23 +4529,25 @@ function obtieneRutasParadas(ruta=""){
                     const divBotones = document.createElement("div");
                     divBotones.className = "btn-group"; // Mantiene los botones juntos
 
+                    // Botón Editar (Azul)
                     divBotones.innerHTML += `
-                        <button class="btn btn-primary btn-sm me-1" 
-                                style="cursor: pointer !important;"
-                                data-bs-toggle="tooltip" 
-                                title="Modificar"
-                                onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].id_ruta})">
-                            <i class="bi bi-pencil" style='pointer-events: none'></i>
-                        </button>`;
+                        <span style="display: inline-block;" data-bs-toggle="tooltip" data-bs-placement="top" title="Modificar" data-bs-container="body">
+                            <button class="btn btn-primary btn-sm me-1" 
+                                    style="cursor: pointer !important; pointer-events: auto;" 
+                                    onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].id})">
+                                <i class="bi bi-pencil" style="pointer-events: none;"></i>
+                            </button>
+                        </span>`;
 
+                    // Botón Borrar (Rojo)
                     divBotones.innerHTML += `
-                        <button class="btn btn-danger btn-sm" 
-                                style="cursor: pointer !important;"
-                                data-bs-toggle="tooltip" 
-                                title="Eliminar"
-                                onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].id_ruta})">
-                            <i class="bi bi-trash" style='pointer-events: none'></i>
-                        </button>`;
+                        <span style="display: inline-block;" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" data-bs-container="body">
+                            <button class="btn btn-danger btn-sm" 
+                                    style="cursor: pointer !important; pointer-events: auto;" 
+                                    onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].id})">
+                                <i class="bi bi-trash" style="pointer-events: none;"></i>
+                            </button>
+                        </span>`;
 
                     // Ensamblamos todo
                     contenedorFlex.appendChild(spanTexto);
