@@ -4594,8 +4594,8 @@ function obtieneRutasParadas(ruta=""){
                         this.style.color = "brown";
                         
                         // Opcional: si quieres que el texto sea negrita al seleccionar
-                        // this.style.fontWeight = "bold"; */
-                    });
+                        // this.style.fontWeight = "bold"; 
+                    });*/
 
                     fila.appendChild(celdaNombre);
                     cont.appendChild(fila);
