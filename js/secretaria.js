@@ -4568,7 +4568,7 @@ function obtieneRutasParadas(ruta=""){
                 const par=document.getElementById("tbody_paradas_transporte");
                 par.innerHTML = ""; 
 
-                for (let i = 0; i < resp.rutas.length; i++) {
+                for (let i = 0; i < resp.paradas.length; i++) {
                     const fila = document.createElement("tr");
                     fila.setAttribute("id", resp.paradas[i].parada);
                     fila.style.cursor = "pointer";
