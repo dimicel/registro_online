@@ -4529,25 +4529,30 @@ function obtieneRutasParadas(ruta=""){
                     const divBotones = document.createElement("div");
                     divBotones.className = "btn-group"; // Mantiene los botones juntos
 
-                    // Botón Editar (Azul)
+                   // 1. Usa este código para tus botones (manteniendo el contenedor body)
                     divBotones.innerHTML += `
-                        <span style="display: inline-block;" data-bs-toggle="tooltip" data-bs-placement="top" title="Modificar" data-bs-container="body">
-                            <button class="btn btn-primary btn-sm me-1" 
-                                    style="cursor: pointer !important; pointer-events: auto;" 
-                                    onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].id})">
-                                <i class="bi bi-pencil" style="pointer-events: none;"></i>
-                            </button>
-                        </span>`;
+                        <button class="btn btn-primary btn-sm me-1" 
+                                style="cursor: pointer !important;" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-container="body"
+                                data-bs-placement="top" 
+                                data-bs-offset="0,10" 
+                                title="Modificar"
+                                onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].id})">
+                            <i class="bi bi-pencil" style="pointer-events: none;"></i>
+                        </button>`;
 
-                    // Botón Borrar (Rojo)
                     divBotones.innerHTML += `
-                        <span style="display: inline-block;" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" data-bs-container="body">
-                            <button class="btn btn-danger btn-sm" 
-                                    style="cursor: pointer !important; pointer-events: auto;" 
-                                    onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].id})">
-                                <i class="bi bi-trash" style="pointer-events: none;"></i>
-                            </button>
-                        </span>`;
+                        <button class="btn btn-danger btn-sm" 
+                                style="cursor: pointer !important;" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-container="body"
+                                data-bs-placement="top" 
+                                data-bs-offset="0,10" 
+                                title="Eliminar"
+                                onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].id})">
+                            <i class="bi bi-trash" style="pointer-events: none;"></i>
+                        </button>`;
 
                     // Ensamblamos todo
                     contenedorFlex.appendChild(spanTexto);
@@ -4608,9 +4613,13 @@ function obtieneRutasParadas(ruta=""){
                 alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
             }
 
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            // Ejecuta esto después de llenar la tabla
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl)
+                return new bootstrap.Tooltip(tooltipTriggerEl, {
+                    boundary: 'window',
+                    trigger : 'hover' // Forzamos a que solo reaccione al pasar por encima, no al hacer click
+                });
             });
         },"json")
     .catch (error=>{
