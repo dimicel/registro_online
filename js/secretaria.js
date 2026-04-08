@@ -4473,7 +4473,6 @@ function obtieneRutasParadas(ruta=""){
         $.post("php/secret_recupera_rutas_transporte.php",{ruta:ruta},(resp)=>{
             ocultarPantallaEspera();
             if (resp.error=="ok"  && resp.listado=="rutas"){
-                alert(444444)
                 const cont = document.getElementById("tbody_rutas_transporte");
                 cont.innerHTML = ""; 
 
@@ -4522,8 +4521,8 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-container="body"
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
-                                title="Modificar"
-                                onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].id})">
+                                title="Modificar Ruta"
+                                onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].ruta})">
                             <i class="bi bi-pencil" style="pointer-events: none;"></i>
                         </button>`;
 
@@ -4534,8 +4533,8 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-container="body"
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
-                                title="Eliminar"
-                                onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].id})">
+                                title="Eliminar Ruta"
+                                onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].ruta})">
                             <i class="bi bi-trash" style="pointer-events: none;"></i>
                         </button>`;
 
@@ -4564,6 +4563,84 @@ function obtieneRutasParadas(ruta=""){
                     fila.appendChild(celdaNombre);
                     cont.appendChild(fila);
                 }
+            }
+            else if(resp.error=="ok"  && resp.listado=="paradas"){
+                const par=document.getElementById("tbody_paradas_transporte");
+                par.innerHTML = ""; 
+
+                for (let i = 0; i < resp.rutas.length; i++) {
+                    const fila = document.createElement("tr");
+                    fila.setAttribute("id", resp.paradas[i].parada);
+                    fila.style.cursor = "pointer";
+
+                    // --- Configuración de celda ---
+                    const celdaNombre = document.createElement("td");
+                    celdaNombre.style.width = "50%"; 
+                    celdaNombre.style.overflow = "hidden";
+                    celdaNombre.style.textOverflow = "ellipsis";
+                    celdaNombre.style.whiteSpace = "nowrap";
+
+                    // Creamos un contenedor flex para el texto y los botones
+                    const contenedorFlex = document.createElement("div");
+                    contenedorFlex.className = "d-flex justify-content-between align-items-center";
+
+                    // 1. El texto de la ruta
+                    const spanTexto = document.createElement("span");
+                    spanTexto.innerText = resp.paradas[i].parada;
+
+                    // 2. El grupo de botones
+                    const divBotones = document.createElement("div");
+                    divBotones.className = "btn-group"; // Mantiene los botones juntos
+
+                   // 1. Usa este código para tus botones (manteniendo el contenedor body)
+                    divBotones.innerHTML += `
+                        <button class="btn btn-primary btn-sm me-1" 
+                                style="cursor: pointer !important;" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-container="body"
+                                data-bs-placement="top" 
+                                data-bs-offset="0,10" 
+                                title="Modificar Parada"
+                                onclick="event.stopPropagation(); editarParada(${resp.paradas[i].parada})">
+                            <i class="bi bi-pencil" style="pointer-events: none;"></i>
+                        </button>`;
+
+                    divBotones.innerHTML += `
+                        <button class="btn btn-danger btn-sm" 
+                                style="cursor: pointer !important;" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-container="body"
+                                data-bs-placement="top" 
+                                data-bs-offset="0,10" 
+                                title="Eliminar Parada"
+                                onclick="event.stopPropagation(); eliminarParada(${resp.paradas[i].parada})">
+                            <i class="bi bi-trash" style="pointer-events: none;"></i>
+                        </button>`;
+
+                    // Ensamblamos todo
+                    contenedorFlex.appendChild(spanTexto);
+                    contenedorFlex.appendChild(divBotones);
+                    celdaNombre.appendChild(contenedorFlex);
+                    fila.appendChild(celdaNombre);
+
+                    // --- Lógica de Selección ---
+                    fila.addEventListener("click", function() {
+                        const filas = document.querySelectorAll("#tbody_paradas_transporte tr");
+                        filas.forEach(f => {
+                            f.style.backgroundColor = "";
+                            f.style.color = "";
+                        });
+
+                        this.style.backgroundColor = "yellow";
+                        this.style.color = "brown";
+                    });
+
+                    // Importante: Inicializar tooltips después de añadir la fila al DOM
+                    // bootstrap.Tooltip.getOrCreateInstance(elemento);
+
+                    fila.appendChild(celdaNombre);
+                    cont.appendChild(fila);
+                }                
             }
             else if(resp.error=="sin_rutas"){
                 const cont = document.getElementById("tbody_rutas_transporte");
