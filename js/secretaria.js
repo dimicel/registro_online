@@ -4565,8 +4565,8 @@ function obtieneRutasParadas(ruta=""){
                 }
             }
             else if(resp.error=="ok"  && resp.listado=="paradas"){
-                const par=document.getElementById("tbody_paradas_transporte");
-                par.innerHTML = ""; 
+                const cont=document.getElementById("tbody_paradas_transporte");
+                cont.innerHTML = ""; 
 
                 for (let i = 0; i < resp.paradas.length; i++) {
                     const fila = document.createElement("tr");
