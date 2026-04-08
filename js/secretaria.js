@@ -4508,6 +4508,67 @@ function obtieneRutasParadas(ruta=""){
                 for (let i = 0; i < resp.rutas.length; i++) {
                     const fila = document.createElement("tr");
                     fila.setAttribute("id", resp.rutas[i].id);
+                    fila.style.cursor = "pointer";
+
+                    // --- Configuración de celda ---
+                    const celdaNombre = document.createElement("td");
+                    celdaNombre.style.width = "50%"; 
+                    celdaNombre.style.overflow = "hidden";
+                    celdaNombre.style.textOverflow = "ellipsis";
+                    celdaNombre.style.whiteSpace = "nowrap";
+
+                    // Creamos un contenedor flex para el texto y los botones
+                    const contenedorFlex = document.createElement("div");
+                    contenedorFlex.className = "d-flex justify-content-between align-items-center";
+
+                    // 1. El texto de la ruta
+                    const spanTexto = document.createElement("span");
+                    spanTexto.innerText = resp.rutas[i].ruta;
+
+                    // 2. El grupo de botones
+                    const divBotones = document.createElement("div");
+                    divBotones.className = "btn-group"; // Mantiene los botones juntos
+
+                    // Botón Editar (Azul)
+                    divBotones.innerHTML += `
+                        <button class="btn btn-primary btn-sm me-1" 
+                                data-bs-toggle="tooltip" 
+                                title="Modificar"
+                                onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].id})">
+                            <i class="bi bi-pencil"></i>
+                        </button>`;
+
+                    // Botón Borrar (Rojo)
+                    divBotones.innerHTML += `
+                        <button class="btn btn-danger btn-sm" 
+                                data-bs-toggle="tooltip" 
+                                title="Eliminar"
+                                onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].id})">
+                            <i class="bi bi-trash"></i>
+                        </button>`;
+
+                    // Ensamblamos todo
+                    contenedorFlex.appendChild(spanTexto);
+                    contenedorFlex.appendChild(divBotones);
+                    celdaNombre.appendChild(contenedorFlex);
+                    fila.appendChild(celdaNombre);
+
+                    // --- Lógica de Selección ---
+                    fila.addEventListener("click", function() {
+                        const filas = document.querySelectorAll("#tbody_rutas_transporte tr");
+                        filas.forEach(f => {
+                            f.style.backgroundColor = "";
+                            f.style.color = "";
+                        });
+
+                        this.style.backgroundColor = "yellow";
+                        this.style.color = "brown";
+                    });
+
+// Importante: Inicializar tooltips después de añadir la fila al DOM
+// bootstrap.Tooltip.getOrCreateInstance(elemento);
+                    /*const fila = document.createElement("tr");
+                    fila.setAttribute("id", resp.rutas[i].id);
                     fila.style.cursor = "pointer"; // Opcional: para que el usuario sepa que es clickable
 
                     // --- Configuración de celdas (tu código base) ---
@@ -4533,7 +4594,7 @@ function obtieneRutasParadas(ruta=""){
                         this.style.color = "brown";
                         
                         // Opcional: si quieres que el texto sea negrita al seleccionar
-                        // this.style.fontWeight = "bold"; 
+                        // this.style.fontWeight = "bold"; */
                     });
 
                     fila.appendChild(celdaNombre);
@@ -4573,6 +4634,11 @@ function obtieneRutasParadas(ruta=""){
             else if (resp.error=="server"){ 
                 alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
             }
+
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
         },"json")
     .catch (error=>{
         ocultarPantallaEspera();
