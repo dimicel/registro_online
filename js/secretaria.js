@@ -4515,7 +4515,7 @@ function obtieneRutasParadas(ruta=""){
 
                    // 1. Usa este código para tus botones (manteniendo el contenedor body)
                     divBotones.innerHTML += `
-                        <button class="btn btn-primary btn-sm me-1" 
+                        <button class="btn btn-success btn-sm me-1" 
                                 style="cursor: pointer !important;" 
                                 data-bs-toggle="tooltip" 
                                 data-bs-container="body"
@@ -4594,7 +4594,7 @@ function obtieneRutasParadas(ruta=""){
 
                    // 1. Usa este código para tus botones (manteniendo el contenedor body)
                     divBotones.innerHTML += `
-                        <button class="btn btn-primary btn-sm me-1" 
+                        <button class="btn btn-success btn-sm me-1" 
                                 style="cursor: pointer !important;" 
                                 data-bs-toggle="tooltip" 
                                 data-bs-container="body"
