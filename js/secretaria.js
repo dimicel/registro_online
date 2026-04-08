@@ -4487,6 +4487,19 @@ function RutasTransporte(){
                 const cont = document.getElementById("tbody_rutas_transporte");
                 cont.innerHTML = ""; 
 
+                const par=document.getElementById("tbody_paradas_transporte");
+                par.innerHTML = ""; 
+                const filaParada = document.createElement("tr");
+                const celdaParada = document.createElement("td");
+                celdaParada.innerHTML = "Seleccione Ruta";
+                celdaParada.style.textAlign = "center";
+                celdaParada.style.width = "100%"; 
+                celdaParada.style.overflow = "hidden";
+                celdaParada.style.textOverflow = "ellipsis";
+                celdaParada.style.whiteSpace = "nowrap";
+                filaParada.appendChild(celdaParada);
+                par.appendChild(filaParada);
+
                 for (let i = 0; i < resp.rutas.length; i++) {
                     const fila = document.createElement("tr");
                     fila.setAttribute("id", resp.rutas[i].id);
@@ -4500,12 +4513,6 @@ function RutasTransporte(){
                     celdaNombre.style.textOverflow = "ellipsis";
                     celdaNombre.style.whiteSpace = "nowrap";
 
-                    const celdaDescripcion = document.createElement("td");
-                    celdaDescripcion.innerHTML = resp.rutas[i].parada;
-                    celdaDescripcion.style.width = "50%";
-                    celdaDescripcion.style.overflow = "hidden";
-                    celdaDescripcion.style.textOverflow = "ellipsis";
-                    celdaDescripcion.style.whiteSpace = "nowrap";
 
                     // --- Lógica de Selección ---
                     fila.addEventListener("click", function() {
@@ -4525,7 +4532,6 @@ function RutasTransporte(){
                     });
 
                     fila.appendChild(celdaNombre);
-                    fila.appendChild(celdaDescripcion);
                     cont.appendChild(fila);
                 }
             }
@@ -4537,8 +4543,7 @@ function RutasTransporte(){
                 fila.style.width = "100%";
                 //fila.style.tableLayout = "fixed";
                 const celda = document.createElement("td");
-                celda.setAttribute("colspan","2");
-                celda.innerHTML = "No hay rutas de transporte registradas.";
+                celda.innerHTML = "No hay rutas";
                 celda.style.textAlign = "center";
                 celda.style.boxSizing = "border-box";
                 celda.style.overflow = "hidden";
@@ -4546,6 +4551,19 @@ function RutasTransporte(){
                 celda.style.whiteSpace = "nowrap";
                 fila.appendChild(celda);
                 cont.appendChild(fila);
+
+                const par=document.getElementById("tbody_paradas_transporte");
+                par.innerHTML = ""; 
+                const filaParada = document.createElement("tr");
+                const celdaParada = document.createElement("td");
+                celdaParada.innerHTML = "No hay rutas";
+                celdaParada.style.textAlign = "center";
+                celdaParada.style.width = "100%"; 
+                celdaParada.style.overflow = "hidden";
+                celdaParada.style.textOverflow = "ellipsis";
+                celdaParada.style.whiteSpace = "nowrap";
+                filaParada.appendChild(celdaParada);
+                par.appendChild(filaParada);
             }
             else if (resp.error=="server"){ 
                 alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
