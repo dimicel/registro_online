@@ -15,7 +15,7 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
-if(isset($_POST["ruta"])){
+if(isset($_POST["ruta"]) || $_POST["ruta"]!=null){
     $ruta = $mysqli->real_escape_string($_POST["ruta"]);
 
     // Consultamos la ruta y sus paradas en un solo paso

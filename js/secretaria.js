@@ -4482,99 +4482,104 @@ function RutasTransporte(){
         }
     }]).then((dialogo)=>{
         ocultarPantallaEspera();
-        $.post("php/secret_recupera_rutas_transporte.php",{},(resp)=>{
-            if (resp.error=="ok"){
-                const cont = document.getElementById("tbody_rutas_transporte");
-                cont.innerHTML = ""; 
 
-                const par=document.getElementById("tbody_paradas_transporte");
-                par.innerHTML = ""; 
-                const filaParada = document.createElement("tr");
-                const celdaParada = document.createElement("td");
-                celdaParada.innerHTML = "Seleccione Ruta";
-                celdaParada.style.textAlign = "center";
-                celdaParada.style.width = "100%"; 
-                celdaParada.style.overflow = "hidden";
-                celdaParada.style.textOverflow = "ellipsis";
-                celdaParada.style.whiteSpace = "nowrap";
-                filaParada.appendChild(celdaParada);
-                par.appendChild(filaParada);
-
-                for (let i = 0; i < resp.rutas.length; i++) {
-                    const fila = document.createElement("tr");
-                    fila.setAttribute("id", resp.rutas[i].id);
-                    fila.style.cursor = "pointer"; // Opcional: para que el usuario sepa que es clickable
-
-                    // --- Configuración de celdas (tu código base) ---
-                    const celdaNombre = document.createElement("td");
-                    celdaNombre.innerHTML = resp.rutas[i].ruta;
-                    celdaNombre.style.width = "50%"; 
-                    celdaNombre.style.overflow = "hidden";
-                    celdaNombre.style.textOverflow = "ellipsis";
-                    celdaNombre.style.whiteSpace = "nowrap";
-
-
-                    // --- Lógica de Selección ---
-                    fila.addEventListener("click", function() {
-                        // 1. Buscamos todas las filas del contenedor para resetearlas
-                        const filas = cont.getElementsByTagName("tr");
-                        for (let f of filas) {
-                            f.style.backgroundColor = ""; // Color original (transparente/blanco)
-                            f.style.color = "";           // Color de letra original
-                        }
-
-                        // 2. Aplicamos el formato solo a la fila clickeada
-                        this.style.backgroundColor = "yellow";
-                        this.style.color = "brown";
-                        
-                        // Opcional: si quieres que el texto sea negrita al seleccionar
-                        // this.style.fontWeight = "bold"; 
-                    });
-
-                    fila.appendChild(celdaNombre);
-                    cont.appendChild(fila);
-                }
-            }
-            else if(resp.error=="sin_rutas"){
-                const cont = document.getElementById("tbody_rutas_transporte");
-                cont.innerHTML = ""; // Limpia el contenido previo
-                const fila = document.createElement("tr");
-                //fila.style.display = "table";
-                fila.style.width = "100%";
-                //fila.style.tableLayout = "fixed";
-                const celda = document.createElement("td");
-                celda.innerHTML = "No hay rutas";
-                celda.style.textAlign = "center";
-                celda.style.boxSizing = "border-box";
-                celda.style.overflow = "hidden";
-                celda.style.textOverflow = "ellipsis";
-                celda.style.whiteSpace = "nowrap";
-                fila.appendChild(celda);
-                cont.appendChild(fila);
-
-                const par=document.getElementById("tbody_paradas_transporte");
-                par.innerHTML = ""; 
-                const filaParada = document.createElement("tr");
-                const celdaParada = document.createElement("td");
-                celdaParada.innerHTML = "No hay rutas";
-                celdaParada.style.textAlign = "center";
-                celdaParada.style.width = "100%"; 
-                celdaParada.style.overflow = "hidden";
-                celdaParada.style.textOverflow = "ellipsis";
-                celdaParada.style.whiteSpace = "nowrap";
-                filaParada.appendChild(celdaParada);
-                par.appendChild(filaParada);
-            }
-            else if (resp.error=="server"){ 
-                alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
-            }
-        },"json")
-        .catch (error=>{
-            ocultarPantallaEspera();
-            var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
-            alerta(msg,"ERROR DE CARGA");
-        });
     }).catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+}
+
+
+function obtieneRutasParadas(ruta=null){
+        $.post("php/secret_recupera_rutas_transporte.php",{},(resp)=>{
+        if (resp.error=="ok"){
+            const cont = document.getElementById("tbody_rutas_transporte");
+            cont.innerHTML = ""; 
+
+            const par=document.getElementById("tbody_paradas_transporte");
+            par.innerHTML = ""; 
+            const filaParada = document.createElement("tr");
+            const celdaParada = document.createElement("td");
+            celdaParada.innerHTML = "Seleccione Ruta";
+            celdaParada.style.textAlign = "center";
+            celdaParada.style.width = "100%"; 
+            celdaParada.style.overflow = "hidden";
+            celdaParada.style.textOverflow = "ellipsis";
+            celdaParada.style.whiteSpace = "nowrap";
+            filaParada.appendChild(celdaParada);
+            par.appendChild(filaParada);
+
+            for (let i = 0; i < resp.rutas.length; i++) {
+                const fila = document.createElement("tr");
+                fila.setAttribute("id", resp.rutas[i].id);
+                fila.style.cursor = "pointer"; // Opcional: para que el usuario sepa que es clickable
+
+                // --- Configuración de celdas (tu código base) ---
+                const celdaNombre = document.createElement("td");
+                celdaNombre.innerHTML = resp.rutas[i].ruta;
+                celdaNombre.style.width = "50%"; 
+                celdaNombre.style.overflow = "hidden";
+                celdaNombre.style.textOverflow = "ellipsis";
+                celdaNombre.style.whiteSpace = "nowrap";
+
+
+                // --- Lógica de Selección ---
+                fila.addEventListener("click", function() {
+                    // 1. Buscamos todas las filas del contenedor para resetearlas
+                    const filas = cont.getElementsByTagName("tr");
+                    for (let f of filas) {
+                        f.style.backgroundColor = ""; // Color original (transparente/blanco)
+                        f.style.color = "";           // Color de letra original
+                    }
+
+                    // 2. Aplicamos el formato solo a la fila clickeada
+                    this.style.backgroundColor = "yellow";
+                    this.style.color = "brown";
+                    
+                    // Opcional: si quieres que el texto sea negrita al seleccionar
+                    // this.style.fontWeight = "bold"; 
+                });
+
+                fila.appendChild(celdaNombre);
+                cont.appendChild(fila);
+            }
+        }
+        else if(resp.error=="sin_rutas"){
+            const cont = document.getElementById("tbody_rutas_transporte");
+            cont.innerHTML = ""; // Limpia el contenido previo
+            const fila = document.createElement("tr");
+            //fila.style.display = "table";
+            fila.style.width = "100%";
+            //fila.style.tableLayout = "fixed";
+            const celda = document.createElement("td");
+            celda.innerHTML = "No hay rutas";
+            celda.style.textAlign = "center";
+            celda.style.boxSizing = "border-box";
+            celda.style.overflow = "hidden";
+            celda.style.textOverflow = "ellipsis";
+            celda.style.whiteSpace = "nowrap";
+            fila.appendChild(celda);
+            cont.appendChild(fila);
+
+            const par=document.getElementById("tbody_paradas_transporte");
+            par.innerHTML = ""; 
+            const filaParada = document.createElement("tr");
+            const celdaParada = document.createElement("td");
+            celdaParada.innerHTML = "No hay rutas";
+            celdaParada.style.textAlign = "center";
+            celdaParada.style.width = "100%"; 
+            celdaParada.style.overflow = "hidden";
+            celdaParada.style.textOverflow = "ellipsis";
+            celdaParada.style.whiteSpace = "nowrap";
+            filaParada.appendChild(celdaParada);
+            par.appendChild(filaParada);
+        }
+        else if (resp.error=="server"){ 
+            alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
+        }
+    },"json")
+    .catch (error=>{
         ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
