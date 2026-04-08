@@ -4531,6 +4531,7 @@ function obtieneRutasParadas(ruta=""){
 
                     divBotones.innerHTML += `
                         <button class="btn btn-primary btn-sm me-1" 
+                                style="cursor: pointer !important;"
                                 data-bs-toggle="tooltip" 
                                 title="Modificar"
                                 onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].id_ruta})">
@@ -4539,6 +4540,7 @@ function obtieneRutasParadas(ruta=""){
 
                     divBotones.innerHTML += `
                         <button class="btn btn-danger btn-sm" 
+                                style="cursor: pointer !important;"
                                 data-bs-toggle="tooltip" 
                                 title="Eliminar"
                                 onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].id_ruta})">
