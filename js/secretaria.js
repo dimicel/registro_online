@@ -4470,10 +4470,10 @@ function RutasTransporte(){
 
 function obtieneRutasParadas(ruta=""){
         mostrarPantallaEspera();
-        alert(ruta);
         $.post("php/secret_recupera_rutas_transporte.php",{ruta:ruta},(resp)=>{
             ocultarPantallaEspera();
             if (resp.error=="ok"  && resp.paradas.length==0){
+                alert(444444)
                 const cont = document.getElementById("tbody_rutas_transporte");
                 cont.innerHTML = ""; 
 
