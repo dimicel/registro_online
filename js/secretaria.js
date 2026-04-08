@@ -4554,7 +4554,7 @@ function obtieneRutasParadas(ruta=""){
 
                         this.style.backgroundColor = "yellow";
                         this.style.color = "brown";
-
+                        alert(fila.getAttribute("id"))
                         obtieneRutasParadas(fila.getAttribute("id"));
                     });
 
