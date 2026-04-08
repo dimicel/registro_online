@@ -40,7 +40,7 @@ if($_POST["ruta"]!=""){
         }
         
         // Si hay una parada (el id_parada no es null), la añadimos al array
-        if ($fila['id_parada'] !== null) {
+        if ($fila['id'] !== null) {
             $paradas[] = $fila;
         }
     }
