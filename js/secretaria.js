@@ -4470,6 +4470,7 @@ function RutasTransporte(){
 
 function obtieneRutasParadas(ruta=""){
         mostrarPantallaEspera();
+        alert(ruta);
         $.post("php/secret_recupera_rutas_transporte.php",{ruta:ruta},(resp)=>{
             ocultarPantallaEspera();
             if (resp.error=="ok"  && resp.paradas.length==0){
@@ -4554,7 +4555,6 @@ function obtieneRutasParadas(ruta=""){
 
                         this.style.backgroundColor = "yellow";
                         this.style.color = "brown";
-                        alert(fila.getAttribute("id"))
                         obtieneRutasParadas(fila.getAttribute("id"));
                     });
 
