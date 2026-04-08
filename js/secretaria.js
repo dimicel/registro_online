@@ -4534,7 +4534,17 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
                                 title="Eliminar Ruta"
-                                onclick="event.stopPropagation(); eliminarRuta(${resp.rutas[i].ruta})">
+                                onclick="event.stopPropagation();
+                                        confirmar('Se aliminará la ruta y sus aparadas asciadas.','CONFIMAR BORRADO')
+                                        .then((confirmacion)=>{
+                                            if (confirmacion) confirmar('La acción es irrEversible y se borrarán la ruta y todas las paradas.','CONFIRMACIóN DE SEGURIDAD')
+                                                                .then((conf_segur)=>{
+                                                                    if (conf_segur}{
+                                                                        eliminarRuta(${resp.rutas[i].ruta})
+                                                                    })
+                                                                });
+                                        });
+                                        ">
                             <i class="bi bi-trash" style="pointer-events: none;"></i>
                         </button>`;
 
