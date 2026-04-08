@@ -4451,7 +4451,7 @@ function asignaModulosACiclos(dialogo){
 function RutasTransporte(){
     cargaHTML("html/secretaria.htm", "div_rutas_transporte_escolar","GESTIÓN DE RUTAS DE TRANSPORTE",500,700,"","",
     [{
-        class: "btn btn-success textoboton btn-sm",
+        class: "btn btn-success textoboton ",
         text: "Salir",
         click: function() {
             $(this).dialog("destroy").remove();
