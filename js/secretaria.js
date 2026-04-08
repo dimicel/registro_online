@@ -4452,14 +4452,6 @@ function RutasTransporte(){
     cargaHTML("html/secretaria.htm", "div_rutas_transporte_escolar","GESTIÓN DE RUTAS DE TRANSPORTE",500,500,"","",
     [{
         class: "btn btn-success textoboton btn-sm",
-        text: "Añadir",
-        click: function() {
-            //Funcionalidad de añadir ruta de transporte
-            alert("Funcionalidad de añadir ruta de transporte aún no implementada.","EN DESARROLLO");
-        }
-    },
-    {
-        class: "btn btn-success textoboton btn-sm",
         text: "Modificar",
         click: function() {
             //Funcionalidad de modificar ruta de transporte
