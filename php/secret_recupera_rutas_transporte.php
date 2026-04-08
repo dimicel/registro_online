@@ -8,7 +8,8 @@ error_reporting(E_ALL);
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("conexion.php");
-
+$data["error"]="sin_rutas";
+exit(json_encode($data));
 $data=array();
 if ($mysqli->errno>0) {
     $data["error"]="server";
