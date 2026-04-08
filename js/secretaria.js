@@ -4542,7 +4542,7 @@ function obtieneRutasParadas(ruta=""){
                                                                     if (conf_segur){
                                                                     alert('eliminar ruta');
                                                                         //eliminarRuta(${resp.rutas[i].ruta})
-                                                                    })
+                                                                    }
                                                                 });
                                         });
                                         ">
