@@ -4535,7 +4535,7 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-offset="0,10" 
                                 title="Eliminar Ruta"
                                 onclick="event.stopPropagation();
-                                        confirmar('Se aliminará la ruta y sus aparadas asciadas.','CONFIMAR BORRADO')
+                                        confirmar('Se aliminará la ruta y sus paradas asciadas.','CONFIMAR BORRADO')
                                         .then((confirmacion)=>{
                                             if (confirmacion) confirmar('La acción es irrEversible y se borrarán la ruta y todas las paradas.','CONFIRMACIóN DE SEGURIDAD')
                                                                 .then((conf_segur)=>{
