@@ -46,7 +46,7 @@ if($_POST["ruta"]!=""){
     }
 
     $data["error"] = "ok";
-    $data["ruta"] = $info_ruta;
+    $data["rutas"] = $info_ruta;
     $data["paradas"] = $paradas;
 
     exit(json_encode($data));
