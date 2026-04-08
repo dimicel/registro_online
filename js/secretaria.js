@@ -4482,6 +4482,7 @@ function RutasTransporte(){
         }
     }]).then((dialogo)=>{
         ocultarPantallaEspera();
+        obtieneRutasParadas();
 
     }).catch (error=>{
         ocultarPantallaEspera();
