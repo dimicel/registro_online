@@ -4537,10 +4537,9 @@ function obtieneRutasParadas(ruta=""){
                                 onclick="event.stopPropagation();
                                         confirmar('Se eliminará la ruta y sus paradas asociadas.','CONFIMAR BORRADO')
                                         .then(function(confirmacion){
-                                            if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta y todas las paradas.','CONFIRMACIóN DE SEGURIDAD')
+                                            if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta y todas sus paradas asociadas.','CONFIRMACIóN DE SEGURIDAD')
                                                                 .then(function(conf_segur){
                                                                     if (conf_segur){
-                                                                    alert('eliminar ruta');
                                                                         //eliminarRuta(${resp.rutas[i].ruta})
                                                                     }
                                                                 });
