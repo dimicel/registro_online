@@ -4744,6 +4744,9 @@ function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
         ]
     ).then((dialogo)=>{
         ocultarPantallaEspera();
+        if (tipo=='ruta') document.getElementById('etiqueta_alta_mod').value='Ruta:';
+        else if (tipo=='parada') document.getElementById('etiqueta_alta_mod').value='Parada:';
+        
     }).catch (error=>{
         ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
