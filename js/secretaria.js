@@ -4627,7 +4627,7 @@ function obtieneRutasParadas(ruta=""){
                                         confirmar('Se eliminará la parada ${resp.paradas[i].parada}.','CONFIMAR BORRADO')
                                         .then(function(confirmacion){
                                             if (confirmacion){
-                                            alert("eliminar");
+                                            alert('eliminar');
                                                 //eliminarRuta(${resp.rutas[i].ruta}); 
                                             }                 
                                         });">
