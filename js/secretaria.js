@@ -4470,7 +4470,7 @@ function RutasTransporte(){
 
 function obtieneRutasParadas(ruta=""){
         mostrarPantallaEspera();
-        $.post("php/secret_recupera_rutas_transporte.php",{ruta:ruta},(resp)=>{
+        $.post("php/secret_transporte_recupera_rutas.php",{ruta:ruta},(resp)=>{
             ocultarPantallaEspera();
             if (resp.error=="ok"  && resp.listado=="rutas"){
                 const cont = document.getElementById("tbody_rutas_transporte");
