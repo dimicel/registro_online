@@ -4747,10 +4747,11 @@ function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
         if (tipo=='ruta'){
             document.getElementById('etiqueta_alta_mod').innerText='Ruta: ';
             document.getElementById('campo').maxLength=25;
+            document.getElementById('campo').size=25;
         } 
         else if (tipo=='parada'){
             document.getElementById('etiqueta_alta_mod').innerText='Parada: ';
-            document.getElementById('campo').maxLength=30;
+            document.getElementById('campo').size=30;
         } 
         
     }).catch (error=>{
