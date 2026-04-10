@@ -14,7 +14,7 @@ if ($mysqli->errno>0) {
     exit("server");
 }
 
-$alta_mod=$_POST["alta_mod"];
+$alta_mod=$_POST["alta_mod"];  //0 -> alta; 1 -> modificar
 $tipo=$mysqli->real_escape_string($_POST["tipo"]);
 $ruta=$mysqli->real_escape_string($_POST["ruta"]);
 $parada=$mysqli->real_escape_string($_POST["parada"]);
