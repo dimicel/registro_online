@@ -4712,3 +4712,41 @@ function obtieneRutasParadas(ruta=""){
         alerta(msg,"ERROR DE CARGA");
     });
 }
+
+
+function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
+    mostrarPantallaEspera();
+    titulo="";
+    if (alta_mod==0){
+        if (tipo=='ruta') titulo="ALTA DE RUTA"
+        else if (tipo=='parada') titulo="ALTA DE PARADA"
+    }
+    else if (alta_mod==1){  
+        if (tipo=='ruta') titulo="MODIFICAR DE RUTA"
+        else if (tipo=='parada') titulo="MODIFICAR DE PARADA"
+    } 
+    cargaHTML("html/secretaria.htm", "div_altas_mod_rutas_paradas",titulo,500,400,"","",
+        [
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Aceptar",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
+            },
+            {
+                class: "btn btn-success textoboton btn-sm",
+                text: "Salir",
+                click: function() {
+                    $(this).dialog("destroy").remove();
+                }
+            }
+        ]
+    ).then((dialogo)=>{
+        ocultarPantallaEspera();
+    }).catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+}
