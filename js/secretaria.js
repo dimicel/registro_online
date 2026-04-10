@@ -4522,7 +4522,7 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
                                 title="Modificar Ruta"
-                                onclick="event.stopPropagation(); editarRuta(${resp.rutas[i].ruta})">
+                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'ruta',${resp.rutas[i].ruta})">
                             <i class="bi bi-pencil" style="pointer-events: none;"></i>
                         </button>`;
 
@@ -4613,7 +4613,7 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
                                 title="Modificar Parada"
-                                onclick="event.stopPropagation(); editarParada(${resp.paradas[i].parada})">
+                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'parada,'${resp.paradas[i].parada})">
                             <i class="bi bi-pencil" style="pointer-events: none;"></i>
                         </button>`;
 
