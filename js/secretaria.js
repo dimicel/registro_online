@@ -4767,6 +4767,11 @@ function eliminaRutaParada(tipo,ruta="",parada=""){
     mostrarPantallaEspera();
     $.post("php/secret_transporte_elimina_rutas_paradas.php",{tipo:tipo,ruta:ruta,parada:parada},(resp)=>{
         ocultarPantallaEspera();
+        if (resp=="error") alerta("El borradoha fallado.","FALLO BORRADO");
+        else if(resp=="ok") {
+            if (tipo=="ruta") obtieneRutasParadas();
+            else if (tipo="parada") obtieneRutasParadas(ruta);
+        }
     });
 
 }

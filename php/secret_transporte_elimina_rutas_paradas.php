@@ -18,4 +18,31 @@ $tipo=$mysqli->real_escape_string($_POST["tipo"]);
 $ruta=$mysqli->real_escape_string($_POST["ruta"]);
 $parada=$mysqli->real_escape_string($_POST["parada"]);
 
+if ($tipo=="ruta"){
+$mysqli->begin_transaction();
 
+try {
+    // 1. Borramos las paradas usando una subconsulta para encontrar el ID
+    $sql1 = "DELETE FROM transporte_paradas 
+             WHERE id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta = ? LIMIT 1)";
+    $stmt1 = $mysqli->prepare($sql1);
+    $stmt1->bind_param("s", $ruta);
+    $stmt1->execute();
+
+    // 2. Ahora borramos la ruta principal por su nombre
+    $sql2 = "DELETE FROM transporte_rutas WHERE ruta = ?";
+    $stmt2 = $mysqli->prepare($sql2);
+    $stmt2->bind_param("s", $ruta);
+    $stmt2->execute();
+
+    $mysqli->commit();
+    exit("ok");
+} catch (Exception $e) {
+    $mysqli->rollback();
+    exit("error");
+}
+}
+else if ($tipo=="parada"){
+    $consulta="DELETE FROM transporte_paradas WHERE parada='$parada' AND id_ruta='$ruta'";
+    $mysqli->query($consulta);
+}
