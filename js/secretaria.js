@@ -4623,7 +4623,11 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
                                 title="Eliminar Parada"
-                                onclick="event.stopPropagation(); eliminarParada(${resp.paradas[i].parada})">
+                                onclick="event.stopPropagation(); 
+                                        confirmar('Se eliminará la parada ${resp.paradas[i].parada}.','CONFIMAR BORRADO')
+                                        .then(function(confirmacion){
+                                            if (confirmacion) //eliminarRuta(${resp.rutas[i].ruta});                 
+                                        });">
                             <i class="bi bi-trash" style="pointer-events: none;"></i>
                         </button>`;
 
