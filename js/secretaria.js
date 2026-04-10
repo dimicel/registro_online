@@ -4745,11 +4745,11 @@ function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
     ).then((dialogo)=>{
         ocultarPantallaEspera();
         if (tipo=='ruta'){
-            document.getElementById('etiqueta_alta_mod').value='Ruta: ';
+            document.getElementById('etiqueta_alta_mod').innerText='Ruta: ';
             document.getElementById('campo').maxLength=25;
         } 
         else if (tipo=='parada'){
-            document.getElementById('etiqueta_alta_mod').value='Parada: ';
+            document.getElementById('etiqueta_alta_mod').innerText='Parada: ';
             document.getElementById('campo').maxLength=30;
         } 
         
