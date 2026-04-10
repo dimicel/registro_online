@@ -4730,6 +4730,8 @@ function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Aceptar",
                 click: function() {
+                    $.post("php/secret_transporte_alta_mod_rutas_paradas.php",{alta_mod:alta_mod,tipo:tipo,valor:valor},(resp)=>{
+                    });
                     $(this).dialog("destroy").remove();
                 }
             },
