@@ -4744,8 +4744,14 @@ function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
         ]
     ).then((dialogo)=>{
         ocultarPantallaEspera();
-        if (tipo=='ruta') document.getElementById('etiqueta_alta_mod').value='Ruta:';
-        else if (tipo=='parada') document.getElementById('etiqueta_alta_mod').value='Parada:';
+        if (tipo=='ruta'){
+            document.getElementById('etiqueta_alta_mod').value='Ruta: ';
+            document.getElementById('campo').maxLength=25;
+        } 
+        else if (tipo=='parada'){
+            document.getElementById('etiqueta_alta_mod').value='Parada: ';
+            document.getElementById('campo').maxLength=30;
+        } 
         
     }).catch (error=>{
         ocultarPantallaEspera();
