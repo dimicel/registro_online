@@ -4751,6 +4751,7 @@ function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
         } 
         else if (tipo=='parada'){
             document.getElementById('etiqueta_alta_mod').innerText='Parada: ';
+            document.getElementById('campo').maxLength=30;
             document.getElementById('campo').size=30;
         } 
         
