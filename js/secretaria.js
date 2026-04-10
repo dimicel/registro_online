@@ -4560,10 +4560,12 @@ function obtieneRutasParadas(ruta=""){
                         filas.forEach(f => {
                             f.style.backgroundColor = "";
                             f.style.color = "";
+                            f.removeAttribute('data-seleccionada');
                         });
 
                         this.style.backgroundColor = "yellow";
                         this.style.color = "brown";
+                        this.setAttribute('data-seleccionada','true');
                         obtieneRutasParadas(fila.getAttribute("id"));
                     });
 
@@ -4645,10 +4647,13 @@ function obtieneRutasParadas(ruta=""){
                         filas.forEach(f => {
                             f.style.backgroundColor = "";
                             f.style.color = "";
+                            f.removeAttribute('data-seleccionada');
                         });
 
                         this.style.backgroundColor = "yellow";
                         this.style.color = "brown";
+                        this.setAttribute('data-seleccionada','true');
+
                     });
 
                     // Importante: Inicializar tooltips después de añadir la fila al DOM
