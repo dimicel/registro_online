@@ -4539,7 +4539,7 @@ function obtieneRutasParadas(ruta=""){
                                             if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta ${resp.rutas[i].ruta} y todas sus paradas asociadas.','CONFIRMACIóN DE SEGURIDAD')
                                                                 .then(function(conf_segur){
                                                                     if (conf_segur){
-                                                                        //eliminarRuta(${resp.rutas[i].ruta})
+                                                                        eliminarRutaParada('ruta',${resp.rutas[i].ruta});
                                                                     }
                                                                 });
                                         });
@@ -4612,7 +4612,7 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
                                 title="Modificar Parada"
-                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'parada,'${resp.paradas[i].parada})">
+                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'parada',${ruta},${resp.paradas[i].parada})">
                             <i class="bi bi-pencil" style="pointer-events: none;"></i>
                         </button>`;
 
@@ -4628,7 +4628,7 @@ function obtieneRutasParadas(ruta=""){
                                         confirmar('Se eliminará la parada ${resp.paradas[i].parada}.','CONFIMAR BORRADO')
                                         .then(function(confirmacion){
                                             if (confirmacion){
-                                                //eliminarRuta(${resp.rutas[i].ruta}); 
+                                                eliminarRutaParada('parada',${ruta},${resp.paradas[i].parada}); 
                                             }                 
                                         });">
                             <i class="bi bi-trash" style="pointer-events: none;"></i>
@@ -4713,7 +4713,7 @@ function obtieneRutasParadas(ruta=""){
 }
 
 
-function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
+function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
     mostrarPantallaEspera();
     titulo="";
     if (alta_mod==0){
@@ -4730,8 +4730,8 @@ function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Aceptar",
                 click: function() {
-                    $.post("php/secret_transporte_alta_mod_rutas_paradas.php",{alta_mod:alta_mod,tipo:tipo,valor:valor},(resp)=>{
-                        
+                    $.post("php/secret_transporte_alta_mod_rutas_paradas.php",{alta_mod:alta_mod,tipo:tipo,ruta:ruta,parada:parada},(resp)=>{
+
                     });
                     $(this).dialog("destroy").remove();
                 }
