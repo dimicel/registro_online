@@ -4731,7 +4731,7 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                 text: "Aceptar",
                 click: function() {
                     $.post("php/secret_transporte_alta_mod_rutas_paradas.php",{alta_mod:alta_mod,tipo:tipo,ruta:ruta,parada:parada},(resp)=>{
-
+                        ocultarPantallaEspera();
                     });
                     $(this).dialog("destroy").remove();
                 }
@@ -4761,4 +4761,12 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
+}
+
+function eliminaRutaParada(tipo,ruta="",parada=""){
+    mostrarPantallaEspera();
+    $.post("php/secret_transporte_elimina_rutas_paradas.php",{tipo:tipo,ruta:ruta,parada:parada},(resp)=>{
+        ocultarPantallaEspera();
+    });
+
 }
