@@ -89,7 +89,7 @@ if ($formato=="excel"){
         if ($filafinal[9]=="NO"){
             $sheet->getStyle("J$row")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED);
         }
-        $sheet->getStyle("C$row:J$row")->getAlignment()->setHorizontal(PhpOffice\PhpSpreadsheet\Style\AlignmentAlignment::HORIZONTAL_CENTER);
+        $sheet->getStyle("C$row:J$row")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
         $row++;
     }
     // Ajustar el ancho de las columnas automáticamente
