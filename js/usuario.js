@@ -308,10 +308,10 @@ function cambioDatosPers() {
                             email: true
                         },
                         dat_email_tut1: {
-                            email: true
+                            email_no_obligatorio: true
                         },
                         dat_email_tut2: {
-                            email: true
+                            email_no_obligatorio: true
                         }
                     },
                     messages: {
@@ -323,10 +323,10 @@ function cambioDatosPers() {
                             email: "No es una dirección de correo electrónico."
                         },
                         dat_email_tut1: {
-                            email: "No es una dirección de correo electrónico."
+                            email_no_obligatorio: "No es una dirección de correo electrónico."
                         },
                         dat_email_tut2: {
-                            email: "No es una dirección de correo electrónico."
+                            email_no_obligatorio: "No es una dirección de correo electrónico."
                         }
                     },
                     errorPlacement: function(error, element) {
