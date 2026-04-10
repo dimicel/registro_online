@@ -4753,7 +4753,6 @@ function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
             document.getElementById('campo').maxLength=30;
             document.getElementById('campo').size=30;
         } 
-        
     }).catch (error=>{
         ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
