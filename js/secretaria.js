@@ -4475,7 +4475,6 @@ function obtieneRutasParadas(ruta=""){
             if (resp.error=="ok"  && resp.listado=="rutas"){
                 const cont = document.getElementById("tbody_rutas_transporte");
                 cont.innerHTML = ""; 
-
                 const par=document.getElementById("tbody_paradas_transporte");
                 par.innerHTML = ""; 
                 const filaParada = document.createElement("tr");
