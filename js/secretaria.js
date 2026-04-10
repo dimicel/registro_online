@@ -4535,9 +4535,9 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-offset="0,10" 
                                 title="Eliminar Ruta"
                                 onclick="event.stopPropagation();
-                                        confirmar('Se eliminará la ruta y sus paradas asociadas.','CONFIMAR BORRADO')
+                                        confirmar('Se eliminará la ruta ${resp.rutas[i].ruta} y sus paradas asociadas.','CONFIMAR BORRADO')
                                         .then(function(confirmacion){
-                                            if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta y todas sus paradas asociadas.','CONFIRMACIóN DE SEGURIDAD')
+                                            if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta ${resp.rutas[i].ruta} y todas sus paradas asociadas.','CONFIRMACIóN DE SEGURIDAD')
                                                                 .then(function(conf_segur){
                                                                     if (conf_segur){
                                                                         //eliminarRuta(${resp.rutas[i].ruta})
