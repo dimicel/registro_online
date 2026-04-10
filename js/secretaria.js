@@ -4731,6 +4731,7 @@ function altaModRutaParadaTranporte(alta_mod,tipo,valor=""){
                 text: "Aceptar",
                 click: function() {
                     $.post("php/secret_transporte_alta_mod_rutas_paradas.php",{alta_mod:alta_mod,tipo:tipo,valor:valor},(resp)=>{
+                        
                     });
                     $(this).dialog("destroy").remove();
                 }
