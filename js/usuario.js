@@ -235,7 +235,6 @@ function cambioDatosPers() {
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "c-5:+15", // Permite ver 5 años atrás (por si acaba de caducar) y 15 hacia adelante
-                minDate: "-1m",       // Un pequeño margen de un mes atrás por errores de renovación
                 dayNamesMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
                 monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
                 nextText: "Siguiente",
