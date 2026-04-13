@@ -4730,10 +4730,19 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Aceptar",
                 click: function() {
-                    $.post("php/secret_transporte_alta_mod_rutas_paradas.php",{alta_mod:alta_mod,tipo:tipo,ruta:ruta,parada:parada},(resp)=>{
-                        ocultarPantallaEspera();
+                    $.post("php/secret_transporte_alta_mod_rutas_paradas.php",
+                            {
+                                alta_mod:alta_mod,
+                                tipo:tipo,
+                                ruta:ruta,
+                                parada:parada,
+                                ruta_parada_old:document.getElementById("id_ruta_parada_old").value
+                            },
+                            (resp)=>{
+                                ocultarPantallaEspera();
+                                $(this).dialog("destroy").remove();
                     });
-                    $(this).dialog("destroy").remove();
+                    
                 }
             },
             {
@@ -4750,11 +4759,13 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
             document.getElementById('etiqueta_alta_mod').innerText='Ruta: ';
             document.getElementById('campo').maxLength=25;
             document.getElementById('campo').size=25;
+            if(alta_mod==1)document.getElementById("ruta_parada_old").value=ruta;
         } 
         else if (tipo=='parada'){
             document.getElementById('etiqueta_alta_mod').innerText='Parada: ';
             document.getElementById('campo').maxLength=30;
             document.getElementById('campo').size=30;
+            if(alta_mod==1)document.getElementById("ruta_parada_old").value=parada;
         } 
     }).catch (error=>{
         ocultarPantallaEspera();
