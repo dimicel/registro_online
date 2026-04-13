@@ -196,6 +196,10 @@ function cambioDatosPers() {
                         $.post("php/usu_moddatospers.php", $("#form_mod_datos").serialize(), function(resp) {
                             ocultarPantallaEspera();
                             if (resp === "ok") {
+                                id_nif=form_mod_datos.mod_nif.value;
+                                nombre=form_mod_datos.mod_nombre.value;
+                                apellidos=form_mod_datos.mod_apellidos.value;
+                                email=form_mod_datos.mod_email.value;
                                 alerta("Los cambios se han realizado con éxito.", "Operación OK");
                                 $("#div_mod_datos").closest(".ui-dialog-content").dialog("destroy").remove();
                             } else alerta("Ha ocurrido un problema y los cambios no se han podido realizar.<br>Inténtelo en otro momento.", "FALLO EN OPERACIÓN");
