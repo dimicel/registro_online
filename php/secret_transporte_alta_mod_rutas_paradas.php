@@ -78,10 +78,10 @@ if ($alta_mod==0){
 }
 else if ($alta_mod==1){
     if(tipo=="ruta"){
-
+        
     }
     else if(tipo=="parada"){
-        
+
     }
 } 
 
