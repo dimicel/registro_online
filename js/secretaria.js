@@ -4736,7 +4736,8 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                                 tipo:tipo,
                                 ruta:ruta,
                                 parada:parada,
-                                ruta_parada_old:document.getElementById("id_ruta_parada_old").value
+                                ruta_old:document.getElementById("ruta_old").value,
+                                parada_old:document.getElementById("parada_old").value
                             },
                             (resp)=>{
                                 ocultarPantallaEspera();
@@ -4759,13 +4760,19 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
             document.getElementById('etiqueta_alta_mod').innerText='Ruta: ';
             document.getElementById('campo').maxLength=25;
             document.getElementById('campo').size=25;
-            if(alta_mod==1)document.getElementById("ruta_parada_old").value=ruta;
+            if(alta_mod==1){
+                document.getElementById("ruta_old").value=ruta;
+                document.getElementById("parada_old").value=parada;
+            }
         } 
         else if (tipo=='parada'){
             document.getElementById('etiqueta_alta_mod').innerText='Parada: ';
             document.getElementById('campo').maxLength=30;
             document.getElementById('campo').size=30;
-            if(alta_mod==1)document.getElementById("ruta_parada_old").value=parada;
+            if(alta_mod==1){
+                document.getElementById("ruta_old").value=ruta;
+                document.getElementById("parada_old").value=parada;
+            }
         } 
     }).catch (error=>{
         ocultarPantallaEspera();

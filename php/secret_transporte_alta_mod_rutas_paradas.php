@@ -18,10 +18,12 @@ $alta_mod=$_POST["alta_mod"];  //0 -> alta; 1 -> modificar
 $tipo=$mysqli->real_escape_string($_POST["tipo"]);
 $ruta=$mysqli->real_escape_string($_POST["ruta"]);
 $parada=$mysqli->real_escape_string($_POST["parada"]);
-$ruta_parada_old=$mysqli->real_escape_string($_POST["ruta_parada_old"]);
+$ruta_old=$mysqli->real_escape_string($_POST["ruta_old"]);
+$parada_old=$mysqli->real_escape_string($_POST["parada_old"]);
 $ruta_normalizada=normalizarTexto($ruta);
 $parada_normalizada=normalizarTexto($parada);
-$ruta_parada_old_normalizada=normalizarTexto($ruta_parada_old);
+$ruta_old_normalizada=normalizarTexto($ruta_old);
+$parada_old_normalizada=normalizarTexto($parada_old);
 
 
 if ($alta_mod==0){
@@ -79,7 +81,7 @@ if ($alta_mod==0){
 else if ($alta_mod==1){
     if(tipo=="ruta"){
         $stmt_check = $mysqli->prepare("SELECT id_ruta FROM transporte_rutas WHERE ruta_normalizada = ? AND id_ruta != (SELECT id_ruta FROM transporte_rutas WHERE ruta=?)");
-        $stmt_check->bind_param("ss", $ruta_normalizada,$ruta_parada_old);
+        $stmt_check->bind_param("ss", $ruta_normalizada,$ruta_old);
         $stmt_check->execute();
         $stmt_check->store_result(); // Necesario para usar num_rows
 
@@ -97,7 +99,7 @@ else if ($alta_mod==1){
             WHERE ruta = ?
         ");
 
-        $stmt_update->bind_param("sss", $ruta, $ruta_normalizada, $ruta_parada_old);
+        $stmt_update->bind_param("sss", $ruta, $ruta_normalizada, $ruta_old);
 
         if ($stmt_update->execute()) {
             echo "ok";
@@ -109,8 +111,8 @@ else if ($alta_mod==1){
 
     }
     else if(tipo=="parada"){
-        $stmt_check = $mysqli->prepare("SELECT id FROM transporte_paradas WHERE parada_normalizada = ? AND id != (SELECT id FROM transporte_paradas WHERE parada=?)");
-        $stmt_check->bind_param("ss", $parada_normalizada,$ruta_parada_old);
+        $stmt_check = $mysqli->prepare("SELECT id FROM transporte_paradas WHERE parada_normalizada = ? AND id != (SELECT id FROM transporte_paradas WHERE parada=?) AND id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta=?)");
+        $stmt_check->bind_param("sss", $parada_normalizada,$parada_old,$ruta_old);
         $stmt_check->execute();
         $stmt_check->store_result(); // Necesario para usar num_rows
 
@@ -120,6 +122,23 @@ else if ($alta_mod==1){
         } 
 
         $stmt_check->close();
+
+        $stmt_update = $mysqli->prepare("
+            UPDATE transporte_paradas 
+            SET parada = ?, 
+                parada_normalizada = ? 
+            WHERE id = (SELECT id FROM transporte_paradas WHERE parada=?) AND id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta=?)
+        ");
+
+        $stmt_update->bind_param("sss", $parada, $parada_normalizada, $parada_old, $ruta_old);
+
+        if ($stmt_update->execute()) {
+            echo "ok";
+        } else {
+            echo "Error al actualizar: ". $mysqli->error;
+        }
+
+        $stmt_update->close();
     }
 } 
 
