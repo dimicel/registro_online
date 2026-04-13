@@ -35,7 +35,7 @@ if ($alta_mod==0){
 
         if ($stmt_check->num_rows > 0) {
             $stmt_check->close();
-            exit("ruta_existente");
+            exit("alta_ruta_existente");
         } else {
             $stmt_check->close();
 
@@ -44,7 +44,7 @@ if ($alta_mod==0){
             $stmt_insert->bind_param("ss", $ruta, $ruta_normalizada);
             
             if ($stmt_insert->execute()) {
-                echo "ok";
+                echo "ok_alta_ruta";
             } else {
                 echo "Error al guardar: " . $mysqli->error;
             }
@@ -60,7 +60,7 @@ if ($alta_mod==0){
 
         if ($stmt_check->num_rows > 0) {
             $stmt_check->close();
-            exit("parada_existente");
+            exit("alta_parada_existente");
         } else {
             $stmt_check->close();
 
@@ -69,7 +69,7 @@ if ($alta_mod==0){
             $stmt_insert->bind_param("sss", $ruta, $parada, $parada_normalizada);
             
             if ($stmt_insert->execute()) {
-                echo "ok";
+                echo "ok_alta_parada";
             } else {
                 echo "Error al guardar: " . $mysqli->error;
             }
@@ -87,7 +87,7 @@ else if ($alta_mod==1){
 
         if ($stmt_check->num_rows > 0) {
             $stmt_check->close();
-            exit("ruta_existente");
+            exit("mod_ruta_existente");
         } 
 
         $stmt_check->close();
@@ -102,7 +102,7 @@ else if ($alta_mod==1){
         $stmt_update->bind_param("sss", $ruta, $ruta_normalizada, $ruta_old);
 
         if ($stmt_update->execute()) {
-            echo "ok";
+            echo "mod_ruta_ok";
         } else {
             echo "Error al actualizar: ". $mysqli->error;
         }
@@ -118,7 +118,7 @@ else if ($alta_mod==1){
 
         if ($stmt_check->num_rows > 0) {
             $stmt_check->close();
-            exit("parada_existente");
+            exit("mod_parada_existente");
         } 
 
         $stmt_check->close();
@@ -133,7 +133,7 @@ else if ($alta_mod==1){
         $stmt_update->bind_param("sss", $parada, $parada_normalizada, $parada_old, $ruta_old);
 
         if ($stmt_update->execute()) {
-            echo "ok";
+            echo "mod_parada_ok";
         } else {
             echo "Error al actualizar: ". $mysqli->error;
         }

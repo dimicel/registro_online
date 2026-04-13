@@ -4741,6 +4741,16 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                             },
                             (resp)=>{
                                 ocultarPantallaEspera();
+                                if (resp=="server") alerta ("Error en base de datos", "DB ERROR");
+                                else if (resp=="alta_ruta_existente") alerta ("No se puede crear la ruta porque ya existe.","DUPLICADO RUTA");
+                                else if (resp=="ok_alta_ruta") alerta ("Ruta añadida.","OK");
+                                else if (resp=="alta_parada_existente") alerta ("No se puede la parada porque ya existe una en la misma ruta.","DUPLICADO PARADA");
+                                else if (resp=="ok_alta_parada") alerta ("Parada añadida a la ruta.","OK");
+                                else if(resp=="mod_ruta_existente") alerta ("No se puede modificar la ruta porque el nombre ya existe.", "DUPLICADO RUTA");
+                                else if(resp=="mod_ruta_ok") alerta ("Ruta modificada.", "OK");
+                                else if(resp=="mod_parada_existente") alerta ("No se puede modificar la parada porque ya existe una con el mismo nombre en la misma ruta.", "DUPLICADO PARADA");
+                                else if(resp=="mod_parada_ok") alerta ("Parada modificada.", "OK");
+                                else alerta(resp,"ERROR");
                                 $(this).dialog("destroy").remove();
                     });
                     
