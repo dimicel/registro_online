@@ -75,9 +75,14 @@ if ($alta_mod==0){
             $stmt_insert->close();
         }
     }
-    
 }
 else if ($alta_mod==1){
+    if(tipo=="ruta"){
+
+    }
+    else if(tipo=="parada"){
+        
+    }
 } 
 
 
