@@ -128,6 +128,8 @@ try {
 
     // --- FIN DE LA OPERACIÓN: COMMIT ---
     $mysqli->commit();
+    $_SESSION['id_nif']=$nif;
+    $_SESSION['es_pasaporte']=$es_pasaporte;
     echo "ok";
 
 } catch (Exception $e) {
