@@ -78,10 +78,48 @@ if ($alta_mod==0){
 }
 else if ($alta_mod==1){
     if(tipo=="ruta"){
-        
+        $stmt_check = $mysqli->prepare("SELECT id_ruta FROM transporte_rutas WHERE ruta_normalizada = ? AND id_ruta != (SELECT id_ruta FROM transporte_rutas WHERE ruta=?)");
+        $stmt_check->bind_param("ss", $ruta_normalizada,$ruta_parada_old);
+        $stmt_check->execute();
+        $stmt_check->store_result(); // Necesario para usar num_rows
+
+        if ($stmt_check->num_rows > 0) {
+            $stmt_check->close();
+            exit("ruta_existente");
+        } 
+
+        $stmt_check->close();
+
+        $stmt_update = $mysqli->prepare("
+            UPDATE transporte_rutas 
+            SET ruta = ?, 
+                ruta_normalizada = ? 
+            WHERE ruta = ?
+        ");
+
+        $stmt_update->bind_param("sss", $ruta, $ruta_normalizada, $ruta_parada_old);
+
+        if ($stmt_update->execute()) {
+            echo "ok";
+        } else {
+            echo "Error al actualizar: ". $mysqli->error;
+        }
+
+        $stmt_update->close();
+
     }
     else if(tipo=="parada"){
+        $stmt_check = $mysqli->prepare("SELECT id FROM transporte_paradas WHERE parada_normalizada = ? AND id != (SELECT id FROM transporte_paradas WHERE parada=?)");
+        $stmt_check->bind_param("ss", $parada_normalizada,$ruta_parada_old);
+        $stmt_check->execute();
+        $stmt_check->store_result(); // Necesario para usar num_rows
 
+        if ($stmt_check->num_rows > 0) {
+            $stmt_check->close();
+            exit("parada_existente");
+        } 
+
+        $stmt_check->close();
     }
 } 
 
