@@ -43,12 +43,12 @@ if ($tipo=="ruta"){
 }
 else if ($tipo=="parada"){
     $sql = "DELETE FROM transporte_paradas 
-            WHERE id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta = ?)";
+            WHERE id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta = ?) AND parada = ?";
 
     $stmt = $mysqli->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("s", $ruta);
+        $stmt->bind_param("ss", $ruta,$parada);
         $stmt->execute();
         
         if ($stmt->affected_rows > 0) {
