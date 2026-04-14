@@ -19,6 +19,7 @@ var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2
 var primera_vez_pag_2=true;
 var primera_vez_pag_3=true;
 var iniciada_desde_matricula="";
+var rutas=new Array();
 
 
 $(document).ready(function() {
@@ -77,8 +78,10 @@ $(document).ready(function() {
             if(email_tutor1=="")email_tutor1=resp.datos.email_tutor1;
             if(nif_nie_tutor1=="")nif_nie_tutor1=resp.datos.nif_nie_tutor1;
         }
+        return $.post("../../php/transporte_recupera_rutas.php",{ruta:""}, () => {}, "json");
     });
-    dat3.then(() => {
+    dat3.then((resp)=>{
+        if (resp.error=="ok") rutas=resp;
         $("#pagina_1").load("trans_html/pagina1.html?q="+Date.now().toString(), function() {
             creaValidatorPagina1();
             $("#pagina_1").show();
