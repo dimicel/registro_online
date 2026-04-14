@@ -4716,7 +4716,6 @@ function obtieneRutasParadas(ruta=""){
 function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
     mostrarPantallaEspera();
     titulo="";
-    alert(document.getElementById("ruta_old").value+"     "+document.getElementById("parada_old").value)
     if (alta_mod==0){
         if (tipo=='ruta') titulo="ALTA DE RUTA"
         else if (tipo=='parada') titulo="ALTA DE PARADA"
@@ -4769,6 +4768,7 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
         ]
     ).then((dialogo)=>{
         ocultarPantallaEspera();
+        alert(document.getElementById("ruta_old").value+"     "+document.getElementById("parada_old").value)
         if (tipo=='ruta'){
             document.getElementById('etiqueta_alta_mod').innerText='Ruta: ';
             document.getElementById('campo').maxLength=25;
