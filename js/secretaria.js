@@ -4812,3 +4812,14 @@ function eliminaRutaParada(tipo,ruta="",parada=""){
     });
 
 }
+
+
+function eliminarRutaParada(tipo,ruta="",parada=""){
+    mostrarPantallaEspera();
+    $.post("php/secret_transporte_elimina_rutas_paradas.php",{tipo:tipo,ruta:ruta,parada:parada},(resp)=>{
+        ocultarPantallaEspera();
+        if (resp=="ok") alerta("Se ha eliminado la "+tipo+".","OK");
+        else if(resp="error") alerta ("No se ha podido eliminar la "+tipo+".","ERROR BORRADO");
+        (tipo=="ruta")? obtieneRutasParadas():obtieneRutasParadas(ruta);
+    });
+}
