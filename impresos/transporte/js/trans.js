@@ -157,11 +157,10 @@ function pasaPagina(p) {
                 option.value="";
                 option.text="Seleccione una...";
                 select_rutas.appendChild(option);
-                alert(rutas.rutas.length)
-                for (r in rutas){
+                for (i=0;i<rutas.length;i++){
                     option=document.createElement("option");
-                    option.value=r.rutas.ruta+" - parada "+r.rutas.parada;
-                    option.text=r.rutas.ruta+" - parada "+r.rutas.parada;
+                    option.value=rutas[i].ruta+" - parada "+rutas[i].parada;
+                    option.text=rutas[i].ruta+" - parada "+rutas[i].parada;
                     select_rutas.appendChild(option);
                 }
                 primera_vez_pag_3=false;
