@@ -4768,7 +4768,6 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
         ]
     ).then((dialogo)=>{
         ocultarPantallaEspera();
-        alert(document.getElementById("ruta_old").value+"     "+document.getElementById("parada_old").value)
         if (tipo=='ruta'){
             document.getElementById('etiqueta_alta_mod').innerText='Ruta: ';
             document.getElementById('campo').maxLength=25;
@@ -4787,6 +4786,7 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                 document.getElementById("parada_old").value=parada;
             }
         } 
+        alert(document.getElementById("ruta_old").value+"     "+document.getElementById("parada_old").value)
     }).catch (error=>{
         ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
