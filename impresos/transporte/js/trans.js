@@ -159,8 +159,8 @@ function pasaPagina(p) {
                 select_rutas.appendChild(option);
                 for (r in rutas){
                     option=document.createElement("option");
-                    option.value=rutas[r].ruta+" - parada "+rutas[r].parada;
-                    option.text=rutas[r].ruta+" - parada "+rutas[r].parada;
+                    option.value=r.ruta+" - parada "+r.parada;
+                    option.text=r.ruta+" - parada "+r.parada;
                     select_rutas.appendChild(option);
                 }
                 primera_vez_pag_3=false;
