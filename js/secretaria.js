@@ -4489,6 +4489,7 @@ function obtieneRutasParadas(ruta=""){
                 par.appendChild(filaParada);
 
                 for (let i = 0; i < resp.rutas.length; i++) {
+                    alert(resp.rutas[i].ruta)
                     const fila = document.createElement("tr");
                     fila.setAttribute("id", resp.rutas[i].ruta);
                     fila.style.cursor = "pointer";
