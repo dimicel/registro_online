@@ -4539,7 +4539,7 @@ function obtieneRutasParadas(ruta=""){
                                             if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta ${resp.rutas[i].ruta} y todas sus paradas asociadas.','CONFIRMACIóN DE SEGURIDAD')
                                                                 .then(function(conf_segur){
                                                                     if (conf_segur){
-                                                                        eliminarRutaParada('ruta',${resp.rutas[i].ruta});
+                                                                        eliminarRutaParada('ruta','${resp.rutas[i].ruta}');
                                                                     }
                                                                 });
                                         });
@@ -4628,7 +4628,7 @@ function obtieneRutasParadas(ruta=""){
                                         confirmar('Se eliminará la parada ${resp.paradas[i].parada}.','CONFIMAR BORRADO')
                                         .then(function(confirmacion){
                                             if (confirmacion){
-                                                eliminarRutaParada('parada',${ruta},${resp.paradas[i].parada}); 
+                                                eliminarRutaParada('parada','${ruta}','${resp.paradas[i].parada}'); 
                                             }                 
                                         });">
                             <i class="bi bi-trash" style="pointer-events: none;"></i>
