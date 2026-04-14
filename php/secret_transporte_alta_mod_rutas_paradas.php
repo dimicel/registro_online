@@ -127,7 +127,7 @@ else if ($alta_mod==1){
             UPDATE transporte_paradas 
             SET parada = ?, 
                 parada_normalizada = ? 
-            WHERE id = (SELECT id FROM transporte_paradas WHERE parada=?) AND id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta=?)
+            WHERE id = (SELECT id FROM transporte_paradas WHERE parada=?) AND id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta=? LIMIT 1)
         ");
 
         $stmt_update->bind_param("ssss", $parada, $parada_normalizada, $parada_old, $ruta_old);
