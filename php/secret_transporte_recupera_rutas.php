@@ -16,9 +16,11 @@ if ($mysqli->errno>0) {
 }
 
 if (!isset($_POST["ruta"])){
-    $consulta="SELECT r.*, p.* FROM transporte_rutas r
-                LEFT JOIN transporte_paradas p ON r.id_ruta = p.id_ruta
-                WHERE r.id_ruta = p.id_ruta";
+    $consulta="SELECT r.ruta, p.parada 
+             FROM transporte_rutas r
+             LEFT JOIN transporte_paradas p ON r.id_ruta = p.id_ruta 
+             ORDER BY r.ruta ASC, p.parada ASC";
+    $res = $mysqli->query($consulta);
     if ($res->num_rows == 0) {
         $data["error"] = "no_hay_rutas";
         exit(json_encode($data));
