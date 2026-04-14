@@ -4489,7 +4489,6 @@ function obtieneRutasParadas(ruta=""){
                 par.appendChild(filaParada);
 
                 for (let i = 0; i < resp.rutas.length; i++) {
-                    alert(resp.rutas[i].ruta)
                     const fila = document.createElement("tr");
                     fila.setAttribute("id", resp.rutas[i].ruta);
                     fila.style.cursor = "pointer";
@@ -4732,6 +4731,12 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Aceptar",
                 click: function() {
+                    if (alta_mod==0 && tipo=='ruta'){
+                        ruta=document.getElementById("campo").value;
+                    }
+                    else if (alta_mod==0 && tipo=='parada'){
+                        parada=document.getElementById("campo").value;
+                    }
                     $.post("php/secret_transporte_alta_mod_rutas_paradas.php",
                             {
                                 alta_mod:alta_mod,
