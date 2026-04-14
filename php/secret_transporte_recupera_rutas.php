@@ -15,6 +15,23 @@ if ($mysqli->errno>0) {
     exit(json_encode($data));
 }
 
+if (!isset($_POST["ruta"])){
+    $consulta="SELECT r.*, p.* FROM transporte_rutas r
+                LEFT JOIN transporte_paradas p ON r.id_ruta = p.id_ruta
+                WHERE r.id_ruta = p.id_ruta";
+    if ($res->num_rows == 0) {
+        $data["error"] = "no_hay_rutas";
+        exit(json_encode($data));
+    }
+    $data["error"] = "ok";
+    $data["rutas"] = array();
+    while ($fila = $res->fetch_assoc()) {
+        $data["rutas"][] = $fila;
+    }
+    exit(json_encode($data));
+    
+}
+
 if($_POST["ruta"]!=""){
     $ruta = $mysqli->real_escape_string($_POST["ruta"]);
 
@@ -61,7 +78,7 @@ else{
     }
     $data["error"]="ok";
     $data["rutas"]=array();
-    $data["paradas"]=[];
+    $data["paradas"]=array();
     $data["listado"] = "rutas";
     while ($reg=$res->fetch_assoc()){
         $data["rutas"][]=$reg;
