@@ -4513,6 +4513,7 @@ function obtieneRutasParadas(ruta=""){
                     divBotones.className = "btn-group"; // Mantiene los botones juntos
 
                     const nombre_ruta=resp.rutas[i].ruta;
+                    alert(nombre_ruta);
 
                    // 1. Usa este código para tus botones (manteniendo el contenedor body)
                     divBotones.innerHTML += `
@@ -4529,7 +4530,7 @@ function obtieneRutasParadas(ruta=""){
 
                     divBotones.innerHTML += `
                         <button class="btn btn-danger btn-sm" 
-                                style="cursor: pointer !important;" 
+                                style="cursor: pointer !important;"
                                 data-bs-toggle="tooltip" 
                                 data-bs-container="body"
                                 data-bs-placement="top" 
