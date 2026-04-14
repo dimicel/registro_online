@@ -30,7 +30,7 @@ if($_POST["ruta"]!=""){
         exit(json_encode($data));
     }
 
-    $paradas = [];
+    $paradas= [];
     $info_ruta = null;
 
     while ($fila = $res->fetch_assoc()) {
