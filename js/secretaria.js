@@ -4512,6 +4512,8 @@ function obtieneRutasParadas(ruta=""){
                     const divBotones = document.createElement("div");
                     divBotones.className = "btn-group"; // Mantiene los botones juntos
 
+                    const nombre_ruta=resp.rutas[i].ruta;
+
                    // 1. Usa este código para tus botones (manteniendo el contenedor body)
                     divBotones.innerHTML += `
                         <button class="btn btn-success btn-sm me-1" 
@@ -4521,7 +4523,7 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
                                 title="Modificar Ruta"
-                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'ruta',${resp.rutas[i].ruta})">
+                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'ruta',${nombre_ruta})">
                             <i class="bi bi-pencil" style="pointer-events: none;"></i>
                         </button>`;
 
@@ -4534,12 +4536,12 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-offset="0,10" 
                                 title="Eliminar Ruta"
                                 onclick="event.stopPropagation();
-                                        confirmar('Se eliminará la ruta ${resp.rutas[i].ruta} y sus paradas asociadas.','CONFIMAR BORRADO')
+                                        confirmar('Se eliminará la ruta ${nombre_ruta} y sus paradas asociadas.','CONFIMAR BORRADO')
                                         .then(function(confirmacion){
-                                            if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta ${resp.rutas[i].ruta} y todas sus paradas asociadas.','CONFIRMACIóN DE SEGURIDAD')
+                                            if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta ${nombre_ruta} y todas sus paradas asociadas.','CONFIRMACIóN DE SEGURIDAD')
                                                                 .then(function(conf_segur){
                                                                     if (conf_segur){
-                                                                        eliminarRutaParada('ruta','${resp.rutas[i].ruta}');
+                                                                        eliminarRutaParada('ruta','${nombre_ruta}');
                                                                     }
                                                                 });
                                         });
@@ -4603,6 +4605,8 @@ function obtieneRutasParadas(ruta=""){
                     const divBotones = document.createElement("div");
                     divBotones.className = "btn-group"; // Mantiene los botones juntos
 
+                    const nombre_parada=resp.paradas[i].parada;
+
                    // 1. Usa este código para tus botones (manteniendo el contenedor body)
                     divBotones.innerHTML += `
                         <button class="btn btn-success btn-sm me-1" 
@@ -4612,7 +4616,7 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
                                 title="Modificar Parada"
-                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'parada',${ruta},${resp.paradas[i].parada})">
+                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'parada',${ruta},${nombre_parada})">
                             <i class="bi bi-pencil" style="pointer-events: none;"></i>
                         </button>`;
 
@@ -4625,10 +4629,10 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-offset="0,10" 
                                 title="Eliminar Parada"
                                 onclick="event.stopPropagation(); 
-                                        confirmar('Se eliminará la parada ${resp.paradas[i].parada}.','CONFIMAR BORRADO')
+                                        confirmar('Se eliminará la parada ${nombre_parada}.','CONFIMAR BORRADO')
                                         .then(function(confirmacion){
                                             if (confirmacion){
-                                                eliminarRutaParada('parada','${ruta}','${resp.paradas[i].parada}'); 
+                                                eliminarRutaParada('parada','${ruta}','${nombre_parada}'); 
                                             }                 
                                         });">
                             <i class="bi bi-trash" style="pointer-events: none;"></i>
