@@ -4720,7 +4720,6 @@ function obtieneRutasParadas(ruta=""){
 
 function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
     mostrarPantallaEspera();
-    alert(ruta);
     titulo="";
     if (alta_mod==0){
         if (tipo=='ruta') titulo="ALTA DE RUTA"
@@ -4741,6 +4740,7 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                     }
                     else if (tipo=='parada'){
                         parada=document.getElementById("campo").value;
+                        
                     }
                     $.post("php/secret_transporte_alta_mod_rutas_paradas.php",
                             {
