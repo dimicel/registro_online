@@ -29,7 +29,6 @@ if (!isset($_POST["ruta"])){
         $data["rutas"][] = $fila;
     }
     exit(json_encode($data));
-    
 }
 
 if($_POST["ruta"]!=""){
