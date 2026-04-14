@@ -130,7 +130,7 @@ else if ($alta_mod==1){
             WHERE id = (SELECT id FROM transporte_paradas WHERE parada=?) AND id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta=?)
         ");
 
-        $stmt_update->bind_param("sss", $parada, $parada_normalizada, $parada_old, $ruta_old);
+        $stmt_update->bind_param("ssss", $parada, $parada_normalizada, $parada_old, $ruta_old);
 
         if ($stmt_update->execute()) {
             echo "mod_parada_ok";
