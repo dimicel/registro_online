@@ -158,6 +158,7 @@ function pasaPagina(p) {
                 option.text="Seleccione una...";
                 select_rutas.appendChild(option);
                 for (i=0;i<rutas.length;i++){
+                    alert(rutas[i].ruta+" - parada "+rutas[i].parada)
                     option=document.createElement("option");
                     option.value=rutas[i].ruta+" - parada "+rutas[i].parada;
                     option.text=rutas[i].ruta+" - parada "+rutas[i].parada;
