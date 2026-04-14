@@ -4819,7 +4819,7 @@ function eliminaRutaParada(tipo,ruta="",parada=""){
 
 
 function eliminarRutaParada(tipo,ruta="",parada=""){
-    alert(ruta.innerHTML);return;
+    alert(ruta);return;
     mostrarPantallaEspera();
     $.post("php/secret_transporte_elimina_rutas_paradas.php",{tipo:tipo,ruta:ruta,parada:parada},(resp)=>{
         ocultarPantallaEspera();
