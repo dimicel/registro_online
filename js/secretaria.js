@@ -4716,6 +4716,7 @@ function obtieneRutasParadas(ruta=""){
 function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
     mostrarPantallaEspera();
     titulo="";
+    alert(document.getElementById("ruta_old").value+"     "+document.getElementById("parada_old").value)
     if (alta_mod==0){
         if (tipo=='ruta') titulo="ALTA DE RUTA"
         else if (tipo=='parada') titulo="ALTA DE PARADA"
