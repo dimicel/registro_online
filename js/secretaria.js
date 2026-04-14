@@ -4541,7 +4541,7 @@ function obtieneRutasParadas(ruta=""){
                                             if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta ${nombre_ruta} y todas sus paradas asociadas.','CONFIRMACIóN DE SEGURIDAD')
                                                                 .then(function(conf_segur){
                                                                     if (conf_segur){
-                                                                        eliminarRutaParada('ruta',nombre_ruta);
+                                                                        eliminarRutaParada('ruta',${nombre_ruta});
                                                                     }
                                                                 });
                                         });
