@@ -160,8 +160,8 @@ function pasaPagina(p) {
                 alert(rutas.rutas.length)
                 for (r in rutas){
                     option=document.createElement("option");
-                    option.value=r.ruta+" - parada "+r.parada;
-                    option.text=r.ruta+" - parada "+r.parada;
+                    option.value=r.rutas.ruta+" - parada "+r.rutas.parada;
+                    option.text=r.rutas.ruta+" - parada "+r.rutas.parada;
                     select_rutas.appendChild(option);
                 }
                 primera_vez_pag_3=false;
