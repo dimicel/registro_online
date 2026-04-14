@@ -152,6 +152,17 @@ function pasaPagina(p) {
                 form_pagina_3.te_provincia.value=provincia;
                 form_pagina_3.te_email.value=email_tutor1;
                 form_pagina_3.te_tlf_movil.value=tlf_tutor1;
+                const select_rutas=document.getElementById("te_ruta");
+                option=document.createElement("option");
+                option.value="";
+                option.text="Seleccione una...";
+                select_rutas.appendChild(option);
+                for (r in rutas){
+                    option=document.createElement("option");
+                    option.value=rutas[r].ruta+" - parada "+rutas[r].parada;
+                    option.text=rutas[r].ruta+" - parada "+rutas[r].parada;
+                    select_rutas.appendChild(option);
+                }
                 primera_vez_pag_3=false;
             }
         }
