@@ -79,7 +79,7 @@ if ($alta_mod==0){
     }
 }
 else if ($alta_mod==1){
-    if(tipo=="ruta"){
+    if($tipo=="ruta"){
         $stmt_check = $mysqli->prepare("SELECT id_ruta FROM transporte_rutas WHERE ruta_normalizada = ? AND id_ruta != (SELECT id_ruta FROM transporte_rutas WHERE ruta=?)");
         $stmt_check->bind_param("ss", $ruta_normalizada,$ruta_old);
         $stmt_check->execute();
@@ -110,7 +110,7 @@ else if ($alta_mod==1){
         $stmt_update->close();
 
     }
-    else if(tipo=="parada"){
+    else if($tipo=="parada"){
         $stmt_check = $mysqli->prepare("SELECT id FROM transporte_paradas WHERE parada_normalizada = ? AND id != (SELECT id FROM transporte_paradas WHERE parada=?) AND id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta=?)");
         $stmt_check->bind_param("sss", $parada_normalizada,$parada_old,$ruta_old);
         $stmt_check->execute();
