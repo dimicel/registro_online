@@ -4731,10 +4731,10 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                 class: "btn btn-success textoboton btn-sm",
                 text: "Aceptar",
                 click: function() {
-                    if (alta_mod==0 && tipo=='ruta'){
+                    if (tipo=='ruta'){
                         ruta=document.getElementById("campo").value;
                     }
-                    else if (alta_mod==0 && tipo=='parada'){
+                    else if (tipo=='parada'){
                         parada=document.getElementById("campo").value;
                     }
                     $.post("php/secret_transporte_alta_mod_rutas_paradas.php",
