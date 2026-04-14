@@ -4513,7 +4513,6 @@ function obtieneRutasParadas(ruta=""){
                     divBotones.className = "btn-group"; // Mantiene los botones juntos
 
                     const nombre_ruta=resp.rutas[i].ruta;
-                    alert(nombre_ruta);
 
                    // 1. Usa este código para tus botones (manteniendo el contenedor body)
                     divBotones.innerHTML += `
@@ -4542,7 +4541,7 @@ function obtieneRutasParadas(ruta=""){
                                             if (confirmacion) confirmar('La acción es irreversible y se borrarán la ruta ${nombre_ruta} y todas sus paradas asociadas.','CONFIRMACIóN DE SEGURIDAD')
                                                                 .then(function(conf_segur){
                                                                     if (conf_segur){
-                                                                        eliminarRutaParada('ruta','${nombre_ruta}');
+                                                                        eliminarRutaParada('ruta',nombre_ruta);
                                                                     }
                                                                 });
                                         });
