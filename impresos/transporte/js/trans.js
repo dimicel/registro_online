@@ -78,7 +78,7 @@ $(document).ready(function() {
             if(email_tutor1=="")email_tutor1=resp.datos.email_tutor1;
             if(nif_nie_tutor1=="")nif_nie_tutor1=resp.datos.nif_nie_tutor1;
         }
-        return $.post("../../php/transporte_recupera_rutas.php",{ruta:""}, () => {}, "json");
+        return $.post("../../php/secret_transporte_recupera_rutas.php",{ruta:""}, () => {}, "json");
     });
     dat3.then((resp)=>{
         if (resp.error=="ok") rutas=resp;
