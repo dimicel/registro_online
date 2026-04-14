@@ -4714,6 +4714,7 @@ function obtieneRutasParadas(ruta=""){
 
 
 function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
+    alert(ruta);alert(parada);
     mostrarPantallaEspera();
     titulo="";
     if (alta_mod==0){
@@ -4786,8 +4787,6 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                 document.getElementById("parada_old").value=parada;
             }
         }
-        alert(ruta+"     "+parada);
-        alert(document.getElementById("ruta_old").value+"     "+document.getElementById("parada_old").value);
     }).catch (error=>{
         ocultarPantallaEspera();
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
