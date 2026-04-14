@@ -4751,6 +4751,8 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                                 else if(resp=="mod_parada_existente") alerta ("No se puede modificar la parada porque ya existe una con el mismo nombre en la misma ruta.", "DUPLICADO PARADA");
                                 else if(resp=="mod_parada_ok") alerta ("Parada modificada.", "OK");
                                 else alerta(resp,"ERROR");
+                                if (tipo=="ruta") obtieneRutasParadas();
+                                else if (tipo=="parada") obtieneRutasParadas(ruta);
                                 $(this).dialog("destroy").remove();
                     });
                     
