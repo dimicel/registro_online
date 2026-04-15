@@ -606,8 +606,7 @@ function ocultaDivsSubeDocs(panel) {
                         txtpass.style.display = 'none';
                         imgpass.src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime();
                         document.getElementById('btn_label_pasaporte').innerText = 'Subir nueva imagen del documento';
-                    }
-                    else{
+                    } else {
                         document.getElementById('img_anverso').style.display = 'none';
                         document.getElementById('txt_no_anverso').style.display = 'block';
                         document.getElementById('btn_label_anverso').innerText = 'Subir imagen delantera del documento';
