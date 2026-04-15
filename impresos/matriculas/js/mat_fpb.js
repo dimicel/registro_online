@@ -328,7 +328,7 @@ function cargaImagen(dest){
     else if(dest=="prev_resguardo_seguro"){
         alerta("<center><img src='../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR",false,700);
     }
-
+}
 
 function creaArrayPasapagina() {
     _paginas = [];
