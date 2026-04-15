@@ -4804,26 +4804,15 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
     });
 }
 
-function eliminaRutaParada(tipo,ruta="",parada=""){
-    mostrarPantallaEspera();
-    $.post("php/secret_transporte_elimina_rutas_paradas.php",{tipo:tipo,ruta:ruta,parada:parada},(resp)=>{
-        ocultarPantallaEspera();
-        if (resp=="error") alerta("El borradoha fallado.","FALLO BORRADO");
-        else if(resp=="ok") {
-            if (tipo=="ruta") obtieneRutasParadas();
-            else if (tipo="parada") obtieneRutasParadas(ruta);
-        }
-    });
-
-}
-
 
 function eliminarRutaParada(tipo,ruta="",parada=""){
     mostrarPantallaEspera();
     $.post("php/secret_transporte_elimina_rutas_paradas.php",{tipo:tipo,ruta:ruta,parada:parada},(resp)=>{
         ocultarPantallaEspera();
-        if (resp=="ok") alerta("Se ha eliminado la "+tipo+".","OK");
-        else if(resp="error") alerta ("No se ha podido eliminar la "+tipo+".","ERROR BORRADO");
-        (tipo=="ruta")? obtieneRutasParadas():obtieneRutasParadas(ruta);
+        if(resp="error") alerta ("No se ha podido eliminar la "+tipo+".","ERROR BORRADO");
+        else if (resp=="ok"){
+            //alerta("Se ha eliminado la "+tipo+".","OK");
+            (tipo=="ruta")? obtieneRutasParadas():obtieneRutasParadas(ruta);
+        } 
     });
 }
