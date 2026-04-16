@@ -63,7 +63,7 @@ if (!$res ||$res->num_rows==0){
 
 $Name = 'listado_num_ss_'.$curso;
 
-$encabezamiento=["NIE","ALUMNO","Nº SEGURIDAD SOCIAL","ULTIMA MODIFICACION NUSS","ULTIMA SUBIDA NUM SS"];
+$encabezamiento=["NIE","ALUMNO","Nº SEGURIDAD SOCIAL","ULTIMA MODIFICACION NUSS","ULTIMA SUBIDA CAPTURA NUSS"];
 
 
 if ($formato=="excel"){
