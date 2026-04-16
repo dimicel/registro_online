@@ -22,9 +22,11 @@ $sql="SELECT
         u.nombre, 
         u.id_nie, 
         ud.num_ss, 
-        ud.fecha_mod_nuss
+        ud.fecha_mod_nuss,
+        DATE_FORMAT(MAX(CASE WHEN doc.documento = 'num_ss' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_num_ss
     FROM usuarios u
     INNER JOIN usuarios_dat ud ON u.id_nie = ud.id_nie
+    LEFT JOIN fechas_subidas_docs doc ON doc.id_nie = u.id_nie
     WHERE ud.num_ss IS NOT NULL 
       AND ud.num_ss <> ''
       AND (
@@ -61,9 +63,8 @@ if (!$res ||$res->num_rows==0){
 
 $Name = 'listado_num_ss_'.$curso;
 
-$encabezamiento=["NIE","ALUMNO","Nº SEGURIDAD SOCIAL","ULTIMA MODIFICACION NUSS"];
+$encabezamiento=["NIE","ALUMNO","Nº SEGURIDAD SOCIAL","ULTIMA MODIFICACION NUSS","ULTIMA SUBIDA NUM SS"];
 
-'NIE;ALUMNO;Nº SEGURIDAD SOCIAL;ULTIMA MODIFICACION NUSS'.PHP_EOL;
 
 if ($formato=="excel"){
     // 1. Recursos y Librería
@@ -110,7 +111,7 @@ if ($formato=="excel"){
         $row++;
     }
     // Ajustar el ancho de las columnas automáticamente
-    foreach (range('A', 'D') as $col) {
+    foreach (range('A', 'F') as $col) {
         $sheet->getColumnDimension($col)->setAutoSize(true);
     }
     // 1. Borramos cualquier salida previa (espacios, errores ocultos)
