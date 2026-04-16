@@ -116,10 +116,10 @@ if ($formato === "excel") {
             'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER
         ],
     ];
-    $sheet->getStyle('A1:N1')->applyFromArray($estiloCabecera);
+    $sheet->getStyle('A1:O1')->applyFromArray($estiloCabecera);
 
     // 5. Alineación
-    $columnasCentradas = ['D', 'E', 'F', 'G', 'K', 'L', 'M', 'N'];
+    $columnasCentradas = ['D', 'E', 'F', 'G', 'K', 'L', 'M', 'N', 'O'];
     foreach ($columnasCentradas as $col) {
         $sheet->getStyle($col)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
     }
