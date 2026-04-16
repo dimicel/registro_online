@@ -41,6 +41,9 @@ else $resp["dni_reverso"]=0;
 if (is_file("../docs/".$id_nie."/seguro"."/".$curso."/".$id_nie.".jpeg")) $resp["seguro"]=1;
 else $resp["seguro"]=0;
 
+if (is_file("../docs/".$id_nie."/nss/nss_".$id_nie.".jpeg")) $resp["num_ss"]=1;
+else $resp["num_ss"]=0;
+
 if (is_file("../docs/".$id_nie."/certificado"."/".$curso."/".$id_nie.".pdf")) $resp["certificado"]=1;
 else $resp["certificado"]=0;
 

@@ -655,6 +655,21 @@ function ocultaDivsSubeDocs(panel) {
                         document.getElementById('btn_label_seguro_escolar').innerText = 'Subir resguardo del seguro escolar';
                     }
                 }
+                else if(panel=="num_ss"){
+                    if (resp.seguro == 1) {
+                        let img = document.getElementById('img_seguro_escolar');
+                        let txt = document.getElementById('txt_no_seguro_escolar');
+                        img.style.display = 'block'; 
+                        txt.style.display = 'none';
+                        ruta_seguro='docs/' + id_nie + '/seguro/' +anno_curso_usu+'/' +id_nie + '.jpeg?t=' + new Date().getTime();
+                        img.src= ruta_seguro;
+                        document.getElementById('btn_label_seguro_escolar').innerText = 'Subir nuevo resguardo del seguro escolar';
+                    } else {
+                        document.getElementById('img_seguro_escolar').style.display = 'none';
+                        document.getElementById('txt_no_seguro_escolar').style.display = 'block';
+                        document.getElementById('btn_label_seguro_escolar').innerText = 'Subir resguardo del seguro escolar';
+                    }
+                }
             },"json");
     })
     .catch (error=>{
