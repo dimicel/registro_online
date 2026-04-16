@@ -922,8 +922,8 @@ function muestraEditor_usu(_file,tipo){
                                     document.getElementById('img_num_ss').src= 'docs/' + id_nie + '/nss/' + 'nss_' +id_nie + '.jpeg?t=' + new Date().getTime();
                                 }
                             }
-                            if (mmtit!="") alerta(mm, mmtit);
                             $(this).dialog("destroy").remove();
+                            if (mmtit!="") alerta(mm, mmtit);
                         });
                     });
                     _crop1.destroy();
