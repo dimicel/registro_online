@@ -923,6 +923,7 @@ function muestraEditor_usu(_file,tipo){
                                 }
                             }
                             if (mmtit!="") alerta(mm, mmtit);
+                            $(this).dialog("destroy").remove();
                         });
                     });
                     _crop1.destroy();
