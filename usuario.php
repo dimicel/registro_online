@@ -58,7 +58,7 @@
                                     <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('foto');">Fotografía Alumno</a>
                                     <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('dni');">Documento Identificación</a>
                                     <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('seguro');">Resguardo Seguro Escolar</a>
-                                    <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('seguro');">Número Seguridad Social</a>
+                                    <a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('num_ss');">Número Seguridad Social</a>
                                     <!--<a class="dropdown-item " href="#" onclick="ocultaDivsSubeDocs('certificado');">Certificado Notas</a>--> 
                                 </div>
                             </li>
