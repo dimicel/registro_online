@@ -4561,7 +4561,7 @@ function obtieneRutasParadas(ruta=""){
                     fila.addEventListener("click", function() {
                         const filas = document.querySelectorAll("#tbody_rutas_transporte tr");
                         filas.forEach(f => {
-                            f.style.backgroundColor = "white";
+                            f.style.backgroundColor = "";
                             f.style.color = "";
                             f.removeAttribute('data-seleccionada');
                         });
