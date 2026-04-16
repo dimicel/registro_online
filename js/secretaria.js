@@ -4485,7 +4485,6 @@ function obtieneRutasParadas(ruta=""){
                 celdaParada.style.overflow = "hidden";
                 celdaParada.style.textOverflow = "ellipsis";
                 celdaParada.style.whiteSpace = "nowrap";
-                celdaParada.style.backgroundColor = "white";
                 filaParada.appendChild(celdaParada);
                 par.appendChild(filaParada);
 
@@ -4500,7 +4499,6 @@ function obtieneRutasParadas(ruta=""){
                     celdaNombre.style.overflow = "hidden";
                     celdaNombre.style.textOverflow = "ellipsis";
                     celdaNombre.style.whiteSpace = "nowrap";
-                    celdaNombre.style.backgroundColor = "white";
 
                     // Creamos un contenedor flex para el texto y los botones
                     const contenedorFlex = document.createElement("div");
@@ -4594,7 +4592,6 @@ function obtieneRutasParadas(ruta=""){
                     celdaNombre.style.overflow = "hidden";
                     celdaNombre.style.textOverflow = "ellipsis";
                     celdaNombre.style.whiteSpace = "nowrap";
-                    celdaNombre.style.backgroundColor = "white";
 
 
                     // Creamos un contenedor flex para el texto y los botones
@@ -4684,7 +4681,6 @@ function obtieneRutasParadas(ruta=""){
                 celda.style.overflow = "hidden";
                 celda.style.textOverflow = "ellipsis";
                 celda.style.whiteSpace = "nowrap";
-                celda.style.backgroundColor = "white";
                 fila.appendChild(celda);
                 cont.appendChild(fila);
 
@@ -4698,7 +4694,6 @@ function obtieneRutasParadas(ruta=""){
                 celdaParada.style.overflow = "hidden";
                 celdaParada.style.textOverflow = "ellipsis";
                 celdaParada.style.whiteSpace = "nowrap";
-                celdaParada.style.backgroundColor = "white";
                 filaParada.appendChild(celdaParada);
                 par.appendChild(filaParada);
             }
