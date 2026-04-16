@@ -8,11 +8,11 @@ if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="corr
 $id_nie=$_POST["id_nie"];
 $subido_por=$_POST["subido_por"];
 
-if(is_uploaded_file($_FILES['dni']['tmp_name'])){
+if(is_uploaded_file($_FILES['num_ss']['tmp_name'])){
     if (!is_dir("../../../docs/".$id_nie))mkdir("../../../docs/".$id_nie,0777);
     if(!is_dir("../../../docs/".$id_nie."/nss"))mkdir("../../../docs/".$id_nie."/nss",0777);
     $ruta="../../../docs/".$id_nie."/"."nss/nss_". $id_nie.".jpeg";
-    if(!move_uploaded_file($_FILES['dni']['tmp_name'], $ruta)) exit("almacenar");
+    if(!move_uploaded_file($_FILES['num_ss']['tmp_name'], $ruta)) exit("almacenar");
     else{
         include("../../../php/conexion.php");
         if ($mysqli->errno>0) {
