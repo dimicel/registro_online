@@ -157,6 +157,7 @@ else {
 function generarFilaAlumno($r) {
     // Convertimos la fecha de MySQL (aaaa-mm-dd) al formato español (dd/mm/aaaa)
     $fecha_es = "";
+    $frcha_sub="";
     if (!empty($r["fecha_mod_nuss"]) && $r["fecha_mod_nuss"] !== "0000-00-00") {
         $date = new DateTime($r["fecha_mod_nuss"]);
         $fecha_es = $date->format('d/m/Y');
@@ -166,7 +167,8 @@ function generarFilaAlumno($r) {
         "\t" . $r["id_nie"],
         ucwords(strtolower($r["apellidos"])) . ", " . ucwords(strtolower($r["nombre"])),
         "\t" . $r["num_ss"],
-        $fecha_es
+        $fecha_es,
+        $r["ultima_fecha_num_ss"]
     ];
 }
 
