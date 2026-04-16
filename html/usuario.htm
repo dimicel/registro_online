@@ -222,6 +222,37 @@
 		</div>
 		
         <!------------------------------------------------------------>
+        <!-- NUMERO SEGURIDAD SOCIAL ---------------------------------------------->
+        <div class="row" id="div_num_ss">
+            <div class="col-12 text-center">
+                <label for="img_num_ss">Captura de pantalla del Número de Seguridad Social en formato JPEG</label>
+            </div>
+            <div class="col-12 text-center mb-3">
+                <div id="contenedor-num_ss" style="width: 315px; height: 221px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">                  
+                    <img id="img_num_ss" 
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        onerror="this.style.display = 'none';
+                                document.getElementById('txt_no_num_ss').style.display = 'block';
+                                document.getElementById('btn_label_num_ss').innerText = 'Subir fotografía';">
+                    
+                    <span id="txt_no_num_ss" style="display: none; font-size: 0.8em; color: #6c757d; padding: 10px;">
+                        Captura del Número de Seguridad Social no existente
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-12 text-center">
+                <label for="captura_num_ss" class="btn btn-success textoboton" style="color:white !important" id="btn_label_foto">
+                    Cargando...
+                </label>
+                
+                <input name="captura_num_ss" id="foto_alumno" type="file" 
+                    style="display: none;" 
+                    accept="image/jpeg" 
+                    onchange="muestraEditor_usu(this.files[0],'num_ss')" required/>
+            </div>
+        </div>
+        <!------------------------------------------------------------>
         <!-- CERTIFICADO ESCOLAR ---------------------------------------------->
         <div class="row" id="div_certificado">
             <div class="col">

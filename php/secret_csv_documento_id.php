@@ -39,7 +39,8 @@ SELECT
     DATE_FORMAT(MAX(CASE WHEN doc.documento = 'dni_anverso' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_anverso_dni,
     DATE_FORMAT(MAX(CASE WHEN doc.documento = 'dni_reverso' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_reverso_dni,
     DATE_FORMAT(MAX(CASE WHEN doc.documento = 'pasaporte' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_pasaporte,
-    DATE_FORMAT(MAX(CASE WHEN doc.documento = 'seguro_escolar' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_seguro_escolar
+    DATE_FORMAT(MAX(CASE WHEN doc.documento = 'seguro_escolar' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_seguro_escolar,
+    DATE_FORMAT(MAX(CASE WHEN doc.documento = 'num_ss' THEN doc.fecha END), '%d/%m/%Y - %H:%i:%s') AS ultima_fecha_num_ss
 FROM usuarios u
 INNER JOIN (
     SELECT id_nie FROM mat_ciclos WHERE curso = '$curso_safe'
@@ -102,7 +103,7 @@ if ($formato === "excel") {
         "CADUCADO", "DIAS HASTA CADUCIDAD DEL DOCUMENTO DE IDENTIDAD", "PAIS", 
         "CURSO", "TURNO", "Fecha última subida Anverso DNI/NIE", 
         "Fecha última subida Reverso DNI/NIE", "Fecha última subida Pasaporte", 
-        "Fecha última subida Seguro Escolar"
+        "Fecha última subida Seguro Escolar", "Fecha última subida Num.SS"
     ];
     $sheet->fromArray($headers, NULL, 'A1');
 
@@ -171,12 +172,13 @@ if ($formato === "excel") {
         $sheet->setCellValue('L' . $row, $r["ultima_fecha_reverso_dni"]);
         $sheet->setCellValue('M' . $row, $r["ultima_fecha_pasaporte"]);
         $sheet->setCellValue('N' . $row, $r["ultima_fecha_seguro_escolar"]);
+        $sheet->setCellValue('O' . $row, $r["ultima_fecha_num_ss"]);
 
         $row++;
     }
 
     // 7. Autoajuste de columnas
-    foreach (range('A', 'N') as $col) {
+    foreach (range('A', 'O') as $col) {
         $sheet->getColumnDimension($col)->setAutoSize(true);
     }
     
@@ -212,7 +214,7 @@ if ($formato === "excel") {
         exit();
     }
     
-    fputcsv($output, ["NIE", "ALUMNO", "N_DOCUMENTO", "ES_PASAPORTE", "FECHA_CADUCIDAD", "CADUCADO", "DIAS_HASTA_CADUCIDAD", "PAIS", "CURSO", "TURNO", "SUBIDA_ANVERSO_DNI", "SUBIDA_REVERSO_DNI", "SUBIDA_PASAPORTE", "SUBIDA_SEGURO_ESCOLAR"], ";");
+    fputcsv($output, ["NIE", "ALUMNO", "N_DOCUMENTO", "ES_PASAPORTE", "FECHA_CADUCIDAD", "CADUCADO", "DIAS_HASTA_CADUCIDAD", "PAIS", "CURSO", "TURNO", "SUBIDA_ANVERSO_DNI", "SUBIDA_REVERSO_DNI", "SUBIDA_PASAPORTE", "SUBIDA_SEGURO_ESCOLAR", "SUBIDA_NUM_SS"], ";");
     
     while ($r = $res->fetch_assoc()) {
         if (strpos(strtoupper($r["id_nie"]), 'P') === 0) continue;
@@ -249,7 +251,8 @@ if ($formato === "excel") {
             $r["ultima_fecha_anverso_dni"]?:'',
             $r["ultima_fecha_reverso_dni"]?:'',
             $r["ultima_fecha_pasaporte"]?:'',
-            $r["ultima_fecha_seguro_escolar"]?:''
+            $r["ultima_fecha_seguro_escolar"]?:'',
+            $r["ultima_fecha_num_ss"]?:''
         ], ';');
     }
     fclose($output);

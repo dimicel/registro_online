@@ -844,7 +844,7 @@ function muestraEditor_usu(_file,tipo){
                         if (tipo=="dni_anverso")formData.append("parte","A");
                         else if(tipo=="dni_reverso")formData.append("parte","R");
                         else if(tipo=="dni_pasaporte")formData.append("parte","P");
-                        if(tipo=="seguro") formData.append("anno_curso", anno_curso_usu);
+                        else if(tipo=="seguro") formData.append("anno_curso", anno_curso_usu);
                         mostrarPantallaEspera();
                         $.ajax({
                             url: url,
@@ -889,7 +889,11 @@ function muestraEditor_usu(_file,tipo){
                                 else if (tipo == "seguro"){
                                     mm = "Resguardo del pago del seguro escolar subido.";
                                     document.getElementById('img_seguro_escolar').src= 'docs/' + id_nie + '/seguro/' +anno_curso_usu+'/' +id_nie + '.jpeg?t=' + new Date().getTime();
-                                } 
+                                }
+                                else if (tipo == "num_ss"){
+                                    mm = "Captura de pantalla del Número de la Seguridad Social subida.";
+                                    document.getElementById('img_num_ss').src= 'docs/' + id_nie + '/nss/' + 'nss_' +id_nie + '.jpeg?t=' + new Date().getTime();
+                                }
                             }
                             if (mmtit!="") alerta(mm, mmtit);
                         });
@@ -916,7 +920,7 @@ function muestraEditor_usu(_file,tipo){
             let vWidth, vHeight, bWidth, bHeight, msg, dialogoW;
 
             if (tipo == "dni_anverso" || tipo == "dni_reverso"  || tipo == "dni_pasaporte") {
-                msg = "Rota, haz zoom y mueve para ajustar la CARA y CUELLO";
+                msg = "Ajusta la imagen al recuadro";
                 // Mantenemos proporción horizontal de un DNI
                 vWidth = 450; vHeight = 285;
                 dialogoW = 700;
@@ -925,7 +929,7 @@ function muestraEditor_usu(_file,tipo){
                 url = "impresos/matriculas/php/sube_dni.php";
             } 
             else if (tipo == "foto") {
-                msg = "Ajusta la imagen al recuadro";
+                msg = "Rota, haz zoom y mueve para ajustar la CARA y CUELLO";
                 // Si la foto subida es horizontal, quizás quieras invertir el viewport a 255x190? 
                 // Normalmente las fotos de carnet son verticales:
                 vWidth = 190; vHeight = 255;
@@ -935,7 +939,7 @@ function muestraEditor_usu(_file,tipo){
                 url = "impresos/matriculas/php/sube_foto.php";
             } 
             else if (tipo == "seguro") {
-                msg = "Ajusta el recuadro al resguardo...";
+                msg = "Ajusta el recuadro al resguardo";
                 // AQUÍ aplicamos el cambio según la imagen real
                 if (esHorizontal) {
                     vWidth = 630; vHeight = 350;
@@ -946,6 +950,14 @@ function muestraEditor_usu(_file,tipo){
                 _fname_ajax = "seguro";
                 _f_ajax = id_nie + ".jpeg";
                 url = "impresos/matriculas/php/sube_seguro.php";
+            }
+            else if (tipo == "num_ss") {
+                msg = "Ajusta la imagen al recuadro";
+                vWidth = 450; vHeight = 285;
+                dialogoW = 700;
+                _fname_ajax = "num_ss";
+                _f_ajax = "nss_" +id_nie + ".jpeg";
+                url = "impresos/matriculas/php/sube_num_ss.php";
             }
 
             // Calculamos Boundary proporcional al Viewport para que no sea gigante
