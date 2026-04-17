@@ -136,6 +136,14 @@ function creaValidatorPagina3() {
 function creaValidatorPagina4() {
     $("#form_pagina_4").validate({
         ignore: [],
+        // Valida el campo cada vez que el usuario suelta una tecla
+        onkeyup: function(element) {
+            $(element).valid(); 
+        },
+        // Valida cuando el usuario sale del campo
+        onfocusout: function(element) {
+            $(element).valid();
+        },
         rules: {
             foto_alumno: {
                 required: true
@@ -154,7 +162,10 @@ function creaValidatorPagina4() {
             },
             certificado:{
                 required: true
-            }
+            },
+            num_ss: {
+                required: true
+            } 
         },
         messages: {
             foto_alumno: {
@@ -174,6 +185,9 @@ function creaValidatorPagina4() {
             },
             certificado: {
                 required: "Suba el certificado de notas en formato PDF"
+            },
+            num_ss: {
+                required: "Suba captura de pantalla del Nº de la Seguridad Social en formato JPEG"
             }
         },
         errorPlacement: function(error, element) {

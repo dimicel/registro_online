@@ -261,7 +261,7 @@ function pasaPagina(p) {
             });
             
 
-            // --- LÓGICA SEGURO ESCOLAR
+            // --- LÓGICA NUM SS
             $("#num_ss").show();
             if (existe_num_ss) {
                 $("#div_num_ss").hide();
