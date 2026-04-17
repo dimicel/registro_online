@@ -890,6 +890,7 @@ function muestraEditor_usu(_file,tipo){
                                 mmtit="ERROR SERVIDOR";
                                 if (tipo=="foto") mm="La fotografía se ha subido correctamente, pero ha habido un error al grabar la fecha.";
                                 else if (tipo=="seguro") mm="El resguardo del seguro escolar se ha subido correctamente, pero ha habido un error al grabar la fecha.";
+                                else if (tipo=="num_ss") mm="La captura de pantalla del Número de la Seguridad Social se ha subido correctamente, pero ha habido un error al grabar la fecha.";
                                 else mm="El documento se ha subido correctament, pero ha habido un error al grabar la fecha.";
                             }
                             else if (resp == "almacenar") {
