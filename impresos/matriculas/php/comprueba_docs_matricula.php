@@ -21,5 +21,7 @@ if (is_file(("../../../docs/".$id_nie."/seguro"."/".$curso."/".$id_nie.".jpeg"))
 else $partes.=' ';
 if (is_file(("../../../docs/".$id_nie."/certificado_notas"."/".$curso."/".$id_nie.".pdf"))) $partes.='C';
 else $partes.=' ';
+if (is_file(("../../../docs/".$id_nie."/nss/nss_".$id_nie."jpeg"))) $partes.="N";
+else $partes.=' ';
 
 exit ($partes);

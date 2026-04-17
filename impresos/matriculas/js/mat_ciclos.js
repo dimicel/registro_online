@@ -15,7 +15,7 @@ var _paginas = new Array();
 var paginas_totales;
 var sexo="",fecha_nac="",telef_alumno="",email_alumno="",direccion="",cp="",localidad="",provincia="";
 var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2="";
-var existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false;
+var existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false;
 
 var primera_vez_pag_2=true;
 var primera_vez_pag_3=true;
@@ -88,6 +88,8 @@ $(document).ready(function() {
         else existe_seguro=false;
         if (resp.indexOf('C')>-1) existe_certificado=true;
         else existe_certificado=false;
+        if (resp.indexOf('N')>-1) existe_num_ss=true;
+        else existe_num_ss=false;
 
         $("#pagina_1").load("ciclos_html/pagina1.html?q="+Date.now().toString(), function() {
             creaValidatorPagina1();
