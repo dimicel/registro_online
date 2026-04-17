@@ -93,7 +93,7 @@ function confirmarSalida() {
             window.history.back();
         }
     });
-    }
+}
 
 
 //Función para confirmar una acción, devuelve un booleano. Ancho es opcional y por defecto es 300px
