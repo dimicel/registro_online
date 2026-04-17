@@ -178,12 +178,6 @@ function pasaPagina(p) {
                 form_pagina_3.cp.value=cp;
                 form_pagina_3.localidad.value=localidad;
                 form_pagina_3.provincia.value=provincia;
-                form_pagina_3.tutor1.value=tutor1;
-                form_pagina_3.email_tutor1.value=email_tutor1;
-                form_pagina_3.tlf_tutor1.value=tlf_tutor1;
-                form_pagina_3.tutor2.value=tutor2;
-                form_pagina_3.email_tutor2.value=email_tutor2;
-                form_pagina_3.tlf_tutor2.value=tlf_tutor2;
                 primera_vez_pag_3=false;
             }
         }
