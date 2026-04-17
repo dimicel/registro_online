@@ -142,6 +142,14 @@ function creaValidatorPagina3() {
 function creaValidatorPagina4() {
     $("#form_pagina_4").validate({
         ignore: [],
+        // Valida el campo cada vez que el usuario suelta una tecla
+        onkeyup: function(element) {
+            $(element).valid(); 
+        },
+        // Valida cuando el usuario sale del campo
+        onfocusout: function(element) {
+            $(element).valid();
+        },
         rules: {
             foto_alumno: {
                 required: true
