@@ -326,8 +326,8 @@ function cargaImagen(dest){
     else if(dest=="prev_resguardo_seguro"){
         alerta("<center><img src='../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR",false,700);
     }
-    else if(dest=="prev_resguardo_seguro"){
-        alerta("<center><img src='../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR",false,700);
+    else if(dest=="prev_num_ss"){
+        alerta("<center><img src='../../docs/"+id_nie+"/nss/nss_"+id_nie+".jpeg?q="+Date()+"'></center>","NÚMERO SEGURIDAD SOCIAL",false,700);
     }
 }
 
