@@ -268,6 +268,19 @@ function pasaPagina(p) {
             
 
             // --- LÓGICA SEGURO ESCOLAR
+            $("#num_ss").show();
+            if (existe_num_ss) {
+                $("#div_num_ss").hide();
+                $("#div_existe_num_ss").show();
+                $("#num_ss").rules("remove", "required");
+            } else {
+                $("#div_num_ss").show();
+                $("#div_existe_num_ss").hide();
+                $("#num_ss").rules("add", { required: true });
+            }
+
+
+            // --- LÓGICA SEGURO ESCOLAR
             $("#sec_seguro").show();
             if (existe_seguro) {
                 $("#div_resguardo_seguro_escolar").hide();
@@ -315,6 +328,9 @@ function cargaImagen(dest){
     }
     else if(dest=="prev_reverso_dni"){
         alerta("<center><img src='../../docs/"+id_nie+"/dni/"+id_nie+"-R.jpeg?q="+Date()+"'></center>","REVERSO DOCUMENTO IDENTIFICACIÓN",false,500);
+    }
+    else if(dest=="prev_resguardo_seguro"){
+        alerta("<center><img src='../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR",false,700);
     }
     else if(dest=="prev_resguardo_seguro"){
         alerta("<center><img src='../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR",false,700);
