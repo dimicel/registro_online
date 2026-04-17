@@ -20,40 +20,39 @@ if (!isset($_SESSION['ID'])) $respuesta["error"]="Error_01 - Acceso restringido.
 //elseif ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) $respuesta["error"]="Error_02 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
 elseif ($_SESSION['navegador'] != $_SERVER['HTTP_USER_AGENT']) $respuesta["error"]="Error_03 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
 elseif ($_SESSION['ID'] != session_id()) $respuesta["error"]="Error_04 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
-elseif (!isset($_POST['tipo_usu']) || !isset($_SESSION['tipo_usu']) || $_POST['tipo_usu']!=$_SESSION['tipo_usu'] ) {
-    if(isset($_POST['tipo_usu']) && isset($_SESSION['tipo_usu'])){
-        if($_POST['tipo_usu']=="secretaria" && $_SESSION['tipo_usu']=="jefatura estudios"){
-            $respuesta["error"]="ok";
-            $respuesta["tipo_usu"]="jefatura estudios";
-        }
-        elseif($_POST['tipo_usu']=="residencia" && $_SESSION['tipo_usu']=="secretaria"){
-            $respuesta["error"]="ok";
-            $respuesta["tipo_usu"]="secretaria";
-        }
-        else{
-            $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
-        }
+elseif(!isset($_SESSION['tipo_usu'])) $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
+elseif (isset($_POST['tipo_usu'])){
+    if($_POST['tipo_usu']=="secretaria" && $_SESSION['tipo_usu']=="jefatura estudios"){
+        $respuesta["error"]="ok";
+        $respuesta["tipo_usu"]="jefatura estudios";
     }
-    else {
+    elseif($_POST['tipo_usu']=="residencia" && $_SESSION['tipo_usu']=="secretaria"){
+        $respuesta["error"]="ok";
+        $respuesta["tipo_usu"]="secretaria";
+    }
+    elseif($_POST['tipo_usu']=="jefe departamento" && $_SESSION['tipo_usu']=="jefe departamento"){
+        $respuesta["error"]="ok";
+        $respuesta["tipo_usu"]="jefe departamento";
+        $respuesta["departamento"]=$_SESSION['departamento'];
+        $respuesta["nombre_ap_jd"]=$_SESSION['nombre_ap_jd'];
+        $respuesta["email_jd"]=$_SESSION['email_jd'];
+        $respuesta["anno_ini_curso"]=calculaCurso_ini();
+        exit (json_encode($respuesta));
+    }
+    elseif($_POST['tipo_usu']=="comedor" && $_SESSION['tipo_usu']=="comedor"){
+        $respuesta["error"]="ok";
+        $respuesta["tipo_usu"]="comedor";
+        $respuesta["anno_ini_curso"]=calculaCurso_ini();
+        exit (json_encode($respuesta));
+    }
+    else{
         $respuesta["error"]="Error_05 - Acceso restringido. No ha introducido las credenciales de acceso en la ventana de login.";
     }
 }
-elseif($_POST['tipo_usu']=="jefe departamento" && $_SESSION['tipo_usu']=="jefe departamento"){
+else{
     $respuesta["error"]="ok";
-    $respuesta["tipo_usu"]="jefe departamento";
-    $respuesta["departamento"]=$_SESSION['departamento'];
-    $respuesta["nombre_ap_jd"]=$_SESSION['nombre_ap_jd'];
-    $respuesta["email_jd"]=$_SESSION['email_jd'];
-    $respuesta["anno_ini_curso"]=calculaCurso_ini();
-    exit (json_encode($respuesta));
+    $respuesta["tipo_usu"]=$_SESSION['tipo_usu'];
 }
-elseif($_POST['tipo_usu']=="comedor" && $_SESSION['tipo_usu']=="comedor"){
-    $respuesta["error"]="ok";
-    $respuesta["tipo_usu"]="comedor";
-    $respuesta["anno_ini_curso"]=calculaCurso_ini();
-    exit (json_encode($respuesta));
-}
-else $respuesta["error"]="ok";
 
 if ($respuesta["error"]=="ok"){ 
     $respuesta["id_nif"]=$_SESSION['id_nif'];
