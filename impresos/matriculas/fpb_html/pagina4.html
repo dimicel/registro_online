@@ -113,6 +113,23 @@
         </div>
         <hr>
         <div class="row d-flex justify-content-center">
+            <div id="sec_num_ss" class="col-md-4 mb-4">
+                <h6 class="text-brown font-weight-bold text-center">Nº SEGURIDAD SOCIAL</h6>
+                <div id="div_num_ss" class="card border-success bg-light p-3 text-center">
+                    <p class="small mb-2" style="color: red;">*Captura pantalla Nº S.S. (JPEG):</p>
+                    <a href="#" class="btn btn-outline-success btn-sm btn-block mb-1"
+                        onclick="$('#num_ss').val('').click()">Seleccionar fichero</a>
+                </div>
+                <div id="div_existe_num_ss" class="card border-success bg-light p-3 text-center"
+                    style="display:none">
+                    <p class="small mb-1">Ya existe captura del Nº S.S.</p>
+                    <a href="#" class="btn btn-outline-success btn-sm"
+                        onclick="cargaImagen('prev_num_ss')">Ver</a>
+                    <a href="#" class="btn btn-link btn-sm ml-2" onclick="$('#num_ss').val('').click()">Subir nuevo</a>
+                </div>
+                <div id="error_num_ss" class="error-container text-center mt-1"><span
+                        class="errorTxt text-danger small"></span></div>
+            </div>
             <div id="sec_seguro" class="col-md-4 mb-4">
                 <h6 class="text-brown font-weight-bold text-center">SEGURO ESCOLAR</h6>
                 <div id="div_resguardo_seguro_escolar" class="card border-success bg-light p-3 text-center">
@@ -160,6 +177,8 @@
             accept="image/jpeg" onchange="muestraEditor(this.files[0],'dni_reverso')" />
         <input data-error-container="#error_pasaporte" name="pasaporte" id="pasaporte" type="file" class="d-none"
             accept="image/jpeg" onchange="muestraEditor(this.files[0],'pasaporte')" />
+        <input data-error-container="#error_num_ss" name="num_ss" id="num_ss" type="file" class="d-none" 
+            accept="image/jpeg" onchange="muestraEditor(this.files[0],'num_ss')" />
         <input data-error-container="#error_resguardo_seguro_escolar" name="resguardo_seguro_escolar"
             id="resguardo_seguro_escolar" type="file" class="d-none" accept="image/jpeg"
             onchange="muestraEditor(this.files[0],'seguro')" />
