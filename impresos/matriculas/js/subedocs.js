@@ -195,7 +195,7 @@ function muestraEditor(_file,tipo){
                 dialogoW = 700;
                 _fname_ajax = "dni";
                 _f_ajax = id_nie + ((tipo == "dni_anverso" || tipo == "pasaporte")? "-A.jpeg" : "-R.jpeg");
-                url = "impresos/matriculas/php/sube_dni.php";
+                url = "php/sube_dni.php";
             } 
             else if (tipo == "foto") {
                 msg = "Ajusta la imagen al recuadro";
@@ -205,7 +205,7 @@ function muestraEditor(_file,tipo){
                 dialogoW = 500;
                 _fname_ajax = "foto";
                 _f_ajax = id_nie + ".jpeg";
-                url = "impresos/matriculas/php/sube_foto.php";
+                url = "php/sube_foto.php";
             } 
             else if (tipo == "seguro") {
                 msg = "Ajusta el recuadro al resguardo...";
@@ -218,7 +218,7 @@ function muestraEditor(_file,tipo){
                 dialogoW = 1000;
                 _fname_ajax = "seguro";
                 _f_ajax = id_nie + ".jpeg";
-                url = "impresos/matriculas/php/sube_seguro.php";
+                url = "php/sube_seguro.php";
             }
             else if (tipo == "num_ss") {
                 msg = "Ajusta la imagen al recuadro";
@@ -226,7 +226,7 @@ function muestraEditor(_file,tipo){
                 dialogoW = 700;
                 _fname_ajax = "num_ss";
                 _f_ajax = "nss_" +id_nie + ".jpeg";
-                url = "impresos/matriculas/php/sube_num_ss.php";
+                url = "php/sube_num_ss.php";
             }
 
             // Calculamos Boundary proporcional al Viewport para que no sea gigante
