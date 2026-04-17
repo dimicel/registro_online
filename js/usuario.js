@@ -688,7 +688,7 @@ function lanzaAvisoMatricula(nivel_educ) {
         var mensaje = "<div style='font-size:0.75em; text-align: left;'>"; 
         mensaje += "Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul style='margin-top: 10px;'>"; 
-        mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='../../recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
+        mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
         mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
         mensaje += "    <li>Una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
         mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
@@ -699,7 +699,7 @@ function lanzaAvisoMatricula(nivel_educ) {
         var mensaje = "<div style='font-size:0.75em; text-align: left;'>"; 
         mensaje += "Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul style='margin-top: 10px;'>"; 
-        mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='../../recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
+        mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
         mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
         mensaje += "    <li>Una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
         mensaje += "    <li>Si es alumno nuevo e inició los estudios de los que se matricula en otra comunidad autónoma, certificado de notas en formato PDF (puede escanearlo, por ejemplo, con la aplicación gratuita para móvil Microsoft Office Lens).</li>";
@@ -711,7 +711,7 @@ function lanzaAvisoMatricula(nivel_educ) {
         var mensaje = "<div style='font-size:0.75em; text-align: left;'>"; 
         mensaje += "Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul style='margin-top: 10px;'>"; 
-        mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='../../recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
+        mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
         mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
         mensaje += "    <li>Captura de pantalla en formato JPEG del Número de la Seguridad Social facilitado por la Tesorería General de la Seguridad Social en su página web. No es necesario que la captura sea de la página completa, es suficiente con que se vea el número de forma clara.</li>";
         mensaje += "    <li>EXCEPTO nacidos antes del 31/12/" + (anno_ini_curso-27) + ", una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
@@ -723,7 +723,7 @@ function lanzaAvisoMatricula(nivel_educ) {
         var mensaje = "<div style='font-size:0.75em; text-align: left;'>"; 
         mensaje += "Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul style='margin-top: 10px;'>"; 
-        mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='../../recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
+        mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
         mensaje += "    <li>Fotografía del anverso y reverso del documento de identificación (DNI/NIE). Si sólo tiene pasaporte, el anverso será imagen JPEG de la página en la que salen los datos del alumno y su fotografía, y el reverso imagen JPEG en blanco. El documento se fotografiará con el móvil en horizontal y fondo blanco, por ejemplo, poniendo el documento sobre un folio en blanco.</li>";
         mensaje += "    <li>Captura de pantalla en formato JPEG del Número de la Seguridad Social facilitado por la Tesorería General de la Seguridad Social en su página web. No es necesario que la captura sea de la página completa, es suficiente con que se vea el número de forma clara.</li>";
         mensaje += "    <li>Una fotografía del resguardo del pago del seguro escolar, y del anverso y reverso del documento de identificación (DNI/NIE). (Móvil en horizontal y fondo blanco, por ejemplo, sobre un folio).</li>";
