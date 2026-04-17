@@ -130,6 +130,7 @@ function muestraEditor(_file,tipo){
                                 mmtit="ERROR SERVIDOR";
                                 if (tipo=="foto") mm="La fotografía se ha subido correctamente, pero ha habido un error al grabar la fecha.";
                                 else if (tipo=="seguro") mm="El resguardo del seguro escolar se ha subido correctamente, pero ha habido un error al grabar la fecha.";
+                                else if (tipo=="num_ss") mm="La captura de pantalla del Número de la Seguridad Social se ha subido correctamente, pero ha habido un error al grabar la fecha.";
                                 else mm="El documento se ha subido correctament, pero ha habido un error al grabar la fecha.";
                             }
                             else if (resp == "almacenar") {
@@ -159,6 +160,10 @@ function muestraEditor(_file,tipo){
                                     mm = "Resguardo del pago del seguro escolar subido.";
                                     document.getElementById("div_existe_resguardo_seguro_escolar").style.display="inherit";
                                     document.getElementById("div_resguardo_seguro_escolar").style.display="none";
+                                }
+                                else if (tipo == "num_ss"){
+                                    mm = "Captura de pantalla del Número de la Seguridad Social subida.";
+                                    document.getElementById('img_num_ss').src= 'docs/' + id_nie + '/nss/' + 'nss_' +id_nie + '.jpeg?t=' + new Date().getTime();
                                 }
                                 alerta(mm, "OK");
                             }
@@ -214,6 +219,14 @@ function muestraEditor(_file,tipo){
                 _fname_ajax = "seguro";
                 _f_ajax = id_nie + ".jpeg";
                 url = "impresos/matriculas/php/sube_seguro.php";
+            }
+            else if (tipo == "num_ss") {
+                msg = "Ajusta la imagen al recuadro";
+                vWidth = 450; vHeight = 285;
+                dialogoW = 700;
+                _fname_ajax = "num_ss";
+                _f_ajax = "nss_" +id_nie + ".jpeg";
+                url = "impresos/matriculas/php/sube_num_ss.php";
             }
 
             // Calculamos Boundary proporcional al Viewport para que no sea gigante
