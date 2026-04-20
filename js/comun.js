@@ -86,11 +86,12 @@ function cierraAlerta(previo) {
 }
 
 //Confirmar o no la salida de un formulario
-function confirmarSalida() {
+function confirmarSalida(url="index.php") {
     confirmar("El proceso de registro será cancelado y se borrarán los datos del formulario.", "CANCELACIÓN DE PROCESO")
     .then(function(confirmacion) {
         if (confirmacion) {
-            window.history.back();
+            //window.history.back();
+            window.location.href = url;
         }
     });
 }
