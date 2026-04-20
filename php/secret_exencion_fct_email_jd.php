@@ -52,6 +52,7 @@ $mysqli->close();
 $error_generado=false;
 
 for ($i=0; $i<count($envios_email);$i++){
+    if ($envios_email[$i]["pendientes"]==0) continue;
     if (strlen(trim($envios_email[$i]["email"]))==0){
         $error.="<li>".$envios_email[$i]["departamento"].": No tiene email. Asígnelo en Configuración->Departamentos</li><br>";
         $error_generado=true;
