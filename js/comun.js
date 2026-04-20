@@ -33,7 +33,7 @@ function alerta(mensaje, titulo, previo="", ancho) {
         $div = $("#mensaje_div");
     }
     if (previo!="") {
-        $div.html("<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta("+"'"+previo+"'"+")'/></div>");
+        $div.html("<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta("+"\'"+previo+"\'"+")'/></div>");
     } else {
         $div.html("<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta()'/></div>");
     }
