@@ -318,16 +318,16 @@ function cargaImagen(dest){
         alerta("<center><img src='../../docs/fotos/"+id_nie+".jpeg?q="+Date()+"'></center>","FOTOGRAFÍA");
     }
     else if(dest=="prev_anverso_dni"){
-        alerta("<center><img src='../../docs/"+id_nie+"/dni/"+id_nie+"-A.jpeg?q="+Date()+"'></center>","ANVERSO DOCUMENTO IDENTIFICACIÓN",false,500);
+        alerta("<center><img src='../../docs/"+id_nie+"/dni/"+id_nie+"-A.jpeg?q="+Date()+"'></center>","ANVERSO DOCUMENTO IDENTIFICACIÓN","",500);
     }
     else if(dest=="prev_reverso_dni"){
-        alerta("<center><img src='../../docs/"+id_nie+"/dni/"+id_nie+"-R.jpeg?q="+Date()+"'></center>","REVERSO DOCUMENTO IDENTIFICACIÓN",false,500);
+        alerta("<center><img src='../../docs/"+id_nie+"/dni/"+id_nie+"-R.jpeg?q="+Date()+"'></center>","REVERSO DOCUMENTO IDENTIFICACIÓN","",500);
     }
     else if(dest=="prev_resguardo_seguro"){
-        alerta("<center><img src='../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR",false,700);
+        alerta("<center><img src='../../docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR","",700);
     }
     else if(dest=="prev_num_ss"){
-        alerta("<center><img src='../../docs/"+id_nie+"/nss/nss_"+id_nie+".jpeg?q="+Date()+"'></center>","NÚMERO SEGURIDAD SOCIAL",false,700);
+        alerta("<center><img src='../../docs/"+id_nie+"/nss/nss_"+id_nie+".jpeg?q="+Date()+"'></center>","NÚMERO SEGURIDAD SOCIAL","",700);
     }
 }
 
@@ -380,12 +380,12 @@ function registraMatricula() {
         ocultarPantallaEspera();
         if (resp == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor", true);
+            alerta(mensaje, "Error de servidor", '../../usuario.php');
         } else if (resp.indexOf("registro_erroneo") != -1) {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor", true);
+            alerta(mensaje, "Error de servidor", '../../usuario.php');
         } else if (resp.indexOf("envio_ok") != -1) {
-            alerta("Proceso finalizado correctamente.<br>Puede descargar el impreso registrado desde el panel de control del usuario.", "Registro correcto", true);
+            alerta("Proceso finalizado correctamente.<br>Puede descargar el impreso registrado desde el panel de control del usuario.", "Registro correcto", '../../usuario.php');
         } else window.location.href = '../../usuario.php';
     });
 }

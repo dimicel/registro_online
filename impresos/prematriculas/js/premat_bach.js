@@ -70,7 +70,7 @@ $(document).ready(function() {
                 confirmarnuevaPrem("Ya existe una prematrícula registrada.<br>Si continúa, será sustituida por la que genere nueva.",
                     "PREMATRÍCULA EXISTENTE",
                     "Continuar");
-            } else if (resp["error"] == "server") alerta("Problemas en el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
+            } else if (resp["error"] == "server") alerta("Problemas en el servidor. Inténtelo más tarde.", "ERROR SERVIDOR",'../../usuario.php');
         }, "json");
     });
 
@@ -328,14 +328,14 @@ function registraMatricula() {
         ocultarPantallaEspera();
         if (resp == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor", true);
+            alerta(mensaje, "Error de servidor", '../../usuario.php');
         } else if (resp.indexOf("registro_erroneo") != -1) {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor", true);
+            alerta(mensaje, "Error de servidor", '../../usuario.php');
         } else if (resp == "no_file") {
-            alerta("Ha habido un error y no se ha podido generar el fichero con el formulario registrado.", "Error en servidor", true);
+            alerta("Ha habido un error y no se ha podido generar el fichero con el formulario registrado.", "Error en servidor", '../../usuario.php');
         } else if (resp.indexOf("envio_ok") != -1) {
-            alerta("Proceso finalizado correctamente.<br>Puede descargar el formulario registrado desde el panel de control de usuario.", "Registro correcto", true);
+            alerta("Proceso finalizado correctamente.<br>Puede descargar el formulario registrado desde el panel de control de usuario.", "Registro correcto", '../../usuario.php');
         }
     });
 }

@@ -78,7 +78,7 @@ $(document).ready(function() {
             (typeof(res2["telef_alumno"]) !== "undefined" || res2["telef_alumno"]===null) ? telef_alumno = res2["telef_alumno"]: telef_alumno = "";
             
         } else if (res2["error"] == "server") {
-            alerta("Problemas en el servidor. Inténtelo más tarde.", "ERROR SERVIDOR", true);
+            alerta("Problemas en el servidor. Inténtelo más tarde.", "ERROR SERVIDOR", '../../usuario.php');
         } else if (res2["error"] == "noexiste") {
             existe_premat = false;
         }
@@ -447,12 +447,12 @@ function registraMatricula() {
         ocultarPantallaEspera();
         if (resp == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor", true);
+            alerta(mensaje, "Error de servidor", '../../usuario.php');
         } else if (resp.indexOf("registro_erroneo") != -1) {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la prematrícula.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor", true);
+            alerta(mensaje, "Error de servidor", '../../usuario.php');
         } else if (resp.indexOf("envio_ok") != -1) {
-            alerta("Proceso finalizado correctamente.<br>Puede descargar el impreso registrado desde el panel de control del usuario.", "Registro correcto", true);
+            alerta("Proceso finalizado correctamente.<br>Puede descargar el impreso registrado desde el panel de control del usuario.", "Registro correcto", '../../usuario.php');
         } else window.location.href = '../../usuario.php';
     });
 }

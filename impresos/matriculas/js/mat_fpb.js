@@ -395,16 +395,16 @@ function registraMatricula() {
             }
             else {
                 mensaje = "Proceso finalizado correctamente.";
-                alerta(mensaje, "Registro correcto", true);
+                alerta(mensaje, "Registro correcto", '../../usuario.php');
             }
         }
         else if (r1 == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la matrícula.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor", true);
+            alerta(mensaje, "Error de servidor", '../../usuario.php');
         }
         else if (r1.indexOf("registro_erroneo") != -1) {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la matrícula.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor", true);
+            alerta(mensaje, "Error de servidor", '../../usuario.php');
         }
         else window.location.href = '../../usuario.php';
     });

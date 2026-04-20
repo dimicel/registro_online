@@ -88,22 +88,22 @@ function generaImpreso() {
         if (resp == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de su solicitud.<br>Por favor, vuelva a intentarlo más tarde.<br>";
             mensaje += "Si ve que el problema persiste, puede cumplimentar el formulario y presentarlo en ventanilla accediendo por Secretaría->Impresos de Secretaría->Para presentar en Ventanilla.";
-            alerta(mensaje, "Error de servidor");
+            alerta(mensaje, "Error de servidor",'../../usuario.php');
         } else if (resp.indexOf("registro_erroneo") != -1) {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de su solicitud.<br>Por favor, vuelva a intentarlo más tarde.<br>";
             mensaje += "Si ve que el problema persiste, puede cumplimentar el formulario y presentarlo en ventanilla accediendo por Secretaría->Impresos de Secretaría->Para presentar en Ventanilla.";
-            alerta(mensaje, "Error de servidor");
+            alerta(mensaje, "Error de servidor",'../../usuario.php');
         } else if (resp.indexOf("envio_fallido") != -1) {
             num_reg = resp.slice(14);
             mensaje = "No se ha podido enviar a su correo el impreso y número de registro.";
             mensaje += "Aún así, parece que su impreso se ha registrado correctamente con el nº:<br><b>";
             mensaje += num_reg + "</b><br>";
         } else if (resp == "no_file") {
-            alerta("Ha habido un error y no se ha podido generar el fichero con el formulario registrado.", "Error en servidor");
+            alerta("Ha habido un error y no se ha podido generar el fichero con el formulario registrado.", "Error en servidor",'../../usuario.php');
         } else if (resp.indexOf("envio_ok") != -1) {
             document.getElementById("num_registro").value = resp.slice(8);
             document.rev_cal.reset();
-            alerta("Proceso finalizado correctamente.<br>Se le ha enviado el documento registrado a su correo junto con el número de registro asignado.<br>Si no ve el correo, revise la carpeta spam o correo no deseado.<br>También verá que el documento se ha descargado en el navegador en formato PDF.", "Registro correcto", true);
+            alerta("Proceso finalizado correctamente.<br>Se le ha enviado el documento registrado a su correo junto con el número de registro asignado.<br>Si no ve el correo, revise la carpeta spam o correo no deseado.<br>También verá que el documento se ha descargado en el navegador en formato PDF.", "Registro correcto", '../../usuario.php');
         }
     });
 }

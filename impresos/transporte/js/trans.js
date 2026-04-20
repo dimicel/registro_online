@@ -27,11 +27,11 @@ $(document).ready(function() {
     if (iniciada_desde_matricula=="mat"){
         mensaje = "Proceso finalizado correctamente.<br>Ahora continuará con la solicitud de transporte escolar.<br>";
         mensaje+="Si ya tenía registrada una solicitud de transporte escolar, será sustituida por la que va a cumplimentar ahora.";
-        alerta(mensaje, "Registro correcto",500);
+        alerta(mensaje, "Registro correcto","", 500);
     }
     else{
         mensaje="Si ya tenía registrada una solicitud de transporte escolar, será sustituida por la que va a cumplimentar ahora.";
-        alerta(mensaje, "AVISO",500);
+        alerta(mensaje, "AVISO","",500);
     }
     dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
     dat2 = dat1.then((res1) => {
@@ -204,13 +204,13 @@ function registraSolicitud() {
         if (r2.indexOf("envio_ok") != -1 || r2=="envio_ok") {
             mensaje = "Proceso finalizado correctamente.<br>";
             mensaje += "Puede descargar el impreso de solicitud de transporte escolar registrado desde el panel de control del usuario.";
-            alerta(mensaje, "Registro correcto",true);
+            alerta(mensaje, "Registro correcto",'../../usuario.php');
         } else if (r2 == "servidor") {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la solicitud.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor");
+            alerta(mensaje, "Error de servidor",'../../usuario.php');
         } else if (r2.indexOf("registro_erroneo") != -1) {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la solicitud.<br>Por favor, vuelva a intentarlo más tarde.";
-            alerta(mensaje, "Error de servidor");
+            alerta(mensaje, "Error de servidor",'../../usuario.php');
         }
         if (iniciada_desde_matricula=="mat"){
             window.location.href = '../../usuario.php';

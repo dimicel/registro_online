@@ -26,14 +26,14 @@ $(function() {
 
 
 
-function alerta(mensaje, titulo, previo, ancho) {
+function alerta(mensaje, titulo, previo="", ancho) {
     let $div = $("#mensaje_div");
     if ($div.length === 0) {
         $("body").append("<div id='mensaje_div' style='display:none;'></div>");
         $div = $("#mensaje_div");
     }
-    if (typeof(previo) == 'boolean' && previo == true) {
-        $div.html("<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta(true)'/></div>");
+    if (previo!="") {
+        $div.html("<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta(\'"+previo+"\')'/></div>");
     } else {
         $div.html("<div>" + mensaje + "</div>" + "<br><div style='text-align: right;'><input type='button' class='textoboton btn btn-success' value='Ok' onclick='cierraAlerta()'/></div>");
     }
@@ -78,10 +78,10 @@ function alerta(mensaje, titulo, previo, ancho) {
     });
 }
 
-function cierraAlerta(previo) {
+function cierraAlerta(previo="") {
     $("#mensaje_div").dialog("close");
-    if (typeof(previo) == 'boolean' && previo == true) {
-        window.history.back();
+    if (previo!="") {
+        window.location.href = previo;
     }
 }
 

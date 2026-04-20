@@ -358,11 +358,11 @@ function generaImpreso() {
         processData: false,
         success: function(resp) {
             ocultarPantallaEspera();
-            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR");
-            else if (resp.substring(0, 8) == "database") alerta("Hay un problema en la base de datos.Error:"+resp+"<br> Inténtelo más tarde.", "ERROR DB");
-            else if (resp == "error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.", "ERROR UPLOAD");
+            if (resp == "servidor") alerta("Hay un problema con el servidor. Inténtelo más tarde.", "ERROR SERVIDOR",'../../usuario.php');
+            else if (resp.substring(0, 8) == "database") alerta("Hay un problema en la base de datos.Error:"+resp+"<br> Inténtelo más tarde.", "ERROR DB",'../../usuario.php');
+            else if (resp == "error_subida") alerta("El resgistro ha fallado porque no se ha podido subir correctamente alguno de los documentos. Debe intentarlo en otro momento o revisar el formato de los documentos subidos.", "ERROR UPLOAD",'../../usuario.php');
             else if (resp == "ok") {
-                alerta("Solicitud registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", true, 500);
+                alerta("Solicitud registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", '../../usuario.php', 500);
             }
             document.getElementById('exenc').reset();
             //window.location.href = '../../usuario.php';

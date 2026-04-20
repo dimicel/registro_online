@@ -335,25 +335,25 @@ function registraSolicitud() {
                     link.click();
         
                     console.log('PDF descargado correctamente.');
-                    alerta("Procedimiento terminado correctamente.<br>En descargas tienes el formulario con los datos de salud que no se han grabado.<br>Guárdalo por si lo solicitan desde Jefatura de Residencia.","CORRECTO",true);
+                    alerta("Procedimiento terminado correctamente.<br>En descargas tienes el formulario con los datos de salud que no se han grabado.<br>Guárdalo por si lo solicitan desde Jefatura de Residencia.","CORRECTO",'../../usuario.php');
                 }
                 else if(response.status=="server") {
-                    alerta("Hay problemas en el servidor. Inténtelo en otro momento.","ERROR EN SERVIDOR",true);
+                    alerta("Hay problemas en el servidor. Inténtelo en otro momento.","ERROR EN SERVIDOR",'../../usuario.php');
                     console.error('Error:', response.message);
                 }
                 else if(response.status=="db"){
-                    alerta("Hay problemas en la base de datos. Inténtelo en otro momento.","ERROR DB",true);
+                    alerta("Hay problemas en la base de datos. Inténtelo en otro momento.","ERROR DB",'../../usuario.php');
                     console.error('Error:', response.message);
                 }
                 else if(response.status.includes("registro_erroneo")){
-                    alerta("No se ha podido hacer el registro por un problema en la base de datos.","ERROR REGISTRO",true);
+                    alerta("No se ha podido hacer el registro por un problema en la base de datos.","ERROR REGISTRO",'../../usuario.php');
                     console.error('Error:', response.message);
                 }
                 
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 ocultarPantallaEspera();
-                alerta("Ha ocurrido algún problema y no se ha podido hacer el registro. Error "+textStatus+"/"+errorThrown,"ERROR REGISTRO",true);
+                alerta("Ha ocurrido algún problema y no se ha podido hacer el registro. Error "+textStatus+"/"+errorThrown,"ERROR REGISTRO",'../../usuario.php');
                 console.error('Error:', textStatus, errorThrown);
             }
         });
