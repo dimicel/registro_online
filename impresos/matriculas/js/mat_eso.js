@@ -506,7 +506,7 @@ function registraMatricula() {
             mensaje = "Ha habido un problema en el servidor. No se puede realizar el registro de la matrícula.<br>Por favor, vuelva a intentarlo más tarde.";
             alerta(mensaje, "Error de servidor", true);
         }
-        else window.history.back();
+        else window.location.href = '../../usuario.php';
     });
 }
 
@@ -545,7 +545,7 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
                 text: "Cancelar",
                 click: function() {
                     $(this).dialog("destroy").remove();
-                    window.history.back();
+                    window.location.href = '../../usuario.php';
                 }
             }
         ]

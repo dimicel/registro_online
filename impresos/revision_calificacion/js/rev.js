@@ -137,7 +137,7 @@ function iniciaRegistro() {
 }
 
 function cancelaRegistro() {
-    window.history.back();
+    window.location.href = '../../usuario.php';
 }
 
 // JavaScript Document

@@ -503,7 +503,7 @@ function confirmarnuevaPrem(mensaje, titulo, botonAceptar) {
                 text: "Cancelar",
                 click: function() {
                     $(this).dialog("destroy").remove();
-                    window.history.back();
+                    window.location.href = '../../usuario.php';
                 }
             }
         ]

@@ -365,13 +365,13 @@ function generaImpreso() {
                 alerta("Solicitud registrada correctamente. Puede revisarla en 'Mis Gestiones'", "PROCESO OK", true, 500);
             }
             document.getElementById('exenc').reset();
-            //window.history.back();
+            //window.location.href = '../../usuario.php';
         },
         error: function(xhr, status, error) {
             ocultarPantallaEspera();
             alerta("Error en servidor. Código " + error + "<br>Inténtelo más tarde.", "ERROR DE SERVIDOR");
             document.getElementById('exenc').reset();
-            //window.history.back();
+            //window.location.href = '../../usuario.php';
         }
     });
             

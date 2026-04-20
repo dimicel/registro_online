@@ -27,7 +27,7 @@ $(document).ready(function() {
         }
         if (id_nie.trim() == "" || anno_ini_curso.toString().trim() == "") {
             alerta("Error datos. Por favor, inténtelo más tarde.","ERROR");
-            window.history.back();
+            window.location.href = '../../usuario.php';
         }
 
         return $.post("php/datos_residente.php", {id_nie:id_nie, curso:anno_curso }, () => {}, "json");

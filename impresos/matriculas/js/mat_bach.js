@@ -453,7 +453,7 @@ function registraMatricula() {
             alerta(mensaje, "Error de servidor", true);
         } else if (resp.indexOf("envio_ok") != -1) {
             alerta("Proceso finalizado correctamente.<br>Puede descargar el impreso registrado desde el panel de control del usuario.", "Registro correcto", true);
-        } else window.history.back();
+        } else window.location.href = '../../usuario.php';
     });
 }
 
@@ -493,7 +493,7 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
                 text: "Cancelar",
                 click: function() {
                     $(this).dialog("destroy").remove();
-                    window.history.back();
+                    window.location.href = '../../usuario.php';
                 }
             }
         ]

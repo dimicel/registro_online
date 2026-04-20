@@ -213,10 +213,9 @@ function registraSolicitud() {
             alerta(mensaje, "Error de servidor");
         }
         if (iniciada_desde_matricula=="mat"){
-            window.history.back();
-            window.history.back();
+            window.location.href = '../../usuario.php';
         } 
-        //else window.history.back();
+        //else window.location.href = '../../usuario.php';
     });
 }
 
@@ -288,7 +287,7 @@ function confirmarnuevaMat(mensaje, titulo, botonAceptar) {
                 text: "Cancelar",
                 click: function() {
                     $(this).dialog("destroy").remove();
-                    window.history.back();
+                    window.location.href = '../../usuario.php';
                 }
             }
         ]
