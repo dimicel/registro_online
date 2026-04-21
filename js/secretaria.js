@@ -62,10 +62,16 @@ $(function() {
     prom3=prom2.then((resp)=> {
         document.getElementById("premat_eso").checked = (resp["eso"] == 0 ? false : true);
         document.getElementById("premat_bach").checked = (resp["bach"] == 0 ? false : true);
+        return ($.post("php/secret_transporte_habilitar.php", { peticion: "read" },()=>{},"json"));
+    });
+    prom4=prom3.then((resp)=> {
+        document.getElementById("check_trans_eso").checked = (resp["eso"] == 0 ? false : true);
+        document.getElementById("check_trans_bach").checked = (resp["bach"] == 0 ? false : true);
+        document.getElementById("check_trans_ciclos").checked = (resp["ciclos"] == 0 ? false : true);
+        document.getElementById("check_trans_fpb").checked = (resp["fpb"] == 0 ? false : true);
         return ($.post("php/secret_matricula.php", { peticion: "read" },()=>{},"json"));
     });
-
-    prom4=prom3.then((resp)=>{
+    prom5=prom4.then((resp)=>{
         document.getElementById("check_mat_eso").checked = (resp["eso"] == 0 ? false : true);
         document.getElementById("check_mat_bach").checked = (resp["bach"] == 0 ? false : true);
         document.getElementById("check_mat_ciclos").checked = (resp["ciclos"] == 0 ? false : true);
@@ -74,7 +80,7 @@ $(function() {
         return ($.post("php/secret_num_reg_sinrevisar.php", {curso:curso_actual},()=>{},"json"));
         
     });
-    prom5=prom4.then((resp)=>{
+    prom6=prom5.then((resp)=>{
         ocultarPantallaEspera();
         if (resp.error=="ok"){
             generaSelectTipo_form(resp.datos);
@@ -84,7 +90,7 @@ $(function() {
         }
         return ($.post('php/secret_recupera_departamentos.php',{},()=>{},"json"));
     });
-    prom6=prom5.then((resp)=>{
+    prom7=prom6.then((resp)=>{
         if (resp.error=="ok"){
             for(i=0;i<resp.registro.length;i++){
                 departamentos.push(new Array(resp.registro[i].departamento,resp.registro[i].abreviatura,resp.registro[i].email_jd,resp.registro[i].id));
@@ -96,7 +102,7 @@ $(function() {
         }
         return ($.post('impresos/exencion_fct/php/ciclos.php',{},()=>{},"json"));  
     });
-    prom7=prom6.then((resp)=>{
+    prom8=prom7.then((resp)=>{
         const option = document.createElement("option");
         option.value="";
         option.text="Seleccione uno...";
@@ -2134,6 +2140,15 @@ function cambiaEstadoMatricula(obj, nivel) {
     else estado=0;
     mostrarPantallaEspera();
     $.post('php/secret_matricula.php', { matricula: nivel, peticion: 'write', estado: estado }, function(resp) {
+        ocultarPantallaEspera();
+    });
+}
+
+function cambiaEstadoTransporte(obj, nivel) {
+    if (obj.checked) estado=1;
+    else estado=0;
+    mostrarPantallaEspera();
+    $.post('php/secret_transporte_habilitar.php', { matricula: nivel, peticion: 'write', estado: estado }, function(resp) {
         ocultarPantallaEspera();
     });
 }

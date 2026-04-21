@@ -113,6 +113,27 @@
                             <a id="menu_listado_mat" class="dropdown-item small" href="#" onclick="javascript:subirMatDelphos();">Subir CSV Delphos para Matrícula</a>
                         </div>
                     </li>
+                    <li class="nav-item" id="menu55">
+                        <a class="nav-link dropdown-toggle" id="menu_transporte_habilitar" href="#" data-toggle="dropdown">Transporte</a>
+                        <div class="dropdown-menu" >
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_trans_eso" onchange="cambiaEstadoTransporte(this,'eso')">
+                                <label for="check_trans_eso" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">ESO</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_trans_bach" onchange="cambiaEstadoTransporte(this,'bach')">
+                                <label for="check_trans_bach" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Bachillerato</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_trans_ciclos" onchange="cambiaEstadoTransporte(this,'ciclos')">
+                                <label for="check_trans_ciclos" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">Ciclos</label>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input checkbox_prematricula" id="check_trans_fpb" onchange="cambiaEstadoTransporte(this,'fpb')">
+                                <label for="check_trans_fpb" class="custom-control-label small" style="margin-top:10px;margin-left:10px; color:#493f26 !important">FPB</label>
+                            </div>
+                        </div>
+                    </li>
                     <li class="nav-item" id="menu6">
                         <a class="nav-link" href="#" onclick="document.location='residencia.php?q='+Date.now()">Residencia</a>
                     </li>
