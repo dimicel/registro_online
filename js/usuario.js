@@ -172,8 +172,7 @@ $(function() {
             document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
         }
 
-        listaSolicitudes();
-        return $.post("php/usu_obtiene_nivel_matriculado.php", {id_nie: id_nie, $curso: anno_curso_usu}, () => {}, "json");
+        return $.post("php/usu_obtiene_nivel_matriculado.php", {id_nie: id_nie, $curso: anno_curso_usu}, () => {});
     });
     dat6=dat5.then((resp)=>{
         if (resp!="eso" && resp!="bach" && resp!="ciclos" &&  resp!="fpb") nivel_matriculado="";
@@ -189,6 +188,7 @@ $(function() {
             document.getElementById("docs_transporte_escolar").setAttribute('href', "#");
             document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
         }
+        listaSolicitudes();
     });
     $("#apartados").tabs({
         active: 0
