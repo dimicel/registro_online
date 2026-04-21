@@ -172,7 +172,7 @@ $(function() {
             document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
         }
 
-        return $.post("php/usu_obtiene_nivel_matriculado.php", {id_nie: id_nie, $curso: anno_curso_usu}, () => {});
+        return $.post("php/usu_obtiene_nivel_matriculado.php", {id_nie: id_nie, curso: anno_curso_usu}, () => {});
     });
     dat6=dat5.then((resp)=>{
         if (resp!="eso" && resp!="bach" && resp!="ciclos" &&  resp!="fpb") nivel_matriculado="";
