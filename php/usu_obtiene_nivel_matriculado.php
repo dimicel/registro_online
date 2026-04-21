@@ -9,8 +9,8 @@ include("conexion.php");
 
 if ($mysqli->errno>0) exit("server");
 
-$id_nie=$_POST["id_nie"];
-$curso=$_POST["curso"];
+$id_nie=trim($_POST["id_nie"]);
+$curso=trim($_POST["curso"]);
 
 $sql = "
     SELECT 'eso' AS tabla FROM mat_eso WHERE id_nie = ? AND curso = ?
