@@ -16,6 +16,7 @@ var dia_sesion;
 var tipo_matricula;
 var datos_usu_vacios=false;
 var primera_carga=true;
+var nivel_matriculado;
 
 
 
@@ -172,8 +173,31 @@ $(function() {
         }
 
         listaSolicitudes();
+        return $.post("php/usu_obtiene_nivel_matriculado.php", {id_nie: id_nie, $curso: anno_curso_usu}, () => {}, "json");
     });
-
+    dat6=dat5.then((resp)=>{
+        if (resp!="eso" && resp!="bach" && resp!="ciclos" &&  resp!="fpb") nivel_matriculado="";
+        else nivel_matriculado=resp;
+        return ($.post("php/secret_transporte_habilitar.php", { peticion: "read" },()=>{},"json"));
+    });
+    dat7=dat6.then((resp)=>{
+        if (nivel_matriculado==""){
+            document.getElementById("docs_transporte_escolar").setAttribute('href', "#");
+            document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
+        }
+        else if (resp[nivel_matriculado]==0){
+            document.getElementById("docs_transporte_escolar").setAttribute('href', "#");
+            document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
+        }
+        else if(resp[nivel_matriculado]==1){
+            document.getElementById("docs_transporte_escolar").setAttribute('href','impresos/transporte/transporte.php');
+            document.getElementById("docs_transporte_escolar").className = "enlaceEnabled";
+        }
+        else {
+            document.getElementById("docs_transporte_escolar").setAttribute('href', "#");
+            document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
+        }
+    });
     $("#apartados").tabs({
         active: 0
     });

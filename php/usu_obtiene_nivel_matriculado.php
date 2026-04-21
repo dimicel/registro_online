@@ -13,13 +13,13 @@ $id_nie=$_POST["id_nie"];
 $curso=$_POST["curso"];
 
 $sql = "
-    SELECT 'mat_eso' AS tabla FROM mat_eso WHERE id_nie = ? AND curso = ?
+    SELECT 'eso' AS tabla FROM mat_eso WHERE id_nie = ? AND curso = ?
     UNION ALL
-    SELECT 'mat_bach' AS tabla FROM mat_bach WHERE id_nie = ? AND curso = ?
+    SELECT 'bach' AS tabla FROM mat_bach WHERE id_nie = ? AND curso = ?
     UNION ALL
-    SELECT 'mat_ciclos' AS tabla FROM mat_ciclos WHERE id_nie = ? AND curso = ?
+    SELECT 'ciclos' AS tabla FROM mat_ciclos WHERE id_nie = ? AND curso = ?
     UNION ALL
-    SELECT 'mat_fpb' AS tabla FROM mat_fpb WHERE id_nie = ? AND curso = ?
+    SELECT 'fpb' AS tabla FROM mat_fpb WHERE id_nie = ? AND curso = ?
 ";
 
 $stmt = $mysqli->prepare($sql);
