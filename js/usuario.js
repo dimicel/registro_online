@@ -181,15 +181,7 @@ $(function() {
         return ($.post("php/secret_transporte_habilitar.php", { peticion: "read" },()=>{},"json"));
     });
     dat7=dat6.then((resp)=>{
-        if (nivel_matriculado==""){
-            document.getElementById("docs_transporte_escolar").setAttribute('href', "#");
-            document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
-        }
-        else if (resp[nivel_matriculado]==0){
-            document.getElementById("docs_transporte_escolar").setAttribute('href', "#");
-            document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
-        }
-        else if(resp[nivel_matriculado]==1){
+        if(resp[nivel_matriculado]==1){
             document.getElementById("docs_transporte_escolar").setAttribute('href','impresos/transporte/transporte.php');
             document.getElementById("docs_transporte_escolar").className = "enlaceEnabled";
         }
