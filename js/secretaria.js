@@ -4617,6 +4617,25 @@ function obtieneRutasParadas(ruta=""){
                     const spanTexto = document.createElement("span");
                     spanTexto.innerText = resp.paradas[i].parada;
 
+                    contenedorFlex.appendChild(spanTexto);
+                    celdaNombre.appendChild(contenedorFlex);
+                    fila.appendChild(celdaNombre);
+
+                    const celdaNombre = document.createElement("td");
+                    celdaNombre.style.width = "50%"; 
+                    celdaNombre.style.overflow = "hidden";
+                    celdaNombre.style.textOverflow = "ellipsis";
+                    celdaNombre.style.whiteSpace = "nowrap";
+
+
+                    // Creamos un contenedor flex para el texto y los botones
+                    const contenedorFlex = document.createElement("div");
+                    contenedorFlex.className = "d-flex justify-content-between align-items-center";
+
+                    // 1. El texto de la ruta
+                    const spanTexto = document.createElement("span");
+                    spanTexto.innerText = resp.paradas[i].hora;
+
                     // 2. El grupo de botones
                     const divBotones = document.createElement("div");
                     divBotones.className = "btn-group"; // Mantiene los botones juntos
