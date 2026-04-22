@@ -39,7 +39,8 @@ if($_POST["ruta"]!=""){
     // Consultamos la ruta y sus paradas en un solo paso
     $consulta = "SELECT r.*, p.* FROM transporte_rutas r
                 LEFT JOIN transporte_paradas p ON r.id_ruta = p.id_ruta
-                WHERE r.ruta = '$ruta'";
+                WHERE r.ruta = '$ruta'
+                ORDER BY hora, parada ASC";
 
     $res = $mysqli->query($consulta);
 
