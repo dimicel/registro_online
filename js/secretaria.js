@@ -4765,9 +4765,6 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
         if (tipo=='ruta') titulo="MODIFICAR DE RUTA"
         else if (tipo=='parada') titulo="MODIFICAR DE PARADA"
     } 
-    if (tipo=="ruta"){
-        document.getElementById("div_hora_parada").style.display="none";
-    }
     cargaHTML("html/secretaria.htm", "div_altas_mod_rutas_paradas",titulo,300,400,"","",
         [
             {
@@ -4828,6 +4825,7 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
                 document.getElementById("ruta_old").value=ruta;
                 document.getElementById("parada_old").value=parada;
             }
+            document.getElementById("div_hora_parada").style.display="none";
         } 
         else if (tipo=='parada'){
             document.getElementById('etiqueta_alta_mod').innerText='Parada: ';
