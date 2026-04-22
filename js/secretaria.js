@@ -60,7 +60,7 @@ $(function() {
     });
 
     prom3=prom2.then((resp)=> {
-        document.getElementById("premat_eso").checked = (resp["eso"] == 0 ? false : true);
+        document.getElementById("premat_esos").checked = (resp["eso"] == 0 ? false : true);
         document.getElementById("premat_bach").checked = (resp["bach"] == 0 ? false : true);
         return ($.post("php/secret_transporte_habilitar.php", { peticion: "read" },()=>{},"json"));
     });
