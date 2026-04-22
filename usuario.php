@@ -64,7 +64,7 @@
                             </li>
 
                             <li class="nav-item" id="menu4">
-                                <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="RutasTransporte()">Ver Rutas de Transporte</a>
+                                <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="RutasTransporte()">Rutas de Transporte</a>
                             </li>
 
                             <li class="nav-item" id="menu5">
