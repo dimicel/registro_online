@@ -4493,6 +4493,7 @@ function obtieneRutasParadas(ruta=""){
                 const par=document.getElementById("tbody_paradas_transporte");
                 par.innerHTML = ""; 
                 const filaParada = document.createElement("tr");
+                filaParada.colSpan=2;
                 const celdaParada = document.createElement("td");
                 celdaParada.innerHTML = "Seleccione Ruta";
                 celdaParada.style.textAlign = "center";
