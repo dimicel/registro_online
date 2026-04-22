@@ -64,9 +64,9 @@
                             </li>
 
                             <li class="nav-item" id="menu4">
-                                <a id="config_rutas_transporte" class="dropdown-item small" href="#" onclick="RutasTransporte()">Rutas de Transporte</a>
+                                <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="RutasTransporte()">Rutas de Transporte</a>
                             </li>
-                                            
+
                             <li class="nav-item" id="menu5">
                                 <a class="nav-link" style="color:white;font-size: 0.8em;" href="#" onclick="javascript: cierraSesion();">Salir</a>
                             </li>
