@@ -1073,3 +1073,216 @@ function muestraEditor_usu(_file,tipo){
 }
 
 
+function RutasTransporte(){
+    cargaHTML("html/secretaria.htm", "div_rutas_transporte_escolar","GESTIÓN DE RUTAS DE TRANSPORTE",500,700,"","",
+    [{
+        class: "btn btn-success textoboton btn-sm",
+        text: "Salir",
+        click: function() {
+            $(this).dialog("destroy").remove();
+        }
+    }]).then((dialogo)=>{
+        ocultarPantallaEspera();
+        obtieneRutasParadas();
+
+    }).catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+}
+
+
+function obtieneRutasParadas(ruta=""){
+        mostrarPantallaEspera();
+        $.post("php/secret_transporte_recupera_rutas.php",{ruta:ruta},(resp)=>{
+            ocultarPantallaEspera();
+            if (resp.error=="ok"  && resp.listado=="rutas"){
+                const cont = document.getElementById("tbody_rutas_transporte");
+                cont.innerHTML = ""; 
+                const par=document.getElementById("tbody_paradas_transporte");
+                par.innerHTML = ""; 
+                const filaParada = document.createElement("tr");
+                const celdaParada = document.createElement("td");
+                celdaParada.colSpan=2;
+                celdaParada.innerHTML = "Seleccione Ruta";
+                celdaParada.style.textAlign = "center";
+                celdaParada.style.width = "100%"; 
+                celdaParada.style.overflow = "hidden";
+                celdaParada.style.textOverflow = "ellipsis";
+                celdaParada.style.whiteSpace = "nowrap";
+                filaParada.appendChild(celdaParada);
+                par.appendChild(filaParada);
+
+                for (let i = 0; i < resp.rutas.length; i++) {
+                    const fila = document.createElement("tr");
+                    fila.setAttribute("id", resp.rutas[i].ruta);
+                    fila.style.cursor = "pointer";
+
+                    // --- Configuración de celda ---
+                    const celdaNombre = document.createElement("td");
+                    celdaNombre.style.width = "50%"; 
+                    celdaNombre.style.overflow = "hidden";
+                    celdaNombre.style.textOverflow = "ellipsis";
+                    celdaNombre.style.whiteSpace = "nowrap";
+
+                    // Creamos un contenedor flex para el texto y los botones
+                    const contenedorFlex = document.createElement("div");
+                    contenedorFlex.className = "d-flex justify-content-between align-items-center";
+
+                    // 1. El texto de la ruta
+                    const spanTexto = document.createElement("span");
+                    spanTexto.innerText = resp.rutas[i].ruta;
+
+                    // Ensamblamos todo
+                    contenedorFlex.appendChild(spanTexto);
+                    celdaNombre.appendChild(contenedorFlex);
+                    fila.appendChild(celdaNombre);
+
+                    // --- Lógica de Selección ---
+                    fila.addEventListener("click", function() {
+                        const filas = document.querySelectorAll("#tbody_rutas_transporte tr");
+                        filas.forEach(f => {
+                            f.style.backgroundColor = "";
+                            f.style.color = "";
+                            f.removeAttribute('data-seleccionada');
+                        });
+
+                        this.style.backgroundColor = "yellow";
+                        this.style.color = "brown";
+                        this.setAttribute('data-seleccionada','true');
+                        obtieneRutasParadas(fila.getAttribute("id"));
+                    });
+
+                    // Importante: Inicializar tooltips después de añadir la fila al DOM
+                    // bootstrap.Tooltip.getOrCreateInstance(elemento);
+
+                    fila.appendChild(celdaNombre);
+                    cont.appendChild(fila);
+                }
+            }
+            else if(resp.error=="ok"  && resp.listado=="paradas"){
+                const cont=document.getElementById("tbody_paradas_transporte");
+                cont.innerHTML = ""; 
+
+                for (let i = 0; i < resp.paradas.length; i++) {
+                    const fila = document.createElement("tr");
+                    fila.setAttribute("id", resp.paradas[i].parada);
+                    fila.style.cursor = "pointer";
+
+                    // --- Configuración de celda ---
+                    const celdaParada = document.createElement("td");
+                    celdaParada.style.width = "50%"; 
+                    celdaParada.style.overflow = "hidden";
+                    celdaParada.style.textOverflow = "ellipsis";
+                    celdaParada.style.whiteSpace = "nowrap";
+                    celdaParada.style.verticalAlign="center";
+
+
+                    // Creamos un contenedor flex para el texto y los botones
+                    const contenedorParada = document.createElement("div");
+                    contenedorParada.className = "d-flex justify-content-between align-items-center";
+
+                    // 1. El texto de la ruta
+                    const spanParada = document.createElement("span");
+                    spanParada.innerText = resp.paradas[i].parada;
+
+                    contenedorParada.appendChild(spanParada);
+                    celdaParada.appendChild(contenedorParada);
+                    fila.appendChild(celdaParada);
+
+                    const celdaHora = document.createElement("td");
+                    celdaHora.style.width = "50%"; 
+                    celdaHora.style.overflow = "hidden";
+                    celdaHora.style.textOverflow = "ellipsis";
+                    celdaHora.style.whiteSpace = "nowrap";
+
+
+                    // Creamos un contenedor flex para el texto y los botones
+                    const contenedorHora = document.createElement("div");
+                    contenedorHora.className = "d-flex justify-content-between align-items-center";
+
+                    // 1. El texto de la ruta
+                    const spanHora = document.createElement("span");
+                    spanHora.innerText = resp.paradas[i].hora.substring(0, 5);
+
+                    // 2. El grupo de botones
+                    const divBotones = document.createElement("div");
+                    divBotones.className = "btn-group"; // Mantiene los botones juntos
+
+                    // Ensamblamos todo
+                    contenedorHora.appendChild(spanHora);
+                    celdaHora.appendChild(contenedorHora);
+                    fila.appendChild(celdaHora);
+
+                    // --- Lógica de Selección ---
+                    fila.addEventListener("click", function() {
+                        const filas = document.querySelectorAll("#tbody_paradas_transporte tr");
+                        filas.forEach(f => {
+                            f.style.backgroundColor = "";
+                            f.style.color = "";
+                            f.removeAttribute('data-seleccionada');
+                        });
+
+                        this.style.backgroundColor = "yellow";
+                        this.style.color = "brown";
+                        this.setAttribute('data-seleccionada','true');
+
+                    });
+
+                    // Importante: Inicializar tooltips después de añadir la fila al DOM
+                    // bootstrap.Tooltip.getOrCreateInstance(elemento);
+
+                    cont.appendChild(fila);
+                }                
+            }
+            else if(resp.error=="sin_rutas"){
+                const cont = document.getElementById("tbody_rutas_transporte");
+                cont.innerHTML = ""; // Limpia el contenido previo
+                const fila = document.createElement("tr");
+                //fila.style.display = "table";
+                fila.style.width = "100%";
+                //fila.style.tableLayout = "fixed";
+                const celda = document.createElement("td");
+                celda.innerHTML = "No hay rutas";
+                celda.style.textAlign = "center";
+                celda.style.boxSizing = "border-box";
+                celda.style.overflow = "hidden";
+                celda.style.textOverflow = "ellipsis";
+                celda.style.whiteSpace = "nowrap";
+                fila.appendChild(celda);
+                cont.appendChild(fila);
+
+                const par=document.getElementById("tbody_paradas_transporte");
+                par.innerHTML = ""; 
+                const filaParada = document.createElement("tr");
+                const celdaParada = document.createElement("td");
+                celdaParada.colSpan=2;
+                celdaParada.innerHTML = "No hay rutas";
+                celdaParada.style.textAlign = "center";
+                celdaParada.style.width = "100%"; 
+                celdaParada.style.overflow = "hidden";
+                celdaParada.style.textOverflow = "ellipsis";
+                celdaParada.style.whiteSpace = "nowrap";
+                filaParada.appendChild(celdaParada);
+                par.appendChild(filaParada);
+            }
+            else if (resp.error=="server"){ 
+                alerta("Error en base de datos. La aplicación no funcionará correctamente.", "ERROR DB");
+            }
+
+            // Ejecuta esto después de llenar la tabla
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl, {
+                    boundary: 'window',
+                    trigger : 'hover' // Forzamos a que solo reaccione al pasar por encima, no al hacer click
+                });
+            });
+        },"json")
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
+}
