@@ -705,10 +705,12 @@ $YInicio+=3;
 //SI YA HAY ALGUNA INSCRIPCIÓN BORRA EL ARCHIVO
 $dir = __DIR__."/../../../docs/".$id_nie."/residencia"."/".$anno_curso.'/';     
 $handle = opendir($dir);
-while ($file = readdir($handle)) {
-	if (is_file($dir.$file)) unlink($dir.$file);
+if ($handle){
+    while ($file = readdir($handle)) {
+        if (is_file($dir.$file)) unlink($dir.$file);
+    }
+    closedir($handle);
 }
-closedir($handle);
 
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=recortarSustituirYObtener4Caracteres($apellidos).", ".recortarSustituirYObtener4Caracteres($nombre).".pdf";

@@ -297,10 +297,12 @@ $pdf->writeHTMLCell(180,0,$XInicio,$YInicio,$texto,0,0,false,true,'',true);
 //SI YA HAY ALGUNA MATRÍCULA BORRA EL ARCHIVO
 $dir = __DIR__."/../../../docs/".$id_nie."/matriculas"."/".$anno_curso.'/';     
 $handle = opendir($dir);
-while ($file = readdir($handle)) {
-	if (is_file($dir.$file)) unlink($dir.$file);
+if ($handle){
+    while ($file = readdir($handle)) {
+        if (is_file($dir.$file)) unlink($dir.$file);
+    }
+    closedir($handle);
 }
-closedir($handle);
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';
 if (!is_dir(__DIR__."/../../../docs/".$id_nie))mkdir(__DIR__."/../../../docs/".$id_nie,0777);
