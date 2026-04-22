@@ -4765,7 +4765,9 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
         if (tipo=='ruta') titulo="MODIFICAR DE RUTA"
         else if (tipo=='parada') titulo="MODIFICAR DE PARADA"
     } 
-    cargaHTML("html/secretaria.htm", "div_altas_mod_rutas_paradas",titulo,300,400,"","",
+    if (tipo=="ruta") ancho_ventana=300;
+    else ancho_ventana=500;
+    cargaHTML("html/secretaria.htm", "div_altas_mod_rutas_paradas",titulo,ancho_ventana,400,"","",
         [
             {
                 class: "btn btn-success textoboton btn-sm",
