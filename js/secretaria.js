@@ -4643,6 +4643,7 @@ function obtieneRutasParadas(ruta=""){
                     divBotones.className = "btn-group"; // Mantiene los botones juntos
 
                     const nombre_parada=resp.paradas[i].parada;
+                    const hora_parada=resp.paradas[i].hora;
 
                    // 1. Usa este código para tus botones (manteniendo el contenedor body)
                     divBotones.innerHTML += `
@@ -4653,7 +4654,7 @@ function obtieneRutasParadas(ruta=""){
                                 data-bs-placement="top" 
                                 data-bs-offset="0,10" 
                                 title="Modificar Parada"
-                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'parada','${ruta}','${nombre_parada}')">
+                                onclick="event.stopPropagation(); altaModRutaParadaTranporte(1,'parada','${ruta}','${nombre_parada}','${hora_parada}')">
                             <i class="bi bi-pencil" style="pointer-events: none;"></i>
                         </button>`;
 
@@ -4754,7 +4755,7 @@ function obtieneRutasParadas(ruta=""){
 }
 
 
-function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
+function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada="",hora_parada=""){
     mostrarPantallaEspera();
     titulo="";
     if (alta_mod==0){
@@ -4835,6 +4836,7 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada=""){
             document.getElementById('campo').maxLength=30;
             document.getElementById('campo').size=30;
             document.getElementById('campo').value=parada;
+            document.getElementById('hora_parada').value=hora_parada;
             if(alta_mod==1){
                 document.getElementById("ruta_old").value=ruta;
                 document.getElementById("parada_old").value=parada;
