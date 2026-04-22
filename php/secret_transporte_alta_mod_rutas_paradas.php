@@ -24,6 +24,7 @@ $ruta_normalizada=normalizarTexto($ruta);
 $parada_normalizada=normalizarTexto($parada);
 $ruta_old_normalizada=normalizarTexto($ruta_old);
 $parada_old_normalizada=normalizarTexto($parada_old);
+isset($_POST["hora"])?$hora=$_POST["hora"]:$hora="00:00";
 
 
 if ($alta_mod==0){
@@ -64,9 +65,9 @@ if ($alta_mod==0){
         } else {
             $stmt_check->close();
 
-            $stmt_insert = $mysqli->prepare("INSERT INTO transporte_paradas (id_ruta, parada, parada_normalizada) VALUES ((SELECT id_ruta FROM transporte_rutas WHERE ruta=?),?, ?)");
+            $stmt_insert = $mysqli->prepare("INSERT INTO transporte_paradas (id_ruta, parada, parada_normalizada, hora) VALUES ((SELECT id_ruta FROM transporte_rutas WHERE ruta=?),?, ?, ?)");
             
-            $stmt_insert->bind_param("sss", $ruta, $parada, $parada_normalizada);
+            $stmt_insert->bind_param("ssss", $ruta, $parada, $parada_normalizada,$hora);
             
             if ($stmt_insert->execute()) {
                 echo "ok_alta_parada";
@@ -95,7 +96,8 @@ else if ($alta_mod==1){
         $stmt_update = $mysqli->prepare("
             UPDATE transporte_rutas 
             SET ruta = ?, 
-                ruta_normalizada = ? 
+                ruta_normalizada = ? ,
+                hora = ?
             WHERE ruta = ?
         ");
 
@@ -126,11 +128,12 @@ else if ($alta_mod==1){
         $stmt_update = $mysqli->prepare("
             UPDATE transporte_paradas 
             SET parada = ?, 
-                parada_normalizada = ? 
+                parada_normalizada = ?,
+                hora = ?
             WHERE parada=? AND id_ruta = (SELECT id_ruta FROM transporte_rutas WHERE ruta=? LIMIT 1) 
         ");
 
-        $stmt_update->bind_param("ssss", $parada, $parada_normalizada, $parada_old, $ruta_old);
+        $stmt_update->bind_param("sssss", $parada, $parada_normalizada, $hora, $parada_old, $ruta_old);
 
         if ($stmt_update->execute()) {
             echo "mod_parada_ok";
