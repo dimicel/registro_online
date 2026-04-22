@@ -386,7 +386,7 @@ function registraMatricula() {
             alerta(mensaje, "Error de servidor", '../../usuario.php');
         } else if (resp.indexOf("envio_ok") != -1) {
             alerta("Proceso finalizado correctamente.<br>Puede descargar el impreso registrado desde el panel de control del usuario.", "Registro correcto", '../../usuario.php');
-        } //else window.location.href = '../../usuario.php';
+        } else window.location.href = '../../usuario.php';
     });
 }
 

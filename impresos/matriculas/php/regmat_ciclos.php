@@ -1,8 +1,8 @@
 <?php
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+*/
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("../../../php/conexion.php");
@@ -348,10 +348,13 @@ $pdf->writeHTMLCell(180,0,$XInicio,$YInicio,$texto,0,0,false,true,'',true);
 //SI YA HAY ALGUNA MATRÍCULA BORRA EL ARCHIVO
 $dir = __DIR__."/../../../docs/".$id_nie."/matriculas"."/".$anno_curso.'/';     
 $handle = opendir($dir);
-while ($file = readdir($handle)) {
-	if (is_file($dir.$file)) unlink($dir.$file);
+if ($handle){
+    while ($file = readdir($handle)) {
+        if (is_file($dir.$file)) unlink($dir.$file);
+    }
+    closedir($handle);
 }
-closedir($handle);
+
 //GENERA EL ARCHIVO NUEVO
 $nombre_fichero=$registro . '.pdf';
 if (!is_dir(__DIR__."/../../../docs/".$id_nie))mkdir(__DIR__."/../../../docs/".$id_nie,0777);
