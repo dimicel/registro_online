@@ -4608,6 +4608,7 @@ function obtieneRutasParadas(ruta=""){
                     celdaParada.style.overflow = "hidden";
                     celdaParada.style.textOverflow = "ellipsis";
                     celdaParada.style.whiteSpace = "nowrap";
+                    celdaParada.style.verticalAlign="center";
 
 
                     // Creamos un contenedor flex para el texto y los botones
