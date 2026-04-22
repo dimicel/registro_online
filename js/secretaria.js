@@ -4634,7 +4634,7 @@ function obtieneRutasParadas(ruta=""){
 
                     // 1. El texto de la ruta
                     const spanHora = document.createElement("span");
-                    spanHora.innerText = resp.paradas[i].hora;
+                    spanHora.innerText = resp.paradas[i].hora.substring(0, 5);
 
                     // 2. El grupo de botones
                     const divBotones = document.createElement("div");
