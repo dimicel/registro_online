@@ -4602,39 +4602,39 @@ function obtieneRutasParadas(ruta=""){
                     fila.style.cursor = "pointer";
 
                     // --- Configuración de celda ---
-                    const celdaNombre = document.createElement("td");
-                    celdaNombre.style.width = "50%"; 
-                    celdaNombre.style.overflow = "hidden";
-                    celdaNombre.style.textOverflow = "ellipsis";
-                    celdaNombre.style.whiteSpace = "nowrap";
+                    const celdaParada = document.createElement("td");
+                    celdaParada.style.width = "50%"; 
+                    celdaParada.style.overflow = "hidden";
+                    celdaParada.style.textOverflow = "ellipsis";
+                    celdaParada.style.whiteSpace = "nowrap";
 
 
                     // Creamos un contenedor flex para el texto y los botones
-                    const contenedorFlex = document.createElement("div");
-                    contenedorFlex.className = "d-flex justify-content-between align-items-center";
+                    const contenedorParada = document.createElement("div");
+                    contenedorParada.className = "d-flex justify-content-between align-items-center";
 
                     // 1. El texto de la ruta
-                    const spanTexto = document.createElement("span");
-                    spanTexto.innerText = resp.paradas[i].parada;
+                    const spanParada = document.createElement("span");
+                    spanParada.innerText = resp.paradas[i].parada;
 
-                    contenedorFlex.appendChild(spanTexto);
-                    celdaNombre.appendChild(contenedorFlex);
-                    fila.appendChild(celdaNombre);
+                    contenedorParada.appendChild(spanParada);
+                    celdaParada.appendChild(contenedorParada);
+                    fila.appendChild(celdaParada);
 
-                    const celdaNombre = document.createElement("td");
-                    celdaNombre.style.width = "50%"; 
-                    celdaNombre.style.overflow = "hidden";
-                    celdaNombre.style.textOverflow = "ellipsis";
-                    celdaNombre.style.whiteSpace = "nowrap";
+                    const celdaHora = document.createElement("td");
+                    celdaHora.style.width = "50%"; 
+                    celdaHora.style.overflow = "hidden";
+                    celdaHora.style.textOverflow = "ellipsis";
+                    celdaHora.style.whiteSpace = "nowrap";
 
 
                     // Creamos un contenedor flex para el texto y los botones
-                    const contenedorFlex = document.createElement("div");
-                    contenedorFlex.className = "d-flex justify-content-between align-items-center";
+                    const contenedorHora = document.createElement("div");
+                    contenedorHora.className = "d-flex justify-content-between align-items-center";
 
                     // 1. El texto de la ruta
-                    const spanTexto = document.createElement("span");
-                    spanTexto.innerText = resp.paradas[i].hora;
+                    const spanHora = document.createElement("span");
+                    spanHora.innerText = resp.paradas[i].hora;
 
                     // 2. El grupo de botones
                     const divBotones = document.createElement("div");
@@ -4674,10 +4674,10 @@ function obtieneRutasParadas(ruta=""){
                         </button>`;
 
                     // Ensamblamos todo
-                    contenedorFlex.appendChild(spanTexto);
-                    contenedorFlex.appendChild(divBotones);
-                    celdaNombre.appendChild(contenedorFlex);
-                    fila.appendChild(celdaNombre);
+                    contenedorHora.appendChild(spanHora);
+                    contenedorHora.appendChild(divBotones);
+                    celdaHora.appendChild(contenedorHora);
+                    fila.appendChild(celdaHora);
 
                     // --- Lógica de Selección ---
                     fila.addEventListener("click", function() {
@@ -4697,7 +4697,6 @@ function obtieneRutasParadas(ruta=""){
                     // Importante: Inicializar tooltips después de añadir la fila al DOM
                     // bootstrap.Tooltip.getOrCreateInstance(elemento);
 
-                    fila.appendChild(celdaNombre);
                     cont.appendChild(fila);
                 }                
             }
