@@ -4721,6 +4721,7 @@ function obtieneRutasParadas(ruta=""){
                 par.innerHTML = ""; 
                 const filaParada = document.createElement("tr");
                 const celdaParada = document.createElement("td");
+                celdaParada.colSpan=2;
                 celdaParada.innerHTML = "No hay rutas";
                 celdaParada.style.textAlign = "center";
                 celdaParada.style.width = "100%"; 
