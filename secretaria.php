@@ -200,7 +200,7 @@
                 </form>
                 <form class="form-inline">
                     <div class="form-group row" id="div_transporte_escolar" style="display:none">
-                        <label class="col-form-label col-lg-2" style="margin-left: -15px;">Ruta: </label>
+                        <label class="col-form-label col-lg-2" >Ruta: </label>
                         <div class="col-lg-5">
                             <select id="transporte_ruta" size="1" style="margin-left: -60px;" onchange="generaSelectTransporteParada(this.value);listaRegistros();" class="form-control">
                                 
@@ -208,7 +208,7 @@
                         </div>
                         <label class="col-form-label col-lg-1" style="margin-left: 20px;">Parada: </label>
                         <div class="col-lg-1">
-                            <select id="transporte_parada" style="margin-left: -10px;" size="1" onchange="listaRegistros();" class="form-control">
+                            <select id="transporte_parada"  size="1" onchange="listaRegistros();" class="form-control">
                                 
                             </select>
                         </div>
