@@ -392,7 +392,7 @@ function generaSelectTransporteParada(ruta){
             for(i=0;i<resp.paradas.length;i++){
                 const p=document.createElement("option");
                 p.value=resp.paradas[i].parada;
-                p.text=resp.paradas[i].hora + "-" + resp.paradas[i].parada;
+                p.text=resp.paradas[i].hora.substr(0,5) + " - " + resp.paradas[i].parada;
                 document.getElementById("transporte_parada").add(p);
             }
         }
