@@ -196,23 +196,24 @@
                                 <select id="curso_mat" size="1" onchange="listaRegistros();" class="form-control"></select>
                             </div>
                         </div>
+                        <div class="form-group row" id="div_transporte_escolar" style="display:none">
+                            <label class="col-form-label col-lg-2" for="transporte_ruta" style="margin-left: 20px;">Ruta: </label>
+                            <div class="col-lg-5">
+                                <select id="transporte_ruta" size="1" style="margin-left: -20px;" onchange="generaSelectTransporteParada(this.value);" class="form-control">
+                                    
+                                </select>
+                            </div>
+                            <label class="col-form-label col-lg-1" style="margin-left: 20px;" for="transporte_parada">Parada: </label>
+                            <div class="col-lg-1">
+                                <select id="transporte_parada"  size="1" onchange="listaRegistros();" class="form-control">
+                                    <option value="" selected>Todas</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </form>
                 <form class="form-inline">
-                    <div class="form-group row" id="div_transporte_escolar" style="display:none">
-                        <label class="col-form-label col-lg-2" for="transporte_ruta" style="margin-left: 20px;">Ruta: </label>
-                        <div class="col-lg-5">
-                            <select id="transporte_ruta" size="1" style="margin-left: -20px;" onchange="generaSelectTransporteParada(this.value);" class="form-control">
-                                
-                            </select>
-                        </div>
-                        <label class="col-form-label col-lg-1" style="margin-left: 20px;" for="transporte_parada">Parada: </label>
-                        <div class="col-lg-1">
-                            <select id="transporte_parada"  size="1" onchange="listaRegistros();" class="form-control">
-                                <option value="" selected>Todas</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                 </form>
                 <form class="form-inline">
                     <div class="form-group row" id="div_curso_mat_ciclos" style="display:none">

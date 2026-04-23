@@ -804,6 +804,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
         document.getElementById("div_curso_mat_fpb").style.display = "none";
         document.getElementById("div_transporte_escolar").style.display = "inherit";
+        document.getElementById("div_incidencias").style.display="none";
         $("#CSV_premat").addClass("disabled");
     }
     else {
