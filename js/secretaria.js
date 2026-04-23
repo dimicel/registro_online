@@ -147,8 +147,23 @@ $(function() {
                 ciclos_gm_gs.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
             }
         }
-        
+        return ($.post('php/secret_transporte_recupera_rutas.php',{ruta:""},()=>{},"json"));
     });
+    prom9=prom8.then((resp)=>{
+        if (resp.error=="ok"){
+            const r_ini=document.createElement("option");
+            r_ini.value="";
+            r_ini.text="Todas";
+            document.getElementById("transporte_ruta").add(r);
+            for(i=0;i<resp.rutas.length;i++){
+                const r=document.createElement("option");
+                r.value=resp.rutas[i].ruta;
+                r.text=resp.rutas[i].ruta;
+                document.getElementById("transporte_ruta").add(r);
+            }
+        }
+    });
+        
 
     habilitaMenu(false, false); 
 
@@ -245,7 +260,8 @@ function generaSelectTipo_form(matriz){
         { value: "matricula_fpb", text: "Matrícula FPB" },
         { value: "prematricula", text: "Prematrícula" },
         { value: "revision_calificacion", text: "Revisión de calificación ("+matriz.revision_calificacion.procesado+")" },
-        { value: "revision_examen", text: "Revisión de examen ("+matriz.revision_examen.procesado+")" }
+        { value: "revision_examen", text: "Revisión de examen ("+matriz.revision_examen.procesado+")" },
+        { value: "transporte", text: "Transporte Escolar" }
     ];
 
     // Recorrer el array de opciones y crear las opciones
@@ -346,6 +362,24 @@ function generaSelectCurso_mat(){
             {value: "2bach_c", text: "2º Bach. Ciencias y Tecnología"},
             {value: "2bach_hcs", text: "2º Bach. HH.CC.SS."}
         ];
+    }
+
+    function generaSelectTransporteParada(ruta){
+        $.post('php/secret_transporte_recupera_rutas.php',{ruta:ruta},(resp)=>{
+            if(resp.error=="ok"){
+                document.getElementById("transporte_parada").innerHTML="";
+                const p_ini=document.createElement("option");
+                p_ini.value="";
+                p_ini.text="Todas";
+                document.getElementById("transporte_parada").add(p_ini);
+                for(i=0;i<resp.paradas.length;i++){
+                    const p=document.createElement("option");
+                    p.value=resp.paradas[i].parada;
+                    p.text=resp.paradas[i].hora + "-" + resp.paradas[i].parada;
+                    document.getElementById("transporte_parada").add(p);
+                }
+            }
+        },"json")
     }
     
       
@@ -714,6 +748,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_mat").style.display = "none";
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
         document.getElementById("div_curso_mat_fpb").style.display = "none";
+        document.getElementById("div_transporte_escolar").style.display = "none";
         if (document.getElementById("curso_pre_mat").value != "") $("#CSV_premat").removeClass("disabled");
         else $("#CSV_premat").addClass("disabled");
     } else if (tipo_formulario == "matricula") {
@@ -722,6 +757,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_premat").style.display = "none";
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
         document.getElementById("div_curso_mat_fpb").style.display = "none";
+        document.getElementById("div_transporte_escolar").style.display = "none";
         $("#CSV_premat").addClass("disabled");
     } else if (tipo_formulario == "matricula_ciclos") {
         habilitaMenu(true, false);
@@ -729,6 +765,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_premat").style.display = "none";
         document.getElementById("div_curso_mat_ciclos").style.display = "inherit";
         document.getElementById("div_curso_mat_fpb").style.display = "none";
+        document.getElementById("div_transporte_escolar").style.display = "none";
         $("#CSV_premat").addClass("disabled");
         if (document.getElementById("mat_ciclos").value != "" &&
             document.getElementById("mat_ciclos_curso").value != "" &&
@@ -740,6 +777,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_premat").style.display = "none";
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
         document.getElementById("div_curso_mat_fpb").style.display = "inherit";
+        document.getElementById("div_transporte_escolar").style.display = "none";
         $("#CSV_premat").addClass("disabled");
     }
     else if(tipo_formulario=="convalidaciones" || tipo_formulario=="exencion_fct"){
@@ -751,6 +789,16 @@ function listaRegistros(orden_campo, orden_direccion) {
         document.getElementById("div_curso_mat").style.display = "none";
         document.getElementById("div_curso_mat_ciclos").style.display = "none";
         document.getElementById("div_curso_mat_fpb").style.display = "none";
+        document.getElementById("div_transporte_escolar").style.display = "none";
+        $("#CSV_premat").addClass("disabled");
+    }
+    else if (tipo_formulario == "transporte") {
+        habilitaMenu(true, false);
+        document.getElementById("div_curso_mat").style.display = "none";
+        document.getElementById("div_curso_premat").style.display = "none";
+        document.getElementById("div_curso_mat_ciclos").style.display = "none";
+        document.getElementById("div_curso_mat_fpb").style.display = "inherit";
+        document.getElementById("div_transporte_escolar").style.display = "inherit";
         $("#CSV_premat").addClass("disabled");
     }
     else {
