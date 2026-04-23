@@ -259,8 +259,8 @@ function generaSelectTipo_form(matriz){
         { value: "matricula", text: "Matrícula ESO y BACH" },
         { value: "matricula_fpb", text: "Matrícula FPB" },
         { value: "prematricula", text: "Prematrícula" },
-        { value: "revision_calificacion", text: "Revisión de calificación ("+matriz.revision_calificacion.procesado+")" },
-        { value: "revision_examen", text: "Revisión de examen ("+matriz.revision_examen.procesado+")" },
+        //{ value: "revision_calificacion", text: "Revisión de calificación ("+matriz.revision_calificacion.procesado+")" },
+        //{ value: "revision_examen", text: "Revisión de examen ("+matriz.revision_examen.procesado+")" },
         { value: "transporte", text: "Transporte Escolar" }
     ];
 
