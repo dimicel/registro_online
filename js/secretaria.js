@@ -382,6 +382,11 @@ function generaSelectCurso_mat(){
 
 
 function generaSelectTransporteParada(ruta){
+    if (ruta==""){
+        document.getElementById("transporte_parada").innerHTML="<option value='' selected>Todas</option>";
+        listaRegistros();
+        return;
+    }
     $.post('php/secret_transporte_recupera_rutas.php',{ruta:ruta},(resp)=>{
         if(resp.error=="ok"){
             document.getElementById("transporte_parada").innerHTML="";
