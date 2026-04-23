@@ -203,8 +203,8 @@
                                     
                                 </select>
                             </div>
-                            <label class="col-form-label col-lg-1"  for="transporte_parada" style="margin-left:-10px">Parada: </label>
-                            <div class="col-lg-4">
+                            <label class="col-form-label col-lg-1"  for="transporte_parada" style="margin-left:-20px">Parada: </label>
+                            <div class="col-lg-4 ml-1">
                                 <select id="transporte_parada"  size="1" onchange="listaRegistros();" class="form-control">
                                     <option value="" selected>Todas</option>
                                 </select>
