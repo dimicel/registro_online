@@ -362,26 +362,7 @@ function generaSelectCurso_mat(){
             {value: "2bach_c", text: "2º Bach. Ciencias y Tecnología"},
             {value: "2bach_hcs", text: "2º Bach. HH.CC.SS."}
         ];
-    }
-
-    function generaSelectTransporteParada(ruta){
-        $.post('php/secret_transporte_recupera_rutas.php',{ruta:ruta},(resp)=>{
-            if(resp.error=="ok"){
-                document.getElementById("transporte_parada").innerHTML="";
-                const p_ini=document.createElement("option");
-                p_ini.value="";
-                p_ini.text="Todas";
-                document.getElementById("transporte_parada").add(p_ini);
-                for(i=0;i<resp.paradas.length;i++){
-                    const p=document.createElement("option");
-                    p.value=resp.paradas[i].parada;
-                    p.text=resp.paradas[i].hora + "-" + resp.paradas[i].parada;
-                    document.getElementById("transporte_parada").add(p);
-                }
-            }
-        },"json")
-    }
-    
+    }   
       
     var select = document.getElementById("curso_mat");
     
@@ -397,6 +378,25 @@ function generaSelectCurso_mat(){
         }
         select.appendChild(option);
     } 
+}
+
+
+function generaSelectTransporteParada(ruta){
+    $.post('php/secret_transporte_recupera_rutas.php',{ruta:ruta},(resp)=>{
+        if(resp.error=="ok"){
+            document.getElementById("transporte_parada").innerHTML="";
+            const p_ini=document.createElement("option");
+            p_ini.value="";
+            p_ini.text="Todas";
+            document.getElementById("transporte_parada").add(p_ini);
+            for(i=0;i<resp.paradas.length;i++){
+                const p=document.createElement("option");
+                p.value=resp.paradas[i].parada;
+                p.text=resp.paradas[i].hora + "-" + resp.paradas[i].parada;
+                document.getElementById("transporte_parada").add(p);
+            }
+        }
+    },"json")
 }
 
 
