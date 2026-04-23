@@ -154,7 +154,7 @@ $(function() {
             const r_ini=document.createElement("option");
             r_ini.value="";
             r_ini.text="Todas";
-            document.getElementById("transporte_ruta").add(r);
+            document.getElementById("transporte_ruta").add(r_ini);
             for(i=0;i<resp.rutas.length;i++){
                 const r=document.createElement("option");
                 r.value=resp.rutas[i].ruta;
