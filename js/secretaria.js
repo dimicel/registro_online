@@ -841,6 +841,11 @@ function listaRegistros(orden_campo, orden_direccion) {
         campos = ["id_nie", "nombre", "fecha_registro","registro","resolucion"];
         estilo = ["width:70px", "width:180px", "width:85px;text-align:center;", "width:230px;", "width:12ch;text-align:center;" ];
         encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Registro","Resolución"];
+    } else if(tipo_formulario=="transporte"){
+        tabla = tipo_formulario;
+        campos = ["id_nie", "nombre", "curso", "ruta", "parada", "correo"];
+        estilo = ["width:70px", "width:180px", "width:80px;", "width:25ch;", "width:30ch;", "width:200px;"];
+        encabezamiento = ["NIE", "Alumno", "Curso", "Ruta", "Parada", "Correo Electrónico"];
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
         else if (document.getElementById("curso_pre_mat").value == "3eso") {tabla = "premat_eso"; grupo="3º ESO";}
@@ -969,7 +974,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         for (i = 0; i < encabezamiento.length; i++) {
             encab += "<td style='" + estilo[i] + "' onclick='ordenListado(this)'>" + encabezamiento[i] + "</td>";
         }
-        encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
+        if (tipo_formulario!="transporte") encab += "<td style='width:90px; text-align: center'>Incidencias</td>";
         //if (tipo_formulario != "prematricula") encab += "<td style='width:90px; text-align: center'>Listado</td>";
         //if (tipo_formulario.indexOf("matricula")==-1)encab += "<td style='width:110px; text-align: center'>Procesado</td>";
         encab += "</tr>";
@@ -1065,6 +1070,17 @@ function listaRegistros(orden_campo, orden_direccion) {
             orden_campo: orden_campo,
             orden_direccion: direccion[orden_direccion],
             vistas:_v
+        }
+    }
+    else if(tabla=="transporte"){
+        datos = {
+            buscar: buscar,
+            tabla: tabla,
+            curso: document.getElementById('curso').value,
+            orden_campo: orden_campo,
+            orden_direccion: direccion[orden_direccion],
+            ruta:document.getElementById('transporte_ruta').value,
+            parada:document.getElementById('transporte_parada').value
         }
     }
     else {

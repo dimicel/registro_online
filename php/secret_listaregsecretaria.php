@@ -46,6 +46,10 @@ elseif($tabla=="mat_fpb"){
     $ciclo=$_POST["ciclo"];
     $curso_ciclo=$_POST["curso_ciclo"];
 }
+elseif($tabla=="transporte"){
+    $ruta=$_POST["ruta"];
+    $parada=$_POST["parada"];
+}
 
 if ($tabla=="premat_eso" || $tabla=="premat_bach"){
     $proceso="prematricula";
