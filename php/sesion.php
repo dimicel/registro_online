@@ -26,10 +26,10 @@ elseif (isset($_POST['tipo_usu']) && $_POST['tipo_usu']!="usuario"){
         $respuesta["error"]="ok";
         $respuesta["tipo_usu"]="jefatura estudios";
     }
-    /*elseif($_POST['tipo_usu']=="residencia" && $_SESSION['tipo_usu']=="residencia"){
+    elseif($_POST['tipo_usu']=="residencia" && $_SESSION['tipo_usu']=="residencia"){
         $respuesta["error"]="ok";
         $respuesta["tipo_usu"]="residencia";
-    }*/
+    }
     elseif($_POST['tipo_usu']=="residencia" && $_SESSION['tipo_usu']=="secretaria"){
         $respuesta["error"]="ok";
         $respuesta["tipo_usu"]="secretaria";
