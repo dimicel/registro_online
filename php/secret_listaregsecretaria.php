@@ -19,8 +19,8 @@ $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
 $orden_campo=$_POST["orden_campo"];
 $orden_direccion=$_POST["orden_direccion"];
-if ($orden_campo=="registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
-if ($orden_campo=="fecha_registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
+if ($orden_campo=="fecha_registro" || $orden_campo=="registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
+elseif($proceso=="transporte") $orden_listado="apellidos ASC, nombre ASC";
 else $orden_listado=$orden_campo." ".$orden_direccion;
 if ($tabla=="convalidaciones" || $tabla=="exencion_fct") $visto=$_POST["vistas"];
 else $solo_incidencias=$_POST["solo_incidencias"];
@@ -80,14 +80,21 @@ elseif($tabla=="exencion_fct"){
     $proceso=$tabla;
     $campos="*";
 }
-else {
+elseif ($proceso=="revision_examen") {
     $proceso=$tabla;
-    if ($proceso=="revision_examen"){
-        $campos="id_nie,nombre,apellidos,del_alumno,registro,listado,incidencias,procesado";
-    }
-    elseif ($proceso=="revision_calificacion"){
-        $campos="id_nie,nombre,apellidos,registro,listado,incidencias,procesado";
-    }
+    $campos="id_nie,nombre,apellidos,del_alumno,registro,listado,incidencias,procesado";
+}
+elseif ($proceso=="revision_calificacion") {
+    $proceso=$tabla;
+    $campos="id_nie,nombre,apellidos,registro,listado,incidencias,procesado";
+}
+elseif ($proceso=="transporte"){
+    $proceso=$tabla;
+    $campos="*";
+}
+else{
+    $data["error"]="sin_proceso";
+    exit(json_encode($data));
 }
 
 $coletilla="";
@@ -102,6 +109,14 @@ if ($tabla=="convalidaciones" || $tabla=="exencion_fct"){
     }
     if ($tabla=="convalidaciones"  && $visto==0){
         $coletilla.=" procesado=0 and ";
+    }
+}
+elseif($tabla=="transporte"){
+    if ($ruta!=""){
+        $coletilla.=" ruta='$ruta' and ";
+    }
+    if ($parada!=""){
+        $coletilla.=" parada='$parada' and ";
     }
 }
 else{
@@ -127,7 +142,8 @@ else{
 }
 
 if ($buscar!=""){
-    $consulta=$consulta . " and (id_nie like '%$buscar%' or registro like '%$buscar%' or nombre like '%$buscar%' or apellidos like '%$buscar%')";
+    if ($proceso=="transporte") $consulta=$consulta . " and (id_nie like '%$buscar%' or nombre like '%$buscar%' or apellidos like '%$buscar%')";
+    else $consulta=$consulta . " and (id_nie like '%$buscar%' or registro like '%$buscar%' or nombre like '%$buscar%' or apellidos like '%$buscar%')";
     /*if ($proceso=="prematricula" || $proceso=="matriculaeso" || $proceso=="matriculabach" || $proceso=="matriculaciclos" || $proceso=="matriculafpb"){
         $consulta=$consulta . " and id_nie like '%$buscar%' or registro like '%$buscar%' or nombre like '%$buscar%' or apellidos like '%$buscar%'";
     }

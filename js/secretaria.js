@@ -1100,7 +1100,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         //alerta(resp.consulta,"");
         ocultarPantallaEspera();
         if (resp.error == "server") alerta("Error en el servidor. Inténtalo más tarde.", "Error de servidor");
-        else if (resp.error == "no_tabla" || resp.error == "sin_registros") {
+        else if (resp.error == "no_tabla" || resp.error == "sin_registros" || resp.error == "sin_proceso") {
             document.getElementById("div_notabla").style.display = "block";
             document.getElementById("div_tabla").style.display = "none";
             habilitaMenu(false, false);
