@@ -844,7 +844,7 @@ function listaRegistros(orden_campo, orden_direccion) {
     } else if(tipo_formulario=="transporte"){
         tabla = tipo_formulario;
         campos = ["id_nie", "nombre", "cursa", "ruta", "parada", "email"];
-        estilo = ["width:70px", "width:220px", "width:80px;", "width:100px;", "width:100px;", "width:250px;"];
+        estilo = ["width:70px", "width:270px", "width:150px;", "width:100px;", "width:100px;", "width:300px;"];
         encabezamiento = ["NIE", "Alumno", "Curso", "Ruta", "Parada", "Correo Electrónico"];
     } else if (tipo_formulario == "prematricula") {
         if (document.getElementById("curso_pre_mat").value == "2eso"){tabla = "premat_eso"; grupo="2º ESO";}
