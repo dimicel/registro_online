@@ -968,7 +968,7 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
     else if (tipo_formulario == "transporte") {
         encab = "<tr>";
-        encab+="<td style='width:50px; text-align:center' ><input type='checkbox' onchange='if(this.checked)alert('marcados');else alert('desmarcados');'></td>";
+        encab+="<td style='width:40px; text-align:center' ><input type='checkbox' onchange='if(this.checked)alert(1);else alert(0);'></td>";
         for (i = 0; i < encabezamiento.length; i++) {
              encab += "<td style='" + estilo[i]  + encabezamiento[i] + "</td>";
         }
