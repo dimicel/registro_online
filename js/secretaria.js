@@ -966,6 +966,14 @@ function listaRegistros(orden_campo, orden_direccion) {
         encab += "<td style='width:6ch; text-align: center' title='Pasado a Delphos'>PD</td>";
         encab += "<td style='width:6ch; text-align: center' title='Observaciones'>Obser.</td></tr>";
     }
+    else if (tipo_formulario == "transporte") {
+        encab = "<tr>";
+        encab+="<td style='width:50px; text-align:center' ><input type='checkbox' onchange='if(this.checked)alert('marcados');else alert('desmarcados');'></td>";
+        for (i = 0; i < encabezamiento.length; i++) {
+             encab += "<td style='" + estilo[i]  + encabezamiento[i] + "</td>";
+        }
+        encab += "</tr>";
+    }
     else{
         if (orden_campo == "apellidos") encabezamiento[1] += " " + orden_direccion;
         else encabezamiento[campos.indexOf(orden_campo)] += " " + orden_direccion;
@@ -1254,6 +1262,14 @@ function listaRegistros(orden_campo, orden_direccion) {
                         data += "<td style='width:6ch'><center><input type='checkbox' onclick='javascript:event.stopPropagation(); this.checked=!this.checked;' data-registro='"+data_array[i]["registro"]+"'/></center></td>";
                     }  
                     data += "<td style='width:6ch'><center>"+array_sino[data_array[i].incidencias]+"</center></td></tr>"; 
+                }
+                else if(tipo_formulario=="transporte"){
+                    data += "<tr>";
+                    data += "<td style='width:50px; text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' id='data_array[i][campos[j]' onclick='javascript: event.stopPropagation();'/></td>";
+                    for (j = 0; j < campos.length; j++) {
+                        data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
+                    }
+                    data += "</tr>";
                 }
                 else{
                     data += "<tr onclick='verRegistro(\""+data_array[i]["registro"]+"\")'>";
