@@ -4894,6 +4894,7 @@ function altaModRutaParadaTranporte(alta_mod,tipo,ruta="",parada="",hora_parada=
                                 else alerta(resp,"ERROR");
                                 if (tipo=="ruta") obtieneRutasParadas();
                                 else if (tipo=="parada") obtieneRutasParadas(ruta);
+                                reconstruyeSelectsRutaParadas();
                                 $(this).dialog("destroy").remove();
                     });
                     
@@ -4947,6 +4948,7 @@ function eliminarRutaParada(tipo,ruta="",parada=""){
         else if (resp=="ok"){
             //alerta("Se ha eliminado la "+tipo+".","OK");
             (tipo=="ruta")? obtieneRutasParadas():obtieneRutasParadas(ruta);
+            reconstruyeSelectsRutaParadas();
         } 
     });
 }
@@ -5032,4 +5034,22 @@ function panelEnvioEmail(array_emails) {
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
+}
+
+function reconstruyeSelectsRutaParadas(){
+    $.post('php/secret_transporte_recupera_rutas.php',{ruta:""},(resp)=>{
+        if (resp.error=="ok"){
+            const r_ini=document.createElement("option");
+            r_ini.value="";
+            r_ini.text="Todas";
+            document.getElementById("transporte_ruta").add(r_ini);
+            for(i=0;i<resp.rutas.length;i++){
+                const r=document.createElement("option");
+                r.value=resp.rutas[i].ruta;
+                r.text=resp.rutas[i].ruta;
+                document.getElementById("transporte_ruta").add(r);
+            }
+            document.getElementById("transporte_parada").innerHTML="<option value='' selected>Todas</option>";
+        }
+    },"json");
 }
