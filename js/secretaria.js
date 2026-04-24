@@ -4953,5 +4953,28 @@ function eliminarRutaParada(tipo,ruta="",parada=""){
 
 
 function envioCorreoTransporte(){
-    alert("Cooreo Transporte");
+    let emails = [];
+    const checkboxesMarcados = document.querySelectorAll('input[data-checkbox="item_transporte"]:checked');
+    if (checkboxesMarcados.length === 0){
+        alerta ("No hay seleccionado ningún usuario al que enviar la comunicación por correo electrónico.","LISTA VACÍA");
+        return;
+    } 
+    checkboxesMarcados.forEach(checkbox => {
+        const filaActual = checkbox.closest('tr');
+        if (filaActual) {
+            const celdas = filaActual.querySelectorAll('td');
+            const indiceColumnaEmail = celdas.length - 1;
+            const celdaEmail = celdas[indiceColumnaEmail];
+            if (celdaEmail) {
+                const email = celdaEmail.textContent.trim();
+                if (email.length>0)  emails.push(email);
+            }
+        }
+    });
+    if (emails.length===0){
+        alerta("La lista de usuarios no contiene ninguna dirección de correo electrónico a la que enviar la comunicación.","LISTA SIN EMAILS");
+        return;
+    }
+    //mostrarPantallaEspera();
+
 }
