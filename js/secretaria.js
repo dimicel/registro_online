@@ -968,7 +968,10 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
     else if (tipo_formulario == "transporte") {
         encab = "<tr>";
-        encab+="<td style='width:30px; text-align:center' ><input type='checkbox' onchange='if(this.checked)alert(1);else alert(0);'></td>";
+        encab+="<td style='width:30px; text-align:center' ><input type='checkbox' ";
+        encab+="onchange='const checkboxes = document.querySelectorAll('[data-checkbox='item_transporte']');";
+        encab+="checkboxes.forEach(checkbox => {checkbox.checked = this.checked;});'";
+        encab+="></td>";
         for (i = 0; i < encabezamiento.length; i++) {
              encab += "<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
         }
@@ -1265,7 +1268,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                 }
                 else if(tipo_formulario=="transporte"){
                     data += "<tr>";
-                    data += "<td style='width:30px; text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' id='"+data_array[i][campos[0]]+"' onclick='javascript: event.stopPropagation();'/></td>";
+                    data += "<td style='width:30px; text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' id='"+data_array[i][campos[0]]+"' onclick='javascript: event.stopPropagation();' data-checkbox='item_transporte'/></td>";
                     for (j = 0; j < campos.length; j++) {
                         if (data_array[i][campos[j]]==null) data_array[i][campos[j]]="";
                         data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
