@@ -843,7 +843,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         encabezamiento = ["NIE", "Alumno", "Fecha Reg.","Registro","Resolución"];
     } else if(tipo_formulario=="transporte"){
         tabla = tipo_formulario;
-        campos = ["id_nie", "nombre", "cursa", "ruta", "parada", "correo"];
+        campos = ["id_nie", "nombre", "cursa", "ruta", "parada", "email"];
         estilo = ["width:70px", "width:180px", "width:80px;", "width:25ch;", "width:30ch;", "width:200px;"];
         encabezamiento = ["NIE", "Alumno", "Curso", "Ruta", "Parada", "Correo Electrónico"];
     } else if (tipo_formulario == "prematricula") {
