@@ -212,6 +212,9 @@
                                 <option value="" selected>Todas</option>
                             </select>
                         </div>
+                        <div class="col-lg-4" >
+                            <input type="button" value="Enviar correo a los seleccionados" onclick="envioCorreoTransporte();" class="textoboton btn btn-success" /> 
+                        </div>
                     </div>
                 </form>
                 <form class="form-inline">

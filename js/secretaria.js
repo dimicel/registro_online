@@ -4947,3 +4947,8 @@ function eliminarRutaParada(tipo,ruta="",parada=""){
         } 
     });
 }
+
+
+function envioCorreoTransporte(){
+    alert("Cooreo Transporte");
+}
