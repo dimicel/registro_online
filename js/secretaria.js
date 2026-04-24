@@ -4975,8 +4975,7 @@ function envioCorreoTransporte(){
         alerta("La lista de usuarios no contiene ninguna dirección de correo electrónico a la que enviar la comunicación.","LISTA SIN EMAILS");
         return;
     }
-    mostrarPantallaEspera();
-
+    panelEnvioEmail(emails);
 }
 
 function panelEnvioEmail(array_emails) {
@@ -4995,23 +4994,17 @@ function panelEnvioEmail(array_emails) {
                 mensaje = document.getElementById("usu_cuerpo_email").value;
                 const _dialog = $(this).closest('.ui-dialog-content');
                 if (validFormEmail.form()) {
-                    //mostrarPantallaEspera();
-                    mostrarPantallaEspera("Enviando correo electrónico...");
-                    $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
-                        //ocultarPantallaEspera();
+                    mostrarPantallaEspera("Enviando correos electrónicos...");
+                    $.post("php/secret_usu_enviaremail.php", { emails: array_emails, asunto: asunto, mensaje: mensaje }, function(resp) {
                         ocultarPantallaEspera();
-                        alerta("Correo electrónico enviado.", "EMAIL");
+                        if(resp=="ok")alerta("Correos electrónicos enviados correctamente.", "EMAIL");
+                        else alerta(resp,"ERROR");
                         _dialog.dialog("destroy").remove();
                     });
                 }
             }    
         }]).then((dialogo)=>{
             ocultarPantallaEspera();
-            exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            if (!exp_email.test(dir_email)) {
-                alerta("Email incorrecto.", "ERROR");
-                return;
-            }
             validFormEmail=$("#form_email_usuario").validate({
                 rules: {
                     usu_asunto_email: {
