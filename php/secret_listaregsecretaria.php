@@ -17,6 +17,8 @@ if ($mysqli->errno>0) {
 $tabla=$_POST["tabla"];
 $curso=$_POST["curso"];
 $buscar=$_POST["buscar"];
+if(isset($_POST["ruta"])) $ruta=$_POST["ruta"];
+if(isset($_POST["parada"])) $parada=$_POST["parada"];
 $orden_campo=$_POST["orden_campo"];
 $orden_direccion=$_POST["orden_direccion"];
 if ($orden_campo=="fecha_registro" || $orden_campo=="registro") $orden_listado="fecha_registro ".$orden_direccion.",registro ".$orden_direccion.", apellidos ASC, nombre ASC ";
