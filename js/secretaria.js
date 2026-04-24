@@ -1267,6 +1267,7 @@ function listaRegistros(orden_campo, orden_direccion) {
                     data += "<tr>";
                     data += "<td style='width:50px; text-align:center' onclick='javascript:event.stopPropagation();this.children[0].checked=!this.children[0].checked'><input type='checkbox' id='data_array[i][campos[j]' onclick='javascript: event.stopPropagation();'/></td>";
                     for (j = 0; j < campos.length; j++) {
+                        if (data_array[i][campos[j]]==null) data_array[i][campos[j]]="";
                         data += "<td style='" + estilo[j] + "'>" + data_array[i][campos[j]] + "</td>";
                     }
                     data += "</tr>";
