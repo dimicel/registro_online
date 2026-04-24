@@ -202,7 +202,7 @@
                     <div class="form-group row" id="div_transporte_escolar" style="display:none; margin-left:10px;">
                         <label class="col-form-label col-1" for="transporte_ruta" >Ruta: </label>
                         <div class="col-3">
-                            <select id="transporte_ruta" size="1"  onchange="generaSelectTransporteParada(this.value);" class="form-control">
+                            <select id="transporte_ruta" size="1"  onchange="generaSelectTransporteParada(this.value);listaRegistros();" class="form-control">
                                 
                             </select>
                         </div>

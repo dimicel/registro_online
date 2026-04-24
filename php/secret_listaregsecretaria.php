@@ -114,11 +114,12 @@ if ($tabla=="convalidaciones" || $tabla=="exencion_fct"){
     }
 }
 elseif($tabla=="transporte"){
-    if ($ruta!=""){
+    if ($ruta!="" && $parada!=""){
+        $ruta=$ruta ." - parada " . $parada;
         $coletilla.=" ruta='$ruta' and ";
     }
-    if ($parada!=""){
-        $coletilla.=" parada='$parada' and ";
+    elseif ($ruta!="" && $parada==""){
+        $coletilla.=" ruta LIKE '$ruta - parada %' and ";
     }
 }
 else{
