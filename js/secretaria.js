@@ -4971,7 +4971,6 @@ function envioCorreoTransporte(){
             }
         }
     });
-    alert(emails.length);
     if (emails.length===0 ){
         alerta("La lista de usuarios no contiene ninguna dirección de correo electrónico a la que enviar la comunicación.","LISTA SIN EMAILS");
         return;
