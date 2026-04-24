@@ -4967,11 +4967,12 @@ function envioCorreoTransporte(){
             const celdaEmail = celdas[indiceColumnaEmail];
             if (celdaEmail) {
                 const email = celdaEmail.textContent.trim();
-                if (email.length>0)  emails.push(email);
+                if (email.length>0 && !emails.includes(email))  emails.push(email);
             }
         }
     });
-    if (emails.length===0){
+    alert(email.length);
+    if (emails.length===0 ){
         alerta("La lista de usuarios no contiene ninguna dirección de correo electrónico a la que enviar la comunicación.","LISTA SIN EMAILS");
         return;
     }
