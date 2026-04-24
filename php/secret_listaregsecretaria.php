@@ -294,12 +294,12 @@ elseif ($proceso=="matriculafpb"){
 }
 elseif($proceso=="transporte"){
     while ($reg=$res->fetch_assoc()){
-        $partes = explode(" - parada ", $data["registros"][$contador]["ruta"]);
+        $partes = explode(" - parada ", $reg["ruta"]);
         $data["registros"][$contador]["id_nie"]= $reg["id_nie"];
         $data["registros"][$contador]["nombre"]=ucwords(strtolower($reg["apellidos"])).", ".ucwords(strtolower($reg["nombre"]));
         $data["registros"][$contador]["email"]=$reg["email"];
-        $reg["ruta"]=trim($partes[0]);
-        $reg["parada"]=trim($partes[1]);
+        $data["registros"][$contador]["ruta"]=trim($partes[0]);
+        $data["registros"][$contador]["parada"]=trim($partes[1]);
         $data["registros"][$contador]["cursa"]=$reg["cursa"];
         $contador++;
     }
