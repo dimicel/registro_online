@@ -970,7 +970,7 @@ function listaRegistros(orden_campo, orden_direccion) {
         encab = "<tr>";
         encab+="<td style='width:30px; text-align:center' ><input type='checkbox' onchange='if(this.checked)alert(1);else alert(0);'></td>";
         for (i = 0; i < encabezamiento.length; i++) {
-             encab += "<td style='" + estilo[i]  + encabezamiento[i] + "</td>";
+             encab += "<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
         }
         encab += "</tr>";
     }
