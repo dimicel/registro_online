@@ -138,7 +138,8 @@ function pasaPagina(p) {
                 document.getElementById("nombre").value = nombre;
                 document.getElementById("nif_nie").value = id_nif;
                 form_pagina_2.telef_alumno.value=telef_alumno;
-                form_pagina_2.email_alumno.value=email_alumno;
+                if (email_alumno.trim()!="") form_pagina_2.email_alumno.value=email_alumno;
+                else form_pagina_2.email_alumno.value=email;
                 primera_vez_pag_2=false;
             }
         }
