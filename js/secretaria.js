@@ -5037,6 +5037,7 @@ function panelEnvioEmail(array_emails) {
 }
 
 function reconstruyeSelectsRutaParadas(){
+    document.getElementById("transporte_ruta").innerHTML="";
     $.post('php/secret_transporte_recupera_rutas.php',{ruta:""},(resp)=>{
         if (resp.error=="ok"){
             const r_ini=document.createElement("option");
