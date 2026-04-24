@@ -200,19 +200,19 @@
                 </form>
                 <form class="form-inline">
                     <div class="form-group row" id="div_transporte_escolar" style="display:none; margin-left:10px;">
-                        <label class="col-form-label col-lg-2" for="transporte_ruta" >Ruta: </label>
-                        <div class="col-lg-4">
+                        <label class="col-form-label col-1" for="transporte_ruta" >Ruta: </label>
+                        <div class="col-3">
                             <select id="transporte_ruta" size="1"  onchange="generaSelectTransporteParada(this.value);" class="form-control">
                                 
                             </select>
                         </div>
-                        <label class="col-form-label col-lg-2"  for="transporte_parada" >Parada: </label>
-                        <div class="col-lg-4" >
+                        <label class="col-form-label col-1"  for="transporte_parada" >Parada: </label>
+                        <div class="col-3" >
                             <select id="transporte_parada"  size="1" onchange="listaRegistros();" class="form-control">
                                 <option value="" selected>Todas</option>
                             </select>
                         </div>
-                        <div class="col-lg-4" >
+                        <div class="col-4" >
                             <input type="button" value="Enviar correo a los seleccionados" onclick="envioCorreoTransporte();" class="textoboton btn btn-success" /> 
                         </div>
                     </div>
