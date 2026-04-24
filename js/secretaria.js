@@ -968,9 +968,9 @@ function listaRegistros(orden_campo, orden_direccion) {
     }
     else if (tipo_formulario == "transporte") {
         encab = "<tr>";
-        encab+="<td style='width:30px; text-align:center' ><input type='checkbox' ";
-        encab+="onchange='document.querySelectorAll('[data-checkbox='item_transporte']').forEach(checkbox => {checkbox.checked = this.checked;});";
-        encab+="></td>";
+        encab += `<td style='width:30px; text-align:center'>
+            <input type='checkbox' onchange='document.querySelectorAll("[data-checkbox=item_transporte]").forEach(checkbox => {checkbox.checked = this.checked;});'>
+          </td>`;
         for (i = 0; i < encabezamiento.length; i++) {
              encab += "<td style='"+ estilo[i] + "'>" + encabezamiento[i] + "</td>";
         }
