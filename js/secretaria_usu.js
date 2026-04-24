@@ -139,7 +139,7 @@ function listaUsus() {
                 data += "<td style='" + estilo_usu[0] + "'>" + data_array[i]["id_nie"] + "</td>";
                 data += "<td style='" + estilo_usu[1] + "'>" + data_array[i]["nombre"] + "</td>";
                 if (String(data_array[i]["nombre"]).trim() != "" && data_array[i]["habilitado"]==1) {
-                    data += "<td style='" + estilo_usu[2] + ";text-align:center'><a href='javascript:void(0)' onclick='panelEnvioEmail(\"" + data_array[i]["email"] + "\")'><i class='bi bi-envelope-at'></i></a></td>";
+                    data += "<td style='" + estilo_usu[2] + ";text-align:center'><a href='javascript:void(0)' onclick='usu_panelEnvioEmail(\"" + data_array[i]["email"] + "\")'><i class='bi bi-envelope-at'></i></a></td>";
                 } else {
                     data += "<td style='" + estilo_usu[2] + ";text-align:center'>-</td>";
                 }
@@ -499,7 +499,7 @@ function panelExpedienteUsuario(id_nie,nom) {
 }
 
 
-function panelEnvioEmail(dir_email) {
+function usu_panelEnvioEmail(dir_email) {
     mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria_usu.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
         [{text:"Cancelar",

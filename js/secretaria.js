@@ -4975,6 +4975,68 @@ function envioCorreoTransporte(){
         alerta("La lista de usuarios no contiene ninguna dirección de correo electrónico a la que enviar la comunicación.","LISTA SIN EMAILS");
         return;
     }
-    //mostrarPantallaEspera();
+    mostrarPantallaEspera();
 
+}
+
+function panelEnvioEmail(array_emails) {
+    mostrarPantallaEspera("Cargando ...");
+    cargaHTML("html/secretaria_usu.htm", "div_email_usuario","ENVÍO DE CORREO ELECTRÓNICO",750,2000,"center center","center center",
+        [{text:"Cancelar",
+            class: "textoboton btn btn-success btn-sm",
+            click:function(){
+                $(this).dialog("destroy").remove();
+            }
+        }, 
+        {text:"Enviar",
+            class: "textoboton btn btn-success btn-sm",
+            click:function() {
+                asunto = document.getElementById("usu_asunto_email").value;
+                mensaje = document.getElementById("usu_cuerpo_email").value;
+                const _dialog = $(this).closest('.ui-dialog-content');
+                if (validFormEmail.form()) {
+                    //mostrarPantallaEspera();
+                    mostrarPantallaEspera("Enviando correo electrónico...");
+                    $.post("php/secret_usu_enviaremail.php", { email: dir_email, asunto: asunto, mensaje: mensaje }, function() {
+                        //ocultarPantallaEspera();
+                        ocultarPantallaEspera();
+                        alerta("Correo electrónico enviado.", "EMAIL");
+                        _dialog.dialog("destroy").remove();
+                    });
+                }
+            }    
+        }]).then((dialogo)=>{
+            ocultarPantallaEspera();
+            exp_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!exp_email.test(dir_email)) {
+                alerta("Email incorrecto.", "ERROR");
+                return;
+            }
+            validFormEmail=$("#form_email_usuario").validate({
+                rules: {
+                    usu_asunto_email: {
+                        required: true
+                    },
+                    usu_cuerpo_email: {
+                        required: true
+                    }
+                },
+                messages: {
+                    usu_asunto_email: {
+                        required: "No puede dejar el asunto vacío."
+                    },
+                    usu_cuerpo_email: {
+                        required: "No puede dejar vacío el cuerpo del mensaje."
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    $(element).prev().prev().html(error);
+                }
+            });
+    })
+    .catch (error=>{
+        ocultarPantallaEspera();
+        var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
+        alerta(msg,"ERROR DE CARGA");
+    });
 }
