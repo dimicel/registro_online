@@ -718,26 +718,17 @@ function panelModUsu(id) {
                         required: true
                     },
                     mod_email: {
-                        email: function() {
-                            if (form_modif_datos_usu.mod_email.value.trim().length == 0) return false;
-                            else return true;
-                        }
+                        email_no_obligatorio: true
                     },
                     mod_nif:{
                         metodo_nif_dinamico: true,
                         nif_noduplicado: true
                     },
                     dat_email_tut1: {
-                        email: function() {
-                            if (form_modif_datos_usu.dat_email_tut1.value.trim().length == 0) return false;
-                            else return true; 
-                        }  
+                        email_no_obligatorio: true 
                     },
                     dat_email_tut2: {
-                        email: function() {
-                            if (form_modif_datos_usu.dat_email_tut2.value.trim().length == 0) return false;
-                            else return true;
-                        }
+                        email_no_obligatorio
                     }
                 },
                 messages: {
@@ -778,7 +769,9 @@ function panelModUsu(id) {
 
 function modUsu() {
     if ($("#form_modif_datos_usu").valid()) {
+        mostrarPantallaEspera();
         $.post("php/usu_moddatospers.php", $("#form_modif_datos_usu").serialize(), function(resp) {
+            ocultarPantallaEspera();
             if (resp == "ok") alerta("Datos de usuario modificados correctamente", "MODIFICACIÓN OK");
             else if (resp == "server") alerta("No se han podido modificar los datos del usuario.", "ERROR BASE DE DATOS");
             else if (resp == "fallo") alerta("La modificación del usuario no ha sido posible en todas las tablas.", "FALLO MODIFICACIÓN TABLA USUARIOS");
@@ -788,6 +781,7 @@ function modUsu() {
             listaRegistros(_orden_campo, _orden_direccion);
         });
     }
+    else alerta("Revisa los campos marcados en rojo. Es posible que alguno de ellos esté incompleto o contenga información no válida.", "ERROR DE VALIDACIÓN");
 }
 
 
