@@ -207,8 +207,8 @@ function cambioDatosPers() {
                 text: "Aceptar",
                 click: function() {
                     document.getElementById("dat_idnie").value = id_nie;
-                    mostrarPantallaEspera();
-                    if ($("#form_mod_datos").valid()) {
+                    if($("#form_mod_datos").valid()){
+                        mostrarPantallaEspera();
                         $.post("php/usu_moddatospers.php", $("#form_mod_datos").serialize(), function(resp) {
                             ocultarPantallaEspera();
                             if (resp === "ok") {
@@ -221,6 +221,7 @@ function cambioDatosPers() {
                             } else alerta("Ha ocurrido un problema y los cambios no se han podido realizar.<br>Inténtelo en otro momento.", "FALLO EN OPERACIÓN");
                         });
                     }
+                    else alerta("Revise los campos marcados en rojo. Es posible que alguno de ellos esté incompleto o contenga información no válida.", "ERROR DE VALIDACIÓN");
                 }
             },
             {
