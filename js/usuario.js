@@ -326,7 +326,7 @@ function cambioDatosPers() {
                             nif_noduplicado: true
                         },
                         dat_email: {
-                            email: true
+                            email_no_obligatorio: true
                         },
                         dat_email_tut1: {
                             email_no_obligatorio: true
@@ -341,7 +341,7 @@ function cambioDatosPers() {
                             nif_noduplicado: "Nº ya existe"
                         },
                         dat_email: {
-                            email: "No es una dirección de correo electrónico."
+                            email_no_obligatorio: "No es una dirección de correo electrónico."
                         },
                         dat_email_tut1: {
                             email_no_obligatorio: "No es una dirección de correo electrónico."
