@@ -485,6 +485,7 @@ function panelExpedienteUsuario(id_nie,nom) {
             if (mes == 6) cuenta_annos++;
             for (i = 2020; i <= cuenta_annos; i++) {
                 var c = i + "-" + (i + 1);
+                alert(c);
                 document.getElementById("curso_exp").append(new Option(c, c));
             }
             document.getElementById("curso_exp").selectIndex=0;
