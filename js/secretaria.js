@@ -15,7 +15,7 @@ var ciclos_gm=new Array();
 var ciclos_gm_gs=new Array();
 var ciclos_gs=new Array();
 var departamentos=new Array();
-var anno_ini_curso_docs=0;
+
 
 
 $(function() {
@@ -41,7 +41,6 @@ $(function() {
                 document.getElementById("divider_borra_premat").style.display="";
             }
             anno_ini_curso = resp["anno_ini_curso"];
-            anno_ini_curso_docs = resp["anno_ini_curso_docs"];
             mes = resp["mes"];
             _curso = anno_ini_curso + "-" + (anno_ini_curso + 1);
             curso_actual=_curso;
