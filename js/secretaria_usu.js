@@ -481,8 +481,8 @@ function panelExpedienteUsuario(id_nie,nom) {
             $("#nombre_exp").html(nom);
             document.getElementById("curso_exp").innerHTML="";
             document.getElementById("curso_exp").append(new Option("Todos", "todos"));
-            cuenta_annos = anno_ini_curso_docs;alert();
-            if (mes == 6) cuenta_annos++;
+            cuenta_annos = anno_ini_curso_docs;
+            if (mes == 6) cuenta_annos++;alert();
             for (i = 2020; i <= cuenta_annos; i++) {
                 var c = i + "-" + (i + 1);
                 alert(c);
