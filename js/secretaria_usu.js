@@ -476,6 +476,7 @@ function panelExpedienteUsuario(id_nie,nom) {
         }]      
     )
     .then ((dialogo)=>{
+        alert();
             ocultarPantallaEspera();
             $("#nie_exp").html(id_nie);
             $("#nombre_exp").html(nom);
