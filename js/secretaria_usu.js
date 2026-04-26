@@ -487,10 +487,9 @@ function panelExpedienteUsuario(id_nie,nom) {
             document.getElementById("curso_exp").innerHTML="";
             document.getElementById("curso_exp").append(new Option("Todos", "todos"));
             cuenta_annos = anno_ini_curso_docs;
-            if (mes == 6) cuenta_annos++;alert(cuenta_annos);
+            if (mes == 6) cuenta_annos++;
             for (i = 2020; i <= cuenta_annos; i++) {
                 var c = i + "-" + (i + 1);
-                alert(c);
                 document.getElementById("curso_exp").append(new Option(c, c));
             }
             document.getElementById("curso_exp").selectIndex=0;
@@ -641,7 +640,6 @@ function panelModUsu(id) {
                 if (f_nac != "") f_nac = f_nac.substr(8, 2) + "/" + f_nac.substr(5, 2) + "/" + f_nac.substr(0, 4);
                 if (f_cad != "") f_cad = f_cad.substr(8, 2) + "/" + f_cad.substr(5, 2) + "/" + f_cad.substr(0, 4);
                 form_modif_datos_usu.mod_nombre.value = resp.datos.nombre;
-                //alert(resp.datos.nombre+"____"+form_modif_datos_usu.mod_nombre.value);
                 form_modif_datos_usu.mod_apellidos.value = resp.datos.apellidos;
                 form_modif_datos_usu.mod_nif.value = resp.datos.id_nif;
                 form_modif_datos_usu.mod_fecha_caducidad.value = f_cad;
