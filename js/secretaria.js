@@ -15,6 +15,7 @@ var ciclos_gm=new Array();
 var ciclos_gm_gs=new Array();
 var ciclos_gs=new Array();
 var departamentos=new Array();
+var anno_ini_curso_docs=0;
 
 
 $(function() {
