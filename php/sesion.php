@@ -41,18 +41,21 @@ elseif (isset($_POST['tipo_usu']) && $_POST['tipo_usu']!="usuario"){
         $respuesta["nombre_ap_jd"]=$_SESSION['nombre_ap_jd'];
         $respuesta["email_jd"]=$_SESSION['email_jd'];
         $respuesta["anno_ini_curso"]=calculaCurso_ini();
+        $respuesta["anno_ini_curso_docs"]=calculaCurso_ini_docs();
         exit (json_encode($respuesta));
     }
     elseif($_POST['tipo_usu']=="comedor" && $_SESSION['tipo_usu']=="comedor"){
         $respuesta["error"]="ok";
         $respuesta["tipo_usu"]="comedor";
         $respuesta["anno_ini_curso"]=calculaCurso_ini();
+        $respuesta["anno_ini_curso_docs"]=calculaCurso_ini_docs();
         exit (json_encode($respuesta));
     }
     elseif($_POST['tipo_usu']=="secretaria" && $_SESSION['tipo_usu']=="secretaria"){
         $respuesta["error"]="ok";
         $respuesta["tipo_usu"]="secretaria";
         $respuesta["anno_ini_curso"]=calculaCurso_ini();
+        $respuesta["anno_ini_curso_docs"]=calculaCurso_ini_docs();
         exit (json_encode($respuesta));
     }
     else{
