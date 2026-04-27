@@ -2308,7 +2308,7 @@ function verDocsMatricula(id, edad) {
 
                 if (!existe_foto){
                     $("foto_link").removeClass("btn-success");
-                    $("foto_link").addClass("btn-secondary ");
+                    $("foto_link").addClass("btn-warning");
                     document.getElementById("foto_link").disabled=true;
                     document.getElementById("foto_link").innerText="No existe Fotografía";
                 }
@@ -2316,7 +2316,7 @@ function verDocsMatricula(id, edad) {
                     document.getElementById("dni_link").innerText="Ver Pasaporte";
                     if (!existe_dni_A){
                         $("dni_link").removeClass("btn-success");
-                        $("dni_link").addClass("btn-secondary ");
+                        $("dni_link").addClass("btn-warning");
                         document.getElementById("dni_link").disabled=true;
                         document.getElementById("dni_link").innerText="No existe Pasaporte";
                     }
@@ -2324,21 +2324,21 @@ function verDocsMatricula(id, edad) {
                 else {
                     if(!existe_dni_A && !existe_dni_R){
                         $("dni_link").removeClass("btn-success");
-                        $("dni_link").addClass("btn-secondary ");
+                        $("dni_link").addClass("btn-warning");
                         document.getElementById("dni_link").disabled=true;
                         document.getElementById("dni_link").innerText="No existe DNI/NIE";
                     }
                 }
                 if (!existe_seguro){
                     $("seguro_link").removeClass("btn-success");
-                    $("seguro_link").addClass("btn-secondary ");
+                    $("seguro_link").addClass("btn-warning");
                     document.getElementById("seguro_link").disabled=true;
                     document.getElementById("seguro_link").innerText="No existe Seguro Escolar";
                 
                 }
                 if (!existe_num_ss){
                     $("nss_link").removeClass("btn-success");
-                    $("nss_link").addClass("btn-secondary ");
+                    $("nss_link").addClass("btn-warning");
                     document.getElementById("nss_link").disabled=true;
                     document.getElementById("nss_link").innerText="No existe Número de la Seguridad Social";
                 }
