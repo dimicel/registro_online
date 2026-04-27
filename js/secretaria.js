@@ -2343,65 +2343,6 @@ function verDocsMatricula(id, edad) {
                     document.getElementById("nss_link").innerText="No existe Número de la Seguridad Social";
                 }
             });
-            /*d1 = Promise.resolve($.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/seguro/" + _curso + "/" + id }));
-            d2 = d1.then((resp1) => {
-                if (resp1 != "no_existe") {
-                    _dir="docs/" + id + "/seguro/" + _curso + "/" + id + resp1 + "?q=" + Date.now();
-                    document.getElementById("doc_mat_seguro").src = _dir;
-                    document.getElementById("seguro_link").setAttribute("href", _dir);
-                    document.getElementById("seguro_link").setAttribute("target", "_blank");
-                } else {
-                    if (edad == "<28") {
-                        document.getElementById("doc_mat_seguro").src = "recursos/no_documento.jpg";
-                        document.getElementById("seguro_link").setAttribute("href", "#");
-                        document.getElementById("seguro_link").setAttribute("target", "_self");
-                    } else if (edad == ">28") {
-                        document.getElementById("doc_mat_seguro").src = "recursos/no_seguro.jpg";
-                        document.getElementById("seguro_link").setAttribute("href", "#");
-                        document.getElementById("seguro_link").setAttribute("target", "_self");
-                    }
-                }
-                return $.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/dni/" + id + "-A" });
-            });
-            d3 = d2.then((resp2) => {
-                if (resp2 != "no_existe") {
-                    _dir="docs/" + id + "/dni/" + id + "-A"+resp2+ "?q=" + Date.now();
-                    document.getElementById("doc_dni_a").src = _dir;
-                    document.getElementById("dni_a_link").setAttribute("href", _dir);
-                    document.getElementById("dni_a_link").setAttribute("target", "_blank");
-                } else {
-                    document.getElementById("doc_dni_a").src = "recursos/no_documento.jpg";
-                    document.getElementById("dni_a_link").setAttribute("href", "#");
-                    document.getElementById("dni_a_link").setAttribute("target", "_self");
-                }
-                return $.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/dni/" + id + "-R" });
-            });
-            d4 = d3.then((resp3) => {
-                if (resp3 != "no_existe") {
-                    _dir="docs/" + id + "/dni/" + id + "-R"+resp3 + "?q=" + Date.now();
-                    document.getElementById("doc_dni_r").src = _dir ;
-                    document.getElementById("dni_r_link").setAttribute("href", _dir);
-                    document.getElementById("dni_r_link").setAttribute("target", "_blank");
-                }else {
-                    document.getElementById("doc_dni_r").src = "recursos/no_documento.jpg";
-                    document.getElementById("dni_r_link").setAttribute("href", "#");
-                    document.getElementById("dni_r_link").setAttribute("target", "_self");
-                }
-                return $.post("php/secret_compruebafoto.php", { url: "../docs/fotos/" + id });
-            });
-            d4.then((resp4) => {
-                ocultarPantallaEspera();
-                if (resp4 != "no_existe") {
-                    _dir="docs/fotos/" + id + resp4 + "?q=" + Date.now();
-                    document.getElementById("doc_mat_foto").src = _dir;
-                    document.getElementById("foto_link").setAttribute("href", _dir);
-                    document.getElementById("foto_link").setAttribute("target", "_blank");
-                }  else {
-                    document.getElementById("doc_mat_foto").src = "recursos/no_foto.jpg";
-                    document.getElementById("foto_link").setAttribute("href", "#");
-                    document.getElementById("foto_link").setAttribute("target", "_self");
-                }
-            }); */           
 
         }
     )
