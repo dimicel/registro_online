@@ -13,13 +13,13 @@ $id_nie=trim($_POST["id_nie"]);
 $curso=trim($_POST["curso"]);
 
 $sql = "
-    SELECT 'eso' AS tabla FROM mat_eso WHERE id_nie = ? AND curso = ?
+    SELECT 'grupo' as cursa FROM mat_eso WHERE id_nie = ? AND curso = ?
     UNION ALL
-    SELECT 'bach' AS tabla FROM mat_bach WHERE id_nie = ? AND curso = ?
+    SELECT 'grupo' AS cursa FROM mat_bach WHERE id_nie = ? AND curso = ?
     UNION ALL
-    SELECT 'ciclos' AS tabla FROM mat_ciclos WHERE id_nie = ? AND curso = ?
+    SELECT CONCAT(curso_ciclo, ' - GRADO ',grado, ' ', ciclo) AS cursa FROM mat_ciclos WHERE id_nie = ? AND curso = ?
     UNION ALL
-    SELECT 'fpb' AS tabla FROM mat_fpb WHERE id_nie = ? AND curso = ?
+    SELECT CONCAT(curso_ciclo, ' - FPB ', ciclo) AS cursa FROM mat_fpb WHERE id_nie = ? AND curso = ?
 ";
 
 $stmt = $mysqli->prepare($sql);

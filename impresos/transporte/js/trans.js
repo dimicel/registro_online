@@ -80,10 +80,10 @@ $(document).ready(function() {
         }
         return $.post("../../php/secret_transporte_recupera_rutas.php",{}, () => {}, "json");
     });
-    dat3.then((resp)=>{
+    dat4=dat3.then((resp)=>{
         if (resp.error=="ok") rutas=resp;
         $("#pagina_1").load("trans_html/pagina1.html?q="+Date.now().toString(), function() {
-            creaValidatorPagina1();
+            //creaValidatorPagina1();
             $("#pagina_1").show();
             $("[data-paginacion]").html("Pág. 1/7");
             if (mes_mat != 6) _texto_curso=(anno_ini_curso) + "/" + (anno_ini_curso + 1);
@@ -91,7 +91,13 @@ $(document).ready(function() {
             if (mes_mat != 6) $("h7").text("SOLICITUD TRANSPORTE para el curso " + _texto_curso);
             else $("h7").text("SOLICITUD TRANSPORTE para el curso " + _texto_curso);
         });
+        return $.post("../../php/secret_transporte_recupera_rutas.php",{id_nie:id_nie,curso:anno_curso}, () => {});
     });
+    dat4.then((resp)=>{
+        document.getElementById("curso").value=resp;
+
+    });
+
 
     $('[data-toggle="tooltip"]').tooltip(); //Inicializa todos los tooltips (bootstrap)
     document.getElementById("transporte").reset();
