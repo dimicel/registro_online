@@ -2293,6 +2293,7 @@ function verDocsMatricula(id, edad) {
                 return $.post("impresos/matriculas/php/comprueba_docs_matricula.php", { id_nie: id, curso:_curso });
             });
             d2.then((resp) => {
+                ocultarPantallaEspera();
                 if (resp.indexOf('F')>-1)existe_foto=true;
                 else existe_foto=false;
                 if (resp.indexOf('A')>-1) existe_dni_A=true;
