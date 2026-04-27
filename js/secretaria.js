@@ -2305,6 +2305,12 @@ function verDocsMatricula(id, edad) {
                 else existe_certificado=false;
                 if (resp.indexOf('N')>-1) existe_num_ss=true;
                 else existe_num_ss=false;
+
+                if (!existe_foto){
+                    $("foto_link").removeClass("btn-success");
+                    $("foto_link").addClass("btn-secondary ");
+                
+                }
             });
             /*d1 = Promise.resolve($.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/seguro/" + _curso + "/" + id }));
             d2 = d1.then((resp1) => {
@@ -2373,6 +2379,24 @@ function verDocsMatricula(id, edad) {
         var msg = "Error en la carga de procedimiento: " + error.status + " " + error.statusText;
         alerta(msg,"ERROR DE CARGA");
     });
+}
+
+function cargaImagen(dest){
+    if (dest=="prev_foto"){
+        alerta("<center><img src='docs/fotos/"+id_nie+".jpeg?q="+Date()+"'></center>","FOTOGRAFÍA");
+    }
+    else if(dest=="prev_anverso_dni"){
+        alerta("<center><img src='docs/"+id_nie+"/dni/"+id_nie+"-A.jpeg?q="+Date()+"'></center>","ANVERSO DOCUMENTO IDENTIFICACIÓN","",500);
+    }
+    else if(dest=="prev_reverso_dni"){
+        alerta("<center><img src='docs/"+id_nie+"/dni/"+id_nie+"-R.jpeg?q="+Date()+"'></center>","REVERSO DOCUMENTO IDENTIFICACIÓN","",500);
+    }
+    else if(dest=="prev_resguardo_seguro"){
+        alerta("<center><img src='docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR","",700);
+    }
+    else if(dest=="prev_num_ss"){
+        alerta("<center><img src='docs/"+id_nie+"/nss/nss_"+id_nie+".jpeg?q="+Date()+"'></center>","NÚMERO SEGURIDAD SOCIAL","",700);
+    }
 }
 
 
