@@ -13,7 +13,7 @@ $id_nie=trim($_POST["id_nie"]);
 $curso=trim($_POST["curso"]);
 
 $sql = "
-    SELECT 'grupo' as cursa FROM mat_eso WHERE id_nie = ? AND curso = ?
+    SELECT 'grupo' AS cursa FROM mat_eso WHERE id_nie = ? AND curso = ?
     UNION ALL
     SELECT 'grupo' AS cursa FROM mat_bach WHERE id_nie = ? AND curso = ?
     UNION ALL
