@@ -1,8 +1,8 @@
 <?php
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+*/
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
 include("../../../php/conexion.php");
@@ -32,7 +32,7 @@ if ($stmt) {
     $resultado = $stmt->get_result();
     if ($resultado->num_rows > 0) {
         $fila = $resultado->fetch_assoc();
-        echo $fila['tabla'];
+        echo $fila['cursa'];
     } else {
         echo "no_matricula";
     }
