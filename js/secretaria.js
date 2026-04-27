@@ -2289,7 +2289,7 @@ function verDocsMatricula(id, edad) {
             if (typeof edad === 'undefined') edad=0;
             d1 = Promise.resolve($.post("php/usu_recdatospers.php", { id_nie:id },"json"));
             d2 = d1.then ((resp) => {
-                alert(resp.datos.es_pasaporte)
+                alert(resp.error)
                 es_pasaporte=resp.datos.es_pasaporte;
                 return $.post("impresos/matriculas/php/comprueba_docs_matricula.php", { id_nie: id, curso:_curso });
             });
@@ -2311,7 +2311,6 @@ function verDocsMatricula(id, edad) {
                 if (!existe_foto){
                     $("foto_link").removeClass("btn-success");
                     $("foto_link").addClass("btn-secondary ");
-                
                 }
             });
             /*d1 = Promise.resolve($.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/seguro/" + _curso + "/" + id }));
