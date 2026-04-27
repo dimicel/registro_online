@@ -2280,7 +2280,6 @@ function subeExcel(obj) {
 
 
 function verDocsMatricula(id, edad) {
-    let es_pasaporte=0;
     let existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false;
     mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",400,2000,"center center","center center")
@@ -2289,8 +2288,7 @@ function verDocsMatricula(id, edad) {
             if (typeof edad === 'undefined') edad=0;
             d1 = Promise.resolve($.post("php/usu_recdatospers.php", { id_nie:id },()=>{},"json"));
             d2 = d1.then ((resp) => {
-                alert(resp.error);
-                es_pasaporte=resp.datos.es_pasaporte;
+                resp.datos.es_pasaporte? document.getElementById("es_pasaporte").value=1 : document.getElementById("es_pasaporte").value=0;
                 return $.post("impresos/matriculas/php/comprueba_docs_matricula.php", { id_nie: id, curso:_curso });
             });
             d2.then((resp) => {
@@ -2311,6 +2309,33 @@ function verDocsMatricula(id, edad) {
                 if (!existe_foto){
                     $("foto_link").removeClass("btn-success");
                     $("foto_link").addClass("btn-secondary ");
+                    document.getElementById("foto_link").disabled=true;
+                }
+                if (es_pasaporte){
+                    document.getElementById("dni_link").innerText="Ver Pasaporte";
+                    if (!existe_dni_A){
+                        $("dni_link").removeClass("btn-success");
+                        $("dni_link").addClass("btn-secondary ");
+                        document.getElementById("dni_link").disabled=true;
+                    }
+                }
+                else {
+                    if(!existe_dni_A && !existe_dni_R){
+                        $("dni_link").removeClass("btn-success");
+                        $("dni_link").addClass("btn-secondary ");
+                        document.getElementById("dni_link").disabled=true;
+                    }
+                }
+                if (!existe_seguro){
+                    $("seguro_link").removeClass("btn-success");
+                    $("seguro_link").addClass("btn-secondary ");
+                    document.getElementById("seguro_link").disabled=true;
+                
+                }
+                if (!existe_num_ss){
+                    $("nss_link").removeClass("btn-success");
+                    $("nss_link").addClass("btn-secondary ");
+                    document.getElementById("nss_link").disabled=true;
                 }
             });
             /*d1 = Promise.resolve($.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/seguro/" + _curso + "/" + id }));
@@ -2383,19 +2408,19 @@ function verDocsMatricula(id, edad) {
 }
 
 function cargaImagen(dest){
-    if (dest=="prev_foto"){
+    if (dest=="Ver Fotografía"){
         alerta("<center><img src='docs/fotos/"+id_nie+".jpeg?q="+Date()+"'></center>","FOTOGRAFÍA");
     }
-    else if(dest=="prev_anverso_dni"){
+    else if(dest=="Ver DNI/NIE"){
         alerta("<center><img src='docs/"+id_nie+"/dni/"+id_nie+"-A.jpeg?q="+Date()+"'></center>","ANVERSO DOCUMENTO IDENTIFICACIÓN","",500);
     }
-    else if(dest=="prev_reverso_dni"){
+    else if(dest=="Ver Pasaporte"){
         alerta("<center><img src='docs/"+id_nie+"/dni/"+id_nie+"-R.jpeg?q="+Date()+"'></center>","REVERSO DOCUMENTO IDENTIFICACIÓN","",500);
     }
-    else if(dest=="prev_resguardo_seguro"){
+    else if(dest=="Ver Seguro Escolar"){
         alerta("<center><img src='docs/"+id_nie+"/seguro/"+anno_curso+"/"+id_nie+".jpeg?q="+Date()+"'></center>","RESGUARDO SEGURO ESCOLAR","",700);
     }
-    else if(dest=="prev_num_ss"){
+    else if(dest=="Ver Número de la Seguridad Social"){
         alerta("<center><img src='docs/"+id_nie+"/nss/nss_"+id_nie+".jpeg?q="+Date()+"'></center>","NÚMERO SEGURIDAD SOCIAL","",700);
     }
 }
