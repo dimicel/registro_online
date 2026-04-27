@@ -2288,7 +2288,7 @@ function verDocsMatricula(id, edad) {
             _curso = document.getElementById("curso").value;
             if (typeof edad === 'undefined') edad=0;
             d1 = Promise.resolve($.post("php/usu_recdatospers.php", { id_nie:id },"json"));
-            d2 = d1.then (resp => {
+            d2 = d1.then ((resp) => {
                 es_pasaporte=resp.datos.es_pasaporte;
                 return $.post("impresos/matriculas/php/comprueba_docs_matricula.php", { id_nie: id, curso:_curso });
             });
