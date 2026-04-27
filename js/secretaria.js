@@ -2283,7 +2283,7 @@ function verDocsMatricula(id, edad) {
     let es_pasaporte=0;
     let existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false;
     mostrarPantallaEspera("Cargando ...");
-    cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000,"center center","center center")
+    cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",400,2000,"center center","center center")
     .then ((dialogo)=>{
             _curso = document.getElementById("curso").value;
             if (typeof edad === 'undefined') edad=0;
