@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 */
 session_start();
 if (!isset($_SESSION['acceso_logueado']) || $_SESSION['acceso_logueado']!=="correcto") exit("Acceso denegado");
-include("conexion.php");
+include("../../../php/conexion.php");
 
 if ($mysqli->errno>0) exit("server");
 
