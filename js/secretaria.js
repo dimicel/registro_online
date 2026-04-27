@@ -2280,12 +2280,33 @@ function subeExcel(obj) {
 
 
 function verDocsMatricula(id, edad) {
+    let es_pasaporte=0;
+    let existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false;
     mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000,"center center","center center")
     .then ((dialogo)=>{
             _curso = document.getElementById("curso").value;
             if (typeof edad === 'undefined') edad=0;
-            d1 = Promise.resolve($.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/seguro/" + _curso + "/" + id }));
+            d1 = Promise.resolve($.post("php/usu_recdatospers.php", { id_nie:id },"json"));
+            d2 = d1.then (resp => {
+                es_pasaporte=resp.datos.es_pasaporte;
+                return $.post("impresos/matriculas/php/comprueba_docs_matricula.php", { id_nie: id, curso:_curso });
+            });
+            d2.then((resp) => {
+                if (resp.indexOf('F')>-1)existe_foto=true;
+                else existe_foto=false;
+                if (resp.indexOf('A')>-1) existe_dni_A=true;
+                else existe_dni_A=false;
+                if (resp.indexOf('R')>-1) existe_dni_R=true;
+                else existe_dni_R=false;
+                if (resp.indexOf('S')>-1) existe_seguro=true;
+                else existe_seguro=false;
+                if (resp.indexOf('C')>-1) existe_certificado=true;
+                else existe_certificado=false;
+                if (resp.indexOf('N')>-1) existe_num_ss=true;
+                else existe_num_ss=false;
+            });
+            /*d1 = Promise.resolve($.post("php/secret_compruebafoto.php", { url: "../docs/" + id + "/seguro/" + _curso + "/" + id }));
             d2 = d1.then((resp1) => {
                 if (resp1 != "no_existe") {
                     _dir="docs/" + id + "/seguro/" + _curso + "/" + id + resp1 + "?q=" + Date.now();
@@ -2343,8 +2364,7 @@ function verDocsMatricula(id, edad) {
                     document.getElementById("foto_link").setAttribute("href", "#");
                     document.getElementById("foto_link").setAttribute("target", "_self");
                 }
-               
-            });            
+            }); */           
 
         }
     )
