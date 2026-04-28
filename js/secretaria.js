@@ -2312,7 +2312,7 @@ function verDocsMatricula(id, edad) {
                 else {
                     document.getElementById("img_alumno").style.display="none";
                     document.getElementById("txt_no_foto").style.display="";
-                }
+                }/*
                 if (es_pasaporte){
                     document.getElementById("texto_DNI_NIE_PASAPORTE").innerText="DOCUMENTO DE IDENTIFICACIÓN (PASAPORTE)";
                     document.getElementById("vista_pasaporte").style.display="";
@@ -2323,7 +2323,7 @@ function verDocsMatricula(id, edad) {
                         document.getElementById("img_pasaporte").style.display="none";
                         document.getElementById("txt_no_pasaporte").style.display="";
                     }
-                }/*
+                }
                 else {
                     document.getElementById("texto_DNI_NIE_PASAPORTE").innerText="DOCUMENTO DE IDENTIFICACIÓN (DNI/NIE)";
                     document.getElementById("vista_dni").style.display="";
