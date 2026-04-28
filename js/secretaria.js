@@ -2282,7 +2282,7 @@ function subeExcel(obj) {
 function verDocsMatricula(id, edad) {
     let existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false;
     mostrarPantallaEspera("Cargando ...");
-    cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",400,2000,"center center","center center")
+    cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000,"center center","center center")
     .then ((dialogo)=>{
             _curso = document.getElementById("curso").value;
             if (typeof edad === 'undefined') edad=0;
@@ -2306,7 +2306,14 @@ function verDocsMatricula(id, edad) {
                 if (resp.indexOf('N')>-1) existe_num_ss=true;
                 else existe_num_ss=false;
 
-                if (!existe_foto){
+                if (existe_foto){
+                    document.getElementById("img_alumno").src='docs/fotos/"+id_nie+".jpeg?q="+Date()+"';
+                }
+                else {
+                    document.getElementById("img_alumno").style.display="none";
+                    document.getElementById("txt_no_foto").style.display="";
+                }
+                /*if (!existe_foto){
                     $("foto_link").removeClass("btn-success");
                     $("foto_link").addClass("btn-warning");
                     document.getElementById("foto_link").disabled=true;
@@ -2341,7 +2348,7 @@ function verDocsMatricula(id, edad) {
                     $("nss_link").addClass("btn-warning");
                     document.getElementById("nss_link").disabled=true;
                     document.getElementById("nss_link").innerText="No existe Número de la Seguridad Social";
-                }
+                }*/
             });
 
         }
