@@ -2323,7 +2323,7 @@ function verDocsMatricula(id, edad) {
                         document.getElementById("img_pasaporte").style.display="none";
                         document.getElementById("txt_no_pasaporte").style.display="";
                     }
-                }
+                }/*
                 else {
                     document.getElementById("texto_DNI_NIE_PASAPORTE").innerText="DOCUMENTO DE IDENTIFICACIÓN (DNI/NIE)";
                     document.getElementById("vista_dni").style.display="";
@@ -2341,7 +2341,7 @@ function verDocsMatricula(id, edad) {
                         document.getElementById("img_reverso").style.display="none";
                         document.getElementById("txt_no_reverso").style.display="";
                     }
-                }
+                }*/
                 /*if (!existe_foto){
                     $("foto_link").removeClass("btn-success");
                     $("foto_link").addClass("btn-warning");
