@@ -2307,7 +2307,7 @@ function verDocsMatricula(id, edad) {
                 else existe_num_ss=false;
 
                 if (existe_foto){
-                    document.getElementById("img_alumno").src='docs/fotos/"+id+".jpeg?q="+Date()+"';
+                    document.getElementById("img_alumno").src=`docs/fotos/${id}.jpeg?q=${Date()}`;
                 }
                 else {
                     document.getElementById("img_alumno").style.display="none";
