@@ -2305,7 +2305,7 @@ function verDocsMatricula(id, edad) {
                 else existe_certificado=false;
                 if (resp.indexOf('N')>-1) existe_num_ss=true;
                 else existe_num_ss=false;
-                document.getElementById("es_pasaporte").value=1;
+                //document.getElementById("es_pasaporte").value=1;
                 if (existe_foto){
                     document.getElementById("img_alumno").src=`docs/fotos/${id}.jpeg?q=${Date()}`;
                 }
