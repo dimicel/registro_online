@@ -2313,6 +2313,35 @@ function verDocsMatricula(id, edad) {
                     document.getElementById("img_alumno").style.display="none";
                     document.getElementById("txt_no_foto").style.display="";
                 }
+                if (es_pasaporte){
+                    document.getElementById("texto_DNI_NIE_PASAPORTE").innerText="DOCUMENTO DE IDENTIFICACIÓN (PASAPORTE)";
+                    document.getElementById("vista_pasaporte").style.display="";
+                    if (existe_dni_A){
+                        document.getElementById("img_pasaporte").src=`docs/${id}/dni/${id}-A.jpeg?q=${Date()}`;
+                    }
+                    else {
+                        document.getElementById("img_pasaporte").style.display="none";
+                        document.getElementById("txt_no_pasaporte").style.display="";
+                    }
+                }
+                else {
+                    document.getElementById("texto_DNI_NIE_PASAPORTE").innerText="DOCUMENTO DE IDENTIFICACIÓN (DNI/NIE)";
+                    document.getElementById("vista_dni").style.display="";
+                    if (existe_dni_A){
+                        document.getElementById("img_anverso").src=`docs/${id}/dni/${id}-A.jpeg?q=${Date()}`;
+                    }
+                    else {
+                        document.getElementById("img_anverso").style.display="none";
+                        document.getElementById("txt_no_anverso").style.display="";
+                    }
+                    if (existe_dni_R){
+                        document.getElementById("img_reverso").src=`docs/${id}/dni/${id}-A.jpeg?q=${Date()}`;
+                    }
+                    else {
+                        document.getElementById("img_reverso").style.display="none";
+                        document.getElementById("txt_no_reverso").style.display="";
+                    }
+                }
                 /*if (!existe_foto){
                     $("foto_link").removeClass("btn-success");
                     $("foto_link").addClass("btn-warning");
