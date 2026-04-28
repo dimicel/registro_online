@@ -2313,7 +2313,7 @@ function verDocsMatricula(id, edad) {
                     document.getElementById("img_alumno").style.display="none";
                     document.getElementById("txt_no_foto").style.display="";
                 }
-                if (es_pasaporte){
+                if (document.getElementById("es_pasaporte").value==1){
                     document.getElementById("texto_DNI_NIE_PASAPORTE").innerText="PASAPORTE";
                     document.getElementById("vista_pasaporte").style.display="";
                     if (existe_dni_A){
@@ -2335,7 +2335,7 @@ function verDocsMatricula(id, edad) {
                         document.getElementById("txt_no_anverso").style.display="";
                     }
                     if (existe_dni_R){
-                        document.getElementById("img_reverso").src=`docs/${id}/dni/${id}-A.jpeg?q=${Date()}`;
+                        document.getElementById("img_reverso").src=`docs/${id}/dni/${id}-R.jpeg?q=${Date()}`;
                     }
                     else {
                         document.getElementById("img_reverso").style.display="none";
