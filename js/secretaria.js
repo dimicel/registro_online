@@ -2305,14 +2305,14 @@ function verDocsMatricula(id, edad) {
                 else existe_certificado=false;
                 if (resp.indexOf('N')>-1) existe_num_ss=true;
                 else existe_num_ss=false;
-
+/*
                 if (existe_foto){
                     document.getElementById("img_alumno").src=`docs/fotos/${id}.jpeg?q=${Date()}`;
                 }
                 else {
                     document.getElementById("img_alumno").style.display="none";
                     document.getElementById("txt_no_foto").style.display="";
-                }/*
+                }
                 if (es_pasaporte){
                     document.getElementById("texto_DNI_NIE_PASAPORTE").innerText="DOCUMENTO DE IDENTIFICACIÓN (PASAPORTE)";
                     document.getElementById("vista_pasaporte").style.display="";
