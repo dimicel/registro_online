@@ -2350,6 +2350,13 @@ function verDocsMatricula(id, edad) {
                         document.getElementById("txt_no_reverso").style.display="";
                     }
                 }
+                if (existe_num_ss){
+                    document.getElementById("img_num_ss").src=`docs/${id}/nss/nss_${id}.jpeg?q=${Date()}`;
+                }
+                else {
+                    document.getElementById("img_num_ss").style.display="none";
+                    document.getElementById("txt_no_num_ss").style.display="";
+                }
             });
 
         }
