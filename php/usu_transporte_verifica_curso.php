@@ -19,37 +19,46 @@ if ($mysqli->connect_errno) {
     exit(json_encode($resp));
 }
 
-$id_nie = $mysqli->real_escape_string($_POST["id_nie"]);
-$curso = $mysqli->real_escape_string($_POST["curso"]);
+$id_nie = $_POST["id_nie"];
+$curso = $_POST["curso"];
 
 
 $sql = "
-    SELECT cursa FROM transporte
-    WHERE id_nie = ? AND curso = ? AND cursa=(SELECT grupo AS cursa FROM mat_eso WHERE id_nie = ? AND curso = ?
-                                            UNION ALL
-                                            SELECT grupo AS cursa FROM mat_bach WHERE id_nie = ? AND curso = ?
-                                            UNION ALL
-                                            SELECT CONCAT(curso_ciclo, ' - GRADO ',grado, ' ', ciclo) AS cursa FROM mat_ciclos WHERE id_nie = ? AND curso = ?
-                                            UNION ALL
-                                            SELECT CONCAT(curso_ciclo, ' - FPB ', ciclo) AS cursa FROM mat_fpb WHERE id_nie = ? AND curso = ?)
+    DELETE FROM transporte
+    WHERE id_nie = ? AND curso = ? 
+    AND cursa NOT IN (
+        SELECT grupo AS cursa FROM mat_eso WHERE id_nie = ? AND curso = ?
+        UNION ALL
+        SELECT grupo AS cursa FROM mat_bach WHERE id_nie = ? AND curso = ?
+        UNION ALL
+        SELECT CONCAT(curso_ciclo, ' - GRADO ', grado, ' ', ciclo) AS cursa FROM mat_ciclos WHERE id_nie = ? AND curso = ?
+        UNION ALL
+        SELECT CONCAT(curso_ciclo, ' - FPB ', ciclo) AS cursa FROM mat_fpb WHERE id_nie = ? AND curso = ?
+    )
 ";
 
 $stmt = $mysqli->prepare($sql);
 
 if ($stmt) {
-    
+    // Los 10 parámetros siguen siendo necesarios
     $stmt->bind_param("ssssssssss", $id_nie, $curso, $id_nie, $curso, $id_nie, $curso, $id_nie, $curso, $id_nie, $curso);
     
-    $stmt->execute();
-    $resultado = $stmt->get_result();
-    if ($resultado->num_rows > 0) {
-        $fila = $resultado->fetch_assoc();
-        echo $fila['cursa'];
+    if ($stmt->execute()) {
+        if ($stmt->affected_rows > 0) {
+            $resp["error"] = "ok";
+            $stmt->close();
+            exit(json_encode($resp));
+        } else {
+            $resp["error"] = "no_encontrado";
+            $stmt->close();
+            exit(json_encode($resp));
+        } 
     } else {
-        echo "no_matricula";
+        $resp["error"] = "Error en la ejecución: " . $stmt->error;
+        $stmt->close();
+        exit(json_encode($resp));
     }
-
-    $stmt->close();
 } else {
-    echo "Error en la preparación: " . $mysqli->error;
+    $resp["error"] = "Error en la preparación: " . $mysqli->error;
+    exit(json_encode($resp));
 }
