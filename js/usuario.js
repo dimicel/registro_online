@@ -352,12 +352,15 @@ function cambioDatosPers() {
                             nif_noduplicado: true
                         },
                         dat_email: {
+                            email:false,
                             email_no_obligatorio: true
                         },
                         dat_email_tut1: {
+                            email:false,
                             email_no_obligatorio: true
                         },
                         dat_email_tut2: {
+                            email:false,
                             email_no_obligatorio: true
                         }
                     },
