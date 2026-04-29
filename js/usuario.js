@@ -456,6 +456,7 @@ function modificaPass() {
 }
 
 function cierraSesion() {
+    sessionStorage.removeItem('alertaMostrada_'+id_nie);
     $.post("php/logout.php", {}, function(resp) {
         open("index.php?q=" + Date.now().toString(), "_self");
     });
