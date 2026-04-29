@@ -90,7 +90,9 @@ $(document).ready(function() {
             else _texto_curso=(anno_ini_curso + 1) + "/" + (anno_ini_curso + 2);
             if (mes_mat != 6) $("h7").text("SOLICITUD TRANSPORTE para el curso " + _texto_curso);
             else $("h7").text("SOLICITUD TRANSPORTE para el curso " + _texto_curso);
-            $.post("php/curso_matricula.php",{id_nie:id_nie,curso:anno_curso}, (resp) => {document.getElementById("curso").value=resp;});
+            $.post("php/curso_matricula.php",{id_nie:id_nie,curso:anno_curso}, (resp) => {document.getElementById("curso").value=resp;
+                                                                                            document.getElementById("_cursa").value=resp;
+                                                                                        });
         });
     });
 
