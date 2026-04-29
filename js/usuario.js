@@ -139,6 +139,10 @@ $(function() {
         if (datos_usu_vacios && primera_carga && resp.datos.documento_caducado==0){
             mensaje_alerta_inicio="Es recomendable cumplimentar los datos en 'Mis datos', en la parte superior del menú.<br>Le facilitará el trabajo a la hora de cumplimentar los formularios.";
             mensaje_alerta_titulo="SUGERENCIA";
+            if (!sessionStorage.getItem('alertaMostrada_'+id_nie)) {
+                sessionStorage.setItem('alertaMostrada_'+id_nie, 'true');
+                alerta(mensaje_alerta_inicio,mensaje_alerta_titulo,"",500);
+            }
         }
         else if(datos_usu_vacios && primera_carga && resp.datos.documento_caducado==1){
             mensaje_alerta_inicio="Se recomiendan estas dos acciones antes de continuar:<ul>";
@@ -146,14 +150,18 @@ $(function() {
             mensaje_alerta_inicio+="<li>Su documento de identidad ha caducado, según consta en el sistema. Se recomienda actualizar la fecha de caducidad en 'Mis datos', y subir nuevas imágenes del mismo en 'Documentos adjuntos'->'Documento identificación' del menú superior.</li>";
             mensaje_alerta_inicio+="</ul>";
             mensaje_alerta_titulo="SUGERENCIAS";
+            if (!sessionStorage.getItem('alertaMostrada_'+id_nie)) {
+                sessionStorage.setItem('alertaMostrada_'+id_nie, 'true');
+                alerta(mensaje_alerta_inicio,mensaje_alerta_titulo,"",500);
+            }
         }
         else if(resp.datos.documento_caducado==1){
             mensaje_alerta_inicio="Su documento de identidad ha caducado, según consta en el sistema. Se recomienda actualizar la fecha de caducidad en 'Mis datos', y subir nuevas imágenes del mismo en 'Documentos adjuntos'->'Documento identificación' del menú superior.";
             mensaje_alerta_titulo="SUGERENCIA";
-        }
-        if (!sessionStorage.getItem('alertaMostrada_'+id_nie)) {
-            sessionStorage.setItem('alertaMostrada_'+id_nie, 'true');
-            alerta(mensaje_alerta_inicio,mensaje_alerta_titulo,"",500);
+            if (!sessionStorage.getItem('alertaMostrada_'+id_nie)) {
+                sessionStorage.setItem('alertaMostrada_'+id_nie, 'true');
+                alerta(mensaje_alerta_inicio,mensaje_alerta_titulo,"",500);
+            }
         }
 
         if (resp.datos.residente_no_matriculado==1){
