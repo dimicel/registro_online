@@ -47,6 +47,18 @@ if ($stmt) {
         if ($stmt->affected_rows > 0) {
             $resp["error"] = "ok";
             $stmt->close();
+
+            $directorio = "../docs/" . $id_nie . "/transporte_escolar/" . $curso . "/";
+            if (is_dir($directorio)) {
+                $archivos = glob($directorio . "*");
+
+                foreach ($archivos as $archivo) {
+                    if (is_file($archivo)) {
+                        unlink($archivo);
+                    }
+                }
+            }
+
             exit(json_encode($resp));
         } else {
             $resp["error"] = "no_encontrado";
