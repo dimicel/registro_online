@@ -151,9 +151,9 @@ $(function() {
             mensaje_alerta_inicio="Su documento de identidad ha caducado, según consta en el sistema. Se recomienda actualizar la fecha de caducidad en 'Mis datos', y subir nuevas imágenes del mismo en 'Documentos adjuntos'->'Documento identificación' del menú superior.";
             mensaje_alerta_titulo="SUGERENCIA";
         }
-        if (!sessionStorage.getItem('alertaMostrada')) {
-            sessionStorage.setItem('alertaMostrada', 'true');
-            alerta(mensaje_alerta_inicio,mensaje_alerta_titulo);
+        if (!sessionStorage.getItem('alertaMostrada_'+id_nie)) {
+            sessionStorage.setItem('alertaMostrada_'+id_nie, 'true');
+            alerta(mensaje_alerta_inicio,mensaje_alerta_titulo,"",500);
         }
 
         if (resp.datos.residente_no_matriculado==1){
