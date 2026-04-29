@@ -200,9 +200,11 @@ $(function() {
         return $.post("php/usu_transporte_verifica_curso.php", { id_nie: id_nie, curso: anno_curso_usu }, () => {});
     });
     dat8=dat7.then((resp)=>{
-        mensaje="<span style='color:RED !important; font-size:20px !important'>Se ha detectado una solicitud de transporte en la que el curso no coincide con el de su matrícula.<br>";
-        mensaje+="Si todavía desea solicitar el transporte escolar, y tiene el formulario habilitado, por favor, vuelva a cumplimentarlo, ya que el actual ha sido eliminado del registro.";
-        alerta(mensaje, "DISCREPANCIAS ENTRE MATRÍCULA Y FORMULARIO DE TRANSPORTE","",600);
+        if (resp == "ok"){
+            mensaje="<span style='color:RED !important; font-size:20px !important'>Se ha detectado una solicitud de transporte en la que el curso no coincide con el de su matrícula.<br>";
+            mensaje+="Si todavía desea solicitar el transporte escolar, y tiene el formulario habilitado, por favor, vuelva a cumplimentarlo, ya que el actual ha sido eliminado del registro.";
+            alerta(mensaje, "DISCREPANCIAS ENTRE MATRÍCULA Y FORMULARIO DE TRANSPORTE","",600);
+        }
     });
 
 
