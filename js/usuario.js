@@ -136,19 +136,26 @@ $(function() {
         }
 
         ocultarPantallaEspera();
-        if (datos_usu_vacios && primera_carga && resp.datos.documento_caducado==0)
-                alerta("Es recomendable cumplimentar los datos en 'Mis datos', en la parte superior del menú.<br>Le facilitará el trabajo a la hora de cumplimentar los formularios.","SUGERENCIA");
+        if (datos_usu_vacios && primera_carga && resp.datos.documento_caducado==0){
+            mensaje_alerta_inicio="Es recomendable cumplimentar los datos en 'Mis datos', en la parte superior del menú.<br>Le facilitará el trabajo a la hora de cumplimentar los formularios.";
+            mensaje_alerta_titulo="SUGERENCIA";
+        }
         else if(datos_usu_vacios && primera_carga && resp.datos.documento_caducado==1){
             mensaje_alerta_inicio="Se recomiendan estas dos acciones antes de continuar:<ul>";
             mensaje_alerta_inicio+="<li>Cumplimentar los datos en 'Mis datos', en la parte superior del menú. Esto le facilitará el trabajo a la hora de cumplimentar los formularios.</li>";
             mensaje_alerta_inicio+="<li>Su documento de identidad ha caducado, según consta en el sistema. Se recomienda actualizar la fecha de caducidad en 'Mis datos', y subir nuevas imágenes del mismo en 'Documentos adjuntos'->'Documento identificación' del menú superior.</li>";
             mensaje_alerta_inicio+="</ul>";
-            alerta(mensaje_alerta_inicio,"SUGERENCIAS");
+            mensaje_alerta_titulo="SUGERENCIAS";
         }
         else if(resp.datos.documento_caducado==1){
             mensaje_alerta_inicio="Su documento de identidad ha caducado, según consta en el sistema. Se recomienda actualizar la fecha de caducidad en 'Mis datos', y subir nuevas imágenes del mismo en 'Documentos adjuntos'->'Documento identificación' del menú superior.";
-            alerta(mensaje_alerta_inicio,"SUGERENCIA");
+            mensaje_alerta_titulo="SUGERENCIA";
         }
+        if (!sessionStorage.getItem('alertaMostrada')) {
+            sessionStorage.setItem('alertaMostrada', 'true');
+            alerta(mensaje_alerta_inicio,mensaje_alerta_titulo);
+        }
+
         if (resp.datos.residente_no_matriculado==1){
             document.getElementById("docs_mat_eso").setAttribute('onclick', "");
             document.getElementById("docs_mat_eso").className = "enlaceDisabled";
@@ -190,6 +197,11 @@ $(function() {
         }
         listaSolicitudes();
     });
+    dat8=dat7.then((resp)=>{
+    
+    });
+
+
     $("#apartados").tabs({
         active: 0
     });
