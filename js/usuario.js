@@ -951,31 +951,47 @@ function muestraEditor_usu(_file,tipo){
                                 mm = "Ha habido un error al copiar el archivo.";
                             } else if (resp == "ok") {
                                 mmtit="OK";
-                                alert(tipo);
                                 if (tipo == "dni_anverso"){
+                                    document.getElementById('img_anverso').style.display = 'block';
+                                    document.getElementById('txt_no_anverso').style.display = 'none';
+                                    document.getElementById('btn_label_anverso').innerText = 'Subir nueva imagen delantera del documento';
                                     mm = "Anverso de documento subido.";
                                     document.getElementById('img_anverso').src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime(); 
                                 }
                                 else if (tipo == "dni_reverso"){
+                                    document.getElementById('img_reverso').style.display = 'block'; 
+                                    document.getElementById('txt_no_reverso').style.display = 'none';
+                                    document.getElementById('btn_label_reverso').innerText = 'Subir nueva imagen trasera del documento';
                                     mm = "Reverso de documento subido.";
                                     document.getElementById('img_reverso').src= 'docs/' + id_nie + '/dni/' + id_nie + '-R.jpeg?t=' + new Date().getTime();
                                 }
                                 else if (tipo == "dni_pasaporte"){
+                                    document.getElementById('img_pasaporte').style.display = 'block';
+                                    document.getElementById('txt_no_pasaporte').style.display = 'none';
+                                    document.getElementById('btn_label_pasaporte').innerText = 'Subir nueva imagen del documento';
                                     mm = "Pasaporte subido.";
                                     document.getElementById('img_pasaporte').src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime(); 
                                 }
                                 else if (tipo == "foto"){
+                                    document.getElementById('img_alumno').style.display = 'block';
+                                    document.getElementById('txt_no_foto').style.display = 'none';
+                                    document.getElementById('btn_label_foto').innerText = 'Subir nueva fotografía';
                                     mm = "Fotografía subida.";
                                     document.getElementById('img_alumno').src= 'docs/fotos/' + id_nie + '.jpeg?t=' + new Date().getTime(); 
                                 }
                                 else if (tipo == "seguro"){
+                                    document.getElementById('img_seguro_escolar').style.display = 'block'; 
+                                    document.getElementById('txt_no_seguro_escolar').style.display = 'none';
+                                    document.getElementById('btn_label_seguro_escolar').innerText = 'Subir nuevo resguardo del seguro escolar';
                                     mm = "Resguardo del pago del seguro escolar subido.";
                                     document.getElementById('img_seguro_escolar').src= 'docs/' + id_nie + '/seguro/' +anno_curso_usu+'/' +id_nie + '.jpeg?t=' + new Date().getTime();
                                 }
                                 else if (tipo == "num_ss"){
+                                    document.getElementById('img_num_ss').style.display = 'block'; 
+                                    document.getElementById('txt_no_num_ss').style.display = 'none';
+                                    document.getElementById('btn_label_num_ss').innerText = 'Subir nueva captura de pantalla del Número de la Seguridad Social';
                                     mm = "Captura de pantalla del Número de la Seguridad Social subida.";
                                     document.getElementById('img_num_ss').src= 'docs/' + id_nie + '/nss/' + 'nss_' +id_nie + '.jpeg?t=' + new Date().getTime();
-                                    alert(document.getElementById('img_num_ss').src);
                                 }
                             }
                             if (mmtit!="") alerta(mm, mmtit);
