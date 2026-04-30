@@ -951,6 +951,7 @@ function muestraEditor_usu(_file,tipo){
                                 mm = "Ha habido un error al copiar el archivo.";
                             } else if (resp == "ok") {
                                 mmtit="OK";
+                                alert(tipo);
                                 if (tipo == "dni_anverso"){
                                     mm = "Anverso de documento subido.";
                                     document.getElementById('img_anverso').src= 'docs/' + id_nie + '/dni/' + id_nie + '-A.jpeg?t=' + new Date().getTime(); 
