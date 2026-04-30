@@ -974,6 +974,7 @@ function muestraEditor_usu(_file,tipo){
                                 else if (tipo == "num_ss"){
                                     mm = "Captura de pantalla del Número de la Seguridad Social subida.";
                                     document.getElementById('img_num_ss').src= 'docs/' + id_nie + '/nss/' + 'nss_' +id_nie + '.jpeg?t=' + new Date().getTime();
+                                    alert(document.getElementById('img_num_ss').src);
                                 }
                             }
                             if (mmtit!="") alerta(mm, mmtit);
