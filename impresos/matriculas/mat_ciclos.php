@@ -38,7 +38,7 @@
                 <h3 style="color:red;">FORMULARIO NO VÁLIDO SIN LA FORMALIZACIÓN DE MATRÍCULA EN EDUCAMOS</h3>
                 <h5>IES UNIVERSIDAD LABORAL DE TOLEDO</h5>
                 <h5>REGISTRO ONLINE</h5>
-                <h6>SOLICITUD: MATRÍCULA DE CICLOS FORMATIVOS</h6><br>
+                <h6>SOLICITUD: COMPLEMENTO MATRÍCULA DE CICLOS FORMATIVOS</h6><br>
                 <!--<h5 id="rotulo_curso" style="color:#900; font-weight:bold">CURSO ACTUAL:</h5>-->
                 <h7 style="color:#900; font-weight:bold">&nbsp;</h7>
             </div>

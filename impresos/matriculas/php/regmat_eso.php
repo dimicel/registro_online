@@ -147,7 +147,7 @@ else{
 
 
 // create new PDF document
-$titulo_PDF = "M A T R Í C U L A";
+$titulo_PDF = "COMPLEMENTO MATRÍCULA";
 $pdf = new MYPDF($datos_cen, $titulo_PDF);
 
 
