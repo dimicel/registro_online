@@ -793,7 +793,8 @@ function lanzaAvisoMatricula(nivel_educ) {
     tipo_matricula=nivel_educ;
     dialogo_id=generaDivDialog();
     if(nivel_educ=="eso"){
-        var mensaje = "<div style='font-size:0.75em; text-align: left;'>"; 
+        var mensaje = "<center><h2 style='color:red;'>¡ATENCIÓN! ESTE FORMULARIO NO TENDRÁ NINGUNA VALIDEZ SI NO HA FORMALIZADO PREVIAMENTE LA MATRÍCULA EN EDUCAMOS</h2></center>";
+        mensaje += "<div style='font-size:0.75em; text-align: left;'>"; 
         mensaje += "Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul style='margin-top: 10px;'>"; 
         mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
@@ -804,7 +805,8 @@ function lanzaAvisoMatricula(nivel_educ) {
         mensaje += "</div>"; 
     }
     else if(nivel_educ=="bach"){
-        var mensaje = "<div style='font-size:0.75em; text-align: left;'>"; 
+        var mensaje = "<center><h2 style='color:red;'>¡ATENCIÓN! ESTE FORMULARIO NO TENDRÁ NINGUNA VALIDEZ SI NO HA FORMALIZADO PREVIAMENTE LA MATRÍCULA EN EDUCAMOS</h2></center>";
+        mensaje += "<div style='font-size:0.75em; text-align: left;'>"; 
         mensaje += "Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul style='margin-top: 10px;'>"; 
         mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
@@ -816,7 +818,8 @@ function lanzaAvisoMatricula(nivel_educ) {
     }
     else if(nivel_educ=="ciclos" || nivel_educ=="ciclos-e"){
         anno_seguro = anno_ini_curso - 27;
-        var mensaje = "<div style='font-size:0.75em; text-align: left;'>"; 
+        var mensaje = "<center><h2 style='color:red;'>¡ATENCIÓN! ESTE FORMULARIO NO TENDRÁ NINGUNA VALIDEZ SI NO HA FORMALIZADO PREVIAMENTE LA MATRÍCULA EN EDUCAMOS</h2></center>";
+        mensaje += "<div style='font-size:0.75em; text-align: left;'>"; 
         mensaje += "Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul style='margin-top: 10px;'>"; 
         mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
@@ -828,7 +831,8 @@ function lanzaAvisoMatricula(nivel_educ) {
         mensaje += "</div>";             
     }
     else if(nivel_educ=="fpb"){
-        var mensaje = "<div style='font-size:0.75em; text-align: left;'>"; 
+        var mensaje = "<center><h2 style='color:red;'>¡ATENCIÓN! ESTE FORMULARIO NO TENDRÁ NINGUNA VALIDEZ SI NO HA FORMALIZADO PREVIAMENTE LA MATRÍCULA EN EDUCAMOS</h2></center>";
+        mensaje += "<div style='font-size:0.75em; text-align: left;'>"; 
         mensaje += "Por favor, tenga preparados los siguientes documentos:";
         mensaje += "<ul style='margin-top: 10px;'>"; 
         mensaje += "    <li>Fotografía del alummno: en formato JPEG tomada con móvil en vertical y fondo blanco, como se muestra en la imagen:<br><center><img src='recursos/foto_carne.jpg' style='width:128px; margin-top:5px;'></center></li>";
