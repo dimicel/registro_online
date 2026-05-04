@@ -35,6 +35,7 @@
                 <input style="width:175px; height:100px" type="image" src="../../recursos/logo_ccm.jpg" />
             </div>
             <div class="col-8 justify-content-center" style="text-align: center;">
+                <h3 style="color:red;">FORMULARIO NO VÁLIDO SIN LA FORMALIZACIÓN DE MATRÍCULA EN EDUCAMOS</h3>
                 <h5>IES UNIVERSIDAD LABORAL DE TOLEDO</h5>
                 <h5>REGISTRO ONLINE</h5>
                 <h6>SOLICITUD: MATRÍCULA DE CICLOS FORMATIVOS</h6><br>
