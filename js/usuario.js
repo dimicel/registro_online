@@ -211,6 +211,7 @@ $(function() {
             document.getElementById("docs_exencion_fct").setAttribute('href', "#");
             document.getElementById("docs_premat_bach").setAttribute('onclick', "");
             document.getElementById("docs_premat_bach").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('href', "#");
         }
         else if(resp=="bach"){
             nivel_matriculado=resp;
@@ -222,20 +223,25 @@ $(function() {
             document.getElementById("docs_exencion_fct").setAttribute('href', "#");
             document.getElementById("docs_premat_eso").setAttribute('onclick', "");
             document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_eso").setAttribute('href', "#");
         }
         else if(resp=="ciclos"){
             nivel_matriculado=resp;
             document.getElementById("docs_premat_eso").setAttribute('onclick', "");
             document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_eso").setAttribute('href', "#");
             document.getElementById("docs_premat_bach").setAttribute('onclick', "");
             document.getElementById("docs_premat_bach").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('href', "#");
         }
         else if(resp=="fpb"){
             nivel_matriculado=resp;
             document.getElementById("docs_premat_eso").setAttribute('onclick', "");
             document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_eso").setAttribute('href', "#");
             document.getElementById("docs_premat_bach").setAttribute('onclick', "");
             document.getElementById("docs_premat_bach").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('href', "#");
         }
         else if (resp!="eso" && resp!="bach" && resp!="ciclos" &&  resp!="fpb"){
             nivel_matriculado="";
