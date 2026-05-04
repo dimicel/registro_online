@@ -95,25 +95,25 @@
                     <a id="ampa" class="enlaceEnabled" href="https://ampauniversidadlaboraltoledo.es/se-socio/" target="_blank">¡¡¡HAZTE SOCIO DEL AMPA!!!</a>
                 </div>
 
-                <span>MATRÍCULA</span>
+                <span>COMPLETAR MATRÍCULA DE EDUCAMOS</span>
                 <div style="display:list-item; margin-left:50px">
-                    <a id="docs_mat_eso" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(eso);">Matrícula de ESO</a>
+                    <a id="docs_mat_eso" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(eso);">COMPLETAR Matrícula de ESO</a>
                 </div>
 
                 <div style="display:list-item; margin-left:50px">
-                    <a id="docs_mat_bach" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(bach);">Matrícula de Bachillerato</a>
+                    <a id="docs_mat_bach" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(bach);">COMPLETAR Matrícula de Bachillerato</a>
                 </div>
 
                 <div style="display:list-item; margin-left:50px">
-                    <a id="docs_mat_ciclos" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(ciclos);">Matrícula de Ciclos Formativos (Presencial y E-Learning)</a>
+                    <a id="docs_mat_ciclos" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(ciclos);">COMPLETAR Matrícula de Ciclos Formativos (Presencial y E-Learning)</a>
                 </div>
 
                 <div style="display:list-item; margin-left:50px">
-                    <a id="docs_mat_ciclos-e" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(ciclos);">Matrícula de Ciclos E-Learning (Sólo FCT y Proyecto)</a>
+                    <a id="docs_mat_ciclos-e" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(ciclos);">COMPLETAR Matrícula de Ciclos E-Learning (Sólo FCT y Proyecto)</a>
                 </div>
 
                 <div style="display:list-item; margin-left:50px">
-                    <a id="docs_mat_fpb" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(fpb);">Matrícula de Grado Básico (antigua FPB)</a>
+                    <a id="docs_mat_fpb" class="enlaceEnabled" href="#" onclick="javascript:lanzaAvisoMatricula(fpb);">COMPLETAR Matrícula de Grado Básico (antigua FPB)</a>
                 </div>
 
                 <span>PREMATRÍCULA</span>

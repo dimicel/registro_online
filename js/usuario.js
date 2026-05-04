@@ -77,6 +77,10 @@ $(function() {
             mat_eso = true;
             document.getElementById("docs_mat_eso").setAttribute('onclick', "lanzaAvisoMatricula('eso')");
             document.getElementById("docs_mat_eso").className = "enlaceEnabled";
+            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
+            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
+            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
         } else {
             mat_eso = false;
             document.getElementById("docs_mat_eso").setAttribute('onclick', "");
@@ -87,6 +91,10 @@ $(function() {
             mat_bach = true;
             document.getElementById("docs_mat_bach").setAttribute('onclick', "lanzaAvisoMatricula('bach')");
             document.getElementById("docs_mat_bach").className = "enlaceEnabled";
+            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
+            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
+            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
         } else {
             mat_bach = false;
             document.getElementById("docs_mat_bach").setAttribute('onclick', "");
@@ -122,6 +130,13 @@ $(function() {
             document.getElementById("docs_mat_fpb").setAttribute('onclick', "");
             document.getElementById("docs_mat_fpb").className = "enlaceDisabled";
         }
+        if (!mat_eso && !mat_bach && !mat_ciclos && !mat_fpb){
+            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
+            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
+            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+        }
+        
         return $.post("php/usu_recdatospers.php", {id_nie: id_nie}, () => {}, "json");
     });
 
