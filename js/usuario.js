@@ -81,6 +81,8 @@ $(function() {
             document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
             document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
             document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
+            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
         } else {
             mat_eso = false;
             document.getElementById("docs_mat_eso").setAttribute('onclick', "");
@@ -95,6 +97,8 @@ $(function() {
             document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
             document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
             document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
+            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
         } else {
             mat_bach = false;
             document.getElementById("docs_mat_bach").setAttribute('onclick', "");
@@ -105,6 +109,10 @@ $(function() {
             mat_ciclos = true;
             document.getElementById("docs_mat_ciclos").setAttribute('onclick', "lanzaAvisoMatricula('ciclos')");
             document.getElementById("docs_mat_ciclos").className = "enlaceEnabled";
+            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
+            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
+            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
         } else {
             mat_ciclos = false;
             document.getElementById("docs_mat_ciclos").setAttribute('onclick', "");
@@ -115,6 +123,10 @@ $(function() {
             mat_ciclos = true;
             document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "lanzaAvisoMatricula('ciclos-e')");
             document.getElementById("docs_mat_ciclos-e").className = "enlaceEnabled";
+            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
+            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
+            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
         } else {
             mat_ciclos = false;
             document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "");
@@ -125,6 +137,10 @@ $(function() {
             mat_ciclos = true;
             document.getElementById("docs_mat_fpb").setAttribute('onclick', "lanzaAvisoMatricula('fpb')");
             document.getElementById("docs_mat_fpb").className = "enlaceEnabled";
+            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
+            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
+            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
         } else {
             mat_ciclos = false;
             document.getElementById("docs_mat_fpb").setAttribute('onclick', "");
@@ -136,7 +152,7 @@ $(function() {
             document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
             document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
         }
-        
+
         return $.post("php/usu_recdatospers.php", {id_nie: id_nie}, () => {}, "json");
     });
 
