@@ -168,24 +168,34 @@ $(function() {
         if (resp.datos.residente_no_matriculado==1){
             document.getElementById("docs_mat_eso").setAttribute('onclick', "");
             document.getElementById("docs_mat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_mat_eso").setAttribute('href', "#");
             document.getElementById("docs_mat_bach").setAttribute('onclick', "");
             document.getElementById("docs_mat_bach").className = "enlaceDisabled";
+            document.getElementById("docs_mat_bach").setAttribute('href', "#");
             document.getElementById("docs_mat_ciclos").setAttribute('onclick', "");
             document.getElementById("docs_mat_ciclos").className = "enlaceDisabled";
+            document.getElementById("docs_mat_ciclos").setAttribute('href', "#");
             document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "");
             document.getElementById("docs_mat_ciclos-e").className = "enlaceDisabled";
+            document.getElementById("docs_mat_ciclos").setAttribute('href', "#");
             document.getElementById("docs_mat_fpb").setAttribute('onclick', "");
             document.getElementById("docs_mat_fpb").className = "enlaceDisabled";
+            document.getElementById("docs_mat_fpb").setAttribute('href', "#");
             document.getElementById("docs_premat_eso").setAttribute('onclick', "");
             document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_eso").setAttribute('href', "#");
             document.getElementById("docs_premat_bach").setAttribute('onclick', "");
             document.getElementById("docs_premat_bach").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('href', "#");
             document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
             document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_convalidaciones").setAttribute('href', "#");
             document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
             document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('href', "#");
             document.getElementById("docs_transporte_escolar").setAttribute('onclick', "");
             document.getElementById("docs_transporte_escolar").className = "enlaceDisabled";
+            document.getElementById("docs_transporte_escolar").setAttribute('href', "#");
         }
 
         return $.post("php/usu_obtiene_nivel_matriculado.php", {id_nie: id_nie, curso: anno_curso_usu}, () => {});
@@ -195,8 +205,10 @@ $(function() {
             nivel_matriculado=resp;
             document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
             document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_convalidaciones").setAttribute('href', "#");
             document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
             document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('href', "#");
             document.getElementById("docs_premat_bach").setAttribute('onclick', "");
             document.getElementById("docs_premat_bach").className = "enlaceDisabled";
         }
@@ -204,8 +216,10 @@ $(function() {
             nivel_matriculado=resp;
             document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
             document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_convalidaciones").setAttribute('href', "#");
             document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
             document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('href', "#");
             document.getElementById("docs_premat_eso").setAttribute('onclick', "");
             document.getElementById("docs_premat_eso").className = "enlaceDisabled";
         }
@@ -227,8 +241,10 @@ $(function() {
             nivel_matriculado="";
             document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
             document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_convalidaciones").setAttribute('href', "#");
             document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
             document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('href', "#");
         }
         
         return ($.post("php/secret_transporte_habilitar.php", { peticion: "read" },()=>{},"json"));
