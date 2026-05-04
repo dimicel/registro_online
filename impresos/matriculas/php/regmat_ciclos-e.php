@@ -181,7 +181,6 @@ $fila_turno="<h4>E-Learning</h4><br>";
 
 
 $html1 = <<<HTML1
-<h2>FORMULARIO NO VÁLIDO SIN LA FORMALIZACIÓN DE MATRÍCULA EN EDUCAMOS</h2><br>
 <h3>Curso Académico $anno_curso</h3><br>
 <h4>C.F. Grado $grado</h4><br>
 <h4>$ciclo</h4><br>
