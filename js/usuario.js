@@ -77,12 +77,6 @@ $(function() {
             mat_eso = true;
             document.getElementById("docs_mat_eso").setAttribute('onclick', "lanzaAvisoMatricula('eso')");
             document.getElementById("docs_mat_eso").className = "enlaceEnabled";
-            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
-            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
-            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
-            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
-            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
-            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
         } else {
             mat_eso = false;
             document.getElementById("docs_mat_eso").setAttribute('onclick', "");
@@ -93,12 +87,6 @@ $(function() {
             mat_bach = true;
             document.getElementById("docs_mat_bach").setAttribute('onclick', "lanzaAvisoMatricula('bach')");
             document.getElementById("docs_mat_bach").className = "enlaceEnabled";
-            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
-            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
-            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
-            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
-            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
-            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
         } else {
             mat_bach = false;
             document.getElementById("docs_mat_bach").setAttribute('onclick', "");
@@ -109,10 +97,6 @@ $(function() {
             mat_ciclos = true;
             document.getElementById("docs_mat_ciclos").setAttribute('onclick', "lanzaAvisoMatricula('ciclos')");
             document.getElementById("docs_mat_ciclos").className = "enlaceEnabled";
-            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
-            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
-            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
-            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
         } else {
             mat_ciclos = false;
             document.getElementById("docs_mat_ciclos").setAttribute('onclick', "");
@@ -123,10 +107,6 @@ $(function() {
             mat_ciclos = true;
             document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "lanzaAvisoMatricula('ciclos-e')");
             document.getElementById("docs_mat_ciclos-e").className = "enlaceEnabled";
-            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
-            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
-            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
-            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
         } else {
             mat_ciclos = false;
             document.getElementById("docs_mat_ciclos-e").setAttribute('onclick', "");
@@ -137,20 +117,10 @@ $(function() {
             mat_ciclos = true;
             document.getElementById("docs_mat_fpb").setAttribute('onclick', "lanzaAvisoMatricula('fpb')");
             document.getElementById("docs_mat_fpb").className = "enlaceEnabled";
-            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
-            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
-            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
-            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
         } else {
             mat_ciclos = false;
             document.getElementById("docs_mat_fpb").setAttribute('onclick', "");
             document.getElementById("docs_mat_fpb").className = "enlaceDisabled";
-        }
-        if (!mat_eso && !mat_bach && !mat_ciclos && !mat_fpb){
-            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
-            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
-            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
-            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
         }
 
         return $.post("php/usu_recdatospers.php", {id_nie: id_nie}, () => {}, "json");
@@ -221,8 +191,46 @@ $(function() {
         return $.post("php/usu_obtiene_nivel_matriculado.php", {id_nie: id_nie, curso: anno_curso_usu}, () => {});
     });
     dat6=dat5.then((resp)=>{
-        if (resp!="eso" && resp!="bach" && resp!="ciclos" &&  resp!="fpb") nivel_matriculado="";
-        else nivel_matriculado=resp;
+        if(resp=="eso"){
+            nivel_matriculado=resp;
+            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
+            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
+            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
+            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
+        }
+        else if(resp=="bach"){
+            nivel_matriculado=resp;
+            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
+            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
+            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
+            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+        }
+        else if(resp=="ciclos"){
+            nivel_matriculado=resp;
+            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
+            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
+            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
+        }
+        else if(resp=="fpb"){
+            nivel_matriculado=resp;
+            document.getElementById("docs_premat_eso").setAttribute('onclick', "");
+            document.getElementById("docs_premat_eso").className = "enlaceDisabled";
+            document.getElementById("docs_premat_bach").setAttribute('onclick', "");
+            document.getElementById("docs_premat_bach").className = "enlaceDisabled";
+        }
+        else if (resp!="eso" && resp!="bach" && resp!="ciclos" &&  resp!="fpb"){
+            nivel_matriculado="";
+            document.getElementById("docs_convalidaciones").setAttribute('onclick', "");
+            document.getElementById("docs_convalidaciones").className = "enlaceDisabled";
+            document.getElementById("docs_exencion_fct").setAttribute('onclick', "");
+            document.getElementById("docs_exencion_fct").className = "enlaceDisabled";
+        }
+        
         return ($.post("php/secret_transporte_habilitar.php", { peticion: "read" },()=>{},"json"));
     });
     dat7=dat6.then((resp)=>{
