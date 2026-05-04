@@ -15,6 +15,10 @@ include("../../../php/funciones.php");
 require_once(__DIR__.'/../../../php/tcpdf/tcpdf.php');
 include("../../../php/cabecera_pdf.php");
 
+if (!isset($datos_cen)) {
+    exit("Error crítico: La variable $datos_cen no se ha definido en cabecera_pdf.php");
+}
+
 $desc_reg = Array(
     "1º Bach. HH.CC.SS."=>"ma1bah",
     "1º Bach. Ciencias y Tecnología"=>"ma1bac",
