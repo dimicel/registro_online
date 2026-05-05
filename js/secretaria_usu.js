@@ -154,7 +154,7 @@ function listaUsus() {
                     data += "<td style='" + estilo_usu[4] + ";text-align:center' >-</td>";
                 }
                 else{
-                    data += "<td style='" + estilo_usu[4] + ";text-align:center' onclick='javascript:verDocsMatricula(this.parentNode.children[0].innerHTML,\"0\",document.getElementById('sel_curso').value)'>Ver</td>";
+                    data += "<td style='" + estilo_usu[4] + ";text-align:center' onclick='javascript:verDocsMatricula(this.parentNode.children[0].innerHTML,\"0\",document.getElementById(\"sel_curso\").value)'>Ver</td>";
                 }
                 //columna EXPEDIENTE
                 data += "<td style='" + estilo_usu[5] + ";text-align:center' onclick='javascript:verExpediente(this.parentNode.children[0].innerHTML,this.parentNode.children[1].innerHTML)'>Ver</td>";
