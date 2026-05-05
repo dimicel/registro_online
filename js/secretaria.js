@@ -2357,8 +2357,9 @@ function verDocsMatricula(id, edad) {
                     document.getElementById("img_num_ss").style.display="none";
                     document.getElementById("txt_no_num_ss").style.display="";
                 }
-                if(existe_seguro){
-                    document.getElementById("img_seguro").src=`docs/${id}/seguro/${_curso}/${id}.jpeg?q="+Date()`;
+                if(existe_seguro){alert(_curso);
+                    alert(`docs/${id}/seguro/${_curso}/${id}.jpeg?q="+Date()`)
+                    document.getElementById("img_seguro").src=`docs/${id}/seguro/${_curso}/${id}.jpeg?q="+${Date()}`;
                 }
                 else {
                     document.getElementById("img_seguro").style.display="none";
