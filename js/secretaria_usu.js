@@ -150,7 +150,7 @@ function listaUsus() {
                 }
                 data += "<td style='" + estilo_usu[3] + ";text-align:center'>" + data_array[i]["no_ha_entrado"] + "</td>";
                 //Columna DOCS
-                if (document.getElementById("sel_curso").value == "todos"){
+                if (document.getElementById("sel_curso").value == "Todos"){
                     data += "<td style='" + estilo_usu[4] + ";text-align:center' >-</td>";
                 }
                 else{
