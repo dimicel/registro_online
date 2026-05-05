@@ -2363,6 +2363,7 @@ function verDocsMatricula(id, edad, curso_escolar) {
                 else {
                     document.getElementById("img_seguro").style.display="none";
                     document.getElementById("txt_no_seguro").style.display="";
+                    if (edad>28) document.getElementById("txt_no_seguro").innerText="Mayor de 28 años";
                 }
             });
 
