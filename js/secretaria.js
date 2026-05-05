@@ -2357,8 +2357,7 @@ function verDocsMatricula(id, edad, curso_escolar) {
                     document.getElementById("img_num_ss").style.display="none";
                     document.getElementById("txt_no_num_ss").style.display="";
                 }
-                if(existe_seguro){alert(curso_escolar);
-                    alert(`docs/${id}/seguro/${curso_escolar}/${id}.jpeg?q="+${Date()}`)
+                if(existe_seguro){
                     document.getElementById("img_seguro").src=`docs/${id}/seguro/${curso_escolar}/${id}.jpeg?q="+${Date()}`;
                 }
                 else {
