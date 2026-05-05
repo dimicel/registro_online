@@ -200,7 +200,7 @@ $(function() {
                 verExpediente(id,nombre);
             }
             else if(key=="docs"){
-                verDocsMatricula(id,0);
+                verDocsMatricula(id,0,document.getElementById('curso').value);
             }
             
         },
@@ -1287,15 +1287,15 @@ function listaRegistros(orden_campo, orden_direccion) {
                     }
     
                     if (encabezamiento[encabezamiento.length - 1] == "Docs") {
-                        data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                        data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\",document.getElementById('curso').value)'>Ver</td>";
                     }
     
                     if (encabezamiento[encabezamiento.length - 2] == "Docs") {
                         if (encabezamiento[encabezamiento.length - 1] == ">28") {
                             if (data_array[i]["mayor_28"] == "Si") {
-                                data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\">28\")'>Ver</td>";
+                                data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\">28\",document.getElementById('curso').value)'>Ver</td>";
                             } else {
-                                data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\")'>Ver</td>";
+                                data += "<td style='" + estilo[j] + "' onclick='javascript:event.stopPropagation();verDocsMatricula(this.parentNode.children[1].innerHTML,\"<28\",document.getElementById('curso').value)'>Ver</td>";
                             }
                         }
                     }
@@ -2279,7 +2279,7 @@ function subeExcel(obj) {
 
 
 
-function verDocsMatricula(id, edad) {
+function verDocsMatricula(id, edad, curso_escolar) {
     let existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false;
     mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000,"center center","center center")
@@ -2289,7 +2289,7 @@ function verDocsMatricula(id, edad) {
             d1 = Promise.resolve($.post("php/usu_recdatospers.php", { id_nie:id },()=>{},"json"));
             d2 = d1.then ((resp) => {
                 resp.datos.es_pasaporte=="1"? document.getElementById("es_pasaporte").value=1 : document.getElementById("es_pasaporte").value=0;
-                return $.post("impresos/matriculas/php/comprueba_docs_matricula.php", { id_nie: id, curso:_curso });
+                return $.post("impresos/matriculas/php/comprueba_docs_matricula.php", { id_nie: id, curso:curso_escolar });
             });
             d2.then((resp) => {
                 ocultarPantallaEspera();
@@ -2357,9 +2357,9 @@ function verDocsMatricula(id, edad) {
                     document.getElementById("img_num_ss").style.display="none";
                     document.getElementById("txt_no_num_ss").style.display="";
                 }
-                if(existe_seguro){alert(_curso);
-                    alert(`docs/${id}/seguro/${_curso}/${id}.jpeg?q="+Date()`)
-                    document.getElementById("img_seguro").src=`docs/${id}/seguro/${_curso}/${id}.jpeg?q="+${Date()}`;
+                if(existe_seguro){alert(curso_escolar);
+                    alert(`docs/${id}/seguro/${curso_escolar}/${id}.jpeg?q="+${Date()}`)
+                    document.getElementById("img_seguro").src=`docs/${id}/seguro/${curso_escolar}/${id}.jpeg?q="+${Date()}`;
                 }
                 else {
                     document.getElementById("img_seguro").style.display="none";
