@@ -2280,7 +2280,7 @@ function subeExcel(obj) {
 
 
 function verDocsMatricula(id, edad="0", curso_escolar) {
-    let existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false;
+    let existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false, mayor_de_28=false;
     mostrarPantallaEspera("Cargando ...");
     cargaHTML("html/secretaria.htm", "div_docs_matricula","DOCUMENTOS DE LA MATRÍCULA",800,2000,"center center","center center")
     .then ((dialogo)=>{
@@ -2289,6 +2289,8 @@ function verDocsMatricula(id, edad="0", curso_escolar) {
             d1 = Promise.resolve($.post("php/usu_recdatospers.php", { id_nie:id },()=>{},"json"));
             d2 = d1.then ((resp) => {
                 resp.datos.es_pasaporte=="1"? document.getElementById("es_pasaporte").value=1 : document.getElementById("es_pasaporte").value=0;
+                if (resp.datos.mayor_de_28=="1")mayor_de_28=true;
+                else mayor_de_28=false;
                 return $.post("impresos/matriculas/php/comprueba_docs_matricula.php", { id_nie: id, curso:curso_escolar });
             });
             d2.then((resp) => {
@@ -2363,7 +2365,7 @@ function verDocsMatricula(id, edad="0", curso_escolar) {
                 else {
                     document.getElementById("img_seguro").style.display="none";
                     document.getElementById("txt_no_seguro").style.display="";
-                    if (edad==">28") document.getElementById("txt_no_seguro").innerText="Mayor de 28 años";
+                    if (edad==">28" || mayor_de_28==true) document.getElementById("txt_no_seguro").innerText="Mayor de 28 años";
                 }
             });
 
