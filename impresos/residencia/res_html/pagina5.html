@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="form-group form-row">
-        <input name="tarjeta_sanitaria" id="tarjeta_sanitaria" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="muestraEditor(this.files[0]),'tarjeta'" />
-        <input name="foto_alumno" id="foto_alumno" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="muestraEditor(this.files[0],'foto')" />
+        <input name="tarjeta_sanitaria" id="tarjeta_sanitaria" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="$(this).valid();muestraEditor(this.files[0]),'tarjeta'" />
+        <input name="foto_alumno" id="foto_alumno" type="file" style="position: absolute;left:-9999px" accept="image/jpeg" onchange="$(this).valid();muestraEditor(this.files[0],'foto')" />
     </div>
 </form>
 <hr>
