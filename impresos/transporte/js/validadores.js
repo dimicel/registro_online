@@ -57,8 +57,8 @@ function creaValidatorPagina2() {
                 miFecha: true
             },
             email_alumno: {
-                required: true,
-                email: true
+                email_no_obligatorio: true,
+                email: false
             }
         },
         messages: {
@@ -76,8 +76,7 @@ function creaValidatorPagina2() {
                 miFecha: "Formato incorrecto"
             },
             email_alumno: {
-                required: "Falta",
-                email: "Dirección no válida"
+                email_no_obligatorio: "Falta"
             }
         },
         errorPlacement: function(error, element) {
