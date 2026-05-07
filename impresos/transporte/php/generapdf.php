@@ -49,7 +49,7 @@ $te_ruta        = $_POST["_t_ruta"] ?? '';
 $_t_apartado    = $_POST["_t_apartado"] ?? '';
 $_t_modalidad   = $_POST["_t_modalidad"] ?? '';
 
-$sillaruedas = (isset($_POST['sillaruedas']) && $_POST['sillaruedas'] == '1') ? 1 : 0;
+$sillaruedas = (isset($_POST['sillaruedas'])) ? 1 : 0;
 
 $_t_aut_acred_iden  = $_POST["_t_aut_acred_iden"] ?? '';
 $_t_aut_acred_domic = $_POST["_t_aut_acred_domic"] ?? '';
