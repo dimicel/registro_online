@@ -12,6 +12,9 @@ function creaValidatorPagina1() {
             },
             consolida_prem:{
                 required:true
+            },
+            nuevo_otra_comunidad:{
+                required:true
             }
         },
         messages: {
@@ -25,6 +28,9 @@ function creaValidatorPagina1() {
                 required: "Seleccione uno"
             },
             consolida_prem:{
+                required:"Seleccione uno"
+            },
+            nuevo_otra_comunidad:{
                 required:"Seleccione uno"
             }
         },
