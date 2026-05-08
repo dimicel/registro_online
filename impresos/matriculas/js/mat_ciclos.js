@@ -504,6 +504,12 @@ function CreaSelCurso(c) {
 }
 
 function CreaSelTurno(t) {
+    mostrarPantallaEspera();
+    $.post("php/obtiene_curso_anterior",{curso:document.getElementById("anno_curso").value},(resp)=>{
+        if (resp.error=="ok"){
+            
+        }
+    },"json");
     if (t != "") {
         c = document.getElementById("sel_ciclos").value;
         gr=document.getElementById("sel_grado").value;
