@@ -200,7 +200,7 @@ $html1 = <<<HTML1
 <h4>$ciclo</h4><br>
 $fila_turno<br>
 <span>Ha iniciado los estudios en otra comunidad autónoma: <b>$nuevo_otra_comunidad</b></span>
-<br>
+<br><br>
 <span>$texto_cambio_mod</span>
 HTML1;
 
