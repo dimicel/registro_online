@@ -15,6 +15,9 @@ function creaValidatorPagina1() {
             },
             nuevo_otra_comunidad:{
                 required:true
+            },
+            cambio_modalidad:{
+                required:true
             }
         },
         messages: {
@@ -32,6 +35,9 @@ function creaValidatorPagina1() {
             },
             nuevo_otra_comunidad:{
                 required:"Seleccione Sí o No"
+            },
+            cambio_modalidad:{
+                required: "Seleccione una opción"
             }
         },
         errorPlacement: function(error, element) {
