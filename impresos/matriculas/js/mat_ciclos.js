@@ -505,14 +505,7 @@ function CreaSelCurso(c) {
 }
 
 function CreaSelTurno(t) {
-    mostrarPantallaEspera();
-    $.post("php/obtiene_curso_anterior.php",{curso:document.getElementById("anno_curso").value},(resp)=>{
-        ocultarPantallaEspera();
-        if (resp.error=="ok"){
-            ciclo_anterior=resp.datos.ciclo;
-            curso_anterior=resp.datos.curso;
-        }
-    },"json");
+
     if (t != "") {
         c = document.getElementById("sel_ciclos").value;
         gr=document.getElementById("sel_grado").value;
@@ -533,6 +526,17 @@ function CreaSelTurno(t) {
         document.getElementById("sel_turno").innerHTML = tu;
         seleccionCurso();
     }
+}
+
+function cambioModalidad(){
+    mostrarPantallaEspera();
+    $.post("php/obtiene_curso_anterior.php",{curso:document.getElementById("anno_curso").value},(resp)=>{
+        ocultarPantallaEspera();
+        if (resp.error=="ok"){
+            ciclo_anterior=resp.datos.ciclo;
+            curso_anterior=resp.datos.curso;
+        }
+    },"json");
 }
 
 function mayor28() {
