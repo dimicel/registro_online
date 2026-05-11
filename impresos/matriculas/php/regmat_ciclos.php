@@ -209,7 +209,7 @@ elseif (is_file('../../../docs/fotos/'.$id_nie.'.jpeg')) $pdf->Image('../../../d
 $pdf->Rect(15,35,25,33,'all');
 
 $YInicio=45;
-$pdf->RoundedRect(55,$YInicio,100,35,2,'1111','','','');
+$pdf->RoundedRect(55,$YInicio,100,40,2,'1111','','','');
 $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $html1, 0, 1, false, true, 'C', true);
 
 //Padding dentro de la celda del texto
@@ -217,7 +217,7 @@ $pdf->setCellPaddings(0,0,0,0);
 //Interlineado
 $pdf->setCellHeightRatio(1);
 
-$YInicio+=40;
+$YInicio+=45;
 $XInicioRotulo=17;
 $XInicio=12;
 
