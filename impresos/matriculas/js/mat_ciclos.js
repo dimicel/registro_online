@@ -540,8 +540,6 @@ function CreaSelTurno(t) {
 }
 
 function cambioModalidad(){
-    ciclo_anterior=resp.datos.ciclo;
-    curso_anterior=resp.datos.curso;
     if (curso_anterior==document.getElementById("sel_curso").value) {
         document.getElementById("direccion_cambio_modalidad").value="mismo";
     } 
