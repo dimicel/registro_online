@@ -42,6 +42,7 @@ function creaValidatorPagina1() {
         },
         errorPlacement: function(error, element) {
             if ($(element).attr('name') == 'nuevo_otra_comunidad') $("#al_nuevo_err").html(error);
+            else if($(element).attr('name') == 'cambio_modalidad') $("#cambio_modalidad_err").html(error);
             else $(element).next().html(error);
         }
     });
