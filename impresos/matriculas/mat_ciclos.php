@@ -24,6 +24,8 @@
                 <input type="hidden" name="anno_curso" id="anno_curso" />
                 <input type="hidden" name="id_nie" id="id_nie" />
                 <input type="hidden" name="_nuevo_otra_comunidad" id="_nuevo_otra_comunidad" />
+                <input type="hidden" name="cambio_modalidad" id="cambio_modalidad" />
+                <input type="hidden_autor_fotos" />
                 <input type="hidden" name="email" id="email" />
                 <input type="hidden" name="mayor_edad" id="mayor_edad" />
                 <input type="hidden" name="_autor_fotos" id="_autor_fotos" />

@@ -16,7 +16,7 @@ function creaValidatorPagina1() {
             nuevo_otra_comunidad:{
                 required:true
             },
-            cambio_modalidad:{
+            direccion_cambio_modalidad:{
                 required:true
             }
         },
@@ -36,13 +36,13 @@ function creaValidatorPagina1() {
             nuevo_otra_comunidad:{
                 required:"Seleccione Sí o No"
             },
-            cambio_modalidad:{
+            direccion_cambio_modalidad:{
                 required: "Seleccione una opción"
             }
         },
         errorPlacement: function(error, element) {
             if ($(element).attr('name') == 'nuevo_otra_comunidad') $("#al_nuevo_err").html(error);
-            else if($(element).attr('name') == 'cambio_modalidad') $("#cambio_modalidad_err").html(error);
+            else if($(element).attr('name') == 'direccion_cambio_modalidad') $("#cambio_modalidad_err").html(error);
             else $(element).next().html(error);
         }
     });

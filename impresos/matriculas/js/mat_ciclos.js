@@ -16,7 +16,6 @@ var paginas_totales;
 var sexo="",fecha_nac="",telef_alumno="",email_alumno="",direccion="",cp="",localidad="",provincia="";
 var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2="";
 var existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false;
-var cambio_modalidad=false, direccion_cambio_modalidad="misma_modalidad"; //otras opciones modular->ordinaria ordinaria->modular
 var ciclo_anterior="", curso_anterior="";
 
 
@@ -28,6 +27,7 @@ let ciclos_gs= new Array();
 
 
 $(document).ready(function() {
+    mostrarPantallaEspera();
     dat1 = Promise.resolve($.post("../../php/sesion.php", { tipo_usu: "usuario" }, () => {}, "json"));
     dat2 = dat1.then((res1) => {
         id_nie = res1["id_nie"];
@@ -119,6 +119,14 @@ $(document).ready(function() {
             if (resp.datos[i].grado == "SUPERIOR") {
                 ciclos_gs.push(new Array(resp.datos[i].denominacion,resp.datos[i].cursos,resp.datos[i].diurno,resp.datos[i].vespertino,resp.datos[i].nocturno,resp.datos[i]["e-learning"]));
             }
+        }
+        return($.post("php/obtiene_curso_anterior.php",{curso:document.getElementById("anno_curso").value},()=>{},"json"));
+    });
+    dat7=data6.then((resp)=>{
+        ocultarPantallaEspera();
+        if (resp.error=="ok"){
+            ciclo_anterior=resp.datos.ciclo;
+            curso_anterior=resp.datos.curso;
         }
     });
 
@@ -346,6 +354,8 @@ function creaArrayPasapagina() {
 }
 
 function registraMatricula() {
+    if (document.getElementById("direccion_cambio_modalidad").value!="misma") document.getElementById("cambio_modalidad").value="1";
+    else document.getElementById("cambio_modalidad").value="0";
     var f = document.getElementById("mat_ciclos");
     var f1 = document.getElementById("form_pagina_1");
     var f2 = document.getElementById("form_pagina_2");
@@ -359,6 +369,7 @@ function registraMatricula() {
     f.appendChild(f1.sel_ciclos);
     f.appendChild(f1.sel_curso);
     f.appendChild(f1.sel_turno);
+    f.appendChild(f1.direccion_cambio_modalidad);
     f.appendChild(f2.apellidos);
     f.appendChild(f2.nombre);
     f.appendChild(f2.fecha_nac);
@@ -529,15 +540,17 @@ function CreaSelTurno(t) {
 }
 
 function cambioModalidad(){
-    mostrarPantallaEspera();
-    $.post("php/obtiene_curso_anterior.php",{curso:document.getElementById("anno_curso").value},(resp)=>{
-        ocultarPantallaEspera();
-        if (resp.error=="ok"){
-            ciclo_anterior=resp.datos.ciclo;
-            curso_anterior=resp.datos.curso;
-            
-        }
-    },"json");
+    ciclo_anterior=resp.datos.ciclo;
+    curso_anterior=resp.datos.curso;
+    if (curso_anterior==document.getElementById("sel_curso").value) {
+        document.getElementById("direccion_cambio_modalidad").value="mismo";
+    } 
+    else if(curso_anterior=="Modular" && document.getElementById("sel_curso").value!="Modular" && document.getElementById("sel_curso").value!=""){
+        document.getElementById("direccion_cambio_modalidad").value="modular->ordinaria";
+    }
+    else if(curso_anterior=="Modular" && document.getElementById("sel_curso").value!="Modular" && document.getElementById("sel_curso").value!=""){
+        document.getElementById("direccion_cambio_modalidad").value="ordinaria->modular";
+    }
 }
 
 function mayor28() {
