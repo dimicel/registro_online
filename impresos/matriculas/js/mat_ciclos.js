@@ -506,7 +506,6 @@ function CreaSelCurso(c) {
 function CreaSelTurno(t) {
     mostrarPantallaEspera();
     $.post("php/obtiene_curso_anterior.php",{curso:document.getElementById("anno_curso").value},(resp)=>{
-        alert(0);
         ocultarPantallaEspera();
         if (resp.error=="ok"){
             ciclo_anterior=resp.datos.ciclo;
