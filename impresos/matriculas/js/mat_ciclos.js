@@ -17,6 +17,7 @@ var sexo="",fecha_nac="",telef_alumno="",email_alumno="",direccion="",cp="",loca
 var tutor1="",email_tutor1="",tlf_tutor1="",tutor2="",email_tutor2="",tlf_tutor2="";
 var existe_foto=false, existe_dni_A=false, existe_dni_R=false, existe_seguro=false,existe_certificado=false,existe_num_ss=false;
 var cambio_modalidad=false, direccion_cambio_modalidad="misma_modalidad"; //otras opciones modular->ordinaria ordinaria->modular
+var ciclo_anterior="", curso_anterior="";
 
 
 var primera_vez_pag_2=true;
