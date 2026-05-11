@@ -191,12 +191,16 @@ else{
     $fila_turno="<h4>Curso: $curso_ciclo Turno: $turno</h4><br>";
 }
 
+$cambio_modalidad==1?$texto_cambio_mod="Cambio de modalidad: Sí "."(".$direccion_cambio_modalidad.")":$texto_cambio_mod="Cambio de modalidad: No";
+
+
 $html1 = <<<HTML1
 <h3>Curso Académico $anno_curso</h3><br>
 <h4>C.F. Grado $grado</h4><br>
 <h4>$ciclo</h4><br>
 $fila_turno<br>
 <span>Ha iniciado los estudios en otra comunidad autónoma: <b>$nuevo_otra_comunidad</b></span>
+<span>$texto_cambio_mod</span>
 HTML1;
 
 if (is_file('../../../docs/fotos/'.$id_nie.'.jpg')) $pdf->Image('../../../docs/fotos/'.$id_nie.'.jpg',15,35,25,33,'','','T');
@@ -204,7 +208,7 @@ elseif (is_file('../../../docs/fotos/'.$id_nie.'.jpeg')) $pdf->Image('../../../d
 $pdf->Rect(15,35,25,33,'all');
 
 $YInicio=45;
-$pdf->RoundedRect(55,$YInicio,100,30,2,'1111','','','');
+$pdf->RoundedRect(55,$YInicio,100,35,2,'1111','','','');
 $pdf->writeHTMLCell(0, 0, '', $YInicio+2, $html1, 0, 1, false, true, 'C', true);
 
 //Padding dentro de la celda del texto
@@ -212,7 +216,7 @@ $pdf->setCellPaddings(0,0,0,0);
 //Interlineado
 $pdf->setCellHeightRatio(1);
 
-$YInicio+=35;
+$YInicio+=40;
 $XInicioRotulo=17;
 $XInicio=12;
 
