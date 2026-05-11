@@ -191,7 +191,7 @@ else{
     $fila_turno="<h4>Curso: $curso_ciclo Turno: $turno</h4><br>";
 }
 
-$cambio_modalidad==1?$texto_cambio_mod="Cambio de modalidad: Sí "."(".$direccion_cambio_modalidad.")":$texto_cambio_mod="Cambio de modalidad: No";
+$cambio_modalidad==1?$texto_cambio_mod="Cambio de modalidad:<b> Sí </b>"."(".$direccion_cambio_modalidad.")":$texto_cambio_mod="Cambio de modalidad: No";
 
 
 $html1 = <<<HTML1
