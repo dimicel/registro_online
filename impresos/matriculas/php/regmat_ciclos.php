@@ -38,6 +38,8 @@ else{
 $fecha_registro=date('Y-m-d');
 
 $id_nie=$_POST['id_nie'];
+$_POST['cambio_modalidad']=="1"?$cambio_modalidad=1:$cambio_modalidad=0;
+$direccion_cambio_modalidad=$_POST['direccion_cambio_modalidad'];
 $email=$_POST['email'];
 $apellidos=$_POST['apellidos'];
 $nombre=$_POST['nombre'];
@@ -75,6 +77,8 @@ $mysqli->query("insert into mat_ciclos (id_nie,
                                         curso_ciclo,
                                         turno,
                                         al_nuevo_otracomunidad,
+                                        cambio_modalidad,
+                                        direccion_cambio_modalidad,
                                         apellidos,
                                         nombre,
                                         email,
@@ -98,6 +102,8 @@ $mysqli->query("insert into mat_ciclos (id_nie,
                                         '$curso_ciclo',
                                         '$turno',
                                         '$nuevo_otra_comunidad',
+                                        '$cambio_modalidad',
+                                        '$direccion_cambio_modalidad',
                                         '$apellidos',
                                         '$nombre',
                                         '$email_alumno',
