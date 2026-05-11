@@ -354,7 +354,8 @@ function creaArrayPasapagina() {
 }
 
 function registraMatricula() {
-    if (document.getElementById("direccion_cambio_modalidad").value!="misma") document.getElementById("cambio_modalidad").value="1";
+    dir_c_mod=document.getElementById("direccion_cambio_modalidad").value;
+    if (dir_c_mod=="modular->ordinaria" || dir_c_mod=="ordinaria->modular") document.getElementById("cambio_modalidad").value="1";
     else document.getElementById("cambio_modalidad").value="0";
     var f = document.getElementById("mat_ciclos");
     var f1 = document.getElementById("form_pagina_1");
