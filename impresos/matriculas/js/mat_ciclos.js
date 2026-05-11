@@ -535,6 +535,7 @@ function cambioModalidad(){
         if (resp.error=="ok"){
             ciclo_anterior=resp.datos.ciclo;
             curso_anterior=resp.datos.curso;
+            
         }
     },"json");
 }
