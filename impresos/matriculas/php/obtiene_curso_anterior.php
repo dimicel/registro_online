@@ -43,3 +43,5 @@ if ($stmt) {
 } else {
     $resp["error"] = "error_sql";
 }
+
+exit(json_encode($resp));
