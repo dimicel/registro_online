@@ -59,26 +59,14 @@
     <hr>
     <div class="form-group form-row justify-content-center">
         <label style="float:left">*Cambio de modalidad respecto del curso pasado:</label>
-    </div>
-    <div class="form-group form-row justify-content-center">
-        <div class="custom-control-inline custom-switch  mi-checkbox " style="clear:both;margin-left:5px">
-            <input name="cambio_modalidad" id="nuevo" type="radio" value="nuevo" class="custom-control-input" />
-            <label class="custom-control-label" for="nuevo">Soy nuevo alumno/a</label>
-        </div>
-        <div class="custom-control-inline custom-switch  mi-checkbox " style="clear:both;margin-left:5px">
-            <input name="cambio_modalidad" id="misma" type="radio" value="misma modalidad" class="custom-control-input" />
-            <label class="custom-control-label" for="misma">Misma modalidad</label>
-        </div>
-    </div>
-    <div class="form-group form-row justify-content-center">
-        <div class="custom-control-inline  custom-switch  mi-checkbox ">
-            <input name="cambio_modalidad" id="completo-modular" type="radio" value="completo-modular" class="custom-control-input" />
-            <label class="custom-control-label" for="completo-modular">De curso completo paso a modular</label>
-        </div>
-        <div class="custom-control-inline  custom-switch  mi-checkbox ">
-            <input name="cambio_modalidad" id="modular-completo" type="radio" value="modular-completo" class="custom-control-input" />
-            <label class="custom-control-label" for="modular-completo">De curso modular paso a curso completo</label>
-        </div>
+        <select name="cambio_modalidad" id="cambio_modalidad" class="form-control">
+                <option value="">Seleccione una opción...</option>
+                <option value="nuevo">Empiezo el ciclo formativo</option>
+                <option value="mismo">Continúo en la misma modalidad</option>
+                <option value="modular->ordinaria">Paso de modular a matrícula de curso completo</option>
+                <option value="ordinaria->modular">Paso de matrícula de curso completo a modular</option>
+            </select>
+        <span class="errorTxt" style="font-size: 1em;"></span>
     </div>
 </form>
 <hr>
